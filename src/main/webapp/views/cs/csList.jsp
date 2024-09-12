@@ -13,6 +13,12 @@
       flex-direction: column;
       background-color: #1F2B6C;           
   }
+  /* 사이드바 메뉴 길이 페이지마다 다를 수 있으니 별도로 부여 */
+   #sideMenu{
+     background-color: rgb(54, 99, 204);
+     width: 20%;
+     height: 100%;
+ }
  #csthead{
    background-color:#eaf3fa;
  }

@@ -13,11 +13,6 @@
         display: flex;
     }
    
-    #sideMenu{
-        background-color: rgb(54, 99, 204);
-        width: 20%;
-        height: 100%;
-    }
     #navContent{
         width: 80%;
         height: 100%;
