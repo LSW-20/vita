@@ -29,7 +29,7 @@
 <body>
 
 	<%@ include file="/views/common/header.jsp" %>
-	<%@ include file="/views/common/sideBar.jsp" %>
+	<%@ include file="/views/common/myPageSideBar.jsp" %>
 
 
   <div class="side" id="navContent">

@@ -28,7 +28,7 @@
 </style>
 <body>
 	 <%@ include file="/views/common/header.jsp" %>
-	 <%@ include file="/views/common/sideBar.jsp" %>
+	 <%@ include file="/views/common/myPageSideBar.jsp" %>
 	 <div class="side" id="navContent">
 		
 	   <br><h2><b>&nbsp; 고객의 소리</h2>  
