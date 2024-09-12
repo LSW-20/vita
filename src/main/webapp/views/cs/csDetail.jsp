@@ -25,6 +25,10 @@
      width: 20%;
      height: 120%;
  }
+ footer{
+     margin-top: 1200px;
+ } 
+ 
 </style>
 <body>
 
