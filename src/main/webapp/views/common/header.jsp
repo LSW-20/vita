@@ -181,10 +181,10 @@
         <div class="header-top"> 
             <!-- 현재 이미지 위치 = semi>image>이미지-->
             <!-- 현재 HTML 위치  = semi>project>semi.html -->
-            <div class="top-img" id="topimgDiv1"><img id="vpMark" src="../practice_image/vp마크.png"></div>
-            <div class="top-img" id="topimgDiv2"><img id="vpNum" src="../practice_image/vp전화번호.png"></div>
-            <div class="top-img" id="topimgDiv3"><img id="vpWork" src="../practice_image/vp병원영업시간.png"></div>
-            <div class="top-img" id="topimgDiv4"><a href=""><img id="vpLoc" src="../practice_image/vp위치.png"></a></div>
+            <div class="top-img" id="topimgDiv1"><img id="vpMark" src="/vita/assets/image/vp마크.png"></div>
+            <div class="top-img" id="topimgDiv2"><img id="vpNum" src="/vita/assets/image/vp전화번호.png"></div>
+            <div class="top-img" id="topimgDiv3"><img id="vpWork" src="/vita/assets/image/vp병원영업시간.png"></div>
+            <div class="top-img" id="topimgDiv4"><a href=""><img id="vpLoc" src="/vita/assets/image/vp위치.png"></a></div>
         </div>
         
         <div id="mainMenu"> 
@@ -196,7 +196,7 @@
                 <li id="List-5"><a href="" style="text-decoration: none;">병원이야기</a></li>
                 <li id="List-6"><a href="" style="text-decoration: none;">병원소개</a></li>
                 <li id="vpButton">
-                    <a href="#popup" class="button"><img src="../practice_image/검색버튼.png" class="searchBtn"></a>
+                    <a href="#popup" class="button"><img src="/vita/assets/image/검색버튼.png" class="searchBtn"></a>
                 </li>
                 <div id="popup" class="popup">
                     <div class="popup-content">
