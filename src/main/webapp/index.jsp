@@ -14,6 +14,7 @@
 
 <h2>메인페이지입니다.</h2>
 <p>잘되는지?</p>
+<h2>잘되라~~~~~</h2>
 <!-- footer start  -->
 <%@ include file="/views/common/footer.jsp" %>
 <!-- footer end -->
