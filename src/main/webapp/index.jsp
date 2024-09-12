@@ -13,7 +13,7 @@
 <!-- header end -->
 
 <h2>메인페이지입니다.</h2>
-
+<p>잘되는지?</p>
 <!-- footer start  -->
 <%@ include file="/views/common/footer.jsp" %>
 <!-- footer end -->
