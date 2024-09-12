@@ -15,7 +15,7 @@
             position: absolute;
             width: 100%;
             height: 300px;
-            margin-top: 1500px;
+            /* margin-top: 1500px; */
         }
     </style>
     <footer>
