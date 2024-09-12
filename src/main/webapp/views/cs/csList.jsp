@@ -16,6 +16,9 @@
  #csthead{
    background-color:#eaf3fa;
  }
+    footer{
+     margin-top: 1053px;
+ }
 </style>
 <body>
 	 <%@ include file="/views/common/header.jsp" %>
@@ -108,7 +111,7 @@
 	 </ul>
 
 	 </div>
-	 <!-- nav닫아주기 여기서 실행 -->
+	 <!-- nav, section 별도로 닫아주기-->
 	 </nav>
 	</section>
 <!-- Footer start -->
