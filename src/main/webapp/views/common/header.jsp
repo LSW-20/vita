@@ -272,9 +272,10 @@
           </div>
         <div class="sub" style="font-size: 17px;"><br><b>&nbsp;진료예약/안내 ></b></div>
         <div class="sub">
-            <b><br>&nbsp;병원안내</b><br>
+            <b><br>&nbsp;안내</b><br>
             <a href="" style="text-decoration: none;">&nbsp;오시는길</a><br>
-            <a href="" style="text-decoration: none;">&nbsp;주차안내</a>
+            <a href="" style="text-decoration: none;">&nbsp;주차안내</a><br>
+            <a href="" style="text-decoration: none;">&nbsp;층별안내</a>
         </div>
         <div class="sub">
             <b><br>&nbsp;외래진료안내</b><br>

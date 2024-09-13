@@ -67,6 +67,8 @@
         <br>
         <div class="container" style="width: 1000px; height: 1px; background: rgb(198, 214, 231);"></div><br><br>
         <div class="container" style="text-align: center; width: 1000px; height: 300px; display: flex;">
+        
+        
             <div class="container border" id="inner" style="width: 200px; height: 200px; position: relative; overflow: hidden;">
                 <table class="inner inner1">
                     <tr>
@@ -81,18 +83,20 @@
                     </tr>
                 </table>
                 <div class="inner inner2" style="background-color: rgb(32, 163, 245); display: block;">
-                    <a href="" class="no-underline"> <!-- 내과소개링크 -->
+                    <a href="/vita/views/Department/dept_Introduce1.jsp" class="no-underline"> <!-- 내과소개링크 -->
                         <div id="hov1" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px; margin-top: 30px;">
                             <b id="hov1_b" style="font-size: 20px; line-height: 60px;">소개</b>
                         </div>
                     </a>
-                    <a href="" class="no-underline"> <!-- 치과의료진링크 -->
+                    <a href="" class="no-underline"> <!-- 내과의료진링크 -->
                         <div id="hov1" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px;">
                             <b id="hov1_b" style="font-size: 20px; line-height: 55px;">의료진</b>
                         </div>
                     </a>
                 </div>
             </div>
+            
+            
             <div class="container border" id="inner" style="width: 200px; height: 200px; position: relative; overflow: hidden;">
                 <table class="inner inner1">
                     <tr>
@@ -107,18 +111,20 @@
                     </tr>
                 </table>
                 <div class="inner inner2" style="background-color: rgb(32, 163, 245); display: block;">
-                    <a href="" class="no-underline"> <!-- 외과소개링크 -->
+                    <a href="/vita/views/Department/dept_Introduce2.jsp" class="no-underline"> <!-- 외과소개링크 -->
                         <div id="hov1" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px; margin-top: 30px;">
                             <b id="hov1_b" style="font-size: 20px; line-height: 60px;">소개</b>
                         </div>
                     </a>
-                    <a href="" class="no-underline"> <!-- 치과의료진링크 -->
+                    <a href="" class="no-underline"> <!-- 외과의료진링크 -->
                         <div id="hov1" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px;">
                             <b id="hov1_b" style="font-size: 20px; line-height: 55px;">의료진</b>
                         </div>
                     </a>
                 </div>
             </div>
+            
+            
             <div class="container border" id="inner" style="width: 200px; height: 200px; position: relative; overflow: hidden;">
                 <table class="inner inner1">
                     <tr>
@@ -133,7 +139,7 @@
                     </tr>
                 </table>
                 <div class="inner inner2" style="background-color: rgb(32, 163, 245); display: block;">
-                    <a href="" class="no-underline"> <!-- 치과소개링크 -->
+                    <a href="/vita/views/Department/dept_Introduce3.jsp" class="no-underline"> <!-- 치과소개링크 -->
                         <div id="hov1" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px; margin-top: 30px;">
                             <b id="hov1_b" style="font-size: 20px; line-height: 60px;">소개</b>
                         </div>
@@ -145,6 +151,8 @@
                     </a>
                 </div>
             </div>
+            
+            
             <div class="container border" id="inner" style="width: 200px; height: 200px; position: relative; overflow: hidden;">
                 <table class="inner inner1">
                     <tr>
@@ -159,12 +167,12 @@
                     </tr>
                 </table>
                 <div class="inner inner2" style="background-color: rgb(32, 163, 245); display: block;">
-                    <a href="" class="no-underline"> <!-- 안과소개링크 -->
+                    <a href="/vita/views/Department/dept_Introduce4.jsp" class="no-underline"> <!-- 안과소개링크 -->
                         <div id="hov1" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px; margin-top: 30px;">
                             <b id="hov1_b" style="font-size: 20px; line-height: 60px;">소개</b>
                         </div>
                     </a>
-                    <a href="" class="no-underline"> <!-- 치과의료진링크 -->
+                    <a href="" class="no-underline"> <!-- 안과의료진링크 -->
                         <div id="hov1" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px;">
                             <b id="hov1_b" style="font-size: 20px; line-height: 55px;">의료진</b>
                         </div>
