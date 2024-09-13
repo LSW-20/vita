@@ -13,7 +13,7 @@
     <!-- Header, Nav end -->
 
 
-  <style>
+		<style>
     
         #pad {
           padding-top: 85px;
@@ -35,8 +35,7 @@
             margin-top: 31px;
             
         }
-
-      
+       
         #color{
             background-color: rgb(245, 245, 245);
             color: rgb(31, 43, 108);
@@ -61,12 +60,10 @@
             margin-top: 155px;
             
           }
-          
         footer{
        
           margin-top: 2317px;
         }   
-        
         
     
        </style>
@@ -81,7 +78,7 @@
       <div class="container11">
         <div class="d-flex ">
           <div class="p-2" style="margin-left: 150px;">
-            <img src="/vita/assets/image/첫방문.jpg"   class="img-check" id="img">
+            <img src="/vita/assets/image/첫방문.jpg"  class="img-check" id="img">
           </div>
           <div class="p-2">
             <h5 id="common-top"><b>진료를 처음 보시는 경우</b></h5>
@@ -95,7 +92,7 @@
           </div>
           <div class="ml"id="vertical-line"></div>
           <div style="margin-left:110px">
-            <img src="/vita/assets/image/본인예약.jpg"   class="img-check" id="img">
+            <img src="/vita/assets/image/본인예약.jpg"  class="img-check" id="img">
           </div>
           <div class="p-2">
             <h5 id="common-top"><b>진료를 처음 보시는 경우</b></h5>
@@ -126,30 +123,29 @@
         <div class="container11">
           <div class="d-flex" style="margin-left: 65px;">  
             <div class="p-2" style="margin-top: 70px; margin-left: 70px">
-              <img src="/vita/assets/image/회원가입.jpg"   class="img-check" id="img1" style="cursor: pointer;"><br>
-              <h3 style="margin-top: 30px; margin-left:85px; cursor: pointer;">회원가입</h3>
+              <img src="/vita/assets/image/마이페이지.jpg"  class="img-check" id="img1"  style="cursor: pointer;"><br>
+              <h3 style="margin-top: 30px; margin-left:70px; cursor: pointer;" >마이페이지</h3>
             </div>
             
             <div id="vertical-line" style="margin-left:100px; margin-top: 40px;"></div>
             
             <div class="p-2" style="margin-top: 70px; margin-left: 90px">
-              <img src="/vita/assets/image/로그인및아이디비번.jpg"   class="img-check" id="img1" style="cursor: pointer;">
-              <h3 style="margin-top: 30px; margin-left:90px; cursor: pointer;">로그인</h3>
-              <h3 style="cursor: pointer;">&nbsp;&nbsp;&nbsp;&nbsp;</h3>
-              <h3 style="cursor: pointer;">&nbsp;아이디/비밀번호찾기</h3>
+              <img src="/vita/assets/image/층별안내.jpg"  class="img-check" id="img1" style="cursor: pointer;">
+              <h3 style="margin-top: 30px; margin-left:85px; cursor: pointer;">층별 안내</h3>
+              
             </div>
             
             <div id="vertical-line" style="margin-left:100px; margin-top: 40px;"></div>
             
             <div class="p-2" style="margin-top: 70px; margin-left: 90px">
-              <img src="/vita/assets/image/의료진료과.jpg"   class="img-check" id="img1" style="cursor: pointer;">
+              <img src="/vita/assets/image/의료진료과.jpg"  class="img-check" id="img1" style="cursor: pointer;">
               <h3 style="margin-top: 30px; margin-left:50px; cursor: pointer;">의료진/진료과</h3>
             </div>
             
             <div id="vertical-line" style="margin-left:100px; margin-top: 40px;"></div>
             
             <div class="p-2" style="margin-top: 70px; margin-left: 70px">
-              <img src="/vita/assets/image/오시는길.jpg"  class="img-check" id="img1" style="cursor: pointer;">
+              <img src="/vita/assets/image/오시는길.jpg" class="img-check" id="img1" style="cursor: pointer;">
               <h3 style="margin-top: 30px; margin-left:80px; cursor: pointer;">오시는길</h3>
             </div>
           </div>
@@ -162,7 +158,7 @@
         
         
          <div class="container11 p-3 my-3" style= "background-color: #3A52CF; color:white">
-          <h1 style="margin-top: 50px; margin-left:50px">인터넷 예약이 어려우신가요?  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화문의 (02)123-4567</h1>  
+          <h1 style="margin-top: 50px; margin-left:50px">인터넷 예약이 어려우신가요? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화문의 (02)123-4567</h1>  
           
           <br><br><br><br><br>
           <h3 style="color:#9395C7; margin-left:50px">·  대표 번호로 연락주시면 상담원이 예약을 도와드립니다. (평일: 오전 8시 ~ 오후 5시)</h3><br>
@@ -176,23 +172,6 @@
          
          
         </section>
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
