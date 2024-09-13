@@ -12,7 +12,7 @@
     <%@ include file="/views/common/header.jsp" %>
     <!-- Header, Nav end -->
 
-		<style>
+		  <style>
     
         #pad {
           padding-top: 260px;
@@ -54,12 +54,12 @@
         }
     
        </style>
-      <section>
+       <section>
         <div class="container11">
           <section class="success" >
       
             <div class="container" id="pad">
-              <h3 >신청 완료</h3>
+              <h3 >결제 완료</h3>
             
             
               <hr style= "border: 1px solid; color: rgb(31, 43, 108)">
@@ -68,8 +68,8 @@
                     <div class="row">
                         <div class="col"><img src="/vita/assets/image/완료체크.jpg"  class="img-check" id="check"></div>
                         <div class="col">
-                            <span><h1 class="text">신청 완료</h1></span>
-                            <span><h6 class="text">증명서신청 완료 되었습니다.</h6>
+                            <span><h1 class="text">결제 완료</h1></span>
+                            <span><h6 class="text">결제가 완료 되었습니다.</h6>
                         </div>
 
                     </div>
@@ -79,32 +79,37 @@
                 <br><br>
 
                 
-                <h3>신청 내용</h3><br>
+                <h3>결제 내용</h3>
+                <br>
                 
                 
         
                   <table class="table table-bordered" style="width:1004px">
                     
                  
-                      <tr>
+                   <tr>
                         <td id="color" style="width:200px">선택항목</td>
-                        <td style="width:302px">진료확인서</td>
+                        <td style="width:302px">입퇴원 사실확인서(수정요망)</td>
                         <td id="color" style="width:200px">발급신청일</td>
-                        <td style="width:302px">2024년9월9일 (목)</td>
+                        <td style="width:302px">xx월(수정요망)</td>
                         
                       </tr>
-                   
+                      <tr>
+                        <td id="color" >가격</td>
+                        <td style="border-right: white">2,000원(수정요망)</td>
+                      
+                      </tr>
                   
                   </table>
             
-                <br><br><br>
+                <br><br><br><br>
       
                 <div align="center">
                     <button type="button" class="btn" id="btn-color">메인화면으로</button>
                 </div>
       
-             
-      <br><br><br>
+              <br><br><br>	
+      
             
             </div>
       
@@ -113,7 +118,7 @@
   
   
       </section>
-		
+
 
 
 

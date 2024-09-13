@@ -8,19 +8,19 @@
 </head>
 <body>
 
-
 <%@ include file="/views/common/header.jsp" %>
 <%@ include file="/views/common/doctorSideBar.jsp" %>
 
+ 
 
 
-				      
-				   <!-- content 부분 start -->
+            <!-- content 부분 start -->
              <style>
              
              footer{margin-top:1500px;}
 				      section{height:1347px}
 				      #sideMenu{height:100%}
+				      
 				      
               h2{font-size: 3rem;}
 
@@ -47,15 +47,8 @@
                 margin: auto;
               }
               h3{color: gray;}
-
-              
-              #table-container{
-                margin-top: 40px;
-                min-height: 600px;
-            }
-
+              #table-container{margin-top: 40px;}
               table{text-align: center;}
-              #pageBar{margin-left: 440px;}
              
              </style>
             <div class="container mt-5">
@@ -84,94 +77,19 @@
                     <td>주민등록번호</td>
                     <td>진료과</td></nav>
                     <td>전화번호</td>
-                    <td>진료기록</td>
+                    <td></td>
                   </tr>
 
                   <tr>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td><button class="btn btn-warning">보기</button></td>
-                  </tr>
-                  <tr>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td><button class="btn btn-warning">보기</button></td>
-                  </tr>
-                  <tr>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td><button class="btn btn-warning">보기</button></td>
-                  </tr>
-                  <tr>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td><button class="btn btn-warning">보기</button></td>
-                  </tr>
-                  <tr>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td><button class="btn btn-warning">보기</button></td>
-                  </tr>
-                  <tr>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td><button class="btn btn-warning">보기</button></td>
-                  </tr>
-                  <tr>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td><button class="btn btn-warning">보기</button></td>
-                  </tr>
-                  <tr>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
+                    <td><!-- for문 돌려서 추가 --></td>
+                    <td><!-- for문 돌려서 추가 --></td>
+                    <td><!-- for문 돌려서 추가 --></td>
+                    <td><!-- for문 돌려서 추가 --></td>
+                    <td><!-- for문 돌려서 추가 --></td>
                     <td><button class="btn btn-warning">보기</button></td>
                   </tr>
                 </table>
-                
-                <nav aria-label="Page navigation example" id="pageBar">
-                  <ul class="pagination">
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                      </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
               </div>
-
 
 
 
@@ -184,12 +102,11 @@
     </section>
 
     <!-- section end -->
-				
+
 
 
 
 <%@ include file="/views/common/footer.jsp" %>
-
 
 </body>
 </html>

@@ -604,22 +604,6 @@
         }
 
 
-
-        .add_update_modal_table th { /* 추가, 수정용 modal의 테이블 왼쪽셀 */
-            padding-right: 40px;
-            height: 40px;
-        }
-        .add_update_modal_table td { /* 추가, 수정용 modal의 테이블 오른쪽셀 */
-            height: 40px;
-            
-        }
-        .add_update_modal_table input:not(.select_dept) { /* 추가, 수정용 modal의 테이블 오른쪽셀의 input */
-            width: 220px;
-        }
-        .star { /* 추가, 수정용 modal의 '*'를 빨간색으로 */
-            color: red;
-        }
-
      </style>
 
 
@@ -736,25 +720,6 @@
             </form>
 
 
-            <!-- 조건처리하는법. 검색 이전상태랑 검색했는데 결과가 없는경우를 구분하기 위해 flag 변수 사용한다.
-            <% boolean searchPerformed = (Boolean) request.getAttribute("searchPerformed"); %>
-
-            <% if (!searchPerformed) { %>
-               검색 이전 상태
-                초기 화면을 표시 
-            <% } else if (doctorList.isEmpty()) { %>
-                검색했지만 결과가 없는 경우
-                <div class="search_doctor_result">의료진 검색 결과</div>
-                <table class="table table-striped">
-                    <tr>
-                        <td colspan="10" style="text-align: center;">검색 결과가 없습니다.</td>
-                    </tr>
-                </table>
-            <% } else { %>
-                검색 결과가 있는 경우 
-            --> 
-
-
             <br><br>
             <!-- case1. 의료진 검색 결과가 없는 경우  -->
             <div class="search_doctor_result">의료진 검색 결과</div> <br>
@@ -779,7 +744,7 @@
                     </tr>
                 </table>
 
-                <div class="del_add_btn"><button type="submit" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal">추가</button></div>
+                <div class="del_add_btn"><button type="submit" class="btn btn-sm btn-dark">추가</button></div>
             </form>
 
             <br><br>
@@ -812,7 +777,7 @@
                         <td>010-1111-1111</td>
                         <td>서울시 강동구 강동대로 53길 76 (성내동)</td>
                         <td>20100310</td>
-                        <td><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal">수정</button></td>
+                        <td><button type="button" class="btn btn-sm btn-primary">수정</button></td>
                     </tr>
 
                     <tr>
@@ -825,7 +790,7 @@
                         <td>010-2222-2222</td>
                         <td>서울특별시 강동구 양재대로 1571</td>
                         <td>20150111</td>
-                        <td><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal">수정</button></td>
+                        <td><button type="button" class="btn btn-sm btn-primary">수정</button></td>
                     </tr>
 
                     <tr>
@@ -838,7 +803,7 @@
                         <td>010-3333-3333</td>
                         <td>서울특별시 강동구 구천면로34길 52</td>
                         <td>20030220</td>
-                        <td><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal">수정</button></td>
+                        <td><button type="button" class="btn btn-sm btn-primary">수정</button></td>
                     </tr>
 
                     <tr>
@@ -851,14 +816,14 @@
                         <td>010-4444-4444</td>
                         <td>서울특별시 강동구 구천면로 452</td>
                         <td>20000717</td>
-                        <td><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal">수정</button></td>
+                        <td><button type="button" class="btn btn-sm btn-primary">수정</button></td>
                     </tr>
 
                 </table>
 
                 <div class="del_add_btn">
-                    <button type="submit" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_modal">삭제</button>
-                    <button type="submit" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal">추가</button>
+                    <button type="submit" class="btn btn-sm btn-danger">삭제</button>
+                    <button type="submit" class="btn btn-sm btn-dark">추가</button>
                 </div>
             </form>
 
@@ -876,233 +841,8 @@
 
 
 
-    <!-- 삭제용 modal start -->
-  
-        <!-- The Modal -->
-        <div class="modal" id="delete_modal">
-            <div class="modal-dialog">
-            <div class="modal-content">
-        
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">의료진 계정 삭제</h4>
-                </div>
-        
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form action="" method="">
-                        <h6>사번 '105680', 이름 '가가가' 계정을 정말 삭제하시겠습니까? </h6> <br>
-                        <div style="text-align: right;">
-                            <button type="submit" class="btn btn-sm btn-danger">삭제</button>
-                            <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">취소</button>
-                        </div>
-                    </form>
-                </div>
-        
-            </div>
-            </div>
-        </div>
-
-    <!-- 삭제용 modal end -->
 
 
-
-
-    <!-- 추가용 modal start -->
-        <!-- 회원 테이블, 의료진 테이블, 근무 일정 테이블 순서대로 insert해야 한다. -->
-
-            <!-- The Modal -->
-            <div class="modal" id="add_modal">
-                <div class="modal-dialog">
-                <div class="modal-content">
-            
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">의료진 계정 추가</h4>
-                    </div>
-            
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <form action="" method="">
-                            <div style="display: flex; justify-content: center;">
-                                <table class="add_update_modal_table">
-                                    <tr>
-                                        <th><span class="star">*</span> 사번</th>
-                                        <td><input type="number" class="form-control" placeholder="" name="" value="" required></td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="star">*</span> 이름</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="" required></td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="star">*</span> 주민등록번호</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="" required></td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="star">*</span> 면허번호</th>
-                                        <td><input type="number" class="form-control" placeholder="" name="" value="" required></td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="star">*</span> 진료과</th>
-                                        <td>
-                                            <input type="radio" class="select_dept" name="dept" value="외과" checked>&nbsp외과&nbsp&nbsp
-                                            <input type="radio" class="select_dept" name="dept" value="내과">&nbsp내과&nbsp&nbsp
-                                            <input type="radio" class="select_dept" name="dept" value="치과">&nbsp치과&nbsp&nbsp
-                                            <input type="radio" class="select_dept" name="dept" value="안과">&nbsp안과
-                                            
-                                        </td>
-                                    </tr>
-
-
-                                    <tr>
-                                        <td colspan="2" style="height: 20px;"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <th><span class="star">*</span> 아이디</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="" required></td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="star">*</span> 비밀번호</th>
-                                        <td><input type="password" class="form-control" placeholder="" name="" value="" required></td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="star">*</span> 비밀번호 확인</th>
-                                        <td><input type="password" class="form-control" placeholder=""  required></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td colspan="2" style="height: 20px;"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>&nbsp;&nbsp;전화번호</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value=""></td>
-                                    </tr>
-                                    <tr>
-                                        <th>&nbsp;&nbsp;주소</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value=""></td>
-                                    </tr>
-                                    <tr>
-                                        <th>&nbsp;&nbsp;이메일</th>
-                                        <td><input type="email" class="form-control" placeholder="" name="" value=""></td>
-                                    </tr>
-
-
-                                </table>
-                            </div>
-
-                            <br>
-                            <div style="text-align: right;">
-                                <button type="submit" class="btn btn-sm btn-success">추가</button>
-                                <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">취소</button>
-                            </div>
-                        </form>
-                    </div>
-            
-                </div>
-                </div>
-            </div>
-
-    <!-- 추가용 modal end -->
-
-
-
-
-
-    <!-- 수정용 modal start -->
-
-            <!-- The Modal -->
-            <div class="modal" id="update_modal">
-                <div class="modal-dialog">
-                <div class="modal-content">
-            
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">의료진 계정 수정</h4>
-                    </div>
-            
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <form action="" method="">
-                            <div style="display: flex; justify-content: center;">
-                                <table class="add_update_modal_table">
-                                    <tr>
-                                        <th><span class="star">*</span> 사번</th>
-                                        <td><input type="number" class="form-control" placeholder="" name="" value="105000" required></td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="star">*</span> 이름</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="가가가" required></td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="star">*</span> 주민등록번호</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="700624-1248547" required></td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="star">*</span> 면허번호</th>
-                                        <td><input type="number" class="form-control" placeholder="" name="" value="12345" required></td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="star">*</span> 진료과</th>
-                                        <td>
-                                            <input type="radio" class="select_dept" name="dept" value="외과" checked>&nbsp외과&nbsp&nbsp
-                                            <input type="radio" class="select_dept" name="dept" value="내과">&nbsp내과&nbsp&nbsp
-                                            <input type="radio" class="select_dept" name="dept" value="치과">&nbsp치과&nbsp&nbsp
-                                            <input type="radio" class="select_dept" name="dept" value="안과">&nbsp안과
-                                            
-                                        </td>
-                                    </tr>
-
-
-                                    <tr>
-                                        <td colspan="2" style="height: 20px;"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <th><span class="star">*</span> 아이디</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="lottt3" required></td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="star">*</span> 비밀번호</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="va123" required></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td colspan="2" style="height: 20px;"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>&nbsp;&nbsp;전화번호</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="010-1111-1111"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>&nbsp;&nbsp;주소</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="서울시 강동구 강동대로 53길 76 (성내동)"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>&nbsp;&nbsp;이메일</th>
-                                        <td><input type="email" class="form-control" placeholder="" name="" value="abc123@naver.com"></td>
-                                    </tr>
-
-
-                                </table>
-                            </div>
-
-                            <br>
-                            <div style="text-align: right;">
-                                <button type="submit" class="btn btn-sm btn-success">추가</button>
-                                <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">취소</button>
-                            </div>
-                        </form>
-                    </div>
-            
-                </div>
-                </div>
-            </div>
-
-
-    <!-- 수정용 modal end -->
 
 
 
