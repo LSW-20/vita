@@ -544,26 +544,66 @@
 
        }
 
-        
-       #container111, #container222 {
-            display: flex;
-            justify-content: space-around;
-            height: 300px;
-       }
-       .menu {
-            border: 1px solid #777a88;
-            border-radius: 20px;
 
-            width: 35%;
-            height: 100%;
 
-            background-color: rgb(77, 49, 202);
 
-       }
-       .menu td {
-            color: white;
-       }
-       
+    /* 여기부터 */
+                
+        #title_msg { /* '의료진 계정 관리' 텍스트 */
+            border-bottom: 10px solid silver;
+
+            font-size: 40px;
+            font-weight: 900;
+            padding-left: 100px;
+            padding-bottom: 30px;
+        }
+
+        #search_doctor { /* '의료진 검색' 텍스트 */
+            font-size: 20px;
+            font-weight:600;
+            margin-left: 40px;
+        }
+
+
+        #search_doctor_table { /* 의료진 검색 '테이블' */
+            width: 100%;
+        }
+
+        #search_doctor_table td { /* 의료진 검색 '테이블'의 각 셀들 */
+            border: 1px solid rgb(201, 193, 193);
+        }
+
+        .left_cell { /* 의료진 검색 테이블의 왼쪽 셀 */
+            width: 250px; 
+            padding-left: 40px; 
+            background-color: rgb(235, 233, 233);
+        }
+
+        .right_cell_1 { /* 의료진 검색 테이블의 오른쪽 셀 첫 2개 */
+            padding-left: 20px; 
+            padding-top:  10px;
+            padding-bottom: 10px;
+        }
+
+        .right_cell_2 { /* 의료진 검색 테이블의 오른쪽 셀 마지막 1개 */
+            padding-left: 20px; 
+            padding-top:  15px;
+            padding-bottom: 5px;
+        }
+
+
+
+        .search_doctor_result { /* '의료진 검색 결과' 텍스트 */
+            font-size: 20px;
+            font-weight:600;
+            margin-left: 40px;
+        }
+
+        .del_add_btn { /* 삭제, 추가 버튼 가운데 정렬 */
+            text-align: center;
+        }
+
+
      </style>
 
 
@@ -637,63 +677,94 @@
 
             <!-- section 나머지 start -->
 
-            <div>의료진 계정 관리</div>
+            <div id="title_msg">의료진 계정 관리</div>
 
-            <div></div> <!-- 위 div의 border-bottom을 주면 될듯? -->
+            <br><br><br>
 
-            <br>
+            <form action="" method="">
+                <div id="search_doctor">의료진 검색</div>
+                <br>
 
-            <form action="">
-                의료진 검색 <br>
-                <table border="1">
+                <table id="search_doctor_table">
                     <tr>
-                        <td>이름</td>
-                        <td><input type="text" name="이름"></td>
+                        <td class="left_cell">이름</td>
+                        <td class="right_cell_1"><input type="text" name="이름" size="15"></td>
                     </tr>
 
                     <tr>
-                        <td>사번</td>
-                        <td><input type="text" name="사번"></td>
+                        <td class="left_cell">사번</td>
+                        <td class="right_cell_1"><input type="text" name="사번" size="15"></td>
                     </tr>
 
                     <tr>
-                        <td>진료과</td>
-                        <td>
-                            <input type="radio" name="search_dept" value="전체" id="label_all" checked><label for="label_all">전체</label>
-                            <input type="radio" name="search_dept" value="외과" id="label_surgery"><label for="label_surgery">외과</label>
-                            <input type="radio" name="search_dept" value="내과" id="label_medicine"><label for="label_medicine">내과</label>
-                            <input type="radio" name="search_dept" value="치과" id="label_dentisty"><label for="label_dentisty">치과</label>
-                            <input type="radio" name="search_dept" value="안과" id="label_eye"><label for="label_eye">안과</label>
+                        <td class="left_cell">진료과</td>
+                        <td class="right_cell_2">
+                            <input type="radio" name="search_dept" value="전체" id="label_all" checked><label for="label_all">&nbsp전체&nbsp&nbsp</label>
+                            <input type="radio" name="search_dept" value="외과" id="label_surgery"><label for="label_surgery">&nbsp외과&nbsp&nbsp</label>
+                            <input type="radio" name="search_dept" value="내과" id="label_medicine"><label for="label_medicine">&nbsp내과&nbsp&nbsp</label>
+                            <input type="radio" name="search_dept" value="치과" id="label_dentisty"><label for="label_dentisty">&nbsp치과&nbsp&nbsp</label>
+                            <input type="radio" name="search_dept" value="안과" id="label_eye"><label for="label_eye">&nbsp안과&nbsp&nbsp</label>
                         </td>
                     </tr>
                 </table>
 
                 <br>
-                <button type="submit" class="btn btn-sm btn-secondary">검색</button>
+
+                <div style="text-align: center;">
+                    <button type="submit" class="btn btn-sm btn-secondary">검색</button>
+                </div>
+                <!-- text-align 속성은 텍스트뿐만 아니라 인라인 요소(inline elements)들을 정렬할 때도 사용됩니다. 
+                HTML에서 <button>, <input>, <label> 등은 기본적으로 인라인 요소로 취급됩니다. 
+                그래서 text-align: center;를 사용하면 버튼과 같은 인라인 요소도 부모 컨테이너 안에서 가운데로 정렬됩니다. -->
+           
             </form>
 
 
-            <br><br><br>
+            <br><br>
             <!-- case1. 의료진 검색 결과가 없는 경우  -->
-
-
-
-            <!-- case2. 의료진 검색 결과가 있는 경우 -->
-            의료진 검색 결과 <br>
+            <div class="search_doctor_result">의료진 검색 결과</div> <br>
 
             <form action="">
-                <table border="1">
+                <table class="table table-striped">
                     <tr>
-                        <td></td>
-                        <td>사번</td>
-                        <td>이름</td>
-                        <td>주민등록번호</td>
-                        <td>진료과</td>
-                        <td>면허번호</td>
-                        <td>전화번호</td>
-                        <td>주소</td>
-                        <td>입사일</td>
-                        <td></td>
+                        <th></th>
+                        <th>사번</th>
+                        <th>이름</th>
+                        <th>주민등록번호</th>
+                        <th>진료과</th>
+                        <th>면허번호</th>
+                        <th>전화번호</th>
+                        <th>주소</th>
+                        <th>입사일</th>
+                        <th></th>
+                    </tr>
+
+                    <tr>
+                        <td colspan="10" style="text-align: center;">검색 결과가 없습니다.</td>
+                    </tr>
+                </table>
+
+                <div class="del_add_btn"><button type="submit" class="btn btn-sm btn-dark">추가</button></div>
+            </form>
+
+            <br><br>
+
+            <!-- case2. 의료진 검색 결과가 있는 경우 -->
+            <div class="search_doctor_result">의료진 검색 결과</div> <br>
+
+            <form action="">
+                <table class="table table-striped">
+                    <tr>
+                        <th></th>
+                        <th>사번</th>
+                        <th>이름</th>
+                        <th>주민등록번호</th>
+                        <th>진료과</th>
+                        <th>면허번호</th>
+                        <th>전화번호</th>
+                        <th>주소</th>
+                        <th>입사일</th>
+                        <th></th>
                     </tr>
 
                     <tr>
@@ -750,9 +821,10 @@
 
                 </table>
 
-                <br>
-                <button type="submit" class="btn btn-sm btn-danger">삭제</button>
-                <button type="submit" class="btn btn-sm btn-dark">추가</button>
+                <div class="del_add_btn">
+                    <button type="submit" class="btn btn-sm btn-danger">삭제</button>
+                    <button type="submit" class="btn btn-sm btn-dark">추가</button>
+                </div>
             </form>
 
 
