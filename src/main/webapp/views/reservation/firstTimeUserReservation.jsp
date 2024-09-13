@@ -70,7 +70,7 @@
             height: 400px; 
         }
         section{
-          
+            width: 1903px;
             position: absolute;
             margin-top: 155px;
             
@@ -82,7 +82,7 @@
         
     
        </style>
-      <section >
+      <section>
 
         <h2 id="pad"><b>첫 방문 고객 예약하기</b></h2>
         <br>
@@ -139,7 +139,7 @@
         <br><br>
         <form action= "/server/test.do">
           <filedset>
-              <input type="radio" id="check" name="check" value="T" style="margin-left: 1480px;">
+              <input type="radio" id="check" name="check" value="T" style="margin-left: 1460px;">
               <label for="checkO">&nbsp;동의합니다.</label>
               <input type="radio" id="non_check" name="check" value="F" style="margin-left: 70px;">
               <label for="checkX">&nbsp;동의하지 않습니다. </label>
@@ -160,7 +160,7 @@
           <br><br>
           <form action= "/server/test.do">
             <filedset>
-                <input type="radio" id="check" name="check1" value="T" style="margin-left: 1480px;">
+                <input type="radio" id="check" name="check1" value="T" style="margin-left: 1460px;">
                 <label for="checkO">&nbsp;동의합니다.</label>
                 <input type="radio" id="non_check" name="check1" value="F" style="margin-left: 70px;">
                 <label for="checkX">&nbsp;동의하지 않습니다. </label>
