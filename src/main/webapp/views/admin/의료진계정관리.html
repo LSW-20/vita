@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+
+</head>
+<body>
+
+    <!-- header start -->
+    <style>
+        body{margin: 0;}
+         * {
+             box-sizing: border-box;
+             margin: 0;
+             /* border: 1px solid black; */
+             
+         }
+         #headerDiv{
+             box-shadow: 2px 3px 7px black;
+             position: fixed;
+             width: 100%;
+             z-index: 20;
+         }
+         .header-top{
+             display: flex;
+             justify-content: space-evenly;
+             background-color: white;
+         }
+         
+         #vpMark{
+             width: 200px;
+             height: 70px;
+             cursor: pointer;
+         }
+         #vpNum,#vpWork,#vpLoc{
+             width: 200px;
+             height: 70px;
+         }
+         #topimgDiv1{
+             margin-right: 200px;
+         }
+         /* #topimgDiv2,#topimgDiv2,#topimgDiv2{} */
+         #mainMenu{
+             display: flex;
+             flex-direction: column;
+             background-color: #1F2B6C;           
+
+         }
+         #mainMenuList{
+             display: flex;
+             justify-content: center;
+             padding-top: 26px;
+             margin-bottom: 10px;
+             font-size: 20px;
+             list-style: none;
+             margin-left: -50px;
+             
+         }
+         #List-1:hover,#List-2:hover,#List-3:hover,#List-4:hover,#List-5:hover,#List-6:hover{
+            text-decoration: underline;
+            color: white;
+         }
+         #mainMenuList li{
+             margin-right: 60px;
+             cursor: pointer;
+ 
+         }
+         #mainMenuList li>a{
+             color: white;
+             text-align: center;
+             padding-top: 10px;
+         }
+         #vpButton{
+             width: 200px;
+             justify-content: center;
+             margin-top: -20px;
+         }
+ 
+         .sub{
+            border: 1px solid rgba(0, 0, 0, 0.158);
+            width: 30%;
+         }
+         .container1,.container2,.container3,.container4,.container5,.container6{
+             display: none;
+         }
+ 
+         .submenuContainer-1,.submenuContainer-2,.submenuContainer-3,.submenuContainer-4,.submenuContainer-5,.submenuContainer-6{
+             border: 1px solid rgba(0, 0, 0, 0.159);
+             display: flex;
+             position: fixed;
+             top: 146px;
+             z-index: 25;
+             background-color: white;
+             min-height: 300px;
+             width:100%;
+             
+         }
+
+         #loginMenu{
+            padding-left: 120px;
+            background-color: rgb(198, 214, 231);
+            padding-top: 20px;
+            font-size: 18px;
+         }
+         
+         a {
+            text-decoration: none; /* 밑줄 제거 */
+            color: inherit; /* 부모 요소의 색상 상속 */
+            font-weight: normal; /* 글꼴 굵기 설정 */
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .popup:target {
+            display: block;
+        }
+
+        .popup-content {   
+            margin: 15% auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 1100px;
+            text-align: center;
+        }
+
+        .close {
+            color: white;
+            float: right;
+            font-size: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: -3px;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #searchInput {
+            width: 1000px;
+            padding: 10px;
+            margin-left: -80px;
+            border: 5px solid orange;
+        }
+        .searchBtn:hover{
+            height: auto;
+            filter: sepia(10%);
+        }
+    
+
+     </style>
+
+    <header id="headerDiv"> 
+        <div class="header-top"> 
+            <!-- 현재 이미지 위치 = semi>image>이미지-->
+            <!-- 현재 HTML 위치  = semi>project>semi.html -->
+            <div class="top-img" id="topimgDiv1"><img id="vpMark" src="../../assets/image/vp마크.png"></div>
+            <div class="top-img" id="topimgDiv2"><img id="vpNum" src="../../assets/image/vp전화번호.png"></div>
+            <div class="top-img" id="topimgDiv3"><img id="vpWork" src="../../assets/image/vp병원영업시간.png"></div>
+            <div class="top-img" id="topimgDiv4"><a href=""><img id="vpLoc" src="../../assets/image/vp위치.png"></a></div>
+        </div>
+        
+        <div id="mainMenu"> 
+            <ul id="mainMenuList">
+                <li id="List-1"><a href="" style="text-decoration: none;">의료진/진료과</li>
+                <li id="List-2"><a href="" style="text-decoration: none;">진료예약/안내</a></li>
+                <li id="List-3"><a href="" style="text-decoration: none;">건강정보</a></li>
+                <li id="List-4"><a href="" style="text-decoration: none;">고객서비스</a></li>
+                <li id="List-5"><a href="" style="text-decoration: none;">병원이야기</a></li>
+                <li id="List-6"><a href="" style="text-decoration: none;">병원소개</a></li>
+                <li id="vpButton">
+                    <a href="#popup" class="button"><img src="../../assets/image/검색버튼.png" class="searchBtn"></a>
+                </li>
+                <div id="popup" class="popup">
+                    <div class="popup-content">
+                        <a href="#" class="close">×</a>
+                        <input type="text" id="searchInput" placeholder="검색어를 입력하세요">
+                        <a href="" style="margin: -50px;"><i class="bi bi-search"></i></a>
+                        <div id="searchResults"></div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </header>
+
+<div class="container1">
+    <div class="submenuContainer-1">
+
+        <!-- case1. 로그인전 
+        <div class="sub" id="loginMenu">
+            로그인 하시면<br> 
+            더 다양한 혜택을<br>
+            이용할 수 있습니다.<br><br>
+            <div class="btn-group-vertical" style="width: 150px;">
+                <a href="semi.html" class="btn btn-success">로그인</a><p></p>
+                <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
+                <a href="semi.html" class="btn btn-primary">진료예약</a>
+            </div>
+        </div>
+        <div class="sub">의료진/진료과 ></div>
+        <div class="sub"><a href="" style="text-decoration: none;">의료진</a></div> 
+        <div class="sub"><a href="" style="text-decoration: none;">진료과</a></div> 
+        <div class="sub"></div>
+        -->
+        <!-- case2. 로그인후 -->
+        <div class="sub" id="loginMenu">
+            <b>홍길동</b>님,<br> 방문을 환영합니다. <br><br><br>
+
+            <div class="btn-group-vertical" style="width: 150px;">
+                <a href="semi.html" class="btn btn-success">로그아웃</a><p></p>
+                <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
+                <a href="semi.html" class="btn btn-primary">진료예약</a>
+            </div>
+        </div>
+        <div class="sub" style="font-size: 17px;"><br><b>&nbsp;의료진/진료과 ></b></div>
+        <div class="sub"><a href="" style="text-decoration: none;"><br><b>&nbsp;의료진</b></a></div> 
+        <div class="sub"><a href="" style="text-decoration: none;"><br><b>&nbsp;진료과</a></b></div> 
+        <div class="sub"></div>
+        
+    </div>
+</div>
+
+
+<div class="container2">
+    <div class="submenuContainer-2">
+        <div class="sub" id="loginMenu">
+            로그인 하시면<br> 
+            더 다양한 혜택을<br>
+            이용할 수 있습니다.<br><br>
+            <div class="btn-group-vertical" style="width: 150px;">
+                <div class="btn-group-vertical" style="width: 150px;">
+                    <a href="semi.html" class="btn btn-success">로그인</a><p></p>
+                    <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
+                    <a href="semi.html" class="btn btn-primary">진료예약</a>
+                </div>
+            </div>
+          </div>
+        <div class="sub" style="font-size: 17px;"><br><b>&nbsp;진료예약/안내 ></b></div>
+        <div class="sub">
+            <b><br>&nbsp;병원안내</b><br>
+            <a href="" style="text-decoration: none;">&nbsp;오시는길</a><br>
+            <a href="" style="text-decoration: none;">&nbsp;주차안내</a>
+        </div>
+        <div class="sub">
+            <b><br>&nbsp;외래진료안내</b><br>
+            <a href="" style="text-decoration: none;">&nbsp;진료예약</a><br>
+            <a href="" style="text-decoration: none;">&nbsp;진료검진예약</a><br>
+            <a href="" style="text-decoration: none;">&nbsp;전화/방문예약</a><br>
+            <a href="" style="text-decoration: none;">&nbsp;예약내역 조회</a>
+        </div>
+        <div class="sub"></div>
+    </div>
+</div>
+
+
+<div class="container3">
+    <div class="submenuContainer-3">
+        <div class="sub" id="loginMenu">
+            로그인 하시면<br> 
+            더 다양한 혜택을<br>
+            이용할 수 있습니다.<br><br>
+            <div class="btn-group-vertical" style="width: 150px;">
+                <div class="btn-group-vertical" style="width: 150px;">
+                    <a href="semi.html" class="btn btn-success">로그인</a><p></p>
+                    <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
+                    <a href="semi.html" class="btn btn-primary">진료예약</a>
+                </div>
+            </div>
+          </div>
+        <div class="sub" style="font-size: 17px;"><br><b>&nbsp;건강정보 ></b></div>
+        <div class="sub">
+            <b><br>&nbsp;의료정보</b><br>
+            <a href="" style="text-decoration: none;">&nbsp;식사요법</a>
+        </div>
+        <div class="sub"><a href="" style="text-decoration: none;"><b><br>&nbsp;건강TV</b></a></div>
+        <div class="sub"></div>
+    </div>
+</div>
+
+
+<div class="container4">
+    <div class="submenuContainer-4">
+        <div class="sub" id="loginMenu">
+            로그인 하시면<br> 
+            더 다양한 혜택을<br>
+            이용할 수 있습니다.<br><br>
+            <div class="btn-group-vertical" style="width: 150px;">
+                <div class="btn-group-vertical" style="width: 150px;">
+                    <a href="semi.html" class="btn btn-success">로그인</a><p></p>
+                    <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
+                    <a href="semi.html" class="btn btn-primary">진료예약</a>
+                </div>
+            </div>
+          </div>
+        <div class="sub" style="font-size: 17px;"><br><b>&nbsp;고객서비스 ></b></div>
+        <div class="sub">
+            <b><br>&nbsp;발급안내</b><br>
+            <a href="" style="text-decoration: none;">&nbsp;증명서</a>
+        </div>
+        <div class="sub">
+            <b><br>&nbsp;고객서비스</b><br>
+            <a href="" style="text-decoration: none;">&nbsp;고객의소리</a><br>
+            <a href="" style="text-decoration: none;">&nbsp;칭찬코너</a>
+        </div>
+        <div class="sub"></div>
+    </div>
+</div>
+
+
+<div class="container5">
+    <div class="submenuContainer-5">
+        <div class="sub" id="loginMenu">
+            로그인 하시면<br> 
+            더 다양한 혜택을<br>
+            이용할 수 있습니다.<br><br>
+            <div class="btn-group-vertical" style="width: 150px;">
+                <div class="btn-group-vertical" style="width: 150px;">
+                    <a href="semi.html" class="btn btn-success">로그인</a><p></p>
+                    <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
+                    <a href="semi.html" class="btn btn-primary">진료예약</a>
+                </div>
+            </div>
+          </div>
+        <div class="sub" style="font-size: 17px;"><br><b>&nbsp;병원이야기 ></b></div>
+        <div class="sub">
+            <b><br>&nbsp;후원</b><br>
+            <a href="" style="text-decoration: none;">&nbsp;후원</a><br>
+            <a href="" style="text-decoration: none;">&nbsp;후원현황</a>
+        </div>
+        <div class="sub">
+            <b><br>&nbsp;자원봉사</b><br>
+            <a href="" style="text-decoration: none;">&nbsp;안내</a>
+        </div>
+        <div class="sub"></div>
+    </div>
+</div>
+
+
+<div class="container6">
+    <div class="submenuContainer-6">
+        <div class="sub" id="loginMenu">
+            로그인 하시면<br> 
+            더 다양한 혜택을<br>
+            이용할 수 있습니다.<br><br>
+            <div class="btn-group-vertical" style="width: 150px;">
+                <div class="btn-group-vertical" style="width: 150px;">
+                    <a href="semi.html" class="btn btn-success">로그인</a><p></p>
+                    <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
+                    <a href="semi.html" class="btn btn-primary">진료예약</a>
+                </div>
+            </div>
+          </div>
+        <div class="sub" style="font-size: 17px;"><br><b>&nbsp;병원소개 ></b></div>
+        <div class="sub">
+            <b><br>&nbsp;병원소개</b><br>
+            <a href="" style="text-decoration: none;">&nbsp;병원장인사말</a><br>
+            <a href="" style="text-decoration: none;">&nbsp;병원안내</a>
+        </div>
+        <div class="sub">
+            <b><br>&nbsp;소식</b><br>
+            <a href="" style="text-decoration: none;">&nbsp;공지사항</a><br>
+            <a href="" style="text-decoration: none;">&nbsp;뉴스</a>
+        </div>
+        <div class="sub"></div>
+    </div>
+</div>
+    
+    <script>
+       $(document).ready(function() {
+
+        var menuItems = {
+            '#List-1': '.container1',
+            '#List-2': '.container2',
+            '#List-3': '.container3',
+            '#List-4': '.container4',
+            '#List-5': '.container5',
+            '#List-6': '.container6'
+         };
+
+    // 마우스가 메뉴 항목 위에 올려졌을 때
+    $.each(menuItems, function(selector, containerClass) {
+        $(selector).mouseenter(function() {
+            // 모든 메뉴 숨기기
+            $.each(menuItems, function(x,container) {
+                $(container).hide();
+            });
+            // 현재 메뉴 표시
+            $(containerClass).show();
+        });
+    });
+
+    // 메뉴에서 마우스가 나갈 때
+    $('.container1, .container2, .container3, .container4, .container5, .container6').mouseleave(function() {
+        $(this).hide(); // 해당 메뉴 숨기기
+    });
+
+
+
+});
+        
+    </script>
+    <!-- header end -->
+
+
+
+
+
+
+    <!-- section start -->
+     <style>
+        section{
+            position:absolute;
+            width: 100%;
+            height: 1350px;
+            margin-top: 153px;
+        }
+
+
+        .all{
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+               
+        #side_menu{
+            background-color: #2237b3;
+            width: 20%;
+            height: 100%;
+        }
+
+        #content{
+            width: 80%;
+            height: 100%;
+        }
+
+
+
+
+        #adminPage{
+            background-color: #26358a;
+            color: white;
+            font-size: 28px;
+            font-weight: 900;
+            line-height: 100px;
+            text-align: center;
+        }
+        
+        #side_menu div:not(.no_style) {
+            width: 100%;
+            height: 120px;
+        }
+        .no_style2 {
+            height: 50%;
+            display: flex;
+            align-items: center;
+        }
+        .no_style4, .no_style8 {
+            display: flex;
+            align-items: center;
+        }
+        .no_style6 {
+            height: 33%;
+            display: flex;
+            align-items: center;
+        }
+
+
+        .show_and_hide {
+            display: block !important;
+            display: flex !important;
+
+            flex-direction : column !important;       
+        }
+
+        #side2, #side4, #side6, #side8 {
+            display: none;
+            border-top: 1px solid rgba(223, 214, 214, 0.74);
+
+            color: white;
+            padding-left: 40px;
+        }
+
+
+
+
+
+        #side1, #side2, #side5, #side6 {
+            background-color: #2237b3;
+        }
+        #side3, #side4, #side7, #side8 {
+            background-color: #2f4bcc;
+        }
+
+        #side1_event, #side3_event, #side5_event, #side7_event {
+            color: white;
+            font-size: 20px;
+            line-height: 120px;
+            padding-left: 30px;
+        }
+
+
+
+
+       #admin_name {
+            border: 1px solid rgb(67, 23, 187);
+            border-width: 10px;
+            border-radius: 30px;
+
+            width: 300px;
+            height: 80px;
+            font-size: 32px;
+            font-weight: 550;
+            margin-left: 100px;
+
+            display: flex; /* '관리자 xxx님'을 수직, 수평 정렬시키기 위한 3줄 */
+            justify-content: center;
+            align-items: center;
+
+       }
+
+        
+       #container111, #container222 {
+            display: flex;
+            justify-content: space-around;
+            height: 300px;
+       }
+       .menu {
+            border: 1px solid #777a88;
+            border-radius: 20px;
+
+            width: 35%;
+            height: 100%;
+
+            background-color: rgb(77, 49, 202);
+
+       }
+       .menu td {
+            color: white;
+       }
+       
+     </style>
+
+
+
+     <script>
+
+        $(document).ready(function() {
+
+            $('#side1_event').on("click", function(evt){
+                $('#side2').toggleClass('show_and_hide');
+            })
+            $('#side3_event').on("click", function(evt){
+                $('#side4').toggleClass('show_and_hide');
+            })
+            $('#side5_event').on("click", function(evt){
+                $('#side6').toggleClass('show_and_hide');
+            })
+            $('#side7_event').on("click", function(evt){
+                $('#side8').toggleClass('show_and_hide');
+            })
+
+
+        })
+
+     </script>
+
+
+
+
+
+    <section>
+
+    <div class="all"> 
+
+        <div id="side_menu">
+           <div id="adminPage">관리자 전용 페이지</div>
+           <div id="side_elements">
+                <div id="side1"><span id="side1_event">• &nbsp계정 관리</span></div> <!-- div가 아닌 span으로 영역을 줄이니 이벤트 전파 발생x-->
+                <div id="side2">
+                    <div class="no_style2"><a href="#">-  &nbsp 의료진 계정 관리</a></div>  
+                    <div class="no_style2"><a href="#">-  &nbsp 회원 계정 관리</a></div>
+                </div>
+                <div id="side3"><span id="side3_event">• &nbsp사이트 관리</span></div>
+                <div id="side4">
+                    <div class="no_style4"><a href="#">-  &nbsp 공지사항 관리</a></div>
+                </div>      
+                <div id="side5"><span id="side5_event">• &nbsp예약 관리</span></div>
+                <div id="side6">
+                    <div class="no_style6"><a href="#">-  &nbsp 진료 예약 관리</a></div>
+                    <div class="no_style6"><a href="#">-  &nbsp 건강검진 예약 관리</a></div>
+                    <div class="no_style6"><a href="#">-  &nbsp 건강검진 연계기업 관리</a></div>
+                </div>
+                <div id="side7"><span id="side7_event">• &nbsp고객의 소리</span></div>
+                <div id="side8">
+                    <div class="no_style8"><a href="#">- &nbsp Q&A 답변 및 관리</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="content" > <!-- 여기가 페이지 내용 -->
+
+            
+            <br><br>
+
+            <div id="admin_name">
+                관리자 강보람님
+            </div>
+
+            <br><br><br>
+
+
+            <!-- section 나머지 start -->
+
+            <div>의료진 계정 관리</div>
+
+            <div></div> <!-- 위 div의 border-bottom을 주면 될듯? -->
+
+            <br>
+
+            <form action="">
+                의료진 검색 <br>
+                <table border="1">
+                    <tr>
+                        <td>이름</td>
+                        <td><input type="text" name="이름"></td>
+                    </tr>
+
+                    <tr>
+                        <td>사번</td>
+                        <td><input type="text" name="사번"></td>
+                    </tr>
+
+                    <tr>
+                        <td>진료과</td>
+                        <td>
+                            <input type="radio" name="search_dept" value="전체" id="label_all" checked><label for="label_all">전체</label>
+                            <input type="radio" name="search_dept" value="외과" id="label_surgery"><label for="label_surgery">외과</label>
+                            <input type="radio" name="search_dept" value="내과" id="label_medicine"><label for="label_medicine">내과</label>
+                            <input type="radio" name="search_dept" value="치과" id="label_dentisty"><label for="label_dentisty">치과</label>
+                            <input type="radio" name="search_dept" value="안과" id="label_eye"><label for="label_eye">안과</label>
+                        </td>
+                    </tr>
+                </table>
+
+                <br>
+                <button type="submit" class="btn btn-sm btn-secondary">검색</button>
+            </form>
+
+
+            <br><br><br>
+            <!-- case1. 의료진 검색 결과가 없는 경우  -->
+
+
+
+            <!-- case2. 의료진 검색 결과가 있는 경우 -->
+            의료진 검색 결과 <br>
+
+            <form action="">
+                <table border="1">
+                    <tr>
+                        <td></td>
+                        <td>사번</td>
+                        <td>이름</td>
+                        <td>주민등록번호</td>
+                        <td>진료과</td>
+                        <td>면허번호</td>
+                        <td>전화번호</td>
+                        <td>주소</td>
+                        <td>입사일</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox" name="delete"></td>
+                        <td>105000</td>
+                        <td>가가가</td>
+                        <td>700624-1248547</td>
+                        <td>외과</td>
+                        <td>12345</td>
+                        <td>010-1111-1111</td>
+                        <td>서울시 강동구 강동대로 53길 76 (성내동)</td>
+                        <td>20100310</td>
+                        <td><button type="button" class="btn btn-sm btn-primary">수정</button></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox" name="delete"></td>
+                        <td>106000</td>
+                        <td>나나나</td>
+                        <td>641007-2468217</td>
+                        <td>내과</td>
+                        <td>64333</td>
+                        <td>010-2222-2222</td>
+                        <td>서울특별시 강동구 양재대로 1571</td>
+                        <td>20150111</td>
+                        <td><button type="button" class="btn btn-sm btn-primary">수정</button></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox" name="delete"></td>
+                        <td>107000</td>
+                        <td>다다다</td>
+                        <td>810607-1554264</td>
+                        <td>치과</td>
+                        <td>24811</td>
+                        <td>010-3333-3333</td>
+                        <td>서울특별시 강동구 구천면로34길 52</td>
+                        <td>20030220</td>
+                        <td><button type="button" class="btn btn-sm btn-primary">수정</button></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox" name="delete"></td>
+                        <td>108000</td>
+                        <td>라라라</td>
+                        <td>840401-2347756</td>
+                        <td>안과</td>
+                        <td>30012</td>
+                        <td>010-4444-4444</td>
+                        <td>서울특별시 강동구 구천면로 452</td>
+                        <td>20000717</td>
+                        <td><button type="button" class="btn btn-sm btn-primary">수정</button></td>
+                    </tr>
+
+                </table>
+
+                <br>
+                <button type="submit" class="btn btn-sm btn-danger">삭제</button>
+                <button type="submit" class="btn btn-sm btn-dark">추가</button>
+            </form>
+
+
+
+
+
+
+
+        </div>
+    </div>
+    </section>
+   
+    <!-- section end -->
+
+
+
+
+
+
+
+
+    <!-- footer start -->
+    <style>
+        footer {
+            background-color: #1F2B6C;
+            position: absolute;
+            width: 100%;
+            height: 300px;
+            margin-top: 1500px;
+        }
+    </style>
+    <footer>
+        <div class="container" style="width: 1000px; height: 200px; display: flex; margin-top: 10px; color: white;">
+            <div class="container" style="width: 250px; height: 170px; margin-top: 15px;">
+                <h2>MEDDICAL</h2><br>
+                Leading the Way in Medical<br>
+                Execellence, Trusted Care.
+            </div>
+            <div class="container" style="width: 180px; height: 170px; margin-top: 15px;">
+                <b>Important Links</b><br><br>
+                Appointment<br>
+                Doctors<br>
+                Services<br>
+                About Us<br>
+            </div>
+            <div class="container" style="width: 250px; height: 170px; margin-top: 15px;">
+                <b>Contact Us</b><br><br>
+                Call: (237) 681-812-255<br>
+                Email: fildineesoe@gmail.com<br>
+                address: 0123 Some place<br>
+                Some country<br>
+            </div>
+            <div class="container" style="width: 260px; height: 170px; margin-top: 15px;">
+                <b>appointment</b><br><br>
+                <button type="button" class="btn btn-secondary">Medical appointment reservation</button>
+            </div>
+        </div>
+        <style>
+            hr {
+                border: 1px solid white;
+                /* 선 색상 변경 */
+            }
+        </style>
+        <div class="container" style="width: 960px; height: 50px; margin-top: -30px; color: white;">
+            <hr>
+            <br>
+            ⓒ 2021 Hospital's name All Rights Reserved by PNTEC-LTC
+        </div>
+    </footer>
+    <!-- footer end -->
+
+    
+</body>
+</html>
