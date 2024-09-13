@@ -56,10 +56,9 @@
        </style>
        <section>
         <div class="container11">
-          <section class="success" >
       
             <div class="container" id="pad">
-              <h3 >결제 완료</h3>
+              <h3 >예약완료</h3>
             
             
               <hr style= "border: 1px solid; color: rgb(31, 43, 108)">
@@ -68,8 +67,8 @@
                     <div class="row">
                         <div class="col"><img src="/vita/assets/image/완료체크.jpg"  class="img-check" id="check"></div>
                         <div class="col">
-                            <span><h1 class="text">결제 완료</h1></span>
-                            <span><h6 class="text">결제가 완료 되었습니다.</h6>
+                           <h1 class="text">진료 예약신청 완료</h1>
+                           <h6 class="text">원활한 진료를 위해 진료 시간보다 일찍 내원해주세요.</h6>
                         </div>
 
                     </div>
@@ -87,18 +86,26 @@
                   <table class="table table-bordered" style="width:1004px">
                     
                  
-                      <tr>
-                        <td id="color" style="width:200px">선택항목</td>
-                        <td style="width:302px">일반건강검진(수정요망)</td>
-                        <td id="color" style="width:200px">희망진료일</td>
-                        <td style="width:302px">xx월(수정요망)</td>
+                  		 <tr>
+                        <td id="color" style="width:200px">진료과</td>
+                        <td style="width:302px">내과(수정요망)</td>
+                        <td id="color" style="width:200px">고객 번호</td>
+                        <td style="width:302px">BT-00000000(수정요망)</td>
                         
                       </tr>
+                      
                       <tr>
-                        <td id="color" >가격</td>
-                        <td>50,000원(수정요망)</td>
-                        <td id="color">내원시간</td>
-                        <td>오전(수정요망)</td>
+                        <td id="color" style="width:200px">의료진</td>
+                        <td style="width:302px">홍길동(수정요망)</td>
+                        <td id="color" style="width:200px">내원 시간</td>
+                        <td style="width:302px">오전(수정요망)</td>
+                        
+                      </tr>
+                      
+                      <tr>
+                        <td id="color" >진료 예정일</td>
+                        <td style="border-right: white">2024-00-00(sysdate로)</td>
+                      
                       </tr>
                   
                   </table>
@@ -109,7 +116,7 @@
                     <button type="button" class="btn" id="btn-color">메인화면으로</button>
                 </div>
       
-              <br><br><br>
+              <br><br><br>	
       
             
             </div>
