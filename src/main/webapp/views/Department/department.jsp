@@ -59,7 +59,11 @@
     }
     </style>
     <section>
-        <div class="container" style="text-align: left; font-size: 30px; height: 80px; margin-left: 300px;"><b><br>진료과소개</b></div>
+    		<br><br>
+        <div class="container" style="text-align: left; font-size: 30px; width: 900px; display: plex;">
+        	<div style="width: 50%"><b>진료과소개</b></div>
+        	<div style="width: 50%"></div>
+        </div>
         <br>
         <div class="container" style="width: 1000px; height: 1px; background: rgb(198, 214, 231);"></div><br><br>
         <div class="container" style="text-align: center; width: 1000px; height: 300px; display: flex;">
