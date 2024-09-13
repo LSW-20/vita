@@ -307,7 +307,7 @@
             <b><br>&nbsp;의료정보</b><br>
             <a href="" style="text-decoration: none;">&nbsp;식사요법</a>
         </div>
-        <div class="sub"><a href="" style="text-decoration: none;"><b><br>&nbsp;건강TV</b></a></div>
+        <div class="sub"><a href="/vita/views/selectContents/healthTV1.jsp" style="text-decoration: none;"><b><br>&nbsp;건강TV</b></a></div>
         <div class="sub"></div>
     </div>
 </div>
