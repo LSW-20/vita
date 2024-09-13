@@ -36,18 +36,23 @@
 	<%@ include file="/views/common/myPageSideBar.jsp" %>
 
 
-  <div class="side" id="navContent">
+  <div class="container" id="navContent"style="margin-left: -10px;">
 		<br><h2><b>&nbsp; 고객의 소리</h2>  
 		
     <table id="csUserInfo" class="table m-4">
 			<tr>
 				<th width="130px">카테고리</th>
+				<td>
+					getCategory
+				</td>
+			<!-- write jsp페이지에서 셀렉
 				<td><select name="selectCategory">
 				    <option value="compliment" selected>칭찬합니다.</option>
 				    <option value="suggestion">건의합니다.</option>
 				    <option value="qna">QnA</option>
 				    </select>
 				</td>
+			-->
 			</tr>
         <tr>
             <th>보내는사람</th>
@@ -75,16 +80,11 @@
         <tr>
             <th>환자 정보</th>
             <td style="min-height: 20px;">
-            <p style="font-size: 10px;">*환자 정보는 정확한 업무처리를 위해 필요한 부분이므로, 반드시 입력해 주시길 바랍니다.</p>
-            환자이름 <input type="text" name="patientName">&nbsp;&nbsp;   
-            환자관계 <input type="text" name="relation">
-            <select name="selectRelation">
-                <option value="self">본인</option>
-                <option value="parent">보호자</option>
-                <option value="etc">직접입력</option>
-            </select><br> 
-            등록번호 <input type="number" name="userId">&nbsp;&nbsp;   
-            생년월일 <input type="date">
+            <p style="font-size: 10px;">*환자 정보는 정확한 업무처리를 위해 필요한 부분이므로, 재차 확인해 주시길 바랍니다.</p>
+            환자이름 <input type="text" name="patientName" value="userName" readonly>&nbsp;&nbsp;
+            환자 본인<br> 
+            등록번호 <input type="text" name="patientId" value="userId" readonly>&nbsp;&nbsp;   
+            생년월일 <input type="date" name="patientBirth" value="userDate" readonly>
             </td>
         </tr>
         </table>
@@ -114,7 +114,7 @@
     <table id="csBoard" class="table m-4">
         <tr>
             <th>제목</th>
-            <td>기존 일반게시글 제목</td>
+            <td>getTitle 기존 일반게시글 제목</td>
         </tr>
         <tr>
             <th>내용</th>
@@ -124,7 +124,7 @@
 		</div>
 	 	<!-- nav, section 별도로 닫아주기-->
 	</nav>
-	<div class="d-flex justify-content-end">
+	<div class="container d-flex justify-content-end">
 	    <!-- 현재 로그인되어있는 회원이 해당 게시글의 작성자 본인일 경우 보여지는 요소 -->
 	    <button type="button" class="btn btn-secondary btn-sm">수정하기 페이지로</button> &nbsp;
 	    <button type="button" class="btn btn-danger btn-sm">삭제하기</button> &nbsp;
