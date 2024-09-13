@@ -61,6 +61,7 @@
             <th>이메일</th>
             <td>getMail@naver.com</td>
         </tr>       
+<!--         
         <tr>
             <th>회신 여부</th>
             <td>      
@@ -70,6 +71,7 @@
                 <input type="radio" id="no" name="response-yn" value="N">
                 <label for="female">원하지 않음</label></td>
         </tr>                   
+-->
         <tr>
             <th>환자 정보</th>
             <td style="min-height: 20px;">
