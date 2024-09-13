@@ -120,26 +120,7 @@
     
            }
     
-            
-           #container111, #container222 {
-                display: flex;
-                justify-content: space-around;
-                height: 300px;
-           }
-           .menu {
-                border: 1px solid #777a88;
-                border-radius: 20px;
-    
-                width: 35%;
-                height: 100%;
-    
-                background-color: rgb(77, 49, 202);
-    
-           }
-           .menu td {
-                color: white;
-           }
-           
+
          </style>
     
     
@@ -197,4 +178,15 @@
                     </div>
                 </div>
             </div>
+            
+                <div id="content" > <!-- 여기가 페이지 내용 -->
+
+            
+					        <br><br>
+					
+					        <div id="admin_name">
+					            관리자 강보람님
+					        </div>
+					
+					        <br><br><br>
     

@@ -12,8 +12,33 @@
 
     <style>
         footer {
-            margin-top: 1220px;
+            margin-top: 1220px; /* 페이지마다 footer 조금씩 조정 */
         }
+
+                    
+        #container111, #container222 {
+                display: flex;
+                justify-content: space-around;
+                height: 300px;
+        }
+        .menu {
+            border: 1px solid #777a88;
+            border-radius: 20px;
+
+            width: 35%;
+            height: 100%;
+
+            background-color: rgb(77, 49, 202);
+        }
+        .menu td {
+            color: white;
+        }
+           
+
+
+
+
+
     </style>
 
     <!-- header start -->
@@ -27,10 +52,10 @@
 
     <!-- section 나머지 여기부터 start -->
 
+  <!--  
+    <div id="content" > 
 
-    <div id="content" > <!-- 여기가 페이지 내용 -->
-
-            
+     
         <br><br>
 
         <div id="admin_name">
@@ -38,10 +63,10 @@
         </div>
 
         <br><br><br>
+  --> 
 
 
-
-        <div id="container111"> <!-- 첫번째 container -->
+        <div id="container111"> <!-- 첫번째 container. 부트스트랩과 겹치지 않게 class 이름 줬다. -->
 
                 <div class="menu">
                     <table style="width: 100%;">
