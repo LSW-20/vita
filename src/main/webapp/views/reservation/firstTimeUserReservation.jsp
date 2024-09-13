@@ -12,7 +12,6 @@
 
 	  <!-- Header, Nav start -->
     <%@ include file="/views/common/header.jsp" %>
-      <!-- header.jsp include로 표현할 예정 -->
     <!-- Header, Nav end -->
  
   <style>
@@ -209,7 +208,7 @@
 
 
 
-<%@ include file="/views/common/footer.jsp" %>
+	<%@ include file="/views/common/footer.jsp" %>
 
 </body>
  
