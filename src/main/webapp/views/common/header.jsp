@@ -23,6 +23,11 @@
 		<!-- 슬릭 -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    
+    
+    
+    <% String contextPath = request.getContextPath(); %> <!-- 메인변수 정의 -->
+    
 </head>
 <body>
 
@@ -184,7 +189,7 @@
         <div class="header-top"> 
             <!-- 현재 이미지 위치 = semi>image>이미지-->
             <!-- 현재 HTML 위치  = semi>project>semi.html -->
-            <div class="top-img" id="topimgDiv1"><img id="vpMark" src="/vita/assets/image/vp마크.png"></div>
+            <div class="top-img" id="topimgDiv1"><a href="<%= contextPath %>"><img id="vpMark" src="/vita/assets/image/vp마크.png"></a></div>
             <div class="top-img" id="topimgDiv2"><img id="vpNum" src="/vita/assets/image/vp전화번호.png"></div>
             <div class="top-img" id="topimgDiv3"><img id="vpWork" src="/vita/assets/image/vp병원영업시간.png"></div>
             <div class="top-img" id="topimgDiv4"><a href=""><img id="vpLoc" src="/vita/assets/image/vp위치.png"></a></div>
