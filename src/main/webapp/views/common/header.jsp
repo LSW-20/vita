@@ -249,7 +249,7 @@
         </div>
         <div class="sub" style="font-size: 17px;"><br><b>&nbsp;의료진/진료과 ></b></div>
         <div class="sub"><a href="" style="text-decoration: none;"><br><b>&nbsp;의료진</b></a></div> 
-        <div class="sub"><a href="" style="text-decoration: none;"><br><b>&nbsp;진료과</a></b></div> 
+        <div class="sub"><a href="/vita/views/Department/department.jsp" style="text-decoration: none;"><br><b>&nbsp;진료과</a></b></div> 
         <div class="sub"></div>
         
     </div>
