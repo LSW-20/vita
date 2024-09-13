@@ -54,6 +54,13 @@
         background-color: #007bff;
         color: white;
         border-color: #007bff;
+        z-index: -1;
+    }
+    .disabled-link {
+        pointer-events: none;
+        color: gray;
+        text-decoration: none;
+        cursor: default;
     }
     footer{
     	margin-top: 2100px !important;
@@ -195,8 +202,8 @@
             <ul class="pagination d-flex justify-content-center text-dark">
                 <li class="page-item"><a class="page-link" href="/vita/views/selectContents/healthTV1.jsp">이전</a></li>
                 <li class="page-item"><a class="page-link" href="/vita/views/selectContents/healthTV1.jsp">1</a></li>
-                <li class="page-item active"><a class="page-link" href="#" disabled>2</a></li>
-                <li class="page-item"><a class="page-link" href="#" disabled>다음</a></li>
+                <li class="page-item active"><a class="page-link disabled-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link disabled-link" href="#">다음</a></li>
             </ul>       
         </div>         
     </section>
