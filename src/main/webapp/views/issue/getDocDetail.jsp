@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>my page</title>
+<title>GetDocumentDetail</title>
 </head>
 <style>
   /* #topimgDiv2,#topimgDiv2,#topimgDiv2{} */
@@ -17,7 +17,7 @@
    #sideMenu{
      background-color: rgb(54, 99, 204);
      width: 20%;
-     height: 100%;
+     height: 130%;
  }
   /* 신청목록 선택thead색 */
  #get_doc_apply th{
@@ -28,10 +28,58 @@
 	 	font-size: 15px;
 	 }
 
+ .hidden {
+ 		display: none;
+ }
+
     footer{
-     margin-top: 1053px;
+     margin-top: 1300px;
  }
 </style>
+
+<script>
+	// 오늘 날짜를 yyyy-mm-dd 형식으로 반환하는 함수
+	function getTodayDate() {
+	    var today = new Date();
+	    var year = today.getFullYear();
+	    var month = String(today.getMonth() + 1).padStart(2, '0');
+	    var day = String(today.getDate()).padStart(2, '0');
+	    return year + '-' + month + '-' + day;
+	}
+	
+	// 페이지 로드 시 시작일과 종료일의 기본값을 오늘 날짜로 설정
+	window.onload = function() {
+	    var today = getTodayDate();
+	    document.getElementById("startDate").value = today;
+	    document.getElementById("endDate").value = today;
+	};
+	
+    // 조회 결과 업데이트 및 표시 함수
+    function updateResultRow() {
+        // 결과 여부 확인(추후 DB서 불러올 변수)
+        var results = [
+            { date: "2023-09-01", record: "진료 기록 1" },
+            { date: "2023-09-10", record: "진료 기록 2" }
+        ]; // 예시 데이터, 실제로는 서버에서 받아올 예정
+
+        var resultRow = document.getElementById("resultRow");
+
+        if (results.length === 0) {
+            alert('조회 결과가 없습니다.');
+            resultRow.classList.add("hidden");
+        } else {
+            resultRow.classList.remove("hidden");
+
+            var resultHtml = "<th>조회 결과</th><td>";
+            results.forEach(function(result, index) {
+                resultHtml += "<input type='checkbox' id='record" + index + "' name='record' value='" + result.record + "'>";
+                resultHtml += "<label for='record" + index + "'>" + result.date + " - " + result.record + "</label><br>";
+            });
+            resultHtml += "</td>";
+            resultRow.innerHTML = resultHtml;
+        }
+    }
+</script>
 <body>
 	<!-- header sideBar include start -->
 	<%@ include file="/views/common/header.jsp" %>
@@ -63,8 +111,19 @@
         </tr>
         <tr>
             <th>기간</th>
-            <td>getMRECODS.TreatmentDate</td>
+            <td>
+                <label for="startDate">시작일:</label>
+                <input type="date" id="startDate" name="startDate">
+                <label for="endDate">종료일:</label>
+                <input type="date" id="endDate" name="endDate">
+                <button type="button" onclick="updateResultRow()">조회</button>
+            </td>
         </tr>     
+				<!-- 기간 select하고 조회 클릭시 결과 없으면 alert뜨고 변화 x, 아니면 조회결과 tr생성-->
+        <tr id="resultRow" class="hidden">
+            <th>조회 결과</th>
+            <td></td>
+        </tr>       
         <tr>
             <th>발급비용</th>
             <td>getPrice</td>
