@@ -87,7 +87,7 @@
 	<!-- header sideBar include end -->
 	
   <div class="container" id="get_doc_content"style="margin-left: -10px;">
-		<br><h2><b>&nbsp; 온라인 증명서 신청</h2>  
+		<br><h2><b>&nbsp; 온라인 증명서 신청</b></h2>  
 		
     <table id="get_doc_apply" class="table m-4">
 			<tr>
