@@ -69,50 +69,50 @@
     <section>
         <div id="Vpopup1" class="Vpopup">
             <div class="Vpopup-content">
-                <a href="#" class="close">×</a>
-                <iframe width="1024" height="576" src="https://www.youtube.com/embed/wfdXDwZUq0M" title="우리 아이가 암 진단을 받았다면, 어떻게 알려줘야 하나요?｜암행의사" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <a href="#" class="close" onclick="stopVideo('video1')">×</a>
+                <iframe id="video1" width="1024" height="576" src="https://www.youtube.com/embed/wfdXDwZUq0M" title="우리 아이가 암 진단을 받았다면, 어떻게 알려줘야 하나요?｜암행의사" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </div>
         <div id="Vpopup2" class="Vpopup">
             <div class="Vpopup-content">
-                <a href="#" class="close">×</a>
-                <iframe width="1024" height="576" src="https://www.youtube.com/embed/ovFv04tzfjU" title="뇌졸중 시야장애의 치료 | 건강플러스" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
+                <a href="#" class="close" onclick="stopVideo('video2')">×</a>
+                <iframe id="video2" width="1024" height="576" src="https://www.youtube.com/embed/ovFv04tzfjU" title="뇌졸중 시야장애의 치료 | 건강플러스" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
             </div>
         </div>
         <div id="Vpopup3" class="Vpopup">
             <div class="Vpopup-content">
-                <a href="#" class="close">×</a>
-                <iframe width="1024" height="576" src="https://www.youtube.com/embed/EGoOnPFnLSg" title="간이식 수술 후 담즙 배액관 잠그기 연습하기" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
+                <a href="#" class="close" onclick="stopVideo('video3')">×</a>
+                <iframe id="video3" width="1024" height="576" src="https://www.youtube.com/embed/EGoOnPFnLSg" title="간이식 수술 후 담즙 배액관 잠그기 연습하기" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
             </div>
         </div>
         <div id="Vpopup4" class="Vpopup">
             <div class="Vpopup-content">
-                <a href="#" class="close">×</a>
-                <iframe width="1024" height="576" src="https://www.youtube.com/embed/eyOFY7RiL6Y" title="암 치료 중인 우리 아이의 마음, 이렇게 읽어주세요｜암행의사" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>        
+                <a href="#" class="close" onclick="stopVideo('video4')">×</a>
+                <iframe id="video4" width="1024" height="576" src="https://www.youtube.com/embed/eyOFY7RiL6Y" title="암 치료 중인 우리 아이의 마음, 이렇게 읽어주세요｜암행의사" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>        
             </div>
         </div>
         <div id="Vpopup5" class="Vpopup">
             <div class="Vpopup-content">
-                <a href="#" class="close">×</a>
-                <iframe width="1024" height="576" src="https://www.youtube.com/embed/x424eRESe8U" title="암 환자의 가임력 보존, 치료 시작 전 미리 준비가 필요합니다 | 서울아산병원 [암행의사]" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
+                <a href="#" class="close" onclick="stopVideo('video5')">×</a>
+                <iframe id="video5" width="1024" height="576" src="https://www.youtube.com/embed/x424eRESe8U" title="암 환자의 가임력 보존, 치료 시작 전 미리 준비가 필요합니다 | 서울아산병원 [암행의사]" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
             </div>
         </div>
         <div id="Vpopup6" class="Vpopup">
             <div class="Vpopup-content">
-                <a href="#" class="close">×</a>
-                <iframe width="1024" height="576" src="https://www.youtube.com/embed/G9_WqQ8Dda0" title="두개골 조기 유합증 치료는?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
+                <a href="#" class="close" onclick="stopVideo('video6')">×</a>
+                <iframe id="video6" width="1024" height="576" src="https://www.youtube.com/embed/G9_WqQ8Dda0" title="두개골 조기 유합증 치료는?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
             </div>
         </div>
         <div id="Vpopup7" class="Vpopup">
             <div class="Vpopup-content">
-                <a href="#" class="close">×</a>
-                <iframe width="1024" height="576" src="https://www.youtube.com/embed/Qr1tX_X8NKc" title="방사선 치료, 힘들거나 견디지 못 할까봐 걱정되시나요?｜암행의사" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
+                <a href="#" class="close" onclick="stopVideo('video7')">×</a>
+                <iframe id="video7" width="1024" height="576" src="https://www.youtube.com/embed/Qr1tX_X8NKc" title="방사선 치료, 힘들거나 견디지 못 할까봐 걱정되시나요?｜암행의사" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
             </div>
         </div>
         <div id="Vpopup8" class="Vpopup">
             <div class="Vpopup-content">
-                <a href="#" class="close">×</a>
-                <iframe width="1024" height="576" src="https://www.youtube.com/embed/PTYBCZ8RHfU" title="X-ray 검사는 왜 매일하나요?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
+                <a href="#" class="close" onclick="stopVideo('video8')">×</a>
+                <iframe id="video8" width="1024" height="576" src="https://www.youtube.com/embed/PTYBCZ8RHfU" title="X-ray 검사는 왜 매일하나요?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
             </div>
         </div>
         <br><br>
@@ -207,7 +207,13 @@
             </ul>       
         </div>         
     </section>
-    
+    <script>
+        function stopVideo(videoId) {
+            var iframe = document.getElementById(videoId);
+            var iframeSrc = iframe.src;
+            iframe.src = iframeSrc;
+        }
+    </script>
 <!-- footer start  -->
 <%@ include file="/views/common/footer.jsp" %>
 <!-- footer end -->

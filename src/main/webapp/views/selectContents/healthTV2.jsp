@@ -69,50 +69,50 @@
     <section>
         <div id="Vpopup1" class="Vpopup">
             <div class="Vpopup-content">
-                <a href="#" class="close">×</a>
-                <iframe width="1024" height="576" src="https://www.youtube.com/embed/tiWtrMyCYkU" title="X-ray 검사 임산부도 괜찮은가요?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
+                <a href="#" class="close" onclick="stopVideo('video1')">×</a>
+                <iframe id="video1" width="1024" height="576" src="https://www.youtube.com/embed/tiWtrMyCYkU" title="X-ray 검사 임산부도 괜찮은가요?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
             </div>
         </div>
         <div id="Vpopup2" class="Vpopup">
             <div class="Vpopup-content">
-                <a href="#" class="close">×</a>
-                <iframe width="1024" height="576" src="https://www.youtube.com/embed/-4a1La1t_rA" title="비염 낫는 치료법, 직접 보여드립니다 ㅣ Q&amp;A - 몇 살부터 비염 치료 가능한가요? l 얼마나 사용해야 하나요? 부작용 대처법? 코세척 방법까지" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
+                <a href="#" class="close" onclick="stopVideo('video2')">×</a>
+                <iframe id="video2" width="1024" height="576" src="https://www.youtube.com/embed/-4a1La1t_rA" title="비염 낫는 치료법, 직접 보여드립니다 ㅣ Q&amp;A - 몇 살부터 비염 치료 가능한가요? l 얼마나 사용해야 하나요? 부작용 대처법? 코세척 방법까지" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
             </div>
         </div>
         <div id="Vpopup3" class="Vpopup">
             <div class="Vpopup-content">
-                <a href="#" class="close">×</a>
-                <iframe width="1024" height="576" src="https://www.youtube.com/embed/1-ZOkpJKyD4" title="뱃속의 시한폭탄 복부 대동맥류 안전하게 치료할 수 있습니다!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
+                <a href="#" class="close" onclick="stopVideo('video3')">×</a>
+                <iframe id="video3" width="1024" height="576" src="https://www.youtube.com/embed/1-ZOkpJKyD4" title="뱃속의 시한폭탄 복부 대동맥류 안전하게 치료할 수 있습니다!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
             </div>
         </div>
         <div id="Vpopup4" class="Vpopup">
             <div class="Vpopup-content">
-                <a href="#" class="close">×</a>
-                <iframe width="1024" height="576" src="https://www.youtube.com/embed/5QD_4dt5-pw" title="암 환자의 임신, 임신 후 재발된 암... 어떻게 해야할까요? | 서울아산병원 [암행의사]" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
+                <a href="#" class="close" onclick="stopVideo('video4')">×</a>
+                <iframe id="video4" width="1024" height="576" src="https://www.youtube.com/embed/5QD_4dt5-pw" title="암 환자의 임신, 임신 후 재발된 암... 어떻게 해야할까요? | 서울아산병원 [암행의사]" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
             </div>
         </div>
         <div id="Vpopup5" class="Vpopup">
             <div class="Vpopup-content">
-                <a href="#" class="close">×</a>
-                <iframe width="1024" height="576" src="https://www.youtube.com/embed/Kq-yn8Otanc" title="소아기 특발성 대퇴골두 무혈성 괴사 (LCP) | 건강플러스" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
+                <a href="#" class="close" onclick="stopVideo('video5')">×</a>
+                <iframe id="video5" width="1024" height="576" src="https://www.youtube.com/embed/Kq-yn8Otanc" title="소아기 특발성 대퇴골두 무혈성 괴사 (LCP) | 건강플러스" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
             </div>
         </div>
         <div id="Vpopup6" class="Vpopup">
             <div class="Vpopup-content">
-                <a href="#" class="close">×</a>
-                <iframe width="1024" height="576" src="https://www.youtube.com/embed/b_Om_fY8jUY" title="소아 악성 림프종, 4기여도 완치할 수 있습니다!｜암행의사" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
+                <a href="#" class="close" onclick="stopVideo('video6')">×</a>
+                <iframe id="video6" width="1024" height="576" src="https://www.youtube.com/embed/b_Om_fY8jUY" title="소아 악성 림프종, 4기여도 완치할 수 있습니다!｜암행의사" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
             </div>
         </div>
         <div id="Vpopup7" class="Vpopup">
             <div class="Vpopup-content">
-                <a href="#" class="close">×</a>
-                <iframe width="1024" height="576" src="https://www.youtube.com/embed/K234y7IQ__k" title="병원균이 눈에 보인다고?!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
+                <a href="#" class="close" onclick="stopVideo('video7')">×</a>
+                <iframe id="video7" width="1024" height="576" src="https://www.youtube.com/embed/K234y7IQ__k" title="병원균이 눈에 보인다고?!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
             </div>
         </div>
         <div id="Vpopup8" class="Vpopup">
             <div class="Vpopup-content">
-                <a href="#" class="close">×</a>
-                <iframe width="1024" height="576" src="https://www.youtube.com/embed/7AfAwBfmMRk" title="모두가 웃을 수 있도록 ^0^" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
+                <a href="#" class="close" onclick="stopVideo('video8')">×</a>
+                <iframe id="video8" width="1024" height="576" src="https://www.youtube.com/embed/7AfAwBfmMRk" title="모두가 웃을 수 있도록 ^0^" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
             </div>
         </div>
         <br><br>
@@ -207,7 +207,13 @@
             </ul>       
         </div>         
     </section>
-    
+    <script>
+        function stopVideo(videoId) {
+            var iframe = document.getElementById(videoId);
+            var iframeSrc = iframe.src;
+            iframe.src = iframeSrc;
+        }
+    </script>
 <!-- footer start  -->
 <%@ include file="/views/common/footer.jsp" %>
 <!-- footer end -->
