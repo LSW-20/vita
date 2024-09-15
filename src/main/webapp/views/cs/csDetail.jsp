@@ -11,9 +11,13 @@
  #csUserInfo th{
    background-color:#eaf3fa;
  }
- #csBoard th{
+ #compliment_table th{
    background-color:#eaf3fa;
  }
+ #other_table th{
+   background-color:#eaf3fa;
+ } 
+
   /* 고객의소리 게시글리스트 thead색 */
  #csthead{
      background-color:#eaf3fa;
@@ -66,17 +70,7 @@
             <th>이메일</th>
             <td>getMail@naver.com</td>
         </tr>       
-<!--         
-        <tr>
-            <th>회신 여부</th>
-            <td>      
-                <input type="radio" id="yes" name="response-yn" value="Y">
-                <label for="male">원함 &nbsp;</label>
-            
-                <input type="radio" id="no" name="response-yn" value="N">
-                <label for="female">원하지 않음</label></td>
-        </tr>                   
--->
+
         <tr>
             <th>환자 정보</th>
             <td style="min-height: 20px;">
@@ -91,8 +85,8 @@
 
 
     <!-- 고객의소리 칭찬합니다일 경우 이 테이블을 뿌림 -->
-<!--
-    <table id="csBoard" class="table m-4">
+<!-- 
+    <table id="compliment_table" class="table m-4" >
         <tr>
         <th width="130px">칭찬직원</th>
         <td>XXX</td>
@@ -108,12 +102,12 @@
         <td colspan="3"><p style="min-height:250px;">기존 일반게시글 내용</p></td>
         </tr>
     </table>
--->
+ -->
 
     <!-- 나머지 게시판일 경우 이 테이블을 뿌림 -->
-    <table id="csBoard" class="table m-4">
+    <table id="other_table" class="table m-4">
         <tr>
-            <th>제목</th>
+            <th width="130px">제목</th>
             <td>getTitle 기존 일반게시글 제목</td>
         </tr>
         <tr>

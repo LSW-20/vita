@@ -4,16 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>고객의소리글쓰기</title>
 </head>
 <style>
  /* 고객의소리 table 배경색 지정 */
  #csUserInfo th{
    background-color:#eaf3fa;
  }
- #csBoard th{
+ #compliment_table th{
    background-color:#eaf3fa;
  }
+ #other_table th{
+   background-color:#eaf3fa;
+ }
+ 
   /* 고객의소리 게시글리스트 thead색 */
  #csthead{
      background-color:#eaf3fa;
@@ -44,7 +48,7 @@
     <table id="csUserInfo" class="table m-4">
 			<tr>
 				<th width="130px">카테고리</th>
-				<td><select name="selectCategory" class="form-control">
+				<td><select name="selectCategory" class="form-control" id="selectCategory">
 				    <option value="compliment" selected>칭찬합니다.</option>
 				    <option value="suggestion">건의합니다.</option>
 				    <option value="qna">QnA</option>
@@ -77,8 +81,7 @@
 
 
     <!-- 고객의소리 칭찬합니다일 경우 이 테이블을 뿌림 -->
- 
-    <table id="csBoard" class="table m-4" style="display: none;">
+    <table id="compliment_table" class="table m-4" style="display: none;">
         <tr>
         <th width="130px">칭찬직원</th>
         <td><input type="text" class="form-control"></td>
@@ -96,21 +99,51 @@
     </table>
 
     <!-- 나머지 게시판일 경우 이 테이블을 뿌림 -->
-    <table id="csBoard" class="table m-4">
+    <table id="other_table" class="table m-4">
         <tr>
-            <th>제목</th>
+            <th width="130px">제목</th>
             <td><input type="text" class="form-control"></td>
         </tr>
         <tr>
             <th>내용</th>
-            <td colspan="3"><textarea rows="15" class="form-control" style="resize:none;" required></textarea></td>
+            <td colspan="3"><textarea rows="13" class="form-control" style="resize:none;" required></textarea></td>
         </tr>
     </table>    		
 		
 	</form>
-		
+	</div>
+	
+    <script>
+        document.getElementById("selectCategory").addEventListener("change", function() {
+            var selectedValue = this.value;
+            var complimentTable = document.getElementById("compliment_table");
+            var otherTable = document.getElementById("other_table");
 
-		</div>
+            if (selectedValue === "compliment") {
+                complimentTable.style.display = "table";
+                otherTable.style.display = "none";
+            } else {
+                complimentTable.style.display = "none";
+                otherTable.style.display = "table";
+            }
+        });
+
+        // 초기 카테고리 값에 따라 테이블 표시 설정
+        window.onload = function() {
+            var selectedValue = document.getElementById("selectCategory").value;
+            var complimentTable = document.getElementById("compliment_table");
+            var otherTable = document.getElementById("other_table");
+
+            if (selectedValue === "compliment") {
+                complimentTable.style.display = "table";
+                otherTable.style.display = "none";
+            } else {
+                complimentTable.style.display = "none";
+                otherTable.style.display = "table";
+            }
+        };
+    </script>
+	
 	 	<!-- nav, section 별도로 닫아주기-->
 	</nav>
 	<div class="container d-flex justify-content-end">
