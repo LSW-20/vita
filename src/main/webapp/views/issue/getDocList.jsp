@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>get document list</title>
-</head>
 <style>
   /* #topimgDiv2,#topimgDiv2,#topimgDiv2{} */
 #mainMenu{
@@ -32,6 +31,7 @@ section{
   margin-top: 1300px;
 }
 </style>
+</head>
 <body>
 	<%@ include file="/views/common/header.jsp" %>
 <%-- 	<%@ include file="/views/common/myPageSideBar.jsp" %> --%>

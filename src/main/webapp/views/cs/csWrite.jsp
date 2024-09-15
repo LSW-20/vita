@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>고객의소리글쓰기</title>
-</head>
 <style>
  /* 고객의소리 table 배경색 지정 */
  #csUserInfo th{
@@ -34,6 +33,7 @@
  } 
  
 </style>
+</head>
 <body>
 
 	<%@ include file="/views/common/header.jsp" %>

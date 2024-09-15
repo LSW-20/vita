@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <style>
   /* #topimgDiv2,#topimgDiv2,#topimgDiv2{} */
   #mainMenu{
@@ -63,6 +62,7 @@
     display: none;
   }  
 </style>
+</head>
 <body>
 	 <%@ include file="/views/common/header.jsp" %>
 	 <%@ include file="/views/common/myPageSideBar.jsp" %>

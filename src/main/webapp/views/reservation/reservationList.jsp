@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>예약확인</title>
-</head>
 <style>
   /* #topimgDiv2,#topimgDiv2,#topimgDiv2{} */
   #mainMenu{
@@ -87,6 +86,7 @@
      margin-top: 1053px;
  }
 </style>
+</head>
 <body>
    <%@ include file="/views/common/header.jsp" %>
    <%@ include file="/views/common/myPageSideBar.jsp" %>

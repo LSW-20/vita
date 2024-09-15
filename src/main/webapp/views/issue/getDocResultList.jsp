@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>GetDocumentResultList</title>
-</head>
 <style>
   /* #topimgDiv2,#topimgDiv2,#topimgDiv2{} */
   #mainMenu{
@@ -33,6 +32,7 @@
      margin-top: 1053px;
  }
 </style>
+</head>
 <body>
    <%@ include file="/views/common/header.jsp" %>
    <%@ include file="/views/common/myPageSideBar.jsp" %>

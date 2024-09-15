@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>GetDocumentDetail</title>
-</head>
 <style>
   /* #topimgDiv2,#topimgDiv2,#topimgDiv2{} */
   #mainMenu{
@@ -36,6 +35,7 @@
      margin-top: 1300px;
  }
 </style>
+</head>
 
 <script>
 	// 오늘 날짜를 yyyy-mm-dd 형식으로 반환하는 함수
