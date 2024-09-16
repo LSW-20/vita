@@ -178,7 +178,7 @@
  <script>
  	function fnbtn1(){
  		if(confirm('"진단서"(을)를 신청하시겠습니까? ')){
- 			location.href; /* 신청완료페이지랑 연결 */
+ 			location.href; /* 신청서 insert 데이터 어떻게 보낼건지 생각해보자! */
  		}
  	}
  	
@@ -186,7 +186,7 @@
  	
  	function fnbtn2(){
  		if(confirm('"진료확인서"(을)를 신청하시겠습니까? ')){
- 			location.href; /* 신청완료페이지랑 연결 */
+ 			location.href; /* 신청서 insert 데이터 어떻게 보낼건지 생각해보자! */
  		}
  	}
  
