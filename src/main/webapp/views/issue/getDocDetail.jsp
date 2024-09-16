@@ -149,21 +149,28 @@
 		  &nbsp;- 통원확인서 종류 : 검사사실확인서, 물리·재활치료확인서, 방사선치료확인서, 주사처치사실확인서, 외래진료확인서<br>
 		  &nbsp;- 원무팀 업무시간(평일 : 09:00 ~ 17:30, 토요일 : 09:00 ~ 12:30
     </div>
-    <div id="agree_yn"class="container d-flex justify-content-end">
-			온라인 증명서 결제 및 취소 안내사항에 모두 동의합니다.&nbsp;&nbsp;  
-	     <input type="radio" id="yes" name="response-yn" value="Y">
-	     <label for="male">동의합니다. &nbsp;</label>
-	 
-	     <input type="radio" id="no" name="response-yn" value="N">
-	     <label for="female">동의하지 않음.</label>  
+
+    
+    <div id="agree_yn" class="container d-flex justify-content-end align-items-center">
+			
+        온라인 증명서 결제 및 취소 안내사항에 모두 동의합니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <input type="radio" id="yes" name="response-yn" value="Y">
+        <label for="yes" style="padding-top: 5px;">&nbsp;동의합니다. &nbsp;&nbsp;</label>
+
+        <input type="radio" id="no" name="response-yn" value="N">
+        <label for="no" style="padding-top: 5px;">&nbsp;동의하지 않음.</label>
+
     </div>
-		 <div class="d-flex justify-content-end">
-		   <button type="button" class="btn btn-primary btn-sm m-2">신청</button>
-		   <button type="button" class="btn btn-secondary btn-sm m-2">취소</button>
-		 </div>   
+
+
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-primary btn-sm m-2">신청</button>
+        <button type="button" class="btn btn-secondary btn-sm m-2">취소</button>
+    </div>   
    
 
-	</div>	
+  </div>	
 	
   <!-- nav, section 별도로 닫아주기-->
   </nav>
