@@ -8,81 +8,81 @@
 
 <style>
 
-    /* 고객의소리 table 배경색 지정 */
-    #csUserInfo th{
-        background-color:#eaf3fa;
-    }
-    #compliment_table th{
-        background-color:#eaf3fa;
-    }
-    #other_table th{
-        background-color:#eaf3fa;
-    } 
+/* 고객의소리 table 배경색 지정 */
+#csUserInfo th{
+    background-color:#eaf3fa;
+}
+#compliment_table th{
+    background-color:#eaf3fa;
+}
+#other_table th{
+    background-color:#eaf3fa;
+} 
+
+/* 고객의소리 게시글리스트 thead색 */
+#csthead{
+    background-color:#eaf3fa;
+}
+
+/* 사이드메뉴 길이 100->120 수정 -보겸 */
+#sideMenu{
+    background-color: rgb(54, 99, 204);
+    width: 20%;
+    height: 270%;
+}
+footer{
+    margin-top: 2300px;
+} 
+
+
+
+/* 로그인한 회원에 따라 달라지는 버튼 요소들 - 상우 */
+#if_btn {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+/* 각 테이블에 m-4 빼고 수동으로 margin 주기 */
+#csUserInfo, #other_table, #compliment_table {
+    margin-left: 24px;
+    width: calc(100% - 25px); /* 테이블이 화면을 벗어나지 않도록 너비를 조정.  
+                                    부모 요소의 너비의 100%를 차지하되, 
+                                    그 전체 너비에서 25px만큼을 뺀 크기로 설정 */
+}
+
+.reply_table {
+    margin-left: 24px;
+    width: calc(100% - 25px) !important;
+}
+
+
+/* 답변 테이블 - 상우 */
+.reply_table th {
+    background-color:#eaf3fa;
+}
+.reply_table td {
+    background-color:#c7e0dd;
+}
+
+/* '답변하기(#reply_write_btn)' 버튼 클릭시 보였다 안보였다 하는 답변 요소 */
+#reply_div {
+    display: none;
+}
+.show_and_hide {
+    display: block !important;
+}
+
+/* 답변 테이블 아래 '작성' 버튼을 감싸는 div - 상우*/
+#reply_write_btn_div {
+    display: flex;
+    justify-content: end;
+}
+
+
     
-    /* 고객의소리 게시글리스트 thead색 */
-    #csthead{
-        background-color:#eaf3fa;
-    }
-    
-    /* 사이드메뉴 길이 100->120 수정 -보겸 */
-    #sideMenu{
-        background-color: rgb(54, 99, 204);
-        width: 20%;
-        height: 300%;
-    }
-    footer{
-        margin-top: 2500px;
-    } 
-
-
-
-    /* 로그인한 회원에 따라 달라지는 버튼 요소들 - 상우 */
-    #if_btn {
-        border: 1px solid red;
-        display: flex;
-        flex-direction: column;
-        align-items: end;
-    }
-
-    /* 각 테이블에 m-4 빼고 수동으로 margin 주기 */
-    #csUserInfo, #other_table {
-        margin-left: 24px;
-        width: calc(100% - 25px); /* 테이블이 화면을 벗어나지 않도록 너비를 조정.  
-                                     부모 요소의 너비의 100%를 차지하되, 
-                                     그 전체 너비에서 25px만큼을 뺀 크기로 설정 */
-    }
-
-    .reply_table {
-        margin-left: 24px;
-        width: calc(100% - 25px) !important;
-    }
-
-
-    /* 답변 테이블 - 상우 */
-    .reply_table th {
-        background-color:#eaf3fa;
-    }
-    .reply_table td {
-        background-color:#c7e0dd;
-    }
-
-    /* '답변하기(#reply_write_btn)' 버튼 클릭시 보였다 안보였다 하는 답변 요소 */
-    #reply_div {
-        display: none;
-    }
-    .show_and_hide {
-        display: block !important;
-    }
-
-    /* 답변 테이블 아래 '작성' 버튼을 감싸는 div - 상우*/
-    #reply_write_btn_div {
-        display: flex;
-        justify-content: end;
-    }
-
-
-    
-    </style>
+</style>
 
 
 </head>
@@ -156,7 +156,7 @@
 
     <!-- 고객의소리 칭찬합니다일 경우 이 테이블을 뿌림 -->
     <!-- 
-        <table id="compliment_table" class="table m-4" >
+        <table id="compliment_table" class="table" >
             <tr>
             <th width="130px">칭찬직원</th>
             <td>XXX</td>
