@@ -135,7 +135,7 @@
     </table>
     
     <h4>&nbsp;&nbsp;&nbsp;&nbsp;온라인 증명서 안내 사항 동의</h4>
-    <div id="txt_box" class="m-4">
+    <div id="txt_box" class="m-4"style="padding: 15px;">
     	<b>온라인 증명서 결제시 안내사항</b><br>
 		  &nbsp;- 온라인 증명서 결제는 신용카드 결제만 가능합니다.<br>
 		  &nbsp;- 온라인 증명서 결제가 불가능한 내역은 재증명창구를 방문해 주시기 바랍니다.<br>
