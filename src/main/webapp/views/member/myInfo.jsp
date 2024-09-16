@@ -34,13 +34,13 @@
         <h2 class="m-4"><b>마이페이지</b></h2>
 
         <form action="" method="" class="m-4" style="position: relative; left: 30px;">
-          <table id="myInfoTable" class="table">
+          <table id="my_info_table" class="table">
             <tr>
               <th width="250px">* 아이디</th>
               <td width="750px"><input type="text" class="form-control"placeholder="Enter Your ID" value="user01" readonly></td>
             </tr>
             <tr>
-              <th>* 병원등록번호</th>
+              <th>* 병원등록번호(회원번호)</th>
               <td><input type="text" class="form-control"placeholder="Your UserId" value="12345" readonly></td>
             </tr>                 
             <tr>
@@ -71,8 +71,8 @@
           </table>
           <br>
           <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-primary btn-sm">정보변경</button>
-            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#changePwdModal">비밀번호변경</button>
+            <button type="submit" class="btn btn-primary btn-sm">정보변경</button>&nbsp;
+            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#changePwdModal">비밀번호변경</button>&nbsp;
             <button type="reset" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#resignModal">회원탈퇴</button>
           </div>
         </form>

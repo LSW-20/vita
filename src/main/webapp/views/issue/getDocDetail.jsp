@@ -135,7 +135,7 @@
     </table>
     
     <h4>&nbsp;&nbsp;&nbsp;&nbsp;온라인 증명서 안내 사항 동의</h4>
-    <div id="txt_box" class="m-4">
+    <div id="txt_box" class="m-4"style="padding: 15px;">
     	<b>온라인 증명서 결제시 안내사항</b><br>
 		  &nbsp;- 온라인 증명서 결제는 신용카드 결제만 가능합니다.<br>
 		  &nbsp;- 온라인 증명서 결제가 불가능한 내역은 재증명창구를 방문해 주시기 바랍니다.<br>
@@ -152,10 +152,10 @@
     <div id="agree_yn"class="container d-flex justify-content-end">
 			온라인 증명서 결제 및 취소 안내사항에 모두 동의합니다.&nbsp;&nbsp;  
 	     <input type="radio" id="yes" name="response-yn" value="Y">
-	     <label for="male">동의합니다. &nbsp;</label>
+	     <label for="agree">동의합니다. &nbsp;</label>
 	 
 	     <input type="radio" id="no" name="response-yn" value="N">
-	     <label for="female">동의하지 않음.</label>  
+	     <label for="disagree">동의하지 않음.</label>  
     </div>
 		 <div class="d-flex justify-content-end">
 		   <button type="button" class="btn btn-primary btn-sm m-2">신청</button>
