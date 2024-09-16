@@ -8,143 +8,143 @@
 
 
 <!-- section start -->
-    <style>
-    section{
-        position:absolute;
-        width: 100%;
-        height: 1350px;
-        margin-top: 153px;
-    }
+<style>
+
+section{
+    position:absolute;
+    width: 100%;
+    height: 1350px;
+    margin-top: 153px;
+}
 
 
-    .all{
-        width: 100%;
-        height: 100%;
-        display: flex;
-    }
+.all{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
 
-            
-    #side_menu{
-        background-color: #2237b3;
-        width: 20%;
-        height: 100%;
-    }
-
-    #content{
-        width: 80%;
-        height: 100%;
-    }
-
-
-
-
-    #adminPage{
-        background-color: #26358a;
-        color: white;
-        font-size: 28px;
-        font-weight: 900;
-        line-height: 120px;
-        text-align: center;
-    }
-    
-    #side_menu div:not(.no_style) {
-        width: 100%;
-        height: 120px;
-    }
-    .no_style2, .no_style4 {
-        height: 50%;
-        display: flex;
-        align-items: center;
-    }
-    .no_style8 {
-        display: flex;
-        align-items: center;
-    }
-    .no_style6 {
-        height: 33%;
-        display: flex;
-        align-items: center;
-    }
-
-
-    .show_and_hide {
-        display: block !important;
         
-        display: flex !important;
-        flex-direction : column !important;       
-    }
+#side_menu{
+    background-color: #2237b3;
+    width: 20%;
+}
 
-    #side2, #side4, #side6, #side8 {
-        display: none;
-        border-top: 1px solid rgba(223, 214, 214, 0.74);
-
-        color: white;
-        padding-left: 40px;
-    }
+#content{
+    width: 80%;
+    height: 100%;
+}
 
 
 
 
+#adminPage{
+    background-color: #26358a;
+    color: white;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 120px;
+    text-align: center;
+}
 
-    #side1, #side2, #side5, #side6 {
-        background-color: #2237b3;
-    }
-    #side3, #side4, #side7, #side8 {
-        background-color: #2f4bcc;
-    }
-
-    #side1_event, #side3_event, #side5_event, #side7_event {
-        color: white;
-        font-size: 20px;
-        line-height: 120px;
-        padding-left: 30px;
-    }
-
-
-
-
-    #admin_name {
-        border: 1px solid rgb(67, 23, 187);
-        border-width: 10px;
-        border-radius: 30px;
-
-        width: 300px;
-        height: 80px;
-        font-size: 32px;
-        font-weight: 550;
-        margin-left: 100px;
-
-        display: flex; /* '관리자 xxx님'을 수직, 수평 정렬시키기 위한 3줄 */
-        justify-content: center;
-        align-items: center;
-
-    }
+#side_menu div:not(.no_style) {
+    width: 100%;
+    height: 120px;
+}
+.no_style2, .no_style4 {
+    height: 50%;
+    display: flex;
+    align-items: center;
+}
+.no_style8 {
+    display: flex;
+    align-items: center;
+}
+.no_style6 {
+    height: 33%;
+    display: flex;
+    align-items: center;
+}
 
 
-    </style>
+.show_and_hide {
+    display: block !important;
+    
+    display: flex !important;
+    flex-direction : column !important;       
+}
+
+#side2, #side4, #side6, #side8 {
+    display: none;
+    border-top: 1px solid rgba(223, 214, 214, 0.74);
+
+    color: white;
+    padding-left: 40px;
+}
 
 
 
-    <script>
 
-    $(document).ready(function() {
 
-        $('#side1_event').on("click", function(evt){
-            $('#side2').toggleClass('show_and_hide');
-        })
-        $('#side3_event').on("click", function(evt){
-            $('#side4').toggleClass('show_and_hide');
-        })
-        $('#side5_event').on("click", function(evt){
-            $('#side6').toggleClass('show_and_hide');
-        })
-        $('#side7_event').on("click", function(evt){
-            $('#side8').toggleClass('show_and_hide');
-        })
+#side1, #side2, #side5, #side6 {
+    background-color: #2237b3;
+}
+#side3, #side4, #side7, #side8 {
+    background-color: #2f4bcc;
+}
 
+#side1_event, #side3_event, #side5_event, #side7_event {
+    color: white;
+    font-size: 20px;
+    line-height: 120px;
+    padding-left: 30px;
+}
+
+
+
+
+#admin_name {
+    border: 1px solid rgb(67, 23, 187);
+    border-width: 10px;
+    border-radius: 30px;
+
+    width: 300px;
+    height: 80px;
+    font-size: 32px;
+    font-weight: 550;
+    margin-left: 100px;
+
+    display: flex; /* '관리자 xxx님'을 수직, 수평 정렬시키기 위한 3줄 */
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+</style>
+
+
+
+<script>
+
+$(document).ready(function() {
+
+    $('#side1_event').on("click", function(evt){
+        $('#side2').toggleClass('show_and_hide');
+    })
+    $('#side3_event').on("click", function(evt){
+        $('#side4').toggleClass('show_and_hide');
+    })
+    $('#side5_event').on("click", function(evt){
+        $('#side6').toggleClass('show_and_hide');
+    })
+    $('#side7_event').on("click", function(evt){
+        $('#side8').toggleClass('show_and_hide');
     })
 
-    </script>
+})
+
+</script>
 
 
 
@@ -155,16 +155,20 @@
 <div class="all"> 
 
     <div id="side_menu">
-        <div id="adminPage">관리자 전용 페이지</div>
+        <div id="adminPage">
+            <a href="/vita/views/admin/adminHome.jsp">관리자 전용 페이지</a>
+        </div>
+
+
         <div id="side_elements">
             <div id="side1"><span id="side1_event">• &nbsp계정 관리</span></div> <!-- div가 아닌 span으로 영역을 줄이니 이벤트 전파 발생x-->
             <div id="side2">
-                <div class="no_style2"><a href="#">-  &nbsp 의료진 계정 관리</a></div>  
-                <div class="no_style2"><a href="#">-  &nbsp 회원 계정 관리</a></div>
+                <div class="no_style2"><a href="/vita/views/admin/manageDoctor.jsp">-  &nbsp 의료진 계정 관리</a></div>  
+                <div class="no_style2"><a href="/vita/views/admin/manageMember.jsp">-  &nbsp 회원 계정 관리</a></div>
             </div>
             <div id="side3"><span id="side3_event">• &nbsp사이트 관리</span></div>
             <div id="side4">
-                <div class="no_style4"><a href="#">-  &nbsp 공지사항 관리</a></div>
+                <div class="no_style4"><a href="/vita/views/notice/noticeM.jsp">-  &nbsp 공지사항 관리</a></div>
                 <div class="no_style4"><a href="#">-  &nbsp 뉴스 게시판 관리</a></div>
             </div>      
             <div id="side5"><span id="side5_event">• &nbsp예약 관리</span></div>
@@ -180,13 +184,13 @@
         </div>
     </div>
     
-        <div id="content" > <!-- 여기가 페이지 내용 -->
+    <div id="content" > <!-- 여기가 페이지 내용 -->
 
-    
-                    <br><br>
-            
-                    <div id="admin_name">
-                        관리자 강보람님
-                    </div>
-            
-                    <br><br><br>
+
+                <br><br>
+        
+                <div id="admin_name">
+                    관리자 강보람님
+                </div>
+        
+                <br><br><br>
