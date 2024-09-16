@@ -25,7 +25,7 @@
         height: 150px;
         border: 1px solid #ccc;
         border-radius: 8px;
-        margin: 10px;
+        margin: 30px;
         padding: 15px;
         position: relative; /* 취소 버튼을 배치하기 위해 */
         display: flex;
@@ -133,7 +133,8 @@
     const reservation_data = [
         { id: 1, date: '2024-09-01', patient_name: '김철수', medical_staff: '이병헌', department: '내과' },
         { id: 2, date: '2024-09-15', patient_name: '박지민', medical_staff: '강호동', department: '외과' },
-        { id: 3, date: '2024-09-20', patient_name: '최영희', medical_staff: '정용화', department: '정형외과' }
+        { id: 3, date: '2024-09-20', patient_name: '최영희', medical_staff: '정용화', department: '정형외과' },
+        { id: 4, date: '2024-09-20', patient_name: '최영희', medical_staff: '정용화', department: '정형외과' }
     ];
 
     window.onload = function() {
