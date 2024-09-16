@@ -46,12 +46,10 @@
             <tr>
               <th>* 이름</th>
               <td><input type="text" class="form-control" placeholder="Enter Your Name" value="홍길동" required></td>
-              <td></td>
             </tr>      
             <tr>
               <th>&nbsp;&nbsp;생년월일</th>
               <td><input type="text" class="form-control" placeholder="ex_ 900101" value="990101" required></td>
-              <td></td>
             </tr>   
             <tr>
               <th>&nbsp;&nbsp;성별</th>
@@ -64,12 +62,10 @@
             <tr>
               <th>&nbsp;&nbsp;전화번호</th>
               <td><input type="text" class="form-control" placeholder="Enter Your Phone(include '-')" value="010-2222-3333" required></td>
-              <td></td>
             </tr>     
             <tr>
               <th>&nbsp;&nbsp;이메일</th>
               <td><input type="text" class="form-control" placeholder="Enter Your Email(include '@')" value="user01@br.com" required></td>
-              <td></td>
             </tr>       
                                                          
           </table>
