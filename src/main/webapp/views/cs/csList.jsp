@@ -68,7 +68,7 @@
 	 <%@ include file="/views/common/myPageSideBar.jsp" %>
 	 <div class="side" id="navContent">
 		
-	   <br><h2><b>&nbsp; 고객의 소리</h2>  
+	   <br><h2 style="margin-left: 160px;"><b>고객의 소리</h2>  
 	
 	   <!-- 카테고리 변경 탭 버튼 -->
      <div class="d-flex btn-group" role="group" aria-label="Segmented button" style="padding: 20px;width: 80%; max-width: 1500px; margin: 0 auto;">
