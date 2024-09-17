@@ -12,12 +12,11 @@
       flex-direction: column;
       background-color: #1F2B6C;           
   }
-  /* 사이드바 메뉴 길이 페이지마다 다를 수 있으니 별도로 부여 */
-   #sideMenu{
-     background-color: rgb(54, 99, 204);
-     width: 20%;
-     height: 100%;
- }
+section{
+	position: absolute;
+	width: 100%;
+	margin-top: 153px;
+}
  #csthead{
    background-color:#eaf3fa;
  }
@@ -65,13 +64,14 @@
 </head>
 <body>
 	 <%@ include file="/views/common/header.jsp" %>
-	 <%@ include file="/views/common/myPageSideBar.jsp" %>
+	 <%-- <%@ include file="/views/common/myPageSideBar.jsp" %> --%>
+	<section>
 	 <div class="side" id="navContent">
 		
-	   <br><h2 style="margin-left: 160px;"><b>고객의 소리</h2>  
+	   <br><h2 style="margin-left: 320px;"><b>&nbsp; 고객의 소리</h2>  
 	
 	   <!-- 카테고리 변경 탭 버튼 -->
-     <div class="d-flex btn-group" role="group" aria-label="Segmented button" style="padding: 20px;width: 80%; max-width: 1500px; margin: 0 auto;">
+     <div class="d-flex btn-group" role="group" aria-label="Segmented button" style="padding: 20px;width: 80%; max-width: 1250px; margin: 0 auto;">
        <!-- 칭찬합니다 (기본 선택) -->
        <input type="radio" class="cs_check" name="options" id="option1" autocomplete="off" checked>
        <label class="btn btn-outline-primary" for="option1">칭찬합니다</label>
@@ -158,7 +158,7 @@
 	     <hr>
 			 <!-- 현재 로그인되어있는 회원일 경우 보여지는 요소 -->
 			 <div class="d-flex justify-content-end">
-			   <a href="/vita/views/cs/csWrite.jsp" class="btn btn-primary btn-sm">등록하기</a>
+			   <a href="" class="btn btn-primary btn-sm">등록하기</a><!-- 로그인페이지로 -->
 			 </div>   			 
 	   </div>
  
@@ -177,7 +177,7 @@
 	 </div>
 	 
 	 <!-- nav, section 별도로 닫아주기-->
-	 </nav>
+	 <!-- </nav> -->
 	</section>
 <!-- Footer start -->
 <%@ include file="/views/common/footer.jsp" %>

@@ -56,7 +56,8 @@ section{
           <td>2000원</td>
           <td>미사용</td>
           <td>
-            <button type="button" class="get_doc_btn btn-sm">발급받기</button>
+            <!-- <button type="button" class="get_doc_btn btn-sm">발급받기</button> -->
+            <a href="/vita/views/issue/getDocDetail.jsp" class="get_doc_btn btn-sm">발급받기</a>
           </td>
         </tr>
         <tr>
@@ -64,7 +65,7 @@ section{
           <td>2000원</td>
           <td>사용</td>
           <td>
-            <button type="button" class="get_doc_btn btn-sm">발급받기</button>
+            <a href="/vita/views/issue/getDocDetail.jsp" class="get_doc_btn btn-sm">발급받기</a>
           </td>
         </tr>
         <tr>
@@ -72,7 +73,8 @@ section{
           <td>2000원</td>
           <td>사용</td>
           <td>
-            <button type="button" class="get_doc_btn btn-sm">발급받기</button>
+            <!-- <button type="button" class="get_doc_btn btn-sm">발급받기</button> -->
+            <a href="/vita/views/issue/getDocDetail.jsp" class="get_doc_btn btn-sm">발급받기</a>
           </td>
         </tr>
         <tr>
@@ -80,7 +82,7 @@ section{
           <td>2000원</td>
           <td>사용</td>
           <td>
-            <button type="button" class="get_doc_btn btn-sm">발급받기</button>
+            <a href="/vita/views/issue/getDocDetail.jsp" class="get_doc_btn btn-sm">발급받기</a>
           </td>
         </tr>      
         <tr>
@@ -88,7 +90,7 @@ section{
           <td>&nbsp;&nbsp;&nbsp;&nbsp; -</td>
           <td>사용</td>
           <td>
-            <button type="button" class="get_doc_btn btn-sm">바로가기</button>
+            <a href="/vita/views/issue/docList_DM.jsp" class="get_doc_btn btn-sm">바로가기</a>
           </td>
         </tr>                
       </tbody>
