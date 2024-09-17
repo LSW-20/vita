@@ -168,7 +168,7 @@ $(document).ready(function() {
             </div>
             <div id="side3"><span id="side3_event">• &nbsp사이트 관리</span></div>
             <div id="side4">
-                <div class="no_style4"><a href="/vita/views/notice/noticeM.jsp">-  &nbsp 공지사항 관리</a></div>
+                <div class="no_style4"><a href="/vita/views/admin/manageNotice.jsp">-  &nbsp 공지사항 관리</a></div>
                 <div class="no_style4"><a href="#">-  &nbsp 뉴스 게시판 관리</a></div>
             </div>      
             <div id="side5"><span id="side5_event">• &nbsp예약 관리</span></div>
@@ -179,7 +179,7 @@ $(document).ready(function() {
             </div>
             <div id="side7"><span id="side7_event">• &nbsp고객의 소리</span></div>
             <div id="side8">
-                <div class="no_style8"><a href="#">- &nbsp Q&A 답변 및 관리</a></div>
+                <div class="no_style8"><a href="/vita/views/admin/adminCsList.jsp">- &nbsp Q&A 답변 및 관리</a></div>
             </div>
         </div>
     </div>
