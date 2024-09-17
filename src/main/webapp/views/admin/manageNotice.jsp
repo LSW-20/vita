@@ -278,7 +278,7 @@ footer {
 
 
 
-  </div>
+  </div> <!-- 관리자 사이드바의 div를 닫는 태그 -->
 </section>
 
 <!-- footer start  -->
