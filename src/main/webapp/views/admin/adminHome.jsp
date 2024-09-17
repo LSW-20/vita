@@ -131,11 +131,11 @@
                     </tr>
 
                     <tr>
-                        <td style="height: 65px; padding-left: 40px; font-size: 20px;"><a href="">▷ 건강검진 예약 관리</a></td>
+                        <td style="height: 65px; padding-left: 40px; font-size: 20px;"><a href="/vita/views/admin/manageCheckupAppointment.jsp">▷ 건강검진 예약 관리</a></td>
                     </tr>
 
                     <tr>
-                        <td style="height: 65px; padding-left: 40px; font-size: 20px;"><a href="">▷ 건강검진 연계기업 관리</a></td>
+                        <td style="height: 65px; padding-left: 40px; font-size: 20px;"><a href="/vita/views/admin/manageCompany.jsp">▷ 건강검진 연계기업 관리</a></td>
                     </tr>
                 </table>
             </div>
