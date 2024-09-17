@@ -192,7 +192,7 @@
             <div class="top-img" id="topimgDiv1"><a href="<%= contextPath %>"><img id="vpMark" src="/vita/assets/image/vp마크.png"></a></div>
             <div class="top-img" id="topimgDiv2"><img id="vpNum" src="/vita/assets/image/vp전화번호.png"></div>
             <div class="top-img" id="topimgDiv3"><img id="vpWork" src="/vita/assets/image/vp병원영업시간.png"></div>
-            <div class="top-img" id="topimgDiv4"><a href=""><img id="vpLoc" src="/vita/assets/image/vp위치.png"></a></div>
+            <div class="top-img" id="topimgDiv4"><a href="/vita/views/selectContents/directions.jsp"><img id="vpLoc" src="/vita/assets/image/vp위치.png" style="cursor: pointer;"></a></div>
         </div>
         
         <div id="mainMenu"> 
@@ -273,7 +273,7 @@
         <div class="sub" style="font-size: 17px;"><br><b>&nbsp;진료예약/안내 ></b></div>
         <div class="sub">
             <b><br>&nbsp;안내</b><br>
-            <a href="" style="text-decoration: none;">&nbsp;오시는길</a><br>
+            <a href="/vita/views/selectContents/directions.jsp" style="text-decoration: none;">&nbsp;오시는길</a><br>
             <a href="" style="text-decoration: none;">&nbsp;주차안내</a><br>
             <a href="" style="text-decoration: none;">&nbsp;층별안내</a>
         </div>
