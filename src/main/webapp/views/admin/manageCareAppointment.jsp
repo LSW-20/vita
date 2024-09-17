@@ -96,29 +96,6 @@ footer {
 
 
 
-<script>
-
-$(document).ready(function() {
-
-    $('#side1_event').on("click", function(evt){
-        $('#side2').toggleClass('show_and_hide');
-    })
-    $('#side3_event').on("click", function(evt){
-        $('#side4').toggleClass('show_and_hide');
-    })
-    $('#side5_event').on("click", function(evt){
-        $('#side6').toggleClass('show_and_hide');
-    })
-    $('#side7_event').on("click", function(evt){
-        $('#side8').toggleClass('show_and_hide');
-    })
-
-})
-
-</script>
-
-
-
 
 
 
