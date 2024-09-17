@@ -165,8 +165,8 @@
 
 
     <div class="d-flex justify-content-end">
-        <button type="button" class="btn btn-primary btn-sm m-2">신청</button>
-        <button type="button" class="btn btn-secondary btn-sm m-2">취소</button>
+        <a href="/vita/views/issue/getDocResultList.jsp" class="btn btn-primary btn-sm m-2">신청</a>
+        <a href="/vita/views/issue/getDocList.jsp" class="btn btn-secondary btn-sm m-2">취소</a>
     </div>   
    
 

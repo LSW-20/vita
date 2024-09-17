@@ -178,10 +178,10 @@
             // 서버 취소 요청 보내거나 예약 내역 업데이트
         }
     }
-
+    
     // 추가 진료예약 버튼 클릭 시 예약 페이지로 이동
     document.getElementById("add_reservation_button").addEventListener('click', function() {
-        window.location.href = '/예약페이지링크';//추후 예약페이지로 이동되게
+        window.location.href = '/vita/views/reservation/personal.jsp';//추후 예약페이지로 이동되게
     });
   </script>
    
