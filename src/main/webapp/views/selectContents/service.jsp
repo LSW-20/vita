@@ -19,11 +19,6 @@
         height: 1147px;
         margin-top: 153px;
     }
-    #dietImg{
-        width: 200px;
-        height: auto;
-        border: 1px solid rgb(228, 225, 225);
-    }
     td{
       text-align: left;
       font-size: 14px;

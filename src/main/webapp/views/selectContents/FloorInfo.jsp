@@ -16,7 +16,7 @@
     section{
         position:absolute;
         width: 100%;
-        height: 747;
+        height: 797;
         margin-top: 153px;
     }
     table,tr,td{
@@ -41,7 +41,7 @@
       font-weight: 800;
     }
     footer{
-    	margin-top: 900px !important;
+    	margin-top: 950px !important;
     }
     </style>
     <section>

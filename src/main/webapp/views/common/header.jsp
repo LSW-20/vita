@@ -389,8 +389,8 @@
         <div class="sub" style="font-size: 17px;"><br><b>&nbsp;병원소개 ></b></div>
         <div class="sub">
             <b><br>&nbsp;병원소개</b><br>
-            <a href="" style="text-decoration: none;">&nbsp;병원장인사말</a><br>
-            <a href="" style="text-decoration: none;">&nbsp;병원안내</a>
+            <a href="/vita/views/selectContents/greetings.jsp" style="text-decoration: none;">&nbsp;병원장인사말</a><br>
+            <a href="/vita/views/selectContents/hospitalInfo.jsp" style="text-decoration: none;">&nbsp;병원안내</a>
         </div>
         <div class="sub">
             <b><br>&nbsp;소식</b><br>
