@@ -306,7 +306,7 @@
         <div class="sub" style="font-size: 17px;"><br><b>&nbsp;건강정보 ></b></div>
         <div class="sub">
             <b><br>&nbsp;의료정보</b><br>
-            <a href="" style="text-decoration: none;">&nbsp;식사요법</a>
+            <a href="/vita/views/selectContents/dietTherapy.jsp" style="text-decoration: none;">&nbsp;식사요법</a>
         </div>
         <div class="sub"><a href="/vita/views/selectContents/healthTV1.jsp" style="text-decoration: none;"><b><br>&nbsp;건강TV</b></a></div>
         <div class="sub"></div>
