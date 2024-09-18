@@ -169,7 +169,7 @@ $(document).ready(function() {
             <div id="side3"><span id="side3_event">• &nbsp사이트 관리</span></div>
             <div id="side4">
                 <div class="no_style4"><a href="/vita/views/admin/manageNotice.jsp">-  &nbsp 공지사항 관리</a></div>
-                <div class="no_style4"><a href="#">-  &nbsp 뉴스 게시판 관리</a></div>
+                <div class="no_style4"><a href="/vita/views/admin/manageNews.jsp">-  &nbsp 뉴스 게시판 관리</a></div>
             </div>      
             <div id="side5"><span id="side5_event">• &nbsp예약 관리</span></div>
             <div id="side6">

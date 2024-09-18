@@ -113,7 +113,6 @@
                         <li><a href="" style="text-decoration: none;">진료기록</a></li>
                     </ul>
                 </div>
-                <div class="sideMenu" id=""><a href="" style="text-decoration: none;">Q&A 답변</a></div>
             </div>
        
              
