@@ -361,7 +361,7 @@
         <div class="sub">
             <b><br>&nbsp;후원</b><br>
             <a href="/vita/views/selectContents/sponsorship.jsp" style="text-decoration: none;">&nbsp;후원</a><br>
-            <a href="" style="text-decoration: none;">&nbsp;후원현황</a>
+            <a href="/vita/views/selectContents/sponsorshipStatus.jsp" style="text-decoration: none;">&nbsp;후원현황</a>
         </div>
         <div class="sub">
             <b><br>&nbsp;자원봉사</b><br>
