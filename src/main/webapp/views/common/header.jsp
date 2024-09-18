@@ -365,7 +365,7 @@
         </div>
         <div class="sub">
             <b><br>&nbsp;자원봉사</b><br>
-            <a href="" style="text-decoration: none;">&nbsp;안내</a>
+            <a href="/vita/views/selectContents/service.jsp" style="text-decoration: none;">&nbsp;안내</a>
         </div>
         <div class="sub"></div>
     </div>
