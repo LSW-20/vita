@@ -104,7 +104,7 @@
                       
                       <tr>
                         <td id="color" style="width:200px">검진 프로그램</td>
-                        <td style="width:302px">일반 건강검진</td>
+                        <td style="width:302px">건강검진</td>
                         <td id="color" style="width:200px">신청일</td>
                         <td style="width:302px">2024-00-00(수정요망)</td>
                         
@@ -112,7 +112,7 @@
                       
                       <tr>
                         <td id="color" >유형</td>
-                        <td style="border-right: white">개인검진 (수정요망)</td>
+                        <td style="border-right: white">일반 건강검진 (수정요망)</td>
                       
                       </tr>
                   
