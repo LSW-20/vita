@@ -224,33 +224,34 @@
                             <!-- The slideshow -->
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <a href=""><img src="/vita/assets/image/배경1.png" alt="Image 1"></a>
-                                    <a href=""><img src="/vita/assets/image/배경2.png" alt="Image 2"></a>
+                                    <a href="/vita/views/selectContents/healthTV1.jsp#Vpopup1"><img src="https://img.youtube.com/vi/wfdXDwZUq0M/0.jpg" alt="Image 1"></a>
+                                    <a href="/vita/views/selectContents/healthTV1.jsp#Vpopup2"><img src="https://img.youtube.com/vi/ovFv04tzfjU/0.jpg" alt="Image 2"></a>
                                     <div class="carousel-caption" style="display: flex; margin-top: -20px;">
-                                        <div class="container"><a href=""><b style="color: black;">링크1</b></a></div>
-                                        <div class="container"><a href=""><b style="color: black;">링크2</b></a></div>
+                                        <div class="container"><a href="/vita/views/selectContents/healthTV1.jsp#Vpopup1"><b style="color: black;">우리 아이가 암 진단을 받았다면, 어떻게 알려줘야 하나요?</b></a></div>
+                                        <div class="container"><a href="/vita/views/selectContents/healthTV1.jsp#Vpopup2"><b style="color: black;">뇌졸중 시야장애의 치료</b></a></div>
                                         <br><br>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <a href=""><img src="/vita/assets/image/배경3.png" alt="Image 3"></a>
-                                    <a href=""><img src="/vita/assets/image/배경4.png" alt="Image 4"></a>
+                                    <a href="/vita/views/selectContents/healthTV1.jsp#Vpopup3"><img src="https://img.youtube.com/vi/EGoOnPFnLSg/0.jpg" alt="Image 3"></a>
+                                    <a href="/vita/views/selectContents/healthTV1.jsp#Vpopup4"><img src="https://img.youtube.com/vi/eyOFY7RiL6Y/0.jpg" alt="Image 4"></a>
                                     <div class="carousel-caption" style="display: flex; margin-top: -20px;">
-                                        <div class="container"><a href=""><b style="color: black;">링크3</b></a></div>
-                                        <div class="container"><a href=""><b style="color: black;">링크4</b></a></div>
+                                        <div class="container"><a href="/vita/views/selectContents/healthTV1.jsp#Vpopup3"><b style="color: black;">담즙 배액관 잠그기 연습하기</b></a></div>
+                                        <div class="container"><a href="/vita/views/selectContents/healthTV1.jsp#Vpopup4"><b style="color: black;">암 치료 중인 우리 아이의 마음, 이렇게 읽어주세요</b></a></div>
                                         <br><br>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <a href=""><img src="/vita/assets/image/배경5.png" alt="Image 5"></a>
-                                    <a href=""><img src="/vita/assets/image/배경3.png" alt="Image 6"></a>
+                                    <a href="/vita/views/selectContents/healthTV1.jsp#Vpopup5"><img src="https://img.youtube.com/vi/x424eRESe8U/0.jpg" alt="Image 5"></a>
+                                    <a href="/vita/views/selectContents/healthTV1.jsp#Vpopup6"><img src="https://img.youtube.com/vi/G9_WqQ8Dda0/0.jpg" alt="Image 6"></a>
                                     <div class="carousel-caption" style="display: flex; margin-top: -20px;">
-                                        <div class="container"><a href=""><b style="color: black;">링크5</b></a></div>
-                                        <div class="container"><a href=""><b style="color: black;">링크6</b></a></div>
+                                        <div class="container"><a href="/vita/views/selectContents/healthTV1.jsp#Vpopup5"><b style="color: black;">암 환자의 가임력 보존, 치료 시작 전 미리 준비가 필요합니다</b></a></div>
+                                        <div class="container"><a href="/vita/views/selectContents/healthTV1.jsp#Vpopup6"><b style="color: black;">두개골 조기 유합증 치료는?</b></a></div>
                                         <br><br>
                                     </div>
                                 </div>
                             </div>
+
                             <!-- Left and right controls -->
                             <a class="carousel-control-prev" href="#demo2" data-slide="prev">                         
                                 <img src="/vita/assets/image/왼쪽화살표.png" style="width: 20px; height: 40px; margin-top: -70px;">
