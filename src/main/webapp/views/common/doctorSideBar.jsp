@@ -55,6 +55,7 @@
             padding: 20px;
             font-size: 20px;
             color: white;
+            cursor:pointer;
         }
 
         .sideMenu:hover {
@@ -91,6 +92,12 @@
                });
 
           });
+          
+          function fnschedule(){
+        	  location.href = '/vita/views/doctor/doctorSchedule.jsp';
+        	  
+          }
+         
 
         
         </script>
@@ -98,22 +105,24 @@
         <nav class="sidemenuDiv">
             <div id="sideMenu">
                 <div id="doctorPage">의료진 페이지</div>
-                <div class="sideMenu" id=""><a href="" style="text-decoration: none;">의료 일정 관리</a></div>
+                <div class="sideMenu" id="scheduleDiv" onclick="fnschedule();"><a href="#" style="text-decoration: none;">의료 일정 관리</a></div>
 
                 <div class="sideMenu" id="d_submenu1">발급 신청 관리
                   <ul class="d_submenu_item1">
-                    <li><a href="" style="text-decoration: none;">진단서</a></li>
-                    <li><a href="" style="text-decoration: none;">진료확인서</a></li>
+                    <li><a href="/vita/views/doctor/diagnosis.jsp" style="text-decoration: none;">진단서</a></li>
+                    <li><a href="/vita/views/doctor/mt_confirmation.jsp" style="text-decoration: none;">진료확인서</a></li>
                   </ul>
                 </div>
 
                 <div class="sideMenu" id="d_submenu2">진료 기록 관리
                     <ul class="d_submenu_item2">
-                        <li><a href="" style="text-decoration: none;">진료실</a></li>
-                        <li><a href="" style="text-decoration: none;">진료기록</a></li>
+                        <li><a href="/vita/views/doctor/treatmentRoom.jsp" style="text-decoration: none;">진료실</a></li>
+                        <li><a href="/vita/views/doctor/m_records.jsp" style="text-decoration: none;">진료기록</a></li>
                     </ul>
                 </div>
             </div>
+            
+            
        
              
 

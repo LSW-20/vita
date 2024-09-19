@@ -71,7 +71,10 @@ footer {
 
     <div class="container" style="text-align: center; width: 1100px; height: 800px;">
       <br>
-      <div class="container" style="text-align: left; font-size: 40px; height: 80px;"><b>공지사항</b></div>
+	    <div class="container" style="text-align: left; font-size: 40px; height: 80px;">
+	    	<b>공지사항</b>
+	    	<a href="/vita/views/admin/manageNewsModify.jsp" style="font-size: 20px;">공지사항수정페이지이동</a>
+	    </div>
       <div class="container border" style="height: 10px; background: gray; margin-left: -30px;"></div><br><br>
       <div style="text-align: center; width: 1050px; height: 850px;">
         <table>
@@ -260,7 +263,7 @@ footer {
           </div>
 	        <script>
 	          document.getElementById("noticeWrite").addEventListener("click", function() {
-	              window.location.href = "/vita/views/admin/noticeWrite.jsp";
+	              window.location.href = "/vita/views/admin/manageNoticeWrite.jsp";
 	          });
 	        </script>    
       </div>
