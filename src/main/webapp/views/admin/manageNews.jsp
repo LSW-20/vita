@@ -220,8 +220,7 @@ td{
       </table>
     </div>
     <div class="container" style="width: 1050px; height: 50px; display: flex; margin-left: -10px;">
-        <div class="container" style="width: 250px; height: 50px; margin-top: -30px; margin-left: -30px;">
-            <button type="button" class="btn btn-primary">수정</button>
+        <div class="container" style="width: 250px; height: 50px; margin-top: -30px; margin-left: -70px;">
             <button type="button" class="btn btn-danger">삭제</button>
         </div>
         <div class="container" style="height: 50px;">
@@ -241,8 +240,13 @@ td{
             </ul>
         </div>
         <div class="container" style="width: 200px; height: 50px; margin-top: -30px; margin-right: -60px;">
-            <button type="button" class="btn btn-success">글쓰기</button>
+            <button id="newsWrite" type="button" class="btn btn-success">글쓰기</button>
         </div>
+        <script>
+          document.getElementById("newsWrite").addEventListener("click", function() {
+              window.location.href = "/vita/views/admin/newsWrite.jsp";
+          });
+        </script> 
     </div>
   </div>
 
