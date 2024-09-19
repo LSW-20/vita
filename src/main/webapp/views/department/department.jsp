@@ -168,7 +168,7 @@
                     </tr>
                 </table>
                 <div class="inner inner2" style="background-color: rgb(32, 163, 245); display: block;">
-                    <a href="/vita/views/Department/dept_Introduce1.jsp" class="no-underline"> <!-- 내과소개링크 -->
+                    <a href="/vita/views/department/dept_Introduce1.jsp" class="no-underline"> <!-- 내과소개링크 -->
                         <div id="hov1" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px; margin-top: 30px;">
                             <b id="hov1_b" style="font-size: 20px; line-height: 60px;">소개</b>
                         </div>
@@ -196,7 +196,7 @@
                     </tr>
                 </table>
                 <div class="inner inner2" style="background-color: rgb(32, 163, 245); display: block;">
-                    <a href="/vita/views/Department/dept_Introduce2.jsp" class="no-underline"> <!-- 외과소개링크 -->
+                    <a href="/vita/views/department/dept_Introduce2.jsp" class="no-underline"> <!-- 외과소개링크 -->
                         <div id="hov3" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px; margin-top: 30px;">
                             <b id="hov3_b" style="font-size: 20px; line-height: 60px;">소개</b>
                         </div>
@@ -224,7 +224,7 @@
                     </tr>
                 </table>
                 <div class="inner inner2" style="background-color: rgb(32, 163, 245); display: block;">
-                    <a href="/vita/views/Department/dept_Introduce3.jsp" class="no-underline"> <!-- 치과소개링크 -->
+                    <a href="/vita/views/department/dept_Introduce3.jsp" class="no-underline"> <!-- 치과소개링크 -->
                         <div id="hov5" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px; margin-top: 30px;">
                             <b id="hov5_b" style="font-size: 20px; line-height: 60px;">소개</b>
                         </div>
@@ -252,7 +252,7 @@
                     </tr>
                 </table>
                 <div class="inner inner2" style="background-color: rgb(32, 163, 245); display: block;">
-                    <a href="/vita/views/Department/dept_Introduce4.jsp" class="no-underline"> <!-- 안과소개링크 -->
+                    <a href="/vita/views/department/dept_Introduce4.jsp" class="no-underline"> <!-- 안과소개링크 -->
                         <div id="hov7" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px; margin-top: 30px;">
                             <b id="hov7_b" style="font-size: 20px; line-height: 60px;">소개</b>
                         </div>

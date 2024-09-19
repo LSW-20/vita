@@ -42,24 +42,23 @@
         <br>
         <div class="container" style="width: 1000px; height: 1px; background: rgb(198, 214, 231);"></div><br><br>
         <div class="container" style="width: 1000px; height: 80px; font-size: 24px; display: flex;">
-            <div class="container border select" style="width: 25%; text-align: center;"><b><p></p>내과</b></div>
-            <div class="container border unselected" style="width: 25%; text-align: center;" onclick="location.href='/vita/views/Department/dept_Introduce2.jsp'"><b><p></p>외과</b></div>
-            <div class="container border unselected" style="width: 25%; text-align: center;" onclick="location.href='/vita/views/Department/dept_Introduce3.jsp'"><b><p></p>치과</b></div>
-            <div class="container border unselected" style="width: 25%; text-align: center;" onclick="location.href='/vita/views/Department/dept_Introduce4.jsp'"><b><p></p>안과</b></div>
+            <div class="container border unselected" style="width: 25%; text-align: center;" onclick="location.href='/vita/views/department/dept_Introduce1.jsp'"><b><p></p>내과</b></div>
+            <div class="container border unselected" style="width: 25%; text-align: center;" onclick="location.href='/vita/views/department/dept_Introduce2.jsp'"><b><p></p>외과</b></div>
+            <div class="container border select" style="width: 25%; text-align: center;"><b><p></p>치과</b></div>
+            <div class="container border unselected" style="width: 25%; text-align: center;" onclick="location.href='/vita/views/department/dept_Introduce4.jsp'"><b><p></p>안과</b></div>
         </div>
         <br><br><br>
         <div class="container" style="text-align: center; width: 1000px; height: 600px; font-size: 20px;">
             <p style="text-align: left;">
-                우리 내과가 추구하고자 하는 핵심가치(core values)로서<br><br>
+                최고의 의료장비로 정확한 진단부터 예방관리, 치아 보존 및 심미적 보철치료를 보장하고 있습니다.<br><br>
 
-                중요한 사안에는 일치를<br> 
-                (Unity in essentials.)<br><br>                
+                진료보증제로 사후관리까지 책임집니다.<br><br>
 
-                그렇지 않은 사안에는 자유를<br> 
-                (Liberty in non-essentials.)<br><br>
+                환자 치아에 맞는 커스텀 부품을 사용하여 아름다운 치아를 보장드립니다.<br><br>
 
-                모든 일에는 사랑과 관용을<br>
-                (Charity in everything.)
+                5,000여건 이상 임상 경험을 바탕으로한 구강외과 전문의의 진료를 받으실 수 있습니다. <br><br>
+
+                악궁확장장치를 이용해 주걱턱,돌출입,비대칭으로 인한 부정교합을 수술없이 교정해드립니다.
             </p>
         </div>
     </section>
