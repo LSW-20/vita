@@ -113,7 +113,9 @@
                 <br><br><br><br>
       
                 <div align="center">
-                    <button type="button" class="btn" id="btn-color">메인화면으로</button>
+          
+                    <a href="/vita/" class="btn" id="btn-color">메인화면으로</a>
+                    
                 </div>
       
               <br><br><br>	

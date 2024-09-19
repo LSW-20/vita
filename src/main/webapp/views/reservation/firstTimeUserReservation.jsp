@@ -195,8 +195,9 @@
 	
 	            
 	            <div align="center">
-	              <button type="button" class="btn border-1 border-dark" id="btn-color" style="width: 150px;">다음</button>
-	              <button type="button" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:30px;">이전</button>
+	               <a href="/vita/views/reservation/consultation_Form.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;">다음</a>
+	               <a href="/vita/views/reservation/consultation_AfterLogin.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:30px;">이전</a>
+	              
 	            </div>
 	
 	            <br><br> <br><br> <br><br> 
