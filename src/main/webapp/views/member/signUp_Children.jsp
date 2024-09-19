@@ -4,260 +4,265 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>signUp_Adult</title>
+<title>signUp_Children</title>
 </head>
 	<style>
-	    section{
-        /* background-color: aqua; */
-        width: 100%;
-        height: 1300px;
-        position: absolute;
-        top: 80px;
-	    }
-	    .boxbox {
-	      margin-top: 110px;
+     section{
+	       /* background-color: aqua; */
+	       width: 100%;
+	       height: 1300px;
+	       position: absolute;
+	       top: 80px;
+     }
+     .boxbox {
+	      margin-top: 40px;
 	      width: 79%; 
 	      margin-left: 200px !important; 
 	    }
-	    .col-xl-2{
-	      background-color:#A3B3D4;
-	      color:white;
-	      padding: 20px 30px;
-	      font-size: 25px;
-	      height: 150px;
-	      
-	    }
-	    .line {
-	      display: inline-block;
-	      padding-bottom: 5px;
-	      border-bottom: 2px solid white;
-	    }
-	    .col-xl-10 {
-	      background-color:#00000009;
-	      font-size: 15px;
-	      padding: 20px 20px;
-	    }
-	    #e-mail1 {
-	      margin-top: 10px;
-	      font-size: 14px;
-	      width: 160px;
-	      border-radius: 0px;
-	      background-color: #666666;
-	      border: none;
-	    }
-	    .modal-header{
-	      justify-content: center !important;
-	      margin-top: 15px;
-	      position: relative;
-	    }
-	    .modal-title {
-	      font-weight: 600;
-	      font-size: 25px;
-	    }
-	    .close1 {
-	      border: none;
-	      background-color: white;
-	      font-size: 30px;
-	      position: absolute;
-	      top: -15px;
-	      right: 7px;
-	      cursor: pointer;
-	    }
-	    .modal-body {
-	      text-align: center;
-	      color: #1F2B6C;
-	      font-size:14px;
-	    }
-	    .modal-header {
-		    justify-content: center;
-		    margin-top: 15px;
-		    position: relative;
-		    padding-right: 0;
-		    border-bottom: none;
-	    }
-	    .modal-footer {
-	        border-top: none;
-	    }
-	    .modal-content1 {
-	      text-align: left;
-	      font-size: 18px;
-	      color: black;
-	    }
-	    .e-mail_address{
-	      margin-bottom: -5px;
-	      margin-top: 40px;
-	      padding-left: 20px;
-	    }
-	    .number1 {
-	      margin-bottom: -5px;
-	      margin-top: 30px;
-	      padding-left: 20px;
-	    }
-	    
-	    .input-wrapper {
-	      position: relative;
-	      width: 450px;
-	      margin: 10px 0;
-	    }
-	    .email-input, .code-input {
-	      width: 97%;
-	      padding: 10px;
-	      margin-left: 15px;
-	      border: 1px solid #ddd;
-	      border-radius: 4px;
-	      font-size: 16px;
-	      box-sizing: border-box;
-	    }
-	    .get-code-btn, .verify-btn {
-	      position: absolute;
-	      right: 10px;
-	      top: 50%;
-	      transform: translateY(-50%); /* 세로축 이동 */
-	      padding: 5px 10px;
-	      font-size: 14px;
-	      background-color: #f0f0f0;
-	      border: 1px solid #ddd;
-	      border-radius: 4px;
-	      cursor: pointer;
-	      box-sizing: border-box;
-	    }
-	    
-	    .input-wrapper .get-code-btn {
-	      border: 1px solid rgb(46, 46, 46);
-	      background-color: white;
-	      width: 150px;
-	      height: 30px;
-	      font-size: 13px;
-	    }
-	    .input-wrapper .verify-btn {
-	      border: 1px solid rgb(46, 46, 46);
-	      background-color: white;
-	      width: 150px;
-	      height: 30px;
-	      font-size: 13px;
-	    }
-	    .modal-footer1 {
-	      display: flex;
-	      justify-content: space-between; /* 버튼들 사이에 공간을 균등하게 배분 */
-	      padding: 10px;
-	    }
-	    .cancel-btn, .confirm-btn {
-	      width: 48%;
-	      padding: 10px;
-	      font-size: 16px;
-	      border-radius: 4px;
-	      cursor: pointer;
-	      margin-top: 30px;
-	    }
-	
-	    .cancel-btn {
-	      background-color: #f0f0f0;
-	      border: 1px solid #ffffff;
-	    }
-	
-	    .confirm-btn {
-	      background-color: #002f6c;
-	      color: white;
-	      border: none;
-	    }
-	    .title1 {
-	      margin-top: 60px;
-	      margin-bottom: -20px;
-	      font-size: 23px;
-	      margin-left: 200px;
-	      font-weight: 500;
-	    }
-	    .name, #e-mail, #email-domain, #phone_number, #number2, .id_1, .pwd_1, .pwd_2, #phone12{
-	        border: 1px solid rgb(207, 207, 207);
-	        border-radius: 5px;
-	        width: 250px;
-	    }
-	    th {
-	        text-align:right !important;
-	    }
-	    .title2 {
-	        font-size: 14px;
-	        color: red;
-	        margin-left: 1600px;
-	        font-weight: 600;
-	        margin-bottom: -10px;
-	    }
-	    .table.table-borderless {
-	      width: 1500px;
-	      margin-left: 200px;
-	      border-top: 1px solid #161d49;
-	      border-bottom: 1px solid #161d49;
-	      background-color: #00000009;
-	    }
-	    #text1{
-	      font-size:12px;
-	      color:#1F2B6C;
-	    }
-	    #etc1 {
-	      width: 1500px;
-	      border-collapse: collapse; /* 테두리 겹침 방지 */
-	      margin-top: 40px;
-	      margin-left: 200px;
-	
-	    }
-	    #etc2 {
-	      border: 1px solid #ddd;
-	      padding: 8px;
-	      text-align: left;
-	      padding: 30px 0 50px 30px;
-	      font-size: 14px;
-	      background-color: #F7FAFC;
-	    }
-	    .radio-container {
-	        display: flex;
-	        align-items: center;
-	        border: 1px solid #ddd;
-	        padding: 5px 0 5px 30px;
-	        text-align: left;
-	        font-size: 14px;
-	    }
-	    .radio-container input {
-	        margin-right: 10px;
-	    }
-	    .btn_signupcc {
-	      margin-top: 40px;
-	      display: flex;
-	      justify-content: center;
-	    }
-	    #signup, #cc {
-	      width: 180px;
-	      padding: 10px;
-	      font-size: 16px;
-	      border-radius: 0px;
-	      cursor: pointer;
-	      margin-top: 30px;
-	    }
-	    #signup {
-	      background-color: #002f6c;
-	      border: 1px solid #ffffff;
-	    }
-	
-	    #cc {
-	      background-color: #7996B4;
-	      color: white;
-	      border: 1px solid #ffffff;
-	    }
-	    footer{
-		      background-color: #1F2B6C;
-		      position:absolute;
-		      width: 100%;
-		      height: 300px;
-		      margin-top: 2500px;
+     .col-xl-2{
+	       background-color:#A3B3D4;
+	       color:white;
+	       padding: 20px 30px;
+	       font-size: 25px;
+	       height: 150px;
+     }
+     .line {
+	       display: inline-block;
+	       padding-bottom: 5px; 
+	       border-bottom: 2px solid white; 
+     }
+     .col-xl-10 {
+	       background-color:#00000009;
+	       font-size: 15px;
+	       padding: 20px 30px;
+     }
+     #e-mail1 {
+	       margin-top: 10px;
+	       font-size: 14px;
+	       width: 160px;
+	       border-radius: 0px;
+	       background-color: #666666;
+	       border: none;
+     }
+     .modal-header{
+	       justify-content: center;
+	       margin-top: 15px;
+	       position: relative;
+     }
+     .modal-title {
+	       font-weight: 600;
+	       font-size: 25px;
+     }
+     .close1 {
+	       border: none;
+	       background-color: white;
+	       font-size: 30px;
+	       position: absolute;
+	       top: -15px;
+	       right: 7px;
+	       cursor: pointer;
+     }
+     .modal-body {
+	       text-align: center;
+	       color: #1F2B6C;
+	       font-size:14px;
+     }
+     .modal-header {
+		     justify-content: center;
+		     margin-top: 15px;
+		     position: relative;
+		     padding-right: 0;
+		     border-bottom: none;
+     }
+     .modal-footer {
+         border-top: none;
+     }
+     .modal-content1 {
+	       text-align: left;
+	       font-size: 18px;
+	       color: black;
+     }
+     .e-mail_address{
+	       margin-bottom: -5px;
+	       margin-top: 40px;
+	       padding-left: 20px;
+     }
+     .number1 {
+	       margin-bottom: -5px;
+	       margin-top: 30px;
+	       padding-left: 20px;
+     }
+    
+     .input-wrapper {
+	       position: relative;
+	       width: calc(100% - 20px);
+	       margin: 10px 0;
+     }
+     
+     .email-input, .code-input {
+	       width: 97%;
+	       padding: 10px;
+	       margin-left: 15px;
+	       border: 1px solid #ddd;
+	       border-radius: 4px;
+	       font-size: 16px;
+	       box-sizing: border-box; 
+       
+     }
+     .get-code-btn, .verify-btn {
+	       position: absolute;
+	       right: 10px; 
+	       top: 50%;
+	       transform: translateY(-50%);
+	       padding: 5px 10px;
+	       font-size: 14px;
+	       background-color: #f0f0f0;
+	       border: 1px solid #ddd;
+	       border-radius: 4px;
+	       cursor: pointer;
+	       box-sizing: border-box;
+     }
+     
+     .input-wrapper .get-code-btn {
+	       border: 1px solid rgb(46, 46, 46);
+	       background-color: white;
+	       width: 150px;
+	       height: 30px;
+	       font-size: 13px;
+     }
+     .input-wrapper .verify-btn {
+	       border: 1px solid rgb(46, 46, 46);
+	       background-color: white;
+	       width: 150px;
+	       height: 30px;
+	       font-size: 13px;
+     }
+     .modal-footer1 {
+	       display: flex;
+	       justify-content: space-between; 
+	       padding: 10px;
+     }
+     .cancel-btn, .confirm-btn {
+	       width: 48%; 
+	       padding: 10px;
+	       font-size: 16px;
+	       border-radius: 4px;
+	       cursor: pointer;
+	       margin-top: 30px;
+     }
+
+     .cancel-btn {
+	       background-color: #f0f0f0;
+	       border: 1px solid #ffffff;
+     }
+
+     .confirm-btn {
+	       background-color: #002f6c;
+	       color: white;
+	       border: none;
+     }
+     .title1 {
+	       margin-top: 60px;
+	       margin-bottom: -20px;
+	       font-size: 23px;
+	       margin-left: 200px;
+	       font-weight: 500;
+     }
+     .name, #e-mail, #email-domain, #phone_number, #number2, .id_1, .pwd_1, .pwd_2, #phone12{
+         border: 1px solid rgb(207, 207, 207);
+         border-radius: 5px;
+         width: 250px;
+     }
+     th {
+         text-align:right !important;
+     }
+     .title2 {
+         font-size: 14px;
+         color: red;
+         margin-left: 1600px;
+         font-weight: 600;
+         margin-bottom: -15px;
+         margin-top: 25px;
+     }
+     .table.table-borderless {
+	       width: 1500px;
+	       margin-left: 200px;
+	       border-top: 1px solid #161d49;
+	       border-bottom: 1px solid #161d49;
+	       background-color: #00000009;
+     }
+     #text1{
+	       font-size:12px;
+	       color:#1F2B6C;
+     }
+     #etc1 {
+	       width: 1500px;
+	       border-collapse: collapse; 
+	       margin-top: 40px;
+	       margin-left: 200px;
+
+     }
+     #etc2 {
+	       border: 1px solid #ddd;
+	       padding: 8px;
+	       text-align: left;
+	       padding: 30px 0 50px 30px;
+	       font-size: 14px;
+	       background-color: #F7FAFC;
+     }
+     .radio-container {
+         display: flex;
+         align-items: center;
+         border: 1px solid #ddd;
+         padding: 5px 0 5px 30px;
+         text-align: left;
+         font-size: 14px;
+     }
+     .radio-container input {
+         margin-right: 10px;
+     }
+     .btn_signupcc {
+	       margin-top: 40px;
+	       display: flex;
+	       justify-content: center;
+     }
+     #signup, #cc {
+	       width: 180px; 
+	       padding: 10px;
+	       font-size: 16px;
+	       border-radius: 0px;
+	       cursor: pointer;
+	       margin-top: 30px;
+     }
+     #signup {
+	       background-color: #002f6c;
+	       border: 1px solid #ffffff;
+     }
+
+     #cc {
+	       background-color: #7996B4;
+	       color: white;
+	       border: 1px solid #ffffff;
+     }
+     #year, #month, #day {
+	       width: 80px; 
+	       height:35px;
+	       border: 1px solid rgb(207, 207, 207);
+	       border-radius: 5px;
+     }
+     footer{
+	       background-color: #1F2B6C;
+	       position:absolute;
+	       width: 100%;
+	       height: 300px;
+	       margin-top: 2800px;
 		  }
-
-            
 	</style>
-
 <body>
-<%@ include file="/views/common/header.jsp" %>
-
+	<%@ include file="/views/common/header.jsp" %>
 		<section>
             <nav>
+              <p class="title1" style="margin-top: 100px;"><strong>법정대리인(보호자) 정보</strong></p>
               <form action="" method="POST">
                 <div class="boxbox" style="display: flex;">
                   <div class="col-xl-2">
@@ -269,7 +274,6 @@
                     <a href="#"><button type="button" id="e-mail1" class="btn btn-primary" data-toggle="modal" data-target="#myModal">이메일 인증</button></a>
                   </div>
                 </div>
-                
                   <!-- The Modal -->
                   <div class="modal" id="myModal">
                     <div class="modal-dialog">
@@ -318,7 +322,6 @@
 
                 <!-- 회원 정보 입력 칸 -->
                 <div>
-                  <p class="title1"><strong>회원 정보</strong></p>
                   <p class="title2"> * 필수입력항목</p>
                   <div class="container123">
                           <table class="table table-borderless">
@@ -340,18 +343,6 @@
                                     <span style="font-size: 20px;">-</span>
                                     <input type="text" id="number2" style="width: 150px;">
                                   </td>
-                              </tr>
-                              <tr>
-                                <th>아이디&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><input type="text" class="id_1"><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6~15자리 영문 소문자, 숫자만 가능합니다.(한글, 특수문자 입력 불가)</span></td>
-                              </tr>
-                              <tr>
-                                <th>비밀번호&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><input type="text" class="pwd_1"><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;특수문자는 ‘!,@,#,$,%,^,&,*’만 가능합니다.</span></td>
-                              </tr>
-                              <tr>
-                                <th>비밀번호 확인&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><input type="text" class="pwd_2"></td>
                               </tr>
                               <tr>
                                 <th>휴대폰 번호&nbsp;<span style="color:red;">*</span></th>
@@ -391,9 +382,85 @@
                               </tr>
                           </tbody>
                           </table>
-
                       </div>
                   </div>
+
+                  <!-- 만 14세 미만 회원 정보(진료받을 환아) -->
+                  <div>
+                    <p class="title1" style="margin-top: 50px; margin-bottom: -35px;"><strong>만 14세 미만 회원 정보(진료받을 환아)</strong></p>
+                    <p class="title2" style="margin-bottom: 10px;"> * 필수입력항목</p>
+                    <div class="container123">
+                            <table class="table table-borderless">
+                            <thead>
+                                <colgroup>
+                                    <col width="200">
+                                    <col width="*">
+                                </colgroup>
+                                <tr>
+                                  <th><br>이름&nbsp;<span style="color:red;">*</span></th>
+                                    <td colspan="2"><br><input type="text" class="name"><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정확한 이름을 입력해주세요.</span></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                  <th>아이디&nbsp;<span style="color:red;">*</span></th>
+                                    <td colspan="2"><input type="text" class="id_1"><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6~15자리 영문 소문자, 숫자만 가능합니다.(한글, 특수문자 입력 불가)</span></td>
+                                </tr>
+                                <tr>
+                                  <th>비밀번호&nbsp;<span style="color:red;">*</span></th>
+                                    <td colspan="2"><input type="text" class="pwd_1"><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;특수문자는 ‘!,@,#,$,%,^,&,*’만 가능합니다.</span></td>
+                                </tr>
+                                <tr>
+                                  <th>비밀번호 확인&nbsp;<span style="color:red;">*</span></th>
+                                    <td colspan="2"><input type="text" class="pwd_2"></td>
+                                </tr>
+                                <tr>
+                                  <th>생년월일&nbsp;<span style="color:red;">*</span></th>
+                                  <td colspan="2">
+                                      <select id="year">
+                                          <option value="">년도</option>
+                                          <script>
+                                              // 현재 연도부터 100년 전까지 표시
+                                              const currentYear = new Date().getFullYear();
+                                              for (let i = currentYear; i >= currentYear - 100; i--) {
+                                                  document.write('<option value="' + i + '">' + i + '</option>');
+                                              }
+                                          </script>
+                                      </select>
+                                  
+                                      <!-- 월 선택 -->
+                                      <select id="month">
+                                          <option value="">월</option>
+                                          <script>
+                                              // 1월부터 12월까지 표시
+                                              for (let i = 1; i <= 12; i++) {
+                                                  document.write('<option value="' + i + '">' + i + '월</option>');
+                                              }
+                                          </script>
+                                      </select>
+                                  
+                                      <!-- 일 선택 -->
+                                      <select id="day">
+                                          <option value="">일</option>
+                                          <script>
+                                              // 1일부터 31일까지 표시
+                                              for (let i = 1; i <= 31; i++) {
+                                                  document.write('<option value="' + i + '">' + i + '일</option>');
+                                              }
+                                          </script>
+                                      </select>
+                                  </td>
+                                  </tr>
+                                  <tr>
+                                    <th>성별&nbsp;<span style="color:red;">*</span></th>
+                                      <td colspan="2"><input type="radio" id="mf" name="mf" value="m"> 남&nbsp;&nbsp;&nbsp; 
+                                                      <input type="radio" id="mf" name="mf" vlaue="f"> 여 
+                                      </td>
+                                    </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
 
                   <!-- 이메일 수신 여부 -->
                    <div>
@@ -501,8 +568,7 @@
               </form>
             </nav>
         </section>
-<%@ include file="/views/common/footer.jsp" %>
-
+	<%@ include file="/views/common/footer.jsp" %>
 
 </body>
 </html>
