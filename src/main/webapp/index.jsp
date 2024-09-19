@@ -171,36 +171,36 @@
             <div class="container" style="width: 1300px; height: 450px; display: flex; padding-top: 25px;">
                 <div class="container border" style="border-radius: 15px; width: 500px; height: 350px; background: white;">
                     <div class="container" style="width: 500px; height: 80px; margin-left: -15px; text-align: center;">
-                        <h4><b><br>식이요법</b></h4>
+                        <h4><b><br>식사요법</b></h4>
                     </div>
                     <div class="container" style="width: 500px; height: 270px; margin-left: -15px;">
                         <div id="demo" class="carousel slide" data-ride="carousel" data-wrap="true">
                             <!-- The slideshow -->
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <a href=""><img src="/vita/assets/image/배경1.png" alt="Image 1"></a>
-                                    <a href=""><img src="/vita/assets/image/배경2.png" alt="Image 2"></a>
+                                    <a href="/vita/views/selectContents/therapy1.jsp"><img src="/vita/assets/image/후천성면역결핍증식.jpg" alt="Image 1"></a>
+                                    <a href="/vita/views/selectContents/therapy2.jsp"><img src="/vita/assets/image/후두암식.jpg" alt="Image 2"></a>
                                     <div class="carousel-caption" style="display: flex; margin-top: -20px;">
-                                        <div class="container"><a href=""><b style="color: black;">링크1</b></a></div>
-                                        <div class="container"><a href=""><b style="color: black;">링크2</b></a></div>
+                                        <div class="container"><a href="/vita/views/selectContents/therapy1.jsp"><b style="color: black;">후천성면역결핍증식</b></a></div>
+                                        <div class="container"><a href="/vita/views/selectContents/therapy2.jsp"><b style="color: black;">후두암식</b></a></div>
                                         <br><br>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <a href=""><img src="/vita/assets/image/배경3.png" alt="Image 3"></a>
-                                    <a href=""><img src="/vita/assets/image/배경4.png" alt="Image 4"></a>
+                                    <a href="/vita/views/selectContents/therapy3.jsp"><img src="/vita/assets/image/화상식.jpg" alt="Image 3"></a>
+                                    <a href="/vita/views/selectContents/therapy4.jsp"><img src="/vita/assets/image/호모시스틴뇨증식.jpg" alt="Image 4"></a>
                                     <div class="carousel-caption" style="display: flex; margin-top: -20px;">
-                                        <div class="container"><a href=""><b style="color: black;">링크3</b></a></div>
-                                        <div class="container"><a href=""><b style="color: black;">링크4</b></a></div>
+                                        <div class="container"><a href="/vita/views/selectContents/therapy3.jsp"><b style="color: black;">화상식</b></a></div>
+                                        <div class="container"><a href="/vita/views/selectContents/therapy4.jsp"><b style="color: black;">호모시스틴뇨증식</b></a></div>
                                         <br><br>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <a href=""><img src="/vita/assets/image/배경5.png" alt="Image 5"></a>
-                                    <a href=""><img src="/vita/assets/image/배경3.png" alt="Image 6"></a>
+                                    <a href="/vita/views/selectContents/therapy5.jsp"><img src="/vita/assets/image/협심증식.jpg" alt="Image 5"></a>
+                                    <a href="/vita/views/selectContents/therapy6.jsp"><img src="/vita/assets/image/허혈성심장질환식.jpg" alt="Image 6"></a>
                                     <div class="carousel-caption" style="display: flex; margin-top: -20px;">
-                                        <div class="container"><a href=""><b style="color: black;">링크5</b></a></div>
-                                        <div class="container"><a href=""><b style="color: black;">링크6</b></a></div>
+                                        <div class="container"><a href="/vita/views/selectContents/therapy5.jsp"><b style="color: black;">협심증식</b></a></div>
+                                        <div class="container"><a href="/vita/views/selectContents/therapy6.jsp"><b style="color: black;">허혈성심장질환식</b></a></div>
                                         <br><br>
                                     </div>
                                 </div>
