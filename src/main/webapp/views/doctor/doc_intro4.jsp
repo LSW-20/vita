@@ -142,11 +142,11 @@
 		<div class="container" id="table_div">
 			
 			<div id="doc_imgBox">
-				<img alt="" src="" style="width:100%; height:100%;">
+				<img alt="" src="/vita/assets/image/준수님.jpg" style="width:100%; height:100%;">
 				
 			</div>
 				<div class="doc_detailBox">
-					 <b id="dc_name">최보겸  <b id="d_name">안과</b></b>
+					 <b id="dc_name">정준수  <b id="d_name">안과</b></b>
 				 	<table class="table table-bordered" id="scd_table">
 					
 	                        <thead>

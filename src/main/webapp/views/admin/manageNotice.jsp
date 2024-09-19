@@ -236,10 +236,9 @@ footer {
         </table>
       </div>
       <div class="container" style="width: 1050px; height: 50px; display: flex; margin-left: -10px;">
-          <div class="container" style="width: 250px; height: 50px; margin-top: -30px; margin-left: -30px;">
-              <button type="button" class="btn btn-primary">수정</button>
-              <button type="button" class="btn btn-danger">삭제</button>
-          </div>
+        <div class="container" style="width: 250px; height: 50px; margin-top: -30px; margin-left: -70px;">
+            <button type="button" class="btn btn-danger">삭제</button>
+        </div>
           <div class="container" style="height: 50px;">
               <ul class="pagination d-flex justify-content-center text-dark">
                   <li class="page-item"><a class="page-link" href="#">이전</a></li>
@@ -257,8 +256,13 @@ footer {
               </ul>
           </div>
           <div class="container" style="width: 200px; height: 50px; margin-top: -30px; margin-right: -60px;">
-              <button type="button" class="btn btn-success">글쓰기</button>
+              <button id="noticeWrite" type="button" class="btn btn-success">글쓰기</button>
           </div>
+	        <script>
+	          document.getElementById("noticeWrite").addEventListener("click", function() {
+	              window.location.href = "/vita/views/admin/noticeWrite.jsp";
+	          });
+	        </script>    
       </div>
     </div>
 
