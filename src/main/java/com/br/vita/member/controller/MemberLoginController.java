@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.br.vita.member.model.service.MemberService;
 import com.br.vita.member.model.vo.Member;
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class MemberLoginController
@@ -38,16 +39,14 @@ public class MemberLoginController extends HttpServlet {
 		Member loginUser = new MemberService().memberLogin(userName,userPwd);
 		
 		
-		if(loginUser == null) {
 			
-			
-		}else {
-			
+			response.setContentType("application/json; charset=UTF-8");
+			new Gson().toJson(loginUser, response.getWriter());
 			HttpSession session = request.getSession(); 
 			session.setAttribute("loginUser",loginUser);
 	
 			
-		}
+		
 		
 		
 		

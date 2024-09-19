@@ -25,8 +25,8 @@ SELECT
  WHERE
 		   USER_ID = ?
    AND USER_PWD = ?
- 	 AND USER_TYPE IN ('U', 'A')
-   AND RESIGN_YN = N
+ 	 AND USER_TYPE IN ('U','A','D')
+   AND RESIGN_YN = 'N'
 		
 
 

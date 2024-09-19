@@ -223,17 +223,23 @@
 		                       	$.ajax({
 		                       		url:'<%= contextPath %>/login.me',
 		                       		data: {
-		                       				userId:$('#userId'),
-		                       				userPwd:$('#userPwd')
+		                       				userId:$('#userId').val(),
+		                       				userPwd:$('#userPwd').val()
 		                       		},
 		                       		success:function(res){
 		                       			if(res != null){
-		                       				location.href = '<%=contextPath %>/views/member/login.jsp';
+		                       				location.href = '<%=contextPath %>/index.jsp';
+		                       				console.log(res);
 		                       			}else{
 		                       				alert('아이디와 비밀번호를 다시 확인해주세요');
+		                       				location.href = '<%=contextPath %>/views/member/login.jsp';
+		                       				console.log(res);
 		                       			}
-		                       		}
-		                       	})
+		                       		},
+		                       		type:"post"
+		                       		
+		                       		
+		                       	});
 	                       		
 	                      }
 	                       	

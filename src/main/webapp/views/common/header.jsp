@@ -237,6 +237,7 @@
 <div class="container1">
     <div class="submenuContainer-1">
 
+			<%if(loginUser == null ){ %>
         <!-- case1. 로그인전 -->
         <div class="sub" id="loginMenu">
             로그인 하시면<br> 
@@ -248,24 +249,7 @@
                 <a href="semi.html" class="btn btn-primary">진료예약</a>
             </div>
         </div>
-        <div class="sub">의료진/진료과 ></div>
-        <div class="sub"><a href="" style="text-decoration: none;">의료진</a></div> 
-        <div class="sub"><a href="" style="text-decoration: none;">진료과</a></div> 
-        <div class="sub"></div>
         
-        
-        
-        
-        <!-- case2. 로그인후 
-        <div class="sub" id="loginMenu">
-            <b>홍길동</b>님,<br> 방문을 환영합니다. <br><br><br>
-
-            <div class="btn-group-vertical" style="width: 150px;">
-                <a href="#" class="btn btn-success">로그아웃</a><p></p>
-                <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
-                <a href="semi.html" class="btn btn-primary">진료예약</a>
-            </div>
-        </div>
         <div class="sub" style="font-size: 17px;"><br><b>&nbsp;의료진/진료과 ></b></div>
         <div class="sub"><br><b>&nbsp;의료진</b></a><br>
         		<a style="text-decoration: none;" href="/vita/views/doctor/doc_intro.jsp">&nbsp;내과</a><br>
@@ -275,8 +259,32 @@
         </div> 
         <div class="sub"><a href="/vita/views/department/department.jsp" style="text-decoration: none;"><br><b>&nbsp;진료과</a></b></div> 
         <div class="sub"></div>
-        -->
+       <%}else{ %>
         
+        <!--  case2. 로그인후 --> 
+        <div class="sub" id="loginMenu">
+            <b><%= loginUser.getUserName() %></b>님,<br> 방문을 환영합니다. <br><br><br>
+
+            <div class="btn-group-vertical" style="width: 150px;">
+                <a href="#" class="btn btn-success">로그아웃</a><p></p>
+                <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
+                <a href="semi.html" class="btn btn-primary">진료예약</a>
+            </div>
+        </div>
+       
+        
+        
+        <div class="sub" style="font-size: 17px;"><br><b>&nbsp;의료진/진료과 ></b></div>
+        <div class="sub"><br><b>&nbsp;의료진</b></a><br>
+        		<a style="text-decoration: none;" href="/vita/views/doctor/doc_intro.jsp">&nbsp;내과</a><br>
+        		<a style="text-decoration: none;" href="/vita/views/doctor/doc_intro2.jsp">&nbsp;외과</a><br>
+        		<a style="text-decoration: none;" href="/vita/views/doctor/doc_intro3.jsp">&nbsp;치과</a><br>
+        		<a style="text-decoration: none;" href="/vita/views/doctor/doc_intro4.jsp">&nbsp;안과</a><br>
+        </div> 
+        <div class="sub"><a href="/vita/views/department/department.jsp" style="text-decoration: none;"><br><b>&nbsp;진료과</a></b></div> 
+        <div class="sub"></div>
+       
+         <%} %>
         
     </div>
 </div>
@@ -285,6 +293,8 @@
 
 <div class="container2">
     <div class="submenuContainer-2">
+    
+    
         <div class="sub" id="loginMenu">
             로그인 하시면<br> 
             더 다양한 혜택을<br>
@@ -312,6 +322,13 @@
             <a href="" style="text-decoration: none;">&nbsp;예약내역 조회</a>
         </div>
         <div class="sub"></div>
+       
+        
+        
+        
+        
+        
+        
     </div>
 </div>
 
