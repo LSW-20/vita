@@ -119,9 +119,9 @@
 	 	<!-- nav, section 별도로 닫아주기-->
 	</nav>
 	<div class="container d-flex justify-content-end">
-	    <!-- 현재 로그인되어있는 회원이 해당 게시글의 작성자 본인일 경우 보여지는 요소 -->
+	    <!-- 현재 로그인되어있는 회원이 해당 게시글의 작성자 본인일 경우 보여지는 요소 추후if처리-->
 	    <a href="/vita/views/cs/csWrite.jsp" class="btn btn-secondary btn-sm">수정하기 페이지로</a>&nbsp;
-	    <a href="/vita/views/cs/csList.jsp" class="btn btn-danger btn-sm">삭제하기</a>&nbsp;
+      <button type="button" class="btn btn-danger btn-sm">삭제하기</button> &nbsp;
 	    <!-- ------------------------------------------------------------------------- -->
 	    <a href="/vita/views/cs/csList.jsp" class="btn btn-warning btn-sm">목록가기</a>&nbsp;
 	</div>
