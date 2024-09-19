@@ -56,6 +56,19 @@
 
               table{text-align: center;}
               #pageBar{margin-left: 440px;}
+              
+              .tr_click{
+              
+              	cursor:pointer;
+              }
+              .tr_click:hover {
+              	background-color: lightgray;
+              }
+              th{
+              	background-color: #0000008c;
+              	color: white;
+              	
+              }
              
              </style>
             <div class="container mt-5">
@@ -79,15 +92,15 @@
               <div id="table-container">
                 <table class="table table-bordered">
                   <tr>
-                    <td>병원등록번호</td>
-                    <td>이름</td>
-                    <td>주민등록번호</td>
-                    <td>진료과</td></nav>
-                    <td>전화번호</td>
-                    <td>진료기록</td>
+                    <th>병원등록번호</th>
+                    <th>이름</th>
+                    <th>주민등록번호</th>
+                    <th>진료과</th>
+                    <th>전화번호</th>
+                    <th>진료기록</th>
                   </tr>
 
-                  <tr>
+                  <tr class="tr_click">
                     <td>asdasdsadasd</td>
                     <td>asdasdsadasd</td>
                     <td>asdasdsadasd</td>
@@ -95,7 +108,7 @@
                     <td>asdasdsadasd</td>
                     <td><button class="btn btn-warning">보기</button></td>
                   </tr>
-                  <tr>
+                  <tr class="tr_click">
                     <td>asdasdsadasd</td>
                     <td>asdasdsadasd</td>
                     <td>asdasdsadasd</td>
@@ -103,7 +116,7 @@
                     <td>asdasdsadasd</td>
                     <td><button class="btn btn-warning">보기</button></td>
                   </tr>
-                  <tr>
+                  <tr class="tr_click">
                     <td>asdasdsadasd</td>
                     <td>asdasdsadasd</td>
                     <td>asdasdsadasd</td>
@@ -111,7 +124,7 @@
                     <td>asdasdsadasd</td>
                     <td><button class="btn btn-warning">보기</button></td>
                   </tr>
-                  <tr>
+                  <tr class="tr_click">
                     <td>asdasdsadasd</td>
                     <td>asdasdsadasd</td>
                     <td>asdasdsadasd</td>
@@ -119,7 +132,7 @@
                     <td>asdasdsadasd</td>
                     <td><button class="btn btn-warning">보기</button></td>
                   </tr>
-                  <tr>
+                  <tr class="tr_click">
                     <td>asdasdsadasd</td>
                     <td>asdasdsadasd</td>
                     <td>asdasdsadasd</td>
@@ -127,7 +140,7 @@
                     <td>asdasdsadasd</td>
                     <td><button class="btn btn-warning">보기</button></td>
                   </tr>
-                  <tr>
+                  <tr class="tr_click">
                     <td>asdasdsadasd</td>
                     <td>asdasdsadasd</td>
                     <td>asdasdsadasd</td>
@@ -135,7 +148,7 @@
                     <td>asdasdsadasd</td>
                     <td><button class="btn btn-warning">보기</button></td>
                   </tr>
-                  <tr>
+                  <tr class="tr_click">
                     <td>asdasdsadasd</td>
                     <td>asdasdsadasd</td>
                     <td>asdasdsadasd</td>
@@ -143,7 +156,7 @@
                     <td>asdasdsadasd</td>
                     <td><button class="btn btn-warning">보기</button></td>
                   </tr>
-                  <tr>
+                  <tr class="tr_click">
                     <td>asdasdsadasd</td>
                     <td>asdasdsadasd</td>
                     <td>asdasdsadasd</td>
