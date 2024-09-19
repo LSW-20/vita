@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>find_Id_choice</title>
+<title>find_Id_Choice</title>
 </head>
 	<style>
      section{

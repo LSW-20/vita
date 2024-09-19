@@ -41,7 +41,7 @@
             </div>
             <div class="container" style="width: 260px; height: 170px; margin-top: 15px;">
                 <b>appointment</b><br><br>
-                <button type="button" class="btn btn-secondary">Medical appointment reservation</button>
+                <a href="/vita/views/reservation/consultation_AfterLogin.jsp" class="btn btn-secondary">Medical appointment reservation</a>
             </div>
         </div>
         <style>
