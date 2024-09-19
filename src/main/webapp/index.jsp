@@ -318,14 +318,22 @@
             </div>
             
             <div class="container" style="border-radius: 15px; width: 500px; height: 150px;">
-                <a href="/vita/views/selectContents/hospitalInfo.jsp"><img src="/vita/assets/image/병원소개.jpg" style="border-radius: 15px; width: 500px; height: 150px; margin-left: -15px;"></a>
+                <a href="/vita/views/selectContents/hospitalInfo.jsp">
+                	<video width="500" height="150" autoplay muted loop style="border-radius: 15px; width: 500px; height: 150px; margin-left: -15px; object-fit: cover;">
+									  <source src="/vita/assets/image/병원안내.mp4" type="video/mp4">
+									</video>
+                </a>
             </div>
         </div>
         <br>
-        <div class="container" style="border-radius: 15px; width: 1050px; height: 150px;">
-            <a href=""><img src="/vita/assets/image/배경3.png" style="border-radius: 15px; width: 1050px; height: 150px; margin-left: -15px;"></a>
+        <div class="container" style="border-radius: 15px; width: 1050px; height: 200px;">
+                <a href="/vita/views/cs/csList.jsp">
+                	<video width="1050" height="200" autoplay muted loop style="border-radius: 15px; width: 1050px; height: 200px; margin-left: -15px; object-fit: cover;">
+									  <source src="/vita/assets/image/고객의소리.mp4" type="video/mp4">
+									</video>
+                </a>
         </div>
-        <br><br><br><br><br>
+        <br><br><br>
         <style>
         .autoplay {
             width: 100%;
