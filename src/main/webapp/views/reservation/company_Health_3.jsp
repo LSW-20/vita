@@ -213,17 +213,14 @@
             </tr>
             <tr>
                 <td id="color" style="height:70px;"><h5>선택항목</h5></td>
-                <td><h5 align="left" style="margin-left:30px;">일반 건강검진</h5></td>
+                <td><h5 align="left" style="margin-left:30px;">기업 건강검진</h5></td>
             </tr>
             <tr>
                 <td id="color" style="height:70px; margin-top:15px;"><h5>총 예상비용</h5></td>
                 <td>
                     <h5 align="left" style="margin-left:30px; margin-top:10px;">
-                        <b style="color:#1F2B6C">50,000원</b> (추가검사 포함 : 50,000원)
+                        <b style="color:#1F2B6C">0원</b> (추가검사 포함 : 0원)
                        
-                        <button type="button" class="btn border-1 border-dark" id="btn-color" data-toggle="modal" data-target="#paymentModal" style="margin-left:50px; width:150px;">
-                            결제하기
-                        </button>
                     </h5>
                 </td>
             </tr>
@@ -231,100 +228,7 @@
     </div>
 
    
-    <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document" >
-            <div class="modal-content" style="margin-left:-200px; width:1200px; height:1250px;">
-                <div class="modal-header" >
-                    <h3 class="modal-title" id="paymentModalLabel"><b>결제</b></h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="paymentForm">
-                        <div class="form-group">
-                            <br>
-                            <h4><b>결제 내용</b></h4>
-                            <br>
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td style="border-right: 1px dashed; border-right-color: rgb(204, 204, 204);"><b>선택항목</b></td>
-                                        <td><b style="color:#1F2B6C">일반 건강검진</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="border-right: 1px dashed; border-right-color: rgb(204, 204, 204);"><b>희망 진료일</b></td>
-                                        <td><b style="color:#1F2B6C">2024년 9월 19일(목)</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="border-right: 1px dashed; border-right-color: rgb(204, 204, 204);"><b>내원 시간</b></td>
-                                        <td><b style="color:#1F2B6C">오전</b></td>
-                                    </tr>
-                                    <tr style="border-bottom:1px solid ;border-bottom-color: rgb(224, 222, 222);">
-                                        <td style="border-right: 1px dashed; border-right-color: rgb(204, 204, 204);"><b>가격</b></td>
-                                        <td><b style="color:#1F2B6C">50,000원</b></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <div class="form-group">
-                            <h4><b>결제 수단</b></h4>
-                            <br>
-                            <label for="paymentMethod">결제 수단 선택</label>
-                            <select class="form-control" id="paymentMethod" disabled>
-                                <option>신용카드</option>
-                            </select>
-                            <br>
-                            <label for="cardBank">카드 선택</label>
-                            <select class="form-control" id="cardBank" disabled>
-                                <option>비타은행</option>
-                            </select>
-                            <br>
-                            <label for="installmentPeriod">할부 기간</label>
-                            <select class="form-control" id="installmentPeriod" disabled>
-                                <option>일시불</option>
-                            </select>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <h4><b>결제 정보</b></h4>
-                            <br>
-                            <label for="accountNumber">계좌번호</label>
-                            <input type="text" class="form-control" id="accountNumber" placeholder="계좌번호 입력">
-                            <br>
-                            <label for="password">비밀번호</label>
-                            <input type="password" class="form-control" id="password" placeholder="비밀번호 입력">
-                        </div>
-                        <br><br>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">결제 대행서비스 약관 동의<b style="color:red;">(필수)</b></label>
-                        </div>
-                        <br>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck2" >
-                            <label class="custom-control-label" for="customCheck2">개인정보 수집 및 이용 동의<b style="color:red;">(필수)</b></label>
-                        </div>
-                    </form>
-                </div>
-                
-                <div class="modal-footer" style="background-color: #1F2B6C;">
-                    <button type="submit" class="btn border-1 border-dark" id="btn-color" style=" width:1197px;">
-                         <h5>50,000 원 결제하기</h5>
-               			 </button>    
-                </div>
-                
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
+  
 
 
     <br> 
@@ -348,7 +252,7 @@
         
         <div align="center">
           <a href="/vita/views/reservation/healthCheckUp_Success.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;">예약 신청하기</a>
-          <a href="/vita/views/reservation/healthCheckUp_2.jsp" class="btn btn-light border-2 border-dark"  style="width: 150px; margin-left:30px;">이전</a>
+          <a href="/vita/views/reservation/company_Health_2.jsp" class="btn btn-light border-2 border-dark"  style="width: 150px; margin-left:30px;">이전</a>
         </div>
 
         <br><br> 

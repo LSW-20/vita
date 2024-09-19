@@ -103,7 +103,7 @@
                     <input type="text" class="form-control" id="name" style="width:750px; height:70px; ">
                 </div>
                 <div>
-                    <button type="button" class="btn border-1 border-dark" id="btn-color" style="height:68px;width: 150px; margin-left:50px;">다음</button>
+                    <button type="button" class="btn border-1 border-dark" id="btn-color" style="height:68px;width: 150px; margin-left:50px;">조회</button>
                 </div>
               </td>
              
@@ -147,7 +147,7 @@
 
         
         <div align="center">
-          <a href="/vita/views/reservation/company_Health_1.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;">다음</a>
+          <a href="/vita/views/reservation/company_Health_2.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;">다음</a>
           <a href="/vita/views/reservation/healthCheckUp_AfterLogin.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:30px;">이전</a>
         </div>
 
