@@ -119,8 +119,9 @@
         <br><br><br><br>
 
         <div align="center">
-          <button type="button" class="btn border-1 border-dark" id="btn-color" style="width: 150px;">메인화면으로</button>
-          <button type="button" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:30px;">이전</button>
+
+           <a href="/vita/" class="btn border-1 border-dark"  id="btn-color" style="width: 150px;">메인화면으로</a>
+         
       </div>
     
       <br><br><br><br>

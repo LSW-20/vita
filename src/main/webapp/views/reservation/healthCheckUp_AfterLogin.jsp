@@ -87,8 +87,8 @@
             <h6>아래 검진 예약하기 버튼을 클릭하세요.</h6>
             <br><br>
             <div align="left">
-              <button type="button" class="btn" id="btn-color" style="width:170px;">검진 예약하기</button>
-              <button type="button" class="btn ml-4" id="btn-color">검진 예약 조회하기</button>
+              <a href="/vita/views/reservation/healthCheckUp_1.jsp" class="btn" id="btn-color" style="width:170px;">검진 예약하기</a>
+               <a href="/vita/views/reservation/reservationList.jsp" class="btn ml-4" id="btn-color">검진 예약 조회하기</a>
             </div>
           </div>
           <div class="ml"id="vertical-line"></div>
@@ -102,8 +102,8 @@
             <h6>하실 수 있습니다.</h6>
             <br><br>
             <div align="left">
-              <button type="button" class="btn" id="btn-color" style="width:170px;">검진 예약하기</button>
-              <button type="button" class="btn ml-4" id="btn-color">검진 예약 조회하기</button>
+               <a href="/vita/views/reservation/company_Health_1.jsp" class="btn" id="btn-color" style="width:170px;">검진 예약하기</a>
+             	 <a href="/vita/views/reservation/reservationList.jsp" class="btn ml-4" id="btn-color">검진 예약 조회하기</a>
             </div>
           </div>
          
@@ -123,32 +123,41 @@
         <!-- 줄 -->
         <div class="container11">
           <div class="d-flex" style="margin-left: 65px;">  
+           <a href="/vita/views/member/myInfo.jsp">
             <div class="p-2" style="margin-top: 70px; margin-left: 70px">
               <img src="/vita/assets/image/마이페이지.jpg"  class="img-check" id="img1"  style="cursor: pointer;"><br>
               <h3 style="margin-top: 30px; margin-left:70px; cursor: pointer;" >마이페이지</h3>
             </div>
+            </a>
             
             <div id="vertical-line" style="margin-left:100px; margin-top: 40px;"></div>
             
+             <a href="/vita/views/selectContents/FloorInfo.jsp">
             <div class="p-2" style="margin-top: 70px; margin-left: 90px">
               <img src="/vita/assets/image/층별안내.jpg"  class="img-check" id="img1" style="cursor: pointer;">
               <h3 style="margin-top: 30px; margin-left:85px; cursor: pointer;">층별 안내</h3>
               
             </div>
+            </a>
+            
             
             <div id="vertical-line" style="margin-left:100px; margin-top: 40px;"></div>
             
+            <a href="/vita/views/Department/department.jsp">
             <div class="p-2" style="margin-top: 70px; margin-left: 90px">
               <img src="/vita/assets/image/의료진료과.jpg"  class="img-check" id="img1" style="cursor: pointer;">
               <h3 style="margin-top: 30px; margin-left:50px; cursor: pointer;">의료진/진료과</h3>
             </div>
+            </a>
             
             <div id="vertical-line" style="margin-left:100px; margin-top: 40px;"></div>
             
+            <a href="/vita/views/selectContents/directions.jsp">
             <div class="p-2" style="margin-top: 70px; margin-left: 70px">
               <img src="/vita/assets/image/오시는길.jpg" class="img-check" id="img1" style="cursor: pointer;">
               <h3 style="margin-top: 30px; margin-left:80px; cursor: pointer;">오시는길</h3>
             </div>
+            </a>
           </div>
         </div> 
         

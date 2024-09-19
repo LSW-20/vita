@@ -154,12 +154,12 @@
             </div>
             <div class="container" style="display:flex;">
                 <div class="container border" style="border-radius: 15px; width: 240px; position: relative; display: inline-block;">
-                    <a href=""><img src="/vita/assets/image/배경1.png" style="border-radius: 15px; width: 240px; height: 120px; margin-left: -15px; display: block;"></a>
-                    <a href="" class="linkText">링크 1</a>
+                    <a href="/vita/views/selectContents/sponsorship.jsp"><img src="/vita/assets/image/후원메인.jpeg" style="border-radius: 15px; width: 240px; height: 120px; margin-left: -15px; display: block;"></a>
+                    <a href="/vita/views/selectContents/sponsorship.jsp" class="linkText">후원</a>
                 </div>
                 <div class="container border" style="border-radius: 15px; width: 240px; position: relative; display: inline-block;">
-                    <a href=""><img src="/vita/assets/image/배경2.png" style="border-radius: 15px; width: 240px; height: 120px; margin-left: -15px; display: block;"></a>
-                    <a href="" class="linkText">링크 2</a>     
+                    <a href="/vita/views/selectContents/service.jsp"><img src="/vita/assets/image/봉사메인.jpeg" style="border-radius: 15px; width: 240px; height: 120px; margin-left: -15px; display: block;"></a>
+                    <a href="/vita/views/selectContents/service.jsp" class="linkText">봉사</a>     
                 </div>
             </div>
         </div>
@@ -309,15 +309,20 @@
         </div> 
         <br><br>
         <div class="container" style="width: 1300px; height: 200px; display: flex; padding-top: 25px;">
-            <div class="container border" style="border-radius: 15px; width: 500px; height: 150px;">
-                <a href=""><img src="/vita/assets/image/배경1.png" style="border-radius: 15px; width: 500px; height: 150px; margin-left: -15px;"></a>
+            <div class="container" style="border-radius: 15px; width: 500px; height: 150px;">
+                <a href="/vita/views/selectContents/greetings.jsp">
+                	<video width="500" height="150" autoplay muted loop style="border-radius: 15px; width: 500px; height: 150px; margin-left: -15px; object-fit: cover;">
+									  <source src="/vita/assets/image/병원장인사말.mp4" type="video/mp4">
+									</video>
+                </a>
             </div>
-            <div class="container border" style="border-radius: 15px; width: 500px; height: 150px;">
-                <a href=""><img src="/vita/assets/image/배경2.png" style="border-radius: 15px; width: 500px; height: 150px; margin-left: -15px;"></a>
+            
+            <div class="container" style="border-radius: 15px; width: 500px; height: 150px;">
+                <a href="/vita/views/selectContents/hospitalInfo.jsp"><img src="/vita/assets/image/병원소개.jpg" style="border-radius: 15px; width: 500px; height: 150px; margin-left: -15px;"></a>
             </div>
         </div>
         <br>
-        <div class="container border" style="border-radius: 15px; width: 1050px; height: 150px;">
+        <div class="container" style="border-radius: 15px; width: 1050px; height: 150px;">
             <a href=""><img src="/vita/assets/image/배경3.png" style="border-radius: 15px; width: 1050px; height: 150px; margin-left: -15px;"></a>
         </div>
         <br><br><br><br><br>
