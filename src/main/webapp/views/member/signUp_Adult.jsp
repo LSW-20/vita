@@ -8,11 +8,11 @@
 </head>
 	<style>
 	    section{
-	        /* background-color: aqua; */
-	        width: 100%;
-	        height: 1300px;
-	        position: absolute;
-	        top: 80px;
+        /* background-color: aqua; */
+        width: 100%;
+        height: 1300px;
+        position: absolute;
+        top: 80px;
 	    }
 	    .boxbox {
 	      margin-top: 110px;
@@ -29,8 +29,8 @@
 	    }
 	    .line {
 	      display: inline-block;
-	      padding-bottom: 5px; /* 텍스트와 선 사이의 간격 */
-	      border-bottom: 2px solid white; /* 선의 두께와 색상 */
+	      padding-bottom: 5px;
+	      border-bottom: 2px solid white;
 	    }
 	    .col-xl-10 {
 	      background-color:#00000009;
@@ -46,9 +46,9 @@
 	      border: none;
 	    }
 	    .modal-header{
-	      justify-content: center;
+	      justify-content: center !important;
 	      margin-top: 15px;
-	      position: relative; /* close 버튼을 위한 부모 컨테이너 설정 */
+	      position: relative;
 	    }
 	    .modal-title {
 	      font-weight: 600;
@@ -60,7 +60,7 @@
 	      font-size: 30px;
 	      position: absolute;
 	      top: -15px;
-	      right: 7px; /* 오른쪽 맨 위로 고정 */
+	      right: 7px;
 	      cursor: pointer;
 	    }
 	    .modal-body {
@@ -69,14 +69,14 @@
 	      font-size:14px;
 	    }
 	    .modal-header {
-	    justify-content: center;
-	    margin-top: 15px;
-	    position: relative;
-	    padding-right: 0;
-	    border-bottom: none; /* 모달 헤더 아래 선 없애기 */
+		    justify-content: center;
+		    margin-top: 15px;
+		    position: relative;
+		    padding-right: 0;
+		    border-bottom: none;
 	    }
 	    .modal-footer {
-	        border-top: none; /* 모달 푸터 위 선 없애기 */
+	        border-top: none;
 	    }
 	    .modal-content1 {
 	      text-align: left;
@@ -93,13 +93,12 @@
 	      margin-top: 30px;
 	      padding-left: 20px;
 	    }
-	    /* 입력 필드와 버튼을 감싸는 컨테이너 스타일 */
+	    
 	    .input-wrapper {
 	      position: relative;
-	      width: calc(100% - 20px); /* 인풋과 버튼의 전체 너비 */
+	      width: 450px;
 	      margin: 10px 0;
 	    }
-	    /* 입력 필드 스타일 */
 	    .email-input, .code-input {
 	      width: 97%;
 	      padding: 10px;
@@ -107,22 +106,20 @@
 	      border: 1px solid #ddd;
 	      border-radius: 4px;
 	      font-size: 16px;
-	      box-sizing: border-box; /* 패딩과 보더 포함한 크기 계산 */
-	      
+	      box-sizing: border-box;
 	    }
-	    /* 버튼을 입력 필드 안에 위치 */
 	    .get-code-btn, .verify-btn {
 	      position: absolute;
-	      right: 10px; /* 인풋 필드의 오른쪽에 위치 */
+	      right: 10px;
 	      top: 50%;
-	      transform: translateY(-50%);
+	      transform: translateY(-50%); /* 정렬 */
 	      padding: 5px 10px;
 	      font-size: 14px;
 	      background-color: #f0f0f0;
 	      border: 1px solid #ddd;
 	      border-radius: 4px;
 	      cursor: pointer;
-	      box-sizing: border-box; /* 버튼이 인풋 필드와 겹치지 않도록 */
+	      box-sizing: border-box;
 	    }
 	    
 	    .input-wrapper .get-code-btn {
@@ -145,7 +142,7 @@
 	      padding: 10px;
 	    }
 	    .cancel-btn, .confirm-btn {
-	      width: 48%; /* 버튼의 너비를 조정하여 두 버튼이 나란히 들어갈 수 있도록 설정 */
+	      width: 48%;
 	      padding: 10px;
 	      font-size: 16px;
 	      border-radius: 4px;
@@ -204,7 +201,7 @@
 	
 	    }
 	    #etc2 {
-	      border: 1px solid #ddd; /* 셀의 테두리 색상 */
+	      border: 1px solid #ddd;
 	      padding: 8px;
 	      text-align: left;
 	      padding: 30px 0 50px 30px;
@@ -214,13 +211,13 @@
 	    .radio-container {
 	        display: flex;
 	        align-items: center;
-	        border: 1px solid #ddd; /* 셀의 테두리 색상 */
+	        border: 1px solid #ddd;
 	        padding: 5px 0 5px 30px;
 	        text-align: left;
 	        font-size: 14px;
 	    }
 	    .radio-container input {
-	        margin-right: 10px; /* 라디오 버튼과 레이블 간의 간격 */
+	        margin-right: 10px;
 	    }
 	    .btn_signupcc {
 	      margin-top: 40px;
@@ -228,7 +225,7 @@
 	      justify-content: center;
 	    }
 	    #signup, #cc {
-	      width: 180px; /* 버튼의 너비를 조정하여 두 버튼이 나란히 들어갈 수 있도록 설정 */
+	      width: 180px;
 	      padding: 10px;
 	      font-size: 16px;
 	      border-radius: 0px;
@@ -272,8 +269,6 @@
                     <a href="#"><button type="button" id="e-mail1" class="btn btn-primary" data-toggle="modal" data-target="#myModal">이메일 인증</button></a>
                   </div>
                 </div>
-                
-                
                 
                   <!-- The Modal -->
                   <div class="modal" id="myModal">

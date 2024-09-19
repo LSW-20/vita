@@ -85,7 +85,7 @@
                 <div class="search-box">
                    <span>의료진 성명이나 질병을 입력하세요.&nbsp;&nbsp;&nbsp;&nbsp;</span>
                       <input type="text" class="input-field" placeholder="  검색어를 입력하세요. ">
-                         <a href="#"><button class="btn btn-primary btn-search">
+                         <a href="#"><button class="btn btn-primary btn-search"></a>
                             <img src="/vita/assets/image/검색버튼2.png" alt="돋보기 아이콘">검색</button>
                 </div>
             </div>
@@ -110,15 +110,15 @@
                 </div>
                 <div class="card3">
                     <img class="card-img-top" src="/vita/assets/image/재운님.jpg" alt="Card image" style="width:300px; height: 400px;">
-                      <div class="card-body" style="background-color: #c6dbf0; height: 290px;">
+                      <div class="card-body" style="background-color: #c6dbf0; height: 300px;">
                           <h4 class="card-title"><strong>황재운</strong></h4>
                               <p class="card-text">치과</p><br>
                               <p class="card-text">치주질환, 치주성형, 치주조직재생, 임플란트, 충치치료, 심미수복치료, 치아미백, 근관치료 및 보철치료</p><br>
-                                  <a href="#" class="btn btn-primary" style="margin-top: -15px;">선택</a>
+                                  <a href="#" class="btn btn-primary">선택</a>
                       </div>
                   </div>
                   <div class="card2">
-                    <img class="card-img-top" src="/vita/assets/image/준수님.jpg" alt="Card image" style="width:300px;">
+                    <img class="card-img-top" src="/vita/assets/image/준수님.jpg" alt="Card image" style="width:300px; ">
                     <div class="card-body" style="background-color: #c6dbf0; height: 300px;">
                       <h4 class="card-title"><strong>정준수</strong></h4>
                       <p class="card-text">안과</p><br>
