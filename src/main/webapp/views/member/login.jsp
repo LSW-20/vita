@@ -185,7 +185,7 @@
 	               <div class="login_box">
 	                   <p>서비스를 이용하시려면 로그인이 필요합니다.</p>
 	                   <div class="login_form">
-	                       <form action="" class="login_form" method="post">
+	                       <div  class="login_form" >
 	                           <div class="login_Id">
 	                               <input type="text" name="userId" id="userId">
 	                           </div>
@@ -202,7 +202,7 @@
 	                                   <a href="#" class="find_pwd">비밀번호 찾기</a>
 	                               </p>
 	                           </div>
-	                       </form>
+	                       </div>
 	                       
 	                       <script>
 	                       	/*
@@ -228,7 +228,7 @@
 		                       		},
 		                       		success:function(res){
 		                       			if(res != null){
-		                       				location.href = '<%=contextPath %>/index.jsp';
+		                       				location.href = '<%=contextPath %>';
 		                       				console.log(res);
 		                       			}else{
 		                       				alert('아이디와 비밀번호를 다시 확인해주세요');
