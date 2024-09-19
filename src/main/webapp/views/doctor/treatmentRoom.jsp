@@ -196,7 +196,9 @@
              }
              .care_btn{
                 text-align: right;
-                margin-right: 60px;
+                
+                margin-right: -230px;
+    						margin-top: 20px;
              }
              #c_btn1,#c_btn2{width: 100px;box-shadow: 1px 1px 3px black;}
              h4{color: rgb(64, 99, 214);}
@@ -214,7 +216,7 @@
                 <h2>진료실</h2>
                 <div class="doctor_container">
                     <div class="d_container">
-                        <div id="doctor_img"></div>
+                        <div id="doctor_img"><img src="/vita/assets/image/시우.jpg" alt="" style="width:100%; height:100%;"></div>
                         <div id="doctor_detail">
                             <b>진료과   : 내과</b> <br><br>
                             <b>담당교수 : 박시우</b>    
@@ -334,17 +336,15 @@
                             <textarea name="" id="">mri 검사 후 확인한 바 3일간 안정치료가 필요함 그 후에 추가 진단이 필요함</textarea>
                         </div>
                     </div>
-                    <div class="care_btn">
-                        <button class="btn btn-primary" id="c_btn1">등록</button>
-                    </div>
+                    
                 </div>
 
                 <div class="care_div" id="care_div_1">
                     <div class="care_title">
                         <ul>
                             <li class="care_type2"><b>진료(진료확인 및 기록용)</b></li>
-                            <li>환자 등록번호 입력 : <input type="text"></li>
-                            <li>진료날짜 입력 : <input type="date"></li>
+                            <!-- <li>환자 등록번호 입력 : <input type="text"></li>
+                            <li>진료날짜 입력 : <input type="date"></li> -->
                         </ul>
                     </div>
                     <div class="care_content">
@@ -357,10 +357,10 @@
                             <textarea name="" id="">고혈압</textarea>
                         </div>
                     </div>
+                </div>
                     <div class="care_btn">
                         <button class="btn btn-primary" id="c_btn2">등록</button>
                     </div>
-                </div>
 
             </div>
 

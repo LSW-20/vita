@@ -147,12 +147,9 @@
 	 	<!-- nav, section 별도로 닫아주기-->
 	</nav>
 	<div class="container d-flex justify-content-end">
-	    <!-- 현재 로그인되어있는 회원이 해당 게시글의 작성자 본인일 경우 보여지는 요소 -->
-	    <!-- <button type="button" class="btn btn-secondary btn-sm">수정하기 페이지로</button> &nbsp; -->
-	    <!-- <button type="button" class="btn btn-danger btn-sm">삭제하기</button> &nbsp; -->
-	    <a href="/vita/views/cs/csList.jsp" class="btn btn-danger btn-sm"">삭제하기</a>&nbsp;
-	    <!-- ------------------------------------------------------------------------- -->
-	    <a href="/vita/views/cs/csList.jsp" class="btn btn-warning btn-sm"">목록가기</a>
+	  <button type="submit" class="btn btn-outline-secondary btn-sm">등록하기</button>&nbsp;
+	  <button type="reset" class="btn btn-outline-danger btn-sm">초기화</button>&nbsp;
+	  <button type="button" class="btn btn-outline-warning btn-sm" onclick="history.back();">뒤로가기</button>
 	</div>
 
 </section>

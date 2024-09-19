@@ -254,7 +254,7 @@
         		<a style="text-decoration: none;" href="/vita/views/doctor/doc_intro3.jsp">&nbsp;치과</a><br>
         		<a style="text-decoration: none;" href="/vita/views/doctor/doc_intro4.jsp">&nbsp;안과</a><br>
         </div> 
-        <div class="sub"><a href="/vita/views/Department/department.jsp" style="text-decoration: none;"><br><b>&nbsp;진료과</a></b></div> 
+        <div class="sub"><a href="/vita/views/department/department.jsp" style="text-decoration: none;"><br><b>&nbsp;진료과</a></b></div> 
         <div class="sub"></div>
         
     </div>

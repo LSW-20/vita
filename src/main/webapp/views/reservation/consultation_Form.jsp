@@ -104,15 +104,15 @@
         <h4 style="margin-top: 60px"><b style="color:black">진료과</b></h4><br>
         <h4 style="margin:auto"><b>내과</b></h4>
       </td>
-      <td id="color" style="width:346px; height: 230px; border-left:rgb(245, 245, 245);"><h4 style="margin:auto">
+      <td id="color" style="width:346px; height: 230px; border-left:rgb(245, 245, 245);">
         <h4 style="margin-top: 60px"><b style="color:black">의료진</b></h4><br>
         <h4 style="margin:auto"><b>홍길동</b></h4>
       </td>
-      <td id="color" style="width:346px; height: 230px; border-left:rgb(245, 245, 245);"><h4 style="margin:auto">
+      <td id="color" style="width:346px; height: 230px; border-left:rgb(245, 245, 245);">
         <h4 style="margin-top: 60px"><b style="color:black">희망검진일</b></h4><br>
         <h4 style="margin:auto"><b>2024년 9월 19일(목)</b></h4>
       </td>
-      <td id="color" style="width:346px; height: 230px; border-left:rgb(245, 245, 245);border-right: rgb(245, 245, 245);"><h4 style="margin:auto">
+      <td id="color" style="width:346px; height: 230px; border-left:rgb(245, 245, 245);border-right: rgb(245, 245, 245);">
         <h4 style="margin-top: 60px"><b style="color:black">내원시간</b></h4><br>
         <h4 style="margin:auto"><b>오전</b></h4>
       </td>
@@ -126,8 +126,8 @@
     <hr style= "border: 1px dashed; margin-left: 90px; margin-right: 90px;">
     <br><br>
     <div class="d-flex">
-    <h3 style="margin-left:200px"><sup style="color:rgb(255, 165, 0)">*</sup><b> 진료과 선택</b></h3>
-    <h3 style="margin-left:700px"><sup style="color:rgb(255, 165, 0)">*</sup><b> 의료진 선택</b></h3>
+    <h3 style="margin-left:150px"><sup style="color:rgb(255, 165, 0)">*</sup><b> 진료과 선택</b></h3>
+    <h3 style="margin-left:750px"><sup style="color:rgb(255, 165, 0)">*</sup><b> 의료진 선택</b></h3>
     </div>
     <br><br>
     <div class="container11" style="margin-left:93px">
@@ -135,7 +135,7 @@
 
             <div class="d-flex" >
                 <div>
-                    <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" id="medical department" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:400px; height: 50px;margin-left:120px;">
+                    <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" id="medical department" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:400px; height: 50px;margin-left:70px;">
                     <option selected>내과</option>
                     <option>외과</option>
                     <option>치과</option>
@@ -143,7 +143,7 @@
                     </select>
                 </div>
                 <div>
-                    <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" id="medical department" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:400px; height: 50px; margin-left:470px;">
+                    <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" id="medical department" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:400px; height: 50px; margin-left:515px;">
                         <option selected>홍길동</option>
                         <option>김개똥</option>
                         <option>김말똥</option>
@@ -158,14 +158,14 @@
     <br><br>
     <hr style= "border: 1px dashed; border-color:#bdbcbc;margin-left: 90px; margin-right: 90px;">
     <br><br>
-    <h3 style="margin-left:200px"><sup style="color:rgb(255, 165, 0)">*</sup><b> 내원시간 선택</b></h3>
+    <h3 style="margin-left:150px"><sup style="color:rgb(255, 165, 0)">*</sup><b> 내원시간 선택</b></h3>
     <br><br>
     <div class="container11" style="margin-left:93px">
             
 
         <div class="d-flex" >
             <div style="margin-left:120px">
-                <table class="container12 table-bordered" id="table_custom" >
+                <table class="container12 table-bordered" id="table_custom" style="margin-left:-55px;">
                  
                     <tr class="d-flex">
                 
@@ -185,7 +185,7 @@
                    
                     </table>
             </div>
-            <div style="margin-left:360px;">
+            <div style="margin-left:410px;">
                 <h3>※ 우리 병원은 <b style="color:red">당일 예약</b>만 가능합니다.</h3>
                 <h3>&nbsp;&nbsp;&nbsp;&nbsp;해당 사항 참고하시고 예약해주시길</h3> 
                 <h3>&nbsp;&nbsp;&nbsp;&nbsp;바랍니다.</h3>
@@ -245,8 +245,9 @@
 
         
         <div align="center">
-          <button type="button" class="btn border-1 border-dark" id="btn-color" style="width: 150px;">예약신청하기</button>
-          <button type="button" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:30px;">이전</button>
+          <a href="/vita/views/reservation/consultation_Success.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;" >예약신청하기</a>
+          <a href="/vita/views/reservation/personal.jsp" class="btn btn-light border-2 border-dark"  style="width: 150px; margin-left:30px;" >이전</a>
+          
         </div>
 
         <br><br> 

@@ -186,7 +186,7 @@
             </div>
             <div class="container" style="width: 80%; height: 170px; margin-left: 10px;">
            
-              <a href="/vita/views/selectContents/therapy6.jsp"><b>허혈성실장질환식</b></a><br>
+              <a href="/vita/views/selectContents/therapy6.jsp"><b>허혈성심장질환식</b></a><br>
               <p>
                 심장질환 시 식사요법은 크게 3가지로 나누어 생각할 수 있습니다.[콜레스테롤에 대한 식사요법]혈액내 콜레<br>
                 스테롤의 ⅔ ~ ¾ 정도는 몸 안에서 형성된 것으로 식사를 변화시킴으로써 감소시킬 수 있습니다. 보통 콜레스<br>
