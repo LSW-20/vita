@@ -36,7 +36,8 @@
         <br>
         <div class="container" style="text-align: left; font-size: 40px; height: 80px;">
         	<b>뉴스</b>
-        	<a href="/vita/views/news/newsM.jsp">뉴스관리자페이지이동</a>
+        	<a href="/vita/views/admin/manageNews.jsp" style="font-size: 20px;">뉴스관리자페이지이동</a>
+        	<a href="/vita/views/news/newsDetail.jsp" style="font-size: 20px;">뉴스상세페이지이동</a>
         </div>
         <div class="container border" style="height: 10px; background: gray; margin-left: -30px;"></div><br><br>
         <div style="text-align: center; width: 1000px; height: 850px;">

@@ -104,9 +104,9 @@
         
         <form action= "/server/test.do">
           <filedset>
-            <input type="radio" id="check" name="check" value="T" style="margin-left: 1480px;">
+            <input type="radio" id="check" name="check" value="T" style="margin-left: 1480px; cursor:pointer;">
             <label for="checkO">&nbsp;동의합니다.</label>
-            <input type="radio" id="non_check" name="check" value="F" style="margin-left: 70px;">
+            <input type="radio" id="non_check" name="check" value="F" style="margin-left: 70px; cursor:pointer;">
             <label for="checkX">&nbsp;동의하지 않습니다. </label>
           </fieldset>
 
@@ -149,7 +149,7 @@
                      </td>  
                       
                     </div>
-                  </div>
+                  
                 </tr>
             </table>
 

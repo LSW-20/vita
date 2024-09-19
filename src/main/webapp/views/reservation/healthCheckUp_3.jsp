@@ -118,7 +118,7 @@
     <br><br>
     <div class="d-flex">
     <h3 style="margin-left:93px"><sup style="color:rgb(255, 165, 0)">*</sup><b> 희망검진일 선택</b></h3>
-    <h3 style="margin-left:470px"><sup style="color:rgb(255, 165, 0)">*</sup><b> 내원시간 선택</b></h3>
+    <h3 style="margin-left:455px"><sup style="color:rgb(255, 165, 0)">*</sup><b> 내원시간 선택</b></h3>
     </div>
     <br><br>
     <div class="container11" style="margin-left:93px">
@@ -127,75 +127,51 @@
 
             <form action="/action_page.php">
                 <div class="form-group">
-                    <label for="yearSelect">년도</label>
-                    <select class="custom-select" id="yearSelect" name="year">
-                        <option value="2024" selected>2024</option>
-                    </select>
+                    <label for="yearSelect">년도</label><br>
+                      <select id="year" style="width:345px;">
+                                    <option value="">년도</option>
+                                    <script>
+                                    const currentYear = new Date().getFullYear();
+                                    document.write('<option value="' + currentYear + '">' + currentYear + '</option>');
+                                    </script>
+                                </select>
                 </div>
                 
                 <div class="d-flex" >
                 <div class="form-group mt-3">
-                    <label for="monthSelect">월</label>
-                    <select multiple class="custom-select" id="monthSelect" name="months">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                    </select>
+                    <label for="monthSelect">월</label><br>
+                        <!-- 월 선택 -->
+                         <select id="month" style="width:150px;">
+                                    <option value="">월</option>
+                                    <script>
+                                        // 1월부터 12월까지 표시
+                                        for (let i = 1; i <= 12; i++) {
+                                            document.write('<option value="' + i + '">' + i + '월</option>');
+                                        }
+                                    </script>
+                                </select>
                 </div>
         
                 <div class="form-group mt-3" style="margin-left:45px;">
-                    <label for="daySelect" >일</label>
-                    <select multiple class="custom-select" id="daySelect" name="days">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
-                    </select>
+                    <label for="daySelect" >일</label><br>
+                                <select id="day" style="width:150px;">
+                                    <option value="">일</option>
+                                    <script>
+                                        // 1일부터 31일까지 표시
+                                        for (let i = 1; i <= 31; i++) {
+                                            document.write('<option value="' + i + '">' + i + '일</option>');
+                                        }
+                                    </script>
+                                </select>
                 </div>
             </div>
         
             </form>
 
         
-        <div  action="/action_page.php" style="border:1px dashed;border-left:#212529; margin-left:240px"> </div>
+        <div  action="/action_page.php" style="border:1px dashed;border-left:#212529; margin-left:175px"> </div>
 
-        <div style="margin-left:235px">
+        <div style="margin-left:170px">
             <table class="container12 table-bordered" id="table_custom" >
              
                 <tr class="d-flex">
