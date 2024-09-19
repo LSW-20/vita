@@ -97,6 +97,9 @@
 		      margin-left: 330px;
 		      top: 610px;
 		      border-radius: 12px;
+		      cursor:pointer;
+		      padding-top: 45px;
+		      color:white;
 		  }
 		  .button1 {
 		      margin-top: 50px;
@@ -182,16 +185,16 @@
 	               <div class="login_box">
 	                   <p>서비스를 이용하시려면 로그인이 필요합니다.</p>
 	                   <div class="login_form">
-	                       <form action="" class="login_form">
+	                       <form action="" class="login_form" method="post">
 	                           <div class="login_Id">
 	                               <input type="text" name="userId" id="userId">
 	                           </div>
 	                           <div class="login_Pwd">
 	                               <input type="password" name="userPwd" id="userPwd">
 	                           </div>
-	                           <div class="login_btn">
-	                               <a href="#" class="button1">로그인</a>
-	                           </div>
+	                           <!-- <div class="login_btn" onclick="fnLogin();"> -->
+	                               <button class="login_btn" onclick="fnLogin();">로그인</button>
+	                           <!-- </div> -->
 	                           <div>
 	                               <p class="find">
 	                                   <a href="#" class="find_id">아이디찾기</a>
@@ -200,6 +203,41 @@
 	                               </p>
 	                           </div>
 	                       </form>
+	                       
+	                       <script>
+	                       	/*
+	                       		로그인 요청을 ajax로 하기 (form submit이 아니라) 이때 아이디랑 비번 전달하기
+	                       		success:function(결과(조회성공인지실패인지)) {
+	                       			if(조회성공일 경우){
+	                       				location.href로 페이지 이동
+	                       			}else{
+	                       				alert띄우기
+	                       			}
+	                       			
+	                       		}
+	                       		
+	                       	*/
+	                       	
+	                       	function fnLogin(){
+	                       		
+		                       	$.ajax({
+		                       		url:'<%= contextPath %>/login.me',
+		                       		data: {
+		                       				userId:$('#userId'),
+		                       				userPwd:$('#userPwd')
+		                       		},
+		                       		success:function(res){
+		                       			if(res != null){
+		                       				location.href = '<%=contextPath %>/views/member/login.jsp';
+		                       			}else{
+		                       				alert('아이디와 비밀번호를 다시 확인해주세요');
+		                       			}
+		                       		}
+		                       	})
+	                       		
+	                      }
+	                       	
+	                       </script>
 	                   </div>
 	               </div>
 	               <div class="login_box">
@@ -226,6 +264,9 @@
 	                   </div>
 	           </div>
 	       </div>
+	       
+	       
+	      
 	
 	       </nav>
 	  </section>

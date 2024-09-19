@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<entry key="memberLogin">
+
+SELECT
+				USER_NO
+			, USER_ID
+			, USER_PWD
+			, USER_NAME
+			, PHONE
+			, EMAIL
+			, ADDRESS
+			, ENROLL_DATE
+			, USER_TYPE
+			, USER_SSN
+			, CALLBACK_YN
+			, RESIGN_YN
+			, USER_DATE
+			, USER_GENDER
+			, REPRESENTATIVE	
+	FROM
+	  		MEMBER
+ WHERE
+		   USER_ID = ?
+   AND USER_PWD = ?
+ 	 AND USER_TYPE IN ('U', 'A')
+   AND RESIGN_YN = N
+		
+
+
+
+</entry>
+
+
+
+
+
+
+
+
+</properties>

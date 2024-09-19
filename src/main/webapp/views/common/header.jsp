@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@ page import="com.br.vita.member.model.vo.Member" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,10 +29,23 @@
     
     
     
-    <% String contextPath = request.getContextPath(); %> <!-- 메인변수 정의 -->
+    <% 
+    
+	    String contextPath = request.getContextPath();
+	    Member loginUser = (Member)session.getAttribute("loginUser");
+	    String alertMsg = (String)session.getAttribute("alertMsg");
+	    
+    
+    %> <!-- 메인변수 정의 -->
     
 </head>
 <body>
+
+<% if(alertMsg != null) { %>
+<script>
+	alert('<%=alertMsg%>');
+</script>
+<% session.removeAttribute("alertMsg"); } %>
 
        <!-- header start -->
        <style>
@@ -221,13 +237,13 @@
 <div class="container1">
     <div class="submenuContainer-1">
 
-        <!-- case1. 로그인전 
+        <!-- case1. 로그인전 -->
         <div class="sub" id="loginMenu">
             로그인 하시면<br> 
             더 다양한 혜택을<br>
             이용할 수 있습니다.<br><br>
             <div class="btn-group-vertical" style="width: 150px;">
-                <a href="semi.html" class="btn btn-success">로그인</a><p></p>
+                <a href="/vita/views/member/login.jsp" class="btn btn-success">로그인</a><p></p>
                 <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
                 <a href="semi.html" class="btn btn-primary">진료예약</a>
             </div>
@@ -236,13 +252,16 @@
         <div class="sub"><a href="" style="text-decoration: none;">의료진</a></div> 
         <div class="sub"><a href="" style="text-decoration: none;">진료과</a></div> 
         <div class="sub"></div>
-        -->
-        <!-- case2. 로그인후 -->
+        
+        
+        
+        
+        <!-- case2. 로그인후 
         <div class="sub" id="loginMenu">
             <b>홍길동</b>님,<br> 방문을 환영합니다. <br><br><br>
 
             <div class="btn-group-vertical" style="width: 150px;">
-                <a href="semi.html" class="btn btn-success">로그아웃</a><p></p>
+                <a href="#" class="btn btn-success">로그아웃</a><p></p>
                 <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
                 <a href="semi.html" class="btn btn-primary">진료예약</a>
             </div>
@@ -256,9 +275,12 @@
         </div> 
         <div class="sub"><a href="/vita/views/department/department.jsp" style="text-decoration: none;"><br><b>&nbsp;진료과</a></b></div> 
         <div class="sub"></div>
+        -->
+        
         
     </div>
 </div>
+
 
 
 <div class="container2">
@@ -269,7 +291,7 @@
             이용할 수 있습니다.<br><br>
             <div class="btn-group-vertical" style="width: 150px;">
                 <div class="btn-group-vertical" style="width: 150px;">
-                    <a href="semi.html" class="btn btn-success">로그인</a><p></p>
+                    <a href="/vita/views/member/login.jsp" class="btn btn-success">로그인</a><p></p>
                     <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
                     <a href="semi.html" class="btn btn-primary">진료예약</a>
                 </div>
@@ -302,7 +324,7 @@
             이용할 수 있습니다.<br><br>
             <div class="btn-group-vertical" style="width: 150px;">
                 <div class="btn-group-vertical" style="width: 150px;">
-                    <a href="semi.html" class="btn btn-success">로그인</a><p></p>
+                    <a href="/vita/views/member/login.jsp" class="btn btn-success">로그인</a><p></p>
                     <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
                     <a href="semi.html" class="btn btn-primary">진료예약</a>
                 </div>
@@ -327,7 +349,7 @@
             이용할 수 있습니다.<br><br>
             <div class="btn-group-vertical" style="width: 150px;">
                 <div class="btn-group-vertical" style="width: 150px;">
-                    <a href="semi.html" class="btn btn-success">로그인</a><p></p>
+                    <a href="/vita/views/member/login.jsp" class="btn btn-success">로그인</a><p></p>
                     <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
                     <a href="semi.html" class="btn btn-primary">진료예약</a>
                 </div>
@@ -356,7 +378,7 @@
             이용할 수 있습니다.<br><br>
             <div class="btn-group-vertical" style="width: 150px;">
                 <div class="btn-group-vertical" style="width: 150px;">
-                    <a href="semi.html" class="btn btn-success">로그인</a><p></p>
+                    <a href="/vita/views/member/login.jsp" class="btn btn-success">로그인</a><p></p>
                     <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
                     <a href="semi.html" class="btn btn-primary">진료예약</a>
                 </div>
@@ -385,7 +407,7 @@
             이용할 수 있습니다.<br><br>
             <div class="btn-group-vertical" style="width: 150px;">
                 <div class="btn-group-vertical" style="width: 150px;">
-                    <a href="semi.html" class="btn btn-success">로그인</a><p></p>
+                    <a href="/vita/views/member/login.jsp" class="btn btn-success">로그인</a><p></p>
                     <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
                     <a href="semi.html" class="btn btn-primary">진료예약</a>
                 </div>
@@ -407,6 +429,14 @@
 </div>
     
     <script>
+    
+    	
+    
+    
+    
+    
+    
+    
        $(document).ready(function() {
 
         var menuItems = {
