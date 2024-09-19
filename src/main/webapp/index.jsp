@@ -109,7 +109,7 @@
             <br><br>
         </div>
         <div class="container border" style="height: 200px; border-radius: 15px; display:flex; background: #f7f7f8;">
-            <div class="container" id="mainService"><a href="/vita/views/selectContents/greetings.jsp"><img src="/vita/assets/image/아이콘1.jpg" style="width: 80px; height: 80px;"><br><br><b>의료진 찾기</b></a></div>
+            <div class="container" id="mainService"><a href="/vita/views/reservation/reservationList.jsp"><img src="/vita/assets/image/아이콘1.jpg" style="width: 80px; height: 80px;"><br><br><b>예약내역조회</b></a></div>
             <div class="container" id="mainService"><a href="/vita/views/department/department.jsp"><img src="/vita/assets/image/아이콘2.jpg" style="width: 80px; height: 80px;"><br><br><b>진료과</b></a></div>
             <div class="container" id="mainService"><a href="/vita/views/reservation/consultation_AfterLogin.jsp"><img src="/vita/assets/image/아이콘3.jpg" style="width: 80px; height: 80px;"><br><br><b>진료예약</b></a></div>
             <div class="container" id="mainService"><a href="/vita/views/reservation/firstTimeUserReservation.jsp"><img src="/vita/assets/image/아이콘4.jpg" style="width: 80px; height: 80px;"><br><br><b>첫방문 고객 예약 상담</b></a></div>
@@ -364,13 +364,15 @@
         } 
         </style>
         <div class="container" style="width: 1000px; height: 200px;">
-            <div class="autoplay">
-                <div><a href=""><img src="/vita/assets/image/아이콘1.jpg" alt="Image 1" id="slideImg2"></a></div>
-                <div><a href=""><img src="/vita/assets/image/아이콘2.jpg" alt="Image 2" id="slideImg2"></a></div>
-                <div><a href=""><img src="/vita/assets/image/아이콘3.jpg" alt="Image 3" id="slideImg2"></a></div>
-                <div><a href=""><img src="/vita/assets/image/아이콘4.jpg" alt="Image 4" id="slideImg2"></a></div>
-                <div><a href=""><img src="/vita/assets/image/아이콘5.jpg" alt="Image 5" id="slideImg2"></a></div>
-                <div><a href=""><img src="/vita/assets/image/아이콘1.jpg" alt="Image 6" id="slideImg2"></a></div>
+            <div class="autoplay" style="height: 200px;">
+                <div style="height: 140px;"><a href="/vita/views/selectContents/healthTV1.jsp"><img src="/vita/assets/image/건강아이콘.jpg" alt="Image 1" id="slideImg2"></a></div>
+                <div style="height: 140px;"><a href="/vita/views/cs/csList.jsp"><img src="/vita/assets/image/고객의소리아이콘.jpg" alt="Image 2" id="slideImg2"></a></div>
+                <div style="height: 140px;"><a href="/vita/views/selectContents/hospitalInfo.jsp"><img src="/vita/assets/image/병원안내아이콘.jpg" alt="Image 3" id="slideImg2"></a></div>
+                <div style="height: 140px;"><a href="/vita/views/selectContents/service.jsp"><img src="/vita/assets/image/봉사아이콘.jpg" alt="Image 4" id="slideImg2"></a></div>
+                <div style="height: 140px;"><a href="/vita/views/selectContents/directions.jsp"><img src="/vita/assets/image/오시는길아이콘.jpg" alt="Image 5" id="slideImg2"></a></div>
+                <div style="height: 140px;"><a href="/vita/views/selectContents/parkingInfo.jsp"><img src="/vita/assets/image/주차안내아이콘.jpg" alt="Image 6" id="slideImg2"></a></div>
+                <div style="height: 140px;"><a href="/vita/views/cs/csList.jsp"><img src="/vita/assets/image/칭찬코너아이콘.jpg" alt="Image 7" id="slideImg2"></a></div>
+                <div style="height: 140px;"><a href="/vita/views/selectContents/sponsorship.jsp"><img src="/vita/assets/image/후원아이콘.jpg" alt="Image 8" id="slideImg2"></a></div>
             </div>
         
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
