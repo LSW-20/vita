@@ -242,10 +242,10 @@
          
         <div class="sub" style="font-size: 17px;"><br><b>&nbsp;의료진/진료과 ></b></div>
         <div class="sub"><br><b>&nbsp;의료진</b></a><br>
-        		<a style="text-decoration: none;" href="/vita/views/doctor/doc_intro.jsp">&nbsp;내과</a><br>
-        		<a style="text-decoration: none;" href="/vita/views/doctor/doc_intro2.jsp">&nbsp;외과</a><br>
-        		<a style="text-decoration: none;" href="/vita/views/doctor/doc_intro3.jsp">&nbsp;치과</a><br>
-        		<a style="text-decoration: none;" href="/vita/views/doctor/doc_intro4.jsp">&nbsp;안과</a><br>
+        		<a style="text-decoration: none;" href="<%= contextPath %>/schedule.doc?dept=내과">&nbsp;내과</a><br>
+        		<a style="text-decoration: none;" href="<%= contextPath %>/schedule.doc?dept=외과">&nbsp;외과</a><br>
+        		<a style="text-decoration: none;" href="<%= contextPath %>/schedule.doc?dept=치과">&nbsp;치과</a><br>
+        		<a style="text-decoration: none;" href="<%= contextPath %>/schedule.doc?dept=안과">&nbsp;안과</a><br>
         </div> 
         <div class="sub"><a href="/vita/views/department/department.jsp" style="text-decoration: none;"><br><b>&nbsp;진료과</a></b></div> 
         <div class="sub"></div>
