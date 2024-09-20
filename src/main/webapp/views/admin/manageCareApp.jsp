@@ -125,7 +125,7 @@ footer {
                 <tr>
                     <td class="left_cell">진료과</td>
                     <td class="right_cell">
-                        <select name="" id="">
+                        <select name="" id="" required>
                             <option value="">외과</option>
                             <option value="">내과</option>
                             <option value="">치과</option>
@@ -137,7 +137,7 @@ footer {
                 <tr>
                     <td class="left_cell">의료진</td>
                     <td class="right_cell">
-                        <input type="text" name="" value="" size="12">
+                        <input type="text" name="" size="12" required>
                     </td>
                 </tr>
 
@@ -145,7 +145,7 @@ footer {
                     <td class="left_cell">날짜</td>
                     <td class="right_cell">
                         
-                            <input type="date"> &nbsp;
+                            <input type="date" name="" required> &nbsp;
                             <button type="submit">검색</button>
                         
                     </td>

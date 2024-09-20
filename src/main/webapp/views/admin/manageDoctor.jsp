@@ -128,44 +128,51 @@ footer {
 
         <br><br><br>
 
-        <form action="#" method="">
+
             <div id="search_doctor">의료진 검색</div>
             <br>
 
             <table id="search_doctor_table">
                 <tr>
-                    <td class="left_cell">이름</td>
-                    <td class="right_cell_1"><input type="text" name="이름" size="15"></td>
+                    <form action="#" method="">
+                        <td class="left_cell">이름</td>
+                        <td class="right_cell_1">
+                            <input type="text" name="이름" size="15">  &nbsp;
+                            <button type="submit" class="btn btn-sm btn-secondary">검색</button>
+                        </td>    
+                    </form>
                 </tr>
 
                 <tr>
-                    <td class="left_cell">사번</td>
-                    <td class="right_cell_1"><input type="text" name="사번" size="15"></td>
+                    <form action="#" method="">
+                        <td class="left_cell">사번</td>
+                        <td class="right_cell_1">
+                            <input type="text" name="사번" size="15">  &nbsp;
+                            <button type="submit" class="btn btn-sm btn-secondary">검색</button>
+                        </td>
+                    </form>
                 </tr>
 
                 <tr>
-                    <td class="left_cell">진료과</td>
-                    <td class="right_cell_2">
-                        <input type="radio" name="search_dept" value="전체" id="label_all" checked><label for="label_all">&nbsp전체&nbsp&nbsp</label>
-                        <input type="radio" name="search_dept" value="외과" id="label_surgery"><label for="label_surgery">&nbsp외과&nbsp&nbsp</label>
-                        <input type="radio" name="search_dept" value="내과" id="label_medicine"><label for="label_medicine">&nbsp내과&nbsp&nbsp</label>
-                        <input type="radio" name="search_dept" value="치과" id="label_dentisty"><label for="label_dentisty">&nbsp치과&nbsp&nbsp</label>
-                        <input type="radio" name="search_dept" value="안과" id="label_eye"><label for="label_eye">&nbsp안과&nbsp&nbsp</label>
-                    </td>
+                    <form action="#" method="">
+                        <td class="left_cell">진료과</td>
+                        <td class="right_cell_2">
+                            <input type="radio" name="search_dept" value="전체" id="label_all"><label for="label_all">&nbsp전체&nbsp&nbsp</label>
+                            <input type="radio" name="search_dept" value="외과" id="label_surgery"><label for="label_surgery">&nbsp외과&nbsp&nbsp</label>
+                            <input type="radio" name="search_dept" value="내과" id="label_medicine"><label for="label_medicine">&nbsp내과&nbsp&nbsp</label>
+                            <input type="radio" name="search_dept" value="치과" id="label_dentisty"><label for="label_dentisty">&nbsp치과&nbsp&nbsp</label>
+                            <input type="radio" name="search_dept" value="안과" id="label_eye"><label for="label_eye">&nbsp안과&nbsp&nbsp</label>
+                            <button type="submit" class="btn btn-sm btn-secondary">검색</button>
+                        </td>
+                    </form>
                 </tr>
             </table>
 
             <br>
 
-            <div style="text-align: center;">
-                <button type="submit" class="btn btn-sm btn-secondary">검색</button>
-            </div>
-            <!-- text-align 속성은 텍스트뿐만 아니라 인라인 요소(inline elements)들을 정렬할 때도 사용됩니다. 
-            HTML에서 <button>, <input>, <label> 등은 기본적으로 인라인 요소로 취급됩니다. 
-            그래서 text-align: center;를 사용하면 버튼과 같은 인라인 요소도 부모 컨테이너 안에서 가운데로 정렬됩니다.
-            중요한건 버튼의 상위 요소에 text-align: center를 줘야 함. -->
+               
        
-        </form>
+
 
 
         <%-- 조건처리하는법. 검색 이전상태랑 검색했는데 결과가 없는경우를 구분하기 위해 flag 변수 사용한다.
