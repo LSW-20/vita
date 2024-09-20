@@ -6,14 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
 <body>
-
-	<div class="container p-3">
-
     <!-- Header, Nav start -->
     <%@ include file="/views/common/header.jsp" %>
     <!-- Header, Nav end -->
-
+	
     <!-- Section start -->
     <section class="row m-3" style="min-height: 500px">
 
@@ -23,13 +21,10 @@
 
     </section>
     <!-- Section end -->
-
-    <!-- Footer start -->
+  
+      <!-- Footer start -->
     <%@ include file="/views/common/footer.jsp" %>
     <!-- Footer end -->
-
-  </div>
-  
 
 </body>
 </html>
