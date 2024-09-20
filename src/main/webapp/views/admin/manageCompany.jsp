@@ -556,18 +556,6 @@ footer {
                                         <td><input type="text" class="form-control" placeholder="" name="" value="" required></td>
                                     </tr>
 
-                                    <tr>
-                                        <td colspan="2" style="height: 20px;"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <th><span class="star">*</span> 회원번호</th>
-                                        <td><input type="number" class="form-control" placeholder="" name="" value="" required></td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="star">*</span> 회원ID</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="" required></td>
-                                    </tr>
                                 </table>
                             </div>
 
@@ -627,19 +615,6 @@ footer {
                                     <tr>
                                         <th><span class="star">*</span> 사원명</th>
                                         <td><input type="text" class="form-control" placeholder="" name="" value="박첨지" required></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td colspan="2" style="height: 20px;"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <th><span class="star">*</span> 회원번호</th>
-                                        <td><input type="number" class="form-control" placeholder="" name="" value="046" required readonly></td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="star">*</span> 회원ID</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="kiosk223" required readonly></td>
                                     </tr>
 
                                 </table>
