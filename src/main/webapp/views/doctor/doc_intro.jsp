@@ -106,6 +106,16 @@
       	font-size:20px;
       	color: blue;
       }
+      
+        
+        .checkY{
+                background-color: blue;
+                width: 15px;
+                height: 15px;
+                border-radius: 50px;
+                margin: auto;
+                margin-top: 4px;
+              }
      
      
       
@@ -146,7 +156,7 @@
 				
 			</div>
 				<div class="doc_detailBox">
-					 <b id="dc_name">박시우  <b id="d_name">내과</b></b>
+					 <b id="dc_name">박시우 <b id="d_name">내과</b></b>
 				 	<table class="table table-bordered" id="scd_table">
 					
 	                        <thead>
@@ -200,8 +210,9 @@
 	         			 </table>
 	       		</div>
 		
-		
 		</div>
+		
+		
 		
 		
 		
