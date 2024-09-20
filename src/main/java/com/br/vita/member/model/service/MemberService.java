@@ -23,7 +23,6 @@ public class MemberService {
 		
 		return loginUser;
 		
-		
 	}
 	public String adminDoctorSelect(String userId) {
 		
