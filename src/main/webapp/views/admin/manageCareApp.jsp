@@ -137,12 +137,7 @@ footer {
                 <tr>
                     <td class="left_cell">의료진</td>
                     <td class="right_cell">
-                        <select name="" id="">
-                            <option value="">가가가</option>
-                            <option value="">나나나</option>
-                            <option value="">다다다</option>
-                            <option value="">라라라</option>
-                        </select>
+                        <input type="text" name="" value="" size="12">
                     </td>
                 </tr>
 
