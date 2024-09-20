@@ -21,7 +21,7 @@
             <b><%= loginUser.getUserName() %></b>님,<br> 방문을 환영합니다. <br><br><br>
 
             <div class="btn-group-vertical" style="width: 150px;">
-                <a href="#" class="btn btn-success">로그아웃</a><p></p>
+                <a href="<%=contextPath%>/logout.me" class="btn btn-success">로그아웃</a><p></p>
                 <a href="#" class="btn btn-warning">마이페이지</a><p></p>
                 <a href="#" class="btn btn-primary">진료예약</a>
             </div>
