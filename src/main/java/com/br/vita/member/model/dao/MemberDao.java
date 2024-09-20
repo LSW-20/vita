@@ -230,4 +230,32 @@ public class MemberDao {
 		return result;
 	}//updatePwd
 
+	/**
+	 * 회원 탈퇴
+	 * author : 최보겸
+	 * @param conn
+	 * @param userId
+	 * @param userPwd 마지막 확인 위한 비번
+	 * @return result 처리 행수 반환
+	 */
+	public int deleteMember(Connection conn, String userId, String userPwd) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPwd);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}//deleteMember
+
 }

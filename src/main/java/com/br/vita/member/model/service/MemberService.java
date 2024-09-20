@@ -66,7 +66,11 @@ public class MemberService {
 		
 	}//updateMember
 
-	
+	/**
+	 * 비밀번호 변경
+	 * @param map key+value세트
+	 * @return updateMem 갱신 된 멤버 객체
+	 */
 	public Member updateMemberPwd(Map<String, String> map) {
 		Connection conn = getConnection();
 		//비번 변경
@@ -84,5 +88,25 @@ public class MemberService {
 		return updateMem;
 		
 	}//updatePwd
+	
+	/**
+	 * 
+	 * @param userId
+	 * @param userPwd
+	 * @return result 처리 행수
+	 */
+	public int deleteMember(String userId, String userPwd) {
+		Connection conn = getConnection();
+		int result = mdao.deleteMember(conn, userId, userPwd);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}//deleteMember
 
 }

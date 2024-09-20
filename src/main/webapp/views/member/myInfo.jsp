@@ -151,7 +151,7 @@
       </div>
       <!-- Modal body -->
       <div class="modal-body">
-        <form action="">
+        <form action="<%=contextPath %>/delete.me">
           <table align="center">
             <tr>
               <th colspan="2">탈퇴 후 복구가 불가능 합니다. <br>
@@ -160,7 +160,7 @@
             </tr>
             <tr>
               <th>현재 비밀번호</th>
-              <td><input type="password" class="form-control"required></td>
+              <td><input type="password" class="form-control" name="userPwd" required></td>
             </tr>
             <tr>
               <td colspan="2" style="text-align: center; padding-top: 10px;">
