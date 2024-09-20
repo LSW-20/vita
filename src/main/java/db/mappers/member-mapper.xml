@@ -41,6 +41,22 @@
 		       USER_ID = ?		
 	</entry>
 
+<entry key="adminDoctorSelect">
+
+SELECT 
+			USER_TYPE
+FROM 
+		 MEMBER
+WHERE 
+			USER_ID = ?		
+
+
+
+
+
+
+</entry>
+
 
 	<entry key="selectMemberById">
 		SELECT

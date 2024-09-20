@@ -83,6 +83,42 @@ public class MemberDao {
 		
 		
 	}
+	
+	
+	public String adminDoctorSelect(Connection conn, String addocId) {
+		
+		
+
+		String m = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("adminDoctorSelect");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+		
+			pstmt.setString(1, addocId);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = rset.getString("USER_TYPE");
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return m;
+		
+		
+	}
+	
 
 
 	/**
