@@ -2,38 +2,68 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-<entry key="memberLogin">
+	<entry key="memberLogin">
+		SELECT
+						USER_NO
+					, USER_ID
+					, USER_PWD
+					, USER_NAME
+					, PHONE
+					, EMAIL
+					, ADDRESS
+					, ENROLL_DATE
+					, USER_TYPE
+					, USER_SSN
+					, CALLBACK_YN
+					, RESIGN_YN
+					, USER_DATE
+					, USER_GENDER
+					, REPRESENTATIVE	
+			FROM
+			  		MEMBER
+		 WHERE
+				   USER_ID = ?
+		   AND USER_PWD = ?
+		 	 AND USER_TYPE IN ('U','A','D')
+		   AND RESIGN_YN = 'N'
+	</entry>
+	
+	<entry key="updateMember">
+		UPDATE
+		       MEMBER
+		   SET
+		       USER_NAME = ?
+		     , USER_DATE = ?
+		     , USER_GENDER = ?
+		     , PHONE = ?
+		     , EMAIL = ?
+		 WHERE 
+		       USER_ID = ?		
+	</entry>
 
-SELECT
-				USER_NO
-			, USER_ID
-			, USER_PWD
-			, USER_NAME
-			, PHONE
-			, EMAIL
-			, ADDRESS
-			, ENROLL_DATE
-			, USER_TYPE
-			, USER_SSN
-			, CALLBACK_YN
-			, RESIGN_YN
-			, USER_DATE
-			, USER_GENDER
-			, REPRESENTATIVE	
-	FROM
-	  		MEMBER
- WHERE
-		   USER_ID = ?
-   AND USER_PWD = ?
- 	 AND USER_TYPE IN ('U','A','D')
-   AND RESIGN_YN = 'N'
-		
 
-
-
-</entry>
-
-
+	<entry key="selectMemberById">
+		SELECT
+		       USER_NO
+		     , USER_ID
+		     , USER_PWD
+		     , USER_NAME
+		     , PHONE
+		     , EMAIL
+		     , ADDRESS
+		     , ENROLL_DATE
+		     , USER_TYPE
+		     , USER_SSN
+		     , CALLBACK_YN     
+		     , RESIGN_YN
+		     , USER_DATE     
+		     , USER_GENDER
+		     , REPRESENTATIVE
+		  FROM 
+		       MEMBER
+		 WHERE 
+		       USER_ID = ?
+	</entry>
 
 
 

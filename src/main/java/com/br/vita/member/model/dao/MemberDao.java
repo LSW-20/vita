@@ -84,4 +84,82 @@ public class MemberDao {
 		
 	}
 
+
+	/**
+	 * update - 처리 행 수 생성
+	 * @param conn
+	 * @param m 마이페이지의 멤버 객체
+	 * @return result 처리 행 수 반환
+	 */
+	public int updateMember(Connection conn, Member m) {
+		
+		System.out.println(m);
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getUserName());
+			pstmt.setString(2, m.getUserDate());
+			pstmt.setString(3, m.getGender());
+			pstmt.setString(4, m.getPhone());
+			pstmt.setString(5, m.getEmail());
+			pstmt.setString(6, m.getUserId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}//updateMember
+
+	/**
+	 * 
+	 * @param conn
+	 * @param userId 로그인유저 식별할 id
+	 * @return m 갱신된 멤버 객체 반환
+	 */
+	public Member selectMemberById(Connection conn, String userId) {
+		Member m = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMemberById");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = new Member(rset.getString("USER_NO")
+						 	 , rset.getString("USER_ID")
+						 	 , rset.getString("USER_PWD")
+						 	 , rset.getString("USER_NAME")
+						 	 , rset.getString("PHONE")
+						 	 , rset.getString("EMAIL")
+						 	 , rset.getString("ADDRESS")
+						 	 , rset.getDate("ENROLL_DATE")
+						 	 , rset.getString("USER_TYPE")
+						 	 , rset.getString("USER_SSN")
+						 	 , rset.getString("CALLBACK_YN")
+						 	 , rset.getString("RESIGN_YN")
+						 	 , rset.getString("USER_DATE")
+						 	 , rset.getString("USER_GENDER")
+						 	 , rset.getString("REPRESENTATIVE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return m;
+	}
+
 }
