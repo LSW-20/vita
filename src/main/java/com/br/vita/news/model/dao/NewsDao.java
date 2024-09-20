@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.br.vita.common.model.vo.PageInfo;
 import com.br.vita.news.model.vo.News;
 
 public class NewsDao {
@@ -27,7 +28,31 @@ public class NewsDao {
 	}
 	
 	
-	public List<News> selectNoticeList(Connection conn) {
+	public int selectNewsListCount(Connection conn) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectNewsListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("받아온값: " + listCount);
+		return listCount;
+	}
+	
+	public List<News> selectNewsList(Connection conn, PageInfo pi) {
 		List<News> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -35,6 +60,13 @@ public class NewsDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);		
+			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -51,7 +83,9 @@ public class NewsDao {
 			close(rset);
 			close(pstmt);
 		}
+		System.out.println("받아온값: " + list);
 		return list;
 	}
+
 
 }
