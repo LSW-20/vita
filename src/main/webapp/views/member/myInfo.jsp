@@ -37,35 +37,48 @@
           <table id="my_info_table" class="table">
             <tr>
               <th width="250px">* 아이디</th>
-              <td width="750px"><input type="text" class="form-control"placeholder="Enter Your ID" value="user01" readonly></td>
+              <td width="750px"><input type="text" class="form-control"placeholder="Enter Your ID" value=<%= loginUser.getUserId() %> readonly></td>
             </tr>
             <tr>
               <th>* 병원등록번호(회원번호)</th>
-              <td><input type="text" class="form-control"placeholder="Your UserId" value="12345" readonly></td>
+              <td><input type="text" class="form-control"placeholder="Your UserId" value=<%= loginUser.getUserNo() %> readonly></td>
             </tr>                 
             <tr>
               <th>* 이름</th>
-              <td><input type="text" class="form-control" placeholder="Enter Your Name" value="홍길동" required></td>
+              <td><input type="text" class="form-control" placeholder="Enter Your Name" value=<%= loginUser.getUserName() %> required></td>
             </tr>      
             <tr>
               <th>&nbsp;&nbsp;생년월일</th>
-              <td><input type="text" class="form-control" placeholder="ex_ 900101" value="990101" required></td>
+              <td><input type="text" class="form-control" placeholder="ex_ 900101" value=<%= loginUser.getUserDate() %> required></td>
             </tr>   
             <tr>
-              <th>&nbsp;&nbsp;성별</th>
-              <td>      
-                  <input type="radio" id="male" name="gender" value="M" checked>
-                  <label for="male">남자 &nbsp;</label>
-                  <input type="radio" id="female" name="gender" value="F">
-                  <label for="female">여자</label></td>
+						  <th>&nbsp;&nbsp;성별</th>
+						  <td>      
+						      <input type="radio" id="male" name="gender" value="M">
+						      <label for="male">남자 &nbsp;</label>
+						      <input type="radio" id="female" name="gender" value="F">
+						      <label for="female">여자</label>
+						  </td>
+						  <script>
+						    $(document).ready(function(){
+						      // 성별 값이 "M"이면 남자 라디오 버튼, "F"이면 여자 라디오 버튼을 선택
+						      let gender = '<%= loginUser.getGender() %>';
+						      console.log(gender);
+						      if(gender === 'M') {
+						        $('#male').prop('checked', true);
+						      } else if(gender === 'F') {
+						        $('#female').prop('checked', true);
+						      }
+						    });
+						  </script>
             </tr>
             <tr>
               <th>&nbsp;&nbsp;전화번호</th>
-              <td><input type="text" class="form-control" placeholder="Enter Your Phone(include '-')" value="010-2222-3333" required></td>
+              <td><input type="text" class="form-control" placeholder="Enter Your Phone(include '-')" value=<%= loginUser.getPhone() %> required></td>
             </tr>     
             <tr>
               <th>&nbsp;&nbsp;이메일</th>
-              <td><input type="text" class="form-control" placeholder="Enter Your Email(include '@')" value="user01@br.com" required></td>
+              <td><input type="text" class="form-control" placeholder="Enter Your Email(include '@')" value=<%= loginUser.getEmail() %> required></td>
             </tr>       
                                                          
           </table>
