@@ -2,6 +2,42 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
+<entry key="selectSchedule">
+
+SELECT 
+			WORKING
+		,SCHEDULE_TIME
+		,SCHEDULE_WEEK
+FROM 
+		 SCHEDULE
+WHERE 
+		DOCTOR_NO = ?
+
+
+</entry>
+
+<entry key="selectDoctor">
+
+SELECT 
+     DOCTOR_NO
+     ,USER_NO
+     ,HIRE_DATE
+     ,DOCTOR_NAME
+     ,LICENCE_NO
+     ,DEPT_NAME
+FROM
+     DOCTOR
+WHERE
+     DOCTOR_NO = ?
+
+
+
+
+
+</entry>
+
+
+
 
 
 </properties>

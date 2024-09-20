@@ -156,7 +156,10 @@
 				
 			</div>
 				<div class="doc_detailBox">
-					 <b id="dc_name">박시우 <b id="d_name">내과</b></b>
+					 <b id="dc_name">박시우<b id="d_name">  내과</b></b>
+					 
+  				<input type="hidden" name="vp" id="vpvalue" value="vp1">
+					
 				 	<table class="table table-bordered" id="scd_table">
 					
 	                        <thead>
@@ -212,6 +215,32 @@
 		
 		</div>
 		
+		
+		<script>
+		
+			function fnSchedule(){
+				
+				$.ajax({
+					url:'<%= contextPath%>/schedule.doc',
+					data: { no : $('#vpvalue').val()},
+					type: "post",
+					success:function(res){
+						console.log(res);
+						
+						
+						
+					},
+					
+				})
+				
+			}
+			
+			fnSchedule();
+				
+			
+		
+		
+		</script>
 		
 		
 		

@@ -18,6 +18,15 @@ public class DoctorSchedule {
 		this.scheduleTime = scheduleTime;
 		this.scheduleWeek = scheduleWeek;
 	}
+	
+
+
+	public DoctorSchedule(String working, String scheduleTime, String scheduleWeek) {
+		super();
+		this.working = working;
+		this.scheduleTime = scheduleTime;
+		this.scheduleWeek = scheduleWeek;
+	}
 
 
 	public String getDoctorNo() {
