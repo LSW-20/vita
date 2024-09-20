@@ -40,11 +40,6 @@ FROM
 WHERE 
 			USER_ID = ?		
 
-
-
-
-
-
 </entry>
 
 
