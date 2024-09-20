@@ -1,5 +1,5 @@
 package com.br.vita.news.model.service;
 
-public class A {
+public class NewsService {
 
 }

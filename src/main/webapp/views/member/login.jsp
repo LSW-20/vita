@@ -193,7 +193,7 @@
 	                               <input type="password" name="userPwd" id="userPwd">
 	                           </div>
 	                           <!-- <div class="login_btn" onclick="fnLogin();"> -->
-	                               <button class="login_btn" onclick="fnLogin();">로그인</button>
+	                               <button class="login_btn" onclick="fnLogin();" id="l_btn">로그인</button>
 	                           <!-- </div> -->
 	                           <div>
 	                               <p class="find">
@@ -205,6 +205,16 @@
 	                       </div>
 	                       
 	                       <script>
+	                       
+	                       
+	                   	let userPwd = document.getElementById('userPwd');
+                       	
+                       	userPwd.addEventListener('keydown', function(event) {
+                       	  if (event.key === 'Enter') {
+                       			
+                       					fnLogin();
+                       	  }
+                       	});
 	                       
 	                       	
 	                       	function fnLogin(){
@@ -231,6 +241,11 @@
 		                       	});
 	                       		
 	                      }
+	                       	
+	                       
+	                       	
+	                       	
+	                       	
 	                       	
 	                       </script>
 	                   </div>
