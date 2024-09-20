@@ -161,7 +161,7 @@
 	      border: none;
 	    }
 	    .title1 {
-	      margin-top: 60px;
+	      margin-top: 30px;
 	      margin-bottom: -20px;
 	      font-size: 23px;
 	      margin-left: 200px;
@@ -180,7 +180,7 @@
 	        color: red;
 	        margin-left: 1600px;
 	        font-weight: 600;
-	        margin-bottom: -10px;
+	        margin-bottom: 5px;
 	    }
 	    .table.table-borderless {
 	      width: 1500px;
@@ -258,7 +258,7 @@
 
 		<section>
             <nav>
-              <form action="" method="POST">
+              <form action="<%= contextPath %>/SignUp.me" method="POST">
                 <div class="boxbox" style="display: flex;">
                   <div class="col-xl-2">
                     <p class="line">인증확인</p>
@@ -307,7 +307,7 @@
                               <!-- Modal footer -->
                               <div class="modal-footer1">
                                 <button class="cancel-btn" data-dismiss="modal">취소</button>
-                                <button type="submit" class="confirm-btn">확인</button></a>
+                                <button type="submit" class="confirm-btn">확인</button>
                               </div>
                           </div>
                         </div>
@@ -329,29 +329,29 @@
                               </colgroup>
                               <tr>
                                 <th><br>이름&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><br><input type="text" class="name"><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정확한 이름을 입력해주세요.</span></td>
+                                  <td colspan="2"><br><input type="text" class="name" required><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정확한 이름을 입력해주세요.</span></td>
                               </tr>
                           </thead>
                           <tbody>
                               <tr>
                                 <th>주민등록번호&nbsp;<span style="color:red;">*</span></th>
                                   <td colspan="2">
-                                    <input type="text" id="number2" style="width: 150px;">
+                                    <input type="text" id="number2" style="width: 150px;" required>
                                     <span style="font-size: 20px;">-</span>
-                                    <input type="text" id="number2" style="width: 150px;">
+                                    <input type="password" id="number2" style="width: 150px;" required>
                                   </td>
                               </tr>
                               <tr>
                                 <th>아이디&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><input type="text" class="id_1"><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6~15자리 영문 소문자, 숫자만 가능합니다.(한글, 특수문자 입력 불가)</span></td>
+                                  <td colspan="2"><input type="text" class="id_1" required><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6~15자리 영문 소문자, 숫자만 가능합니다. (한글, 특수문자 입력 불가)</span></td>
                               </tr>
                               <tr>
                                 <th>비밀번호&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><input type="text" class="pwd_1"><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;특수문자는 ‘!,@,#,$,%,^,&,*’만 가능합니다.</span></td>
+                                  <td colspan="2"><input type="password" class="pwd_1" required><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;특수문자는 ‘!,@,#,$,%,^,&,*’만 가능합니다.</span></td>
                               </tr>
                               <tr>
                                 <th>비밀번호 확인&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><input type="text" class="pwd_2"></td>
+                                  <td colspan="2"><input type="password" class="pwd_2" required></td>
                               </tr>
                               <tr>
                                 <th>휴대폰 번호&nbsp;<span style="color:red;">*</span></th>
@@ -367,9 +367,9 @@
                                             <option value="019">019</option>
                                         </select>
                                         <span style="font-size: 20px;">-</span>
-                                        <input type="text" id="phone12" style="width: 150px;">
+                                        <input type="text" id="phone12" style="width: 150px;" required>
                                         <span style="font-size: 20px;">-</span>
-                                        <input type="text" id="phone12" style="width: 150px;"><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;본인 휴대폰번호를 정확하게 입력하세요.</span></td>
+                                        <input type="text" id="phone12" style="width: 150px;" required><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;본인 휴대폰번호를 정확하게 입력하세요.</span>
                                     </div>
                                 </td>
                             </tr>
@@ -377,15 +377,15 @@
                                 <th>이메일 주소&nbsp;<span style="color:red;">*</span></th>
                                   <td colspan="2">
                                       <div>
-                                          <input type="text" id="e-mail" style="width: 200px;">
-                                          <span style="margin: 10px;">@</span>
+                                          <input type="email" id="e-mail" style="width: 200px;" required>
+                                          <span style=" margin: 10px;">@</span>
                                           <select id="email-domain" style="width: 250px; height: 35px;">
                                               <option value="선택">선택</option>
                                               <option value="naver.com">naver.com</option>
                                               <option value="gmail.com">gmail.com</option>
                                               <option value="hanmail.net">hanmail.net</option>
                                               <option value="nate.com">nate.com</option> 
-                                          </select><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이메일 주소를 입력하세요.</span></td>
+                                          </select><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이메일 주소를 입력하세요.</span>
                                       </div><br>
                                   </td>
                               </tr>
@@ -495,7 +495,7 @@
                     </table>
                    </div>
                    <div class="btn_signupcc">
-                    <a href=""><button type="submit" class="btn btn-primary mx-2" id="signup">회원가입</button></a>
+                    <button type="submit" class="btn btn-primary mx-2" id="signup">회원가입</button>
                     <a href=""><button type="button" class="btn btn-primary mx-2" id="cc">취소</button></a>
                 </div>
               </form>

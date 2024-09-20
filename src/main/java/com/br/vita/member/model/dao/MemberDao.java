@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.InvalidPropertiesFormatException;
+import java.util.Map;
 import java.util.Properties;
 
 import com.br.vita.member.model.vo.Member;
@@ -81,9 +82,7 @@ public class MemberDao {
 			
 			return m;
 		
-		
 	}
-	
 	
 	public String adminDoctorSelect(Connection conn, String addocId) {
 		
@@ -122,6 +121,7 @@ public class MemberDao {
 
 
 	/**
+	 * author : 최보겸
 	 * update - 처리 행 수 생성
 	 * @param conn
 	 * @param m 마이페이지의 멤버 객체
@@ -155,7 +155,8 @@ public class MemberDao {
 	}//updateMember
 
 	/**
-	 * 
+	 * 아이디로 불러와 갱신 데이터 조회
+	 * author : 최보겸
 	 * @param conn
 	 * @param userId 로그인유저 식별할 id
 	 * @return m 갱신된 멤버 객체 반환
@@ -196,6 +197,89 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return m;
+	}
+
+	/**
+	 * 비번 업데이트 
+	 * author : 최보겸
+	 * @param conn
+	 * @param map
+	 * @return result  처리행수 반환
+	 */
+	public int updateMemberPwd(Connection conn, Map<String, String> map) {
+		int result = 0;
+		System.out.println(map);
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateMemberPwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, map.get("updatePwd"));
+			pstmt.setString(2, map.get("userId"));
+			pstmt.setString(3, map.get("userPwd"));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}//updatePwd
+
+	/**
+	 * 회원 탈퇴
+	 * author : 최보겸
+	 * @param conn
+	 * @param userId
+	 * @param userPwd 마지막 확인 위한 비번
+	 * @return result 처리 행수 반환
+	 */
+	public int deleteMember(Connection conn, String userId, String userPwd) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPwd);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}//deleteMember
+	
+	public int memberSignUp(Connection conn, Member m) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("memberSignUp");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getUserName());
+			pstmt.setString(2, m.getUserSSN());
+			pstmt.setString(3, m.getUserId());
+			pstmt.setString(4, m.getUserPwd());
+			pstmt.setString(5, m.getPhone());
+			pstmt.setString(6, m.getEmail());
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
 	}
 
 }

@@ -77,7 +77,25 @@ WHERE
 	</entry>
 
 
-
+	<entry key="updateMemberPwd">
+		UPDATE
+		       MEMBER
+		   SET 
+		       USER_PWD = ?
+		 WHERE 
+		       USER_ID = ?
+		   AND USER_PWD = ?		
+	</entry>
+	
+	<entry key="deleteMember">
+		UPDATE
+		       MEMBER
+		   SET
+		       RESIGN_YN = 'Y'
+		 WHERE 
+		       USER_ID = ?
+		   AND USER_PWD = ?		
+	</entry>
 
 
 

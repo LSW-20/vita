@@ -1,5 +1,10 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.br.vita.news.model.vo.News" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	List<News> list = (List<News>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,141 +41,39 @@
         <br>
         <div class="container" style="text-align: left; font-size: 40px; height: 80px;">
         	<b>뉴스</b>
-        	<a href="/vita/views/admin/manageNews.jsp" style="font-size: 20px;">뉴스관리자페이지이동</a>
-        	<a href="/vita/views/news/newsDetail.jsp" style="font-size: 20px;">뉴스상세페이지이동</a>
         </div>
         <div class="container border" style="height: 10px; background: gray; margin-left: -30px;"></div><br><br>
         <div style="text-align: center; width: 1000px; height: 850px;">
-          <table>
-            <tr style="background: rgb(193, 231, 221);">
-              <th style="width: 80px; height: 60px;">번호</th>
-              <th style="width: 710px;">제목</th>
-              <th style="width: 100px;">작성자</th>
-              <th style="width: 150px;">작성일</th>
-              <th style="width: 80px;">조회수</th>
-            </tr>
-            <tr></tr>
-              <td style="width: 80px;">545</td>
-              <td style="width: 710px;">공공의료본부,'장애인 지원체계구축'을 위한 업무협약 체결</td>
-              <td style="width: 100px;">최고관리자</td>
-              <td style="width: 150px;">2024-07-10</td>
-              <td style="width: 80px;">236</td>
-            </tr>
-            <tr></tr>
-              <td style="width: 80px;">545</td>
-              <td style="width: 710px;">공공의료본부,'장애인 지원체계구축'을 위한 업무협약 체결</td>
-              <td style="width: 100px;">최고관리자</td>
-              <td style="width: 150px;">2024-07-10</td>
-              <td style="width: 80px;">236</td>
-            </tr>
-            <tr></tr>
-              <td style="width: 80px;">545</td>
-              <td style="width: 710px;">공공의료본부,'장애인 지원체계구축'을 위한 업무협약 체결</td>
-              <td style="width: 100px;">최고관리자</td>
-              <td style="width: 150px;">2024-07-10</td>
-              <td style="width: 80px;">236</td>
-            </tr>
-            <tr></tr>
-              <td style="width: 80px;">545</td>
-              <td style="width: 710px;">공공의료본부,'장애인 지원체계구축'을 위한 업무협약 체결</td>
-              <td style="width: 100px;">최고관리자</td>
-              <td style="width: 150px;">2024-07-10</td>
-              <td style="width: 80px;">236</td>
-            </tr>
-            <tr></tr>
-              <td style="width: 80px;">545</td>
-              <td style="width: 710px;">공공의료본부,'장애인 지원체계구축'을 위한 업무협약 체결</td>
-              <td style="width: 100px;">최고관리자</td>
-              <td style="width: 150px;">2024-07-10</td>
-              <td style="width: 80px;">236</td>
-            </tr>
-            <tr></tr>
-              <td style="width: 80px;">545</td>
-              <td style="width: 710px;">공공의료본부,'장애인 지원체계구축'을 위한 업무협약 체결</td>
-              <td style="width: 100px;">최고관리자</td>
-              <td style="width: 150px;">2024-07-10</td>
-              <td style="width: 80px;">236</td>
-            </tr>
-            <tr></tr>
-              <td style="width: 80px;">545</td>
-              <td style="width: 710px;">공공의료본부,'장애인 지원체계구축'을 위한 업무협약 체결</td>
-              <td style="width: 100px;">최고관리자</td>
-              <td style="width: 150px;">2024-07-10</td>
-              <td style="width: 80px;">236</td>
-            </tr>
-            <tr></tr>
-              <td style="width: 80px;">545</td>
-              <td style="width: 710px;">공공의료본부,'장애인 지원체계구축'을 위한 업무협약 체결</td>
-              <td style="width: 100px;">최고관리자</td>
-              <td style="width: 150px;">2024-07-10</td>
-              <td style="width: 80px;">236</td>
-            </tr>
-            <tr></tr>
-              <td style="width: 80px;">545</td>
-              <td style="width: 710px;">공공의료본부,'장애인 지원체계구축'을 위한 업무협약 체결</td>
-              <td style="width: 100px;">최고관리자</td>
-              <td style="width: 150px;">2024-07-10</td>
-              <td style="width: 80px;">236</td>
-            </tr>
-            <tr></tr>
-              <td style="width: 80px;">545</td>
-              <td style="width: 710px;">공공의료본부,'장애인 지원체계구축'을 위한 업무협약 체결</td>
-              <td style="width: 100px;">최고관리자</td>
-              <td style="width: 150px;">2024-07-10</td>
-              <td style="width: 80px;">236</td>
-            </tr>
-            <tr></tr>
-              <td style="width: 80px;">545</td>
-              <td style="width: 710px;">공공의료본부,'장애인 지원체계구축'을 위한 업무협약 체결</td>
-              <td style="width: 100px;">최고관리자</td>
-              <td style="width: 150px;">2024-07-10</td>
-              <td style="width: 80px;">236</td>
-            </tr>
-            <tr></tr>
-              <td style="width: 80px;">545</td>
-              <td style="width: 710px;">공공의료본부,'장애인 지원체계구축'을 위한 업무협약 체결</td>
-              <td style="width: 100px;">최고관리자</td>
-              <td style="width: 150px;">2024-07-10</td>
-              <td style="width: 80px;">236</td>
-            </tr>
-            <tr></tr>
-              <td style="width: 80px;">545</td>
-              <td style="width: 710px;">공공의료본부,'장애인 지원체계구축'을 위한 업무협약 체결</td>
-              <td style="width: 100px;">최고관리자</td>
-              <td style="width: 150px;">2024-07-10</td>
-              <td style="width: 80px;">236</td>
-            </tr>
-            <tr></tr>
-              <td style="width: 80px;">545</td>
-              <td style="width: 710px;">공공의료본부,'장애인 지원체계구축'을 위한 업무협약 체결</td>
-              <td style="width: 100px;">최고관리자</td>
-              <td style="width: 150px;">2024-07-10</td>
-              <td style="width: 80px;">236</td>
-            </tr>
-            <tr></tr>
-              <td style="width: 80px;">545</td>
-              <td style="width: 710px;">공공의료본부,'장애인 지원체계구축'을 위한 업무협약 체결</td>
-              <td style="width: 100px;">최고관리자</td>
-              <td style="width: 150px;">2024-07-10</td>
-              <td style="width: 80px;">236</td>
-            </tr>
+          <table id="news-list" class="table">
+         	 	<thead>
+	            <tr style="background: rgb(193, 231, 221);">
+	              <th style="width: 80px; height: 60px;">번호</th>
+	              <th style="width: 710px;">제목</th>
+	              <th style="width: 100px;">작성자</th>
+	              <th style="width: 150px;">작성일</th>
+	              <th style="width: 80px;">조회수</th>
+	            </tr>
+	          </thead>
+            <tbody>
+            	<% if(list.isEmpty()) { %>
+		          <!-- case1. 조회된 뉴스글이 없을 경우 -->
+		          <tr>
+		            <td colspan="5" style="text-align:center">존재하는 뉴스글이 없습니다.</td>
+		          </tr>
+		          <% } else { %>
+		          	<!-- case2. 조회된 뉴스글이 있을 경우 -->
+		          	<% for(News n : list) { %>
+			          <tr class="board-title">
+			            <td><%= n.getNewsNo() %></td>
+			            <td><%= n.getNewsTitle() %></td>
+			            <td><%= n.getUserId() %></td>
+			            <td><%= n.getRegistDate() %></td>
+			            <td><%= n.getNewsCount() %></td>
+			          </tr>          
+								<% } %>
+							<% } %>
+            </tbody>		
           </table>
-        </div>
-        <div class="container" style="height: 50px;">
-          <ul class="pagination d-flex justify-content-center text-dark">
-            <li class="page-item"><a class="page-link" href="#">이전</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#">6</a></li>
-            <li class="page-item"><a class="page-link" href="#">7</a></li>
-            <li class="page-item"><a class="page-link" href="#">8</a></li>
-            <li class="page-item"><a class="page-link" href="#">9</a></li>
-            <li class="page-item"><a class="page-link" href="#">10</a></li>
-            <li class="page-item"><a class="page-link" href="#">다음</a></li>
-          </ul>
         </div>
       </div>
 

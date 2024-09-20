@@ -357,8 +357,8 @@
         </div>
         <div class="sub">
             <b><br>&nbsp;소식</b><br>
-            <a href="/vita/views/notice/notice.jsp" style="text-decoration: none;">&nbsp;공지사항</a><br>
-            <a href="/vita/views/news/news.jsp" style="text-decoration: none;">&nbsp;뉴스</a>
+            <a href="<%= contextPath %>/list.no" style="text-decoration: none;">&nbsp;공지사항</a><br>
+            <a href="<%= contextPath %>/list.ns" style="text-decoration: none;">&nbsp;뉴스</a>
         </div>
         <div class="sub"></div>
     </div>
