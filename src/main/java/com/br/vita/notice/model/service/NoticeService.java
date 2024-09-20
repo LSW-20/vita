@@ -13,23 +13,6 @@ import com.br.vita.notice.model.vo.Notice;
 
 public class NoticeService {
 
-//	public int selectNoticeListCount() {
-//		
-//	private NoticeDao nDao = new NoticeDao();
-//		
-//	public int selectBoardListCount() {
-//		Connection conn = getConnection();
-//		int listCount = nDao.selectNoticeListCount(conn);
-//		close(conn);
-//		
-//		return listCount;
-//	}
-//	
-//	public List<Notice> selectBoardList(PageInfo pi){
-//		Connection conn = getConnection();
-//		List<Notice> list = nDao.selectBoardList(conn, pi);
-//		close(conn);
-//		return list;
-//	}
+
 
 }
