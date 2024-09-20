@@ -1,7 +1,9 @@
 package com.br.vita.news.model.service;
 
 import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.br.vita.common.model.vo.PageInfo;
 import com.br.vita.news.model.dao.NewsDao;
@@ -29,5 +31,32 @@ public class NewsService {
 		close(conn);
 		return list;
 	}
+
+	public int insertNews(News n) {
+		Connection conn = getConnection();
+		int result = nDao.insertNews(conn, n);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	public Map<String, Object> selectNewsByNo(int newsNo) {
+		Connection conn = getConnection();
+		
+		// 1) Board로부터 게시글 데이터 조회
+		News n = nDao.selectNews(conn, newsNo);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("n", n);
+		
+		close(conn);
+		
+		return map;
+	}
+
 
 }

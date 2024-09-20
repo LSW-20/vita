@@ -86,4 +86,58 @@ public class NewsDao {
 	}
 
 
+	public int insertNews(Connection conn, News n) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertNews");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, n.getNewsTitle());
+			pstmt.setString(2, n.getNewsContent());
+			pstmt.setString(3, n.getUserNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public News selectNews(Connection conn, int newsNo) {
+		News n = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectNews");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, newsNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				n = new News();
+				n.setNewsNo(rset.getInt("news_no"));
+				n.setNewsTitle(rset.getString("news_title"));
+				n.setNewsContent(rset.getString("news_content"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return n;
+	}
+
+
+
+
 }

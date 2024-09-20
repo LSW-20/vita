@@ -30,4 +30,42 @@
 	    WHERE RNUM BETWEEN ? AND ?
 	</entry>
 
+	<entry key="insertNews">
+		INSERT
+		  INTO NEWS
+		  (
+		    NEWS_NO
+		  , NEWS_TITLE
+		  , NEWS_CONTENT
+		  , REGIST_DATE
+		  , USER_NO
+		  , NEWS_COUNT
+		  , STATUS
+		  )
+		  VALUES
+		  (
+		    SEQ_NNO.NEXTVAL
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , ?
+		  , 0
+		  , 'Y'
+		  )
+	</entry>
+
+	<entry key="selectNews">    
+    SELECT
+          NEWS_NO
+        , NEWS_TITLE
+        , NEWS_CONTENT
+        , USER_ID
+     FROM
+          NEWS N
+     JOIN MEMBER M ON (M.USER_NO = N.USER_NO)
+    WHERE 
+    			NEWS_NO = ?
+      AND N.STATUS = 'Y'
+
+	</entry>
 </properties>

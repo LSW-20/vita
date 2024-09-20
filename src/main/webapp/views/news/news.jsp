@@ -204,11 +204,6 @@
 						    // 현재 로그인한 회원 아이디
 						    let loginUserId = '<%= loginUser == null ? "" : loginUser.getUserId() %>';
 
-						    // 콘솔 로그 추가
-						    console.log("게시글 번호:", no);
-						    console.log("작성자 아이디:", writer);
-						    console.log("로그인한 회원 아이디:", loginUserId);
-
 						    if(writer == loginUserId) {
 						      console.log("내가 쓴 글입니다.");
 						      // 현재 내가 쓴 글일 경우 => 조회수증가없이 상세페이지로 바로 이동
@@ -245,10 +240,10 @@
 						      contentType: 'application/json;charset=UTF-8',
 						      data: JSON.stringify({ ids: idsToDelete }),
 						      success: function(response) {
-						    	  // 삭제 성공 알림 표시
-						          alert('선택한 게시글이 성공적으로 삭제되었습니다.');
 						        // 페이지를 새로고침하거나 테이블을 업데이트하여 변경 사항 반영
 						        location.reload();
+						    	  // 삭제 성공 알림 표시
+						          alert('선택한 게시글이 성공적으로 삭제되었습니다.');
 						      },
 						      error: function(xhr, status, error) {
 						        console.error('삭제 요청 실패:', error);
