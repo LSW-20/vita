@@ -1,1 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<entry key="newsList">
+
+SELECT
+				NEWS_NO
+			, NEWS_TITLE
+			, NEWS_CONTENT
+			, REGIST_DATE
+			, USER_NO
+			, NEWS_COUNT
+			, STATUS
+	FROM
+	  		NEWS
+ WHERE
+		   NEWS_NO = ?
+   AND USER_NO = ?
+ 	 AND STATUS IN ('Y') <!-- Y,N둘다 넣으면 두가지 다 포함한데이터 찾음 -->
+		
+
+
+</entry>
+
+
+
+
+
+
+
+
+</properties>
