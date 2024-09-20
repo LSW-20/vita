@@ -13,9 +13,6 @@ public class MemberService {
 	
 	
 	
-	
-	
-	
 	public Member memberLogin(String userId, String userPwd) {
 		
 		Connection conn = getConnection();
@@ -27,8 +24,20 @@ public class MemberService {
 		return loginUser;
 		
 		
+	}
+	public String adminDoctorSelect(String userId) {
+		
+		Connection conn = getConnection();
+		
+		String usertype = mdao.adminDoctorSelect(conn,userId);
+		
+		close(conn);
+		
+		return usertype;
 		
 		
 	}
+	
+	
 
 }

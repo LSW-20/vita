@@ -22,6 +22,14 @@ public class Member {
 	
 	
 	 public Member() {}
+	 
+
+
+	public Member(String userType) {
+		super();
+		this.userType = userType;
+	}
+
 
 
 	public Member(String userNo, String userId, String userPwd, String userName, String phone, String email,

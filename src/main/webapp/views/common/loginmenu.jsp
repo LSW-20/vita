@@ -25,7 +25,7 @@
 
             <div class="btn-group-vertical" style="width: 150px;">
                 <a href="<%=contextPath%>/logout.me" class="btn btn-success">로그아웃</a><p></p>
-                <a href="/vita/views/member/myInfo.jsp" class="btn btn-warning">마이페이지</a><p></p>
+                <a href="<%= contextPath %>/ad_doc.me?userId=<%= loginUser.getUserId() %>" class="btn btn-warning" >마이페이지</a><p></p>
                 <a href="/vita/views/reservation/consultation_AfterLogin.jsp"class="btn btn-primary">진료예약</a>
             </div>
         </div>

@@ -29,6 +29,20 @@ SELECT
    AND RESIGN_YN = 'N'
 		
 
+</entry>
+
+<entry key="adminDoctorSelect">
+
+SELECT 
+			USER_TYPE
+FROM 
+		 MEMBER
+WHERE 
+			USER_ID = ?		
+
+
+
+
 
 
 </entry>
