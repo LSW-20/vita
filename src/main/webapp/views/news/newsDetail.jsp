@@ -41,18 +41,16 @@
 	<%}else { %>
 
 	<style>
-	  section{
-	      position:absolute;
-	      width: 100%;
-	      height: 547;
-	      margin-top: 153px;
+	  section {
+	    position: absolute;
+	    width: 80%; /* Adjust as needed */
+	    height: 547px;
+	    top: 153px;
+	    left: 200px;
 	  }
-		footer {
-	  margin-top: 1500px; /* 페이지마다 footer 조금씩 조정 */
-		}
-		#side_menu {
-		  height: 100%; /* 페이지마다 side_menu 조금씩 조정. 기본값 100% */
-		}
+	  footer {
+	    margin-top: 1500px !important; /* Adjust as needed */
+	  }
 	</style>
 
 <!-- Section start -->
@@ -86,8 +84,11 @@
   </div>
   <% if (loginUser != null && loginUser.getUserId().equals("admin01")) { %>
   </div> <!-- 관리자 사이드바의 div를 닫는 태그 -->
-  <% } %>
+  <%}%>
 </section>
+
+
+
 <!-- Section end -->
 
 

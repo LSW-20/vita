@@ -58,5 +58,24 @@ public class NewsService {
 		return map;
 	}
 
+	public int increaseCount(int newsNo) {
+		Connection conn = getConnection();
+		int result = nDao.increaseCount(conn, newsNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	public List<News> selectNewsList() {
+		Connection conn = getConnection();
+		List<News> list = nDao.selectNewsList(conn);
+		close(conn);
+		return list;
+	}
+
 
 }

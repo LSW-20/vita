@@ -1,6 +1,12 @@
-@ -1,105 +0,0 @@
+<%@ page import="java.util.*" %>
+<%@ page import="com.br.vita.news.model.vo.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	List<News> list = (List<News>)request.getAttribute("list");
+	Map<String, Object> map = (Map<String, Object>)request.getAttribute("map");
+	News n = (News)map.get("n"); // 게시글번호, 제목, 내용, 작성자, 카테고리명
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,15 +73,16 @@ footer {
   <div class="container border p-5 m-4 rounded" style="height: 600px;">
      <h2 class="m-4">뉴스 수정</h2>
      
-     <form action="" method="" class="m-4">
+     <form action="<%= contextPath %>/update.ns" method="post" class="m-4">
+   	   <input type="hidden" name="no" value="<%= n.getNewsNo() %>">
        <table class="table">
          <tr>
            <th>제목</th>
-           <td><input type="text" class="form-control" required value="기존의 뉴스 제목"></td>
+           <td><input type="text" class="form-control" required value="<%=n.getNewsTitle()%>"></td>
          </tr>
          <tr>
            <th>내용</th>
-           <td><textarea rows="10" class="form-control" style="resize:none" required>기존의 뉴스 내용</textarea></td>
+           <td><textarea rows="10" class="form-control" style="resize:none" required><%= n.getNewsContent() %></textarea></td>
          </tr>
        </table>
 
@@ -84,6 +91,7 @@ footer {
        <div align="center">
          <button type="submit" class="btn btn-primary btn-sm">수정하기</button>
          <button type="reset" class="btn btn-danger btn-sm">초기화</button>
+         <button type="button" class="btn btn-outline-warning btn-sm" onclick="history.back();">뒤로가기</button>
        </div>
 
     </form>

@@ -15,6 +15,15 @@ public class News {
 	private String userId;
 	
 	public News() {}
+	
+	
+
+	public News(int newsNo) {
+		super();
+		this.newsNo = newsNo;
+	}
+
+
 
 	public News(int newsNo, String newsTitle, String userId, Date registDate, int newsCount) {
 		super();
