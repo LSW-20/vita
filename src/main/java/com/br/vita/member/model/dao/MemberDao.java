@@ -129,7 +129,7 @@ public class MemberDao {
 	 */
 	public int updateMember(Connection conn, Member m) {
 		
-		System.out.println(m);
+//		System.out.println(m);
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("updateMember");
