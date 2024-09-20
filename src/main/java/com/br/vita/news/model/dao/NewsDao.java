@@ -48,7 +48,6 @@ public class NewsDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println("받아온값: " + listCount);
 		return listCount;
 	}
 	
@@ -83,7 +82,6 @@ public class NewsDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println("받아온값: " + list);
 		return list;
 	}
 
