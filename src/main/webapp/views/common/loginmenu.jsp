@@ -10,11 +10,8 @@
             이용할 수 있습니다.<br><br>
             <div class="btn-group-vertical" style="width: 150px;">
                 <a href="<%= contextPath %>/loginPage.me" class="btn btn-success">로그인</a><p></p>
-                <a href="#" class="btn btn-primary" id="care_service">진료예약</a>
-
                 <a href="<%= contextPath %>/loginPage.me" class="btn btn-warning">마이페이지</a><p></p>
                 <a href="/vita/views/reservation/consultation_beforelogin.jsp" class="btn btn-primary">진료예약</a>
-
             </div>
         </div>
        
@@ -35,3 +32,4 @@
         </div>
          <%} %>
 
+        
