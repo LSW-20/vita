@@ -82,9 +82,7 @@ public class MemberDao {
 			
 			return m;
 		
-		
 	}
-	
 	
 	public String adminDoctorSelect(Connection conn, String addocId) {
 		
