@@ -257,5 +257,31 @@ public class MemberDao {
 		
 		return result;
 	}//deleteMember
+	
+	public int memberSignUp(Connection conn, Member m) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("memberSignUp");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getUserName());
+			pstmt.setString(2, m.getUserSSN());
+			pstmt.setString(3, m.getUserId());
+			pstmt.setString(4, m.getUserPwd());
+			pstmt.setString(5, m.getPhone());
+			pstmt.setString(6, m.getEmail());
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
 
 }
