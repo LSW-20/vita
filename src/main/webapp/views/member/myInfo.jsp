@@ -110,19 +110,20 @@
       </div>
       <!-- Modal body -->
       <div class="modal-body">
-        <form action="">
+        <form action="<%= contextPath %>/updatePwd.me" method="post">
+        <input type="hidden" name="userId" value="<%= loginUser.getUserId()%>">
           <table align="center">
             <tr>
               <th>* 현재 비밀번호</th>
-              <td><input type="password" class="form-control" required></td>
+              <td><input type="password" class="form-control" name="userPwd" required></td>
             </tr>
             <tr>
               <th>* 바꿀 비밀번호</th>
-              <td><input type="password" class="form-control"required></td>
+              <td><input type="password" class="form-control" name="updatePwd" required></td>
             </tr>
             <tr>
               <th>* 비밀번호 확인</th>
-              <td><input type="password" class="form-control"required></td>
+              <td><input type="password" class="form-control" required></td>
             </tr>
             <tr>
               <td colspan="2" style="text-align: center; padding-top: 10px;"><button type="submit" class="btn btn-primary btn-sm" >비밀번호변경</button></td>
@@ -145,7 +146,7 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title"><b>비밀번호 변경</b></h4>
+        <h4 class="modal-title"><b>회원 탈퇴</b></h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <!-- Modal body -->

@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.InvalidPropertiesFormatException;
+import java.util.Map;
 import java.util.Properties;
 
 import com.br.vita.member.model.vo.Member;
@@ -122,6 +123,7 @@ public class MemberDao {
 
 
 	/**
+	 * author : 최보겸
 	 * update - 처리 행 수 생성
 	 * @param conn
 	 * @param m 마이페이지의 멤버 객체
@@ -155,7 +157,8 @@ public class MemberDao {
 	}//updateMember
 
 	/**
-	 * 
+	 * 아이디로 불러와 갱신 데이터 조회
+	 * author : 최보겸
 	 * @param conn
 	 * @param userId 로그인유저 식별할 id
 	 * @return m 갱신된 멤버 객체 반환
@@ -197,5 +200,34 @@ public class MemberDao {
 		}
 		return m;
 	}
+
+	/**
+	 * 비번 업데이트 
+	 * author : 최보겸
+	 * @param conn
+	 * @param map
+	 * @return result  처리행수 반환
+	 */
+	public int updateMemberPwd(Connection conn, Map<String, String> map) {
+		int result = 0;
+		System.out.println(map);
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateMemberPwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, map.get("updatePwd"));
+			pstmt.setString(2, map.get("userId"));
+			pstmt.setString(3, map.get("userPwd"));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}//updatePwd
 
 }

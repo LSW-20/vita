@@ -77,7 +77,16 @@ WHERE
 	</entry>
 
 
-
+	<entry key="updateMemberPwd">
+		UPDATE
+		       MEMBER
+		   SET 
+		       USER_PWD = ?
+		 WHERE 
+		       USER_ID = ?
+		   AND USER_PWD = ?		
+		
+	</entry>
 
 
 

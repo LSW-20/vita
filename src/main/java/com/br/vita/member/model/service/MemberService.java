@@ -1,8 +1,12 @@
 package com.br.vita.member.model.service;
 
-import static com.br.vita.common.template.JDBCTemplate.*;
+import static com.br.vita.common.template.JDBCTemplate.close;
+import static com.br.vita.common.template.JDBCTemplate.commit;
+import static com.br.vita.common.template.JDBCTemplate.getConnection;
+import static com.br.vita.common.template.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.Map;
 
 import com.br.vita.member.model.dao.MemberDao;
 import com.br.vita.member.model.vo.Member;
@@ -61,5 +65,24 @@ public class MemberService {
 		return updateMem;
 		
 	}//updateMember
+
+	
+	public Member updateMemberPwd(Map<String, String> map) {
+		Connection conn = getConnection();
+		//비번 변경
+		int result = mdao.updateMemberPwd(conn, map);
+		
+		Member updateMem = null;
+		if(result > 0) {
+			commit(conn);
+			//갱신 후 데이터 조회
+			updateMem = mdao.selectMemberById(conn, map.get("userId"));
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return updateMem;
+		
+	}//updatePwd
 
 }
