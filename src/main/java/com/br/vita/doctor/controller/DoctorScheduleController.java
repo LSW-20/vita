@@ -36,6 +36,18 @@ public class DoctorScheduleController extends HttpServlet {
 		String dept = request.getParameter("dept");
 		
 		Map<String,Object> map = new DoctorService().selectSchedule(dept);
+		
+		request.setAttribute("Map", map);
+		
+		if(map.get("doc") != null && "내과".equals(map.get("doc"))) {
+			request.getRequestDispatcher("/views/doctor/doc_intro.jsp").forward(request, response);
+			
+		}
+		
+		
+		
+		
+		
 //		System.out.println(map);
 		
 		/*
@@ -43,6 +55,7 @@ public class DoctorScheduleController extends HttpServlet {
 		
 		new Gson().toJson(doc, response.getWriter());
 		*/
+		
 		
 		// map을 request에 담아서
 		// 응답페이지(의료진상세페이지)로 포워딩

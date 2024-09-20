@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
     
     <%@ page import="com.br.vita.member.model.vo.Member" %>
+    <%@ page import="java.util.*" %>
+    <%@ page import="com.br.vita.doctor.model.vo.*" %>
     
 <!DOCTYPE html>
 <html>

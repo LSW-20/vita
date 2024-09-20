@@ -8,11 +8,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.InvalidPropertiesFormatException;
-import java.util.Map;
 import java.util.Properties;
+import static com.br.vita.common.template.JDBCTemplate.*;
+
+import java.util.Map;
 
 import com.br.vita.member.model.vo.Member;
-import static com.br.vita.common.template.JDBCTemplate.*;
 
 public class MemberDao {
 	
