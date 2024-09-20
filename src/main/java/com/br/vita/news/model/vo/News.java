@@ -4,74 +4,87 @@ import java.sql.Date;
 
 public class News {
 
-	private int news_no;
-	private	String news_title;
-	private String news_content;
-	private	Date resist_date;
-	private String user_no;
-	private int news_count;
+	private int newsNo;
+	private String newsTitle;
+	private String newsContent;
+	private Date registDate;
+	private String userNo;
+	private int newsCount;
 	private String status;
-
+	
+	private String userId;
+	
 	public News() {}
 
-	public News(int news_no, String news_title, String news_content, Date resist_date, String user_no, int news_count,
+	public News(int newsNo, String newsTitle, String userId, Date registDate, int newsCount) {
+		super();
+		this.newsNo = newsNo;
+		this.newsTitle = newsTitle;
+		this.userId = userId;
+		this.registDate = registDate;
+		this.newsCount = newsCount;
+	}
+	
+	public News(int newsNo, String newsTitle, String newsContent, Date registDate, String userNo, int newsCount,
 			String status) {
 		super();
-		this.news_no = news_no;
-		this.news_title = news_title;
-		this.news_content = news_content;
-		this.resist_date = resist_date;
-		this.user_no = user_no;
-		this.news_count = news_count;
+		this.newsNo = newsNo;
+		this.newsTitle = newsTitle;
+		this.newsContent = newsContent;
+		this.registDate = registDate;
+		this.userNo = userNo;
+		this.newsCount = newsCount;
 		this.status = status;
 	}
 
-	public int getNews_no() {
-		return news_no;
+	
+	
+	public int getNewsNo() {
+		return newsNo;
 	}
 
-	public void setNews_no(int news_no) {
-		this.news_no = news_no;
+	public void setNewsNo(int newsNo) {
+		this.newsNo = newsNo;
 	}
 
-	public String getNews_title() {
-		return news_title;
+	public String getNewsTitle() {
+		return newsTitle;
 	}
 
-	public void setNews_title(String news_title) {
-		this.news_title = news_title;
+	public void setNewsTitle(String newsTitle) {
+		this.newsTitle = newsTitle;
 	}
 
-	public String getNews_content() {
-		return news_content;
+	public String getNewsContent() {
+		return newsContent;
 	}
 
-	public void setNews_content(String news_content) {
-		this.news_content = news_content;
+	public void setNewsContent(String newsContent) {
+		this.newsContent = newsContent;
 	}
 
-	public Date getResist_date() {
-		return resist_date;
+	public Date getRegistDate() {
+		return registDate;
 	}
 
-	public void setResist_date(Date resist_date) {
-		this.resist_date = resist_date;
+	public void setRegistDate(Date registDate) {
+		this.registDate = registDate;
 	}
 
-	public String getUser_no() {
-		return user_no;
+	public String getUserNo() {
+		return userNo;
 	}
 
-	public void setUser_no(String user_no) {
-		this.user_no = user_no;
+	public void setUserNo(String userNo) {
+		this.userNo = userNo;
 	}
 
-	public int getNews_count() {
-		return news_count;
+	public int getNewsCount() {
+		return newsCount;
 	}
 
-	public void setNews_count(int news_count) {
-		this.news_count = news_count;
+	public void setNewsCount(int newsCount) {
+		this.newsCount = newsCount;
 	}
 
 	public String getStatus() {
@@ -82,14 +95,22 @@ public class News {
 		this.status = status;
 	}
 
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 	@Override
 	public String toString() {
-		return "News [news_no=" + news_no + ", news_title=" + news_title + ", news_content=" + news_content
-				+ ", resist_date=" + resist_date + ", user_no=" + user_no + ", news_count=" + news_count + ", status="
-				+ status + "]";
+		return "News [newsNo=" + newsNo + ", newsTitle=" + newsTitle + ", newsContent=" + newsContent + ", registDate="
+				+ registDate + ", userNo=" + userNo + ", newsCount=" + newsCount + ", status=" + status + ", userId="
+				+ userId + "]";
 	}
+
 	
 	
-		
-		
+	
 }

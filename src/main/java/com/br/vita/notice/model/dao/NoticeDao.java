@@ -11,13 +11,5 @@ public class NoticeDao {
 
 	private Properties prop = new Properties();
 	
-//	public int selectNoticeListCount(Connection conn) {
-//		int listCount = 0;
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		String sql = prop.getProperty("selectNoticeListCount");
-//		
-//		return 0;
-//	}
 
 }

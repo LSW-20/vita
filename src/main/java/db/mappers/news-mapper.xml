@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="selectNewsList">
+		SELECT
+           NEWS_NO
+         , NEWS_TITLE
+         , USER_ID
+         , REGIST_DATE
+         , NEWS_COUNT        
+      FROM 
+           NEWS N
+      JOIN MEMBER M ON (N.USER_NO = M.USER_NO)
+     WHERE 
+           N.STATUS = 'Y'
+     ORDER
+				BY NEWS_NO DESC
+	</entry>
+
+</properties>
