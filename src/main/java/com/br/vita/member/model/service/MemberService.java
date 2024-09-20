@@ -110,7 +110,7 @@ public class MemberService {
    }//deleteMember
 
 
-	public int memberSignUp(Member m) {
+	public int signUpMember(Member m) {
 		Connection conn = getConnection();
 		int result = mdao.memberSignUp(conn, m);
 		
@@ -124,7 +124,6 @@ public class MemberService {
 		
 		return result;
 	}
-
 
 }
 

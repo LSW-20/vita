@@ -1,11 +1,15 @@
 package com.br.vita.member.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.br.vita.member.model.service.MemberService;
+import com.br.vita.member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberSignUpController
@@ -26,6 +30,20 @@ public class MemberSignUpController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 1. 요청
+		// 요청시 전달값 뽑기
+		request.setCharacterEncoding("UTF-8");
+		String userName = request.getParameter("userName");
+		String userSSN = request.getParameter("userSSN");
+		String userId = request.getParameter("userId");
+		String userPwd = request.getParameter("userPwd");
+		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
+		
+		Member m = new Member(userId, userPwd, userName, phone, email, userSSN);
+		
+		// 서비스 호출 (쿼리실행)
+		int result = new MemberService().signUpMember(m);
 		
 		request.getRequestDispatcher("/views/member/signUp_Adult.jsp").forward(request, response);
 	}

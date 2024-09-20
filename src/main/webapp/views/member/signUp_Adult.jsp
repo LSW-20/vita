@@ -377,7 +377,7 @@
                                 <th>이메일 주소&nbsp;<span style="color:red;">*</span></th>
                                   <td colspan="2">
                                       <div>
-                                          <input type="email" id="e-mail" style="width: 200px;" required>
+                                          <input type="text" id="e-mail" style="width: 200px;" required>
                                           <span style=" margin: 10px;">@</span>
                                           <select id="email-domain" style="width: 250px; height: 35px;">
                                               <option value="선택">선택</option>

@@ -66,11 +66,26 @@ public class Member {
 		this.gender = gender;
 	}
 	
+	// 회원가입 요청용 생성자 -미선
+	public Member(String userId, String userPwd, String userName, String phone, String email, String userSSN) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.phone = phone;
+		this.email = email;
+		this.userSSN = userSSN;
+	}
+	
 	
 
 	public String getUserNo() {
 		return userNo;
 	}
+
+
+
+
 
 	public void setUserNo(String userNo) {
 		this.userNo = userNo;
@@ -219,11 +234,8 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
-				+ ", phone=" + phone + ", email=" + email + ", address=" + address + ", enrollDate=" + enrollDate
-				+ ", userType=" + userType + ", userSSN=" + userSSN + ", callbackYN=" + callbackYN + ", resignYN="
-				+ resignYN + ", userDate=" + userDate + ", gender=" + gender + ", representative=" + representative
-				+ "]";
+		return "Member [userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + ", phone=" + phone
+				+ ", email=" + email + ", userSSN=" + userSSN + "]";
 	}
 	 
 	 
