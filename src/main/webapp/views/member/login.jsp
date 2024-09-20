@@ -205,18 +205,7 @@
 	                       </div>
 	                       
 	                       <script>
-	                       	/*
-	                       		로그인 요청을 ajax로 하기 (form submit이 아니라) 이때 아이디랑 비번 전달하기
-	                       		success:function(결과(조회성공인지실패인지)) {
-	                       			if(조회성공일 경우){
-	                       				location.href로 페이지 이동
-	                       			}else{
-	                       				alert띄우기
-	                       			}
-	                       			
-	                       		}
-	                       		
-	                       	*/
+	                       
 	                       	
 	                       	function fnLogin(){
 	                       		

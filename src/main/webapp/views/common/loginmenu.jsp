@@ -10,8 +10,8 @@
             이용할 수 있습니다.<br><br>
             <div class="btn-group-vertical" style="width: 150px;">
                 <a href="<%= contextPath %>/loginPage.me" class="btn btn-success">로그인</a><p></p>
-                <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
-                <a href="semi.html" class="btn btn-primary">진료예약</a>
+                <a href="#" class="btn btn-warning">마이페이지</a><p></p>
+                <a href="#" class="btn btn-primary">진료예약</a>
             </div>
         </div>
         <%}else{ %>
@@ -22,8 +22,8 @@
 
             <div class="btn-group-vertical" style="width: 150px;">
                 <a href="#" class="btn btn-success">로그아웃</a><p></p>
-                <a href="semi.html" class="btn btn-warning">나의차트</a><p></p>
-                <a href="semi.html" class="btn btn-primary">진료예약</a>
+                <a href="#" class="btn btn-warning">마이페이지</a><p></p>
+                <a href="#" class="btn btn-primary">진료예약</a>
             </div>
         </div>
          <%} %>
