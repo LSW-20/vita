@@ -33,23 +33,23 @@
       <div>
         <h2 class="m-4"><b>마이페이지</b></h2>
 
-        <form action="" method="" class="m-4" style="position: relative; left: 30px;">
+        <form action="<%=contextPath %>/update.me" method="post" class="m-4" style="position: relative; left: 30px;">
           <table id="my_info_table" class="table">
             <tr>
               <th width="250px">* 아이디</th>
-              <td width="750px"><input type="text" class="form-control"placeholder="Enter Your ID" value=<%= loginUser.getUserId() %> readonly></td>
+              <td width="750px"><input type="text" class="form-control"placeholder="Enter Your ID" name="userId" value=<%= loginUser.getUserId() %> readonly></td>
             </tr>
             <tr>
               <th>* 병원등록번호(회원번호)</th>
-              <td><input type="text" class="form-control"placeholder="Your UserId" value=<%= loginUser.getUserNo() %> readonly></td>
+              <td><input type="text" class="form-control"placeholder="Your UserId" name="userNo" value=<%= loginUser.getUserNo() %> readonly></td>
             </tr>                 
             <tr>
               <th>* 이름</th>
-              <td><input type="text" class="form-control" placeholder="Enter Your Name" value=<%= loginUser.getUserName() %> required></td>
+              <td><input type="text" class="form-control" placeholder="Enter Your Name" name="userName" value=<%= loginUser.getUserName() %> required></td>
             </tr>      
             <tr>
               <th>&nbsp;&nbsp;생년월일</th>
-              <td><input type="text" class="form-control" placeholder="ex_ 900101" value=<%= loginUser.getUserDate() %> required></td>
+              <td><input type="text" class="form-control" placeholder="ex_ 900101" name="userDate" value=<%= loginUser.getUserDate() %> required></td>
             </tr>   
             <tr>
 						  <th>&nbsp;&nbsp;성별</th>
@@ -74,11 +74,11 @@
             </tr>
             <tr>
               <th>&nbsp;&nbsp;전화번호</th>
-              <td><input type="text" class="form-control" placeholder="Enter Your Phone(include '-')" value=<%= loginUser.getPhone() %> required></td>
+              <td><input type="text" class="form-control" placeholder="Enter Your Phone(include '-')" name="phone" value=<%= loginUser.getPhone() %> required></td>
             </tr>     
             <tr>
               <th>&nbsp;&nbsp;이메일</th>
-              <td><input type="text" class="form-control" placeholder="Enter Your Email(include '@')" value=<%= loginUser.getEmail() %> required></td>
+              <td><input type="text" class="form-control" placeholder="Enter Your Email(include '@')" name="email" value=<%= loginUser.getEmail() %> required></td>
             </tr>       
                                                          
           </table>

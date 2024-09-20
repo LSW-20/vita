@@ -53,11 +53,24 @@ public class Member {
 		this.representative = representative;
 	}
 
+	//마이페이지 정보 수정 요청용 생성자 -보겸
+	public Member(String userNo, String userId, String userName, String phone, String email,
+			String userDate, String gender) {
+		super();
+		this.userNo = userNo;
+		this.userId = userId;
+		this.userName = userName;
+		this.phone = phone;
+		this.email = email;
+		this.userDate = userDate;
+		this.gender = gender;
+	}
+	
+	
 
 	public String getUserNo() {
 		return userNo;
 	}
-
 
 	public void setUserNo(String userNo) {
 		this.userNo = userNo;

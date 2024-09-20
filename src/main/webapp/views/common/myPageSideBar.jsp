@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
   <style>
     section{
         position:absolute;
@@ -61,9 +62,9 @@
         <div class="side" id="sideMenu">
             <div id="MyPageHeader">
                 <br>
-                name 님<br>
+                <%= loginUser.getUserName() %> 님<br>
                 환영합니다.<br>
-                <p>환자번호 : userId</p>
+                <p>환자번호 : <%= loginUser.getUserNo() %></p>
             </div>
             <div id="MyPageMenu">
                 <ul class="">
