@@ -39,23 +39,19 @@ public class DoctorScheduleController extends HttpServlet {
 		
 		request.setAttribute("Map", map);
 		
-		Doctor doctor = (Doctor) map.get("doc");
+		Doctor doctor = (Doctor) map.get("doc");// map안에 담겨있는 객체는 이런식으로 따로 정의해서 아래처럼 원하는 속성값 추출
 		
-		if(doctor.getDeptName().equals("내과")) {
+		
+		if(doctor != null && doctor.getDeptName().equals("내과")) {
 			request.getRequestDispatcher("/views/doctor/doc_intro.jsp").forward(request, response);
-		}else if(doctor.getDeptName().equals("외과")) {
+		}else if(doctor != null && doctor.getDeptName().equals("외과")) {
 			request.getRequestDispatcher("/views/doctor/doc_intro2.jsp").forward(request, response);
-		}else if(doctor.getDeptName().equals("치과")) {
+		}else if(doctor != null && doctor.getDeptName().equals("치과")) {
 			request.getRequestDispatcher("/views/doctor/doc_intro3.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("/views/doctor/doc_intro4.jsp").forward(request, response);
 		}
-			
-		
-		
-		
-		
-		
+	
 		
 //		System.out.println(map);
 		

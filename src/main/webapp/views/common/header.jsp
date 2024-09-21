@@ -36,10 +36,14 @@
 	    String contextPath = request.getContextPath();
 	    Member loginUser = (Member)session.getAttribute("loginUser");
 	    String alertMsg = (String)session.getAttribute("alertMsg");
-	    
+  
     
     %> <!-- 메인변수 정의 -->
     
+    <%
+	    Map<String, Object> map = (Map<String, Object>) request.getAttribute("Map");
+	%>
+   
 </head>
 <body>
 
