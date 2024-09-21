@@ -42,7 +42,7 @@ public class DoctorDao {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		List<DoctorSchedule> d = new ArrayList<>();
+		List<DoctorSchedule> list = new ArrayList<>();
 
 		String sql = prop.getProperty("selectSchedule");
 
@@ -58,7 +58,7 @@ public class DoctorDao {
 															, rset.getString("SCHEDULE_TIME")
 															,rset.getString("SCHEDULE_WEEK"));
 
-				d.add(dShedule);
+				list.add(dShedule);
 			}
 
 		} catch (SQLException e) {
@@ -68,7 +68,7 @@ public class DoctorDao {
 			close(pstmt);
 		}
 
-		return d;
+		return list;
 
 	}
 	

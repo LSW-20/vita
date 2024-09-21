@@ -28,7 +28,7 @@ SELECT
 FROM
      DOCTOR
 WHERE
-     DOCTOR_NO = ?
+     DEPT_NAME = ?
 
 
 

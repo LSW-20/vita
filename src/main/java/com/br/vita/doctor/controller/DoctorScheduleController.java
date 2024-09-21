@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.br.vita.doctor.model.service.DoctorService;
-import com.google.gson.Gson;
+import com.br.vita.doctor.model.vo.Doctor;
 
 /**
  * Servlet implementation class DoctorScheduleController
@@ -39,10 +39,19 @@ public class DoctorScheduleController extends HttpServlet {
 		
 		request.setAttribute("Map", map);
 		
-		if(map.get("doc") != null && "내과".equals(map.get("doc"))) {
+		Doctor doctor = (Doctor) map.get("doc");
+		
+		if(doctor.getDeptName().equals("내과")) {
 			request.getRequestDispatcher("/views/doctor/doc_intro.jsp").forward(request, response);
-			
+		}else if(doctor.getDeptName().equals("외과")) {
+			request.getRequestDispatcher("/views/doctor/doc_intro2.jsp").forward(request, response);
+		}else if(doctor.getDeptName().equals("치과")) {
+			request.getRequestDispatcher("/views/doctor/doc_intro3.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("/views/doctor/doc_intro4.jsp").forward(request, response);
 		}
+			
+		
 		
 		
 		
