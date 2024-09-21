@@ -1,7 +1,13 @@
 <%@ page import="java.util.List" %>
-
+<%@ page import="com.br.vita.cs.model.vo.Cs" %>
+<%@ page import="com.br.vita.common.model.vo.PageInfo" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+		PageInfo pi = (PageInfo)request.getAttribute("pi");
+		List<Cs> csList = (List<Cs>)request.getAttribute("csList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,7 +105,7 @@
 			   </div>
 			 	 <br><br>  
 			 		
-			 <table class="table">
+			 <table class="table" id="board-list">
 			   <thead id="csthead">
 			     <tr>
 			       <th width="50px">번호</th>
@@ -111,52 +117,47 @@
 			   </thead>
 			   <tbody>
 			     <!-- case1. 조회된 게시글이 없을 경우 -->
-			     <!--
+			     <% if(csList.isEmpty()) {%>
 			     <tr>
 			       <td colspan="5" style="text-align: center;">존재하는 게시글이 없습니다.</td>
 			     </tr>
-			     -->
-			
-			     <!-- case2. 조회된 게시글이 있을 경우 -->
-			     <tr>
-			       <td>3</td>
-			       <td>글제목입니다</td>
-			       <td>user01</td>
-			       <td>200</td>
-			       <td>2024-01-12</td>
-			     </tr>
-			     <tr>
-			         <td>3</td>
-			         <td>글제목입니다</td>
-			         <td>user02</td>
-			         <td>200</td>
-			         <td>2024-01-12</td>
-			     </tr>
-			     <tr>
-			         <td>3</td>
-			         <td>글제목입니다</td>
-			         <td>user02</td>
-			         <td>200</td>
-			         <td>2024-01-12</td>
-			     </tr>
-			     <tr>
-			         <td>3</td>
-			         
-			         <td>글제목입니다</td>
-			         <td>user01</td>
-			         <td>200</td>
-			         <td>2024-01-12</td>
-			     </tr>
-			     <tr>
-			         <td>3</td>
-			         
-			         <td>글제목입니다</td>
-			         <td>user03</td>
-			         <td>200</td>
-			         <td>2024-01-12</td>
-			     </tr>
+			     <%} else{ %>
+				
+				     <!-- case2. 조회된 게시글이 있을 경우 -->
+				     <% for(Cs c : csList){ %>
+				     <tr>
+				       <td><%= c.getBoardNo() %></td>
+				       <td><%= c.getBoardTitle() %></td>
+				       <td><%= c.getBoardWriter() %></td>
+				       <td><%= c.getBoardCount() %></td>
+				       <td><%= c.getRegistDt() %></td>
+				     </tr>
+				     <%} %>
+			     <%} %>
 			   </tbody>
-			 </table>		   
+			 </table>		
+			 <script>
+			
+				$(function(){
+			 		$('#board-list tbody>tr').on('click', function(){
+			 			let no = $(this).children().eq(0).text();
+			 			let writer = $(this).children().eq(2).text();
+			 			//현재로그인한회원 아이디
+			 			let loginUserId = '<%= loginUser == null ? "" : loginUser.getUserId() %>';
+			 			if(writer == loginUserId){
+			 				location.href="<%=contextPath%>/detail.cs?no="+no;
+			 			}else {
+			 				//내가 쓴 글일 경우 - 조회수 증가 없이 csDetail.jsp상세이동
+			 				//내가 쓴 글이 아닐 경우 - 조회수 증가하면서 csDetail.jsp상세이동
+			 				location.href = "<%=contextPath%>/increase.cs?no="+no;
+			 			}
+			 			
+			 		})
+			 	}) 
+			 	
+			 </script>
+			 
+			    
 	     <hr>
 			 <!-- 현재 로그인되어있는 회원일 경우 보여지는 요소 -->
 			 <% if(loginUser != null) {%>
@@ -168,14 +169,16 @@
  
 	  
 	 	 <!-- 페이징바 -->
-		 <ul class="pagination d-flex justify-content-center text-dark">
-		   <li class="page-item disabled"><a class="page-link" href="">이전</a></li>
-		   <li class="page-item active"><a class="page-link" href="">1</a></li>
-		   <li class="page-item"><a class="page-link" href="">2</a></li>
-		   <li class="page-item"><a class="page-link" href="">3</a></li>
-		   <li class="page-item"><a class="page-link" href="">4</a></li>
-		   <li class="page-item"><a class="page-link" href="">5</a></li>
-		   <li class="page-item"><a class="page-link" href="">다음</a></li>
+		 <ul class="pagination d-flex justify-content-center text-dark" id="paging_bar">
+		   <li class='page-item <%=pi.getCurrentPage() == 1 ? "disabled" : ""%>'>
+		   	<a class="page-link" href="<%= contextPath %>/list.cs?page=<%=pi.getCurrentPage()-1%>">이전</a>
+		   </li>
+		   <% for(int p = pi.getStartPage(); p<pi.getEndPage(); p++) {%>
+		   	<li class='page-item <%=p == pi.getCurrentPage() ? "active" : ""%>'>
+		   		<a class="page-link" href="<%= contextPath %>/list.cs?page=<%=p%>"><%= p %></a></li>
+		   	<%} %>
+        <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
+         <a class="page-link" href="<%= contextPath %>/list.cs?page=<%=pi.getCurrentPage()+1 %>">다음</a>		   	
 		 </ul>
 
 	 </div>

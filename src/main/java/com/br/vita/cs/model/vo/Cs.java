@@ -7,6 +7,7 @@ public class Cs {
 	private String userNo;
 	private String boardTitle;
 	private String boardContent;
+	private String boardWriter;//MEMBER 테이블과 join해서 가져올 userId
 	private Date registDt;
 	private int boardCount;
 	private String status;
@@ -17,13 +18,14 @@ public class Cs {
 	
 	public Cs() {}
 
-	public Cs(int boardNo, String userNo, String boardTitle, String boardContent, Date registDt, int boardCount,
+	public Cs(int boardNo, String userNo, String boardTitle, String boardContent, String boardWriter, Date registDt, int boardCount,
 			String status, String category, String cEmp, String cDept, String answerContent) {
 		super();
 		this.boardNo = boardNo;
 		this.userNo = userNo;
 		this.boardTitle = boardTitle;
 		this.boardContent = boardContent;
+		this.boardWriter = boardWriter;
 		this.registDt = registDt;
 		this.boardCount = boardCount;
 		this.status = status;
@@ -31,6 +33,18 @@ public class Cs {
 		this.cEmp = cEmp;
 		this.cDept = cDept;
 		this.answerContent = answerContent;
+	}
+
+	
+
+	public Cs(int boardNo, String boardTitle, String boardWriter, Date registDt, int boardCount, String category) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.boardWriter = boardWriter;
+		this.registDt = registDt;
+		this.boardCount = boardCount;
+		this.category = category;
 	}
 
 	public int getBoardNo() {
@@ -63,6 +77,14 @@ public class Cs {
 
 	public void setBoardContent(String boardContent) {
 		this.boardContent = boardContent;
+	}
+
+	public String getBoardWriter() {
+		return boardWriter;
+	}
+	
+	public void setBoardWriter(String boardWriter) {
+		this.boardWriter = boardWriter;
 	}
 
 	public Date getRegistDt() {

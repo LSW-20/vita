@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<!--게시글 개수 반환쿼리-->
+	<entry key="selectBoardListCount">
+		SELECT
+		       COUNT(*) AS COUNT
+		  FROM 
+		       TAB_CS  
+		 WHERE 
+		       STATUS = 'Y'		
+	</entry>
+	
+	<!--페이지에 맞는 게시글 리스트 불러오기-->
+	<entry key="selectBoardList">
+		SELECT  * 
+		  FROM (
+		        SELECT
+		               BOARD_NO
+		             , CATEGORY
+		             , BOARD_TITLE
+		             , USER_ID
+		             , BOARD_COUNT
+		             , REGIST_DATE
+		             , ROW_NUMBER() OVER(ORDER BY BOARD_NO DESC) AS RNUM
+		          FROM 
+		               TAB_CS C
+		          JOIN MEMBER M
+		            ON M.USER_NO = C.USER_NO
+		         WHERE 
+		               C.STATUS = 'Y'
+		        )
+		  WHERE RNUM BETWEEN ? AND ?		
+		
+	</entry>
+
+
+</properties>
