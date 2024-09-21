@@ -257,19 +257,20 @@ public class MemberDao {
 		return result;
 	}//deleteMember
 	
-	public int memberSignUp(Connection conn, Member m) {
+	
+	public int signUpAdultMember(Connection conn, Member m) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("memberSignUp");
+		String sql = prop.getProperty("signUpAdultMember");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m.getUserName());
-			pstmt.setString(2, m.getUserSSN());
-			pstmt.setString(3, m.getUserId());
-			pstmt.setString(4, m.getUserPwd());
-			pstmt.setString(5, m.getPhone());
-			pstmt.setString(6, m.getEmail());
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getUserPwd());
+			pstmt.setString(3, m.getUserName());
+			pstmt.setString(4, m.getPhone());
+			pstmt.setString(5, m.getEmail());
+			pstmt.setString(6, m.getUserSSN());
 
 			result = pstmt.executeUpdate();
 			
@@ -280,6 +281,8 @@ public class MemberDao {
 		}
 		
 		return result;
+		
+		
 		
 	}
 

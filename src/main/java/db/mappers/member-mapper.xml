@@ -96,6 +96,46 @@ WHERE
 		       USER_ID = ?
 		   AND USER_PWD = ?		
 	</entry>
+	
+	<entry key="signUpAdultMember">
+		 INSERT
+		 	 INTO MEMBER
+		 	 (
+		 	   USER_NO
+		 	 , USER_ID
+		 	 , USER_PWD
+		 	 , USER_NAME
+		 	 , PHONE
+		 	 , EMAIL
+		 	 , ADDRESS
+		 	 , ENROLL_DATE
+		 	 , USER_TYPE
+		 	 , USER_SSN
+		 	 , CALLBACK_YN
+		 	 , RESIGN_YN
+		 	 , USER_DATE
+		 	 , USER_GENDER
+		 	 , REPRESENTATIVE
+		 	 )
+		 	 VALUES
+		 	 (
+		 	 	 SEQ_UNO.NEXTVAL
+		 	 , ?
+		 	 , ?
+		 	 , ?
+			 , ?
+			 , ?
+			 , NULL
+			 , SYSDATE
+			 , 'U'
+			 , ?
+			 , 'N'
+			 , 'N'
+			 , '920719'
+			 , 'F'
+			 , NULL
+			 )
+	</entry>
 
 
 

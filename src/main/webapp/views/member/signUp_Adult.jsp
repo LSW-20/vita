@@ -258,7 +258,7 @@
 
 		<section>
             <nav>
-              <form action="<%= contextPath %>/SignUp.me" method="POST">
+              <form action="<%= contextPath %>/SignUp_Adult.me" method="POST">
                 <div class="boxbox" style="display: flex;">
                   <div class="col-xl-2">
                     <p class="line">인증확인</p>
@@ -329,25 +329,25 @@
                               </colgroup>
                               <tr>
                                 <th><br>이름&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><br><input type="text" class="name" required><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정확한 이름을 입력해주세요.</span></td>
+                                  <td colspan="2"><br><input type="text" class="name" name="userName" required><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정확한 이름을 입력해주세요.</span></td>
                               </tr>
                           </thead>
                           <tbody>
                               <tr>
                                 <th>주민등록번호&nbsp;<span style="color:red;">*</span></th>
                                   <td colspan="2">
-                                    <input type="text" id="number2" style="width: 150px;" required>
+                                    <input type="text" id="number2" style="width: 150px;" name="userSSN" required>
                                     <span style="font-size: 20px;">-</span>
-                                    <input type="password" id="number2" style="width: 150px;" required>
+                                    <input type="password" id="number2" style="width: 150px;" name="userSSN" required>
                                   </td>
                               </tr>
                               <tr>
                                 <th>아이디&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><input type="text" class="id_1" required><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6~15자리 영문 소문자, 숫자만 가능합니다. (한글, 특수문자 입력 불가)</span></td>
+                                  <td colspan="2"><input type="text" class="id_1" name="userId" required><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6~15자리 영문 소문자, 숫자만 가능합니다. (한글, 특수문자 입력 불가)</span></td>
                               </tr>
                               <tr>
                                 <th>비밀번호&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><input type="password" class="pwd_1" required><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;특수문자는 ‘!,@,#,$,%,^,&,*’만 가능합니다.</span></td>
+                                  <td colspan="2"><input type="password" class="pwd_1" name="userPwd" required><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;특수문자는 ‘!,@,#,$,%,^,&,*’만 가능합니다.</span></td>
                               </tr>
                               <tr>
                                 <th>비밀번호 확인&nbsp;<span style="color:red;">*</span></th>
@@ -367,9 +367,9 @@
                                             <option value="019">019</option>
                                         </select>
                                         <span style="font-size: 20px;">-</span>
-                                        <input type="text" id="phone12" style="width: 150px;" required>
+                                        <input type="text" id="phone12" style="width: 150px;" name="phone" required>
                                         <span style="font-size: 20px;">-</span>
-                                        <input type="text" id="phone12" style="width: 150px;" required><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;본인 휴대폰번호를 정확하게 입력하세요.</span>
+                                        <input type="text" id="phone12" style="width: 150px;" name="phone" required><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;본인 휴대폰번호를 정확하게 입력하세요.</span>
                                     </div>
                                 </td>
                             </tr>
@@ -377,7 +377,7 @@
                                 <th>이메일 주소&nbsp;<span style="color:red;">*</span></th>
                                   <td colspan="2">
                                       <div>
-                                          <input type="text" id="e-mail" style="width: 200px;" required>
+                                          <input type="text" id="e-mail" style="width: 200px;" name="email" required>
                                           <span style=" margin: 10px;">@</span>
                                           <select id="email-domain" style="width: 250px; height: 35px;">
                                               <option value="선택">선택</option>
