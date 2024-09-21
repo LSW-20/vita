@@ -14,7 +14,7 @@ import com.br.vita.member.model.vo.Member;
 /**
  * Servlet implementation class MemberSignUpController
  */
-@WebServlet("/SignUp.me")
+@WebServlet("/SignUp_Adult.me")
 public class MemberSignUpController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,9 +43,10 @@ public class MemberSignUpController extends HttpServlet {
 		Member m = new Member(userId, userPwd, userName, phone, email, userSSN);
 		
 		// 서비스 호출 (쿼리실행)
-		int result = new MemberService().signUpMember(m);
+		int result = new MemberService().signUpAdultMember(m);
 		
-		request.getRequestDispatcher("/views/member/signUp_Adult.jsp").forward(request, response);
+		request.getRequestDispatcher("/webapp/index.jsp").forward(request, response);
+		
 	}
 
 	/**
@@ -54,6 +55,8 @@ public class MemberSignUpController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
+		
 	}
 
 }

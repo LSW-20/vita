@@ -110,9 +110,10 @@ public class MemberService {
    }//deleteMember
 
 
-	public int signUpMember(Member m) {
+	public int signUpAdultMember(Member m) {
+		
 		Connection conn = getConnection();
-		int result = mdao.memberSignUp(conn, m);
+		int result = mdao.signUpAdultMember(conn, m);
 		
 		if(result > 0) {
 			commit(conn);
@@ -125,5 +126,6 @@ public class MemberService {
 		return result;
 	}
 
+	
 }
 
