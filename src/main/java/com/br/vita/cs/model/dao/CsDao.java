@@ -1,5 +1,5 @@
 package com.br.vita.cs.model.dao;
 
-public class A {
+public class CsDao {
 
 }

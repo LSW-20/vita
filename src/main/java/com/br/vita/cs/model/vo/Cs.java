@@ -1,4 +1,4 @@
-package com.br.vita.member.model.vo;
+package com.br.vita.cs.model.vo;
 
 import java.sql.Date;
 
@@ -131,3 +131,4 @@ public class Cs {
 	
 	
 }
+
