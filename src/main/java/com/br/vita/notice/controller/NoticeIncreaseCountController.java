@@ -33,7 +33,7 @@ public class NoticeIncreaseCountController extends HttpServlet {
 		
 		int result = new NoticeService().increaseCount(noticeNo);
 	
-		response.sendRedirect(request.getContextPath() + "/detail.ns?no=" + noticeNo);
+		response.sendRedirect(request.getContextPath() + "/detail.no?no=" + noticeNo);
 	}
 
 	/**
