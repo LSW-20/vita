@@ -322,7 +322,7 @@
         </div>
         <div class="sub">
             <b><br>&nbsp;고객서비스</b><br>
-            <a href="" style="text-decoration: none;">&nbsp;고객의소리</a><br>
+            <a href="<%= contextPath %>/list.cs" style="text-decoration: none;">&nbsp;고객의소리</a><br>
             <a href="" style="text-decoration: none;">&nbsp;칭찬코너</a>
         </div>
         <div class="sub"></div>
