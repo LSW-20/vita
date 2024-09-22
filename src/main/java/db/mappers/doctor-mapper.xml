@@ -36,7 +36,18 @@ WHERE
 
 <entry key="">
 
-
+UPDATE SCHEDULE
+SET WORKING = 'N'
+WHERE 
+     DOCTOR_NO IN (
+                    SELECT 
+                          DOCTOR_NO
+                    FROM 
+                          DOCTOR
+                     WHERE
+                          DOCTOR_NAME = '박시우')
+AND SCHEDULE_WEEK = '월'
+AND SCHEDULE_TIME = 'A'
 
 
 
