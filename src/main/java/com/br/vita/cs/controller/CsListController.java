@@ -31,13 +31,18 @@ public class CsListController extends HttpServlet {
 	/**
 	 * 고객의소리 페이징처리
 	 * 리스트 DB에서 불러오기
+	 * 카테고리 분류해서 띄우기
 	 * author: 최보겸
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//카테고리 받아오기 NULL일경우 C로 가져오기 처리
+		String category = request.getParameter("category") == null ? "C" : request.getParameter("category");
+		
+		
 		//메뉴바 클릭시 /list.cs ->1번페이지 요청
 		//목록 페이징바 클릭시 /list.cs?page=페이지번호 ->클릭한 페이지 요청
-		int listCount = new CsService().selectBoardListCount();			//현재 게시글 총 개수
+		int listCount = new CsService().selectBoardListCount(category);			//"카테고리에 따른" 현재 게시글 총 개수
 		
 		int currentPage = 1;											//사용자가 요청한 페이지 번호
 		if(request.getParameter("page") != null) {
@@ -59,15 +64,16 @@ public class CsListController extends HttpServlet {
 		//페이징바 제작 위한 데이터 vo생성해서 common에 배치
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
+		//"해당 카테고리의"
 		//사용자 요청 페이지 상 필요한 게시글 데이터 조회
-		List<Cs> csList = new CsService().selectBoardList(pi);
+		List<Cs> csList = new CsService().selectBoardList(pi, category);
 		
 		//응답 페이지 : 일반 게시글 목록 /views/cs/csList.jsp
 		//응답 데이터 : 페이징바 제작 할 데이터, 게시글 데이터
 		request.setAttribute("pi", pi);
 		request.setAttribute("csList", csList);
+		request.setAttribute("category",category);
 
-		System.out.println("startPage : "+startPage+", endPage: "+endPage);
 		request.getRequestDispatcher("/views/cs/csList.jsp").forward(request, response);
 	}//doGet
 

@@ -20,11 +20,12 @@ public class CsService {
 	/**
 	 * 게시글개수 DB에서 가져오기
 	 * author: 최보겸
+	 * @param category 해당 카테고리 같이 넘김
 	 * @return listCount 
 	 */
-	public int selectBoardListCount() {
+	public int selectBoardListCount(String category) {
 		Connection conn = getConnection();
-		int listCount = cDao.selectBoardListCount(conn);
+		int listCount = cDao.selectBoardListCount(conn, category);
 		return listCount;
 	}
 	
@@ -32,11 +33,12 @@ public class CsService {
 	 * 그 페이지에 맞는 게시글 리스트 데이터 가져오기
 	 * author: 최보겸
 	 * @param pi
+	 * @param category
 	 * @return csList
 	 */
-	public List<Cs> selectBoardList(PageInfo pi) {
+	public List<Cs> selectBoardList(PageInfo pi, String category) {
 		Connection conn = getConnection();
-		List<Cs> csList = cDao.selectBoardList(conn, pi);
+		List<Cs> csList = cDao.selectBoardList(conn, pi, category);
 		close(conn);
 		return csList;
 	}

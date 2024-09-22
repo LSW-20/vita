@@ -7,6 +7,7 @@
 <%
 		PageInfo pi = (PageInfo)request.getAttribute("pi");
 		List<Cs> csList = (List<Cs>)request.getAttribute("csList");
+		String category = request.getParameter("category") == null ? "C" : request.getParameter("category");
 %>
 <!DOCTYPE html>
 <html>
@@ -74,6 +75,15 @@
 <body>
 	 <%@ include file="/views/common/header.jsp" %>
 	 <%@ include file="/views/common/myPageSideBar.jsp" %>
+	 <script>
+	 	/* 버튼카테고리조회탭 */
+	 	$(document).ready(function(){
+	 		$(".cs_check").on("change", function(){
+	 			const category = $(this).val();
+	 			location.href = "<%=contextPath%>/list.cs?category=" + category;
+	 		});
+	 	});
+	 </script>
 	 <div class="side" id="navContent">
 		
 	   <br><h2 style="margin-left: 160px;"><b>고객의 소리</h2>  
@@ -81,15 +91,15 @@
 	   <!-- 카테고리 변경 탭 버튼 -->
      <div class="d-flex btn-group" role="group" aria-label="Segmented button" style="padding: 20px;width: 80%; max-width: 1500px; margin: 0 auto;">
        <!-- 칭찬합니다 (기본 선택) -->
-       <input type="radio" class="cs_check" name="options" id="option1" autocomplete="off" checked>
+       <input type="radio" class="cs_check" name="options" id="option1" value="C" <%= category.equals("C") ? "checked" : "" %> autocomplete="off">
        <label class="btn btn-outline-primary" for="option1">칭찬합니다</label>
      
        <!-- 문의합니다 -->
-       <input type="radio" class="cs_check" name="options" id="option2" autocomplete="off">
+       <input type="radio" class="cs_check" name="options" id="option2" value="S" <%= category.equals("S") ? "checked" : "" %> autocomplete="off">
        <label class="btn btn-outline-primary" for="option2">문의합니다</label>
      
        <!-- QnA -->
-       <input type="radio" class="cs_check" name="options" id="option3" autocomplete="off">
+       <input type="radio" class="cs_check" name="options" id="option3" value="Q" <%= category.equals("Q") ? "checked" : "" %> autocomplete="off">
        <label class="btn btn-outline-primary" for="option3">QnA</label>
      </div> 
 		
@@ -155,6 +165,8 @@
 			 		})
 			 	}) 
 			 	
+
+			 	
 			 </script>
 			 
 			    
@@ -175,10 +187,10 @@
 		   </li>
 		   <% for(int p = pi.getStartPage(); p<= pi.getEndPage(); p++) {%>
 		   	<li class='page-item <%=p == pi.getCurrentPage() ? "active" : ""%>'>
-		   		<a class="page-link" href="<%= contextPath %>/list.cs?page=<%=p%>"><%= p %></a></li>
+		   		<a class="page-link" href="<%= contextPath %>/list.cs?page=<%=p%>&category=<%=category%>"><%= p %></a></li>
 		   	<%} %>
         <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
-         <a class="page-link" href="<%= contextPath %>/list.cs?page=<%=pi.getCurrentPage()+1 %>">다음</a>		   	
+         <a class="page-link" href='<%= contextPath %>/list.cs?page=<%=pi.getCurrentPage()+1 %>&category=<%=category%>'>다음</a>		   	
 		 </ul>
 
 	 </div>

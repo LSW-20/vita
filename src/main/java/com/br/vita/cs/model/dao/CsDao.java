@@ -31,9 +31,10 @@ public class CsDao {
 	 * 게시글 개수를 DB에서 뽑아와 반환
 	 * author: 최보겸
 	 * @param conn
+	 * @param cetegory
 	 * @return listCount
 	 */
-	public int selectBoardListCount(Connection conn) {
+	public int selectBoardListCount(Connection conn, String category) {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -41,6 +42,7 @@ public class CsDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, category);//카테고리 설정
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -62,9 +64,10 @@ public class CsDao {
 	 * author: 최보겸
 	 * @param conn
 	 * @param pi 페이지정보 갖고 있는 객체
+	 * @param category 불러올 게시글 카테고리
 	 * @return csList
 	 */
-	public List<Cs> selectBoardList(Connection conn, PageInfo pi) {
+	public List<Cs> selectBoardList(Connection conn, PageInfo pi, String category) {
 		List<Cs> csList = new ArrayList<>();
 		ResultSet rset = null;
 		PreparedStatement pstmt = null;
@@ -74,8 +77,11 @@ public class CsDao {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1) * pi.getBoardLimit() + 1;
 			int endRow = startRow + pi.getBoardLimit()-1;
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			
+			pstmt.setString(1, category);
+			
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			
 			rset = pstmt.executeQuery();
 			
@@ -88,7 +94,6 @@ public class CsDao {
 								, rset.getString("CATEGORY")
 						));
 			}
-			System.out.println("startRow : "+startRow +", endRow: "+ endRow);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
