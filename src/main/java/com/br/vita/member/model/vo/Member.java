@@ -78,6 +78,21 @@ public class Member {
 	}
 	
 	
+	// 회원정보 조회 요청용 생성자
+	public Member(String userId, String userName, String userSSN, String address
+					, String email, String callbackYN, String phone, Date enrollDate) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.userSSN = userSSN;
+		this.address = address;
+		this.email = email;
+		this.callbackYN = callbackYN;
+		this.phone = phone;
+		this.enrollDate = enrollDate;
+	}
+
+
 
 	public String getUserNo() {
 		return userNo;

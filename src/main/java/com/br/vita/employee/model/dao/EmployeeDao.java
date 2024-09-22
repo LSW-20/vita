@@ -10,7 +10,7 @@ public class EmployeeDao {
 	
 	public EmployeeDao() {
 		
-		String filePath = EmployeeDao.class.getResource("/db/mappers/company-mapper.xml").getPath();
+		String filePath = EmployeeDao.class.getResource("/db/mappers/employee-mapper.xml").getPath();
 		
 		try {
 			prop.loadFromXML(new FileInputStream(filePath));

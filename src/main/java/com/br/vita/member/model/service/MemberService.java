@@ -6,6 +6,7 @@ import static com.br.vita.common.template.JDBCTemplate.getConnection;
 import static com.br.vita.common.template.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.List;
 import java.util.Map;
 
 import com.br.vita.member.model.dao.MemberDao;
@@ -126,6 +127,23 @@ public class MemberService {
 		return result;
 	}
 
+	
+	/**
+	 * author : 임상우
+	 * @param userName
+	 * @return List<Member> 검색된 회원 데이터들
+	 */
+	public List<Member> selectByName(String userName) {
+		Connection conn = getConnection();
+		List<Member> list = mdao.selectByName(conn, userName);
+		close(conn);
+		return list;
+	}
+	
+	
+	
+	
+	
 	
 }
 

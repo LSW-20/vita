@@ -1,5 +1,12 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.br.vita.member.model.vo.Member" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+List<Member> list = (List<Member>)request.getAttribute("list");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -136,8 +143,8 @@
                     <tr>
                         <td class="left_cell">이름</td>
                         <td class="right_cell_1">
-                            <form action="" method="">
-                                <input type="text" name="이름" size="20">
+                            <form action="<%= contextPath %>/searchMemByName.admin" method="get">
+                                <input type="text" name="user_name" size="20">
                                 <button type="submit" class="btn btn-secondary" style="margin-left: 20px;">검색</button>
                             </form>
                         </td>
@@ -146,8 +153,8 @@
                     <tr>
                         <td class="left_cell">아이디</td>
                         <td class="right_cell_1">
-                            <form action="" method="">
-                                <input type="text" name="사번" size="20">
+                            <form action="<%= contextPath %>/searchMemById.admin" method="get">
+                                <input type="text" name="user_id" size="20">
                                 <button type="submit" class="btn btn-secondary" style="margin-left: 20px;">검색</button>
                             </form>
                         </td>
@@ -158,171 +165,46 @@
 
 
 
-            <%-- 조건처리하는법. 검색 이전상태랑 검색했는데 결과가 없는경우를 구분하기 위해 flag 변수 사용한다.
-            <% boolean searchPerformed = (Boolean) request.getAttribute("searchPerformed"); %>
-
-            <% if (!searchPerformed) { %>
-               검색 이전 상태
-                초기 화면을 표시 
-            <% } else if (doctorList.isEmpty()) { %>
-                검색했지만 결과가 없는 경우
-                <div class="search_doctor_result">의료진 검색 결과</div>
-                <table class="table table-striped">
-                    <tr>
-                        <td colspan="10" style="text-align: center;">검색 결과가 없습니다.</td>
-                    </tr>
-                </table>
-            <% } else { %>
-                검색 결과가 있는 경우 
-            --%> 
 
 
             <br><br>
-            <!-- case1. 회원 검색 결과가 없는 경우  -->
             <div class="search_member_result">회원 검색 결과</div> <br>
 
-            <form action="">
-                <table class="table table-striped">
-                    <tr>
-                        <th>아이디</th>
-                        <th>이름</th>
-                        <th>주민등록번호</th>
-                        <th>주소</th>
-                        <th>이메일</th>
-                        <th>수신여부</th>
-                        <th>핸드폰 번호</th>
-                        <th>회원가입일</th>
-                    </tr>
 
+            <table class="table table-striped">
+                <tr>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>주민등록번호</th>
+                    <th>주소</th>
+                    <th>이메일</th>
+                    <th>수신여부</th>
+                    <th>핸드폰 번호</th>
+                    <th>회원가입일</th>
+                </tr>
+
+                <% if(list.isEmpty()) {%>
+                    <!-- case1. 회원 검색 결과가 없는 경우  -->
                     <tr>
                         <td colspan="10" style="text-align: center;">검색 결과가 없습니다.</td>
                     </tr>
-                </table>
+                <% } else { %>
+                <!-- case2. 회원 검색 결과가 있는 경우 -->
+                    <% for(Member m : list) { %>
+                        <tr>
+                            <td><%= m.getUserId() %></td>
+                            <td><%= m.getUserName() %></td>
+                            <td><%= m.getUserSSN() %></td>
+                            <td><%= m.getAddress() %></td>
+                            <td><%= m.getEmail() %></td>
+                            <td><%= m.getCallbackYN() %></td>
+                            <td><%= m.getPhone() %></td>
+                            <td><%= m.getEnrollDate() %></td>
+                        </tr>
+                    <% } %>    
+                <% } %>
+            </table>
 
-            </form>
-
-            <br><br>
-
-            <!-- case2. 의료진 검색 결과가 있는 경우 -->
-            <div class="search_member_result">회원 검색 결과</div> <br>
-
-            <form action="">
-                <table class="table table-striped">
-                    <tr>
-                        <th>아이디</th>
-                        <th>이름</th>
-                        <th>주민등록번호</th>
-                        <th>주소</th>
-                        <th>이메일</th>
-                        <th>수신여부</th>
-                        <th>핸드폰 번호</th>
-                        <th>회원가입일</th>
-                    </tr>
-
-                    <tr>
-                        <td>abcd111</td>
-                        <td>가가가</td>
-                        <td>901011-2154687</td>
-                        <td>서울 강동구 강동대로51길 56-2, 201호</td>
-                        <td>abcd111@gmail.com</td>
-                        <td>Y</td>
-                        <td>010-6542-4633</td>
-                        <td>2020-07-03</td>
-                    </tr>
-                    <tr>
-                        <td>abcd111</td>
-                        <td>가가가</td>
-                        <td>901011-2154687</td>
-                        <td>서울 강동구 강동대로51길 56-2, 201호</td>
-                        <td>abcd111@gmail.com</td>
-                        <td>Y</td>
-                        <td>010-6542-4633</td>
-                        <td>2020-07-03</td>
-                    </tr>
-                    <tr>
-                        <td>abcd111</td>
-                        <td>가가가</td>
-                        <td>901011-2154687</td>
-                        <td>서울 강동구 강동대로51길 56-2, 201호</td>
-                        <td>abcd111@gmail.com</td>
-                        <td>Y</td>
-                        <td>010-6542-4633</td>
-                        <td>2020-07-03</td>
-                    </tr>
-                    <tr>
-                        <td>abcd111</td>
-                        <td>가가가</td>
-                        <td>901011-2154687</td>
-                        <td>서울 강동구 강동대로51길 56-2, 201호</td>
-                        <td>abcd111@gmail.com</td>
-                        <td>Y</td>
-                        <td>010-6542-4633</td>
-                        <td>2020-07-03</td>
-                    </tr>
-                    <tr>
-                        <td>abcd111</td>
-                        <td>가가가</td>
-                        <td>901011-2154687</td>
-                        <td>서울 강동구 강동대로51길 56-2, 201호</td>
-                        <td>abcd111@gmail.com</td>
-                        <td>Y</td>
-                        <td>010-6542-4633</td>
-                        <td>2020-07-03</td>
-                    </tr>
-                    <tr>
-                        <td>abcd111</td>
-                        <td>가가가</td>
-                        <td>901011-2154687</td>
-                        <td>서울 강동구 강동대로51길 56-2, 201호</td>
-                        <td>abcd111@gmail.com</td>
-                        <td>Y</td>
-                        <td>010-6542-4633</td>
-                        <td>2020-07-03</td>
-                    </tr>
-                    <tr>
-                        <td>abcd111</td>
-                        <td>가가가</td>
-                        <td>901011-2154687</td>
-                        <td>서울 강동구 강동대로51길 56-2, 201호</td>
-                        <td>abcd111@gmail.com</td>
-                        <td>Y</td>
-                        <td>010-6542-4633</td>
-                        <td>2020-07-03</td>
-                    </tr>
-                    <tr>
-                        <td>abcd111</td>
-                        <td>가가가</td>
-                        <td>901011-2154687</td>
-                        <td>서울 강동구 강동대로51길 56-2, 201호</td>
-                        <td>abcd111@gmail.com</td>
-                        <td>Y</td>
-                        <td>010-6542-4633</td>
-                        <td>2020-07-03</td>
-                    </tr>
-                    <tr>
-                        <td>abcd111</td>
-                        <td>가가가</td>
-                        <td>901011-2154687</td>
-                        <td>서울 강동구 강동대로51길 56-2, 201호</td>
-                        <td>abcd111@gmail.com</td>
-                        <td>Y</td>
-                        <td>010-6542-4633</td>
-                        <td>2020-07-03</td>
-                    </tr>
-                    <tr>
-                        <td>abcd111</td>
-                        <td>가가가</td>
-                        <td>901011-2154687</td>
-                        <td>서울 강동구 강동대로51길 56-2, 201호</td>
-                        <td>abcd111@gmail.com</td>
-                        <td>Y</td>
-                        <td>010-6542-4633</td>
-                        <td>2020-07-03</td>
-                    </tr>
-
-                </table>
-
-            </form>
 
 
             <br>

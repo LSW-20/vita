@@ -138,5 +138,22 @@ WHERE
 	</entry>
 
 
-
+  <!-- (상우) 회원 이름으로 회원 검색 -->
+	<entry key="selectByName">
+		SELECT 
+						USER_ID
+					, USER_NAME
+					, USER_SSN
+					, ADDRESS
+					, EMAIL
+					, CALLBACK_YN
+					, PHONE
+					, ENROLL_DATE
+		FROM 
+					MEMBER
+		WHERE 
+					USER_NAME = ?
+	</entry>
+	
+	
 </properties>

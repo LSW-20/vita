@@ -7,7 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
+import java.util.List;
 import java.util.Properties;
 import static com.br.vita.common.template.JDBCTemplate.*;
 
@@ -281,9 +283,57 @@ public class MemberDao {
 		}
 		
 		return result;
+
+	}
+	
+	
+	/**
+	 * author : 임상우
+	 * @param conn
+	 * @param userName
+	 * @return List<Member> 검색된 회원 데이터들
+	 */
+	public List<Member> selectByName(Connection conn, String userName) {
+		
+		//select문 => 여러행 => List<Member>
+		List<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectByName");
 		
 		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userName);
+			rset=pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Member(rset.getString("USER_ID"),
+									rset.getString("USER_NAME"),
+									rset.getString("USER_SSN"),
+									rset.getString("ADDRESS"),
+									rset.getString("EMAIL"),
+									rset.getString("CALLBACK_YN"),
+									rset.getString("PHONE"),
+									rset.getDate("ENROLL_DATE")
+						));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return list;
 		
 	}
+	
+	
+	
 
 }
