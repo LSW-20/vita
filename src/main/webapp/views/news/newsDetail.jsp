@@ -72,7 +72,7 @@
 
     <table class="table m-4">
     	<tr>
-    		<th>번호</th>
+    		<th style="width:80px;">번호</th>
     		<td><%= n.getNewsNo() %></td>
     		<th>작성자</th>
     		<td><%= n.getUserId() %></td>
