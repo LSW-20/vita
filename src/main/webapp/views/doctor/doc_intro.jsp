@@ -74,6 +74,7 @@
       	margin-left: 20px;
       	width: 900px;
       	margin-top: 75px;
+      	text-align: center;
       	
       }
       
