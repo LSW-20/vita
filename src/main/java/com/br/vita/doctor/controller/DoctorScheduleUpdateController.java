@@ -45,6 +45,8 @@ public class DoctorScheduleUpdateController extends HttpServlet {
 		String friA = request.getParameter("friAfternoon"); 
 		
 		
+		
+		
 		new DoctorService().doctorScheduleUpdate(name,monM,tueM,wedM,thuM,friM,monA,tueA,wedA,thuA,friA);
 	
 		
