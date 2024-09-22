@@ -339,44 +339,23 @@
                               <tr>
                                 <th>주민등록번호&nbsp;<span style="color:red;">*</span></th>
                                   <td colspan="2">
-                                    <input type="text" id="number2" style="width: 150px;">
-                                    <span style="font-size: 20px;">-</span>
-                                    <input type="text" id="number2" style="width: 150px;">
+                                    <input type="text" id="number2" name="userSSN" required>
+                                    <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 를 포함해서 적어주세요. &nbsp;&nbsp;ex) 900101-2222222</span>
                                   </td>
                               </tr>
                               <tr>
                                 <th>휴대폰 번호&nbsp;<span style="color:red;">*</span></th>
                                 <td colspan="2">
-                                    <div>
-                                        <select id="phone_number" style="width: 90px; height: 35px;">
-                                            <option value="선택">선택</option>
-                                            <option value="010">010</option>
-                                            <option value="011">011</option>
-                                            <option value="016">016</option>
-                                            <option value="017">017</option>
-                                            <option value="018">018</option>
-                                            <option value="019">019</option>
-                                        </select>
-                                        <span style="font-size: 20px;">-</span>
-                                        <input type="text" id="phone12" style="width: 150px;">
-                                        <span style="font-size: 20px;">-</span>
-                                        <input type="text" id="phone12" style="width: 150px;"><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;본인 휴대폰번호를 정확하게 입력하세요.</span></td>
-                                    </div>
+                                  <input type="text" id="phone12" name="phone" required>
+                                  <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 를 포함한 본인 휴대폰번호를 정확하게 입력하세요. &nbsp;&nbsp;ex)010-1111-2222</span>
                                 </td>
                             </tr>
                               <tr>
                                 <th>이메일 주소&nbsp;<span style="color:red;">*</span></th>
                                   <td colspan="2">
                                       <div>
-                                          <input type="text" id="e-mail" style="width: 200px;">
-                                          <span style="margin: 10px;">@</span>
-                                          <select id="email-domain" style="width: 250px; height: 35px;">
-                                              <option value="선택">선택</option>
-                                              <option value="naver.com">naver.com</option>
-                                              <option value="gmail.com">gmail.com</option>
-                                              <option value="hanmail.net">hanmail.net</option>
-                                              <option value="nate.com">nate.com</option> 
-                                          </select><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이메일 주소를 입력하세요.</span></td>
+                                          <input type="text" id="e-mail" name="email" required>
+                                          <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @ 를 포함한 이메일 주소를 입력하세요. &nbsp;&nbsp;ex)abc@naver.com</span>
                                       </div><br>
                                   </td>
                               </tr>
