@@ -228,11 +228,13 @@
 		                       		success:function(res){
 		                       			if(res != null){
 		                       				location.href = '<%=contextPath %>';
-		                       				console.log(res);
+		                       				
+		                       				
+		                       				/* console.log(res); */
 		                       			}else{
 		                       				alert('아이디와 비밀번호를 다시 확인해주세요');
 		                       				location.href = '<%=contextPath %>/views/member/login.jsp';
-		                       				console.log(res);
+		                       				/* console.log(res); */
 		                       			}
 		                       		},
 		                       		type:"post"

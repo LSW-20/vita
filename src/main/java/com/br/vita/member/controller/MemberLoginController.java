@@ -44,6 +44,7 @@ public class MemberLoginController extends HttpServlet {
 			new Gson().toJson(loginUser, response.getWriter());
 			HttpSession session = request.getSession(); 
 			session.setAttribute("loginUser",loginUser);
+			session.setAttribute("alertMsg",  loginUser.getUserName()  + "님 반갑습니다");
 	
 			
 		
