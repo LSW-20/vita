@@ -10,7 +10,7 @@ public class ReservationDao {
 	
 	public ReservationDao() {
 		
-		String filePath = ReservationDao.class.getResource("/db/mappers/company-mapper.xml").getPath();
+		String filePath = ReservationDao.class.getResource("/db/mappers/reservation-mapper.xml").getPath();
 		
 		try {
 			prop.loadFromXML(new FileInputStream(filePath));
