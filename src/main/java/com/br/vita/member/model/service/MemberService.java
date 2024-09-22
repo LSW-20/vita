@@ -64,6 +64,7 @@ public class MemberService {
       }else {
          rollback(conn);
       }
+      close(conn);
       return updateMem;
       
    }//updateMember
