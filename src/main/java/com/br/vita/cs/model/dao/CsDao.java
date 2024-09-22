@@ -27,8 +27,9 @@ public class CsDao {
 	}//CsDao
 
 	/**
-	 * 페이징을 위한
+	 * 페이징을 위한 
 	 * 게시글 개수를 DB에서 뽑아와 반환
+	 * author: 최보겸
 	 * @param conn
 	 * @return listCount
 	 */
@@ -58,6 +59,7 @@ public class CsDao {
 	/**
 	 * 페이지에 맞는 게시글 리스트 가져오기
 	 * select해오는 거니까 rset
+	 * author: 최보겸
 	 * @param conn
 	 * @param pi 페이지정보 갖고 있는 객체
 	 * @return csList
@@ -71,7 +73,7 @@ public class CsDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1) * pi.getBoardLimit() + 1;
-			int endRow = startRow + pi.getBoardLimit();
+			int endRow = startRow + pi.getBoardLimit()-1;
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			
@@ -86,6 +88,7 @@ public class CsDao {
 								, rset.getString("CATEGORY")
 						));
 			}
+			System.out.println("startRow : "+startRow +", endRow: "+ endRow);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

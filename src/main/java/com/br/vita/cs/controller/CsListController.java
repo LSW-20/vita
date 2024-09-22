@@ -29,24 +29,27 @@ public class CsListController extends HttpServlet {
     }
 
 	/**
+	 * 고객의소리 페이징처리
+	 * 리스트 DB에서 불러오기
+	 * author: 최보겸
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//메뉴바 클릭시 /list.cs ->1번페이지 요청
 		//목록 페이징바 클릭시 /list.cs?page=페이지번호 ->클릭한 페이지 요청
-		int listCount = new CsService().selectBoardListCount();//listCount = 현재게시글 총 개수
+		int listCount = new CsService().selectBoardListCount();			//현재 게시글 총 개수
 		
-		int currentPage = 1;//사용자가 요청한 페이지 번호
+		int currentPage = 1;											//사용자가 요청한 페이지 번호
 		if(request.getParameter("page") != null) {
 			currentPage = Integer.parseInt(request.getParameter("page"));
 		}
 		
-		int pageLimit = 10;//페이징바 목록 개수
-		int boardLimit = 5;//한페이지에 보일 개시글 수
+		int pageLimit = 10;												//페이징바 목록 개수
+		int boardLimit = 5;												//한페이지에 보일 게시글 수
 		
-		int maxPage = (int)Math.ceil((double)listCount / boardLimit);
-		int startPage = (currentPage -1) / pageLimit * pageLimit+1;
-		int endPage = startPage + pageLimit - 1;
+		int maxPage = (int)Math.ceil((double)listCount / boardLimit);	//총 페이지 수
+		int startPage = (currentPage -1) / pageLimit * pageLimit+1;		//사용자요청 페이지 하단에 보여질 페이징바의 시작수
+		int endPage = Math.min(startPage + pageLimit - 1, maxPage);//사용자요청 페이지 하단에 보여질 페이징바의 끝수
 		
 		//endPage>maxPage 경우 처리
 		if(endPage > maxPage) {
@@ -64,6 +67,7 @@ public class CsListController extends HttpServlet {
 		request.setAttribute("pi", pi);
 		request.setAttribute("csList", csList);
 
+		System.out.println("startPage : "+startPage+", endPage: "+endPage);
 		request.getRequestDispatcher("/views/cs/csList.jsp").forward(request, response);
 	}//doGet
 

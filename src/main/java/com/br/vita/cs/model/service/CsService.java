@@ -19,6 +19,7 @@ public class CsService {
 
 	/**
 	 * 게시글개수 DB에서 가져오기
+	 * author: 최보겸
 	 * @return listCount 
 	 */
 	public int selectBoardListCount() {
@@ -29,6 +30,7 @@ public class CsService {
 	
 	/**
 	 * 그 페이지에 맞는 게시글 리스트 데이터 가져오기
+	 * author: 최보겸
 	 * @param pi
 	 * @return csList
 	 */
