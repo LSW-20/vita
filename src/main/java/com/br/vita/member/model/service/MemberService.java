@@ -46,6 +46,7 @@ public class MemberService {
 
 
    /**
+    * @author 최보겸
     * @param m 업데이트할 멤버객체
     * @return updateMem 업데이트 된 멤버 객체 정보를 갱신하기 위해 만듦 
     *          null | 갱신 회원객체 정보 반환
@@ -69,6 +70,7 @@ public class MemberService {
 
    /**
     * 비밀번호 변경
+    * @author 최보겸
     * @param map key+value세트
     * @return updateMem 갱신 된 멤버 객체
     */
@@ -91,7 +93,8 @@ public class MemberService {
    }//updatePwd
    
    /**
-    * 
+    * 회원탈퇴
+    * @author 최보겸
     * @param userId
     * @param userPwd
     * @return result 처리 행수
