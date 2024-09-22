@@ -130,8 +130,9 @@ public class MemberDao {
 
 
 	/**
-	 * author : 최보겸
+	 * 마이페이지 개인정보수정
 	 * update - 처리 행 수 생성
+	 * @author 최보겸
 	 * @param conn
 	 * @param m 마이페이지의 멤버 객체
 	 * @return result 처리 행 수 반환
@@ -165,7 +166,7 @@ public class MemberDao {
 
 	/**
 	 * 아이디로 불러와 갱신 데이터 조회
-	 * author : 최보겸
+	 * @author 최보겸
 	 * @param conn
 	 * @param userId 로그인유저 식별할 id
 	 * @return m 갱신된 멤버 객체 반환
@@ -210,7 +211,7 @@ public class MemberDao {
 
 	/**
 	 * 비번 업데이트 
-	 * author : 최보겸
+	 * @author 최보겸
 	 * @param conn
 	 * @param map
 	 * @return result  처리행수 반환
@@ -239,7 +240,7 @@ public class MemberDao {
 
 	/**
 	 * 회원 탈퇴
-	 * author : 최보겸
+	 * @author 최보겸
 	 * @param conn
 	 * @param userId
 	 * @param userPwd 마지막 확인 위한 비번

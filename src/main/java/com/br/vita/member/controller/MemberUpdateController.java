@@ -28,6 +28,8 @@ public class MemberUpdateController extends HttpServlet {
     }
 
 	/**
+	 * 개인정보수정
+	 * @author 보겸
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 * 정보 변경에 필요한 컬럼들을 불러올 수 있게 getParameter
 	 */

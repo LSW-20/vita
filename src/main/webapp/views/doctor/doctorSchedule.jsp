@@ -196,6 +196,7 @@
 
                 <script>
                     function fnSchedule(){
+                    	
                         alert('성공적으로 등록 되었습니다');
                         
                         
@@ -211,7 +212,7 @@
                         let $thuA = $('#thu-afternoon').val()
                         let $friA = $('#fri-afternoon').val()
 
-                        console.log($monM,$tueM,$wedM,$thuM,$friM);
+                       
 
                         // 오전일정
                         if($monM == 'Y'){
@@ -274,39 +275,38 @@
                         }else if($friA == 'N'){
                             $('#aY_5').css('display','block').css('backgroundColor','red');
                         }
+                        
+                        
+                        $.ajax({
+                            url: '<%= contextPath %>/schedule.up',
+                            type: 'post',
+                            data: {
+                                monMorning: $monM,
+                                tueMorning: $tueM,
+                                wedMorning: $wedM,
+                                thuMorning: $thuM,
+                                friMorning: $friM,
+                                monAfternoon: $monA,
+                                tueAfternoon: $tueA,
+                                wedAfternoon: $wedA,
+                                thuAfternoon: $thuA,
+                                friAfternoon: $friA,
+                                name: '<%= loginUser.getUserName() %>',
+                                
+                            },
+                            success: function(res) {
+                                console.log("서버 응답:", res);
+                            },
+                           
+                        });
+                        
 
                          
                     }
-                <%--     
-                 	$.ajax({
-                 		url : '<%= contextPath%>/schedule.up',
-                 		type : 'post',
-                 		data: {
-                 			
-                 		mor:{	
-                 				 $('#mon-morning').val()
-	                            ,$('#tue-morning').val()
-	                            ,$('#wed-morning').val()
-	                            ,$('#thu-morning').val()
-	                            ,$('#fri-morning').val() 
-	                        },
-
-                         aft:{   
-                        	 	 ,$('#mon-afternoon').val()
-		                         ,$('#tue-afternoon').val()
-		                         ,$('#wed-afternoon').val()
-		                         ,$('#thu-afternoon').val()
-		                         ,$('#fri-afternoon').val()
-                         	  }
-
-                 		},
-                 		success:function(res){
-                 			consloe.log(res);
-                 		},
-                 	})
                     
-                     --%>
-                    
+                
+					    
+             
                     
                     
                 </script>

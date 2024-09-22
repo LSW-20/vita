@@ -44,7 +44,6 @@ public class DoctorService {
 		
 		
 		
-		
 	}
 	
 	
@@ -95,6 +94,14 @@ public class DoctorService {
 		close(conn);
 		return list;
 
+	public void doctorScheduleUpdate() {
+		
+		Connection conn = getConnection();
+		
+		
+		
+		
+		
 	}
 	
 

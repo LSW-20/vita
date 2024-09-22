@@ -30,6 +30,7 @@ public class MemberPwdUpdateController extends HttpServlet {
     }
 
 	/**
+	 * @author 보겸
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 * 비밀번호 변경 요청
 	 */
