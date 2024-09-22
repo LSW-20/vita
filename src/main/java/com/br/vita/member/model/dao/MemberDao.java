@@ -39,7 +39,13 @@ public class MemberDao {
 
 	}
 	
-	
+	/***
+	 * author : 박시우
+	 * @param conn
+	 * @param userId
+	 * @param userPwd
+	 * @return 입력한 id,pwd 로 조회한 해당 user데이터 m 회원객체에 담아서 반환
+	 */
 	public Member memberLogin(Connection conn, String userId, String userPwd) {
 		
 		

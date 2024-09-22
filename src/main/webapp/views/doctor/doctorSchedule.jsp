@@ -277,7 +277,7 @@
 
                          
                     }
-                    
+                <%--     
                  	$.ajax({
                  		url : '<%= contextPath%>/schedule.up',
                  		type : 'post',
@@ -305,7 +305,7 @@
                  		},
                  	})
                     
-                    
+                     --%>
                     
                     
                     
