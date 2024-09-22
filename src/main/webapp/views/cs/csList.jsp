@@ -173,7 +173,7 @@
 		   <li class='page-item <%=pi.getCurrentPage() == 1 ? "disabled" : ""%>'>
 		   	<a class="page-link" href="<%= contextPath %>/list.cs?page=<%=pi.getCurrentPage()-1%>">이전</a>
 		   </li>
-		   <% for(int p = pi.getStartPage(); p<pi.getEndPage(); p++) {%>
+		   <% for(int p = pi.getStartPage(); p<= pi.getEndPage(); p++) {%>
 		   	<li class='page-item <%=p == pi.getCurrentPage() ? "active" : ""%>'>
 		   		<a class="page-link" href="<%= contextPath %>/list.cs?page=<%=p%>"><%= p %></a></li>
 		   	<%} %>
