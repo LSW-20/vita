@@ -291,7 +291,8 @@
                                 wedAfternoon: $wedA,
                                 thuAfternoon: $thuA,
                                 friAfternoon: $friA,
-                                name: '<%= loginUser.getUserName() %>'
+                                name: '<%= loginUser.getUserName() %>',
+                                
                             },
                             success: function(res) {
                                 console.log("서버 응답:", res);
