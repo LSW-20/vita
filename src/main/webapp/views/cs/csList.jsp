@@ -155,11 +155,12 @@
 			 			//현재로그인한회원 아이디
 			 			let loginUserId = '<%= loginUser == null ? "" : loginUser.getUserId() %>';
 			 			if(writer == loginUserId){
-			 				location.href="<%=contextPath%>/detail.cs?no="+no;
-			 			}else {
 			 				//내가 쓴 글일 경우 - 조회수 증가 없이 csDetail.jsp상세이동
+			 				location.href="<%=contextPath%>/detail.cs?no="+no+"&category=<%=category%>";
+			 			}else {
 			 				//내가 쓴 글이 아닐 경우 - 조회수 증가하면서 csDetail.jsp상세이동
-			 				location.href = "<%=contextPath%>/increase.cs?no="+no;
+			 				<%-- location.href = "<%=contextPath%>/increase.cs?no="+no+"&category=<%=category%>"; --%>
+			 				location.href="<%=contextPath%>/detail.cs?no="+no+"&category=<%=category%>";
 			 			}
 			 			
 			 		})

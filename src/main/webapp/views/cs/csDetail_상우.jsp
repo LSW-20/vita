@@ -1,5 +1,14 @@
+<%@ page import="com.br.vita.cs.model.vo.Cs" %>
+<%@ page import="com.br.vita.member.model.vo.Member" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+	Cs board = (Cs)request.getAttribute("board");
+	Member m = (Member)request.getAttribute("m");
+	String category = request.getParameter("category") == null ? "C" : request.getParameter("category");
+%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,17 +37,17 @@
 #sideMenu{
     background-color: rgb(54, 99, 204);
     width: 20%;
-    height: 270%;
+    height: 220%;
 }
 footer{
-    margin-top: 2300px;
+    margin-top: 2000px;
 } 
 
 
 
 /* 로그인한 회원에 따라 달라지는 버튼 요소들 - 상우 */
 #if_btn {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -115,131 +124,129 @@ footer{
 		
     <table id="csUserInfo" class="table">
 			<tr>
-				<th width="130px">카테고리</th>
+				<th width="130px" id="category" value="<%= board.getCategory() %>">카테고리</th>
 				<td>
-					getCategory
+				<%if(board.getCategory().equals("Q")) {%>
+					QnA
+				<%}else if(board.getCategory().equals("S")){ %>
+					건의합니다
+				<%}else{ %>
+					칭찬합니다
+				<%} %>
 				</td>
-			<!-- write jsp페이지에서 셀렉
-				<td><select name="selectCategory">
-				    <option value="compliment" selected>칭찬합니다.</option>
-				    <option value="suggestion">건의합니다.</option>
-				    <option value="qna">QnA</option>
-				    </select>
-				</td>
-			-->
 			</tr>
         <tr>
             <th>보내는사람</th>
-            <td>getUserId</td>
+            <td><%= board.getUserName() %></td>
         </tr>
         <tr>
             <th>연락처</th>
-            <td>getPhone</td>
+            <td><%= board.getPhone() %></td>
         </tr>
         <tr>
             <th>이메일</th>
-            <td>getMail@naver.com</td>
+            <td><%= board.getEmail() %></td>
         </tr>       
 
         <tr>
             <th>환자 정보</th>
             <td style="min-height: 20px;">
             <p style="font-size: 10px;">*환자 정보는 정확한 업무처리를 위해 필요한 부분이므로, 재차 확인해 주시길 바랍니다.</p>
-            환자이름 <input type="text" name="patientName" value="userName" readonly>&nbsp;&nbsp;
+            환자이름 <input type="text" name="patientName" value="<%= board.getUserName() %>" readonly>&nbsp;&nbsp;
             환자 본인<br> 
-            등록번호 <input type="text" name="patientId" value="userId" readonly>&nbsp;&nbsp;   
-            생년월일 <input type="date" name="patientBirth" value="userDate" readonly>
+            등록번호 <input type="text" name="patientId" value="<%= board.getBoardWriter() %>" readonly>&nbsp;&nbsp;   
+            생년월일 <input type="text" name="patientBirth" value="<%= board.getUserDate() %>" readonly>
             </td>
         </tr>
     </table>
 
 
     <!-- 고객의소리 칭찬합니다일 경우 이 테이블을 뿌림 -->
-    <!-- 
+ 			<% if(board.getCategory().equals("C")) {%>
         <table id="compliment_table" class="table" >
             <tr>
-            <th width="130px">칭찬직원</th>
-            <td>XXX</td>
-            <td width="130px" style="background-color:#eaf3fa;">장소(부서)</td>
-            <td>1층로비</td>           
+	            <th width="130px">칭찬직원</th>
+	            <td><%= board.getcEmp() %></td>
+	            <td width="130px" style="background-color:#eaf3fa;">장소(부서)</td>
+	            <td><%= board.getcDept() == null ? "" : board.getcDept()  %></td>           
             </tr>
             <tr>
             <th>제목</th>
-            <td colspan="3">기존 일반게시글 제목</td>
+            <td colspan="3"><%= board.getBoardTitle() %></td>
             </tr>
             <tr>
             <th>내용</th>
-            <td colspan="3"><p style="min-height:250px;">기존 일반게시글 내용</p></td>
+            <td colspan="3"><p style="min-height:250px;"><%= board.getBoardContent() %></p></td>
             </tr>
         </table>
-    -->
-
+			<%} else{ %>
     <!-- 나머지 게시판일 경우 이 테이블을 뿌림 -->
     <table id="other_table" class="table">
         <tr>
             <th width="130px">제목</th>
-            <td>getTitle 기존 일반게시글 제목</td>
+            <td><%= board.getBoardTitle() %></td>
         </tr>
         <tr>
             <th>내용</th>
-            <td><p style="min-height:300px;">기존 일반게시글 내용</p></td>
+            <td><p style="min-height:300px;"><%= board.getBoardContent() %></p></td>
         </tr>
     </table>  
-
+		<%} %>
 
 
     <!-- 로그인한 회원에 따라 달라지는 버튼 요소들 - 상우 -->
 	<div id="if_btn">
 
-	    case1. 그냥 조회의 경우 보여지는 요소
+	    <!-- case1. 그냥 조회의 경우 보여지는 요소 -->
+	    <% if(!loginUser.getUserId().equals(board.getBoardWriter()) || loginUser == null) {%>
         <br>
         <div>
 	        <button type="button" class="btn btn-warning btn-sm">목록가기</button>
         </div>
-        <br><br>
-
-	    case2. 현재 로그인되어있는 회원이 해당 게시글의 작성자 본인일 경우 보여지는 요소
-        <br>
-        <div>
-            <button type="button" class="btn btn-secondary btn-sm">수정하기 페이지로</button> &nbsp;
-            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_modal">삭제하기</button> &nbsp;
-            <button type="button" class="btn btn-warning btn-sm">목록가기</button>
-        </div>
-        <br><br>
-
-        case3. 현재 로그인되어있는 회원이 관리자이고, 답변이 달려있지 않을 때 보여지는 요소
+			<%} else if(board.getUserType().equals("A") && board.getAnswerContent()==null){ %>
+        <!-- case3. 현재 로그인되어있는 회원이 관리자이고, 답변이 달려있지 않을 때 보여지는 요소 -->
         <br>
         <div>
             <button type="button" class="btn btn-secondary btn-sm"  id="reply_write_btn">답변하기</button> &nbsp;
             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_modal">삭제하기</button> &nbsp;
             <button type="button" class="btn btn-warning btn-sm">목록가기</button>
         </div>
-        <br><br>
-
-        case4. 현재 로그인되어있는 회원이 관리자이고, 답변이 달려있을 때 보여지는 요소
+      <%} else if(board.getUserType().equals("A") && board.getAnswerContent()!=null){ %>
+        <!-- case4. 현재 로그인되어있는 회원이 관리자이고, 답변이 달려있을 때 보여지는 요소 -->
         <br>
         <div>
             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_modal">삭제하기</button> &nbsp;
             <button type="button" class="btn btn-warning btn-sm">목록가기</button>
         </div>
+       <%}else if(loginUser != null && loginUser.getUserId().equals(board.getBoardWriter())) {%>
+	    <!-- case2. 현재 로그인되어있는 회원이 해당 게시글의 작성자 본인일 경우 보여지는 요소 -->
+        <br>
+        <div>
+            <button type="button" class="btn btn-secondary btn-sm">수정하기 페이지로</button> &nbsp;
+            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_modal">삭제하기</button> &nbsp;
+            <button type="button" class="btn btn-warning btn-sm">목록가기</button>
+        </div> 
+        <%}%>
 	</div>
     
 
     <!-- 이 게시글에 답변이 있는 경우 보여줄 '답변 조회 테이블' -->
+    <% if(board.getAnswerContent() != null) {%>
     <br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이 게시글에 답변이 있는 경우 보여줄 '답변 조회 테이블'
     <table class="table reply_table">
         <tr>
             <th width="130px">제목</th>
-            <td>RE: getTitle 기존 일반게시글 제목</td>
+            <td>RE: <%= board.getBoardTitle() %></td>
         </tr>
 
         <tr>
             <th>내용</th>
-            <td><p style="min-height:300px;">관리자가 작성한 답변 내용</p></td>
+            <td><p style="min-height:300px;"><%= board.getAnswerContent() %></p></td>
             <!-- textarea도 name 속성을 주면 form에서 input처럼 값을 넘길 수 있다. -->
         </tr>
     </table>    
+    <%} %>
 
 
 
@@ -251,7 +258,7 @@ footer{
             <table class="table reply_table">
                 <tr>
                     <th width="130px">제목</th>
-                    <td>RE: getTitle 기존 일반게시글 제목</td>
+                    <td>RE: <%=board.getBoardTitle() %></td>
                 </tr>
 
                 <tr>

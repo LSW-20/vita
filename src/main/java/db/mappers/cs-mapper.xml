@@ -37,5 +37,28 @@
 		
 	</entry>
 
+	<entry key="selectBoardByNo">
+		SELECT 
+				   BOARD_NO
+				 , BOARD_TITLE
+				 , BOARD_CONTENT
+				 , USER_ID
+				 , REGIST_DATE
+				 , BOARD_COUNT
+				 , CATEGORY
+				 , C_EMP
+				 , C_DEPT
+				 , ANSWER_CONTENT
+         , PHONE
+         , EMAIL	
+         , USER_NAME
+         , USER_DATE			 
+         , USER_TYPE
+		  FROM TAB_CS C 
+		  JOIN MEMBER M
+		    ON C.USER_NO = M.USER_NO
+		 WHERE BOARD_NO = ?
+		   AND STATUS = 'Y'		
+	</entry>
 
 </properties>

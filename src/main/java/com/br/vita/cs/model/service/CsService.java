@@ -45,8 +45,7 @@ public class CsService {
 	
 	public Cs selectBoardByNo(int boardNo) {
 		Connection conn = getConnection();
-		//cs로부터 게시글 데이터 조회
-		Cs c = cDao.selectBoard(conn, boardNo);
+		Cs c = cDao.selectBoardByNo(conn, boardNo);
 		
 		close(conn);
 		

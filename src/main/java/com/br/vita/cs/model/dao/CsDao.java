@@ -102,10 +102,53 @@ public class CsDao {
 		}
 		return csList;
 	}//selectBoardList
-	
-	public Cs selectBoard(Connection conn, int boardNo) {
-		return null;
+
+	/**
+	 * 게시글 번호로 게시글 상세조회 가져오기
+	 * select => rset
+	 * @param conn
+	 * @param boardNo
+	 * @return board : 글번호 맞는 게시글 상세정보
+	 */
+	public Cs selectBoardByNo(Connection conn, int boardNo) {
+		Cs board = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectBoardByNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				board = new Cs(rset.getInt("BOARD_NO")
+							 , rset.getString("BOARD_TITLE")
+							 , rset.getString("BOARD_CONTENT")
+							 , rset.getString("USER_ID")
+							 , rset.getDate("REGIST_DATE")
+							 , rset.getInt("BOARD_COUNT")
+							 , rset.getString("CATEGORY")
+							 , rset.getString("C_EMP")
+							 , rset.getString("C_DEPT")
+							 , rset.getString("ANSWER_CONTENT")
+						);
+				board.setPhone(rset.getString("PHONE"));
+				board.setEmail(rset.getString("EMAIL"));
+				board.setUserName(rset.getString("USER_NAME"));
+				board.setUserDate(rset.getString("USER_DATE"));
+				board.setUserType(rset.getString("USER_TYPE"));
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return board;
 	}
+	
+
 
 
 
