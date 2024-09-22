@@ -34,7 +34,7 @@ WHERE
 
 </entry>
 
-<entry key="">
+<entry key="doctorScheduleUpdate">
 
 UPDATE SCHEDULE
 SET WORKING = 'N'
