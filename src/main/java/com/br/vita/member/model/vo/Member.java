@@ -78,7 +78,7 @@ public class Member {
 	}
 	
 	
-	// 회원정보 조회 요청용 생성자
+	// 회원정보 조회 요청용 생성자 - 상우
 	public Member(String userId, String userName, String userSSN, String address
 					, String email, String callbackYN, String phone, Date enrollDate) {
 		super();
@@ -91,6 +91,17 @@ public class Member {
 		this.phone = phone;
 		this.enrollDate = enrollDate;
 	}
+	
+	
+	// 의사정보 조회 요청시 필요한 생성자 - 상우
+	public Member(String phone, String address, String userSSN) {
+		super();
+		this.phone = phone;
+		this.address = address;
+		this.userSSN = userSSN;
+	}
+
+
 
 	// 첫방문 고객 예약 조회용 생성자 -준수
 	public Member(String userId, String userType, String phone, String userName, String userSSN) {
