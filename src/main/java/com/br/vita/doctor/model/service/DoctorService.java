@@ -95,16 +95,35 @@ public class DoctorService {
 		return list;
 		
 	}
+	
 
 	public void doctorScheduleUpdate() {
 		
 		Connection conn = getConnection();
+
+	}
+	
+	
+	/**
+	 * 의사 계정 추가 (1/3) 회원 테이블 추가
+	 * author : 임상우
+	 * @param m
+	 * @return 추가된 행 수
+	 */
+	public int doctorInsert(Member m) {
 		
-		
-		
-		
+		Connection conn = getConnection();
+		int result = dDao.doctorInsert(conn, m);
+		close(conn);
+		return result;
 		
 	}
+	
+	
+	
+	
+	
+	
 	
 
 }
