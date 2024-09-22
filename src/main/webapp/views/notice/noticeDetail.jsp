@@ -58,7 +58,7 @@
 	<%} %>
   <div class="container border m-4 p-5 rounded" style="height: 1100px;">
 
-    <h2 class="m-4">뉴스</h2>
+    <h2 class="m-4">공지사항</h2>
 
     <div class="d-flex justify-content-end">
       <!-- 현재 로그인되어있는 회원이 해당 게시글의 작성자 본인일 경우 보여지는 요소 -->

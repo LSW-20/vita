@@ -78,7 +78,7 @@
       <div class="container" style="text-align: center; width: 1100px; height: 800px;">
         <br>
         <div class="container" style="text-align: left; font-size: 40px; height: 80px;">
-        	<b>뉴스</b>
+        	<b>공지사항</b>
         </div>
         <div class="container border" style="height: 10px; background: gray; margin-left: -30px;"></div><br><br>
         <div style="text-align: center; width: 1000px; height: 850px;">
