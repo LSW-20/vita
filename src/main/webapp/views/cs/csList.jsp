@@ -174,7 +174,7 @@
 			 <!-- 현재 로그인되어있는 회원일 경우 보여지는 요소 -->
 			 <% if(loginUser != null) {%>
 			 <div class="d-flex justify-content-end">
-			   <a href="/vita/views/cs/csWrite.jsp" class="btn btn-primary btn-sm">등록하기</a>
+			   <a href="<%=contextPath%>/write.cs?category=<%=category%>" class="btn btn-primary btn-sm">등록하기</a>
 			 </div>   
 			 <% } %>			 
 	   </div>
