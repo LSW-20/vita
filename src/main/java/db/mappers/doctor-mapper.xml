@@ -44,6 +44,31 @@ WHERE
 
 
 
+	<!-- (상우) 의사 이름으로 검색 -->
+	<entry key="selectByName">
+	
+	
+	SELECT 
+					DOCTOR_NO
+				, DOCTOR_NAME
+				, LICENCE_NO
+				, DEPT_NAME
+				, HIRE_DATE
+				, USER_SSN
+				, PHONE
+				, ADDRESS
+	FROM 
+				DOCTOR
+	JOIN  MEMBER USING (USER_NO)
+	WHERE 
+				DOCTOR_NAME=?
+	
+	
+	</entry>
+
+
 
 
 </properties>
+
+

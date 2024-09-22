@@ -1,5 +1,14 @@
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.br.vita.member.model.vo.Member" %>
+<%@ page import="com.br.vita.doctor.model.vo.Doctor" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+List<Map<String, Object>> list = (List<Map<String, Object>>)request.getAttribute("list");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,34 +143,34 @@ footer {
 
             <table id="search_doctor_table">
                 <tr>
-                    <form action="#" method="">
+                    <form action="<%= contextPath %>/searchDocByName.admin" method="get">
                         <td class="left_cell">이름</td>
                         <td class="right_cell_1">
-                            <input type="text" name="이름" size="15">  &nbsp;
+                            <input type="text" name="doctor_name" size="15">  &nbsp;
                             <button type="submit" class="btn btn-sm btn-secondary">검색</button>
                         </td>    
                     </form>
                 </tr>
 
                 <tr>
-                    <form action="#" method="">
+                    <form action="<%= contextPath %>/searchDocByDNO.admin" method="get">
                         <td class="left_cell">사번</td>
                         <td class="right_cell_1">
-                            <input type="text" name="사번" size="15">  &nbsp;
+                            <input type="text" name="doctor_no" size="15">  &nbsp;
                             <button type="submit" class="btn btn-sm btn-secondary">검색</button>
                         </td>
                     </form>
                 </tr>
 
                 <tr>
-                    <form action="#" method="">
+                    <form action="<%= contextPath %>/searchDocByDept.admin" method="get">
                         <td class="left_cell">진료과</td>
                         <td class="right_cell_2">
-                            <input type="radio" name="search_dept" value="전체" id="label_all"><label for="label_all">&nbsp전체&nbsp&nbsp</label>
-                            <input type="radio" name="search_dept" value="외과" id="label_surgery"><label for="label_surgery">&nbsp외과&nbsp&nbsp</label>
-                            <input type="radio" name="search_dept" value="내과" id="label_medicine"><label for="label_medicine">&nbsp내과&nbsp&nbsp</label>
-                            <input type="radio" name="search_dept" value="치과" id="label_dentisty"><label for="label_dentisty">&nbsp치과&nbsp&nbsp</label>
-                            <input type="radio" name="search_dept" value="안과" id="label_eye"><label for="label_eye">&nbsp안과&nbsp&nbsp</label>
+                            <input type="radio" name="dept" value="전체" id="label_all"><label for="label_all">&nbsp전체&nbsp&nbsp</label>
+                            <input type="radio" name="dept" value="외과" id="label_surgery"><label for="label_surgery">&nbsp외과&nbsp&nbsp</label>
+                            <input type="radio" name="dept" value="내과" id="label_medicine"><label for="label_medicine">&nbsp내과&nbsp&nbsp</label>
+                            <input type="radio" name="dept" value="치과" id="label_dentisty"><label for="label_dentisty">&nbsp치과&nbsp&nbsp</label>
+                            <input type="radio" name="dept" value="안과" id="label_eye"><label for="label_eye">&nbsp안과&nbsp&nbsp</label>
                             <button type="submit" class="btn btn-sm btn-secondary">검색</button>
                         </td>
                     </form>
@@ -175,7 +184,7 @@ footer {
 
 
         <br><br>
-        <!-- case1. 의료진 검색 결과가 없는 경우  -->
+
         <div class="search_doctor_result">의료진 검색 결과</div> <br>
 
 
@@ -193,61 +202,53 @@ footer {
                     <th></th>
                 </tr>
 
-                <tr>
-                    <td colspan="10" style="text-align: center;">검색 결과가 없습니다.</td>
-                </tr>
-            </table>
+                <% if(list.isEmpty()) { %>
+                    <!-- case1. 의료진 검색 결과가 없는 경우  -->
+                    <tr>
+                        <td colspan="10" style="text-align: center;">검색 결과가 없습니다.</td>
+                    </tr>
 
-            <div class="del_add_btn"><button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal">추가</button></div>
+                <% } else { %>
+                    <!-- case2. 의료진 검색 결과가 있는 경우 -->
 
+                    <% 
+                    for(Map<String, Object> docMap : list) { 
 
-        <br><br>
+                        Doctor d = (Doctor)docMap.get("doctor");
+                        Member m = (Member)docMap.get("member");
 
-        <!-- case2. 의료진 검색 결과가 있는 경우 -->
-        <div class="search_doctor_result">의료진 검색 결과</div> <br>
+                    %>
 
+                    <tr>
+                        <td><input type="checkbox" name="delete"></td>
+                        <td><%= d.getDoctorNo() %></td>
+                        <td><%= d.getDoctorName() %></td>
+                        <td><%= m.getUserSSN() %></td>
+                        <td><%= d.getDeptName() %></td>
+                        <td><%= d.getLicenceNo() %></td>
+                        <td><%= m.getPhone() %></td>
+                        <td><%= m.getAddress() %></td>
+                        <td><%= d.getHireDate() %></td>
+                        <td><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal">수정</button></td>
+                    </tr>
 
-            <table class="table table-striped">
-                <tr>
-                    <th></th>
-                    <th>사번</th>
-                    <th>이름</th>
-                    <th>주민등록번호</th>
-                    <th>진료과</th>
-                    <th>면허번호</th>
-                    <th>전화번호</th>
-                    <th>주소</th>
-                    <th>입사일</th>
-                    <th></th>
-                </tr>
+                    <% } %>
 
-                <tr>
-                    <td><input type="checkbox" name="delete"></td>
-                    <td>105000</td>
-                    <td>가가가</td>
-                    <td>700624-1248547</td>
-                    <td>외과</td>
-                    <td>12345</td>
-                    <td>010-1111-1111</td>
-                    <td>서울시 강동구 강동대로 53길 76 (성내동)</td>
-                    <td>20100310</td>
-                    <td><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal">수정</button></td>
-                </tr>
-
-               
+                <% } %>    
 
             </table>
 
-            <div class="del_add_btn">
-                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_modal">삭제</button>
-                <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal">추가</button>
-            </div>
 
-
-
-
-
-
+            <% if(list.isEmpty()) { %>
+                <div class="del_add_btn">
+                    <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal">추가</button>
+                </div>
+            <% } else { %>
+                <div class="del_add_btn">
+                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_modal">삭제</button>
+                    <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal">추가</button>
+                </div>
+            <% } %>
 
 
     </div>

@@ -11,6 +11,7 @@ import java.util.Map;
 import com.br.vita.doctor.model.dao.DoctorDao;
 import com.br.vita.doctor.model.vo.Doctor;
 import com.br.vita.doctor.model.vo.DoctorSchedule;
+import com.br.vita.member.model.vo.Member;
 
 public class DoctorService {
 	
@@ -45,5 +46,17 @@ public class DoctorService {
 		
 		
 	}
+	
+	
+	
+	public List<Map<String, Object>> selectByName(String doctorName) {
+		
+		Connection conn = getConnection();
+		List<Map<String, Object>> list = dDao.selectByName(conn, doctorName);
+		close(conn);
+		return list;
+
+	}
+	
 
 }

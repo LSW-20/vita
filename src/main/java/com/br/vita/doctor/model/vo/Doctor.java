@@ -26,6 +26,20 @@ public class Doctor {
 		this.licenceNo = licenceNo;
 		this.deptName = deptName;
 	}
+	
+	
+	
+
+
+	// 의사 정보 조회용 생성자 - 상우
+	public Doctor(String doctorNo, Date hireDate, String doctorName, String licenceNo, String deptName) {
+		super();
+		this.doctorNo = doctorNo;
+		this.hireDate = hireDate;
+		this.doctorName = doctorName;
+		this.licenceNo = licenceNo;
+		this.deptName = deptName;
+	}
 
 
 
