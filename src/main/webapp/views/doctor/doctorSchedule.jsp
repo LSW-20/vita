@@ -42,7 +42,9 @@
             
                 <div class="container mt-5">
                     <h2>의료진 일정 관리</h2><br>
-                    <form action="">
+                    <h4>의사명 : <%= loginUser.getUserName() %></h4><br>
+                    
+                    <!-- <form action=""> -->
                         <table class="table table-bordered" id="table_div">
                             <thead>
                                 <tr>
@@ -136,7 +138,7 @@
                         <div id="buttonDiv">
                             <button type="button" id="submit-button" class="btn btn-primary" onclick="fnSchedule();">등록</button>
                         </div>
-                    </form>
+                  <!--   </form> -->
 
 
                     <table class="table table-bordered" id="table_div2">
@@ -275,6 +277,38 @@
 
                          
                     }
+                    
+                 	$.ajax({
+                 		url : '<%= contextPath%>/schedule.up',
+                 		type : 'post',
+                 		data: {
+                 			
+                 		mor:{	
+                 				 $('#mon-morning').val()
+	                            ,$('#tue-morning').val()
+	                            ,$('#wed-morning').val()
+	                            ,$('#thu-morning').val()
+	                            ,$('#fri-morning').val() 
+	                        },
+
+                         aft:{   
+                        	 	 ,$('#mon-afternoon').val()
+		                         ,$('#tue-afternoon').val()
+		                         ,$('#wed-afternoon').val()
+		                         ,$('#thu-afternoon').val()
+		                         ,$('#fri-afternoon').val()
+                         	  }
+
+                 		},
+                 		success:function(res){
+                 			consloe.log(res);
+                 		},
+                 	})
+                    
+                    
+                    
+                    
+                    
                 </script>
 
 

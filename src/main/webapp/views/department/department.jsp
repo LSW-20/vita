@@ -272,16 +272,16 @@
     <script>
     
     function fnintro1(){
-    	location.href = '/vita/views/doctor/doc_intro.jsp';
+    	location.href = '<%= contextPath %>/schedule.doc?dept=내과';
     }
     function fnintro2(){
-    	location.href = '/vita/views/doctor/doc_intro2.jsp';
+    	location.href = '<%= contextPath %>/schedule.doc?dept=외과';
     }
     function fnintro3(){
-    	location.href = '/vita/views/doctor/doc_intro3.jsp';
+    	location.href = '<%= contextPath %>/schedule.doc?dept=치과';
     }
     function fnintro4(){
-    	location.href = '/vita/views/doctor/doc_intro4.jsp';
+    	location.href = '<%= contextPath %>/schedule.doc?dept=안과';
     }
     		
     		
