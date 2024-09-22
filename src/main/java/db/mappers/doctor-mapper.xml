@@ -5,13 +5,14 @@
 <entry key="selectSchedule">
 
 SELECT 
-		WORKING
+		 WORKING
 		,SCHEDULE_TIME
 		,SCHEDULE_WEEK
 FROM 
-		 SCHEDULE
+		SCHEDULE
+JOIN DOCTOR USING( DOCTOR_NO)
 WHERE 
-		DOCTOR_NO = ?
+		 DEPT_NAME = ?
 
 
 </entry>

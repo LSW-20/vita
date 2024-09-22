@@ -42,6 +42,7 @@
     
     <%
 	    Map<String, Object> map = (Map<String, Object>) request.getAttribute("Map");
+    	
 	%>
    
 </head>

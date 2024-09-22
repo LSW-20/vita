@@ -158,7 +158,7 @@
 				<div class="doc_detailBox">
 					 <b id="dc_name">박시우<b id="d_name">  내과</b></b>
 					 
-  				<input type="hidden" name="vp" id="vpvalue" value="vp1">
+  				
 					
 				 	<table class="table table-bordered" id="scd_table">
 					
@@ -218,24 +218,61 @@
 		
 		<script>
 		
-			function fnSchedule(){
-				
-				$.ajax({
-					url:'<%= contextPath%>/schedule.doc',
-					data: { no : $('#vpvalue').val()},
-					type: "post",
-					success:function(res){
-						console.log(res);
-						
-						
-						
-					},
-					
-				})
-				
-			}
+		<%
 			
-			fnSchedule();
+			List<DoctorSchedule> scList = (List<DoctorSchedule>)map.get("list");
+		%>
+			
+		<% for(DoctorSchedule dsc : scList){ %>
+		
+				
+				/* 오전 일정 */
+				<% if(dsc.getWorking() != null && dsc.getWorking().equals("Y") && dsc.getScheduleTime().equals("A") && dsc.getScheduleWeek().equals("월")){%>
+					$('#mY_1').css('display','block');
+				
+				<%}else if(dsc.getWorking() != null && dsc.getWorking().equals("Y") && dsc.getScheduleTime().equals("A")&& dsc.getScheduleWeek().equals("화")){%>
+					$('#mY_2').css('display','block');
+					
+				<%}else if(dsc.getWorking() != null && dsc.getWorking().equals("Y") && dsc.getScheduleTime().equals("A") && dsc.getScheduleWeek().equals("수")){%>
+					$('#mY_3').css('display','block');
+					
+				<%}else if(dsc.getWorking() != null && dsc.getWorking().equals("Y") && dsc.getScheduleTime().equals("A")&& dsc.getScheduleWeek().equals("목")){%>
+					$('#mY_4').css('display','block');
+					
+				<%}else if(dsc.getWorking() != null && dsc.getWorking().equals("Y") && dsc.getScheduleTime().equals("A")&& dsc.getScheduleWeek().equals("금")){%>
+					$('#mY_5').css('display','block');
+				
+				/* 오후 일정 */
+				<%}else if(dsc.getWorking() != null && dsc.getWorking().equals("Y") && dsc.getScheduleTime().equals("P")&& dsc.getScheduleWeek().equals("월")){%>
+					$('#aY_1').css('display','block');
+				
+				
+				<%}else if(dsc.getWorking() != null && dsc.getWorking().equals("Y") && dsc.getScheduleTime().equals("P")&& dsc.getScheduleWeek().equals("화")){%>
+					$('#aY_2').css('display','block');
+				
+				
+				<%}else if(dsc.getWorking() != null && dsc.getWorking().equals("Y") && dsc.getScheduleTime().equals("P")&& dsc.getScheduleWeek().equals("수")){%>
+					$('#aY_3').css('display','block');
+				
+				
+				<%}else if(dsc.getWorking() != null && dsc.getWorking().equals("Y") && dsc.getScheduleTime().equals("P")&& dsc.getScheduleWeek().equals("목")){%>
+					$('#aY_4').css('display','block');
+				
+				
+				<%}else if(dsc.getWorking() != null && dsc.getWorking().equals("Y") && dsc.getScheduleTime().equals("P")&& dsc.getScheduleWeek().equals("금")){%>
+					$('#aY_5').css('display','block');
+				
+				<%}%>
+				
+				
+			<%}%>
+			
+		
+		
+		 
+		
+		
+		
 				
 			
 		

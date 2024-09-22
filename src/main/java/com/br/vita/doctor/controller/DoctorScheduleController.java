@@ -44,13 +44,18 @@ public class DoctorScheduleController extends HttpServlet {
 		
 		if(doctor != null && doctor.getDeptName().equals("내과")) {
 			request.getRequestDispatcher("/views/doctor/doc_intro.jsp").forward(request, response);
+//			System.out.println(map.get("list"));
 		}else if(doctor != null && doctor.getDeptName().equals("외과")) {
 			request.getRequestDispatcher("/views/doctor/doc_intro2.jsp").forward(request, response);
+			
 		}else if(doctor != null && doctor.getDeptName().equals("치과")) {
 			request.getRequestDispatcher("/views/doctor/doc_intro3.jsp").forward(request, response);
+			
 		}else {
 			request.getRequestDispatcher("/views/doctor/doc_intro4.jsp").forward(request, response);
 		}
+	
+		
 	
 		
 //		System.out.println(map);
