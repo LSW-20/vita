@@ -119,7 +119,6 @@ public class DoctorDao {
 	
 	/**
 	 * 의사 이름으로 의료진 계정 검색
-	 * author : 임상우
 	 * @param conn
 	 * @param doctorName
 	 * @return 검색된 의료진 계정 정보(DOCTOR, MEMBER 객체)
@@ -128,7 +127,9 @@ public class DoctorDao {
 		
 		//select문 => 여러 행 => 조인했으므로 vo 객체 두 개를 담는다. Map<String, Object>
 		//그런데 그냥 Map만 쓰면 key값이 같아서 덮어쓰여진다. List<Map<String, Object>>을 써야 한다.
+		
 		List<Map<String, Object>> list = new ArrayList<>();
+		Map<String, Object> docMap = new HashMap<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -142,8 +143,6 @@ public class DoctorDao {
 			
 			while(rset.next()) {
 				
-				Map<String, Object> docMap = new HashMap<>();
-				
 				docMap.put("doctor", new Doctor(rset.getString("DOCTOR_NO")
 												, rset.getDate("HIRE_DATE")
 												, rset.getString("DOCTOR_NAME")
@@ -171,120 +170,6 @@ public class DoctorDao {
 	
 	
 	
-	/**
-	 * 의사 사번으로 의료진 계정 검색
-	 * author : 임상우
-	 * @param conn
-	 * @param doctorNo
-	 * @return 검색된 의료진 계정 정보(DOCTOR, MEMBER 객체)
-	 */
-	public List<Map<String, Object>> selectByDNO(Connection conn, String doctorNo) {
-		
-		//select문 => 한 행 => 조인했으므로 vo 객체 두 개를 담는다. Map<String, Object>
-		//그런데 그냥 Map만 쓰면 key값이 같아서 덮어쓰여진다. List<Map<String, Object>>을 써야 한다.
-		List<Map<String, Object>> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("selectByDNO");
-		
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, doctorNo);
-			rset=pstmt.executeQuery();
-			
-			while(rset.next()) {
-				
-				Map<String, Object> docMap = new HashMap<>();
-				
-				docMap.put("doctor", new Doctor(rset.getString("DOCTOR_NO")
-												, rset.getDate("HIRE_DATE")
-												, rset.getString("DOCTOR_NAME")
-												, rset.getString("LICENCE_NO")
-												, rset.getString("DEPT_NAME")
-												));
-				docMap.put("member", new Member(rset.getString("PHONE")
-												, rset.getString("ADDRESS")
-												, rset.getString("USER_SSN")
-												));
-				
-				list.add(docMap);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return list;
-		
-	}
 	
-	
-	
-	/**
-	 * 의사 진료과로 의료진 계정 검색
-	 * author : 임상우
-	 * @param conn
-	 * @param dept
-	 * @return 검색된 의료진 계정 정보(DOCTOR, MEMBER 객체)
-	 */
-	public List<Map<String, Object>> selectByDept(Connection conn, String dept) {
-		
-		//select문 => 여러 행 => 조인했으므로 vo 객체 두 개를 담는다. Map<String, Object>
-		//그런데 그냥 Map만 쓰면 key값이 같아서 덮어쓰여진다. List<Map<String, Object>>을 써야 한다.
-		List<Map<String, Object>> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = "";
-		
-		if(dept.equals("전체")) {
-			sql = prop.getProperty("selectByDept");
-		} else {
-			sql = prop.getProperty("selectByDept");
-			sql += "where dept_name = ?";
-		}
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			
-			if(!dept.equals("전체")) {
-				pstmt.setString(1, dept);
-			}
-			
-			rset=pstmt.executeQuery();
-			
-			while(rset.next()) {
-				
-				Map<String, Object> docMap = new HashMap<>();
-				
-				docMap.put("doctor", new Doctor(rset.getString("DOCTOR_NO")
-												, rset.getDate("HIRE_DATE")
-												, rset.getString("DOCTOR_NAME")
-												, rset.getString("LICENCE_NO")
-												, rset.getString("DEPT_NAME")
-												));
-				docMap.put("member", new Member(rset.getString("PHONE")
-												, rset.getString("ADDRESS")
-												, rset.getString("USER_SSN")
-												));
-				
-				list.add(docMap);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return list;
-		
-	}
-	
+
 }

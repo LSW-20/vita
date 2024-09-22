@@ -44,6 +44,7 @@
                     <h2>의료진 일정 관리</h2><br>
                     <h4>의사명 : <%= loginUser.getUserName() %></h4><br>
                     
+                    
                     <!-- <form action=""> -->
                         <table class="table table-bordered" id="table_div">
                             <thead>
