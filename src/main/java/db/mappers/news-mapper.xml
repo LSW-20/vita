@@ -60,6 +60,10 @@
         , NEWS_TITLE
         , NEWS_CONTENT
         , USER_ID
+        , REGIST_DATE
+        , N.USER_NO
+				,	NEWS_COUNT
+				,	STATUS
      FROM
           NEWS N
      JOIN MEMBER M ON (M.USER_NO = N.USER_NO)
@@ -77,14 +81,5 @@
 		 WHERE 
 		 			 NEWS_NO = ?
 	</entry>
-	
-	<entry key="selectNewsNo">    
-    SELECT
-          NEWS_NO
-     FROM
-          NEWS 
-    WHERE 
-    			STATUS = 'Y'
 
-	</entry>
 </properties>

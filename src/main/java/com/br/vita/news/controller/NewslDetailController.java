@@ -33,16 +33,16 @@ public class NewslDetailController extends HttpServlet {
 
 		int NewsNo = Integer.parseInt(request.getParameter("no"));
 		
-		Map<String, Object> map = new NewsService().selectNewsByNo(NewsNo);
+		Map<String, Object> nmap = new NewsService().selectNewsByNo(NewsNo);
 		
-		if(map.get("n") == null) {
+		if(nmap.get("n") == null) {
 			// 응답페이지 : 에러페이지
-			request.setAttribute("msg", "존재하지 않는 게시글이거나 삭제된 게시글입니다.");
+			request.setAttribute("nmsg", "존재하지 않는 게시글이거나 삭제된 게시글입니다.");
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 		}else {
 			// 응답페이지 : 상세페이지 (/views/board/boardDetail.jsp)
 			// 응답데이터 : 조회할 게시글 데이터, 첨부파일 데이터 (db로부터 조회)
-			request.setAttribute("map", map);
+			request.setAttribute("nmap", nmap);
 			request.getRequestDispatcher("/views/news/newsDetail.jsp").forward(request, response);		
 		}
 	}

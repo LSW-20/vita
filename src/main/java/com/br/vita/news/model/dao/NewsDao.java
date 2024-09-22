@@ -126,6 +126,12 @@ public class NewsDao {
 				n.setNewsNo(rset.getInt("news_no"));
 				n.setNewsTitle(rset.getString("news_title"));
 				n.setNewsContent(rset.getString("news_content"));
+				n.setUserId(rset.getString("user_id"));
+				n.setRegistDate(rset.getDate("regist_date"));
+				n.setUserNo(rset.getString("user_no"));
+				n.setNewsCount(rset.getInt("news_count"));
+				n.setStatus(rset.getString("status"));
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -133,7 +139,7 @@ public class NewsDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println("n: " + n);
 		return n;
 	}
 
@@ -158,27 +164,6 @@ public class NewsDao {
 	}
 
 
-	public List<News> selectNewsList(Connection conn) {
-		List<News> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectNewsNo");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery();
-			while(rset.next()) {
-				list.add(new News(rset.getInt("news_no")));	
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return list;
-	}
 
 
 

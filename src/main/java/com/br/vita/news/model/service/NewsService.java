@@ -50,12 +50,11 @@ public class NewsService {
 		// 1) Board로부터 게시글 데이터 조회
 		News n = nDao.selectNews(conn, newsNo);
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put("n", n);
-		
+		Map<String, Object> nmap = new HashMap<>();
+		nmap.put("n", n);
 		close(conn);
-		
-		return map;
+		System.out.println("nmap: " + nmap);
+		return nmap;
 	}
 
 	public int increaseCount(int newsNo) {
@@ -70,12 +69,6 @@ public class NewsService {
 		return result;
 	}
 
-	public List<News> selectNewsList() {
-		Connection conn = getConnection();
-		List<News> list = nDao.selectNewsList(conn);
-		close(conn);
-		return list;
-	}
 
 
 }

@@ -1,11 +1,10 @@
-<%@ page import="java.util.*" %>
-<%@ page import="com.br.vita.news.model.vo.*" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="com.br.vita.news.model.vo.News" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List<News> list = (List<News>)request.getAttribute("list");
-	Map<String, Object> map = (Map<String, Object>)request.getAttribute("map");
-	News n = (News)map.get("n"); // 게시글번호, 제목, 내용, 작성자, 카테고리명
+	Map<String, Object> nmap = (Map<String, Object>)request.getAttribute("nmap");
+	News n = (News)nmap.get("n"); // 게시글번호, 제목, 내용, 작성자, 카테고리명
 %>
 <!DOCTYPE html>
 <html>

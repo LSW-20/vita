@@ -3,8 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	Map<String, Object> map = (Map<String, Object>)request.getAttribute("map");
-	News n = (News)map.get("n"); // 게시글번호, 카테고리명, 제목, 내용, 작성자아이디
+	Map<String, Object> nmap = (Map<String, Object>)request.getAttribute("nmap");
+	News n = (News)nmap.get("n"); // 게시글번호, 카테고리명, 제목, 내용, 작성자아이디
 %>
 <!DOCTYPE html>
 <html>
@@ -71,13 +71,24 @@
     </div>
 
     <table class="table m-4">
+    	<tr>
+    		<th style="width:80px;">번호</th>
+    		<td><%= n.getNewsNo() %></td>
+    		<th>작성자</th>
+    		<td><%= n.getUserId() %></td>
+    		<th>작성일</th>
+    		<td><%= n.getRegistDate() %></td>
+    		<th>조회수</th>
+    		<td><%= n.getNewsCount() %></td>
+    	</tr>
       <tr>
-        <th style="width:80px;">제목</th>
-        <td><%= n.getNewsTitle() %></td>
+        <th>제목</th>
+        <td colspan="7"><%= n.getNewsTitle() %></td>
+        
       </tr>
       <tr>
         <th>내용</th>
-        <td><pre style="min-height:200px; white-space: pre-wrap; word-wrap: break-word;"><%= n.getNewsContent() %></pre></td>
+        <td colspan="7"><pre style="min-height:200px; white-space: pre-wrap; word-wrap: break-word;"><%= n.getNewsContent() %></pre></td>
       </tr>
     </table>
 

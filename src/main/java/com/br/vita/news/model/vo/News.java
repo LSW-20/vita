@@ -23,6 +23,22 @@ public class News {
 		this.newsNo = newsNo;
 	}
 
+	
+	
+
+	public News(int newsNo, String newsTitle, String newsContent, Date registDate, String userNo, int newsCount, String status,
+			String userId) {
+		super();
+		this.newsNo = newsNo;
+		this.newsTitle = newsTitle;
+		this.newsContent = newsContent;
+		this.registDate = registDate;
+		this.userNo = userNo;
+		this.newsCount = newsCount;
+		this.status = status;
+		this.userId = userId;
+	}
+
 
 
 	public News(int newsNo, String newsTitle, String userId, Date registDate, int newsCount) {

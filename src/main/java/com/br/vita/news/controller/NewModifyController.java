@@ -36,19 +36,18 @@ public class NewModifyController extends HttpServlet {
 		int newsNo = Integer.parseInt(request.getParameter("no"));
 		
 		NewsService nService = new NewsService();
-		List<News> list = nService.selectNewsList();
-		Map<String, Object> map = nService.selectNewsByNo(newsNo);
+		Map<String, Object> nmap = nService.selectNewsByNo(newsNo);
 		
 		// 응답페이지 : 수정페이지 (/views/board/boardModify.jsp)
 		// 응답데이터 : 카테고리목록, 게시글데이터, 첨부파일데이터 
 		
-		if(map.get("n") == null) {
+		if(nmap.get("n") == null) {
 			request.setAttribute("msg", "존재하지 않는 게시글이거나 삭제된 게시글입니다.");
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 		}else {
-			request.setAttribute("list", list);
-			request.setAttribute("map", map);
+			request.setAttribute("nmap", nmap);
 			request.getRequestDispatcher("/views/news/newsModify.jsp").forward(request, response);
+			System.out.println("nmap: " + nmap);
 		}	
 	}
 
