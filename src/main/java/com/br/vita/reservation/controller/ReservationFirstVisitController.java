@@ -33,26 +33,26 @@ public class ReservationFirstVisitController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf-8");
-		String phone = request.getParameter("phone");
-		String userName = request.getParameter("userName");
-		String userSSN = request.getParameter("userSSN");
-		
-		
+		String phone1 = request.getParameter("phone1");
+	    String phone2 = request.getParameter("phone2");
+	    String phone3 = request.getParameter("phone3");
+	    String phone = phone1 + "-" + phone2 + "-" + phone3; // '010-6789-0123' 형식으로 결합
+
+	    String userName = request.getParameter("userName");
+	    String userSSN1 = request.getParameter("userSSN1");
+	    String userSSN2 = request.getParameter("userSSN2");
+	    String userSSN = userSSN1 + "-" + userSSN2; // '880101-1111111' 형식으로 결합
+	        
 		HttpSession session = request.getSession();
 		String userId = ((Member)session.getAttribute("loginUser")).getUserId();
-		
+			
 		Member firstVisit = new ReservationService().ComparisonMember(userId, phone, userName, userSSN);
-		
-		if(firstVisit == null) {
 			
-			 request.setAttribute("alertMessage", "등록된 회원정보와 일치하지 않습니다.");
-		        request.getRequestDispatcher("/views/reservation/firstTimeUserReservation.jsp").forward(request, response);
-			
-		}else {
-			
-			 request.setAttribute("msg", "등록된 회원정보와 일치이ㅣ이이니다.");
-		     request.getRequestDispatcher("/views/reservation/firstTimeUserReservation.jsp").forward(request, response);
-			
+		if (firstVisit == null) {
+			request.setAttribute("alertMessage", "등록된 회원정보와 일치하지 않습니다.");
+			request.getRequestDispatcher("/views/reservation/firstTimeUserReservation.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/views/reservation/first_Success.jsp").forward(request, response);
 		}
 		
 	}

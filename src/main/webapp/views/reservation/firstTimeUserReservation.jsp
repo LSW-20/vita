@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.br.vita.member.model.vo.Member" %>
+<%
+    String alertMessage = (String) request.getAttribute("alertMessage");
+    if (alertMessage != null) {
+%>
+    <script>
+        alert("<%= alertMessage %>");
+    </script>
+<%
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,16 +99,7 @@
 	       </style>
 	       
 	       <form action= "<%= contextPath %>/first.rv"  method="post">
-	      <% if (request.getAttribute("alertMessage") != null) { %>
-    <script>
-        alert("<%= request.getAttribute("alertMessage") %>");
-    </script>
-		<% } %>
-		<% if (request.getAttribute("msg") != null) { %>
-		    <script>
-		        alert("<%= request.getAttribute("msg") %>");
-		    </script>
-		<% } %>
+
 	      <section>
 	
 	        <h2 id="pad"><b>첫 방문 고객 예약하기</b></h2>
@@ -113,7 +114,7 @@
 	
 	        <div class="container11">
 	          <div class="d-flex" style="margin-left: 90px;">
-	              <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" id="phone_no1" name="phone" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:230px; height: 38px;">
+	              <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" id="phone_no1" name="phone1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:230px; height: 38px;">
 	                <option selected>010</option>
 	                <option>011</option>
 	                <option>016</option>
@@ -125,13 +126,13 @@
 	              <div><h3 style="margin-left:15px">-</h3></div>
 	
 	              <div class="form-group" style="margin-left:15px">
-	                <input type="text" class="form-control" name="phone" maxlength="4" id="phone_no2" required>
+	                <input type="text" class="form-control" name="phone2" maxlength="4" id="phone_no2" required>
 	              </div>
 	
 	              <div><h3 style="margin-left:15px">-</h3></div>
 	
 	              <div class="form-group" style="margin-left:15px">
-	                <input type="text" class="form-control" name="phone" maxlength="4"  id="phone_no3" required>
+	                <input type="text" class="form-control" name="phone3" maxlength="4"  id="phone_no3" required>
 	              </div>
 	             
 	          </div>
@@ -153,9 +154,9 @@
 	        </div>
 	
 	        <br><br>
-	        <form action= "/server/test.do">
-	          <filedset>
-	              <input type="radio" id="check" name="check" value="T" style="margin-left: 1460px; cursor: pointer;">
+	        
+	          <fieldset>
+	              <input type="radio" id="checkAgree" name="check" value="T" style="margin-left: 1460px; cursor: pointer;">
 	              <label for="checkO">&nbsp;동의합니다.</label>
 	              <input type="radio" id="non_check" name="check" value="F" style="margin-left: 70px; cursor: pointer;">
 	              <label for="checkX">&nbsp;동의하지 않습니다. </label>
@@ -175,14 +176,14 @@
 	  
 	          <br><br>
 	          
-	            <filedset>
-	                <input type="radio" id="check" name="check1" value="T" style="margin-left: 1460px; cursor: pointer;">
+	            <fieldset>
+	                <input type="radio" id="checkAgree1" name="check1" value="T" style="margin-left: 1460px; cursor: pointer;">
 	                <label for="checkO">&nbsp;동의합니다.</label>
-	                <input type="radio" id="non_check" name="check1" value="F" style="margin-left: 70px; cursor: pointer;">
+	                <input type="radio" id="non_check1" name="check1" value="F" style="margin-left: 70px; cursor: pointer;">
 	                <label for="checkX">&nbsp;동의하지 않습니다. </label>
-	            </filedset>
+	            </fieldset>
 	
-	           </form>
+	          
 	           <br><br><br><br>
 	           <hr style= "border-color:rgb(31, 43, 108); margin-left: 90px; margin-right: 90px;">
 	           <br>
@@ -196,9 +197,9 @@
 	                 <tr>
 	                  <td id="color"   style="height: 70px;"><h4 style="margin:auto">주민등록번호(외국인등록번호)</h4></td>
 	                  <td class="d-flex"> 
-					            <input type="text" name="userSSN" class="form-control" maxlength="6" id="num1" style="width:500px; height:50px; margin-left:30px" required>
+					            <input type="text" name="userSSN1" class="form-control" maxlength="6" id="num1" style="width:500px; height:50px; margin-left:30px" required>
 					            <h3 style="margin-left:27px; margin-top: 7px;">-</h3>
-					            <input type="text" name="userSSN" class="form-control" maxlength="7" id="num2" style="width:500px; height:50px; margin-left:30px" required>
+					            <input type="text" name="userSSN2" class="form-control" maxlength="7" id="num2" style="width:500px; height:50px; margin-left:30px" required>
 					          </td>
 	                  
 	                </tr>
@@ -211,30 +212,32 @@
 	            <br><br> <br><br> <br><br>
 	
 	            
-	            <div align="center" style="position: relative;">
-	            	 <button type="submit" class="btn border-1 border-dark" id="submitButton" onclick="first()" style="width:150px; position: absolute; left: 41%; top: 0; z-index: 2;">다음</button>
-	               <a href="/vita/views/reservation/first_Success.jsp" class="btn border-1 border-dark" id="btn-color" style="width:150px; position: absolute; left: 41%; top: 0; z-index: 1;">다음</a>
-	               <a href="/vita/views/reservation/consultation_AfterLogin.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:180px;">이전</a>
-	              	 <script>
-							        function first() {
-							        	var isFirstVisit = <c:out value="${firstVisit}" />; // true 또는 false
+	           <div align="center" style="position: relative;">
+						    <button type="submit" class="btn border-1 border-dark" id="submitButton" onclick="return validateAndProceed();" style="width:150px; position: absolute; left: 41%; top: 0; z-index: 2;">다음</button>
+						    <a href="/vita/views/reservation/first_Success.jsp" class="btn border-1 border-dark" id="btn-color" style="width:150px; position: absolute; left: 41%; top: 0; z-index: 1; display:none;">다음</a>
+						    <a href="/vita/views/reservation/consultation_AfterLogin.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:180px;">이전</a>
+						</div>
+						
+						<script>
+					
+						    function validateAndProceed() {
+							    		const isChecked1 = document.getElementById('checkAgree').checked; // 첫 번째 동의 라디오 버튼
+							        const isChecked2 = document.getElementById('checkAgree1').checked; // 두 번째 동의 라디오 버튼
 
-							            if (isFirstVisit) {
-							                document.getElementById("submitButton").style.display = "none"; // 버튼 숨기기
-							            }
-							            document.getElementById("btn-color").style.display = "inline-block"; // 링크 보여주기
-							        }
-							    </script>
-	            </div>
+			
+						    	    if (!isChecked1 || !isChecked2) {
+						    	        alert("모든 동의 항목을 체크해주세요.");
+						    	        return false; // 폼 제출 방지
+						    	    }
+						        
+						   
+						    }
+						</script>
 							
 	            <br><br> <br><br> <br><br> 
 	      </section>
         </form>
         
-
-
-
-
 
 
 

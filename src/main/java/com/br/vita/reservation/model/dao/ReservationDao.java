@@ -36,7 +36,7 @@ public class ReservationDao {
 
    }
 
-   public Member ComparisonMember(Connection conn, String userId, String phone, String userName, String userSSN) {
+   public Member ComparisonMember(Connection conn, String userId,  String phone, String userName, String userSSN) {
       
        Member m = null;
        PreparedStatement pstmt = null;
