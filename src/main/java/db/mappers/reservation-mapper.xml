@@ -3,14 +3,26 @@
 <properties>
 
 	<!-- -->
-	<entry key="">
+	<entry key="ComparisonMember">
 
-	</entry>
-	
-	<!-- -->
-	<entry key="">
+SELECT 
+         USER_ID
+      ,  USER_TYPE
+      ,  PHONE
+      ,  USER_NAME
+      ,  USER_SSN 
+      
+ FROM
+        MEMBER
+WHERE 
+        PHONE = ?
+  AND   USER_NAME = ?
+  AND   USER_SSN = ?
+  AND   USER_TYPE IN ('U')
 
-		
-	</entry>
+
+
+
+</entry>
 
 </properties>

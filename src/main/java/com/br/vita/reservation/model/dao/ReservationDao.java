@@ -1,24 +1,79 @@
 package com.br.vita.reservation.model.dao;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
+import static com.br.vita.common.template.JDBCTemplate.*;
+
+import com.br.vita.member.model.vo.Member;
+
+
 
 public class ReservationDao {
-	
-	private Properties prop = new Properties();
-	
-	public ReservationDao() {
-		
-		String filePath = ReservationDao.class.getResource("/db/mappers/reservation-mapper.xml").getPath();
-		
-		try {
-			prop.loadFromXML(new FileInputStream(filePath));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	// dao 클래스에 전역변수랑 기본생성자 내가 만들어놨어 준수양 by. 상우
+
+   private Properties prop = new Properties();
+   
+   public ReservationDao() {
+      
+      String filePath = ReservationDao.class.getResource("/db/mappers/reservation-mapper.xml").getPath();
+
+      try {
+         prop.loadFromXML(new FileInputStream(filePath));
+
+      } catch (InvalidPropertiesFormatException e) {
+         e.printStackTrace();
+      } catch (FileNotFoundException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+
+   }
+
+   public Member ComparisonMember(Connection conn, String userId, String phone, String userName, String userSSN) {
+      
+       Member m = null;
+       PreparedStatement pstmt = null;
+       ResultSet rset = null;
+
+       String sql = prop.getProperty("ComparisonMember");
+
+       
+           try {
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, phone);
+         pstmt.setString(2, userName);
+         pstmt.setString(3, userSSN);
+         
+         rset = pstmt.executeQuery();
+         
+            if (rset.next()) {
+                   m = new Member (rset.getString("USER_ID")
+                              ,   rset.getString("USER_TYPE")
+                              ,   rset.getString("PHONE")
+                              ,   rset.getString("USER_NAME")
+                              ,   rset.getString("USER_SSN"));
+               }
+            
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } finally {
+         close(rset);
+         close(pstmt);
+      }
+           
+        return m;
+        
+       
+   }
+   
+   
+   
+   
 }

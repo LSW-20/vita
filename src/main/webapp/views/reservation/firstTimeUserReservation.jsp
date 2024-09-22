@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.br.vita.member.model.vo.Member" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,6 +59,11 @@
 	            background-color: rgb(31, 43, 108);
 	            color: rgb(245, 245, 245);
 	        }
+	        #submitButton{
+	            background-color: rgb(31, 43, 108);
+	            color: rgb(245, 245, 245);
+	       
+	        }
 	        #common-top{
 	          margin-top: 60px;
 	        }
@@ -81,6 +87,18 @@
 	        
 	    
 	       </style>
+	       
+	       <form action= "<%= contextPath %>/first.rv"  method="post">
+	      <% if (request.getAttribute("alertMessage") != null) { %>
+    <script>
+        alert("<%= request.getAttribute("alertMessage") %>");
+    </script>
+		<% } %>
+		<% if (request.getAttribute("msg") != null) { %>
+		    <script>
+		        alert("<%= request.getAttribute("msg") %>");
+		    </script>
+		<% } %>
 	      <section>
 	
 	        <h2 id="pad"><b>첫 방문 고객 예약하기</b></h2>
@@ -95,7 +113,7 @@
 	
 	        <div class="container11">
 	          <div class="d-flex" style="margin-left: 90px;">
-	              <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" id="phone_no1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:230px; height: 38px;">
+	              <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" id="phone_no1" name="phone" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:230px; height: 38px;">
 	                <option selected>010</option>
 	                <option>011</option>
 	                <option>016</option>
@@ -107,16 +125,15 @@
 	              <div><h3 style="margin-left:15px">-</h3></div>
 	
 	              <div class="form-group" style="margin-left:15px">
-	                <input type="text" class="form-control" id="phone_no2">
+	                <input type="text" class="form-control" name="phone" maxlength="4" id="phone_no2" required>
 	              </div>
 	
 	              <div><h3 style="margin-left:15px">-</h3></div>
 	
 	              <div class="form-group" style="margin-left:15px">
-	                <input type="text" class="form-control" id="phone_no3">
+	                <input type="text" class="form-control" name="phone" maxlength="4"  id="phone_no3" required>
 	              </div>
-	              
-	              <div><button type="submit" class="btn border-1 border-dark" id="btn-color" style="width: 150px; margin-left:60px">제출하기</button></div>
+	             
 	          </div>
 	        </div>
 	        
@@ -157,7 +174,7 @@
 	          </div>
 	  
 	          <br><br>
-	          <form action= "/server/test.do">
+	          
 	            <filedset>
 	                <input type="radio" id="check" name="check1" value="T" style="margin-left: 1460px; cursor: pointer;">
 	                <label for="checkO">&nbsp;동의합니다.</label>
@@ -173,15 +190,15 @@
 	                    
 	                <tr>
 	                  <td id="color" style="width:500px; height: 70px;"><h4 style="margin:auto">성명</h4></td>
-	                  <td> <input type="text" class="form-control" id="name" style="width:1070px; height:50px; margin-left:30px"></td>
+	                  <td> <input type="text"  name="userName" class="form-control" maxlength="10" id="name" style="width:1070px; height:50px; margin-left:30px" required></td>
 	                 
 	                </tr>
 	                 <tr>
-	                  <td id="color" style="height: 70px;"><h4 style="margin:auto">주민등록번호(외국인등록번호)</h4></td>
+	                  <td id="color"   style="height: 70px;"><h4 style="margin:auto">주민등록번호(외국인등록번호)</h4></td>
 	                  <td class="d-flex"> 
-					            <input type="text" class="form-control" id="num" style="width:500px; height:50px; margin-left:30px">
+					            <input type="text" name="userSSN" class="form-control" maxlength="6" id="num1" style="width:500px; height:50px; margin-left:30px" required>
 					            <h3 style="margin-left:27px; margin-top: 7px;">-</h3>
-					            <input type="text" class="form-control" id="num" style="width:500px; height:50px; margin-left:30px">
+					            <input type="text" name="userSSN" class="form-control" maxlength="7" id="num2" style="width:500px; height:50px; margin-left:30px" required>
 					          </td>
 	                  
 	                </tr>
@@ -194,16 +211,25 @@
 	            <br><br> <br><br> <br><br>
 	
 	            
-	            <div align="center">
-	               <a href="/vita/views/reservation/first_Success.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;">다음</a>
-	               <a href="/vita/views/reservation/consultation_AfterLogin.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:30px;">이전</a>
-	              
+	            <div align="center" style="position: relative;">
+	            	 <button type="submit" class="btn border-1 border-dark" id="submitButton" onclick="first()" style="width:150px; position: absolute; left: 41%; top: 0; z-index: 2;">다음</button>
+	               <a href="/vita/views/reservation/first_Success.jsp" class="btn border-1 border-dark" id="btn-color" style="width:150px; position: absolute; left: 41%; top: 0; z-index: 1;">다음</a>
+	               <a href="/vita/views/reservation/consultation_AfterLogin.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:180px;">이전</a>
+	              	 <script>
+							        function first() {
+							        	var isFirstVisit = <c:out value="${firstVisit}" />; // true 또는 false
+
+							            if (isFirstVisit) {
+							                document.getElementById("submitButton").style.display = "none"; // 버튼 숨기기
+							            }
+							            document.getElementById("btn-color").style.display = "inline-block"; // 링크 보여주기
+							        }
+							    </script>
 	            </div>
-	
+							
 	            <br><br> <br><br> <br><br> 
-	
 	      </section>
-        
+        </form>
         
 
 

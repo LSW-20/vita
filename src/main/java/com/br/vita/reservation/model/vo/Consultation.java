@@ -9,11 +9,12 @@ public class Consultation {
 	private Date appointmentDate;
 	private String appointmentTime;
 	private String careStatus;
+	private String careCheckYN;
 	
 	public Consultation() {}
 
 	public Consultation(String appointmentNo, String userNo, String doctorNo, Date appointmentDate,
-			String appointmentTime, String careStatus) {
+			String appointmentTime, String careStatus, String careCheckYN) {
 		super();
 		this.appointmentNo = appointmentNo;
 		this.userNo = userNo;
@@ -21,6 +22,7 @@ public class Consultation {
 		this.appointmentDate = appointmentDate;
 		this.appointmentTime = appointmentTime;
 		this.careStatus = careStatus;
+		this.careCheckYN = careCheckYN;
 	}
 
 	public String getAppointmentNo() {
@@ -71,12 +73,22 @@ public class Consultation {
 		this.careStatus = careStatus;
 	}
 
+	public String getCareCheckYN() {
+		return careCheckYN;
+	}
+
+	public void setCareCheckYN(String careCheckYN) {
+		this.careCheckYN = careCheckYN;
+	}
+
 	@Override
 	public String toString() {
 		return "Consultation [appointmentNo=" + appointmentNo + ", userNo=" + userNo + ", doctorNo=" + doctorNo
 				+ ", appointmentDate=" + appointmentDate + ", appointmentTime=" + appointmentTime + ", careStatus="
-				+ careStatus + "]";
+				+ careStatus + ", careCheckYN=" + careCheckYN + "]";
 	}
+
+	
 
 	
 	

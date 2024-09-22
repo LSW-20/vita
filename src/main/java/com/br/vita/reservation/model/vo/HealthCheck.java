@@ -11,11 +11,12 @@ public class HealthCheck {
 	private String appointmentTime;
 	private String checkUpDate;
 	private String totalPrice;
+	private String upCheckYN;
 	
 	public HealthCheck() {}
 
 	public HealthCheck(String appointmentNo, String userNo, String companyNo, Date appointmentDate,
-			String appointmentType, String appointmentTime, String checkUpDate, String totalPrice) {
+			String appointmentType, String appointmentTime, String checkUpDate, String totalPrice, String upCheckYN) {
 		super();
 		this.appointmentNo = appointmentNo;
 		this.userNo = userNo;
@@ -25,6 +26,7 @@ public class HealthCheck {
 		this.appointmentTime = appointmentTime;
 		this.checkUpDate = checkUpDate;
 		this.totalPrice = totalPrice;
+		this.upCheckYN = upCheckYN;
 	}
 
 	public String getAppointmentNo() {
@@ -91,14 +93,21 @@ public class HealthCheck {
 		this.totalPrice = totalPrice;
 	}
 
+	public String getUpCheckYN() {
+		return upCheckYN;
+	}
+
+	public void setUpCheckYN(String upCheckYN) {
+		this.upCheckYN = upCheckYN;
+	}
+
 	@Override
 	public String toString() {
 		return "HealthCheck [appointmentNo=" + appointmentNo + ", userNo=" + userNo + ", companyNo=" + companyNo
 				+ ", appointmentDate=" + appointmentDate + ", appointmentType=" + appointmentType + ", appointmentTime="
-				+ appointmentTime + ", checkUpDate=" + checkUpDate + ", totalPrice=" + totalPrice + "]";
+				+ appointmentTime + ", checkUpDate=" + checkUpDate + ", totalPrice=" + totalPrice + ", upCheckYN="
+				+ upCheckYN + "]";
 	}
-	
-	
-	
+
 	
 }
