@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="selectNoticeListCount">
+		SELECT
+		       COUNT(*) as COUNT
+		  FROM 
+		       NOTICE
+		 WHERE
+		       STATUS = 'Y'
+	</entry>
+
+	<entry key="selectNoticeList">
+		SELECT *
+	   FROM (	    
+	             SELECT
+	                   NOTICE_NO
+	                 , NOTICE_TITLE
+	                 , USER_ID
+	                 , REGIST_DATE
+	                 , NOTICE_COUNT
+	                 , ROW_NUMBER() OVER(ORDER BY NOTICE_NO DESC) AS RNUM
+	              FROM
+	                   NOTICE N
+	              JOIN MEMBER M ON (M.USER_NO = N.USER_NO)
+	             WHERE 
+	                   N.STATUS = 'Y'
+	             )
+	    WHERE RNUM BETWEEN ? AND ?
+	</entry>
+
+	<entry key="insertNotice">
+		INSERT
+		  INTO NOTICE
+		  (
+		    NOTICE_NO
+		  , NOTICE_TITLE
+		  , NOTICE_CONTENT
+		  , REGIST_DATE
+		  , USER_NO
+		  , NOTICE_COUNT
+		  , STATUS
+		  )
+		  VALUES
+		  (
+		    SEQ_NNO.NEXTVAL
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , ?
+		  , 0
+		  , 'Y'
+		  )
+	</entry>
+
+	<entry key="selectNotice">    
+    SELECT
+          NOTICE_NO
+        , NOTICE_TITLE
+        , NOTICE_CONTENT
+        , USER_ID
+        , REGIST_DATE
+        , N.USER_NO
+				,	NOTICE_COUNT
+				,	STATUS
+     FROM
+          NOTICE N
+     JOIN MEMBER M ON (M.USER_NO = N.USER_NO)
+    WHERE 
+    			NOTICE_NO = ?
+      AND N.STATUS = 'Y'
+
+	</entry>
+	
+	<entry key="increaseCount">
+		UPDATE
+					 NOTICE
+			 SET 
+			 		 NOTICE_COUNT = NOTICE_COUNT + 1
+		 WHERE 
+		 			 NOTICE_NO = ?
+	</entry>
+	
+	<entry key="updateNotice">
+		UPDATE
+					 NOTICE
+			 SET
+					 NOTICE_TITLE = ?
+			   , NOTICE_CONTENT = ?
+		 WHERE
+				   NOTICE_NO = ?
+	</entry>
+
+	<entry key="deleteNotice">
+		UPDATE
+					 NOTICE
+			 SET
+					 STATUS = 'N'
+		 WHERE
+					 NOTICE_NO = ?
+	</entry>
+</properties>

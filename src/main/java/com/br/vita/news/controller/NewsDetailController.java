@@ -15,13 +15,13 @@ import com.br.vita.news.model.service.NewsService;
  * Servlet implementation class NewslDetailController
  */
 @WebServlet("/detail.ns")
-public class NewslDetailController extends HttpServlet {
+public class NewsDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NewslDetailController() {
+    public NewsDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }

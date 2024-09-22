@@ -1,5 +1,11 @@
+<%@ page import="java.util.Map" %>
+<%@ page import="com.br.vita.notice.model.vo.Notice" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	Map<String, Object> nmap = (Map<String, Object>)request.getAttribute("nmap");
+	Notice n = (Notice)nmap.get("n"); // 게시글번호, 제목, 내용, 작성자, 카테고리명
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,17 +70,18 @@ footer {
 <section class="row m-3" style="min-height: 500px">
 
   <div class="container border p-5 m-4 rounded" style="height: 600px;">
-     <h2 class="m-4">공지사항 수정</h2>
+     <h2 class="m-4">뉴스 수정</h2>
      
-     <form action="" method="" class="m-4">
+     <form action="<%= contextPath %>/update.no" method="post" class="m-4">
+   	   <input type="hidden" name="no" value="<%= n.getNoticeNo() %>">
        <table class="table">
          <tr>
            <th>제목</th>
-           <td><input type="text" class="form-control" required value="기존의 공지사항 제목"></td>
+           <td><input type="text" class="form-control" name="title" required value="<%=n.getNoticeTitle()%>"></td>
          </tr>
          <tr>
            <th>내용</th>
-           <td><textarea rows="10" class="form-control" style="resize:none" required>기존의 공지사항 내용</textarea></td>
+           <td><textarea rows="10" class="form-control" style="resize:none" name="content" required><%= n.getNoticeContent() %></textarea></td>
          </tr>
        </table>
 
@@ -83,6 +90,7 @@ footer {
        <div align="center">
          <button type="submit" class="btn btn-primary btn-sm">수정하기</button>
          <button type="reset" class="btn btn-danger btn-sm">초기화</button>
+         <button type="button" class="btn btn-outline-warning btn-sm" onclick="history.back();">뒤로가기</button>
        </div>
 
     </form>

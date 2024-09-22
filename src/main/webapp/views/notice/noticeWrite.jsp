@@ -64,9 +64,9 @@ footer {
 <section class="row m-3" style="min-height: 500px">
 
   <div class="container border p-5 m-4 rounded" style="height: 600px;">
-    <h2 class="m-4">공지사항 등록</h2>
+    <h2 class="m-4">뉴스 등록</h2>
     
-    <form action="" method="post" class="m-4">
+    <form action="<%= contextPath %>/insert.no" method="post" class="m-4">
       <table class="table">
         <tr>
           <th>제목</th>

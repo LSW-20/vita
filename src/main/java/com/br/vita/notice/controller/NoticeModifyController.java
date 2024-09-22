@@ -2,6 +2,7 @@ package com.br.vita.notice.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,21 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.br.vita.common.model.vo.PageInfo;
 import com.br.vita.notice.model.service.NoticeService;
 import com.br.vita.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeListController
+ * Servlet implementation class NewModifyController
  */
-@WebServlet("/list.no")
-public class NoticeListController extends HttpServlet {
+@WebServlet("/modify.no")
+public class NoticeModifyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeListController() {
+    public NoticeModifyController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,29 +32,22 @@ public class NoticeListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		int noticeNo = Integer.parseInt(request.getParameter("no"));
 		
-		int listCount = new NoticeService().selectNoticeListCount();
+		NoticeService nService = new NoticeService();
+		Map<String, Object> nmap = nService.selectNoticeByNo(noticeNo);
 		
-		int currentPage = 1;
-		if(request.getParameter("page") != null) {
-			currentPage = Integer.parseInt(request.getParameter("page"));
-		}
-		int pageLimit = 10;
-		int boardLimit = 15;
-		int maxPage = (int)Math.ceil((double)listCount / boardLimit );
-		int startPage = (currentPage -1) / pageLimit * pageLimit + 1;
-		int endPage = startPage + pageLimit - 1;
-		if(endPage > maxPage) {
-			endPage = maxPage;
-		}
-		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
+		// 응답페이지 : 수정페이지 (/views/board/boardModify.jsp)
+		// 응답데이터 : 카테고리목록, 게시글데이터, 첨부파일데이터 
 		
-		List<Notice> list = new NoticeService().selectNoticeList(pi);
-		
-		request.setAttribute("pi", pi);
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/notice/notice.jsp").forward(request, response);
-	
+		if(nmap.get("n") == null) {
+			request.setAttribute("msg", "존재하지 않는 게시글이거나 삭제된 게시글입니다.");
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+		}else {
+			request.setAttribute("nmap", nmap);
+			request.getRequestDispatcher("/views/notice/noticeModify.jsp").forward(request, response);
+		}	
 	}
 
 	/**
