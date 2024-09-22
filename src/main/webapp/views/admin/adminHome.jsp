@@ -81,11 +81,11 @@
                     </tr>
 
                     <tr>
-                        <td style="height: 90px; padding-left: 40px; font-size: 20px;"><a href="/vita/views/admin/manageDoctor.jsp">▷ 의료진 계정 관리</a></td>
+                        <td style="height: 90px; padding-left: 40px; font-size: 20px;"><a href="<%= contextPath %>/manageD.admin">▷ 의료진 계정 관리</a></td>
                     </tr>
 
                     <tr>
-                        <td style="height: 90px; padding-left: 40px; font-size: 20px;"><a href="/vita/views/admin/manageMember.jsp">▷ 회원 계정 관리</a></td>
+                        <td style="height: 90px; padding-left: 40px; font-size: 20px;"><a href="<%= contextPath %>/manageM.admin">▷ 회원 계정 관리</a></td>
                     </tr>
                 </table>
             </div>

@@ -174,27 +174,6 @@ footer {
        
 
 
-
-        <%-- 조건처리하는법. 검색 이전상태랑 검색했는데 결과가 없는경우를 구분하기 위해 flag 변수 사용한다.
-        <% boolean searchPerformed = (Boolean) request.getAttribute("searchPerformed"); %>
-
-        <% if (!searchPerformed) { %>
-           검색 이전 상태
-            초기 화면을 표시 
-        <% } else if (doctorList.isEmpty()) { %>
-            검색했지만 결과가 없는 경우
-            <div class="search_doctor_result">의료진 검색 결과</div>
-            <table class="table table-striped">
-                <tr>
-                    <td colspan="10" style="text-align: center;">검색 결과가 없습니다.</td>
-                </tr>
-            </table>
-        <% } else { %>
-            검색 결과가 있는 경우 
-        <% } %>    
-        --%> 
-
-
         <br><br>
         <!-- case1. 의료진 검색 결과가 없는 경우  -->
         <div class="search_doctor_result">의료진 검색 결과</div> <br>
@@ -255,44 +234,7 @@ footer {
                     <td><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal">수정</button></td>
                 </tr>
 
-                <tr>
-                    <td><input type="checkbox" name="delete"></td>
-                    <td>106000</td>
-                    <td>나나나</td>
-                    <td>641007-2468217</td>
-                    <td>내과</td>
-                    <td>64333</td>
-                    <td>010-2222-2222</td>
-                    <td>서울특별시 강동구 양재대로 1571</td>
-                    <td>20150111</td>
-                    <td><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal">수정</button></td>
-                </tr>
-
-                <tr>
-                    <td><input type="checkbox" name="delete"></td>
-                    <td>107000</td>
-                    <td>다다다</td>
-                    <td>810607-1554264</td>
-                    <td>치과</td>
-                    <td>24811</td>
-                    <td>010-3333-3333</td>
-                    <td>서울특별시 강동구 구천면로34길 52</td>
-                    <td>20030220</td>
-                    <td><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal">수정</button></td>
-                </tr>
-
-                <tr>
-                    <td><input type="checkbox" name="delete"></td>
-                    <td>108000</td>
-                    <td>라라라</td>
-                    <td>840401-2347756</td>
-                    <td>안과</td>
-                    <td>30012</td>
-                    <td>010-4444-4444</td>
-                    <td>서울특별시 강동구 구천면로 452</td>
-                    <td>20000717</td>
-                    <td><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal">수정</button></td>
-                </tr>
+               
 
             </table>
 

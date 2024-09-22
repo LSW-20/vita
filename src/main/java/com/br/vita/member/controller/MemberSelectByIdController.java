@@ -15,12 +15,12 @@ import com.br.vita.member.model.vo.Member;
 /**
  * Servlet implementation class MemberSelectByNameController
  */
-@WebServlet("/searchMemByName.admin")
-public class MemberSelectByNameController extends HttpServlet {
+@WebServlet("/searchMemById.admin")
+public class MemberSelectByIdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public MemberSelectByNameController() {
+    public MemberSelectByIdController() {
         super();
     }
 
@@ -30,12 +30,12 @@ public class MemberSelectByNameController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// 1. 요청
-		// 회원 이름을 요청으로 받아온다. db에 해당 회원 이름으로 select 후 결과를 가져온다.
+		// 회원 아이디를 요청으로 받아온다. db에 해당 회원 아이디로 select 후 결과를 가져온다.
 		
-		String userName = request.getParameter("user_name");
-		System.out.println(userName);
+		String userId = request.getParameter("user_id");
+		System.out.println(userId);
 	
-		List<Member> list = new MemberService().selectByName(userName);
+		List<Member> list = new MemberService().selectById(userId);
 		
 		
 		// 2. 응답

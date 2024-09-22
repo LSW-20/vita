@@ -288,6 +288,7 @@ public class MemberDao {
 	
 	
 	/**
+	 * 회원 이름으로 회원 검색
 	 * author : 임상우
 	 * @param conn
 	 * @param userName
@@ -328,6 +329,52 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
+		
+		return list;
+		
+	}
+	
+	
+	/**
+	 * 회원 아이디로 회원 검색
+	 * author : 임상우
+	 * @param conn
+	 * @param userId
+	 * @return 검색된 회원 데이터(하나지만 List에 담아서 보냈음)
+	 */
+	public List<Member> selectById(Connection conn, String userId) {
+		
+		//select문 => 한 행 => 한 행이지만 화면구현을 list에서 뽑아오기 때문에 Member가 아닌 List<Member>
+		List<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectById");
+		
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset=pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Member(rset.getString("USER_ID"),
+									rset.getString("USER_NAME"),
+									rset.getString("USER_SSN"),
+									rset.getString("ADDRESS"),
+									rset.getString("EMAIL"),
+									rset.getString("CALLBACK_YN"),
+									rset.getString("PHONE"),
+									rset.getDate("ENROLL_DATE")
+						));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
 		
 		return list;
 		

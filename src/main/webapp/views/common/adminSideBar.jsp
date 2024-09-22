@@ -156,15 +156,15 @@ $(document).ready(function() {
 
     <div id="side_menu">
         <div id="adminPage">
-            <a href="/vita/views/admin/adminHome.jsp">관리자 전용 페이지</a>
+            <a href="<%= contextPath %>/home.admin">관리자 전용 페이지</a>
         </div>
 
 
         <div id="side_elements">
             <div id="side1"><span id="side1_event">• &nbsp계정 관리</span></div> <!-- div가 아닌 span으로 영역을 줄이니 이벤트 전파 발생x-->
             <div id="side2">
-                <div class="no_style2"><a href="/vita/views/admin/manageDoctor.jsp">-  &nbsp 의료진 계정 관리</a></div>  
-                <div class="no_style2"><a href="/vita/views/admin/manageMember.jsp">-  &nbsp 회원 계정 관리</a></div>
+                <div class="no_style2"><a href="<%= contextPath %>/manageD.admin">-  &nbsp 의료진 계정 관리</a></div>  
+                <div class="no_style2"><a href="<%= contextPath %>/manageM.admin">-  &nbsp 회원 계정 관리</a></div>
             </div>
             <div id="side3"><span id="side3_event">• &nbsp사이트 관리</span></div>
             <div id="side4">

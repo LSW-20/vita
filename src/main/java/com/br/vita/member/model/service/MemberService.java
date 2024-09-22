@@ -129,6 +129,7 @@ public class MemberService {
 
 	
 	/**
+	 * 회원 이름으로 회원 검색
 	 * author : 임상우
 	 * @param userName
 	 * @return List<Member> 검색된 회원 데이터들
@@ -140,8 +141,17 @@ public class MemberService {
 		return list;
 	}
 	
-	
-	
+	/**
+	 * 회원 아이디로 회원 검색
+	 * @param userId
+	 * @return 검색된 회원 데이터(하나지만 List에 담아서 보냈음)
+	 */
+	public List<Member> selectById(String userId) {
+		Connection conn = getConnection();
+		List<Member> list = mdao.selectById(conn, userId);
+		close(conn);
+		return list;
+	}
 	
 	
 	
