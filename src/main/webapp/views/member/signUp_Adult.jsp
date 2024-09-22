@@ -329,25 +329,27 @@
                               </colgroup>
                               <tr>
                                 <th><br>이름&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><br><input type="text" class="name" name="userName" required><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정확한 이름을 입력해주세요.</span></td>
+                                  <td colspan="2"><br><input type="text" class="name" name="userName" required>
+                                  <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정확한 이름을 입력해주세요.</span></td>
                               </tr>
                           </thead>
                           <tbody>
                               <tr>
                                 <th>주민등록번호&nbsp;<span style="color:red;">*</span></th>
                                   <td colspan="2">
-                                    <input type="text" id="number2" style="width: 150px;" name="userSSN" required>
-                                    <span style="font-size: 20px;">-</span>
-                                    <input type="password" id="number2" style="width: 150px;" name="userSSN" required>
+                                    <input type="text" id="number2" name="userSSN" required>
+                                    <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 를 포함해서 적어주세요. &nbsp;&nbsp;ex) 900101-2222222</span>
                                   </td>
                               </tr>
                               <tr>
                                 <th>아이디&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><input type="text" class="id_1" name="userId" required><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6~15자리 영문 소문자, 숫자만 가능합니다. (한글, 특수문자 입력 불가)</span></td>
+                                  <td colspan="2"><input type="text" class="id_1" name="userId" required>
+                                  <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6~15자리 영문 소문자, 숫자만 가능합니다. (한글, 특수문자 입력 불가)</span></td>
                               </tr>
                               <tr>
                                 <th>비밀번호&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><input type="password" class="pwd_1" name="userPwd" required><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;특수문자는 ‘!,@,#,$,%,^,&,*’만 가능합니다.</span></td>
+                                  <td colspan="2"><input type="password" class="pwd_1" name="userPwd" required>
+                                  <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;특수문자는 ‘!,@,#,$,%,^,&,*’만 가능합니다.</span></td>
                               </tr>
                               <tr>
                                 <th>비밀번호 확인&nbsp;<span style="color:red;">*</span></th>
@@ -356,36 +358,16 @@
                               <tr>
                                 <th>휴대폰 번호&nbsp;<span style="color:red;">*</span></th>
                                 <td colspan="2">
-                                    <div>
-                                        <select id="phone_number" style="width: 90px; height: 35px;">
-                                            <option value="선택">선택</option>
-                                            <option value="010">010</option>
-                                            <option value="011">011</option>
-                                            <option value="016">016</option>
-                                            <option value="017">017</option>
-                                            <option value="018">018</option>
-                                            <option value="019">019</option>
-                                        </select>
-                                        <span style="font-size: 20px;">-</span>
-                                        <input type="text" id="phone12" style="width: 150px;" name="phone" required>
-                                        <span style="font-size: 20px;">-</span>
-                                        <input type="text" id="phone12" style="width: 150px;" name="phone" required><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;본인 휴대폰번호를 정확하게 입력하세요.</span>
-                                    </div>
+                                  <input type="text" id="phone12" name="phone" required>
+                                  <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 를 포함한 본인 휴대폰번호를 정확하게 입력하세요. &nbsp;&nbsp;ex)010-1111-2222</span>
                                 </td>
                             </tr>
                               <tr>
                                 <th>이메일 주소&nbsp;<span style="color:red;">*</span></th>
                                   <td colspan="2">
                                       <div>
-                                          <input type="text" id="e-mail" style="width: 200px;" name="email" required>
-                                          <span style=" margin: 10px;">@</span>
-                                          <select id="email-domain" style="width: 250px; height: 35px;">
-                                              <option value="선택">선택</option>
-                                              <option value="naver.com">naver.com</option>
-                                              <option value="gmail.com">gmail.com</option>
-                                              <option value="hanmail.net">hanmail.net</option>
-                                              <option value="nate.com">nate.com</option> 
-                                          </select><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이메일 주소를 입력하세요.</span>
+                                          <input type="text" id="e-mail" name="email" required>
+                                          <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @ 를 포함한 이메일 주소를 입력하세요. &nbsp;&nbsp;ex)abc@naver.com</span>
                                       </div><br>
                                   </td>
                               </tr>

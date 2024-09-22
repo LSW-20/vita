@@ -66,8 +66,9 @@ public class Member {
 		this.gender = gender;
 	}
 	
-	// 회원가입 요청용 생성자 -미선
-	public Member(String userId, String userPwd, String userName, String phone, String email, String userSSN) {
+	// 회원가입 요청용 생성자
+	public Member(String userId, String userPwd, String userName, String phone, String email, String userSSN
+				 ,String userDate, String gender) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -75,6 +76,8 @@ public class Member {
 		this.phone = phone;
 		this.email = email;
 		this.userSSN = userSSN;
+		this.userDate = userDate;
+		this.gender = gender;
 	}
 	
 	
