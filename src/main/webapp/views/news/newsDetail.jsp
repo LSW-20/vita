@@ -64,7 +64,7 @@
       <!-- 현재 로그인되어있는 회원이 해당 게시글의 작성자 본인일 경우 보여지는 요소 -->
       <% if (loginUser != null && loginUser.getUserId().equals("admin01")) { %>
       <a href="<%= contextPath %>/modify.ns?no=<%= n.getNewsNo() %>" class="btn btn-primary btn-sm">수정하기 페이지로</a> &nbsp;
-      <a href="<%= contextPath %>/delete.ns?no=<%= n.getNewsNo() %>" class="btn btn-danger btn-sm">삭제하기</a> &nbsp;
+      <a href="javascript:confirmDelete(<%= n.getNewsNo() %>);" class="btn btn-danger btn-sm">삭제하기</a>  &nbsp;
       <% } %>
       <!-- ------------------------------------------------------------------------- -->
       <a href="<%= contextPath %>/list.ns" class="btn btn-warning btn-sm">목록가기</a>
@@ -72,7 +72,7 @@
 
     <table class="table m-4">
     	<tr>
-    		<th style="width:80px;">번호</th>
+    		<th>번호</th>
     		<td><%= n.getNewsNo() %></td>
     		<th>작성자</th>
     		<td><%= n.getUserId() %></td>
@@ -91,7 +91,13 @@
         <td colspan="7"><pre style="min-height:200px; white-space: pre-wrap; word-wrap: break-word;"><%= n.getNewsContent() %></pre></td>
       </tr>
     </table>
-
+		<script>
+		function confirmDelete(newsNo) {
+		    if (confirm('정말로 삭제하시겠습니까?')) {
+		        window.location.href = '<%= contextPath %>/delete.ns?no=' + newsNo;
+		    }
+		}
+		</script>
   </div>
   <% if (loginUser != null && loginUser.getUserId().equals("admin01")) { %>
   </div> <!-- 관리자 사이드바의 div를 닫는 태그 -->

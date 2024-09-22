@@ -81,5 +81,23 @@
 		 WHERE 
 		 			 NEWS_NO = ?
 	</entry>
+	
+	<entry key="updateNews">
+		UPDATE
+					 NEWS
+			 SET
+					 NEWS_TITLE = ?
+			   , NEWS_CONTENT = ?
+		 WHERE
+				   NEWS_NO = ?
+	</entry>
 
+	<entry key="deleteNews">
+		UPDATE
+					 NEWS
+			 SET
+					 STATUS = 'N'
+		 WHERE
+					 NEWS_NO = ?
+	</entry>
 </properties>

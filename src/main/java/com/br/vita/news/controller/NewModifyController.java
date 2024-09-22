@@ -47,7 +47,6 @@ public class NewModifyController extends HttpServlet {
 		}else {
 			request.setAttribute("nmap", nmap);
 			request.getRequestDispatcher("/views/news/newsModify.jsp").forward(request, response);
-			System.out.println("nmap: " + nmap);
 		}	
 	}
 

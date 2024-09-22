@@ -139,7 +139,7 @@ public class NewsDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println("n: " + n);
+		
 		return n;
 	}
 
@@ -152,6 +152,51 @@ public class NewsDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, newsNo);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public int updateNews(Connection conn, News n) {
+		// update => 처리된 행수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateNews");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, n.getNewsTitle());
+			pstmt.setString(2, n.getNewsContent());
+			pstmt.setInt(3, n.getNewsNo());
+					
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+	public int deleteNews(Connection conn, int newsNo) {
+		// update => 처리된 행수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteNews");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, newsNo);
+			
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {

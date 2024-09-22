@@ -53,13 +53,37 @@ public class NewsService {
 		Map<String, Object> nmap = new HashMap<>();
 		nmap.put("n", n);
 		close(conn);
-		System.out.println("nmap: " + nmap);
+
 		return nmap;
 	}
 
 	public int increaseCount(int newsNo) {
 		Connection conn = getConnection();
 		int result = nDao.increaseCount(conn, newsNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	public int updateNews(News n) {
+		Connection conn = getConnection();
+		int result = nDao.updateNews(conn, n);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	public int deleteNews(int newsNo) {
+		Connection conn = getConnection();
+		int result = nDao.deleteNews(conn, newsNo);
 		if(result > 0) {
 			commit(conn);
 		}else {

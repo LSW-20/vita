@@ -77,11 +77,11 @@ footer {
        <table class="table">
          <tr>
            <th>제목</th>
-           <td><input type="text" class="form-control" required value="<%=n.getNewsTitle()%>"></td>
+           <td><input type="text" class="form-control" name="title" required value="<%=n.getNewsTitle()%>"></td>
          </tr>
          <tr>
            <th>내용</th>
-           <td><textarea rows="10" class="form-control" style="resize:none" required><%= n.getNewsContent() %></textarea></td>
+           <td><textarea rows="10" class="form-control" style="resize:none" name="content" required><%= n.getNewsContent() %></textarea></td>
          </tr>
        </table>
 

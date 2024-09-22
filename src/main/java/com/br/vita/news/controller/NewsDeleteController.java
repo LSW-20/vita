@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.br.vita.news.model.service.NewsService;
+
 /**
  * Servlet implementation class NewsDeleteController
  */
@@ -26,8 +28,20 @@ public class NewsDeleteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// 1. 요청
+		int newsNo = Integer.parseInt(request.getParameter("no"));
+		
+		int result = new NewsService().deleteNews(newsNo);
+		
+		// 2. 응답
+		if(result > 0) { // 성공
+			request.getSession().setAttribute("alertMsg", "성공적으로 공지사항이 삭제되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/list.ns");
+			
+		}else { // 실패
+			request.setAttribute("msg", "공지사항 삭제 실패");
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+		}
 	}
 
 	/**
