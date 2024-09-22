@@ -106,6 +106,7 @@ public class CsDao {
 	/**
 	 * 게시글 번호로 게시글 상세조회 가져오기
 	 * select => rset
+	 * @author 최보겸
 	 * @param conn
 	 * @param boardNo
 	 * @return board : 글번호 맞는 게시글 상세정보
@@ -146,7 +147,31 @@ public class CsDao {
 			close(pstmt);
 		}
 		return board;
-	}
+	}//selectBoardByNo
+
+	/**
+	 * 조회수 증가 요청 - UPDATE
+	 * @author 최보겸
+	 * @param conn
+	 * @param boardNo
+	 * @return result : update결과 여부 반환
+	 */
+	public int increaseCount(Connection conn, int boardNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("increaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}//increaseCount
 	
 
 

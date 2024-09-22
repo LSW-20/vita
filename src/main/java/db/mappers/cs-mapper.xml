@@ -37,6 +37,7 @@
 		
 	</entry>
 
+	<!--게시글 상세 조회를 위한 게시글번호로 게시글내용 조회-->
 	<entry key="selectBoardByNo">
 		SELECT 
 				   BOARD_NO
@@ -59,6 +60,17 @@
 		    ON C.USER_NO = M.USER_NO
 		 WHERE BOARD_NO = ?
 		   AND STATUS = 'Y'		
+	</entry>
+	
+	<!--조회수 증가 요청-->
+	<entry key="increaseCount">
+		UPDATE
+		             TAB_CS
+		   SET 
+		       BOARD_COUNT = BOARD_COUNT + 1
+		 WHERE 
+		       BOARD_NO = ?
+
 	</entry>
 
 </properties>

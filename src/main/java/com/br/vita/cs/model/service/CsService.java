@@ -19,7 +19,7 @@ public class CsService {
 
 	/**
 	 * 게시글개수 DB에서 가져오기
-	 * author: 최보겸
+	 * @author 최보겸
 	 * @param category 해당 카테고리 같이 넘김
 	 * @return listCount 
 	 */
@@ -31,7 +31,7 @@ public class CsService {
 	
 	/**
 	 * 그 페이지에 맞는 게시글 리스트 데이터 가져오기
-	 * author: 최보겸
+	 * @author 최보겸
 	 * @param pi
 	 * @param category
 	 * @return csList
@@ -43,6 +43,12 @@ public class CsService {
 		return csList;
 	}
 	
+	/**
+	 * 게시글 번호로 게시글 상세조회 가져오기
+	 * @author 최보겸
+	 * @param boardNo 해당 게시글번호
+	 * @return c 상세 조회할 게시글 상세 내용
+	 */
 	public Cs selectBoardByNo(int boardNo) {
 		Connection conn = getConnection();
 		Cs c = cDao.selectBoardByNo(conn, boardNo);
@@ -51,6 +57,25 @@ public class CsService {
 		
 		return c;
 	}//selectBoardByNo
+
+	/**
+	 * 조회수 증가 메소드
+	 * @author 최보겸
+	 * @param boardNo 해당 게시글번호
+	 * @return result : 조회수 증가 요청결과 행 수
+	 */
+	public int increaseCount(int boardNo) {
+		Connection conn = getConnection();
+		int result = cDao.increaseCount(conn, boardNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}//increaseCount
 
 
 
