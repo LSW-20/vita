@@ -93,6 +93,8 @@ public class DoctorService {
 		List<Map<String, Object>> list = dDao.selectByDept(conn, dept);
 		close(conn);
 		return list;
+		
+	}
 
 	public void doctorScheduleUpdate() {
 		
