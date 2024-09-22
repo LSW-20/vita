@@ -61,10 +61,8 @@ public class DoctorInsert extends HttpServlet {
         	int result = new DoctorService().doctorInsert(m);
         	
         	
-        	
-        	
-        	
-        	
+
+
         	
             // 2. 응답
             // 추가, 수정, 삭제에 alert주자

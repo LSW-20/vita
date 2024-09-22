@@ -116,8 +116,67 @@ AND SCHEDULE_TIME = 'A'
 	JOIN  MEMBER USING (USER_NO)
 	
 	</entry>
+	
 
+	<!-- (상우) 의사 계정 추가 (1/3) 회원 테이블 -->
+	<entry key="doctorInsert">
+	
+	INSERT 
+		INTO MEMBER 
+		(
+				 USER_NO
+			 , USER_ID
+			 , USER_PWD
+			 , USER_NAME
+			 , PHONE
+			 , EMAIL
+			 , ADDRESS
+			 , ENROLL_DATE
+			 , USER_TYPE
+			 , USER_SSN
+			 , CALLBACK_YN
+			 , RESIGN_YN
+			 , USER_DATE
+			 , USER_GENDER
+			 , REPRESENTATIVE
+		)
+	VALUES 
+	(
+				 TO_CHAR(SYSDATE, 'YYMMDD') || LPAD(SEQ_UNO.NEXTVAL, 3, '0')
+				 ,?
+				 ,?
+				 ,?
+				 ,?
+				 ,?
+				 ,?
+				 ,SYSDATE
+				 ,'D'
+				 ,?
+				 ,'N'
+				 ,'N'
+				 ,?
+				 ,?
+				 ,NULL
+  )
 
+	</entry>
+	
+	
+	<!-- (상우) 의사 계정 추가 (2/3) 의사 테이블 -->
+	<entry key="">
+	
+
+	
+	</entry>
+	
+	
+	<!-- (상우) 의사 계정 추가 (3/3) 스케쥴 테이블 -->
+	<entry key="">
+	
+
+	
+	</entry>
+	
 </properties>
 
 
