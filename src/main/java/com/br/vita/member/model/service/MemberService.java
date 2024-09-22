@@ -143,6 +143,7 @@ public class MemberService {
 	
 	/**
 	 * 회원 아이디로 회원 검색
+	 * author : 임상우
 	 * @param userId
 	 * @return 검색된 회원 데이터(하나지만 List에 담아서 보냈음)
 	 */
