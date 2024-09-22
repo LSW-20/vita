@@ -63,10 +63,48 @@ WHERE
 	WHERE 
 				DOCTOR_NAME=?
 	
-	
 	</entry>
 
 
+	<!-- (상우) 의사 사번으로 검색 -->
+	<entry key="selectByDNO">
+	
+	
+	SELECT 
+					DOCTOR_NO
+				, DOCTOR_NAME
+				, LICENCE_NO
+				, DEPT_NAME
+				, HIRE_DATE
+				, USER_SSN
+				, PHONE
+				, ADDRESS
+	FROM 
+				DOCTOR
+	JOIN  MEMBER USING (USER_NO)
+	WHERE 
+				DOCTOR_NO=?
+	
+	</entry>
+	
+
+	<!-- (상우) 의사 진료과로 검색 -->
+	<entry key="selectByDept">
+	
+	SELECT 
+					DOCTOR_NO
+				, DOCTOR_NAME
+				, LICENCE_NO
+				, DEPT_NAME
+				, HIRE_DATE
+				, USER_SSN
+				, PHONE
+				, ADDRESS
+	FROM 
+				DOCTOR
+	JOIN  MEMBER USING (USER_NO)
+	
+	</entry>
 
 
 </properties>
