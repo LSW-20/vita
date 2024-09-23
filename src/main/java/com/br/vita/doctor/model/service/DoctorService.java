@@ -179,7 +179,11 @@ public class DoctorService {
 
 		int result = dDao.doctorScheduleUpdate(conn, list);
 
-		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		
 		close(conn);
 
