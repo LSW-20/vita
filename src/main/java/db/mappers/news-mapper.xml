@@ -100,4 +100,28 @@
 		 WHERE
 					 NEWS_NO = ?
 	</entry>
+	
+	<entry key="selectNewsMainList">
+		  <![CDATA[
+      SELECT *
+				FROM (
+				    SELECT
+				           NEWS_NO
+				         , NEWS_TITLE
+				         , NEWS_CONTENT
+				         , USER_ID
+				         , REGIST_DATE
+				         , N.USER_NO
+				         , NEWS_COUNT
+				         , STATUS
+				         , ROW_NUMBER() OVER(ORDER BY NEWS_NO DESC) AS RNUM
+				    FROM
+				           NEWS N
+				    JOIN MEMBER M ON (M.USER_NO = N.USER_NO)
+				    WHERE 
+				           N.STATUS = 'Y'
+				)
+				WHERE RNUM <= 3
+	    ]]>
+	</entry>
 </properties>

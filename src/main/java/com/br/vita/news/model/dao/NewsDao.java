@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.br.vita.common.model.vo.PageInfo;
 import com.br.vita.news.model.vo.News;
+import com.br.vita.news.model.vo.News;
 
 public class NewsDao {
 
@@ -206,6 +207,37 @@ public class NewsDao {
 		}
 		
 		return result;
+	}
+
+
+	public List<News> selectNewsList(Connection conn) {
+		List<News> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectNewsMainList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);		
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new News(rset.getInt("news_no")
+						, rset.getString("news_title")
+						, rset.getString("news_content")
+						, rset.getDate("regist_date")
+						, rset.getString("user_no")
+						, rset.getInt("news_count")
+						, rset.getString("status")
+						, rset.getString("user_id")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
 	}
 
 

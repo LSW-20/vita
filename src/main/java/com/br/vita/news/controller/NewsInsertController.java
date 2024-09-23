@@ -41,10 +41,6 @@ public class NewsInsertController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		
-		System.out.println("News Title: " + newsTitle);
-	    System.out.println("News Content: " + newsContent);
-	    System.out.println("User No: " + userNo);
-		
 		News n = new News();
 		n.setNewsTitle(newsTitle);
 		n.setNewsContent(newsContent);

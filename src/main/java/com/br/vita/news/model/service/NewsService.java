@@ -1,5 +1,10 @@
 package com.br.vita.news.model.service;
 
+import static com.br.vita.common.template.JDBCTemplate.close;
+import static com.br.vita.common.template.JDBCTemplate.commit;
+import static com.br.vita.common.template.JDBCTemplate.getConnection;
+import static com.br.vita.common.template.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
@@ -8,11 +13,6 @@ import java.util.Map;
 import com.br.vita.common.model.vo.PageInfo;
 import com.br.vita.news.model.dao.NewsDao;
 import com.br.vita.news.model.vo.News;
-
-import static com.br.vita.common.template.JDBCTemplate.getConnection;
-import static com.br.vita.common.template.JDBCTemplate.close;
-import static com.br.vita.common.template.JDBCTemplate.commit;
-import static com.br.vita.common.template.JDBCTemplate.rollback;
 
 public class NewsService {
 
@@ -91,6 +91,13 @@ public class NewsService {
 		}
 		close(conn);
 		return result;
+	}
+
+	public List<News> selectNewsList() {
+		Connection conn = getConnection();
+		List<News> list = nDao.selectNewsList(conn);
+		close(conn);
+		return list;
 	}
 
 

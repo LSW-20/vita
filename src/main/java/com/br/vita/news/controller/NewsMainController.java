@@ -1,8 +1,7 @@
-package com.br.vita.notice.controller;
+package com.br.vita.news.controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,21 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.br.vita.notice.model.service.NoticeService;
-import com.br.vita.notice.model.vo.Notice;
+import com.br.vita.news.model.service.NewsService;
+import com.br.vita.news.model.vo.News;
 import com.google.gson.Gson;
 
 /**
- * Servlet implementation class NoticeListController
+ * Servlet implementation class NewsMainController
  */
-@WebServlet("/main.no")
-public class NoticeMainController extends HttpServlet {
+@WebServlet("/main.ns")
+public class NewsMainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeMainController() {
+    public NewsMainController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,8 +32,8 @@ public class NoticeMainController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
-		List<Notice> list = new NoticeService().selectNoticeList();
+
+		List<News> list = new NewsService().selectNewsList();
 		
 		response.setContentType("application/json; charset=UTF-8");
 		new Gson().toJson(list, response.getWriter());

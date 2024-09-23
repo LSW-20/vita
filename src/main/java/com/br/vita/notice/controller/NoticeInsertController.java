@@ -41,10 +41,6 @@ public class NoticeInsertController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		
-		System.out.println("Notice Title: " + noticeTitle);
-	    System.out.println("Notice Content: " + noticeContent);
-	    System.out.println("User No: " + userNo);
-		
 		Notice n = new Notice();
 		n.setNoticeTitle(noticeTitle);
 		n.setNoticeContent(noticeContent);

@@ -68,7 +68,7 @@
         .carousel-control-prev, .carousel-control-next {
             width: 5%;
         }
-        #noticeDt{
+        #noticeDt, #newsDt{
         	cursor: pointer;
         }
      </style>
@@ -284,10 +284,10 @@
             </div>
             <script>
 	            $(document).ready(function() {
-	                MainNewsList();
+	                MainNoticeList();
 	            });
 	
-	            function MainNewsList() {
+	            function MainNoticeList() {
 	                $.ajax({
 	                    url: '<%=contextPath%>/main.no',
 	                    success: function(list) {
@@ -337,21 +337,65 @@
 	            });
 						</script>
             <div class="container border" style="border-radius: 15px; width: 500px; height: 200px; display: flex; padding-top: 30px; padding-bottom: 30px;">
-                <table>
-                    <tr>
-                        <th style="width: 380px; padding-left: 10px;"><a href="">9번째 'NEJM' 심방세동 있는 관상동맥질환자 ..</a></th>
-                        <td style="font-size: 15px; color: gray;">2024.08.24</td>
-                    </tr>
-                    <tr>
-                        <th style="width: 380px; padding-left: 10px;"><a href="">비타병원, 전립선암 혁신 치료제 '빅루빅토' 본격 ..</a></th>
-                        <td style="font-size: 15px; color: gray;">2024.08.24</td>
-                    </tr>
-                    <tr>
-                        <th style="width: 380px; padding-left: 10px;"><a href="">심폐소생술시 에크모 조기 시행해야 생존 확률 높 ..</a></th>
-                        <td style="font-size: 15px; color: gray;">2024.08.24</td>
-                    </tr>
-                </table>        
-            </div>    
+                <table id="news-area">
+                   <tbody>
+								   </tbody>
+                </table>
+            </div>
+            <script>
+	            $(document).ready(function() {
+	                MainNewsList();
+	            });
+	
+	            function MainNewsList() {
+	                $.ajax({
+	                    url: '<%=contextPath%>/main.ns',
+	                    success: function(list) {
+	                        console.log(list); 
+	                        
+	                        let trEl = "";
+	                        if (list.length == 0) { // 공지사항이 없는 경우
+	                            trEl += '<tr><td colspan="2">존재하는 게시글이 없습니다.</td></tr>';
+	                        } else { // 공지사항이 있는 경우
+	                            for (let i = 0; i < list.length; i++) {
+	                                trEl += '<tr>'
+	                                      + '<th id="newsDt" style="width: 360px; padding-left: 10px;">' + list[i].newsTitle + '</th>'
+	                                      + '<td style="font-size: 15px; color: gray;">' + list[i].registDate + '</td>'
+	                                      + '<td style="display:none;" class="newsNo">' + list[i].newsNo + '</td>' // 게시글 번호 추가
+	                                      + '<td style="display:none;" class="writerId">' + list[i].writerId + '</td>' // 작성자 아이디 추가
+	                                      + '</tr>';
+	                            }
+	                        }
+	                        
+	                        $('#news-area tbody').html(trEl);    
+	                    },
+	                    error: function() {
+	                        console.log('ajax 통신 실패');
+	                    }
+	                });
+	            }
+
+	            $(function() {
+	                $('#news-area').on('click', '#newsDt', function() {
+	                    // 현재 클릭한 게시글 번호
+	                    let no = $(this).closest('tr').find('.newsNo').text();
+	                    // 현재 클릭한 게시글 작성자 아이디
+	                    let writer = $(this).closest('tr').find('.writerId').text();
+	                    // 현재 로그인한 회원 아이디
+	                    let loginUserId = '<%= loginUser == null ? "" : loginUser.getUserId() %>';
+
+	                    if(writer == loginUserId) {
+	                        console.log("내가 쓴 글입니다.");
+	                        // 현재 내가 쓴 글일 경우 => 조회수증가없이 상세페이지로 바로 이동
+	                        location.href = "<%=contextPath%>/detail.ns?no=" + no;
+	                    } else {
+	                        console.log("내가 쓴 글이 아닙니다.");
+	                        // 내가 쓴 글이 아닐 경우 => 조회수증가하면서 상세페이지로 이동
+	                        location.href = "<%=contextPath%>/increase.ns?no=" + no;
+	                    }    
+	                });
+	            });
+						</script>
         </div> 
         <br><br>
         <div class="container" style="width: 1300px; height: 200px; display: flex; padding-top: 25px;">
