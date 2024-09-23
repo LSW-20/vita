@@ -96,22 +96,7 @@ public class DoctorService {
 		close(conn);
 		return list;
 		
-	}
 	
-
-	public int doctorScheduleUpdate(List<DoctorSchedule>list) {
-		
-		Connection conn = getConnection();
-		
-		int result = dDao.doctorScheduleUpdate(conn,list);
-		
-		close(conn);
-		
-		return result;
-		
-		
-		
-		
 
 	}
 	
@@ -138,11 +123,31 @@ public class DoctorService {
 		
 	}
 	
+
+	public int doctorScheduleUpdate(List<DoctorSchedule> list) {
+
+		Connection conn = getConnection();
+
+		int result = dDao.doctorScheduleUpdate(conn, list);
+
+		close(conn);
+
+		return result;
+		
+
+	}
 	
-	
-	
-	
-	
-	
+	public List<DoctorSchedule> shcedulePageSelect(String doctor) {
+		
+		Connection conn = getConnection();
+
+		List<DoctorSchedule> schedule = dDao.shcedulePageSelect(conn, doctor);
+
+		close(conn);
+
+		return schedule;
+		
+		
+	}
 
 }
