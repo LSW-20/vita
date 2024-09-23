@@ -62,35 +62,35 @@
                                     <th>오전</th>
                                     <td>
                                         <select id="mon-morning" class="form-control">
-                                            <option value="">선택</option>
+                                            
                                             <option value="Y">근무</option>
                                             <option value="N">휴무</option>
                                         </select>
                                     </td>
                                     <td>
                                         <select id="tue-morning" class="form-control">
-                                            <option value="">선택</option>
+                                            
                                             <option value="Y">근무</option>
                                             <option value="N">휴무</option>
                                         </select>
                                     </td>
                                     <td>
                                         <select id="wed-morning" class="form-control">
-                                            <option value="">선택</option>
+                                            
                                             <option value="Y">근무</option>
                                             <option value="N">휴무</option>
                                         </select>
                                     </td>
                                     <td>
                                         <select id="thu-morning" class="form-control">
-                                            <option value="">선택</option>
+                                           
                                             <option value="Y">근무</option>
                                             <option value="N">휴무</option>
                                         </select>
                                     </td>
                                     <td>
                                         <select id="fri-morning" class="form-control">
-                                            <option value="">선택</option>
+                                            
                                             <option value="Y">근무</option>
                                             <option value="N">휴무</option>
                                         </select>
@@ -100,35 +100,35 @@
                                     <th>오후</th>
                                     <td>
                                         <select id="mon-afternoon" class="form-control">
-                                            <option value="">선택</option>
+                                            
                                             <option value="Y">근무</option>
                                             <option value="N">휴무</option>
                                         </select>
                                     </td>
                                     <td>
                                         <select id="tue-afternoon" class="form-control">
-                                            <option value="">선택</option>
+                                            
                                             <option value="Y">근무</option>
                                             <option value="N">휴무</option>
                                         </select>
                                     </td>
                                     <td>
                                         <select id="wed-afternoon" class="form-control">
-                                            <option value="">선택</option>
+                                            
                                             <option value="Y">근무</option>
                                             <option value="N">휴무</option>
                                         </select>
                                     </td>
                                     <td>
                                         <select id="thu-afternoon" class="form-control">
-                                            <option value="">선택</option>
+                                            
                                             <option value="Y">근무</option>
                                             <option value="N">휴무</option>
                                         </select>
                                     </td>
                                     <td>
                                         <select id="fri-afternoon" class="form-control">
-                                            <option value="">선택</option>
+                                            
                                             <option value="Y">근무</option>
                                             <option value="N">휴무</option>
                                         </select>
@@ -196,7 +196,7 @@
                 </div>
 
                 <script>
-                
+                fnScheduleSelect();
     			
                     function fnSchedule(){
                     	
@@ -229,7 +229,7 @@
                                 wedAfternoon: $wedA,
                                 thuAfternoon: $thuA,
                                 friAfternoon: $friA,
-                             <%--   name: '<%= loginUser.getUserName() %>', --%>
+                             
                                 
                             },
                             success: function(res) {
@@ -240,6 +240,7 @@
                             	if(res > 0){
                             		alert('성공적으로 등록되었습니다');
                             		fnScheduleSelect();
+                            		location.href = location.href;
                             	}else{
                             		alert('일정등록 실패');
                             	}
@@ -301,7 +302,7 @@
                     	
                     } 
                     
-                     fnScheduleSelect();
+                     
 					    
              
                     

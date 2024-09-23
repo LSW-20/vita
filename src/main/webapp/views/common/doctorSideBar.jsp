@@ -94,7 +94,7 @@
           });
           
           function fnschedule(){
-        	  location.href = '/vita/views/doctor/doctorSchedule.jsp';
+        	  location.href = '<%= contextPath %>/schedule.go';
         	  
           }
          
