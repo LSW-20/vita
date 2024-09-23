@@ -99,22 +99,6 @@ public class DoctorService {
 	}
 	
 
-	public int doctorScheduleUpdate(List<DoctorSchedule>list) {
-		
-		Connection conn = getConnection();
-		
-		int result = dDao.doctorScheduleUpdate(conn,list);
-		
-		close(conn);
-		
-		return result;
-		
-		
-		
-		
-
-	}
-	
 	
 	/**
 	 * 의사 계정 추가 (1/3) 회원 테이블 추가
@@ -186,6 +170,36 @@ public class DoctorService {
 		
 	}
 
+	
+
+	public int doctorScheduleUpdate(List<DoctorSchedule> list) {
+
+		Connection conn = getConnection();
+
+		int result = dDao.doctorScheduleUpdate(conn, list);
+
+		close(conn);
+
+		return result;
+		
+
+	}
+	
+	
+	public List<DoctorSchedule> shcedulePageSelect(String doctor) {
+		
+		Connection conn = getConnection();
+
+		List<DoctorSchedule> schedule = dDao.shcedulePageSelect(conn, doctor);
+
+		close(conn);
+
+		return schedule;
+		
+		
+	}
+	
+	
 	
 	
 	/**
