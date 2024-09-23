@@ -129,7 +129,7 @@ footer{
 				<%if(board.getCategory().equals("Q")) {%>
 					QnA
 				<%}else if(board.getCategory().equals("S")){ %>
-					건의합니다
+					문의합니다
 				<%}else{ %>
 					칭찬합니다
 				<%} %>
@@ -222,7 +222,7 @@ footer{
 	    <!-- case2. 현재 로그인되어있는 회원이 해당 게시글의 작성자 본인일 경우 보여지는 요소 -->
         <br>
         <div>
-            <button type="button" class="btn btn-secondary btn-sm">수정하기 페이지로</button> &nbsp;
+            <a href="<%= contextPath %>/modify.cs?category=<%= board.getCategory() %>&no=<%= board.getBoardNo() %>" class="btn btn-secondary btn-sm">수정하기</a> &nbsp;
             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_modal">삭제하기</button> &nbsp;
             <a href="<%= contextPath %>/list.cs?category=<%= board.getCategory() %>" class="btn btn-warning btn-sm">목록가기</a>
         </div> 
