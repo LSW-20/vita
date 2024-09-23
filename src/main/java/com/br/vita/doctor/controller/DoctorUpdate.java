@@ -1,6 +1,7 @@
 package com.br.vita.doctor.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,16 +49,23 @@ public class DoctorUpdate extends HttpServlet {
     	d.setLicenceNo(request.getParameter("licence_no"));
     	d.setDeptName(request.getParameter("dept"));
     	
-    	System.out.println(d);
+    	System.out.println(request.getParameter("hire_date"));
+    	d.setHireDate(Date.valueOf(request.getParameter("hire_date")));
     	
-    	int result = new DoctorService().updateDoctor(d); 
+    	System.out.println(d);
+
+    	int result = new DoctorService().updateDoctor(d, request.getParameter("uq_licence_no")); 
 
     	
     	//(2)MEMBER 테이블 UPDATE
     	Member m = new Member();
+    	m.setUserName(request.getParameter("doctor_name"));
+    	m.setUserSSN(request.getParameter("doctor_ssn"));
+    	m.setAddress(request.getParameter("doctor_address"));
+    	m.setPhone(request.getParameter("doctor_phone"));
     	
-    	
-    	int result2 = 0;
+    	System.out.println(m);
+    	int result2 = new DoctorService().updateMember(m, request.getParameter("uq_doctor_ssn")); ;
     	
     	
     	// 2. 응답

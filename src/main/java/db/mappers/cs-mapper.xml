@@ -101,6 +101,7 @@
 		     )		
 	</entry>
 	
+	<!--게시글 삭제-->
 	<entry key="deleteCs">
 		UPDATE
 		       TAB_CS
@@ -108,6 +109,19 @@
 		       STATUS = 'N'
 		 WHERE 
 		       BOARD_NO = ?		
+	</entry>
+	
+	<!--게시글 수정-->
+	<entry key="updateCs">
+		UPDATE
+		       TAB_CS
+		   SET 
+		       BOARD_TITLE = ?
+		     , BOARD_CONTENT = ?
+		     , C_EMP = ?
+		     , C_DEPT = ?
+		 WHERE 
+		       BOARD_NO = ?				
 	</entry>
 
 </properties>

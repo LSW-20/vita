@@ -180,7 +180,6 @@ AND SCHEDULE_TIME = ?
 	       ,?
 	       ,?
   )
-
 	
 	</entry>
 	
@@ -206,7 +205,6 @@ AND SCHEDULE_TIME = ?
 	     , ?
   )
 
-	
 	</entry>
 	
 	<entry key="schedulePageSelect">
@@ -224,6 +222,38 @@ WHERE
 	</entry>
 	
 	
+	
+	
+	<!-- (상우) 의사 계정 수정 (1/2) doctor 테이블 -->
+	<entry key="updateDoctor">
+	
+	UPDATE 
+					DOCTOR
+		 SET			
+					DOCTOR_NAME = ?
+				, LICENCE_NO = ?
+				, DEPT_NAME = ?
+				, HIRE_DATE = ?
+	 WHERE			
+					LICENCE_NO = ?
+					
+	</entry>
+	
+	
+	<!-- (상우) 의사 계정 수정 (2/2) member 테이블 -->
+	<entry key="updateMember">
+	
+	UPDATE 
+					MEMBER
+		 SET			
+					USER_NAME = ?
+				, USER_SSN = ?
+				, ADDRESS = ?
+				, PHONE = ?
+	 WHERE			
+					USER_SSN = ?
+					
+	</entry>
 	
 	
 	

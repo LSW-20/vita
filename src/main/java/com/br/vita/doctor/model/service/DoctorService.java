@@ -179,7 +179,11 @@ public class DoctorService {
 
 		int result = dDao.doctorScheduleUpdate(conn, list);
 
-		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		
 		close(conn);
 
@@ -206,15 +210,16 @@ public class DoctorService {
 	
 	
 	/**
-	 * 의사 계정  (1/2) 스케쥴 테이블 추가
+	 * 의사 계정 수정 (1/2) doctor 테이블 update
 	 * author : 임상우
 	 * @param d
-	 * @return 추가된 행 수
+	 * @param uqLicenceNo
+	 * @return 처리된 행 수
 	 */
-	public int updateDoctor(Doctor d) {
+	public int updateDoctor(Doctor d, String uqLicenceNo) {
 		
 		Connection conn = getConnection();
-		int result = dDao.updateDoctor(conn, d);
+		int result = dDao.updateDoctor(conn, d, uqLicenceNo);
 		
 		if(result > 0) {
 		   commit(conn);
@@ -227,6 +232,30 @@ public class DoctorService {
 		
 	}
 	
+	
+	
+	/**
+	 * 의사 계정 수정 (2/2) member 테이블 update
+	 * author : 임상우
+	 * @param d
+	 * @param uqDoctorSsn
+	 * @return 처리된 행 수
+	 */
+	public int updateMember(Member m, String uqDoctorSsn) {
+		
+		Connection conn = getConnection();
+		int result = dDao.updateMember(conn, m, uqDoctorSsn);
+		
+		if(result > 0) {
+		   commit(conn);
+		}else {
+		   rollback(conn);
+		}
+	      		  
+	    close(conn);  
+		return result;
+		
+	}
 	
 
 }

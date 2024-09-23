@@ -109,7 +109,8 @@
 
                 <div class="sideMenu" id="d_submenu1">발급 신청 관리
                   <ul class="d_submenu_item1">
-                    <li><a href="<%= contextPath %>/dilist.do" style="text-decoration: none;">진단서</a></li>
+                    <li><a href="/vita/views/doctor/diagnosis.jsp" style="text-decoration: none;">진단서</a></li>
+                    <!-- 여기로 포워딩할 예정 /di_list.re -->
                     <li><a href="/vita/views/doctor/mt_confirmation.jsp" style="text-decoration: none;">진료확인서</a></li>
                   </ul>
                 </div>

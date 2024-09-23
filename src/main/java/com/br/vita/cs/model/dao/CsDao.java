@@ -228,10 +228,38 @@ public class CsDao {
 		
 		return result;
 	}//deleteCs
+
+	/**
+	 * 게시글 수정
+	 * @author 최보겸
+	 * @param conn
+	 * @param c 업데이트할 정보 담은 Cs
+	 * @return result 처리행수
+	 */
+	public int updateCs(Connection conn, Cs c, int boardNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateCs");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c.getBoardTitle());
+			pstmt.setString(2, c.getBoardContent());
+			pstmt.setString(3, c.getcEmp());
+			pstmt.setString(4, c.getcDept());
+			pstmt.setInt(5, boardNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}//updateCs
 	
-
-
-
 
 
 }

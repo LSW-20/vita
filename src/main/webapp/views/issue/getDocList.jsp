@@ -90,7 +90,11 @@ section{
           <td>&nbsp;&nbsp;&nbsp;&nbsp; -</td>
           <td>사용</td>
           <td>
-            <a href="/vita/views/issue/docList_DM.jsp" class="get_doc_btn btn-sm">바로가기</a>
+          <% if(loginUser != null) {%>
+            <a href="<%= contextPath %>/listDM.go" class="get_doc_btn btn-sm">바로가기</a>
+          <%}else {%>
+           	<a href="<%= contextPath %>/loginPage.me" class="get_doc_btn btn-sm">바로가기</a>
+          <%}%>
           </td>
         </tr>                
       </tbody>

@@ -326,7 +326,7 @@
         <div class="sub" style="font-size: 17px;"><br><b>&nbsp;고객서비스 ></b></div>
         <div class="sub">
             <b><br>&nbsp;발급안내</b><br>
-            <a href="" style="text-decoration: none;">&nbsp;증명서</a>
+            <a href="<%= contextPath %>/certificate.go" style="text-decoration: none;">&nbsp;증명서</a>
         </div>
         <div class="sub">
             <b><br>&nbsp;고객서비스</b><br>
