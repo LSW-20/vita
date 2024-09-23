@@ -121,7 +121,6 @@ footer {
         height: 40px;
         text-align: center;
     }
-
     .aa td:not(.nono), .aa th:not(.nono){
         border: 1px solid black;
     }
@@ -234,7 +233,7 @@ footer {
                     %>
 
                         <tr>
-                            <td><input type="checkbox" name="delete"></td>
+                            <td><input type="checkbox" name="delete" value="<%= m.getUserSSN() %>"></td>
                             <td><%= d.getDoctorNo() %></td>
                             <td><%= d.getDoctorName() %></td>
                             <td><%= m.getUserSSN() %></td>
@@ -333,8 +332,12 @@ footer {
                     <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal">추가</button>
                 </div>
             <% } %>
-                    
-
+     
+            <!-- form이 겹치면 안 된다. 삭제는 modal을 안 쓰고, 삭제 버튼에 이벤트 리스너로 클릭 이벤트를 연결해서
+                 스크립트로 checked된 checkbox들의 id를 다 다르게 주고, id도 가져오고 그 다음 셀들의 값도 가져와서
+                 팝업창으로 띄운다. 그러면서 팝업창에서 확인/취소 받은 다음에 확인의 경우(true) if문 조건으로
+                 서블릿을 요청한다 그때 checkbox들의 id들을 그 전에 배열에 담아서 넘기면,
+                 서블릿에서 문자열 배열로 checked된 id들이 오지 않을까. -->
     </div>
 </div>
 </section>
@@ -357,7 +360,7 @@ footer {
     
             <!-- Modal body -->
             <div class="modal-body">
-                <form action="#" method="">
+                <form action="<%= contextPath %>/deleteD.admin" method="post">
                     <h6>사번 '105680', 이름 '가가가' 계정을 정말 삭제하시겠습니까? </h6> <br>
                     <div style="text-align: right;">
                         <button type="submit" class="btn btn-sm btn-danger">삭제</button>
