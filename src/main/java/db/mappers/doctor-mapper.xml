@@ -171,6 +171,26 @@ AND SCHEDULE_TIME = ?
 	
 	</entry>
 	
+	<entry key="shcedulePageSelect">
+	
+	SELECT 
+		 WORKING
+		,SCHEDULE_TIME
+		,SCHEDULE_WEEK
+FROM 
+		SCHEDULE
+WHERE 
+     DOCTOR_NO = ?
+	
+	
+	</entry>
+	
+	
+	
+	
+	
+	
+	
 </properties>
 
 
