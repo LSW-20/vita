@@ -181,7 +181,18 @@
  <script>
  	function fnbtn1(){
  		if(confirm('"진단서"(을)를 신청하시겠습니까? ')){
- 			location.href; /* 신청서 insert 데이터 어떻게 보낼건지 생각해보자! */
+ 			$.ajax({
+ 				url: '<%= contextPath%>/appication.ce',
+ 				data:{userNo:<%= loginUser.getUserNo() %>},
+ 				success: function(res){
+ 					if(res > 0){
+ 						alert("성공적으로 신청하였습니다. 발급신청내역에서 확인하실 수 있습니다.");
+ 					}else{
+ 						alert("신청 오류");
+ 					}
+ 				}
+ 			})
+ 			
  		}
  	}
  	

@@ -1,23 +1,26 @@
 package com.br.vita.issue.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.br.vita.issue.model.service.IssueService;
+
 /**
- * Servlet implementation class DiagnosisSelectController
+ * Servlet implementation class CertificateApplicationController
  */
-@WebServlet("/di_list.re")
-public class DiagnosisSelectController extends HttpServlet {
+@WebServlet("/appication.ce")
+public class CertificateApplicationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DiagnosisSelectController() {
+    public CertificateApplicationController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,10 +30,9 @@ public class DiagnosisSelectController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String userNo = request.getParameter("userNo");
 		
-		
-		
-		
+		int result =  new IssueService().certificateApplicationInsert(userNo);
 		
 		
 		
