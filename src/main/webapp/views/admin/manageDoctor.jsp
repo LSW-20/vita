@@ -113,6 +113,20 @@ footer {
         color: red;
     }
 
+
+    .aa {
+        width: 100%;
+    }
+    .aa td, .aa th{
+        height: 40px;
+        text-align: center;
+    }
+
+    .aa td:not(.nono), .aa th:not(.nono){
+        border: 1px solid black;
+    }
+
+
  </style>
 
 
@@ -188,7 +202,7 @@ footer {
         <div class="search_doctor_result">의료진 검색 결과</div> <br>
 
 
-            <table class="table table-striped">
+            <table class="aa">
                 <tr>
                     <th></th>
                     <th>사번</th>
@@ -219,18 +233,88 @@ footer {
 
                     %>
 
-                    <tr>
-                        <td><input type="checkbox" name="delete"></td>
-                        <td><%= d.getDoctorNo() %></td>
-                        <td><%= d.getDoctorName() %></td>
-                        <td><%= m.getUserSSN() %></td>
-                        <td><%= d.getDeptName() %></td>
-                        <td><%= d.getLicenceNo() %></td>
-                        <td><%= m.getPhone() %></td>
-                        <td><%= m.getAddress() %></td>
-                        <td><%= d.getHireDate() %></td>
-                        <td><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_modal">수정</button></td>
-                    </tr>
+                        <tr>
+                            <td><input type="checkbox" name="delete"></td>
+                            <td><%= d.getDoctorNo() %></td>
+                            <td><%= d.getDoctorName() %></td>
+                            <td><%= m.getUserSSN() %></td>
+                            <td><%= d.getDeptName() %></td>
+                            <td><%= d.getLicenceNo() %></td>
+                            <td><%= m.getPhone() %></td>
+                            <td><%= m.getAddress() %></td>
+                            <td><%= d.getHireDate() %></td>
+                            <td><button type="button" class="btn btn-sm btn-primary" data-toggle="collapse" data-target="#modify<%= d.getDoctorNo() %>">수정</button></td>
+                        </tr>
+                        
+                        <tr class="collapse" id="modify<%= d.getDoctorNo() %>">
+                            <td colspan="10">
+                                <form action="<%= contextPath %>/updateD.admin" method="post">
+                                    <input type="hidden" name="uq_licence_no" value="<%= d.getLicenceNo() %>"> <%-- doctor 업데이트 조건 --%>
+                                    <input type="hidden" name="uq_doctor_ssn" value="<%= m.getUserSSN() %>"> <%-- member 업데이트 조건 --%>
+
+                                    <div style="display: flex; justify-content: center;">
+                                        <table>
+                                            <tr>
+                                                <td class="nono" colspan="2" style="height: 20px;"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="nono"><span class="star">*</span> 이름</th>
+                                                <td class="nono"><input type="text" class="form-control" name="doctor_name" value="<%= d.getDoctorName() %>" required></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nono"><span class="star">*</span> 주민등록번호</th>
+                                                <td class="nono"><input type="text" class="form-control" maxlength="14" name="doctor_ssn" value="<%= m.getUserSSN() %>" required></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nono"><span class="star">*</span> 면허번호</th>
+                                                <td class="nono"><input type="number" class="form-control" name="licence_no" value="<%= d.getLicenceNo() %>" required></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nono"><span class="star">*</span> 진료과</th>
+                                                <td class="nono">
+                                                    <input type="radio" class="select_dept" name="dept" value="외과" <%= "외과".equals(d.getDeptName()) ? "checked" : "" %>>&nbsp외과&nbsp&nbsp
+                                                    <input type="radio" class="select_dept" name="dept" value="내과" <%= "내과".equals(d.getDeptName()) ? "checked" : "" %>>&nbsp내과&nbsp&nbsp
+                                                    <input type="radio" class="select_dept" name="dept" value="치과" <%= "치과".equals(d.getDeptName()) ? "checked" : "" %>>&nbsp치과&nbsp&nbsp
+                                                    <input type="radio" class="select_dept" name="dept" value="안과" <%= "안과".equals(d.getDeptName()) ? "checked" : "" %>>&nbsp안과
+                                                </td>
+                                            </tr>
+            
+                                            <tr>
+                                                <td class="nono" colspan="2" style="height: 20px;"></td>
+                                            </tr>
+            
+                                            <tr>
+                                                <th class="nono">&nbsp;&nbsp;전화번호</th>
+                                                <td class="nono"><input type="text" class="form-control" maxlength="13" name="doctor_phone" value="<%= m.getPhone() %>"></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nono">&nbsp;&nbsp;주소</th>
+                                                <td class="nono"><input type="text" class="form-control" name="doctor_address" value="<%= m.getAddress() %>"></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nono">&nbsp;&nbsp;입사일</th>
+                                                <td class="nono"><input type="date" class="form-control" name="hire_date" value="<%= d.getHireDate() %>"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="nono" colspan="2" style="height: 10px;"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="nono" colspan="2"><button type="submit" class="btn btn-sm btn-success">수정</button></td> 
+                                            </tr>
+
+                                            <tr>
+                                                <td class="nono" colspan="2" style="height: 10px;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                    
+
 
                     <% } %>
 
@@ -238,7 +322,7 @@ footer {
 
             </table>
 
-
+            <br>
             <% if(list.isEmpty()) { %>
                 <div class="del_add_btn">
                     <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal">추가</button>
@@ -249,7 +333,7 @@ footer {
                     <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal">추가</button>
                 </div>
             <% } %>
-
+                    
 
     </div>
 </div>
@@ -311,7 +395,7 @@ footer {
                             <table class="add_update_modal_table">
                                 <tr>
                                     <th><span class="star">*</span> 이름</th>
-                                    <td><input type="text" class="form-control" name="doctor_name" required></td>
+                                    <td><input type="text" class="form-control" name="doctor_name" value="" required></td>
                                 </tr>
                                 <tr>
                                     <th><span class="star">*</span> 주민등록번호</th>
@@ -363,7 +447,7 @@ footer {
                                 </tr>
                                 <tr>
                                     <th>&nbsp;&nbsp;이메일</th>
-                                    <td><input type="email" class="form-control" placeholder="'@'를 포함하여 입력" name="doctor_email"></td>
+                                    <td><input type="email" class="form-control" name="doctor_email"></td>
                                 </tr>
 
 
@@ -388,80 +472,7 @@ footer {
 
 
 
-<!-- 수정용 modal start -->
 
-        <!-- The Modal -->
-        <div class="modal" id="update_modal">
-            <div class="modal-dialog">
-            <div class="modal-content">
-        
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">의료진 계정 수정</h4>
-                </div>
-        
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form action="<%= contextPath %>/updateD.admin" method="post">
-                        <div style="display: flex; justify-content: center;">
-                            <table class="add_update_modal_table">
-                                <tr>
-                                    <th><span class="star">*</span> 이름</th>
-                                    <td><input type="text" class="form-control" name="doctor_name" value="가가가" required></td>
-                                </tr>
-                                <tr>
-                                    <th><span class="star">*</span> 주민등록번호</th>
-                                    <td><input type="text" class="form-control" maxlength="14" name="doctor_ssn" value="700624-1248547" required></td>
-                                </tr>
-                                <tr>
-                                    <th><span class="star">*</span> 면허번호</th>
-                                    <td><input type="number" class="form-control" name="licence_no" value="12345" required></td>
-                                </tr>
-                                <tr>
-                                    <th><span class="star">*</span> 진료과</th>
-                                    <td>
-                                        <input type="radio" class="select_dept" name="dept" value="외과">&nbsp외과&nbsp&nbsp
-                                        <input type="radio" class="select_dept" name="dept" value="내과">&nbsp내과&nbsp&nbsp
-                                        <input type="radio" class="select_dept" name="dept" value="치과">&nbsp치과&nbsp&nbsp
-                                        <input type="radio" class="select_dept" name="dept" value="안과">&nbsp안과
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td colspan="2" style="height: 20px;"></td>
-                                </tr>
-
-                                <tr>
-                                    <th>&nbsp;&nbsp;전화번호</th>
-                                    <td><input type="text" class="form-control" maxlength="13" name="doctor_phone" value="010-1111-1111"></td>
-                                </tr>
-                                <tr>
-                                    <th>&nbsp;&nbsp;주소</th>
-                                    <td><input type="text" class="form-control" name="doctor_address" value="서울시 강동구 강동대로 53길 76 (성내동)"></td>
-                                </tr>
-                                <tr>
-                                    <th>&nbsp;&nbsp;이메일</th>
-                                    <td><input type="email" class="form-control" name="doctor_email" value="abc123@naver.com"></td>
-                                </tr>
-
-
-                            </table>
-                        </div>
-
-                        <br>
-                        <div style="text-align: right;">
-                            <button type="submit" class="btn btn-sm btn-success">추가</button>
-                            <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">취소</button>
-                        </div>
-                    </form>
-                </div>
-        
-            </div>
-            </div>
-        </div>
-
-
-<!-- 수정용 modal end -->
 
 
 
