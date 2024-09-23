@@ -163,6 +163,28 @@ public class DoctorService {
 	}
 
 
+	
+	/**
+	 * 의사 계정 추가 (3/3) 스케쥴 테이블 추가
+	 * author : 임상우
+	 * @param m
+	 * @return 추가된 행 수
+	 */
+	public int insertToSchedule(Doctor d) {
+		
+		Connection conn = getConnection();
+		int result = dDao.insertToSchedule(conn, d);
+		
+		if(result > 0) {
+		   commit(conn);
+		}else {
+		   rollback(conn);
+		}
+	      		  
+	    close(conn);  
+		return result;
+		
+	}
 
 	
 	

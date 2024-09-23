@@ -7,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.br.vita.doctor.model.service.DoctorService;
+import com.br.vita.doctor.model.vo.Doctor;
 import com.br.vita.member.model.vo.Member;
 
 /**
@@ -36,7 +38,10 @@ public class DoctorInsert extends HttpServlet {
 		
         request.setCharacterEncoding("UTF-8"); // post 요청이다
         
-        if(request.getParameter("doctor_pass1") == request.getParameter("doctor_pass2")) {
+    	HttpSession session = request.getSession(); // alert 띄우기용 session 선언.
+    	
+        
+        if(request.getParameter("doctor_pass1").equals(request.getParameter("doctor_pass2"))) {
         	
         	//(1) member 테이블에 먼저 insert
         	Member m = new Member();
@@ -58,24 +63,64 @@ public class DoctorInsert extends HttpServlet {
         	}
         	m.setGender(gender); 
         	
-        	int result = new DoctorService().doctorInsert(m);
+        	System.out.println(m.getUserPwd());
+        	
+        	int result = new DoctorService().insertToMember(m);
         	
         	
+        	// (2) 회원번호를 받아서 doctor 테이블에 insert
+        	Doctor d = new Doctor();
+        	d.setDoctorName(request.getParameter("doctor_name"));
+        	d.setLicenceNo(request.getParameter("licence_no"));
+        	d.setDeptName(request.getParameter("dept"));
+        	
+        	System.out.println(d);
+        	
+        	int result2 = new DoctorService().insertToDoctor(d, m);
+        	
+        	
+        	// (3) 사번을 받아서 schedule 테이블에 insert
+        	int result3 = new DoctorService().insertToSchedule(d); // 10이어야 한다.
+        	System.out.println(result3);
 
-
+        	
         	
             // 2. 응답
-            // 추가, 수정, 삭제에 alert주자
-            if(result > 0) { 
+            if(result == 1 && result2 == 1 && result3 == 10) { 
+            	// insert 성공
+        		// 응답페이지 : 관리자 의료진 계정 관리 페이지(/vita/views/admin/manageDoctor.jsp)
+        		// 응답데이터 : "성공적으로 추가되었습니다." alert 메세지
+                session.setAttribute("alertMsg", "성공적으로 추가되었습니다.");
+                response.sendRedirect(request.getContextPath() + "/manageD.admin");
                 
             }else { 
-               
+            	// insert 실패
+        		// 응답페이지 : 관리자 의료진 계정 관리 페이지(/vita/views/admin/manageDoctor.jsp)
+        		// 응답데이터 : "추가에 실패하였습니다." alert 메세지
+                session.setAttribute("alertMsg", "추가에 실패하였습니다.");
+                response.sendRedirect(request.getContextPath() + "/manageD.admin");
             }
         	
         	
+            
+            
         }else {
-        	// alert 띄우고 비밀번호 다르다고 메세지 주기.
+        	// 비밀번호와 비밀번호 확인이 일치하지 않음.
+        	System.out.println("비번다름");
+        	System.out.println(request.getParameter("doctor_pass1"));
+        	System.out.println(request.getParameter("doctor_pass2"));
+        	
+
+        	session.setAttribute("alertMsg","비밀번호가 다릅니다.");
+			response.sendRedirect(request.getContextPath()+"/manageD.admin");
         }
+        
+
+        	
+ 
+        	
+        	
+
 		
 	
 		

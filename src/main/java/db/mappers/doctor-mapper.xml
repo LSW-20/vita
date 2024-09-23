@@ -186,8 +186,25 @@ AND SCHEDULE_TIME = ?
 	
 	
 	<!-- (상우) 의사 계정 추가 (3/3) 스케쥴 테이블 -->
-	<entry key="">
+	<entry key="insertToSchedule">
 	
+	INSERT 
+		INTO SCHEDULE 
+		(
+				 DOCTOR_NO
+			 , WORKING
+			 , SCHEDULE_TIME
+			 , SCHEDULE_WEEK
+		)
+	VALUES 
+	(
+				 (SELECT DOCTOR_NO
+	          FROM DOCTOR
+	         WHERE LICENCE_NO=?)
+	     , 'N'
+	     , ?
+	     , ?
+  )
 
 	
 	</entry>
