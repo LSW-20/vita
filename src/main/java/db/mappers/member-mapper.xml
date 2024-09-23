@@ -18,9 +18,12 @@
 					, RESIGN_YN
 					, USER_DATE
 					, USER_GENDER
-					, REPRESENTATIVE	
+					, REPRESENTATIVE
+					, DOCTOR_NO
+					, DEPT_NAME	
 			FROM
 			  		MEMBER
+		LEFT	JOIN DOCTOR USING(USER_NO)
 		 WHERE
 				   USER_ID = ?
 		   AND USER_PWD = ?
