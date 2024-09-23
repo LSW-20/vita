@@ -11,6 +11,9 @@
 <%@ include file="/views/common/myPageSideBar.jsp" %>
 <style>
   /* #topimgDiv2,#topimgDiv2,#topimgDiv2{} */
+  
+  
+  
   #mainMenu{
       display: flex;
       flex-direction: column;
@@ -36,16 +39,16 @@
 			 margin-top: 75px;
 			 
     }
-    h2{
+     h2{
     	font-size: 50px;
     }
     h4{
     	font-size: 35px;
-    }
-    #subcontent{
+    } 
+     #subcontent{
     	font-size: 20px;
     	
-    }
+    } 
     
     .info_img{
     	border: 1px solid black;
@@ -81,7 +84,7 @@
     	font-size: 20px;
     }
     b{
-    	font-size:30px;
+    /* 	font-size:30px; */
     }
     .btns_div{
      margin-top: 20px;
@@ -120,7 +123,7 @@
  
  	<div class="dm_container"><h2>진단서 및 진료 확인서</h2>
  	
-	 	<div class="dm_subcontainer"><h4>발급절차</h4></div>
+	 	<div class="dm_subcontainer"><h4 id="h4_text">발급절차</h4></div>
 	 	
 	 	<div id="subcontent">
 	 		- 외래 접수 후  진단서 요청 시에는 환자 본인이 직접 방문하여 진료 받은 후 진단서 발급(의료법 제17조에 근거함)<br>
