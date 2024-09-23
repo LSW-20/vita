@@ -1,7 +1,9 @@
 package com.br.vita.doctor.model.service;
 
 import static com.br.vita.common.template.JDBCTemplate.close;
+import static com.br.vita.common.template.JDBCTemplate.commit;
 import static com.br.vita.common.template.JDBCTemplate.getConnection;
+import static com.br.vita.common.template.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.HashMap;
@@ -124,7 +126,14 @@ public class DoctorService {
 		
 		Connection conn = getConnection();
 		int result = dDao.doctorInsert(conn, m);
-		close(conn);
+		
+		if(result > 0) {
+		   commit(conn);
+		}else {
+		   rollback(conn);
+		}
+	      		  
+	    close(conn);  
 		return result;
 		
 	}
