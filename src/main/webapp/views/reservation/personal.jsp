@@ -79,6 +79,9 @@
     
     
        </style>
+       
+       <form action= "<%= contextPath %>/personal.rv"  method="post">
+       
       <section >
 
         <h2 id="pad"><b>본인 예약하기</b></h2>
@@ -102,9 +105,8 @@
     
         <br><br>
         
-        <form action= "/server/test.do">
-          <filedset>
-            <input type="radio" id="check" name="check" value="T" style="margin-left: 1480px; cursor:pointer;">
+          <fieldset>
+            <input type="radio" id="checkAgree" name="check" value="T" style="margin-left: 1480px; cursor:pointer;">
             <label for="checkO">&nbsp;동의합니다.</label>
             <input type="radio" id="non_check" name="check" value="F" style="margin-left: 70px; cursor:pointer;">
             <label for="checkX">&nbsp;동의하지 않습니다. </label>
@@ -114,8 +116,6 @@
           <br><br>
           <h6 style="margin-left:1060px;">· 개인의 고유식별정보 제공동의는 거부하실 수 있으며, 거부할 경우 서비스 사용이 일부 제한될 수 있습니다.</h6>
         
-      
-           </form>
 
 
 
@@ -144,7 +144,7 @@
                       <div class="d-flex "> 
                            <div style="margin-left: 50px; margin-top: 10px;"><h4>생년월일값 가져오세요</h4></div>
                            <div style="margin-left: 25px; margin-top: 10px;"><h4>-</h4></div>
-                          <div> <input type="text" class="form-control" id="num" style="width:535px; height:50px; margin-left: 25px"></div>
+                          <div> <input type="text" class="form-control" maxlength="7" name="SSN-back" id="num" style="width:535px; height:50px; margin-left: 25px" required></div>
                       </div>
                      </td>  
                       
@@ -160,16 +160,34 @@
             <br><br> <br><br> <br><br> 
 
             
-            <div align="center">
-              <a href="/vita/views/reservation/consultation_Form.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;">다음</a>
-              <a href="/vita/views/reservation/consultation_AfterLogin.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:30px;">이전</a>
-            </div>
+        		<div align="center" style="position: relative;">
+						    <button type="submit" class="btn border-1 border-dark" id="submitButton" onclick="return validateAndProceed();" style="width:150px; position: absolute; left: 41%; top: 0; z-index: 2;">다음</button>
+						    <a href="/vita/views/reservation/first_Success.jsp" class="btn border-1 border-dark" id="btn-color" style="width:150px; position: absolute; left: 41%; top: 0; z-index: 1; display:none;">다음</a>
+						    <a href="/vita/views/reservation/consultation_AfterLogin.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:180px;">이전</a>
+						</div>
+						
+						<script>
+					
+						    function validateAndProceed() {
+							    		const isChecked1 = document.getElementById('checkAgree').checked; // 첫 번째 동의 라디오 버튼
+
+			
+						    	    if (!isChecked1 || !isChecked2) {
+						    	        alert("동의 항목을 체크해주세요.");
+						    	        return false; // 폼 제출 방지
+						    	    }
+						        
+						   
+						    }
+						</script>
+
+
 
             <br><br> <br><br> <br><br> 
 
       </section>
 
-
+			</form>
 
 
 

@@ -101,7 +101,7 @@
             <h6>예약을 도와드립니다.</h6>
             <br><br>
             <div align="left">
-              <a href="/vita/views/reservation/personal.jsp" class="btn" id="btn-color">본인예약하기</a>
+              <a href="<%= contextPath %>/personal.rv" class="btn" id="btn-color">본인예약하기</a>
               <a href="/vita/views/reservation/reservationList.jsp" class="btn ml-4" id="btn-color">본인 예약 조회하기</a>
             </div>
           </div>
