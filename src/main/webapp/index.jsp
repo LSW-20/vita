@@ -70,6 +70,13 @@
         }
         #noticeDt, #newsDt{
         	cursor: pointer;
+        	width: 360px;
+   				padding-left: 10px;
+        	white-space: nowrap;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+			    display: inline-block;
+			    margin-top: 10px;
         }
      </style>
     <section>
@@ -290,16 +297,14 @@
 	            function MainNoticeList() {
 	                $.ajax({
 	                    url: '<%=contextPath%>/main.no',
-	                    success: function(list) {
-	                        console.log(list); 
-	                        
+	                    success: function(list) {                   
 	                        let trEl = "";
 	                        if (list.length == 0) { // 공지사항이 없는 경우
 	                            trEl += '<tr><td colspan="2">존재하는 게시글이 없습니다.</td></tr>';
 	                        } else { // 공지사항이 있는 경우
 	                            for (let i = 0; i < list.length; i++) {
 	                                trEl += '<tr>'
-	                                      + '<th id="noticeDt" style="width: 360px; padding-left: 10px;">' + list[i].noticeTitle + '</th>'
+	                                      + '<th id="noticeDt">' + list[i].noticeTitle + '</th>'
 	                                      + '<td style="font-size: 15px; color: gray;">' + list[i].registDate + '</td>'
 	                                      + '<td style="display:none;" class="noticeNo">' + list[i].noticeNo + '</td>' // 게시글 번호 추가
 	                                      + '<td style="display:none;" class="writerId">' + list[i].writerId + '</td>' // 작성자 아이디 추가
@@ -350,16 +355,14 @@
 	            function MainNewsList() {
 	                $.ajax({
 	                    url: '<%=contextPath%>/main.ns',
-	                    success: function(list) {
-	                        console.log(list); 
-	                        
+	                    success: function(list) {                        
 	                        let trEl = "";
 	                        if (list.length == 0) { // 공지사항이 없는 경우
 	                            trEl += '<tr><td colspan="2">존재하는 게시글이 없습니다.</td></tr>';
 	                        } else { // 공지사항이 있는 경우
 	                            for (let i = 0; i < list.length; i++) {
 	                                trEl += '<tr>'
-	                                      + '<th id="newsDt" style="width: 360px; padding-left: 10px;">' + list[i].newsTitle + '</th>'
+	                                      + '<th id="newsDt">' + list[i].newsTitle + '</th>'
 	                                      + '<td style="font-size: 15px; color: gray;">' + list[i].registDate + '</td>'
 	                                      + '<td style="display:none;" class="newsNo">' + list[i].newsNo + '</td>' // 게시글 번호 추가
 	                                      + '<td style="display:none;" class="writerId">' + list[i].writerId + '</td>' // 작성자 아이디 추가
