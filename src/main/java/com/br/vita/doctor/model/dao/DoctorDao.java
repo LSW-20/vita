@@ -441,7 +441,7 @@ public class DoctorDao {
 	 * 의사 계정 추가 (3/3) 스케쥴 테이블 추가
 	 * author : 임상우
 	 * @param conn
-	 * @param m
+	 * @param d
 	 * @return 처리된 행 수
 	 */
 	public int insertToSchedule(Connection conn, Doctor d) {
@@ -478,5 +478,50 @@ public class DoctorDao {
 
 		return result;
 	}
+	
+	
+	
+	/**
+	 * 의사 계정 수정 (1/2) doctor 테이블 수정
+	 * author : 임상우
+	 * @param conn
+	 * @param d
+	 * @return 처리된 행 수
+	 */
+	public int updateDoctor(Connection conn, Doctor d) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateDoctor");
+		
+
+		String[] day = {"월", "화", "수", "목", "금"};
+		String[] time = {"A", "P"};
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			for(int i=0; i<day.length; i++) {
+				
+				pstmt.setString(1, d.getLicenceNo());
+				pstmt.setString(3, day[i]);
+				
+				for(int j=0; j<time.length; j++) {
+					pstmt.setString(2, time[j]);
+
+					result += pstmt.executeUpdate();
+				}
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+	
 	
 }
