@@ -44,7 +44,7 @@
 		  )
 		  VALUES
 		  (
-		    SEQ_NNO.NEXTVAL
+		    SEQ_NOO.NEXTVAL
 		  , ?
 		  , ?
 		  , SYSDATE

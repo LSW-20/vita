@@ -1,6 +1,6 @@
 package com.br.vita.news.model.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class News {
 
