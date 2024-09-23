@@ -38,7 +38,7 @@ public class DoctorSchedulePageSelectController extends HttpServlet {
 		String docNo = ((Member)request.getSession().getAttribute("loginUser")).getDoctorNo();
 		// 의사사번을 뽑고 싶을때 Member객체에 담을 수 있는 매개변수 새로 추가후 이처럼 해당값을 뽑을 수 있다.
 		
-		List<DoctorSchedule> schedule =  new DoctorService().shcedulePageSelect(docNo);
+		List<DoctorSchedule> schedule =  new DoctorService().schedulePageSelect(docNo);
 		
 		
 		response.setContentType("application/json; charset=UTF-8");
