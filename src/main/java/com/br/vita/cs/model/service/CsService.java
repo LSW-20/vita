@@ -77,6 +77,25 @@ public class CsService {
 		return result;
 	}//increaseCount
 
+	/**
+	 * 게시글 insert
+	 * @author 최보겸
+	 * @param c
+	 * @return result 처리행수
+	 */
+	public int insertCs(Cs c) {
+		Connection conn = getConnection();
+		int result = cDao.insertCs(conn, c);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}//insertCs
+
 
 
 

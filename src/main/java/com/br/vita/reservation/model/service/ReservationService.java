@@ -21,9 +21,8 @@ public class ReservationService {
 		close(conn);
 		
 		return firstVisit;
-		
-		
-		
-		
+	
 	}
+	
+	
 }

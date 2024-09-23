@@ -90,7 +90,7 @@
             <h6>예약을 도와드립니다.</h6>
             <br><br>
             <div align="left">
-              <a href="/vita/views/member/login.jsp" class="btn" id="btn-color" >첫방문 고객 예약하기</a>
+              <a href="<%= contextPath %>/loginPage.me"  class="btn" id="btn-color" >첫방문 고객 예약하기</a>
             </div>
           </div>
           <div class="ml"id="vertical-line"></div>
@@ -104,8 +104,8 @@
             <h6>예약을 도와드립니다.</h6>
             <br><br>
             <div align="left">
-             <a href="/vita/views/member/login.jsp"  class="btn" id="btn-color" >본인 예약하기</a>
-              <a href="/vita/views/member/login.jsp"  class="btn ml-4" id="btn-color" >본인 예약 조회하기</a>
+             <a href="<%= contextPath %>/loginPage.me"   class="btn" id="btn-color" >본인 예약하기</a>
+              <a href="<%= contextPath %>/loginPage.me"   class="btn ml-4" id="btn-color" >본인 예약 조회하기</a>
             </div>
           </div>
          
@@ -125,19 +125,23 @@
         <!-- 줄 -->
         <div class="container11">
           <div class="d-flex" style="margin-left: 65px;">  
+          	<a href="<%= contextPath %>/signup.me">
             <div class="p-2" style="margin-top: 70px; margin-left: 70px">
               <img src="/vita/assets/image/회원가입.jpg"   class="img-check" id="img1" style="cursor: pointer;"><br>
               <h3 style="margin-top: 30px; margin-left:85px; cursor: pointer;">회원가입</h3>
             </div>
-            
+            </a>
             <div id="vertical-line" style="margin-left:100px; margin-top: 40px;"></div>
             
+            <a href="<%= contextPath %>/loginPage.me">
             <div class="p-2" style="margin-top: 70px; margin-left: 90px">
               <img src="/vita/assets/image/로그인및아이디비번.jpg"   class="img-check" id="img1" style="cursor: pointer;">
               <h3 style="margin-top: 30px; margin-left:90px; cursor: pointer;">로그인</h3>
               <h3 style="cursor: pointer;">&nbsp;&nbsp;&nbsp;&nbsp;</h3>
               <h3 style="cursor: pointer;">&nbsp;아이디/비밀번호찾기</h3>
             </div>
+            </a>
+            
             
             <div id="vertical-line" style="margin-left:100px; margin-top: 40px;"></div>
             

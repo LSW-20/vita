@@ -113,7 +113,7 @@ AND SCHEDULE_TIME = ?
 	
 
 	<!-- (상우) 의사 계정 추가 (1/3) 회원 테이블 -->
-	<entry key="doctorInsert">
+	<entry key="insertToMember">
 	
 	INSERT 
 		INTO MEMBER 
@@ -157,16 +157,54 @@ AND SCHEDULE_TIME = ?
 	
 	
 	<!-- (상우) 의사 계정 추가 (2/3) 의사 테이블 -->
-	<entry key="">
+	<entry key="insertToDoctor">
 	
+	INSERT 
+		INTO DOCTOR 
+		(
+				 DOCTOR_NO
+			 , USER_NO
+			 , HIRE_DATE
+			 , DOCTOR_NAME
+			 , LICENCE_NO
+			 , DEPT_NAME
+		)
+	VALUES 
+	(
+				 'vp' || SEQ_DON.NEXTVAL
+				 ,(SELECT USER_NO
+	           FROM MEMBER
+	          WHERE USER_SSN=?)
+	       ,SYSDATE
+	       ,?
+	       ,?
+	       ,?
+  )
 
 	
 	</entry>
 	
 	
 	<!-- (상우) 의사 계정 추가 (3/3) 스케쥴 테이블 -->
-	<entry key="">
+	<entry key="insertToSchedule">
 	
+	INSERT 
+		INTO SCHEDULE 
+		(
+				 DOCTOR_NO
+			 , WORKING
+			 , SCHEDULE_TIME
+			 , SCHEDULE_WEEK
+		)
+	VALUES 
+	(
+				 (SELECT DOCTOR_NO
+	          FROM DOCTOR
+	         WHERE LICENCE_NO=?)
+	     , 'N'
+	     , ?
+	     , ?
+  )
 
 	
 	</entry>

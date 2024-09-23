@@ -172,6 +172,36 @@ public class CsDao {
 		}
 		return result;
 	}//increaseCount
+
+	/**
+	 * @author 최보겸
+	 * @param conn
+	 * @param c 작성게시글 정보
+	 * @return result 처리행수
+	 */
+	public int insertCs(Connection conn, Cs c) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertCs");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c.getUserNo());
+			pstmt.setString(2, c.getBoardTitle());
+			pstmt.setString(3, c.getBoardContent());
+			pstmt.setString(4, c.getCategory());
+			pstmt.setString(5, c.getcEmp());
+			pstmt.setString(6, c.getcDept());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}//insertCs
 	
 
 

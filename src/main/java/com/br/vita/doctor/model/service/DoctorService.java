@@ -107,10 +107,10 @@ public class DoctorService {
 	 * @param m
 	 * @return 추가된 행 수
 	 */
-	public int doctorInsert(Member m) {
+	public int insertToMember(Member m) {
 		
 		Connection conn = getConnection();
-		int result = dDao.doctorInsert(conn, m);
+		int result = dDao.insertToMember(conn, m);
 		
 		if(result > 0) {
 		   commit(conn);
@@ -149,5 +149,56 @@ public class DoctorService {
 		
 		
 	}
+	
+	/**
+	 * 의사 계정 추가 (2/3) 의사 테이블 추가
+	 * author : 임상우
+	 * @param m
+	 * @return 추가된 행 수
+	 */
+	public int insertToDoctor(Doctor d, Member m) {
+		
+		Connection conn = getConnection();
+		int result = dDao.insertToDoctor(conn, d, m);
+		
+		if(result > 0) {
+		   commit(conn);
+		}else {
+		   rollback(conn);
+		}
+	      		  
+	    close(conn);  
+		return result;
+		
+	}
+
+
+	
+	/**
+	 * 의사 계정 추가 (3/3) 스케쥴 테이블 추가
+	 * author : 임상우
+	 * @param m
+	 * @return 추가된 행 수
+	 */
+	public int insertToSchedule(Doctor d) {
+		
+		Connection conn = getConnection();
+		int result = dDao.insertToSchedule(conn, d);
+		
+		if(result > 0) {
+		   commit(conn);
+		}else {
+		   rollback(conn);
+		}
+	      		  
+	    close(conn);  
+		return result;
+		
+	}
+
+	
+	
+	
+	
 
 }

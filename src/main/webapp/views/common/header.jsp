@@ -283,7 +283,11 @@
         </div>
         <div class="sub">
             <b><br>&nbsp;외래진료안내</b><br>
-            <a href="" style="text-decoration: none;">&nbsp;진료예약</a><br>
+            <% if(loginUser != null) { %>
+            <a href="<%= contextPath %>/consultationAL.rv" style="text-decoration: none;">&nbsp;진료예약</a><br>
+            <%} else { %>
+            <a href="<%= contextPath %>/consultationBL.rv" style="text-decoration: none;">&nbsp;진료예약</a><br>
+            <%} %>
             <a href="" style="text-decoration: none;">&nbsp;진료검진예약</a><br>
             <a href="" style="text-decoration: none;">&nbsp;전화/방문예약</a><br>
             <a href="" style="text-decoration: none;">&nbsp;예약내역 조회</a>

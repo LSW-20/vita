@@ -87,7 +87,7 @@
             <h6>예약을 도와드립니다.</h6>
             <br><br>
             <div align="left">
-               <a href="/vita/views/reservation/firstTimeUserReservation.jsp" class="btn" id="btn-color" >첫방문 고객 예약하기</a>
+               <a href="<%= contextPath %>/first.rv" class="btn" id="btn-color" >첫방문 고객 예약하기</a>
             </div>
           </div>
           <div class="ml"id="vertical-line"></div>
