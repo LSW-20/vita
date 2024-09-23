@@ -127,6 +127,7 @@ public class DoctorService {
 	/**
 	 * 의사 계정 추가 (2/3) 의사 테이블 추가
 	 * author : 임상우
+	 * @param d
 	 * @param m
 	 * @return 추가된 행 수
 	 */
@@ -151,7 +152,7 @@ public class DoctorService {
 	/**
 	 * 의사 계정 추가 (3/3) 스케쥴 테이블 추가
 	 * author : 임상우
-	 * @param m
+	 * @param d
 	 * @return 추가된 행 수
 	 */
 	public int insertToSchedule(Doctor d) {
@@ -205,7 +206,7 @@ public class DoctorService {
 	/**
 	 * 의사 계정  (1/2) 스케쥴 테이블 추가
 	 * author : 임상우
-	 * @param m
+	 * @param d
 	 * @return 추가된 행 수
 	 */
 	public int updateDoctor(Doctor d) {
