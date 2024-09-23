@@ -1,6 +1,7 @@
 package com.br.vita.issue.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,8 +32,15 @@ public class CertificateApplicationController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String userNo = request.getParameter("userNo");
+		String type = request.getParameter("type");
+		String cDate = request.getParameter("cDate");
+		String purpose = request.getParameter("purpose");
 		
-		int result =  new IssueService().certificateApplicationInsert(userNo);
+		String Date = cDate.substring(2).replace("-","");
+		
+		System.out.println(Date);
+		
+		int result =  new IssueService().certificateApplicationInsert(userNo,type,Date,purpose);
 		
 		
 		

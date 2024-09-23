@@ -11,12 +11,21 @@ public class IssueService {
 	private IssueDao idao = new IssueDao();
 	
 	
-	public int certificateApplicationInsert(String userNo) {
+	public int certificateApplicationInsert(String userNo, String type ,String Date,String purpose ) {
 		
 		Connection conn = getConnection();
 		
-		int result = idao.certificateApplicationInsert(conn,userNo);
+		int result = idao.certificateApplicationInsert(conn,userNo,Date,purpose);
 		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
 		
 	}
 	

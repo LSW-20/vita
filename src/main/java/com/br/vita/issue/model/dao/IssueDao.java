@@ -3,6 +3,7 @@ package com.br.vita.issue.model.dao;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
@@ -27,6 +28,17 @@ public class IssueDao {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public int certificateApplicationInsert(Connection conn, String userNo, String type ,String Date,String purpose) {
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	

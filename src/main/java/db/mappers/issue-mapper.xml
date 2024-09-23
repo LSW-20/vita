@@ -2,7 +2,32 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-<entry key="">
+<entry key="certificateApplicationInsert">
+
+
+INSERT
+  INTO 
+      DOCUMENT
+      (
+        DOC_NUM
+      , USER_NO
+      , CARE_NO
+      , ...
+      )
+      
+VALUES
+      (
+       SEQ~~~
+      , ?
+      , (
+        SELECT CARE_NO
+        FROM MRECORDS
+        WHERE USER_NO = ?
+        AND TREATMENT_DATE = TO_DATE(?, 'YYMMDD')   -- '240912'
+       )
+      , ...
+      );
+
 
 
 
