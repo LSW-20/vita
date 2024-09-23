@@ -57,9 +57,9 @@
     <table id="csUserInfo" class="table m-4">
 			<tr>
 				<th width="130px">카테고리</th>
-				<td><select name="selectCategory" class="form-control" id="selectCategory">
+				<td><select name="category" class="form-control" id="category">
 				    <option value="C" <%= category.equals("C") ? "selected" : "" %>>칭찬합니다.</option>
-				    <option value="S" <%= category.equals("S") ? "selected" : "" %>>건의합니다.</option>
+				    <option value="S" <%= category.equals("S") ? "selected" : "" %>>문의합니다.</option>
 				    <option value="Q" <%= category.equals("Q") ? "selected" : "" %>>QnA</option>
 				    </select>
 				</td>
@@ -82,7 +82,7 @@
             <p style="font-size: 10px;">*환자 정보는 정확한 업무처리를 위해 필요한 부분이므로, 재차 확인해 주시길 바랍니다.</p>
             환자이름 <input type="text" name="patientName" value="<%=loginUser.getUserName() %>" readonly>&nbsp;&nbsp;
             환자 본인<br> 
-            등록번호 <input type="text" name="patientId" value="<%= loginUser.getUserId() %>" readonly>&nbsp;&nbsp;   
+            등록번호 <input type="text" name="patientId" value="<%= loginUser.getUserNo() %>" readonly>&nbsp;&nbsp;   
             생년월일 <input type="text" name="patientBirth" value="<%= loginUser.getUserDate() %>" readonly>
             </td>
         </tr>
@@ -99,11 +99,11 @@
         </tr>
         <tr>
         <th>제목</th>
-        <td colspan="3"><input type="text" class="form-control" name="boardTitle"required></td>
+        <td colspan="3"><input type="text" class="form-control" name="title"required></td>
         </tr>
         <tr>
         <th>내용</th>
-        <td colspan="3"><textarea rows="10" class="form-control" name="boardContent" style="resize:none;" required></textarea></td>
+        <td colspan="3"><textarea rows="10" class="form-control" name="content" style="resize:none;" required></textarea></td>
         </tr>
     </table>
 
@@ -111,35 +111,65 @@
     <table id="other_table" class="table m-4">
         <tr>
             <th width="130px">제목</th>
-            <td><input type="text" class="form-control" name="boardTitle"></td>
+            <td><input type="text" class="form-control" name="title"></td>
         </tr>
         <tr>
             <th>내용</th>
-            <td colspan="3"><textarea rows="13" class="form-control" name="boardContent" style="resize:none;" required></textarea></td>
+            <td colspan="3"><textarea rows="13" class="form-control" name="content" style="resize:none;" required></textarea></td>
         </tr>
     </table>    		
+			<div class="container d-flex justify-content-end">
+	  <button type="submit" class="btn btn-outline-secondary btn-sm">등록하기</button>&nbsp;
+	  <button type="reset" class="btn btn-outline-danger btn-sm">초기화</button>&nbsp;
+	  <button type="button" class="btn btn-outline-warning btn-sm" onclick="history.back();">뒤로가기</button>
+	</div>
 		
 	</form>
 	</div>
 	
     <script>
-        document.getElementById("selectCategory").addEventListener("change", function() {
+        document.getElementById("category").addEventListener("change", function() {
             var selectedValue = this.value;
             var complimentTable = document.getElementById("compliment_table");
             var otherTable = document.getElementById("other_table");
 
             if (selectedValue === "C") {
                 complimentTable.style.display = "table";
+                /* style disabled제외하는 구문 */
+                var complimentInput = complimentTable.querySelectorAll("input, textarea");
+                complimentInput.forEach(function(input, textarea){
+                	input.disabled = false;
+                	textarea.disabled = false;
+                });
+                
                 otherTable.style.display = "none";
+                /* input요소에 disabled추가 되는구문 */
+                var otherInput = otherTable.querySelectorAll("input, textarea");
+                otherInput.forEach(function(input, textarea){
+                	input.disabled = true;
+                	textarea.disabled = true;
+                });
             } else {
                 complimentTable.style.display = "none";
+                /* input요소에 disabled추가 되는구문 */
+                var complimentInput = complimentTable.querySelectorAll("input, textarea");
+                complimentInput.forEach(function(input, textarea){
+                	input.disabled = true;
+                	textarea.disabled = true;
+                });                
                 otherTable.style.display = "table";
+                /* disabled제외하는 구문 */
+                var otherInput = otherTable.querySelectorAll("input, textarea");
+                otherInput.forEach(function(input, textarea){
+                	input.disabled = false;
+                	textarea.diabled = false;
+                });
             }
         });
 
         // 초기 카테고리 값에 따라 테이블 표시 설정
         window.onload = function() {
-            var selectedValue = document.getElementById("selectCategory").value;
+            var selectedValue = document.getElementById("category").value;
             var complimentTable = document.getElementById("compliment_table");
             var otherTable = document.getElementById("other_table");
 
@@ -155,11 +185,6 @@
 	
 	 	<!-- nav, section 별도로 닫아주기-->
 	</nav>
-	<div class="container d-flex justify-content-end">
-	  <button type="submit" class="btn btn-outline-secondary btn-sm">등록하기</button>&nbsp;
-	  <button type="reset" class="btn btn-outline-danger btn-sm">초기화</button>&nbsp;
-	  <button type="button" class="btn btn-outline-warning btn-sm" onclick="history.back();">뒤로가기</button>
-	</div>
 
 </section>
 <!-- section end -->
