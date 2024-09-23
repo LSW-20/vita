@@ -301,7 +301,7 @@ public class DoctorDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			
-			for(int i=0; i<= list.size(); i++) {
+			for(int i=0; i< list.size(); i++) {
 				
 				pstmt.setString(1,list.get(i).getWorking());
 				pstmt.setString(2,list.get(i).getDoctorNo());
@@ -351,6 +351,47 @@ public class DoctorDao {
 		}
 
 		return result;
+	}
+	
+	
+	public List<DoctorSchedule> shcedulePageSelect(Connection conn, String doctor) {
+		
+		
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<DoctorSchedule> list = new ArrayList<>();
+
+		String sql = prop.getProperty("shcedulePageSelect");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, doctor);
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+
+				DoctorSchedule dShedule = new DoctorSchedule(rset.getString("WORKING")
+															, rset.getString("SCHEDULE_TIME")
+															,rset.getString("SCHEDULE_WEEK"));
+
+				list.add(dShedule);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
+		
+		
+		
+		
+		
 	}
 	
 	
