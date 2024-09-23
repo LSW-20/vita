@@ -458,7 +458,7 @@ public class DoctorDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			for(int i=0; i<day.length; i++) {
+			for(int i=0; i<day.length; i++) { // 한 의사당 10개의 데이터가 schedule 테이블에 들어간다.
 				
 				pstmt.setString(1, d.getLicenceNo());
 				pstmt.setString(3, day[i]);
@@ -488,32 +488,68 @@ public class DoctorDao {
 	 * @param d
 	 * @return 처리된 행 수
 	 */
-	public int updateDoctor(Connection conn, Doctor d) {
+	public int updateDoctor(Connection conn, Doctor d, String uqLicenceNo) {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
 		String sql = prop.getProperty("updateDoctor");
 		
-
-		String[] day = {"월", "화", "수", "목", "금"};
-		String[] time = {"A", "P"};
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			for(int i=0; i<day.length; i++) {
-				
-				pstmt.setString(1, d.getLicenceNo());
-				pstmt.setString(3, day[i]);
-				
-				for(int j=0; j<time.length; j++) {
-					pstmt.setString(2, time[j]);
+		
+			pstmt.setString(1, d.getDoctorName());
+			pstmt.setString(2, d.getLicenceNo());
+			pstmt.setString(3, d.getDeptName());
+			pstmt.setDate(4, d.getHireDate());	
+			pstmt.setString(5, uqLicenceNo);
 
-					result += pstmt.executeUpdate();
-				}
-				
-			}
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+	
+	
+	
+	/**
+	 * 의사 계정 수정 (2/2) member 테이블 수정
+	 * author : 임상우
+	 * @param conn
+	 * @param d
+	 * @return 처리된 행 수
+	 */
+	public int updateMember(Connection conn, Member m, String uqDoctorSsn) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateMember");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+		
+			pstmt.setString(1, m.getUserName());
+			pstmt.setString(2, m.getUserSSN());
+			pstmt.setString(3, m.getAddress());
+			pstmt.setString(4, m.getPhone());
+			pstmt.setString(5, uqDoctorSsn);
+			
+			System.out.println(sql);
+
+			result = pstmt.executeUpdate();
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
