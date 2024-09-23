@@ -37,17 +37,11 @@ WHERE
 <entry key="doctorScheduleUpdate">
 
 UPDATE SCHEDULE
-SET WORKING = 'N'
+SET WORKING = ?
 WHERE 
-     DOCTOR_NO IN (
-                    SELECT 
-                          DOCTOR_NO
-                    FROM 
-                          DOCTOR
-                     WHERE
-                          DOCTOR_NAME = '박시우')
-AND SCHEDULE_WEEK = '월'
-AND SCHEDULE_TIME = 'A'
+     DOCTOR_NO = ?
+AND SCHEDULE_WEEK = ?
+AND SCHEDULE_TIME = ?
 
 
 
