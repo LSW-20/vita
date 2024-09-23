@@ -288,6 +288,41 @@ public class DoctorDao {
 		
 	}
 	
+	public int doctorScheduleUpdate(Connection conn, List<DoctorSchedule> list) {
+		
+		
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("doctorScheduleUpdate");
+		
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			for(int i=0; i<= list.size(); i++) {
+				
+				pstmt.setString(1,list.get(i).getWorking());
+				pstmt.setString(2,list.get(i).getDoctorNo());
+				pstmt.setString(3,list.get(i).getScheduleWeek());
+				pstmt.setString(4,list.get(i).getScheduleTime());
+				
+				result += pstmt.executeUpdate();
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+		
+	}
+	
 	
 	/**
 	 * 의사 계정 추가 (1/3) 회원 테이블 추가

@@ -99,9 +99,19 @@ public class DoctorService {
 	}
 	
 
-	public void doctorScheduleUpdate() {
+	public int doctorScheduleUpdate(List<DoctorSchedule>list) {
 		
 		Connection conn = getConnection();
+		
+		int result = dDao.doctorScheduleUpdate(conn,list);
+		
+		close(conn);
+		
+		return result;
+		
+		
+		
+		
 
 	}
 	
