@@ -7,12 +7,6 @@ public class Cs {
 	private String userNo;
 	private String boardTitle;
 	private String boardContent;
-	public String getUserName() {
-		return userName;
-	}
-
-
-
 	private String boardWriter;//MEMBER 테이블과 join해서 가져올 userId
 	private Date registDt;
 	private int boardCount;
@@ -75,10 +69,22 @@ public class Cs {
 		this.answerContent = answerContent;
 	}
 	
+	//게시글 insert용 생성자
+	public Cs(String userNo, String boardTitle, String boardContent, String category, String cEmp, String cDept) {
+		super();
+		this.userNo = userNo;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.category = category;
+		this.cEmp = cEmp;
+		this.cDept = cDept;
+	}
+	
 	
 	public int getBoardNo() {
 		return boardNo;
 	}
+
 
 
 	public void setBoardNo(int boardNo) {
@@ -187,6 +193,11 @@ public class Cs {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getUserName() {
+		return userName;
+	}	
+	
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}

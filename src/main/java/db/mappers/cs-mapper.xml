@@ -72,5 +72,33 @@
 		       BOARD_NO = ?
 
 	</entry>
+	
+	<!--게시글 작성-->
+	<entry key="insertCs">
+		INSERT 
+		  INTO 
+		       TAB_CS 
+		     (
+		       BOARD_NO
+		     , USER_NO
+		     , BOARD_TITLE
+		     , BOARD_CONTENT
+		     , REGIST_DATE
+		     , CATEGORY
+		     , C_EMP
+		     , C_DEPT
+		     ) 
+		VALUES 
+		     (
+		       SEQ_BNO.NEXTVAL
+		     , ?
+		     , ?
+		     , ?
+		     , SYSDATE
+		     , ?
+		     , ?
+		     , ?
+		     )		
+	</entry>
 
 </properties>
