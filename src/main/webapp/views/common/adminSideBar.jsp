@@ -190,7 +190,7 @@ $(document).ready(function() {
                 <br><br>
         
                 <div id="admin_name">
-                    관리자 강보람님
+                    관리자 <%= loginUser.getUserName() %>님
                 </div>
         
                 <br><br><br>

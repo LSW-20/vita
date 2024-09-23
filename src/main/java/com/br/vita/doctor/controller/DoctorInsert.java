@@ -41,7 +41,7 @@ public class DoctorInsert extends HttpServlet {
     	HttpSession session = request.getSession(); // alert 띄우기용 session 선언.
     	
         
-        if(request.getParameter("doctor_pass1").equals(request.getParameter("doctor_pass2"))) {
+        if(request.getParameter("doctor_pass1").equals(request.getParameter("doctor_pass2"))) { // 비밀번호와 비밀번호 확인이 같은지 확인.
         	
         	//(1) member 테이블에 먼저 insert
         	Member m = new Member();
@@ -116,13 +116,7 @@ public class DoctorInsert extends HttpServlet {
         }
         
 
-        	
- 
-        	
-        	
-
-		
-	
+        
 		
 	}
 

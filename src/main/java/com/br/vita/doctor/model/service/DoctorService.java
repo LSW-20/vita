@@ -96,7 +96,22 @@ public class DoctorService {
 		close(conn);
 		return list;
 		
+	}
 	
+
+	public int doctorScheduleUpdate(List<DoctorSchedule>list) {
+		
+		Connection conn = getConnection();
+		
+		int result = dDao.doctorScheduleUpdate(conn,list);
+		
+		close(conn);
+		
+		return result;
+		
+		
+		
+		
 
 	}
 	
@@ -123,32 +138,7 @@ public class DoctorService {
 		
 	}
 	
-
-	public int doctorScheduleUpdate(List<DoctorSchedule> list) {
-
-		Connection conn = getConnection();
-
-		int result = dDao.doctorScheduleUpdate(conn, list);
-
-		close(conn);
-
-		return result;
-		
-
-	}
 	
-	public List<DoctorSchedule> shcedulePageSelect(String doctor) {
-		
-		Connection conn = getConnection();
-
-		List<DoctorSchedule> schedule = dDao.shcedulePageSelect(conn, doctor);
-
-		close(conn);
-
-		return schedule;
-		
-		
-	}
 	
 	/**
 	 * 의사 계정 추가 (2/3) 의사 테이블 추가
@@ -198,6 +188,27 @@ public class DoctorService {
 
 	
 	
+	/**
+	 * 의사 계정  (1/2) 스케쥴 테이블 추가
+	 * author : 임상우
+	 * @param m
+	 * @return 추가된 행 수
+	 */
+	public int updateDoctor(Doctor d) {
+		
+		Connection conn = getConnection();
+		int result = dDao.updateDoctor(conn, d);
+		
+		if(result > 0) {
+		   commit(conn);
+		}else {
+		   rollback(conn);
+		}
+	      		  
+	    close(conn);  
+		return result;
+		
+	}
 	
 	
 

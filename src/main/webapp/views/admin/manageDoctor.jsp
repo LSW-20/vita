@@ -315,7 +315,7 @@ footer {
                                 </tr>
                                 <tr>
                                     <th><span class="star">*</span> 주민등록번호</th>
-                                    <td><input type="text" class="form-control" name="doctor_ssn" required></td>
+                                    <td><input type="text" class="form-control" placeholder="-를 포함하여 최대 14자리" maxlength="14" name="doctor_ssn" required></td>
                                 </tr>
                                 <tr>
                                     <th><span class="star">*</span> 면허번호</th>
@@ -355,7 +355,7 @@ footer {
 
                                 <tr>
                                     <th>&nbsp;&nbsp;전화번호</th>
-                                    <td><input type="text" class="form-control" placeholder="'-'를 포함하여 입력" name="doctor_phone"></td>
+                                    <td><input type="text" class="form-control" placeholder="'-'를 포함하여 최대 13자리" maxlength="13" name="doctor_phone"></td>
                                 </tr>
                                 <tr>
                                     <th>&nbsp;&nbsp;주소</th>
@@ -402,47 +402,29 @@ footer {
         
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form action="#" method="">
+                    <form action="<%= contextPath %>/updateD.admin" method="post">
                         <div style="display: flex; justify-content: center;">
                             <table class="add_update_modal_table">
                                 <tr>
-                                    <th><span class="star">*</span> 사번</th>
-                                    <td><input type="number" class="form-control" placeholder="" name="" value="105000" required></td>
-                                </tr>
-                                <tr>
                                     <th><span class="star">*</span> 이름</th>
-                                    <td><input type="text" class="form-control" placeholder="" name="" value="가가가" required></td>
+                                    <td><input type="text" class="form-control" name="doctor_name" value="가가가" required></td>
                                 </tr>
                                 <tr>
                                     <th><span class="star">*</span> 주민등록번호</th>
-                                    <td><input type="text" class="form-control" placeholder="" name="" value="700624-1248547" required></td>
+                                    <td><input type="text" class="form-control" maxlength="14" name="doctor_ssn" value="700624-1248547" required></td>
                                 </tr>
                                 <tr>
                                     <th><span class="star">*</span> 면허번호</th>
-                                    <td><input type="number" class="form-control" placeholder="" name="" value="12345" required></td>
+                                    <td><input type="number" class="form-control" name="licence_no" value="12345" required></td>
                                 </tr>
                                 <tr>
                                     <th><span class="star">*</span> 진료과</th>
                                     <td>
-                                        <input type="radio" class="select_dept" name="dept" value="외과" checked>&nbsp외과&nbsp&nbsp
+                                        <input type="radio" class="select_dept" name="dept" value="외과">&nbsp외과&nbsp&nbsp
                                         <input type="radio" class="select_dept" name="dept" value="내과">&nbsp내과&nbsp&nbsp
                                         <input type="radio" class="select_dept" name="dept" value="치과">&nbsp치과&nbsp&nbsp
                                         <input type="radio" class="select_dept" name="dept" value="안과">&nbsp안과
                                     </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td colspan="2" style="height: 20px;"></td>
-                                </tr>
-
-                                <tr>
-                                    <th><span class="star">*</span> 아이디</th>
-                                    <td><input type="text" class="form-control" placeholder="" name="" value="lottt3" required></td>
-                                </tr>
-                                <tr>
-                                    <th><span class="star">*</span> 비밀번호</th>
-                                    <td><input type="text" class="form-control" placeholder="" name="" value="va123" required></td>
                                 </tr>
 
                                 <tr>
@@ -451,15 +433,15 @@ footer {
 
                                 <tr>
                                     <th>&nbsp;&nbsp;전화번호</th>
-                                    <td><input type="text" class="form-control" placeholder="" name="" value="010-1111-1111"></td>
+                                    <td><input type="text" class="form-control" maxlength="13" name="doctor_phone" value="010-1111-1111"></td>
                                 </tr>
                                 <tr>
                                     <th>&nbsp;&nbsp;주소</th>
-                                    <td><input type="text" class="form-control" placeholder="" name="" value="서울시 강동구 강동대로 53길 76 (성내동)"></td>
+                                    <td><input type="text" class="form-control" name="doctor_address" value="서울시 강동구 강동대로 53길 76 (성내동)"></td>
                                 </tr>
                                 <tr>
                                     <th>&nbsp;&nbsp;이메일</th>
-                                    <td><input type="email" class="form-control" placeholder="" name="" value="abc123@naver.com"></td>
+                                    <td><input type="email" class="form-control" name="doctor_email" value="abc123@naver.com"></td>
                                 </tr>
 
 
