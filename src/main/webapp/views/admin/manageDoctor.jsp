@@ -98,23 +98,24 @@ footer {
 
 
 
-    .add_update_modal_table th { /* 추가, 수정용 modal의 테이블 왼쪽셀 */
+    .add_modal_table th { /* 추가 modal의 테이블 왼쪽셀 */
         padding-right: 40px;
         height: 40px;
     }
-    .add_update_modal_table td { /* 추가, 수정용 modal의 테이블 오른쪽셀 */
+    .add_modal_table td { /* 추가 modal의 테이블 오른쪽셀 */
         height: 40px;
         
     }
-    .add_update_modal_table input:not(.select_dept) { /* 추가, 수정용 modal의 테이블 오른쪽셀의 input */
+    .add_modal_table input:not(.select_dept) { /* 추가 modal의 테이블 오른쪽셀의 input */
         width: 220px;
     }
-    .star { /* 추가, 수정용 modal의 '*'를 빨간색으로 */
+    .star { /* 추가 modal의 '*'를 빨간색으로 */
         color: red;
     }
 
 
-    .aa {
+    /* 의료진 검색 결과 테이블과 셀들 */
+    .aa { 
         width: 100%;
     }
     .aa td, .aa th{
@@ -122,7 +123,13 @@ footer {
         text-align: center;
     }
     .aa td:not(.nono), .aa th:not(.nono){
-        border: 1px solid black;
+        border: 1px solid silver;
+    }
+    .aa th:not(.update_table th) {
+        background-color: rgb(196, 239, 245);
+    }
+    .aa td {
+        background-color: rgb(253, 247, 239);
     }
 
 
@@ -203,7 +210,7 @@ footer {
 
             <table class="aa">
                 <tr>
-                    <th></th>
+                    <th><button class="btn btn-sm btn-warning" type="button" id="all_btn">전체</button></th>
                     <th>사번</th>
                     <th>이름</th>
                     <th>주민등록번호</th>
@@ -233,7 +240,7 @@ footer {
                     %>
 
                         <tr>
-                            <td><input type="checkbox" name="delete" value="<%= m.getUserSSN() %>"></td>
+                            <td><input type="checkbox" id="<%= m.getUserSSN() %>"></td>
                             <td><%= d.getDoctorNo() %></td>
                             <td><%= d.getDoctorName() %></td>
                             <td><%= m.getUserSSN() %></td>
@@ -252,7 +259,7 @@ footer {
                                     <input type="hidden" name="uq_doctor_ssn" value="<%= m.getUserSSN() %>"> <%-- member 업데이트 조건 --%>
 
                                     <div style="display: flex; justify-content: center;">
-                                        <table>
+                                        <table class="update_table">
                                             <tr>
                                                 <td class="nono" colspan="2" style="height: 20px;"></td>
                                             </tr>
@@ -284,15 +291,15 @@ footer {
                                             </tr>
             
                                             <tr>
-                                                <th class="nono">&nbsp;&nbsp;전화번호</th>
+                                                <th class="nono">전화번호</th>
                                                 <td class="nono"><input type="text" class="form-control" maxlength="13" name="doctor_phone" value="<%= m.getPhone() %>"></td>
                                             </tr>
                                             <tr>
-                                                <th class="nono">&nbsp;&nbsp;주소</th>
+                                                <th class="nono">주소</th>
                                                 <td class="nono"><input type="text" class="form-control" name="doctor_address" value="<%= m.getAddress() %>"></td>
                                             </tr>
                                             <tr>
-                                                <th class="nono">&nbsp;&nbsp;입사일</th>
+                                                <th class="nono">입사일</th>
                                                 <td class="nono"><input type="date" class="form-control" name="hire_date" value="<%= d.getHireDate() %>"></td>
                                             </tr>
 
@@ -313,12 +320,9 @@ footer {
                             </td>
                         </tr>
                     
-
-
                     <% } %>
 
                 <% } %>    
-
             </table>
 
             <br>
@@ -328,16 +332,57 @@ footer {
                 </div>
             <% } else { %>
                 <div class="del_add_btn">
-                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_modal">삭제</button>
+                    <button type="button" class="btn btn-sm btn-danger" id="del_button">삭제</button>
                     <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal">추가</button>
                 </div>
             <% } %>
      
-            <!-- form이 겹치면 안 된다. 삭제는 modal을 안 쓰고, 삭제 버튼에 이벤트 리스너로 클릭 이벤트를 연결해서
-                 스크립트로 checked된 checkbox들의 id를 다 다르게 주고, id도 가져오고 그 다음 셀들의 값도 가져와서
-                 팝업창으로 띄운다. 그러면서 팝업창에서 확인/취소 받은 다음에 확인의 경우(true) if문 조건으로
-                 서블릿을 요청한다 그때 checkbox들의 id들을 그 전에 배열에 담아서 넘기면,
-                 서블릿에서 문자열 배열로 checked된 id들이 오지 않을까. -->
+
+        <script>
+
+            document.getElementById('del_button').addEventListener('click', function() {
+
+                var checkboxEl = document.querySelectorAll('input[type="checkbox"]'); // 체크박스들을 배열로 모음.
+
+                var checked_list = []; // 각 체크박스들의 id 속성값을 담을 배열.
+
+                for(var i = 0; i<checkboxEl.length; i++) {
+                    if(checkboxEl[i].checked) {
+                        checked_list.push(checkboxEl[i].id);
+                    }
+                }
+
+                if(confirm('정말 삭제하시겠습니까?')) {
+                    var link = "<%= contextPath %>/deleteD.admin" + "?ssn=" + checked_list.join(',');
+                    location.href=link;
+                }
+            
+            });    
+        </script>
+        <!-- (1) 삭제 기능
+            form 안에 form이 있으면 안 된다. 이미 수정용 modal이 collapse로 테이블 안에 있다.
+            바깥 쪽을 form으로 감싸고 삭제 submit 하면, 안쪽 form의 submit을 했는데 바깥쪽 form 요청이 되어버림.
+            수정도 삭제도 modal을 쓰지 않기로 결정. checkbox들의 id를 동적으로 다 다르게 준다.
+            삭제 버튼에 이벤트 리스너로 클릭 이벤트를 연결한다. checked된 checkbox 들의 id와 다음 셀들의 값도 가져와서
+            배열에 담는다. 팝업창(confirm)에서 확인/취소 받은 다음에 확인의 경우(true) if문 조건으로
+            서블릿을 요청한다(location.href).
+            서블릿을 요청하면서 checkbox들의 id들을 배열에 담고, join 메소드로 한 문자열로 만들어서 넘긴다. -->
+
+
+        <!-- (2) 삭제를 위해 전체 선택하는 버튼 -->
+        <script>
+            document.getElementById('all_btn').addEventListener('click', function() {
+
+                var checkboxEl = document.querySelectorAll('input[type="checkbox"]'); // 체크박스들을 배열로 모음.
+
+                for(var i = 0; i<checkboxEl.length; i++) {
+                    checkboxEl[i].checked = true; // 모든 동적으로 생성된 체크박스들에 checked 속성 주기
+                }
+
+            });    
+        </script> 
+
+
     </div>
 </div>
 </section>
@@ -346,34 +391,7 @@ footer {
 
 
 
-<!-- 삭제용 modal start -->
 
-    <!-- The Modal -->
-    <div class="modal" id="delete_modal">
-        <div class="modal-dialog">
-        <div class="modal-content">
-    
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">의료진 계정 삭제</h4>
-            </div>
-    
-            <!-- Modal body -->
-            <div class="modal-body">
-                <form action="<%= contextPath %>/deleteD.admin" method="post">
-                    <h6>사번 '105680', 이름 '가가가' 계정을 정말 삭제하시겠습니까? </h6> <br>
-                    <div style="text-align: right;">
-                        <button type="submit" class="btn btn-sm btn-danger">삭제</button>
-                        <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">취소</button>
-                    </div>
-                </form>
-            </div>
-    
-        </div>
-        </div>
-    </div>
-
-<!-- 삭제용 modal end -->
 
 
 
@@ -395,7 +413,7 @@ footer {
                 <div class="modal-body">
                     <form action="<%= contextPath %>/addD.admin" method="post">
                         <div style="display: flex; justify-content: center;">
-                            <table class="add_update_modal_table">
+                            <table class="add_modal_table">
                                 <tr>
                                     <th><span class="star">*</span> 이름</th>
                                     <td><input type="text" class="form-control" name="doctor_name" value="" required></td>

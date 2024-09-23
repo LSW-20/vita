@@ -257,5 +257,28 @@ public class DoctorService {
 		
 	}
 	
-
+	
+	
+	/**
+	 * 의사 계정 삭제 (doctor, member 테이블)
+	 * author : 임상우
+	 * @param ssnArray
+	 * @return 처리된 행 수
+	 */
+	public int deleteDoctor(String[] ssnArray) {
+		
+		Connection conn = getConnection();
+		int result = dDao.deleteDoctor1(conn, ssnArray);
+		int result2 = dDao.deleteDoctor2(conn, ssnArray);
+		
+		if(result > 0 && result2 > 0) {
+		   commit(conn);
+		}else {
+		   rollback(conn);
+		}
+	      		  
+	    close(conn);  
+		return result2;
+		
+	}
 }

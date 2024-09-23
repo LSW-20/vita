@@ -257,6 +257,31 @@ WHERE
 	
 	
 	
+	<!-- (상우) 의사 계정 삭제 (1/2) doctor 테이블 -->
+	<entry key="deleteDoctor1">
+	
+	DELETE 
+		FROM	
+					DOCTOR
+	 WHERE
+	        USER_NO IN (SELECT USER_NO 
+	        						  FROM MEMBER 
+	        						 WHERE USER_SSN IN (
+	        			
+	</entry>
+	
+	
+	
+	<!-- (상우) 의사 계정 삭제 (2/2) member 테이블 -->
+	<entry key="deleteDoctor2">
+	
+	DELETE 
+		FROM	
+					MEMBER
+	 WHERE
+	        USER_SSN IN (
+	        			
+	</entry>
 	
 	
 </properties>

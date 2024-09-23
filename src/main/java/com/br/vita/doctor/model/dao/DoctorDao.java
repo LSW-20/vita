@@ -243,12 +243,15 @@ public class DoctorDao {
 		
 		String sql = "";
 		
-		if(dept.equals("전체")) {
-			sql = prop.getProperty("selectByDept");
-		} else {
-			sql = prop.getProperty("selectByDept");
-			sql += "where dept_name = ?";
-		}
+		if(dept != null) { // 텍스트 상자와 달리 radio 버튼과 checkbox는 선택하지 않으면 빈문자열이 아닌 null이 넘어와서 null pointer exception 발생한다.
+						   // null 체크를 하니 sql문이 비어있을 수 있다고 SQLException 에러는 발생했지만 화면엔 500에러 안 뜨고 다시 의료진 계정 관리 페이지로 돌아왔다. 
+			if(dept.equals("전체")) {
+				sql = prop.getProperty("selectByDept");
+			} else {
+				sql = prop.getProperty("selectByDept");
+				sql += "where dept_name = ?";
+			}
+		}	
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -558,6 +561,115 @@ public class DoctorDao {
 
 		return result;
 	}
+	
+	
+	
+	/**
+	 * 의사 계정 삭제 (1/2) doctor 테이블
+	 * author : 임상우
+	 * @param conn
+	 * @param ssnArray
+	 * @return 처리된 행 수
+	 */
+	public int deleteDoctor1(Connection conn, String[] ssnArray) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteDoctor1"); 
+		// "DELETE FROM DOCTOR WHERE USER_NO IN (SELECT USER_NO 
+		//  FROM MEMBER WHERE USER_SSN IN ("
+		
+		
+		for(int i=0; i<ssnArray.length; i++) {
+			
+			sql += "?";
+			
+			if(i != (ssnArray.length-1) ) { // 마지막엔 컴마 x
+				sql += ", ";
+			}
+		}
+		
+		sql += "))";
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			for(int i=0; i<ssnArray.length; i++) {
+				
+				pstmt.setString(i+1, ssnArray[i]);
+				
+			}
+				
+			System.out.println(sql);
+
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+	
+	
+	
+	
+	/**
+	 * 의사 계정 삭제 (2/2) member 테이블
+	 * author : 임상우
+	 * @param conn
+	 * @param ssnArray
+	 * @return 처리된 행 수
+	 */
+	public int deleteDoctor2(Connection conn, String[] ssnArray) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteDoctor2"); 
+		// "DELETE FROM	MEMBER WHERE USER_SSN IN ("
+		 
+		
+		for(int i=0; i<ssnArray.length; i++) {
+			
+			sql += "?";
+			
+			if(i != (ssnArray.length-1) ) { // 마지막엔 컴마 x
+				sql += ", ";
+			}
+		}
+		
+		sql += ")";
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			for(int i=0; i<ssnArray.length; i++) {
+				
+				pstmt.setString(i+1, ssnArray[i]);
+				
+			}
+				
+			System.out.println(sql);
+
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+	
 	
 	
 }
