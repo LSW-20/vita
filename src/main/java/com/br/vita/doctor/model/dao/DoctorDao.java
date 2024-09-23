@@ -289,12 +289,19 @@ public class DoctorDao {
 	}
 	
 	
-	public int doctorInsert(Connection conn, Member m) {
+	/**
+	 * 의사 계정 추가 (1/3) 회원 테이블 추가
+	 * author : 임상우
+	 * @param conn
+	 * @param m
+	 * @return 처리된 행 수
+	 */
+	public int insertToMember(Connection conn, Member m) {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("doctorInsert");
+		String sql = prop.getProperty("insertToMember");
 		
 
 		try {
@@ -321,5 +328,35 @@ public class DoctorDao {
 	
 	
 	
+	/**
+	 * 의사 계정 추가 (2/3) 의사 테이블 추가
+	 * author : 임상우
+	 * @param conn
+	 * @param m
+	 * @return 처리된 행 수
+	 */
+	public int insertToDoctor(Connection conn, Doctor d, Member m) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertToDoctor");
+		
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getUserSSN());
+			pstmt.setString(2, d.getDoctorName());
+			pstmt.setString(3, d.getLicenceNo());
+			pstmt.setString(4, d.getDeptName());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
 
 }
