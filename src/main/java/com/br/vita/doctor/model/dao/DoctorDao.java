@@ -361,7 +361,7 @@ public class DoctorDao {
 	}
 	
 	
-	public List<DoctorSchedule> shcedulePageSelect(Connection conn, String doctor) {
+	public List<DoctorSchedule> schedulePageSelect(Connection conn, String docNo) {
 		
 		
 
@@ -369,12 +369,12 @@ public class DoctorDao {
 		ResultSet rset = null;
 		List<DoctorSchedule> list = new ArrayList<>();
 
-		String sql = prop.getProperty("shcedulePageSelect");
+		String sql = prop.getProperty("schedulePageSelect");
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setString(1, doctor);
+			pstmt.setString(1, docNo);
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {

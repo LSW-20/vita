@@ -179,6 +179,8 @@ public class DoctorService {
 
 		int result = dDao.doctorScheduleUpdate(conn, list);
 
+		
+		
 		close(conn);
 
 		return result;
@@ -187,11 +189,11 @@ public class DoctorService {
 	}
 	
 	
-	public List<DoctorSchedule> shcedulePageSelect(String doctor) {
+	public List<DoctorSchedule> schedulePageSelect(String docNo) {
 		
 		Connection conn = getConnection();
 
-		List<DoctorSchedule> schedule = dDao.shcedulePageSelect(conn, doctor);
+		List<DoctorSchedule> schedule = dDao.schedulePageSelect(conn, docNo);
 
 		close(conn);
 

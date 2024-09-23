@@ -209,7 +209,7 @@ AND SCHEDULE_TIME = ?
 	
 	</entry>
 	
-	<entry key="shcedulePageSelect">
+	<entry key="schedulePageSelect">
 	
 	SELECT 
 		 WORKING
