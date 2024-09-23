@@ -77,7 +77,9 @@ public class MemberDao {
 								   ,rset.getString("RESIGN_YN")
 								   ,rset.getString("USER_DATE")
 								   ,rset.getString("USER_GENDER")
-								   ,rset.getString("REPRESENTATIVE"));
+								   ,rset.getString("REPRESENTATIVE")
+								   ,rset.getString("DOCTOR_NO")
+								   ,rset.getString("DEPT_NAME"));
 					
 				}
 				

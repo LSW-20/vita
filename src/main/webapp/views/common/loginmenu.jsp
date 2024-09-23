@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    
+   
     
     <%if(loginUser == null ){ %>
         <!-- case1. 로그인전 -->

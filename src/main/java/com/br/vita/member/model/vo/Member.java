@@ -19,9 +19,35 @@ public class Member {
 	 private String userDate;
 	 private String gender;
 	 private String representative;
+	 private String doctorNo;
+	 private String deptName;
 	
 	
-	 public Member() {}
+	 public String getDoctorNo() {
+		return doctorNo;
+	}
+
+
+
+	public void setDoctorNo(String doctorNo) {
+		this.doctorNo = doctorNo;
+	}
+
+
+
+	public String getDeptName() {
+		return deptName;
+	}
+
+
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
+
+
+	public Member() {}
 	 
 
 
@@ -51,6 +77,28 @@ public class Member {
 		this.userDate = userDate;
 		this.gender = gender;
 		this.representative = representative;
+	}
+	public Member(String userNo, String userId, String userPwd, String userName, String phone, String email,
+			String address, Date enrollDate, String userType, String userSSN, String callbackYN, String resignYN,
+			String userDate, String gender, String representative, String doctorNo, String deptName) {
+		super();
+		this.userNo = userNo;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.phone = phone;
+		this.email = email;
+		this.address = address;
+		this.enrollDate = enrollDate;
+		this.userType = userType;
+		this.userSSN = userSSN;
+		this.callbackYN = callbackYN;
+		this.resignYN = resignYN;
+		this.userDate = userDate;
+		this.gender = gender;
+		this.representative = representative;
+		this.doctorNo = doctorNo;
+		this.deptName = deptName;
 	}
 
 	//마이페이지 정보 수정 요청용 생성자 -보겸

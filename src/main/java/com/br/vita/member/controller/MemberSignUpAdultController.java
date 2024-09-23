@@ -40,8 +40,8 @@ public class MemberSignUpAdultController extends HttpServlet {
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
 		
-		String userDate;
-		String gender;
+		String userDate = request.getParameter("");
+		String gender= request.getParameter("");
 		
 		
 		Member m = new Member(userId, userPwd, userName, phone, email, userSSN, userDate, gender);

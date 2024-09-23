@@ -196,10 +196,10 @@
                 </div>
 
                 <script>
+                
+    			
                     function fnSchedule(){
                     	
-                        alert('성공적으로 등록 되었습니다');
-                        
                         
                         let $monM = $('#mon-morning').val()
                         let $tueM = $('#tue-morning').val()
@@ -214,69 +214,6 @@
                         let $friA = $('#fri-afternoon').val()
 
                        
-
-                        // 오전일정
-                        if($monM == 'Y'){
-                            $('#mY_1').css('display','block');
-                        }else if($monM == 'N'){
-                            $('#mY_1').css('display','block').css('backgroundColor','red');
-                        }
-
-                        if($tueM == 'Y'){
-                            $('#mY_2').css('display','block');
-                        }else if($tueM == 'N'){
-                            $('#mY_2').css('display','block').css('backgroundColor','red');
-                        }
-                        
-                        if($wedM == 'Y'){
-                            $('#mY_3').css('display','block');
-                        }else if($wedM == 'N'){
-                            $('#mY_3').css('display','block').css('backgroundColor','red');
-                        }
-
-                        if($thuM == 'Y'){
-                            $('#mY_4').css('display','block');
-                        }else if($wedM == 'N'){
-                            $('#mY_4').css('display','block').css('backgroundColor','red');
-                        }
-
-                        if($friM == 'Y'){
-                            $('#mY_5').css('display','block');
-                        }else if($wedM == 'N'){
-                            $('#mY_5').css('display','block').css('backgroundColor','red');
-                        }
-
-                        // 오후일정
-                        if($monA == 'Y'){
-                            $('#aY_1').css('display','block');
-                        }else if($monA == 'N'){
-                            $('#aY_1').css('display','block').css('backgroundColor','red');
-                        }
-
-                        if($tueA == 'Y'){
-                            $('#aY_2').css('display','block');
-                        }else if($tueA == 'N'){
-                            $('#aY_2').css('display','block').css('backgroundColor','red');
-                        }
-                        
-                        if($wedA == 'Y'){
-                            $('#aY_3').css('display','block');
-                        }else if($wedA == 'N'){
-                            $('#aY_3').css('display','block').css('backgroundColor','red');
-                        }
-
-                        if($thuA == 'Y'){
-                            $('#aY_4').css('display','block');
-                        }else if($thuA == 'N'){
-                            $('#aY_4').css('display','block').css('backgroundColor','red');
-                        }
-
-                        if($friA == 'Y'){
-                            $('#aY_5').css('display','block');
-                        }else if($friA == 'N'){
-                            $('#aY_5').css('display','block').css('backgroundColor','red');
-                        }
-                        
                         
                         $.ajax({
                             url: '<%= contextPath %>/schedule.up',
@@ -292,20 +229,79 @@
                                 wedAfternoon: $wedA,
                                 thuAfternoon: $thuA,
                                 friAfternoon: $friA,
-                                name: '<%= loginUser.getUserName() %>',
+                             <%--   name: '<%= loginUser.getUserName() %>', --%>
                                 
                             },
                             success: function(res) {
-                                console.log("서버 응답:", res);
+                                
+                            	console.log(res);
+                            	
+                            	
+                            	if(res > 0){
+                            		alert('성공적으로 등록되었습니다');
+                            		fnScheduleSelect();
+                            	}else{
+                            		alert('일정등록 실패');
+                            	}
+                            	
+                            
                             },
                            
                         });
                         
-
-                         
                     }
                     
-                
+                    
+                     function fnScheduleSelect(){
+                    	
+                    	$.ajax({
+                    			url: '<%= contextPath %>/scheduleSelect.me',
+                        	type: 'post',
+                        	success:function(res){
+                        		
+                							console.log(res);  // [{}, {}. {}]
+                							
+                							for(let i=0; i<res.length; i++){
+                								
+                								/* 오전일정조회 */
+                								if(res[i].working == 'Y' && res[i].scheduleTime == 'A' && res[i].scheduleWeek=='월'){
+                									$('#mY_1').css('display','block');
+                								}else if(res[i].working == 'Y' && res[i].scheduleTime == 'A' && res[i].scheduleWeek=='화'){
+                									$('#mY_2').css('display','block');
+                								}else if(res[i].working == 'Y' && res[i].scheduleTime == 'A' && res[i].scheduleWeek=='수'){
+                									$('#mY_3').css('display','block');
+                								}else if(res[i].working == 'Y' && res[i].scheduleTime == 'A' && res[i].scheduleWeek=='목'){
+                									$('#mY_4').css('display','block');
+                								}else if(res[i].working == 'Y' && res[i].scheduleTime == 'A' && res[i].scheduleWeek=='금'){
+                									$('#mY_5').css('display','block');
+                									
+                									/* 오후일정조회 */
+                								}else if(res[i].working == 'Y' && res[i].scheduleTime == 'P' && res[i].scheduleWeek=='월'){
+                									$('#aY_1').css('display','block');
+                								}else if(res[i].working == 'Y' && res[i].scheduleTime == 'P' && res[i].scheduleWeek=='화'){
+                									$('#aY_2').css('display','block');
+                								}else if(res[i].working == 'Y' && res[i].scheduleTime == 'P' && res[i].scheduleWeek=='수'){
+                									$('#aY_3').css('display','block');
+                								}else if(res[i].working == 'Y' && res[i].scheduleTime == 'P' && res[i].scheduleWeek=='목'){
+                									$('#aY_4').css('display','block');
+                								}else if(res[i].working == 'Y' && res[i].scheduleTime == 'P' && res[i].scheduleWeek=='금'){
+                									$('#aY_5').css('display','block');
+                								}
+                								
+                								
+                								
+                								
+                							}
+                							
+                							
+                    		
+                        		
+                        	},
+                    	})
+                    	
+                    } 
+                    
+                     fnScheduleSelect();
 					    
              
                     
