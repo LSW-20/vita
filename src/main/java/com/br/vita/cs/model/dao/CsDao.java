@@ -202,6 +202,32 @@ public class CsDao {
 		
 		return result;
 	}//insertCs
+
+	/**
+	 * 게시글 삭제
+	 * @author 최보겸
+	 * @param conn
+	 * @param boardNo
+	 * @return result 처리행수 반환
+	 */
+	public int deleteCs(Connection conn, int boardNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteCs");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}//deleteCs
 	
 
 

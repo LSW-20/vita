@@ -201,7 +201,7 @@ footer{
 	    <% if(!loginUser.getUserId().equals(board.getBoardWriter()) || loginUser == null) {%>
         <br>
         <div>
-	        <button type="button" class="btn btn-warning btn-sm">목록가기</button>
+            <a href="<%= contextPath %>/list.cs?category=<%= board.getCategory() %>" class="btn btn-warning btn-sm">목록가기</a>
         </div>
 			<%} else if(board.getUserType().equals("A") && board.getAnswerContent()==null){ %>
         <!-- case3. 현재 로그인되어있는 회원이 관리자이고, 답변이 달려있지 않을 때 보여지는 요소 -->
@@ -209,14 +209,14 @@ footer{
         <div>
             <button type="button" class="btn btn-secondary btn-sm"  id="reply_write_btn">답변하기</button> &nbsp;
             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_modal">삭제하기</button> &nbsp;
-            <button type="button" class="btn btn-warning btn-sm">목록가기</button>
+            <a href="<%= contextPath %>/list.cs?category=<%= board.getCategory() %>" class="btn btn-warning btn-sm">목록가기</a>
         </div>
       <%} else if(board.getUserType().equals("A") && board.getAnswerContent()!=null){ %>
         <!-- case4. 현재 로그인되어있는 회원이 관리자이고, 답변이 달려있을 때 보여지는 요소 -->
         <br>
         <div>
             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_modal">삭제하기</button> &nbsp;
-            <button type="button" class="btn btn-warning btn-sm">목록가기</button>
+            <a href="<%= contextPath %>/list.cs?category=<%= board.getCategory() %>" class="btn btn-warning btn-sm">목록가기</a>
         </div>
        <%}else if(loginUser != null && loginUser.getUserId().equals(board.getBoardWriter())) {%>
 	    <!-- case2. 현재 로그인되어있는 회원이 해당 게시글의 작성자 본인일 경우 보여지는 요소 -->
@@ -224,7 +224,7 @@ footer{
         <div>
             <button type="button" class="btn btn-secondary btn-sm">수정하기 페이지로</button> &nbsp;
             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_modal">삭제하기</button> &nbsp;
-            <button type="button" class="btn btn-warning btn-sm">목록가기</button>
+            <a href="<%= contextPath %>/list.cs?category=<%= board.getCategory() %>" class="btn btn-warning btn-sm">목록가기</a>
         </div> 
         <%}%>
 	</div>
@@ -302,7 +302,7 @@ footer{
         
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form action="#" method="">
+                    <form action="<%=contextPath %>/delete.cs?no=<%= board.getBoardNo() %>" method="post">
                         <h6>정말 게시글을 삭제하시겠습니까? </h6> <br>
                         <div style="text-align: right;">
                             <button type="submit" class="btn btn-sm btn-danger">삭제</button>

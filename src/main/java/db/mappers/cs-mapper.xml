@@ -65,7 +65,7 @@
 	<!--조회수 증가 요청-->
 	<entry key="increaseCount">
 		UPDATE
-		             TAB_CS
+		       TAB_CS
 		   SET 
 		       BOARD_COUNT = BOARD_COUNT + 1
 		 WHERE 
@@ -99,6 +99,15 @@
 		     , ?
 		     , ?
 		     )		
+	</entry>
+	
+	<entry key="deleteCs">
+		UPDATE
+		       TAB_CS
+		   SET 
+		       STATUS = 'N'
+		 WHERE 
+		       BOARD_NO = ?		
 	</entry>
 
 </properties>

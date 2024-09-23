@@ -96,6 +96,25 @@ public class CsService {
 		return result;
 	}//insertCs
 
+	/**
+	 * 게시글 삭제
+	 * @author 최보겸
+	 * @param boardNo 삭제할 게시글 글번호
+	 * @return result 처리행수반환
+	 */
+	public int deleteCs(int boardNo) {
+		Connection conn = getConnection();
+		int result = cDao.deleteCs(conn, boardNo);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}//deleteCs
+
 
 
 
