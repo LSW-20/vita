@@ -115,6 +115,26 @@ public class CsService {
 		return result;
 	}//deleteCs
 
+	/**
+	 * 게시글 수정
+	 * @author 최보겸
+	 * @param c
+	 * @return result 처리 행수 반환
+	 */
+	public int updateCs(Cs c, int boardNo) {
+		Connection conn = getConnection();
+		int result = cDao.updateCs(conn, c, boardNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}//updateCs
+
 
 
 

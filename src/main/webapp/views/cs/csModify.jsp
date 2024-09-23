@@ -51,7 +51,7 @@
   <div class="container" id="navContent"style="margin-left: -10px;">
 		<br><h2><b>&nbsp; 고객의 소리</h2>  
 		
-	<form action="<%= contextPath %>/modify.cs" method="post">
+	<form action="<%= contextPath %>/update.cs" method="post">
 		<input type="hidden" name="no" value="<%= c.getBoardNo() %>">
     <table id="csUserInfo" class="table m-4">
 			<tr>
@@ -93,7 +93,7 @@
 
     <!-- 고객의소리 칭찬합니다일 경우 이 테이블을 뿌림 -->
  			<% if(c.getCategory().equals("C")) {%>
-        <table id="compliment_table" class="table m-4">
+        <table id="compliment_table" class="table m-4" >
             <tr>
 	            <th width="130px">칭찬직원</th>
 	            <td><input type="text" class="form-control" name="cEmp" value="<%= c.getcEmp() %>"></td>
@@ -122,60 +122,28 @@
 		        </tr>
 		    </table>  
 			<%} %> 		
-		
+		<div class="container d-flex justify-content-end">
+	      <button type="submit" class="btn btn-outline-secondary btn-sm">수정하기</button>&nbsp;
+	      <button type="reset" class="btn btn-outline-danger btn-sm">초기화</button>&nbsp;
+	      <button type="button" class="btn btn-outline-warning btn-sm" onclick="history.back();">뒤로가기</button>
+		</div>		
 	</form>
 	</div>
 	
     <script>
-    document.getElementById("category").addEventListener("change", function() {
-        var selectedValue = this.value;
-        var complimentTable = document.getElementById("compliment_table");
-        var otherTable = document.getElementById("other_table");
-
-        if (selectedValue === "C") {
-            complimentTable.style.display = "table";
-            /* style disabled제외하는 구문 */
-            var complimentInput = complimentTable.querySelectorAll("input, textarea");
-            complimentInput.forEach(function(input, textarea){
-            	input.disabled = false;
-            	textarea.disabled = false;
-            });
-            
-            otherTable.style.display = "none";
-            /* input요소에 disabled추가 되는구문 */
-            var otherInput = otherTable.querySelectorAll("input, textarea");
-            otherInput.forEach(function(input, textarea){
-            	input.disabled = true;
-            	textarea.disabled = true;
-            });
-        } else {
-            complimentTable.style.display = "none";
-            /* input요소에 disabled추가 되는구문 */
-            var complimentInput = complimentTable.querySelectorAll("input, textarea");
-            complimentInput.forEach(function(input, textarea){
-            	input.disabled = true;
-            	textarea.disabled = true;
-            });                
-            otherTable.style.display = "table";
-            /* disabled제외하는 구문 */
-            var otherInput = otherTable.querySelectorAll("input, textarea");
-            otherInput.forEach(function(input, textarea){
-            	input.disabled = false;
-            	textarea.diabled = false;
-            });
-        }
-    });
-
         // 초기 카테고리 값에 따라 테이블 표시 설정
         window.onload = function() {
-            var selectedValue = document.getElementById("selectCategory").value;
+            var category = "<%= c.getCategory() %>"; // 서버에서 넘겨받은 카테고리 값
+
             var complimentTable = document.getElementById("compliment_table");
             var otherTable = document.getElementById("other_table");
 
-            if (selectedValue === "compliment") {
+            // 카테고리가 "칭찬합니다(C)"일 경우, 해당 테이블 표시
+            if (category === "C") {
                 complimentTable.style.display = "table";
                 otherTable.style.display = "none";
             } else {
+                // 나머지 카테고리일 경우
                 complimentTable.style.display = "none";
                 otherTable.style.display = "table";
             }
@@ -184,13 +152,7 @@
 	
 	 	<!-- nav, section 별도로 닫아주기-->
 	</nav>
-	<div class="container d-flex justify-content-end">
-	    <!-- <button type="button" class="btn btn-secondary btn-sm">수정하기 페이지로</button> &nbsp; -->
-	    <!-- <button type="button" class="btn btn-danger btn-sm">삭제하기</button> &nbsp; -->
-      <button type="submit" class="btn btn-outline-secondary btn-sm">수정하기</button>&nbsp;
-      <button type="reset" class="btn btn-outline-danger btn-sm">초기화</button>&nbsp;
-      <button type="button" class="btn btn-outline-warning btn-sm" onclick="history.back();">뒤로가기</button>
-	</div>
+
 
 </section>
 <!-- section end -->

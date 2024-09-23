@@ -32,8 +32,6 @@ public class CsModifyController extends HttpServlet {
 		int boardNo = Integer.parseInt(request.getParameter("no"));
 		String category = request.getParameter("category");
 		Cs c = new CsService().selectBoardByNo(boardNo);
-		System.out.println(boardNo);
-		System.out.println(category);
 		
 		if(c == null) {
 			request.setAttribute("msg", "존재 하지 않는 게시글 입니다.");
