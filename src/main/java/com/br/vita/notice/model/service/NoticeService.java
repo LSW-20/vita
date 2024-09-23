@@ -93,6 +93,13 @@ public class NoticeService {
 		return result;
 	}
 
+	public List<Notice> selectNoticeList() {
+		Connection conn = getConnection();
+		List<Notice> list = nDao.selectNoticeList(conn);
+		close(conn);
+		return list;
+	}
+
 
 
 }

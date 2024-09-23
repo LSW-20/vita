@@ -100,4 +100,29 @@
 		 WHERE
 					 NOTICE_NO = ?
 	</entry>
+	
+	<entry key="selectNoticeMainList">
+		  <![CDATA[
+      SELECT *
+				FROM (
+				    SELECT
+				           NOTICE_NO
+				         , NOTICE_TITLE
+				         , NOTICE_CONTENT
+				         , USER_ID
+				         , REGIST_DATE
+				         , N.USER_NO
+				         , NOTICE_COUNT
+				         , STATUS
+				         , ROW_NUMBER() OVER(ORDER BY NOTICE_NO DESC) AS RNUM
+				    FROM
+				           NOTICE N
+				    JOIN MEMBER M ON (M.USER_NO = N.USER_NO)
+				    WHERE 
+				           N.STATUS = 'Y'
+				)
+				WHERE RNUM <= 3
+	    ]]>
+	</entry>
+	
 </properties>
