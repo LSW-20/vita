@@ -22,10 +22,26 @@
 	
 	
 	
-	<!-- -->
-	<entry key="">
+	<!-- (상우) 기업의 사원 추가 -->
+	<entry key="insertEmployee">
 
-		
+	INSERT
+	  INTO 
+	        EMPLOYEE
+	  (
+	  			SSN
+	  		, EMP_NAME	
+	  		, COMP_NO
+	  		, EMP_NO
+	  )
+	 VALUES 
+	 (
+	 				?
+	 			, ?
+	 			, ?
+	 			, ?
+	 )				
+	 		
 	</entry>
 
 </properties>

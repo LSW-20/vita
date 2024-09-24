@@ -558,6 +558,71 @@ footer {
 
 
 
+    <!-- 기업검색결과 추가용 modal start -->
+
+            <!-- The Modal -->
+            <div class="modal" id="add_company_result_modal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+            
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">연계기업 사원 목록 추가</h4>
+                    </div>
+            
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form action="<%= contextPath %>/addEMP.admin" method="post">
+                            <div style="display: flex; justify-content: center;">
+                                <table class="add_update_modal_table">
+                                    <tr>
+                                        <th><span class="star">*</span> 기업번호</th>
+                                        <td><input type="text" class="form-control" placeholder="'-'를 포함하여 최대 12자" name="comp_no" required maxlength="12"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th> 기업명</th>
+                                        <td><input type="text" class="form-control" name="comp_name"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="2" style="height: 20px;"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th><span class="star">*</span> 사번</th>
+                                        <td><input type="text" class="form-control" name="emp_no" required></td>
+                                    </tr>
+                                    <tr>
+                                        <th><span class="star">*</span> 사원명</th>
+                                        <td><input type="text" class="form-control" name="emp_name" required></td>
+                                    </tr>
+                                    <tr>
+                                        <th><span class="star">*</span> 사원 주민등록번호</th>
+                                        <td><input type="text" class="form-control" placeholder="'-'를 포함하여 최대 14자" name="emp_ssn" required maxlength="14"></td>
+                                    </tr>
+
+                                </table>
+                            </div>
+
+                            <br>
+                            <div style="text-align: right;">
+                                <button type="submit" class="btn btn-sm btn-success">추가</button>
+                                <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">취소</button>
+                            </div>
+                        </form>
+                    </div>
+            
+                </div>
+                </div>
+            </div>
+
+    <!-- 기업검색결과 추가용 modal end -->
+
+
+
+
+
 
 
     <!-- 기업검색결과 삭제용 modal start -->
@@ -592,62 +657,7 @@ footer {
 
 
 
-    <!-- 기업검색결과 추가용 modal start -->
 
-            <!-- The Modal -->
-            <div class="modal" id="add_company_result_modal">
-                <div class="modal-dialog">
-                <div class="modal-content">
-            
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">연계기업 사원 목록 추가</h4>
-                    </div>
-            
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <form action="#" method="">
-                            <div style="display: flex; justify-content: center;">
-                                <table class="add_update_modal_table">
-                                    <tr>
-                                        <th><span class="star">*</span> 기업번호</th>
-                                        <td><input type="number" class="form-control" placeholder="" name="" value="" required></td>
-                                    </tr>
-
-                                    <tr>
-                                        <th><span class="star">*</span> 기업명</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="" required></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td colspan="2" style="height: 20px;"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <th><span class="star">*</span> 사번</th>
-                                        <td><input type="number" class="form-control" placeholder="" name="" value="" required></td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="star">*</span> 사원명</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="" required></td>
-                                    </tr>
-
-                                </table>
-                            </div>
-
-                            <br>
-                            <div style="text-align: right;">
-                                <button type="submit" class="btn btn-sm btn-success">추가</button>
-                                <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">취소</button>
-                            </div>
-                        </form>
-                    </div>
-            
-                </div>
-                </div>
-            </div>
-
-    <!-- 기업검색결과 추가용 modal end -->
 
 
 
