@@ -2,10 +2,25 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-	<!-- -->
-	<entry key="">
+
+	<!-- (상우) 기업의 사원 검색 -->
+	<entry key="selectEmployee">
+
+	SELECT 
+					COMP_NO
+				, COMP_NAME
+				, EMP_NO
+				, EMP_NAME
+				, USER_NO
+				, USER_ID
+	  FROM
+	  			COMPANY 
+	  JOIN  EMPLOYEE USING (COMP_NO)
+	  JOIN  MEMBER ON SSN = USER_SSN							
 
 	</entry>
+	
+	
 	
 	<!-- -->
 	<entry key="">

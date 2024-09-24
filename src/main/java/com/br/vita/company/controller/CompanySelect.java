@@ -36,7 +36,7 @@ public class CompanySelect extends HttpServlet {
 		// 쿼리 실행은 한다. 전체 연계기업 목록 list를 전부 select 해온다.
 		
 		List<Company> list = new CompanyService().companySelect();
-		System.out.println(list);
+		//System.out.println(list);
 		
 		
 		// 2. 응답
