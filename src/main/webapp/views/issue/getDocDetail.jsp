@@ -1,85 +1,62 @@
+<%@ page import= "java.util.*" %>
+<%@ page import= "com.br.vita.issue.model.vo.Mrecords"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+    List<Mrecords> records = (List<Mrecords>)request.getAttribute("records");
+    String docType = (String)request.getAttribute("docType");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>GetDocumentDetail</title>
 <style>
-  /* #topimgDiv2,#topimgDiv2,#topimgDiv2{} */
   #mainMenu{
       display: flex;
       flex-direction: column;
       background-color: #1F2B6C;           
   }
-  /* 사이드바 메뉴 길이 페이지마다 다를 수 있으니 별도로 부여 */
-   #sideMenu{
+  #sideMenu{
      background-color: rgb(54, 99, 204);
      width: 20%;
      height: 130%;
  }
-  /* 신청목록 선택thead색 */
  #get_doc_apply th{
      background-color:#eaf3fa;
  } 
-	 #txt_box{
-	 	background-color: #D9D9D9;
-	 	font-size: 15px;
-	 }
-
- .hidden {
- 		display: none;
+ #txt_box{
+    background-color: #D9D9D9;
+    font-size: 15px;
  }
-
-    footer{
-     margin-top: 1300px;
+ .hidden {
+     display: none;
+ }
+ footer{
+    margin-top: 1300px;
  }
 </style>
 </head>
 
 <script>
-	// 오늘 날짜를 yyyy-mm-dd 형식으로 반환하는 함수
-	function getTodayDate() {
-	    var today = new Date();
-	    var year = today.getFullYear();
-	    var month = String(today.getMonth() + 1).padStart(2, '0');
-	    var day = String(today.getDate()).padStart(2, '0');
-	    return year + '-' + month + '-' + day;
-	}
-	
-	// 페이지 로드 시 시작일과 종료일의 기본값을 오늘 날짜로 설정
-	window.onload = function() {
-	    var today = getTodayDate();
-	    document.getElementById("startDate").value = today;
-	    document.getElementById("endDate").value = today;
-	};
-	
-    // 조회 결과 업데이트 및 표시 함수
-    function updateResultRow() {
-        // 결과 여부 확인(추후 DB서 불러올 변수)
-        var results = [
-            { date: "2023-09-01", record: "진료 기록 1" },
-            { date: "2023-09-10", record: "진료 기록 2" }
-        ]; // 예시 데이터, 실제로는 서버에서 받아올 예정
+// 오늘 날짜를 YY/MM/DD 형식으로 반환하는 함수
+function getTodayDate() {
+    var today = new Date();
+    var year = String(today.getFullYear()).slice(-2); // 마지막 두 자리만 취함 (YY 형식)
+    var month = String(today.getMonth() + 1).padStart(2, '0'); // 월을 2자리로
+    var day = String(today.getDate()).padStart(2, '0'); // 일을 2자리로
+    return year + '/' + month + '/' + day;
+}
 
-        var resultRow = document.getElementById("resultRow");
-
-        if (results.length === 0) {
-            alert('조회 결과가 없습니다.');
-            resultRow.classList.add("hidden");
-        } else {
-            resultRow.classList.remove("hidden");
-
-            var resultHtml = "<th>조회 결과</th><td>";
-            results.forEach(function(result, index) {
-                resultHtml += "<input type='checkbox' id='record" + index + "' name='record' value='" + result.record + "'>";
-                resultHtml += "<label for='record" + index + "'>" + result.date + " - " + result.record + "</label><br>";
-            });
-            resultHtml += "</td>";
-            resultRow.innerHTML = resultHtml;
-        }
-    }
+// 페이지 로드 시 시작일과 종료일의 기본값을 오늘 날짜로 설정
+window.onload = function() {
+    var today = getTodayDate();
+    document.getElementById("startDate").value = today;
+    document.getElementById("endDate").value = today;
+};
 </script>
+
 <body>
 	<!-- header sideBar include start -->
 	<%@ include file="/views/common/header.jsp" %>
@@ -89,25 +66,25 @@
   <div class="container" id="get_doc_content"style="margin-left: -10px;">
 		<br><h2><b>&nbsp; 온라인 증명서 신청</b></h2>  
 		
+	<form id="docDetailForm" method="post" action="<%= request.getContextPath() %>/detail.cr">
     <table id="get_doc_apply" class="table m-4">
 			<tr>
 				<th width="130px">증명서 종류</th>
-				<td>
-					getDocType
-				</td>
+				<td><%= docType %></td>
 			</tr>
         <tr>
             <th>성명</th>
-            <td>getUserName 님(id / getUserId)</td>
+            <td><%= ((com.br.vita.member.model.vo.Member)session.getAttribute("loginUser")).getUserName() %> 님(id : <%= ((com.br.vita.member.model.vo.Member)session.getAttribute("loginUser")).getUserId() %> )</td>
         </tr>
         <tr>
             <th>발급 용도</th>
-						<td><select name="select_purpose">
-						    <option value="insurance_submit" selected>보험제출</option>
-						    <option value="company_submit">회사제출</option>
-						    <option value="self_collection">개인소장</option>
-						    </select>
-						</td>
+            <td>
+                <select name="docPurpose">
+                    <option value="보험제출" selected>보험제출</option>
+                    <option value="회사제출">회사제출</option>
+                    <option value="개인소장">개인소장</option>
+                </select>
+            </td>
         </tr>
         <tr>
             <th>기간</th>
@@ -116,24 +93,36 @@
                 <input type="date" id="startDate" name="startDate">
                 <label for="endDate">종료일:</label>
                 <input type="date" id="endDate" name="endDate">
-                <button type="button" onclick="updateResultRow()">조회</button>
+                <button type="submit">조회</button>
             </td>
         </tr>     
-				<!-- 기간 select하고 조회 클릭시 결과 없으면 alert뜨고 변화 x, 아니면 조회결과 tr생성-->
-        <tr id="resultRow" class="hidden">
+        <tr id="resultRow" <%= (records == null || records.isEmpty()) ? "class='hidden'" : "" %>>
             <th>조회 결과</th>
-            <td></td>
+            <td>
+                <%
+                    if (records != null && !records.isEmpty()) {
+                        for (Mrecords record : records) {
+                            %>
+                            <input type="checkbox" name="record" value="<%= record.getDiagnosisName() %>">
+                            <label><%= record.getTreatmentDate() %> - <%= record.getDiagnosisName() %></label><br>
+                            <%
+                        }
+                    } else {
+                        %> 조회 결과가 없습니다. <%
+                    }
+                %>
+            </td>
         </tr>       
         <tr>
             <th>발급비용</th>
-            <td>getPrice</td>
+            <td>2000원</td>
         </tr>         
         <tr>
             <th>본인인증</th>
             <td>클릭넘어오는값==진료비납입확인서?"본인인증이 필요 없습니다.":버튼활성화</td>
         </tr>             
     </table>
-    
+  </form>  
     <h4>&nbsp;&nbsp;&nbsp;&nbsp;온라인 증명서 안내 사항 동의</h4>
     <div id="txt_box" class="m-4"style="padding: 15px;">
     	<b>온라인 증명서 결제시 안내사항</b><br>
@@ -150,115 +139,13 @@
 		  &nbsp;- 원무팀 업무시간(평일 : 09:00 ~ 17:30, 토요일 : 09:00 ~ 12:30
     </div>
 
-    
-    <div id="agree_yn" class="container d-flex justify-content-end align-items-center">
-			
-        온라인 증명서 결제 및 취소 안내사항에 모두 동의합니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-        <input type="radio" id="yes" name="response-yn" value="Y">
-        <label for="yes" style="padding-top: 5px;">&nbsp;동의합니다. &nbsp;&nbsp;</label>
-
-        <input type="radio" id="no" name="response-yn" value="N">
-        <label for="no" style="padding-top: 5px;">&nbsp;동의하지 않음.</label>
-
-    </div>
-
-
     <div class="d-flex justify-content-end">
         <a href="/vita/views/issue/getDocResultList.jsp" class="btn btn-primary btn-sm m-2" data-toggle="modal" data-target="#paymentModal" >신청</a>
-        
 	  		<button type="button" class="btn btn-secondary btn-sm m-2" onclick="history.back();">뒤로가기</button>
     </div>   
-   
 
-  </div>	
-	    <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document" >
-            <div class="modal-content" style="margin-left:-200px; width:1200px; height:1250px;">
-                <div class="modal-header" >
-                    <h3 class="modal-title" id="paymentModalLabel"><b>결제</b></h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="paymentForm">
-                        <div class="form-group">
-                            <br>
-                            <h4><b>결제 내용</b></h4>
-                            <br>
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td style="border-right: 1px dashed; border-right-color: rgb(204, 204, 204);"><b>선택항목</b></td>
-                                        <td><b style="color:#1F2B6C">일반 건강검진</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="border-right: 1px dashed; border-right-color: rgb(204, 204, 204);"><b>희망 진료일</b></td>
-                                        <td><b style="color:#1F2B6C">2024년 9월 19일(목)</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="border-right: 1px dashed; border-right-color: rgb(204, 204, 204);"><b>내원 시간</b></td>
-                                        <td><b style="color:#1F2B6C">오전</b></td>
-                                    </tr>
-                                    <tr style="border-bottom:1px solid ;border-bottom-color: rgb(224, 222, 222);">
-                                        <td style="border-right: 1px dashed; border-right-color: rgb(204, 204, 204);"><b>가격</b></td>
-                                        <td><b style="color:#1F2B6C">50,000원</b></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <div class="form-group">
-                            <h4><b>결제 수단</b></h4>
-                            <br>
-                            <label for="paymentMethod">결제 수단 선택</label>
-                            <select class="form-control" id="paymentMethod" disabled>
-                                <option>신용카드</option>
-                            </select>
-                            <br>
-                            <label for="cardBank">카드 선택</label>
-                            <select class="form-control" id="cardBank" disabled>
-                                <option>비타은행</option>
-                            </select>
-                            <br>
-                            <label for="installmentPeriod">할부 기간</label>
-                            <select class="form-control" id="installmentPeriod" disabled>
-                                <option>일시불</option>
-                            </select>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <h4><b>결제 정보</b></h4>
-                            <br>
-                            <label for="accountNumber">계좌번호</label>
-                            <input type="text" class="form-control" id="accountNumber" placeholder="계좌번호 입력">
-                            <br>
-                            <label for="password">비밀번호</label>
-                            <input type="password" class="form-control" id="password" placeholder="비밀번호 입력">
-                        </div>
-                        <br><br>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">결제 대행서비스 약관 동의<b style="color:red;">(필수)</b></label>
-                        </div>
-                        <br>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck2" >
-                            <label class="custom-control-label" for="customCheck2">개인정보 수집 및 이용 동의<b style="color:red;">(필수)</b></label>
-                        </div>
-                    </form>
-                </div>
-                
-                <div class="modal-footer" style="background-color: #1F2B6C;">
-                    <button type="submit" class="btn border-1 border-dark" id="btn-color" style=" width:1197px;">
-                         <h5>50,000 원 결제하기</h5>
-               			 </button>    
-                </div>
-                
-            </div>
-        </div>
-    </div>
+  </div>
+  
   <!-- nav, section 별도로 닫아주기-->
   </nav>
 </section>
