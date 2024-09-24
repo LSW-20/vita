@@ -21,6 +21,7 @@ public class Member {
 	 private String representative;
 	 private String doctorNo;
 	 private String deptName;
+	 
 	
 	
 	 public String getDoctorNo() {
@@ -164,6 +165,10 @@ public class Member {
 		this.userSSN = userSSN;
 	}
 	
+	
+	
+
+
 
 	public String getUserNo() {
 		return userNo;
