@@ -13,6 +13,7 @@ public class Notice {
 	private String status;
 	
 	private String userId;
+	private String registDateStr;
 	
 	public Notice() {}
 	
@@ -23,9 +24,19 @@ public class Notice {
 		this.noticeNo = noticeNo;
 	}
 
+	public Notice(int noticeNo, String noticeTitle, String noticeContent, Date registDate, String registDateStr, String userNo, int noticeCount, String status, String userId) {
+        this.noticeNo = noticeNo;
+        this.noticeTitle = noticeTitle;
+        this.noticeContent = noticeContent;
+        this.registDate = registDate;
+        this.registDateStr = registDateStr; // Initialize new field
+        this.userNo = userNo;
+        this.noticeCount = noticeCount;
+        this.status = status;
+        this.userId = userId;
+    }
 	
 	
-
 	public Notice(int noticeNo, String noticeTitle, String noticeContent, Date registDate, String userNo, int noticeCount, String status,
 			String userId) {
 		super();
@@ -64,6 +75,18 @@ public class Notice {
 
 	
 	
+	public String getRegistDateStr() {
+		return registDateStr;
+	}
+
+
+
+	public void setRegistDateStr(String registDateStr) {
+		this.registDateStr = registDateStr;
+	}
+
+
+
 	public int getNoticeNo() {
 		return noticeNo;
 	}

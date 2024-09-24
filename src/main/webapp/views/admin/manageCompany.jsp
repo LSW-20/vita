@@ -1,5 +1,14 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.br.vita.company.model.vo.Company" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+List<Company> list = (List<Company>)request.getAttribute("list");
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,6 +63,7 @@ footer {
     margin-left: 50px;
     margin-top: 10px;
     font-size: 18px;
+    text-align: center;
 }
 .company_cell1 { /* 전체 연게기업 목록 테이블의 1 셀 */
     border: 1px solid silver;
@@ -62,14 +72,15 @@ footer {
 }
 .company_cell2 { /* 전체 연게기업 목록 테이블의 2 셀 */
     border: 1px solid silver;
-    width: 80px;
+    width: 160px;
+
 }
 #company_list_table td:not(.company_cell1):not(.company_cell4) {
     padding-left: 10px;
 }
 .company_cell3 { /* 전체 연게기업 목록 테이블의 3 셀 */
     border: 1px solid silver;
-    width: 130px;
+    width: 160px;
     
 }
 .company_cell4 { /* 전체 연게기업 목록 테이블의 4 셀 */
@@ -153,7 +164,7 @@ footer {
         <br><br>
 
         <div id="admin_name">
-            관리자 강보람님
+            관리자 xxx님
         </div>
 
         <br><br><br>
@@ -178,47 +189,16 @@ footer {
                         <th class="company_cell4"></th>
                     </tr>
 
-                    <tr>
-                        <td class="company_cell1"><input type="checkbox" name="delete"></td>
-                        <td class="company_cell2">271</td>
-                        <td class="company_cell3">롯데리아</td>
-                        <td class="company_cell4"><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_company_modal">수정</button></td>
-                    </tr>
-
-                    <tr>
-                        <td class="company_cell1"><input type="checkbox" name="delete"></td>
-                        <td class="company_cell2">272</td>
-                        <td class="company_cell3">맥도날드</td>
-                        <td class="company_cell4"><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_company_modal">수정</button></td>
-                    </tr>
-
-                    <tr>
-                        <td class="company_cell1"><input type="checkbox" name="delete"></td>
-                        <td class="company_cell2">273</td>
-                        <td class="company_cell3">맘스터치</td>
-                        <td class="company_cell4"><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_company_modal">수정</button></td>
-                    </tr>
-
-                    <tr>
-                        <td class="company_cell1"><input type="checkbox" name="delete"></td>
-                        <td class="company_cell2">274</td>
-                        <td class="company_cell3">네네치킨</td>
-                        <td class="company_cell4"><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_company_modal">수정</button></td>
-                    </tr>
-
-                    <tr>
-                        <td class="company_cell1"><input type="checkbox" name="delete"></td>
-                        <td class="company_cell2">275</td>
-                        <td class="company_cell3">교촌치킨</td>
-                        <td class="company_cell4"><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_company_modal">수정</button></td>
-                    </tr>
-
-                    <tr>
-                        <td class="company_cell1"><input type="checkbox" name="delete"></td>
-                        <td class="company_cell2">276</td>
-                        <td class="company_cell3">부어치킨</td>
-                        <td class="company_cell4"><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_company_modal">수정</button></td>
-                    </tr>
+                    <% if(!list.isEmpty()) {
+                            for(int i=0; i<list.size(); i++) { %>
+                                <tr>
+                                    <td class="company_cell1"><input type="checkbox" name="delete"></td>
+                                    <td class="company_cell2"><%= list.get(i).getCompNo() %></td>
+                                    <td class="company_cell3"><%= list.get(i).getCompName() %></td>
+                                    <td class="company_cell4"><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_company_modal">수정</button></td>
+                                </tr>
+                         <% }    
+                       } %>
                 </table>
 
 
@@ -227,7 +207,8 @@ footer {
                     <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_company_modal">추가</button>
                 </div>
 
-                
+            </form>
+
 
             <br><br><br><br>
             <div id="search_company">기업 검색</div>
@@ -389,7 +370,6 @@ footer {
 
 
     <!-- 연계기업 목록 추가용 modal start -->
-        <!-- 회원 테이블, 의료진 테이블, 근무 일정 테이블 순서대로 insert해야 한다. -->
 
             <!-- The Modal -->
             <div class="modal" id="add_company_modal">
@@ -403,17 +383,17 @@ footer {
             
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <form action="#" method="">
+                        <form action="<%= contextPath %>/addCOM.admin" method="post">
                             <div style="display: flex; justify-content: center;">
                                 <table class="add_update_modal_table">
                                     <tr>
                                         <th><span class="star">*</span> 기업번호</th>
-                                        <td><input type="number" class="form-control" placeholder="" name="" value="" required></td>
+                                        <td><input type="text" class="form-control" placeholder="'xxx-xx-xxxxx' 형식으로 입력" name="comp_no" maxlength="12" required></td>
                                     </tr>
 
                                     <tr>
                                         <th><span class="star">*</span> 기업명</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="" required></td>
+                                        <td><input type="text" class="form-control" name="comp_name" required></td>
                                     </tr>
                                 </table>
                             </div>

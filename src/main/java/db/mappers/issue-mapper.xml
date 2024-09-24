@@ -4,7 +4,6 @@
 
 <entry key="certificateApplicationInsert">
 
-
 INSERT
   INTO 
       DOCUMENT
@@ -12,12 +11,15 @@ INSERT
         DOC_NUM
       , USER_NO
       , CARE_NO
-      , ...
+      , DOC_TYPE
+      , DOC_CHECK
+      , DOC_PURPOSE
+      , PRICE
+      , APPLY_DATE
       )
-      
 VALUES
       (
-       SEQ~~~
+       SEQ_DNO.NEXTVAL
       , ?
       , (
         SELECT CARE_NO
@@ -25,13 +27,34 @@ VALUES
         WHERE USER_NO = ?
         AND TREATMENT_DATE = TO_DATE(?, 'YYMMDD')   -- '240912'
        )
-      , ...
-      );
-
-
+      , ?
+      , 'R'
+      , ?
+      , 0
+      , SYSDATE
+      )
 
 
 </entry>
+
+<entry key="certificateApplicationSelect">
+
+SELECT COUNT(*) AS COUNT -- count 0 일때 insert
+  FROM DOCUMENT
+ WHERE CARE_NO = (
+                    SELECT CARE_NO
+                    FROM MRECORDS
+                    WHERE USER_NO = ?
+                    AND TREATMENT_DATE = TO_DATE( ? , 'YYMMDD') 
+                   )
+                   
+  AND DOC_TYPE = ?
+  AND DOC_CHECK = 'R'
+
+
+</entry>
+
+
 
 
 </properties>

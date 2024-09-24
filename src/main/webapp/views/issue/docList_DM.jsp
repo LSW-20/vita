@@ -176,6 +176,7 @@
  	
  	
  	</div>
+ 	
  	<div class="container">
  		<div class="btns_div">
 	 		<button id="btn1_1" data-toggle="modal" data-target="#myModal1">진단서 신청</button>
@@ -186,7 +187,7 @@
   <!-- The Modal -->
   <div class="modal fade" id="myModal1">
     <div class="modal-dialog">
-      <div class="modal-content" style="margin-top: 300px;">
+      <div class="modal-content" style="margin-top: 170px;">
       
         <!-- Modal Header -->
         <div class="modal-header">
@@ -216,7 +217,45 @@
       </div>
     </div>
   </div>
-	</div>
+  
+  
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal2">
+    <div class="modal-dialog">
+      <div class="modal-content" style="margin-top: 170px;">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">진단서 신청</h4>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+        	<div>문서명 : <input type="text" readonly value="진료확인서" id="type_name2"></div><br>
+        	<div>진료날짜 : <input type="date" id="care_date2"></div><br>
+        	<div>발급용도 : 
+        		<select id="purpose2">
+        			<option>보험제출</option>
+        			<option>회사제출</option>
+        			<option>개인소장</option>
+        		</select>
+        	</div><br>
+          
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" id="success_btn" onclick="fnbtn2()">신청</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  
+  
+</div>
  	
  	
  
@@ -224,9 +263,8 @@
  	function fnbtn1(){
  		
  		
- 		
- 		
  		if(confirm('"진단서"(을)를 신청하시겠습니까? ')){
+ 			
  			$.ajax({
  				url: '<%= contextPath%>/appication.ce',
  				data:{
@@ -236,12 +274,15 @@
  					purpose : $('#purpose').val()
  				},
  				success: function(res){
+ 					console.log(res)
  					if(res > 0){
  						alert("성공적으로 신청하였습니다. 발급신청내역에서 확인하실 수 있습니다.");
+ 						
  					}else{
- 						alert("신청 오류");
+ 						alert("발급내역이 있습니다.");
  					}
  				}
+ 				
  			}) 
  			
  		}
@@ -254,9 +295,29 @@
  	
  	
  	function fnbtn2(){
- 		if(confirm('"진료확인서"(을)를 신청하시겠습니까? ')){
- 			location.href; /* 신청서 insert 데이터 어떻게 보낼건지 생각해보자! */
- 		}
+ 		
+ 		$.ajax({
+				url: '<%= contextPath%>/appication.ce',
+				data:{
+					userNo:<%= loginUser.getUserNo() %>,
+					type: $('#type_name2').val(),
+					cDate: $('#care_date2').val(),
+					purpose : $('#purpose2').val()
+				},
+				success: function(res){
+					console.log(res)
+					if(res > 0){
+						alert("성공적으로 신청하였습니다. 발급신청내역에서 확인하실 수 있습니다.");
+						
+					}else{
+						alert("발급내역이 있습니다.");
+					}
+				}
+				
+			}) 
+ 		
+ 		
+ 		
  	}
  
  

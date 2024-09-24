@@ -37,9 +37,14 @@
    <%@ include file="/views/common/header.jsp" %>
    <%@ include file="/views/common/myPageSideBar.jsp" %>
    
+   
+   
+   
+   
   <div id="doc_result_content" style="margin-left: 10px;">
     <br><h2><b>&nbsp; 증명서 발급 내역</h2>  
     <br>
+    
     <table class="table" id="doc_result_list">
       <thead>
         <tr>

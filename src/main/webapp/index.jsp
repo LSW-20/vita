@@ -305,7 +305,7 @@
 	                            for (let i = 0; i < list.length; i++) {
 	                                trEl += '<tr>'
 	                                      + '<th id="noticeDt">' + list[i].noticeTitle + '</th>'
-	                                      + '<td style="font-size: 15px; color: gray;">' + list[i].registDate + '</td>'
+	                                      + '<td style="font-size: 15px; color: gray;">' + list[i].registDateStr + '</td>'
 	                                      + '<td style="display:none;" class="noticeNo">' + list[i].noticeNo + '</td>' // 게시글 번호 추가
 	                                      + '<td style="display:none;" class="writerId">' + list[i].writerId + '</td>' // 작성자 아이디 추가
 	                                      + '</tr>';
@@ -363,7 +363,7 @@
 	                            for (let i = 0; i < list.length; i++) {
 	                                trEl += '<tr>'
 	                                      + '<th id="newsDt">' + list[i].newsTitle + '</th>'
-	                                      + '<td style="font-size: 15px; color: gray;">' + list[i].registDate + '</td>'
+	                                      + '<td style="font-size: 15px; color: gray;">' + list[i].registDateStr + '</td>'
 	                                      + '<td style="display:none;" class="newsNo">' + list[i].newsNo + '</td>' // 게시글 번호 추가
 	                                      + '<td style="display:none;" class="writerId">' + list[i].writerId + '</td>' // 작성자 아이디 추가
 	                                      + '</tr>';
