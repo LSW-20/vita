@@ -1,7 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.br.vita.company.model.vo.Company" %>
 <%@ page import="com.br.vita.employee.model.vo.Employee" %>
-<%@ page import="com.br.vita.member.model.vo.Member" %>
 
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,6 +13,7 @@ List<Company> list = (List<Company>)request.getAttribute("list");
 
 <% Boolean threeType = (Boolean) request.getAttribute("threeType"); %>
 <% List<Map<String, Object>> empList = (List<Map<String, Object>>) request.getAttribute("empList"); %>
+<% String selectCom = "[" + (String) request.getAttribute("selectCom") + "]"; %>
 
 
 <!DOCTYPE html>
@@ -401,13 +401,12 @@ footer {
                         <th>기업명</th>
                         <th>사번</th>
                         <th>사원명</th>
-                        <th>회원번호</th>
-                        <th>회원아이디</th>
+                        <th>주민등록번호</th>
                         <th></th>
                     </tr>
 
                     <tr>
-                        <td colspan="8" style="text-align: center;"></td>
+                        <td colspan="7" style="text-align: center;"></td>
                     </tr>
                 </table>
 
@@ -419,7 +418,7 @@ footer {
 
                 <!-- case2. 기업의 사원 검색 결과가 없는 경우  -->
                 <br><br>
-                <div class="search_company_result">기업 검색 결과</div> <br>
+                <div class="search_company_result"><span style="color: red;"><%= selectCom %> 검색 결과</span></div> <br>
 
 
                     <table class="table table-striped search_company_result_table">
@@ -429,13 +428,12 @@ footer {
                             <th>기업명</th>
                             <th>사번</th>
                             <th>사원명</th>
-                            <th>회원번호</th>
-                            <th>회원아이디</th>
+                            <th>주민등록번호</th>
                             <th></th>
                         </tr>
 
                         <tr>
-                            <td colspan="8" style="text-align: center;">기업에 소속된 사원이 없습니다.</td>
+                            <td colspan="7" style="text-align: center;">기업에 소속된 사원이 없습니다.</td>
                         </tr>
                     </table>
 
@@ -450,7 +448,7 @@ footer {
 
                 <!-- case3. 기업의 사원 검색 결과가 있는 경우 -->
                 <br><br>
-                <div class="search_company_result">기업 검색 결과</div> <br>
+                <div class="search_company_result"><span style="color: red;"><%= selectCom %></span> 검색 결과</div> <br>
 
 
                 <table class="table table-striped search_company_result_table">
@@ -460,8 +458,7 @@ footer {
                         <th>기업명</th>
                         <th>사번</th>
                         <th>사원명</th>
-                        <th>회원번호</th>
-                        <th>회원아이디</th>
+                        <th>주민등록번호</th>
                         <th></th>
                     </tr>
 
@@ -470,7 +467,6 @@ footer {
                             
                             Company c = (Company)empList.get(i).get("com"); 
                             Employee e = (Employee)empList.get(i).get("emp"); 
-                            Member m = (Member)empList.get(i).get("mem"); 
                     %> 
 
                             <tr>
@@ -479,8 +475,7 @@ footer {
                                 <td><%= c.getCompName() %></td>
                                 <td><%= e.getEmpNo() %></td>
                                 <td><%= e.getEmpName() %></td>
-                                <td><%= (m.getUserNo() != null) ? m.getUserNo() : "미가입" %></td>
-                                <td><%= (m.getUserId() != null) ? m.getUserId() : "미가입" %></td>
+                                <td><%= e.getSsn() %></td>
                                 <td><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_company_result_modal">수정</button></td>
                             </tr>
                             <% } %>
@@ -505,7 +500,19 @@ footer {
     <!-- section end -->
 
 
-
+    <% if(list != null && !list.isEmpty()) {
+        for(int i=0; i<list.size(); i++) { %>
+            <tr>
+                <td class="company_cell1"><input type="checkbox" name="del_com_list" value="<%= list.get(i).getCompNo() %>"></td>
+                <td class="company_cell2"><%= list.get(i).getCompNo() %></td>
+                <td class="company_cell3"><%= list.get(i).getCompName() %></td>
+                <td class="company_cell4">
+                    <button type="button" class="btn btn-sm btn-primary up_btn"
+                        data-compno="<%= list.get(i).getCompNo() %>" data-compname="<%= list.get(i).getCompName() %>">수정</button>
+                </td>
+            </tr>
+        <% }    
+    } %>
 
     <!-- 연계기업 목록 추가용 modal start -->
 
@@ -576,13 +583,16 @@ footer {
                             <div style="display: flex; justify-content: center;">
                                 <table class="add_update_modal_table">
                                     <tr>
-                                        <th><span class="star">*</span> 기업번호</th>
-                                        <td><input type="text" class="form-control" placeholder="'-'를 포함하여 최대 12자" name="comp_no" required maxlength="12"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <th> 기업명</th>
-                                        <td><input type="text" class="form-control" name="comp_name"></td>
+                                        <th><span class="star">*</span> 기업선택</th>
+                                        <td>
+                                            <select name="comp_name">
+                                                <% if(list != null && !list.isEmpty()) {
+                                                    for(int i=0; i<list.size(); i++) { %>
+                                                        <option><%= list.get(i).getCompName() %></option>
+                                                    <% } %>   
+                                                <% } %>
+                                            </select>
+                                        </td>
                                     </tr>
 
                                     <tr>

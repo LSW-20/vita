@@ -75,14 +75,11 @@ public class EmployeeDao {
 				Employee emp = new Employee();
 				emp.setEmpNo(rset.getString("EMP_NO"));
 				emp.setEmpName(rset.getString("EMP_NAME"));
-				
-				Member mem = new Member();
-				mem.setUserNo(rset.getString("USER_NO"));
-				mem.setUserId(rset.getString("USER_ID"));
+				emp.setSsn(rset.getString("SSN"));
+			
 				
 				empMap.put("com", com);
 				empMap.put("emp", emp);
-				empMap.put("mem", mem);
 
 				empList.add(empMap);
 			}
@@ -98,7 +95,7 @@ public class EmployeeDao {
 	}
 
 
-	public int insertEmployee(Connection conn, String compNo, String empName, String empSSN, String empNo) {
+	public int insertEmployee(Connection conn, String compName, String empName, String empSSN, String empNo) {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -111,7 +108,7 @@ public class EmployeeDao {
 			
 			pstmt.setString(1, empSSN);
 			pstmt.setString(2, empName);
-			pstmt.setString(3, compNo);
+			pstmt.setString(3, compName);
 			pstmt.setString(4, empNo);
 			
 			result = pstmt.executeUpdate();

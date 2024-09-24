@@ -30,7 +30,7 @@ public class EmployeeInsert extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// 1. 요청
-		// 요청시 전달값으로 기업번호, 기업명, 사원명, 사원주민등록 번호가 온다.
+		// 요청시 전달값으로 기업명, 사번, 사원명, 사원주민등록 번호가 온다.
 		// 기업 추가는 기능이 따로 있으므로 Employee에만 insert 한다.
 		
 		request.setCharacterEncoding("UTF-8"); // post 요청이다
@@ -39,13 +39,12 @@ public class EmployeeInsert extends HttpServlet {
 
 		
 		
-		String compNo = request.getParameter("comp_no");
-		// String compName = request.getParameter("comp_name"); 사실 필요 없다.
+		String compName = request.getParameter("comp_name"); 
 		String empName = request.getParameter("emp_name");
 		String empSSN = request.getParameter("emp_ssn");
 		String empNo = request.getParameter("emp_no");
 		
-		int result = new EmployeeService().insertEmployee(compNo, empName, empSSN, empNo);
+		int result = new EmployeeService().insertEmployee(compName, empName, empSSN, empNo);
 		
 		
 		

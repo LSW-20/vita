@@ -30,9 +30,9 @@ public class EmployeeService {
 
 
 
-	public int insertEmployee(String compNo, String empName, String empSSN, String empNo) {
+	public int insertEmployee(String compName, String empName, String empSSN, String empNo) {
 		Connection conn = getConnection();
-		int result = eDao.insertEmployee(conn, compNo, empName, empSSN, empNo);
+		int result = eDao.insertEmployee(conn, compName, empName, empSSN, empNo);
 		
 		if(result>0) {
 			commit(conn);
