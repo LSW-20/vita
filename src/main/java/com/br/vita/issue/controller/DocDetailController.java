@@ -40,10 +40,7 @@ public class DocDetailController extends HttpServlet {
 		String userNo = ((Member) request.getSession().getAttribute("loginUser")).getUserNo();
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
-		System.out.println(docType);
-		System.out.println(userNo);
-		System.out.println(startDate);
-		System.out.println(endDate);
+
 		//진료기록 정보 가져오는 서비스
 		List<Mrecords> records = new IssueService().selectMrecords(userNo, startDate, endDate);
 		System.out.println(records);
