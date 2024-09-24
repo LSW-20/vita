@@ -234,13 +234,33 @@
                     <a href="#popup" class="button"><img src="/vita/assets/image/검색버튼.png" class="searchBtn"></a>
                 </li>
                 <div id="popup" class="popup">
-                    <div class="popup-content">
-                        <a href="#" class="close">×</a>
-                        <input type="text" id="searchInput" placeholder="검색어를 입력하세요">
-                        <a href="" style="margin: -50px;"><i class="bi bi-search"></i></a>
-                        <div id="searchResults"></div>
-                    </div>
-                </div>
+								    <div class="popup-content">
+								        <a href="#" class="close">×</a>
+								        <form action="" method="post" id="searchForm">
+								            <input type="text" id="searchInput" name="search" placeholder="검색어를 입력하세요" required>
+								            <a type="submit" id="searchBtn" style="margin: -50px;"><i class="bi bi-search"></i></a>
+								        </form>
+								        <div id="searchResults"></div>
+								    </div>
+								</div>
+								
+								<script>
+								    document.getElementById('searchInput').addEventListener('keypress', function(event) {
+								        if (event.key === 'Enter') {
+								            event.preventDefault();
+								            document.getElementById('searchBtn').click();
+								        }
+								    });
+								
+								    document.getElementById('searchBtn').addEventListener('click', function(event) {
+								        event.preventDefault();
+								        var searchInput = document.getElementById('searchInput').value;
+								        if (document.getElementById('searchForm').checkValidity()) {
+								            alert('검색 버튼이 실행되었습니다!');
+								            // 여기에 검색 기능을 추가하세요
+								        }
+								    });
+								</script>
             </ul>
         </div>
     </header>
