@@ -148,7 +148,6 @@ public class ReservationDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectCareAppList");
-		System.out.println(list);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userNo);
@@ -202,6 +201,34 @@ public class ReservationDao {
 	    return hasAppointment; 
 	
 		
+	}
+
+	/**
+	 * 예약 취소 처리
+	 * delete
+	 * @author 최보겸
+	 * @param conn
+	 * @param appointmentNo
+	 * @return result
+	 */
+	public int deleteCareApp(Connection conn, String appointmentNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteCareApp");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, appointmentNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 	

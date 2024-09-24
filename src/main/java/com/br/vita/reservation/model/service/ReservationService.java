@@ -75,6 +75,25 @@ public class ReservationService {
 		return hasAppointment;
 	}
 
+	/**
+	 * 예약 취소 요청
+	 * @author 최보겸
+	 * @param appointmentNo 식별할 예약번호
+	 * @return result 처리 행수
+	 */
+	public int deleteCareApp(String appointmentNo) {
+		Connection conn = getConnection();
+		int result = rdao.deleteCareApp(conn, appointmentNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
 
 	
 	

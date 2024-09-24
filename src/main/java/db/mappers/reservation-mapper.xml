@@ -94,6 +94,13 @@ SELECT
 	 WHERE C.USER_NO = ? 
 	   AND CARE_STATUS = 'N'
 	</entry>
+	
+	<!--예약 취소_보겸-->
+	<entry key="deleteCareApp">
+	DELETE 
+	  FROM CARE_APP
+	 WHERE APPOINTMENT_NO = ?
+	</entry>
 
 
 </properties>
