@@ -63,7 +63,7 @@ SELECT
 	
 	</entry>
 	
-	<entry key="SelectConsultation">
+	<entry key="SelectHealthCheck">
 	
 	SELECT 
         USER_NO
@@ -94,6 +94,47 @@ SELECT
 	 WHERE C.USER_NO = ? 
 	   AND CARE_STATUS = 'N'
 	</entry>
+	
+	<!--예약 취소_보겸-->
+	<entry key="deleteCareApp">
+	DELETE 
+	  FROM CARE_APP
+	 WHERE APPOINTMENT_NO = ?
+	</entry>
 
+
+	<entry key="SelectConsultation">
+	
+		SELECT 
+        USER_NO
+      , APPOINTMENT_DATE
+      , APPOINTMENT_TIME
+  	FROM 
+        CARE_APP
+	 WHERE
+        USER_NO = ?
+     AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE)
+		 AND APPOINTMENT_TIME = ?		
+	</entry>
+	
+		<entry key="selectSuccess">
+		
+		SELECT
+		     D.DEPT_NAME
+		   , M.USER_NO         
+		   , D.DOCTOR_NAME
+		   , C.APPOINTMENT_TIME
+		   , C.APPOINTMENT_DATE
+		FROM CARE_APP C
+		JOIN DOCTOR D 
+		  ON C.DOCTOR_NO = D.DOCTOR_NO
+		JOIN MEMBER M 
+		  ON C.USER_NO = M.USER_NO
+		WHERE C.USER_NO = ?
+		  AND C.APPOINTMENT_TIME = ?
+		  AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE)
+				
+
+	</entry>
 
 </properties>

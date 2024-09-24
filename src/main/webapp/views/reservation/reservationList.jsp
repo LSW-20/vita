@@ -120,8 +120,11 @@
         <!-- 예약 내역 있을 때 -->
         <div id="reservation_list" class="container_reservations" <%= consultations.isEmpty() ? "style='display:none;'" : "" %>>
         	<% for(Consultation c : consultations) {%>
-	           <div class="reservation_box" ">
-	               <button class="cancel_button" onclick="handleCancel('<%= c.getAppointmentNo() %>')">취소</button>
+	           <div class="reservation_box">
+	               <form action="<%=request.getContextPath()%>/delete.rv" method="POST">
+	                <input type="hidden" name="appointmentNo" value="<%= c.getAppointmentNo() %>">
+	                <button type="submit" class="cancel_button">취소</button>
+	               </form>
 	               <div class="reservation_date"><%= c.getAppointmentDate() %></div><hr>
 	               <div class="patient_name">환자명 : <%= c.getUserName() %></div>
 	               <div class="doc_name">의사명 : <%= c.getDoctorName() %></div>
@@ -137,15 +140,6 @@
 
   <script>
 
-    // 취소 버튼 클릭 시 처리 함수
-    function handleCancel(reservation_id) {
-        if (confirm("예약을 취소하시겠습니까?")) {
-            // 추후 예약 취소 로직 추가
-            
-            alert("예약이 취소 됐습니다.");
-            // 서버 취소 요청 보내거나 예약 내역 업데이트
-        }
-    }
     
     // 추가 진료예약 버튼 클릭 시 예약 페이지로 이동
     document.getElementById("add_reservation_button").addEventListener('click', function() {

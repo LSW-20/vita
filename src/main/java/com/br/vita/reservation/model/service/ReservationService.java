@@ -66,13 +66,41 @@ public class ReservationService {
 		return consultations;
 	}
 
-	public boolean SelectConsultation(String userNo) {
+	public boolean SelectConsultation(String userNo , String appointmentTime) {
 		
 		Connection conn = getConnection();
-		boolean hasAppointment = rdao.SelectConsultation(conn,  userNo);
+		boolean hasAppointment = rdao.SelectConsultation(conn,  userNo, appointmentTime);
 		
 		close(conn);
 		return hasAppointment;
+	}
+	
+	public List<Consultation> selectSuccess(String userNo, String appointmentTime) {
+		Connection conn = getConnection();
+		List<Consultation> Success = rdao.selectSuccess(conn, userNo, appointmentTime);
+		close(conn);
+		return Success;
+	}
+	
+	
+
+	/**
+	 * 예약 취소 요청
+	 * @author 최보겸
+	 * @param appointmentNo 식별할 예약번호
+	 * @return result 처리 행수
+	 */
+	public int deleteCareApp(String appointmentNo) {
+		Connection conn = getConnection();
+		int result = rdao.deleteCareApp(conn, appointmentNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 
 

@@ -174,10 +174,6 @@ public class Member {
 		return userNo;
 	}
 
-
-
-
-
 	public void setUserNo(String userNo) {
 		this.userNo = userNo;
 	}

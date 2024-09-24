@@ -51,6 +51,16 @@ public class Consultation {
 		this.deptName = deptName;
 	}
 	
+	// 성공페이지 데이터 생성자
+	public Consultation(String deptName, String userNo, String doctorName, String appointmentTime,
+			Date appointmentDate) {
+		super();
+		this.deptName = deptName;
+		this.userNo = userNo;
+		this.doctorName = doctorName;
+		this.appointmentTime = appointmentTime;
+		this.appointmentDate = appointmentDate;
+	}
 
 
 	public String getAppointmentNo() {
