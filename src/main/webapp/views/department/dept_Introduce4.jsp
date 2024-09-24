@@ -42,9 +42,9 @@
         <br>
         <div class="container" style="width: 1000px; height: 1px; background: rgb(198, 214, 231);"></div><br><br>
         <div class="container" style="width: 1000px; height: 80px; font-size: 24px; display: flex;">
-            <div class="container border unselected" style="width: 25%; text-align: center;" onclick="location.href='/vita/views/department/dept_Introduce1.jsp'"><b><p></p>내과</b></div>
-            <div class="container border unselected" style="width: 25%; text-align: center;" onclick="location.href='/vita/views/department/dept_Introduce2.jsp'"><b><p></p>외과</b></div>
-            <div class="container border unselected" style="width: 25%; text-align: center;" onclick="location.href='/vita/views/department/dept_Introduce3.jsp'"><b><p></p>치과</b></div>
+            <div class="container border unselected" style="width: 25%; text-align: center;" onclick="location.href='<%= contextPath %>/dept_Introduce1.do'"><b><p></p>내과</b></div>
+            <div class="container border unselected" style="width: 25%; text-align: center;" onclick="location.href='<%= contextPath %>/dept_Introduce2.do'"><b><p></p>외과</b></div>
+            <div class="container border unselected" style="width: 25%; text-align: center;" onclick="location.href='<%= contextPath %>/dept_Introduce3.do'"><b><p></p>치과</b></div>
             <div class="container border select" style="width: 25%; text-align: center;"><b><p></p>안과</b></div>
         </div>
         <br><br><br>

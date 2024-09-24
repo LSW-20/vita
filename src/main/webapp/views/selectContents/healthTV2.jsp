@@ -200,8 +200,8 @@
         <br>
         <div class="container" style="height: 50px;">
             <ul class="pagination d-flex justify-content-center text-dark">
-                <li class="page-item"><a class="page-link" href="/vita/views/selectContents/healthTV1.jsp">이전</a></li>
-                <li class="page-item"><a class="page-link" href="/vita/views/selectContents/healthTV1.jsp">1</a></li>
+                <li class="page-item"><a class="page-link" href="<%= contextPath %>/healthTV1.do">이전</a></li>
+                <li class="page-item"><a class="page-link" href="<%= contextPath %>/healthTV1.do">1</a></li>
                 <li class="page-item active"><a class="page-link disabled-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link disabled-link" href="#">다음</a></li>
             </ul>       

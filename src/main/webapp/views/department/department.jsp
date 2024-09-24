@@ -168,8 +168,8 @@
                     </tr>
                 </table>
                 <div class="inner inner2" style="background-color: rgb(32, 163, 245); display: block;">
-                    <a href="/vita/views/department/dept_Introduce1.jsp" class="no-underline"> <!-- 내과소개링크 -->
-                        <div id="hov1" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px; margin-top: 30px;">
+                    <a href="#" class="no-underline"> <!-- 내과소개링크 -->
+                        <div id="hov1" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px; margin-top: 30px;" onclick="dpintro1();">
                             <b id="hov1_b" style="font-size: 20px; line-height: 60px;">소개</b>
                         </div>
                     </a>
@@ -196,8 +196,8 @@
                     </tr>
                 </table>
                 <div class="inner inner2" style="background-color: rgb(32, 163, 245); display: block;">
-                    <a href="/vita/views/department/dept_Introduce2.jsp" class="no-underline"> <!-- 외과소개링크 -->
-                        <div id="hov3" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px; margin-top: 30px;">
+                    <a href="#" class="no-underline"> <!-- 외과소개링크 -->
+                        <div id="hov3" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px; margin-top: 30px;" onclick="dpintro2();">
                             <b id="hov3_b" style="font-size: 20px; line-height: 60px;">소개</b>
                         </div>
                     </a>
@@ -224,8 +224,8 @@
                     </tr>
                 </table>
                 <div class="inner inner2" style="background-color: rgb(32, 163, 245); display: block;">
-                    <a href="/vita/views/department/dept_Introduce3.jsp" class="no-underline"> <!-- 치과소개링크 -->
-                        <div id="hov5" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px; margin-top: 30px;">
+                    <a href="#" class="no-underline"> <!-- 치과소개링크 -->
+                        <div id="hov5" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px; margin-top: 30px;" onclick="dpintro3();">
                             <b id="hov5_b" style="font-size: 20px; line-height: 60px;">소개</b>
                         </div>
                     </a>
@@ -252,8 +252,8 @@
                     </tr>
                 </table>
                 <div class="inner inner2" style="background-color: rgb(32, 163, 245); display: block;">
-                    <a href="/vita/views/department/dept_Introduce4.jsp" class="no-underline"> <!-- 안과소개링크 -->
-                        <div id="hov7" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px; margin-top: 30px;">
+                    <a href="#" class="no-underline"> <!-- 안과소개링크 -->
+                        <div id="hov7" class="container border" style="width: 150px; height: 60px; margin: 12px; margin-left: 24px; margin-top: 30px;" onclick="dpintro4();">
                             <b id="hov7_b" style="font-size: 20px; line-height: 60px;">소개</b>
                         </div>
                     </a>
@@ -270,7 +270,18 @@
     
     
     <script>
-    
+    function dpintro1(){
+    	location.href = '<%= contextPath %>/dept_Introduce1.do';
+    }
+    function dpintro2(){
+    	location.href = '<%= contextPath %>/dept_Introduce2.do';
+    }
+    function dpintro3(){
+    	location.href = '<%= contextPath %>/dept_Introduce3.do';
+    }
+    function dpintro4(){
+    	location.href = '<%= contextPath %>/dept_Introduce4.do';
+    }
     function fnintro1(){
     	location.href = '<%= contextPath %>/schedule.doc?dept=내과';
     }
