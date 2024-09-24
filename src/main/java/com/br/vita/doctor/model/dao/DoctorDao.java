@@ -672,4 +672,79 @@ public class DoctorDao {
 	
 	
 	
+	// 진단서신청목록 조회
+	public List<Member> documentSelect(Connection conn, String type, String docNo) {
+		
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		/* Map<String, Object> doculist = new HashMap<>(); */
+		List<Member> list = new ArrayList<>();
+		
+		
+		String sql = prop.getProperty("documentSelect");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, docNo);
+			pstmt.setString(2, type);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				/*
+				 * 다른 컬럼들이 많아 담아 놓을 vo 객체가 마땅치 않을때 map 활용!
+				 * 하지만 다른 컬럼이 1~2개정도 적을 경우 vo 객체에 매개변수 생성하는게 더 편한다. 
+				 * 
+				 * doculist.put("USER_NO",rset.getString("USER_NO"));
+				 * doculist.put("USER_NAME",rset.getString("USER_NAME"));
+				 * doculist.put("USER_SSN",rset.getString("USER_SSN"));
+				 * doculist.put("DEPT_NAME",rset.getString("DEPT_NAME"));
+				 * doculist.put("PHONE",rset.getString("PHONE"));
+				 */
+//				
+//				docuMem = new Member(rset.getString("USER_NO")
+//									,rset.getString("USER_NAME")
+//									,rset.getString("USER_SSN")
+//									,rset.getString("DEPT_NAME")
+//									,rset.getString("PHONE"));
+//				
+				Member docuMem = new Member();
+				docuMem.setUserId(rset.getString("user_no"));
+				docuMem.setUserType(rset.getString("USER_NAME"));
+				docuMem.setPhone(rset.getString("USER_SSN"));
+				docuMem.setUserName(rset.getString("DEPT_NAME"));
+				docuMem.setUserSSN(rset.getString("PHONE"));
+									
+				list.add(docuMem);
+				
+			}
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

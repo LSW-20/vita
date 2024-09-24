@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
+
 </head>
 <body>
 
@@ -69,11 +72,18 @@
               	color: white;
               	
               }
+              .text_value{
+              	margin-left: 10px;
+              }
              
              </style>
+             
+             
+             
             <div class="container mt-5">
               <h2>발급 신청 관리</h2><br>
               <h3>진료확인서 신청목록</h3>
+              
 
               <div class="userSelectDiv">
                 <div class="userSelName">
@@ -82,15 +92,16 @@
                 </div>
                 <div id="userNumbers">
                   <br>
-                  <div>병원등록번호 : <span></span> </div><br>
-                  <div>주민번호 : <span></span> </div><br>
-                  <div>전화번호 : <span></span> </div><br>
+                  <div id="user_no_div"><b>병원등록번호 :</b> <span id="user_no_value" class="text_value"></span> </div><br>
+                  <div id="user_ssn_div"><b>주민번호 : </b><span id="user_ssn_value" class="text_value"></span> </div><br>
+                  <div id="user_phone_div"><b>전화번호 : </b><span id="user_phone_value" class="text_value"></span> </div><br>
                 </div>
               </div>
 
 
               <div id="table-container">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="docuTable">
+                
                   <tr>
                     <th>병원등록번호</th>
                     <th>이름</th>
@@ -99,71 +110,11 @@
                     <th>전화번호</th>
                     <th>진료기록</th>
                   </tr>
-
-                  <tr class="tr_click">
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td><button class="btn btn-warning">보기</button></td>
-                  </tr>
-                  <tr class="tr_click">
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td><button class="btn btn-warning">보기</button></td>
-                  </tr>
-                  <tr class="tr_click">
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td><button class="btn btn-warning">보기</button></td>
-                  </tr>
-                  <tr class="tr_click">
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td><button class="btn btn-warning">보기</button></td>
-                  </tr>
-                  <tr class="tr_click">
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td><button class="btn btn-warning">보기</button></td>
-                  </tr>
-                  <tr class="tr_click">
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td><button class="btn btn-warning">보기</button></td>
-                  </tr>
-                  <tr class="tr_click">
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td><button class="btn btn-warning">보기</button></td>
-                  </tr>
-                  <tr class="tr_click">
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td>asdasdsadasd</td>
-                    <td><button class="btn btn-warning">보기</button></td>
-                  </tr>
+									
+                  
+                 
+              		
+               
                 </table>
                 
                 <nav aria-label="Page navigation example" id="pageBar">
@@ -193,10 +144,70 @@
 
             <!-- content 부분 end -->
         </nav>
-           
-    </section>
+
+  </section>
 
     <!-- section end -->
+    
+    <script>
+    fnDocumentSel()
+    
+	function fnDocumentSel(){
+		
+		$.ajax({
+			url: '<%= contextPath%>/docuSel.do',
+			data : {
+				 type : '진료확인서'
+			},
+			
+			success: function(res){
+				
+				console.log(res);  // [{}, {}]
+				let table = '';
+				
+				for(let i=0; i<res.length; i++){
+					
+					table += '<tr class="tr_click">'
+								 +  '<td id="u_no_value">'+ res[i].userId + '</td>'
+								 +  '<td id="u_name_value">'+ res[i].userType + '</td>'
+								 +  '<td id="u_ssn_value">'+ res[i].phone + '</td>'
+								 +  '<td id="u_dname_value">'+ res[i].userName + '</td>'
+								 +  '<td id="u_phone_value">'+ res[i].userSSN + '</td>'
+								 +  '<td><button class="btn btn-primary">보기</button></td>' 
+								+ '</tr>'
+					
+				}
+				
+				$('#docuTable').append(table);// 제이쿼리 append 는 기존 내용을 유지하면서 새로 추가할때 씀
+				
+			}
+			
+		})
+	
+		$(document).ready(function() {
+		    $('#docuTable').on('click', '.tr_click', function() {
+		        
+		        let $userNo = $(this).find('td').eq(0).text(); // 병원등록번호
+		        let $userName = $(this).find('td').eq(1).text(); // 이름
+		        let $userSSN = $(this).find('td').eq(2).text(); // 주민등록번호
+		        let $deptName = $(this).find('td').eq(3).text(); // 진료과
+		        let $userPhone = $(this).find('td').eq(4).text(); // 전화번호
+		        
+		        // 해당 span에 값 설정
+		        $('#user_no_value').html($userNo);
+		        $('#user_ssn_value').html($userSSN);
+		        $('#user_phone_value').html($userPhone);
+		        $('#userName').html($userName); 
+		        $('#department').html($deptName); 
+		    });
+		});
+	}
+    
+	
+	
+    
+    
+    </script>
 				
 
 
