@@ -1,5 +1,11 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.br.vita.reservation.model.vo.Consultation"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+	List<Consultation> consultations = (List<Consultation>)request.getAttribute("consultations");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,28 +105,29 @@
         
         <!-- 안내 텍스트박스 -->
         <div class="info_box m-3">
-            getName님(환자 번호 : getUserNo)의 진료 예약 현황입니다. <br>
+            <%= ((Member)session.getAttribute("loginUser")).getUserName() %>님(환자 번호 : <%= ((Member)session.getAttribute("loginUser")).getUserNo() %> )의 진료 예약 현황입니다. <br>
             진료과나 접수창구에서 예약하신 진료의 변경은 콜센터에서 가능합니다. 문의: 1588-XXXX <br>
             <strong>*인터넷으로 예약한 진료만 취소 가능합니다.</strong>
         </div>
         <!-- 예약 내역 없을 때 -->
-        <div id="no_reservation" class="no_reservation">
+        <div id="no_reservation" class="no_reservation" <%= consultations.isEmpty() ? "" : "style='display:none;'" %>>
             예약 내역이 없습니다.
         </div>
 
-        <!-- 예약 내역 담을 template -->
-        <template id="reservation_template">
-            <div class="reservation_box">
-                <button class="cancel_button">취소</button>
-                <div class="reservation_date"></div><hr>
-                <div class="patient_name"></div>
-                <div class="medical_staff"></div>
-                <div class="department"></div>
-            </div>
-        </template>
+			
+
 
         <!-- 예약 내역 있을 때 -->
-        <div id="reservation_list" class="container_reservations d-none">
+        <div id="reservation_list" class="container_reservations" <%= consultations.isEmpty() ? "style='display:none;'" : "" %>>
+        	<% for(Consultation c : consultations) {%>
+	           <div class="reservation_box" ">
+	               <button class="cancel_button" onclick="handleCancel('<%= c.getAppointmentNo() %>')">취소</button>
+	               <div class="reservation_date"><%= c.getAppointmentDate() %></div><hr>
+	               <div class="patient_name">환자명 : <%= c.getUserName() %></div>
+	               <div class="doc_name">의사명 : <%= c.getDoctorName() %></div>
+	               <div class="department">진료과 : <%= c.getDeptName() %></div>
+	           </div>   	
+		       <%} %>	
         </div>
 
         <!-- 추가 진료 예약 버튼 -->
@@ -129,52 +136,13 @@
    </div>
 
   <script>
-    // 나중엔 오라클에서 데이터 불러올 것, 추후 삭제
-    const reservation_data = [
-        { id: 1, date: '2024-09-01', patient_name: '김철수', medical_staff: '이병헌', department: '내과' },
-        { id: 2, date: '2024-09-15', patient_name: '박지민', medical_staff: '강호동', department: '외과' },
-        { id: 3, date: '2024-09-20', patient_name: '최영희', medical_staff: '정용화', department: '정형외과' },
-        { id: 4, date: '2024-09-20', patient_name: '최영희', medical_staff: '정용화', department: '정형외과' }
-    ];
-
-    window.onload = function() {
-        const reservation_list = document.getElementById("reservation_list");
-        const no_reservation_text = document.getElementById("no_reservation");
-        const reservation_template = document.getElementById("reservation_template");
-
-        // 예약 내역 있을 경우 동적으로 추가
-        if (reservation_data.length > 0) {
-            no_reservation_text.classList.add("d-none");
-            reservation_list.classList.remove("d-none");
-
-            reservation_data.forEach(reservation => {
-                // template 복제시 사용되는 구문
-                const clone = reservation_template.content.cloneNode(true);
-                clone.querySelector('.reservation_date').textContent = reservation.date;
-                clone.querySelector('.patient_name').textContent = `환자명: ${reservation.patient_name}`;
-                clone.querySelector('.medical_staff').textContent = `의료진: ${reservation.medical_staff}`;
-                clone.querySelector('.department').textContent = `진료과: ${reservation.department}`;
-
-                // 동적으로 생성된 요소에 이벤트 리스너 추가
-                const cancel_button = clone.querySelector('.cancel_button');
-                cancel_button.addEventListener('click', function() {
-                    handleCancel(reservation.id);
-                });
-                reservation_list.appendChild(clone);
-            });
-        } else {
-            // 예약 내역이 없으면 내역 없음 메시지 표시
-            no_reservation_text.classList.remove("d-none");
-            reservation_list.classList.add("d-none");
-        }
-    }
 
     // 취소 버튼 클릭 시 처리 함수
     function handleCancel(reservation_id) {
         if (confirm("예약을 취소하시겠습니까?")) {
             // 추후 예약 취소 로직 추가
             
-            alert("예약 " + reservation_id + "번이 취소 됐습니다.");
+            alert("예약이 취소 됐습니다.");
             // 서버 취소 요청 보내거나 예약 내역 업데이트
         }
     }

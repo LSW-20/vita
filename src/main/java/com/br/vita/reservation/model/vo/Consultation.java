@@ -10,14 +10,16 @@ public class Consultation {
 	private String appointmentTime;
 	private String careStatus;
 	
-	
-
+	//아래는 DOCTOR, MEMBER테이블과 조인할 때 필요
+	private String userName;
+	private String doctorName;
+	private String deptName;
 	
 	public Consultation() {}
 
 
 	public Consultation(String appointmentNo, String userNo, String doctorNo, Date appointmentDate,
-			String appointmentTime, String careStatus) {
+			String appointmentTime, String careStatus, String userName, String doctorName, String deptName) {
 		super();
 		this.appointmentNo = appointmentNo;
 		this.userNo = userNo;
@@ -25,9 +27,10 @@ public class Consultation {
 		this.appointmentDate = appointmentDate;
 		this.appointmentTime = appointmentTime;
 		this.careStatus = careStatus;
+		this.userName = userName;
+		this.doctorName = doctorName;
+		this.deptName = deptName;
 	}
-
-	
 
 	public Consultation(String userNo, String doctorNo, String appointmentTime) {
 		super();
@@ -35,12 +38,24 @@ public class Consultation {
 		this.doctorNo = doctorNo;
 		this.appointmentTime = appointmentTime;
 	}
+	
+	//예약 조회용 생성자_보겸
+	public Consultation(String appointmentNo, Date appointmentDate, String appointmentTime, String userName,
+			String doctorName, String deptName) {
+		super();
+		this.appointmentNo = appointmentNo;
+		this.appointmentDate = appointmentDate;
+		this.appointmentTime = appointmentTime;
+		this.userName = userName;
+		this.doctorName = doctorName;
+		this.deptName = deptName;
+	}
+	
 
 
 	public String getAppointmentNo() {
 		return appointmentNo;
 	}
-
 
 	public void setAppointmentNo(String appointmentNo) {
 		this.appointmentNo = appointmentNo;
@@ -97,12 +112,47 @@ public class Consultation {
 	}
 
 
+	
+	
+	public String getUserName() {
+		return userName;
+	}
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
+	public String getDoctorName() {
+		return doctorName;
+	}
+
+
+	public void setDoctorName(String doctorName) {
+		this.doctorName = doctorName;
+	}
+
+
+	public String getDeptName() {
+		return deptName;
+	}
+
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Consultation [appointmentNo=" + appointmentNo + ", userNo=" + userNo + ", doctorNo=" + doctorNo
 				+ ", appointmentDate=" + appointmentDate + ", appointmentTime=" + appointmentTime + ", careStatus="
-				+ careStatus + "]";
+				+ careStatus + ", userName=" + userName + ", doctorName=" + doctorName + ", deptName=" + deptName + "]";
 	}
+
+
+
 
 	
 

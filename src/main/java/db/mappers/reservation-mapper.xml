@@ -63,7 +63,23 @@ SELECT
 	
 	</entry>
 
-
+	<!--예약조회_보겸-->
+	<entry key="selectCareAppList">
+	SELECT
+	       APPOINTMENT_NO
+	     , APPOINTMENT_DATE
+	     , APPOINTMENT_TIME
+	     , USER_NAME
+	     , DOCTOR_NAME
+	     , DEPT_NAME 
+	  FROM CARE_APP C
+	  JOIN DOCTOR D
+	    ON C.DOCTOR_NO = D.DOCTOR_NO
+	  JOIN MEMBER M
+	    ON C.USER_NO = M.USER_NO
+	 WHERE C.USER_NO = ? 
+	   AND CARE_STATUS = 'N'
+	</entry>
 
 
 </properties>

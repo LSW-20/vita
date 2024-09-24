@@ -9,7 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
+import java.util.List;
 import java.util.Properties;
 
 import com.br.vita.member.model.vo.Member;
@@ -131,6 +133,45 @@ public class ReservationDao {
 		
 		
 		return result;
+	}
+
+	/**
+	 * 예약 내역 조회 Dao
+	 * select - rset
+	 * @author 최보겸
+	 * @param conn
+	 * @param userNo
+	 * @return consultations
+	 */
+	public List<Consultation> selectCareAppList(Connection conn, String userNo) {
+		List<Consultation> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCareAppList");
+		System.out.println(list);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Consultation(rset.getString("APPOINTMENT_NO")
+										, rset.getDate("APPOINTMENT_DATE")
+										, rset.getString("APPOINTMENT_TIME")
+										, rset.getString("USER_NAME")
+										, rset.getString("DOCTOR_NAME")
+										, rset.getString("DEPT_NAME")			
+						));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
    
 	public void ConsultationSelect() {
