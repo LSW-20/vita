@@ -288,9 +288,9 @@
             <%} else { %>
             <a href="<%= contextPath %>/consultationBL.rv" style="text-decoration: none;">&nbsp;진료예약</a><br>
             <%} %>
-            <a href="" style="text-decoration: none;">&nbsp;진료검진예약</a><br>
-            <a href="" style="text-decoration: none;">&nbsp;전화/방문예약</a><br>
-            <a href="" style="text-decoration: none;">&nbsp;예약내역 조회</a>
+            <a href="<%= contextPath %>" style="text-decoration: none;">&nbsp;진료검진예약</a><br>
+            <a href="<%= contextPath %>" style="text-decoration: none;">&nbsp;전화/방문예약</a><br>
+            <a href="<%= contextPath %>" style="text-decoration: none;">&nbsp;예약내역 조회</a>
         </div>
         <div class="sub"></div>
        
@@ -331,7 +331,7 @@
         <div class="sub">
             <b><br>&nbsp;고객서비스</b><br>
             <a href="<%= contextPath %>/list.cs" style="text-decoration: none;">&nbsp;고객의소리</a><br>
-            <a href="" style="text-decoration: none;">&nbsp;칭찬코너</a>
+            <a href="<%= contextPath %>" style="text-decoration: none;">&nbsp;칭찬코너</a>
         </div>
         <div class="sub"></div>
     </div>

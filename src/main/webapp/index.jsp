@@ -122,7 +122,11 @@
             <div class="container" id="mainService"><a href="<%= contextPath %>/department.do"><img src="/vita/assets/image/아이콘2.jpg" style="width: 80px; height: 80px;"><br><br><b>진료과</b></a></div>
             <div class="container" id="mainService"><a href="/vita/views/reservation/consultation_AfterLogin.jsp"><img src="/vita/assets/image/아이콘3.jpg" style="width: 80px; height: 80px;"><br><br><b>진료예약</b></a></div>
             <div class="container" id="mainService"><a href="/vita/views/reservation/firstTimeUserReservation.jsp"><img src="/vita/assets/image/아이콘4.jpg" style="width: 80px; height: 80px;"><br><br><b>첫방문 고객 예약 상담</b></a></div>
-            <div class="container" id="mainService" style="border: 0px;"><a href="/vita/views/member/myInfo.jsp"><img src="/vita/assets/image/아이콘5.jpg" style="width: 80px; height: 80px;"><br><br><b>나의차트</b></a></div>
+            <%if(loginUser == null ){ %>
+            <div class="container" id="mainService" style="border: 0px;"><a href="<%= contextPath %>/loginPage.me"><img src="/vita/assets/image/아이콘5.jpg" style="width: 80px; height: 80px;"><br><br><b>나의차트</b></a></div>
+        		<%}else{ %>
+        		<div class="container" id="mainService" style="border: 0px;"><a href="<%= contextPath %>/ad_doc.me?userId=<%= loginUser.getUserId() %>"><img src="/vita/assets/image/아이콘5.jpg" style="width: 80px; height: 80px;"><br><br><b>나의차트</b></a></div>
+        		<%} %>
         </div>
         <br><br>
         <div class="container" style="height: 150px; display:flex;">
