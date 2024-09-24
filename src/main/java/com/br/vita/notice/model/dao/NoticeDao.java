@@ -242,7 +242,6 @@ public class NoticeDao {
 	        close(rset);
 	        close(pstmt);
 	    }
-	    System.out.println(list);
 	    return list;
 	}
 
