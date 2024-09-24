@@ -107,6 +107,16 @@ public class CompanyDao {
 	}
 	
 	
+	/**
+	 * 연계기업 수정
+	 * author : 임상우
+	 * @param conn
+	 * @param compNo
+	 * @param compName
+	 * @param originCompNo
+	 * @param adminNo
+	 * @return 수정된 행 수
+	 */
 	public int companyUpdate(Connection conn, String compNo, String compName, String originCompNo, String adminNo) {
 		
 		int result = 0;
@@ -134,5 +144,52 @@ public class CompanyDao {
 		return result;
 	}
 	
+	
+	/**
+	 * 연계기업 삭제
+	 * author : 임상우
+	 * @param conn
+	 * @param delComList
+	 * @return 삭제한 행 수 
+	 */
+	public int companyDelete(Connection conn, String[] delComList) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("companyDelete"); // "DELETE FROM COMPANY WHERE COMP_NO IN ("
+		
+		for(int i=0; i<delComList.length; i++) {
+			sql += "?";
+			
+			if(i != (delComList.length-1)) {
+				sql += ",";
+			}
+		}
+		
+		sql += ")";
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			for(int i=0; i<delComList.length; i++) {
+	
+				pstmt.setString(i+1, delComList[i]);
+			}
+
+			System.out.println(sql);
+			result = pstmt.executeUpdate();
+			System.out.println(result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 }

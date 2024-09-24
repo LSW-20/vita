@@ -210,7 +210,7 @@ footer {
 
             <table class="aa">
                 <tr>
-                    <th><button class="btn btn-sm btn-warning" type="button" id="all_btn">전체</button></th>
+                    <th><button class="btn btn-sm btn-warning" type="button" id="all_btn">all</button></th>
                     <th>사번</th>
                     <th>이름</th>
                     <th>주민등록번호</th>
@@ -338,6 +338,7 @@ footer {
             <% } %>
      
 
+        <!-- 의료진 계정 삭제 기능 -->
         <script>
 
             document.getElementById('del_button').addEventListener('click', function() {
@@ -369,23 +370,30 @@ footer {
             서블릿을 요청하면서 checkbox들의 id들을 배열에 담고, join 메소드로 한 문자열로 만들어서 넘긴다. -->
 
 
+
         <!-- (2) 삭제를 위해 전체 선택하는 버튼 -->
         <script>
             document.getElementById('all_btn').addEventListener('click', function() {
 
-                var checkboxEl = document.querySelectorAll('input[type="checkbox"]'); // 체크박스들을 배열로 모음.
+                var checkboxEl = document.querySelectorAll('.aa input[type="checkbox"]'); // 체크박스들을 배열로 모음.
+
+                var flag = true; // 토글식으로 일부 선택되어 있는 상태에서는 전체 선택된 결과가 나오지 않는다.
 
                 for(var i = 0; i<checkboxEl.length; i++) {
-                    if(checkboxEl[i].checked) {  // 모든 동적으로 생성된 체크박스들에 checked 속성 반전
-                        checkboxEl[i].checked = false; 
-                    } else {
-                        checkboxEl[i].checked = true;
-                    }   
+                    if(!checkboxEl[i].checked) {  
+                        checkboxEl[i].checked = true; 
+                        flag = false;      // falg가 true라는 뜻은 모든 체크박스가 이미 checked 되어있는 상태라는 뜻이다. 
+                    }
+                }
+
+                if(flag == true) {
+                    for(var i = 0; i<checkboxEl.length; i++) {
+                        checkboxEl[i].checked = false; // 모든 체크박스가 이미 checked 되어있으면 모두 체크 해제한다.
+                    }
                 }
 
             });    
         </script> 
-
 
     </div>
 </div>

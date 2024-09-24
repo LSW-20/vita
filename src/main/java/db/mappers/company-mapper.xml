@@ -58,5 +58,23 @@
 						COMP_NO = ?
 		
 	</entry>
+	
+	
+	<!-- (상우) 연계기업 삭제  -->
+	<entry key="companyDelete">
+	
+		DELETE
+		  FROM 
+		        COMPANY
+		 WHERE 
+		 				COMP_NO IN (
+		 				
+	</entry>
+
+
+
+
+
+
 
 </properties>

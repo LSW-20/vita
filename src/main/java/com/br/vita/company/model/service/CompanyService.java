@@ -49,10 +49,41 @@ public class CompanyService {
 		return result;
 	}
 	
+	/**
+	 * 연계기업 수정
+	 * author : 임상우
+	 * @param compNo
+	 * @param compName
+	 * @param originCompNo
+	 * @param adminNo
+	 * @return 수정된 행 수 
+	 */
 	public int companyUpdate(String compNo, String compName, String originCompNo, String adminNo) {
 		
 		Connection conn = getConnection();
 		int result = cDao.companyUpdate(conn, compNo, compName, originCompNo, adminNo);
+		
+		if(result > 0) {
+			commit(conn); 
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+		
+	}
+	
+	/**
+	 * 연계기업 삭제
+	 * author : 임상우
+	 * @param delComList
+	 * @return
+	 */
+	public int companyDelete(String[] delComList) {
+		
+		Connection conn = getConnection();
+		int result = cDao.companyDelete(conn, delComList);
 		
 		if(result > 0) {
 			commit(conn); 
