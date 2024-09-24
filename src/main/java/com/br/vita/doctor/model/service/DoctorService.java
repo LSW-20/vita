@@ -296,7 +296,17 @@ public class DoctorService {
 		
 		
 		
+	}
+	
+	public int selectDocumentListCount(String docNo) {
 		
+		Connection conn = getConnection();
+		
+		int listCount = dDao.selectDocumentListCount(conn,docNo);
+		
+		close(conn);
+		
+		return listCount;
 		
 	}
 	
