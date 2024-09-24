@@ -120,8 +120,16 @@
         <div class="container border" style="height: 200px; border-radius: 15px; display:flex; background: #f7f7f8;">
             <div class="container" id="mainService"><a href="/vita/views/reservation/reservationList.jsp"><img src="/vita/assets/image/아이콘1.jpg" style="width: 80px; height: 80px;"><br><br><b>예약내역조회</b></a></div>
             <div class="container" id="mainService"><a href="<%= contextPath %>/department.do"><img src="/vita/assets/image/아이콘2.jpg" style="width: 80px; height: 80px;"><br><br><b>진료과</b></a></div>
-            <div class="container" id="mainService"><a href="/vita/views/reservation/consultation_AfterLogin.jsp"><img src="/vita/assets/image/아이콘3.jpg" style="width: 80px; height: 80px;"><br><br><b>진료예약</b></a></div>
-            <div class="container" id="mainService"><a href="/vita/views/reservation/firstTimeUserReservation.jsp"><img src="/vita/assets/image/아이콘4.jpg" style="width: 80px; height: 80px;"><br><br><b>첫방문 고객 예약 상담</b></a></div>
+             <% if(loginUser != null) { %>
+            <div class="container" id="mainService"><a href="<%= contextPath %>/consultationAL.rv"><img src="/vita/assets/image/아이콘3.jpg" style="width: 80px; height: 80px;"><br><br><b>진료예약</b></a></div>
+            <%} else { %>
+              <div class="container" id="mainService"><a href="<%= contextPath %>/consultationBL.rv"><img src="/vita/assets/image/아이콘3.jpg" style="width: 80px; height: 80px;"><br><br><b>진료예약</b></a></div>
+            <%} %>
+            <% if(loginUser != null) { %>
+            <div class="container" id="mainService"><a href="<%= contextPath %>/first.rv"><img src="/vita/assets/image/아이콘4.jpg" style="width: 80px; height: 80px;"><br><br><b>첫방문 고객 예약 상담</b></a></div>
+            <%} else { %>
+            <div class="container" id="mainService"><a href="<%= contextPath %>/loginPage.me"><img src="/vita/assets/image/아이콘4.jpg" style="width: 80px; height: 80px;"><br><br><b>첫방문 고객 예약 상담</b></a></div>            
+            <%} %>
             <%if(loginUser == null ){ %>
             <div class="container" id="mainService" style="border: 0px;"><a href="<%= contextPath %>/loginPage.me"><img src="/vita/assets/image/아이콘5.jpg" style="width: 80px; height: 80px;"><br><br><b>나의차트</b></a></div>
         		<%}else{ %>
@@ -148,7 +156,12 @@
                         <b><br>상담 및 예약 : 02-1234-5678</b>
                     </div>
                     <div class="container" style="height: 70px; text-align: center;">
-                        <a href="/vita/views/reservation/healthCheckUp_1.jsp" type="button" class="btn btn-warning" style="padding-left: 30px; padding-right: 30px; color: white;"><b>건강검진 예약 신청</b></a>
+                    <% if(loginUser != null) { %>
+                        <a href="<%= contextPath %>/HealthCheckAL.rv" type="button" class="btn btn-warning" style="padding-left: 30px; padding-right: 30px; color: white;"><b>건강검진 예약 신청</b></a>
+                     <%} else { %>
+                        <a href="<%= contextPath %>/HealthCheckBL.rv" type="button" class="btn btn-warning" style="padding-left: 30px; padding-right: 30px; color: white;"><b>건강검진 예약 신청</b></a>
+                     
+                      <%} %>
                     </div>
                 </div>
             </div>

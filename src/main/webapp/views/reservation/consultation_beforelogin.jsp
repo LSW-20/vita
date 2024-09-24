@@ -145,7 +145,7 @@
             
             <div id="vertical-line" style="margin-left:100px; margin-top: 40px;"></div>
             
-            <a href="/vita/views/Department/department.jsp">
+             <a href="<%= contextPath %>/department.do">
             <div class="p-2" style="margin-top: 70px; margin-left: 90px">
               <img src="/vita/assets/image/의료진료과.jpg"   class="img-check" id="img1" style="cursor: pointer;">
               <h3 style="margin-top: 30px; margin-left:50px; cursor: pointer;">의료진/진료과</h3>
@@ -155,7 +155,7 @@
             
             <div id="vertical-line" style="margin-left:100px; margin-top: 40px;"></div>
             
-             <a href="/vita/views/selectContents/directions.jsp">
+            <a href="<%= contextPath %>/directions.do">
             <div class="p-2" style="margin-top: 70px; margin-left: 70px">
               <img src="/vita/assets/image/오시는길.jpg"  class="img-check" id="img1" style="cursor: pointer;">
               <h3 style="margin-top: 30px; margin-left:80px; cursor: pointer;">오시는길</h3>

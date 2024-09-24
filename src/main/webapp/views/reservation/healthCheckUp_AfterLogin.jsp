@@ -123,7 +123,7 @@
         <!-- 줄 -->
         <div class="container11">
           <div class="d-flex" style="margin-left: 65px;">  
-           <a href="/vita/views/member/myInfo.jsp">
+           <a href="<%= contextPath %>/myinfo.me">
             <div class="p-2" style="margin-top: 70px; margin-left: 70px">
               <img src="/vita/assets/image/마이페이지.jpg"  class="img-check" id="img1"  style="cursor: pointer;"><br>
               <h3 style="margin-top: 30px; margin-left:70px; cursor: pointer;" >마이페이지</h3>
@@ -132,7 +132,7 @@
             
             <div id="vertical-line" style="margin-left:100px; margin-top: 40px;"></div>
             
-             <a href="/vita/views/selectContents/FloorInfo.jsp">
+             <a href="<%= contextPath %>/floor.do">
             <div class="p-2" style="margin-top: 70px; margin-left: 90px">
               <img src="/vita/assets/image/층별안내.jpg"  class="img-check" id="img1" style="cursor: pointer;">
               <h3 style="margin-top: 30px; margin-left:85px; cursor: pointer;">층별 안내</h3>
@@ -143,7 +143,7 @@
             
             <div id="vertical-line" style="margin-left:100px; margin-top: 40px;"></div>
             
-            <a href="/vita/views/Department/department.jsp">
+             <a href="<%= contextPath %>/department.do">
             <div class="p-2" style="margin-top: 70px; margin-left: 90px">
               <img src="/vita/assets/image/의료진료과.jpg"  class="img-check" id="img1" style="cursor: pointer;">
               <h3 style="margin-top: 30px; margin-left:50px; cursor: pointer;">의료진/진료과</h3>
@@ -152,7 +152,7 @@
             
             <div id="vertical-line" style="margin-left:100px; margin-top: 40px;"></div>
             
-            <a href="/vita/views/selectContents/directions.jsp">
+             <a href="<%= contextPath %>/directions.do">
             <div class="p-2" style="margin-top: 70px; margin-left: 70px">
               <img src="/vita/assets/image/오시는길.jpg" class="img-check" id="img1" style="cursor: pointer;">
               <h3 style="margin-top: 30px; margin-left:80px; cursor: pointer;">오시는길</h3>
