@@ -70,7 +70,6 @@ public class ReservationService {
 		
 		Connection conn = getConnection();
 		boolean hasAppointment = rdao.SelectConsultation(conn,  userNo, appointmentTime);
-		
 		close(conn);
 		return hasAppointment;
 	}
@@ -80,6 +79,7 @@ public class ReservationService {
 		List<Consultation> Success = rdao.selectSuccess(conn, userNo, appointmentTime);
 		close(conn);
 		return Success;
+		
 	}
 	
 	

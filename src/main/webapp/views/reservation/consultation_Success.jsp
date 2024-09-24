@@ -2,11 +2,10 @@
 <%@ page import="com.br.vita.reservation.model.vo.Consultation"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    
 <%
 	List<Consultation> Success = (List<Consultation>)request.getAttribute("Success");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,15 +87,15 @@
                 <h3>결제 내용</h3>
                 <br>
                 
-              	<% for(Consultation c : Success) {%>
+             
                   <table class="table table-bordered" style="width:1004px">
-        			
-                 
+        						
+                 		<% for(Consultation c : Success) {%>
                   		 <tr>
                         <td id="color" style="width:200px">진료과</td>
-                        <td style="width:302px"><%= c.getDeptName() %></td>
+                        <td style="width:302px"> <%= c.getDeptName() %></td>
                         <td id="color" style="width:200px">고객 번호</td>
-                        <td style="width:302px"><%=  ((Member)session.getAttribute("loginUser")).getUserNo() %></td>
+                        <td style="width:302px"> <%= ((Member)session.getAttribute("loginUser")).getUserNo() %></td>
                         
                       </tr>
                      
@@ -104,7 +103,7 @@
                         <td id="color" style="width:200px">의료진</td>
                         <td style="width:302px"><%= c.getDoctorName() %></td>
                         <td id="color" style="width:200px">내원 시간</td>
-                        <td style="width:302px"><%= c.getAppointmentTime() %></td>
+                        <td style="width:302px" id="appointmentTime" ><%= c.getAppointmentTime() %></td>
                         
                       </tr>
                       
@@ -113,9 +112,9 @@
                         <td style="border-right: white"><%= c.getAppointmentDate() %></td>
                       
                       </tr>
-             
+             				<%} %>	
                   </table>
-             <%} %>	 
+
                 <br><br><br><br>
       
                 <div align="center">

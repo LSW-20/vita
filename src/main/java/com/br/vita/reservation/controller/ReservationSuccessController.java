@@ -18,13 +18,13 @@ import com.br.vita.reservation.model.vo.Consultation;
  * Servlet implementation class ReservationSuccess
  */
 @WebServlet("/ReservationSuccess.rv")
-public class ReservationSuccess extends HttpServlet {
+public class ReservationSuccessController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationSuccess() {
+    public ReservationSuccessController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,14 +33,14 @@ public class ReservationSuccess extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		String userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		String appointmentTime = request.getParameter("appointmentTime"); 
-		System.out.println("회원번호 : " + userNo);
-		System.out.println("예약시간 : " + appointmentTime);
 		//예약 내역 조회
 		List<Consultation> Success = new ReservationService().selectSuccess(userNo, appointmentTime);
-		
 		//결과 응답
 		request.setAttribute("Success", Success);
 		request.getRequestDispatcher("/views/reservation/consultation_Success.jsp").forward(request, response);

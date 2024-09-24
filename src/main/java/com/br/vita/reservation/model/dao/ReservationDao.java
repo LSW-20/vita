@@ -231,13 +231,13 @@ public class ReservationDao {
 		
 		return result;
 	}
-
+	
+	
 	public List<Consultation> selectSuccess(Connection conn, String userNo, String appointmentTime) {
 		List<Consultation> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectCareAppList");
-		System.out.println(list);
+		String sql = prop.getProperty("selectSuccess");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userNo);
@@ -245,11 +245,11 @@ public class ReservationDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Consultation(rset.getString("deptName")
-										, rset.getString("userNo")
-										, rset.getString("doctorName")
-										, rset.getString("appointmentTime")
-										, rset.getDate("appointmentDate")		
+				list.add(new Consultation(rset.getString("DEPT_NAME")
+										, rset.getString("USER_NO")
+										, rset.getString("DOCTOR_NAME")
+										, rset.getString("APPOINTMENT_TIME")
+										, rset.getDate("APPOINTMENT_DATE")		
 						));
 				
 			}

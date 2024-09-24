@@ -316,23 +316,30 @@
 
      <br><br><br>
 
+
+
+
+
      
     <form action="<%= contextPath %>/personalForm.rv" method="post" >
     <input type="hidden" name="doctorName" id="doctorName">
     <input type="hidden" name="appointmentTime" id="appointmentTime">
 
-    <!-- 나머지 HTML 코드 유지 -->
+    
     
     <div align="center" style="position: relative;">
-       
-        <a href="<%= contextPath %>/ReservationSuccess.rv"  class="btn border-1 border-dark" style="width:150px; position: absolute; left: 41%; top: 0;" >예약신청하기</a>
+         
+         <button type="submit" class="btn border-1 border-dark" id="submitButton"
+						    				style="width:150px; position: absolute; left: 41%; top: 0; background-color: rgb(31, 43, 108); color: rgb(245, 245, 245);"
+						    				>예약신청하기</button>
+
         <a href="/vita/views/reservation/personal.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:180px;">이전</a>
     </div>
 </form>
 
         <br><br> 
 
-
+	
 
 
 

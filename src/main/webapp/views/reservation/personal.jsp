@@ -162,7 +162,7 @@
             
         		<div align="center" style="position: relative;">
 						    <button type="submit" class="btn border-1 border-dark" id="submitButton" onclick="return validateAndProceed();" 
-						    				style="width:150px; position: absolute; left: 41%; top: 0; z-index: 2;   background-color: rgb(245, 245, 245); color: rgb(31, 43, 108);">다음</button>
+						    				style="width:150px; position: absolute; left: 41%; top: 0; z-index: 2;   background-color: rgb(31, 43, 108); color: rgb(245, 245, 245);">다음</button>
 						    <a href="/vita/views/reservation/first_Success.jsp" class="btn border-1 border-dark" id="btn-color" style="width:150px; position: absolute; left: 41%; top: 0; z-index: 1; display:none;">다음</a>
 						    <a href="/vita/views/reservation/consultation_AfterLogin.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:180px;">이전</a>
 						</div>

@@ -1,6 +1,8 @@
 package com.br.vita.reservation.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.br.vita.member.model.service.MemberService;
 import com.br.vita.member.model.vo.Member;
 import com.br.vita.reservation.model.service.ReservationService;
 import com.br.vita.reservation.model.vo.Consultation;
@@ -47,8 +48,8 @@ public class ReservationPersonalFormController extends HttpServlet {
 		
 		ReservationService reservationService = new ReservationService();
         boolean hasAppointment = reservationService.SelectConsultation(userNo, appointmentTime);
-
-        if (hasAppointment) {
+        
+        if (hasAppointment == true) {
             request.getSession().setAttribute("alertMsg", "해당 시간에 예약 내역이 있습니다. 다시 확인해주세요.");
             request.getRequestDispatcher("/views/reservation/consultation_AfterLogin.jsp").forward(request, response);
             return;
@@ -60,8 +61,10 @@ public class ReservationPersonalFormController extends HttpServlet {
 		int result = new ReservationService().Consultation(c);
 		
 		if(result >0) {
-			request.getSession().setAttribute("alertMsg", "진료예약에 성공했습니다.");
-			request.getRequestDispatcher("/views/reservation/consultation_Success.jsp").forward(request, response);
+			 request.getSession().setAttribute("alertMsg", "진료예약에 성공했습니다.");
+	            
+	         // 예약 성공 시, 예약 성공 페이지로 리다이렉트
+	         response.sendRedirect(request.getContextPath() + "/ReservationSuccess.rv?appointmentTime=" + URLEncoder.encode(appointmentTime, StandardCharsets.UTF_8.toString()));
 		} else {
 			request.setAttribute("msg", "오류");
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
