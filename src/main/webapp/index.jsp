@@ -119,7 +119,7 @@
         </div>
         <div class="container border" style="height: 200px; border-radius: 15px; display:flex; background: #f7f7f8;">
             <div class="container" id="mainService"><a href="/vita/views/reservation/reservationList.jsp"><img src="/vita/assets/image/아이콘1.jpg" style="width: 80px; height: 80px;"><br><br><b>예약내역조회</b></a></div>
-            <div class="container" id="mainService"><a href="/vita/views/department/department.jsp"><img src="/vita/assets/image/아이콘2.jpg" style="width: 80px; height: 80px;"><br><br><b>진료과</b></a></div>
+            <div class="container" id="mainService"><a href="<%= contextPath %>/department.do"><img src="/vita/assets/image/아이콘2.jpg" style="width: 80px; height: 80px;"><br><br><b>진료과</b></a></div>
             <div class="container" id="mainService"><a href="/vita/views/reservation/consultation_AfterLogin.jsp"><img src="/vita/assets/image/아이콘3.jpg" style="width: 80px; height: 80px;"><br><br><b>진료예약</b></a></div>
             <div class="container" id="mainService"><a href="/vita/views/reservation/firstTimeUserReservation.jsp"><img src="/vita/assets/image/아이콘4.jpg" style="width: 80px; height: 80px;"><br><br><b>첫방문 고객 예약 상담</b></a></div>
             <div class="container" id="mainService" style="border: 0px;"><a href="/vita/views/member/myInfo.jsp"><img src="/vita/assets/image/아이콘5.jpg" style="width: 80px; height: 80px;"><br><br><b>나의차트</b></a></div>
@@ -163,12 +163,12 @@
             </div>
             <div class="container" style="display:flex;">
                 <div class="container border" style="border-radius: 15px; width: 240px; position: relative; display: inline-block;">
-                    <a href="/vita/views/selectContents/sponsorship.jsp"><img src="/vita/assets/image/후원메인.jpeg" style="border-radius: 15px; width: 240px; height: 120px; margin-left: -15px; display: block;"></a>
-                    <a href="/vita/views/selectContents/sponsorship.jsp" class="linkText">후원</a>
+                    <a href="<%= contextPath %>/sponsorship.do"><img src="/vita/assets/image/후원메인.jpeg" style="border-radius: 15px; width: 240px; height: 120px; margin-left: -15px; display: block;"></a>
+                    <a href="<%= contextPath %>/sponsorship.do" class="linkText">후원</a>
                 </div>
                 <div class="container border" style="border-radius: 15px; width: 240px; position: relative; display: inline-block;">
-                    <a href="/vita/views/selectContents/service.jsp"><img src="/vita/assets/image/봉사메인.jpeg" style="border-radius: 15px; width: 240px; height: 120px; margin-left: -15px; display: block;"></a>
-                    <a href="/vita/views/selectContents/service.jsp" class="linkText">봉사</a>     
+                    <a href="<%= contextPath %>/service.do"><img src="/vita/assets/image/봉사메인.jpeg" style="border-radius: 15px; width: 240px; height: 120px; margin-left: -15px; display: block;"></a>
+                    <a href="<%= contextPath %>/service.do" class="linkText">봉사</a>     
                 </div>
             </div>
         </div>
@@ -187,20 +187,20 @@
                             <!-- The slideshow -->
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <a href="/vita/views/selectContents/therapy1.jsp"><img src="/vita/assets/image/후천성면역결핍증식.jpg" alt="Image 1"></a>
-                                    <a href="/vita/views/selectContents/therapy2.jsp"><img src="/vita/assets/image/후두암식.jpg" alt="Image 2"></a>
+                                    <a href="<%= contextPath %>/therapy1.do"><img src="/vita/assets/image/후천성면역결핍증식.jpg" alt="Image 1"></a>
+                                    <a href="<%= contextPath %>/therapy2.do"><img src="/vita/assets/image/후두암식.jpg" alt="Image 2"></a>
                                     <div class="carousel-caption" style="display: flex; margin-top: -20px;">
-                                        <div class="container"><a href="/vita/views/selectContents/therapy1.jsp"><b style="color: black;">후천성면역결핍증식</b></a></div>
-                                        <div class="container"><a href="/vita/views/selectContents/therapy2.jsp"><b style="color: black;">후두암식</b></a></div>
+                                        <div class="container"><a href="<%= contextPath %>/therapy1.do"><b style="color: black;">후천성면역결핍증식</b></a></div>
+                                        <div class="container"><a href="<%= contextPath %>/therapy2.do"><b style="color: black;">후두암식</b></a></div>
                                         <br><br>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <a href="/vita/views/selectContents/therapy3.jsp"><img src="/vita/assets/image/화상식.jpg" alt="Image 3"></a>
-                                    <a href="/vita/views/selectContents/therapy4.jsp"><img src="/vita/assets/image/호모시스틴뇨증식.jpg" alt="Image 4"></a>
+                                    <a href="<%= contextPath %>/therapy3.do"><img src="/vita/assets/image/화상식.jpg" alt="Image 3"></a>
+                                    <a href="<%= contextPath %>/therapy4.do"><img src="/vita/assets/image/호모시스틴뇨증식.jpg" alt="Image 4"></a>
                                     <div class="carousel-caption" style="display: flex; margin-top: -20px;">
-                                        <div class="container"><a href="/vita/views/selectContents/therapy3.jsp"><b style="color: black;">화상식</b></a></div>
-                                        <div class="container"><a href="/vita/views/selectContents/therapy4.jsp"><b style="color: black;">호모시스틴뇨증식</b></a></div>
+                                        <div class="container"><a href="<%= contextPath %>/therapy3.do"><b style="color: black;">화상식</b></a></div>
+                                        <div class="container"><a href="<%= contextPath %>/therapy4.do"><b style="color: black;">호모시스틴뇨증식</b></a></div>
                                         <br><br>
                                     </div>
                                 </div>
@@ -403,7 +403,7 @@
         <br><br>
         <div class="container" style="width: 1300px; height: 200px; display: flex; padding-top: 25px;">
             <div class="container" style="border-radius: 15px; width: 500px; height: 150px;">
-                <a href="/vita/views/selectContents/greetings.jsp">
+                <a href="<%= contextPath %>/greetings.do">
                 	<video width="500" height="150" autoplay muted loop style="border-radius: 15px; width: 500px; height: 150px; margin-left: -15px; object-fit: cover;">
 									  <source src="/vita/assets/image/병원장인사말.mp4" type="video/mp4">
 									</video>
@@ -411,7 +411,7 @@
             </div>
             
             <div class="container" style="border-radius: 15px; width: 500px; height: 150px;">
-                <a href="/vita/views/selectContents/hospitalInfo.jsp">
+                <a href="<%= contextPath %>/hospitalInfo.do">
                 	<video width="500" height="150" autoplay muted loop style="border-radius: 15px; width: 500px; height: 150px; margin-left: -15px; object-fit: cover;">
 									  <source src="/vita/assets/image/병원안내.mp4" type="video/mp4">
 									</video>
@@ -458,13 +458,13 @@
         </style>
         <div class="container" style="width: 1000px; height: 200px;">
             <div class="autoplay" style="height: 200px;">
-                <div style="height: 140px;"><a href="/vita/views/selectContents/healthTV1.jsp"><img src="/vita/assets/image/건강아이콘.jpg" alt="Image 1" id="slideImg2"></a></div>
+                <div style="height: 140px;"><a href="<%= contextPath %>/healthTV1.do"><img src="/vita/assets/image/건강아이콘.jpg" alt="Image 1" id="slideImg2"></a></div>
                 <div style="height: 140px;"><a href="/vita/views/cs/csDetailNoSideBar.jsp"><img src="/vita/assets/image/고객의소리아이콘.jpg" alt="Image 2" id="slideImg2"></a></div>
-                <div style="height: 140px;"><a href="/vita/views/selectContents/hospitalInfo.jsp"><img src="/vita/assets/image/병원안내아이콘.jpg" alt="Image 3" id="slideImg2"></a></div>
-                <div style="height: 140px;"><a href="/vita/views/selectContents/service.jsp"><img src="/vita/assets/image/봉사아이콘.jpg" alt="Image 4" id="slideImg2"></a></div>
-                <div style="height: 140px;"><a href="/vita/views/selectContents/directions.jsp"><img src="/vita/assets/image/오시는길아이콘.jpg" alt="Image 5" id="slideImg2"></a></div>
-                <div style="height: 140px;"><a href="/vita/views/selectContents/parkingInfo.jsp"><img src="/vita/assets/image/주차안내아이콘.jpg" alt="Image 6" id="slideImg2"></a></div>
-                <div style="height: 140px;"><a href="/vita/views/selectContents/sponsorship.jsp"><img src="/vita/assets/image/후원아이콘.jpg" alt="Image 8" id="slideImg2"></a></div>
+                <div style="height: 140px;"><a href="<%= contextPath %>/hospitalInfo.do"><img src="/vita/assets/image/병원안내아이콘.jpg" alt="Image 3" id="slideImg2"></a></div>
+                <div style="height: 140px;"><a href="<%= contextPath %>/service.do"><img src="/vita/assets/image/봉사아이콘.jpg" alt="Image 4" id="slideImg2"></a></div>
+                <div style="height: 140px;"><a href="<%= contextPath %>/directions.do"><img src="/vita/assets/image/오시는길아이콘.jpg" alt="Image 5" id="slideImg2"></a></div>
+                <div style="height: 140px;"><a href="<%= contextPath %>/parkingInfo.do"><img src="/vita/assets/image/주차안내아이콘.jpg" alt="Image 6" id="slideImg2"></a></div>
+                <div style="height: 140px;"><a href="<%= contextPath %>/sponsorship.do"><img src="/vita/assets/image/후원아이콘.jpg" alt="Image 8" id="slideImg2"></a></div>
             </div>
         
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
