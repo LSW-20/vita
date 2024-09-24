@@ -134,5 +134,23 @@ WHERE C.USER_NO = ?
 				
 
 	</entry>
+	
+	<entry key="NormalMember">
+	
+	
+	SELECT 
+      USER_ID
+    , USER_NAME
+    , USER_SSN
+    , PHONE
+    , EMAIL
+  FROM 
+      MEMBER
+ WHERE
+        USER_NAME = ?
+  AND   USER_SSN =  ?
+  AND   PHONE = ?
+	
+	</entry>
 
 </properties>

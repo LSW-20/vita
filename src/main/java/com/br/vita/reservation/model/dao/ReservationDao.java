@@ -262,6 +262,55 @@ public class ReservationDao {
 		
 		return list;
 	}
+
+	public Member NormalMember(Connection conn, String userId, String userName, String userSSN, String phone,
+			String email) {
+		
+		   Member m = null;
+	       PreparedStatement pstmt = null;
+	       ResultSet rset = null;
+
+	       String sql = prop.getProperty("NormalMember");
+	       // SELECT USER_ID, USER_NAME, USER_SSN, PHONE, EMAIL
+	       // FROM MEMBER WHERE USER_NAME = ? AND USER_SSN =  ? AND PHONE = ?
+	   	
+	       if( !email.equals("@") ) {
+	    	   sql += "AND EMAIL = ?";
+	       }
+	       
+	       
+	       
+	           try {
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setString(1, userName);
+	         pstmt.setString(2, userSSN);
+	         pstmt.setString(3, phone);
+	         
+	         if( !email.equals("@") ) {
+	        	 pstmt.setString(5, email);
+	         }
+	         
+	         rset = pstmt.executeQuery();
+	         
+	            if (rset.next()) {
+	                   m = new Member (rset.getString("USER_ID")
+	                              ,   rset.getString("USER_NAME")
+	                              ,   rset.getString("USER_SSN")
+	                              ,   rset.getString("PHONE")
+	                              ,   rset.getString("EMAIL"));   
+	                   
+	               }
+	            
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	           
+	        return m;
+	        
+	}
 	
    
    

@@ -5,6 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const email2Input = document.getElementById("email2");
+        const email3Select = document.getElementById("email3");
+
+        email3Select.addEventListener("change", function() {
+            if (email3Select.value !== "선택") {
+                email2Input.value = email3Select.value.split(" ")[0]; // 선택된 이메일 도메인을 email2에 설정
+            } else {
+                email2Input.value = ""; // 선택이 "선택"일 경우 email2 비우기
+            }
+        });
+    });
+</script>
+
 </head>
 <body>
 
@@ -79,6 +95,8 @@
     
 
    </style>
+   
+    <form action= "<%= contextPath %>/Healthnormal.rv"  method="post">
   <section>
 
     <h2 id="pad"><b>검진예약</b></h2>
@@ -117,15 +135,15 @@
              
          <tr>
            <td id="color" style="width:500px; height: 70px;"><h4 style="margin:auto"><sup style="color:rgb(255, 165, 0)">*</sup> 검진자(성명)</h4></td>
-           <td> <input type="text" class="form-control" id="name" style="width:1070px; height:50px; margin-left:30px"></td>
+           <td> <input type="text" class="form-control" id="name" name="userName" style="width:1070px; height:50px; margin-left:30px" required></td>
           
          </tr>
           <tr>
            <td id="color" style="height: 70px;"><h4 style="margin:auto"><sup style="color:rgb(255, 165, 0)">*</sup> 주민등록번호(외국인등록번호)</h4></td>
            <td class="d-flex"  style="height: 70px; border-color: rgb(255, 255, 255);"> 
-            <input type="text" class="form-control" id="num" style="width:500px; height:50px; margin-left:30px">
+            <input type="text" class="form-control" id="userSSN1" name="userSSN1" maxlength="6" style="width:500px; height:50px; margin-left:30px" required>
             <h3 style="margin-left:27px; margin-top: 7px;">-</h3>
-            <input type="text" class="form-control" id="num" style="width:500px; height:50px; margin-left:30px">
+            <input type="text" class="form-control" id="userSSN2" name="userSSN2" maxlength="7" style="width:500px; height:50px; margin-left:30px" required>
           </td>
            
          </tr>
@@ -134,7 +152,7 @@
             <td>
             
                 <div class="d-flex" style=" height: 53px;margin-left: 30px; " >
-                    <select class="btn btn-outline-light border-2 text-dark dropdown-toggle dropdown-toggle-split" id="phone_no1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:329px; height: 43px; margin-top:6px; border-color: rgba(85, 83, 83, 0.253);">
+                    <select class="btn btn-outline-light border-2 text-dark dropdown-toggle dropdown-toggle-split" id="phone_no1" name="phone1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:329px; height: 43px; margin-top:6px; border-color: rgba(85, 83, 83, 0.253);" required>
                       <option selected>010</option>
                       <option>011</option>
                       <option>016</option>
@@ -146,13 +164,13 @@
                     <div><h3 style="margin-left:15px; margin-top:6px">-</h3></div>
       
                     <div class="form-group" style="margin-left:15px; margin-top:6px; margin-bottom: 6px; width:329px">
-                      <input type="text" class="form-control" id="phone_no2" style="height: 43px;">
+                      <input type="text" class="form-control" id="phone_no2" name="phone2" style="height: 43px;" required>
                     </div>
       
                     <div><h3 style="margin-left:15px; margin-top:6px">-</h3></div>
       
                     <div class="form-group" style="margin-left:15px; margin-top:6px; width:329px; border-color: aliceblue;">
-                      <input type="text" class="form-control" id="phone_no3" style="height: 43px;">
+                      <input type="text" class="form-control" id="phone_no3" name="phone3"style="height: 43px;" required>
                     </div>
                     
 
@@ -170,17 +188,17 @@
                     
                     
                     <div class="form-group" style=" margin-top:6px; margin-bottom: 6px; width:329px">
-                      <input type="text" class="form-control" id="phone_no2" style="height: 43px;">
+                      <input type="text" class="form-control" id="email1" name="email1" style="height: 43px;">
                     </div>
 
                     <div><h6 style="margin-left:13px; margin-top:18px">@</h6></div>
       
                     <div class="form-group" style="margin-left:13px; margin-top:6px; width:329px; border-color: aliceblue;">
-                      <input type="text" class="form-control" id="phone_no3" style="height: 43px;">
+                      <input type="text" class="form-control" id="email2" name="email2" style="height: 43px;" readonly>
                     </div>
                     
                     
-                        <select class="btn btn-outline-light border-2 text-dark dropdown-toggle dropdown-toggle-split" id="phone_no1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:329px; height: 43px; margin-left:40px; margin-top:6px; border-color: rgba(85, 83, 83, 0.253);">
+                        <select class="btn btn-outline-light border-2 text-dark dropdown-toggle dropdown-toggle-split" id="email3"  name="email3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:329px; height: 43px; margin-left:40px; margin-top:6px; border-color: rgba(85, 83, 83, 0.253);">
                           <option selected>선택</option>
                           <option>naver.com (네이버)</option>
                           <option>nate.com (네이트)</option>
@@ -211,9 +229,9 @@
     </div>
 
     <br><br>
-    <form action= "/server/test.do">
-      <filedset>
-          <input type="radio" id="check" name="check" value="T" style="margin-left: 1460px; cursor: pointer;">
+ 
+      <fieldset>
+          <input type="radio" id="checkAgree" name="check" value="T" style="margin-left: 1460px; cursor: pointer;">
           <label for="checkO">&nbsp;동의합니다.</label>
           <input type="radio" id="non_check" name="check" value="F" style="margin-left: 70px; cursor: pointer;">
           <label for="checkX">&nbsp;동의하지 않습니다. </label>
@@ -232,29 +250,44 @@
       </div>
 
       <br><br>
-      <form action= "/server/test.do">
-        <filedset>
-            <input type="radio" id="check" name="check1" value="T" style="margin-left: 1460px; cursor: pointer;" >
+  
+        <fieldset>
+            <input type="radio" id="checkAgree1" name="check1" value="T" style="margin-left: 1460px; cursor: pointer;" >
             <label for="checkO">&nbsp;동의합니다.</label>
             <input type="radio" id="non_check" name="check1" value="F" style="margin-left: 70px; cursor: pointer;" >
             <label for="checkX">&nbsp;동의하지 않습니다. </label>
-        </filedset>
+        </fieldset>
 
-       </form>
-      
 
         <br><br> <br><br> <br><br>
 
+
+          <div align="center" style="position: relative;">
+						    <button type="submit" class="btn border-1 border-dark" id="submitButton" onclick="return validateAndProceed();" style="width:150px; position: absolute; left: 41%; top: 0; z-index: 2;  background-color: rgb(31, 43, 108); color: rgb(245, 245, 245);">다음</button>
+						    <a href="/vita/views/reservation/healthCheckUp_2.jsp" class="btn border-1 border-dark" id="btn-color" style="width:150px; position: absolute; left: 41%; top: 0; z-index: 1; display:none;">다음</a>
+						    <a href="/vita/views/reservation/healthCheckUp_AfterLogin.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:180px;">이전</a>
+						</div>
         
-        <div align="center">
-          <a href="/vita/views/reservation/healthCheckUp_2.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;">다음</a>
-          <a href="/vita/views/reservation/healthCheckUp_AfterLogin.jsp" class="btn btns-light border-2 border-dark"  style="width: 150px; margin-left:30px;">이전</a>
-        </div>
+						<script>
+					
+						    function validateAndProceed() {
+							    		const isChecked1 = document.getElementById('checkAgree').checked; // 첫 번째 동의 라디오 버튼
+							        const isChecked2 = document.getElementById('checkAgree1').checked; // 두 번째 동의 라디오 버튼
+
+			
+						    	    if (!isChecked1 || !isChecked2) {
+						    	        alert("모든 동의 항목을 체크해주세요.");
+						    	        return false; // 폼 제출 방지
+						    	    }
+						        
+						   
+						    }
+						</script>
 
         <br><br> <br><br> <br><br> 
 
   </section>
-
+</form>
 
 
 

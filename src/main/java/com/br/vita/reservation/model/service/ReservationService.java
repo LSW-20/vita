@@ -103,7 +103,18 @@ public class ReservationService {
 		return result;
 	}
 
+	public Member NormalMember(String userId, String userName, String userSSN, String phone, String email) {
+		
+		Connection conn = getConnection();
+		Member normal = rdao.NormalMember(conn,  userId, userName, userSSN, phone, email);
+		close(conn);
+		
+		return normal;
+		
+	}
 
+	
+	
 	
 	
 	
