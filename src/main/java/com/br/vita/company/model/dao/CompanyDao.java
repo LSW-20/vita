@@ -31,6 +31,12 @@ public class CompanyDao {
 	}
 	
 	
+	/**
+	 * 모든 연계기업 목록 조회
+	 * author : 임상우
+	 * @param conn
+	 * @return List<Company>
+	 */
 	public List<Company> companySelect(Connection conn) {
 		
 		List<Company> list = new ArrayList<>();
@@ -59,5 +65,74 @@ public class CompanyDao {
 		
 		return list;
 	}
+	
+	
+	/**
+	 * 연계기업 추가
+	 * author : 임상우
+	 * @param conn
+	 * @param compNo
+	 * @param compName
+	 * @param adminNo
+	 * @return 추가된 행 수
+	 */
+	public int companyInsert(Connection conn, String compNo, String compName, String adminNo) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("companyInsert");
+
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, compNo);
+			pstmt.setString(2, compName);
+			pstmt.setString(3, adminNo);
+			
+			System.out.println(sql);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+	
+	
+	public int companyUpdate(Connection conn, String compNo, String compName, String originCompNo, String adminNo) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("companyUpdate");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, compNo);
+			pstmt.setString(2, compName);
+			pstmt.setString(3, adminNo);
+			pstmt.setString(4, originCompNo);
+			
+			System.out.println(sql);
+			result = pstmt.executeUpdate();
+			System.out.println(result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
 	
 }

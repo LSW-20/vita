@@ -177,38 +177,90 @@ footer {
 
             <br><br><br>
 
-            <form action="#" method="">
-                <div id="company_list">전체 연계기업 목록</div>
-                <br>
+            <div style="display: flex; align-items: center;">
+                <!-- 추가는 modal, 삭제는 form + 이벤트리스너, 수정은 이벤트리스너 -->
+                <form action="#" method="">
+                    <div id="company_list">전체 연계기업 목록</div>
+                    <br>
 
-                <table id="company_list_table">
-                    <tr>
-                        <th class="company_cell1"></th>
-                        <th class="company_cell2">기업번호</th>
-                        <th class="company_cell3">기업명</th>
-                        <th class="company_cell4"></th>
-                    </tr>
+                    <table id="company_list_table">
+                        <tr>
+                            <th class="company_cell1"></th>
+                            <th class="company_cell2">기업번호</th>
+                            <th class="company_cell3">기업명</th>
+                            <th class="company_cell4"></th>
+                        </tr>
 
-                    <% if(!list.isEmpty()) {
-                            for(int i=0; i<list.size(); i++) { %>
-                                <tr>
-                                    <td class="company_cell1"><input type="checkbox" name="delete"></td>
-                                    <td class="company_cell2"><%= list.get(i).getCompNo() %></td>
-                                    <td class="company_cell3"><%= list.get(i).getCompName() %></td>
-                                    <td class="company_cell4"><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_company_modal">수정</button></td>
-                                </tr>
-                         <% }    
-                       } %>
-                </table>
+                        <% if(!list.isEmpty()) {
+                                for(int i=0; i<list.size(); i++) { %>
+                                    <tr>
+                                        <td class="company_cell1"><input type="checkbox" name="delete"></td>
+                                        <td class="company_cell2"><%= list.get(i).getCompNo() %></td>
+                                        <td class="company_cell3"><%= list.get(i).getCompName() %></td>
+                                        <td class="company_cell4">
+                                            <button type="button" class="btn btn-sm btn-primary up_btn"
+                                                data-compno="<%= list.get(i).getCompNo() %>" data-compname="<%= list.get(i).getCompName() %>">수정</button>
+                                        </td>
+                                    </tr>
+                            <% }    
+                        } %>
+                    </table>
 
 
-                <div class="company_del_add_btn">
-                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_company_modal">삭제</button>
-                    <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_company_modal">추가</button>
-                </div>
+                    <div class="company_del_add_btn">
+                        <button type="submit" class="btn btn-sm btn-danger" id="company_del_btn">삭제</button>
+                        <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_company_modal">추가</button>
+                    </div>
 
-            </form>
+                </form>
 
+                <form action="<%= contextPath %>/updateCOM.admin" method="post">
+                    <input type="hidden" name="orgin_comp_no" id="origin_comp_no">
+                    <table style="margin-left: 100px; text-align: center; height: 50%; display:none;" id="up">
+                            <tr>
+                                <th colspan="2" style="height: 50px;">기업 정보 수정 화면</th>
+                            </tr>
+                            <tr>
+                                <th  style="width: 90px; height: 50px;">기업번호</th>
+                                <td><input type="text" class="form-control" id="up_input1" name="comp_no"></td>     
+                            </tr>
+                            <tr>
+                                <th  style="width: 90px; height: 50px;">기업명</th>
+                                <td><input type="text" class="form-control" id="up_input2" name="comp_name"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="height: 40px;">
+                                    <button type="submit" class="btn btn-sm btn-primary">수정</button>
+                                </td> 
+                            </tr>
+                    </table>
+                </form>
+
+                <style>
+                    #up td, #up th{
+                        border: 1px solid black;
+                    }
+                </style>
+
+                <script>
+                    $(document).ready(function() {
+
+                        $(".up_btn").click(function() {
+      
+                            var compNo = $(this).data("compno");
+                            var compName = $(this).data("compname");
+
+                            $("#up").toggle();
+
+                            $("#up_input1").val(compNo);
+                            $("#origin_comp_no").val(compNo);
+                            $("#up_input2").val(compName);
+                        });
+
+                    });
+                </script>
+
+            </div>
 
             <br><br><br><br>
             <div id="search_company">기업 검색</div>
@@ -246,7 +298,7 @@ footer {
                 그래서 text-align: center;를 사용하면 버튼과 같은 인라인 요소도 부모 컨테이너 안에서 가운데로 정렬됩니다.
                 중요한건 버튼의 상위 요소에 text-align: center를 줘야 함. -->
            
-            </form>
+            
 
 
             <%-- 조건처리하는법. 검색 이전상태랑 검색했는데 결과가 없는경우를 구분하기 위해 flag 변수 사용한다.
@@ -417,33 +469,18 @@ footer {
 
 
     <!-- 연계기업 목록 수정용 modal start -->
-
-            <!-- The Modal -->
-            <div class="modal" id="update_company_modal">
-                <div class="modal-dialog">
-                <div class="modal-content">
-            
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">연계기업 수정</h4>
-                    </div>
-            
-                    <!-- Modal body -->
-                    <div class="modal-body">
                         <form action="#" method="">
                             <div style="display: flex; justify-content: center;">
                                 <table class="add_update_modal_table">
                                     <tr>
                                         <th><span class="star">*</span> 기업번호</th>
-                                        <td><input type="number" class="form-control" placeholder="" name="" value="271" required></td>
+                                        <td><input type="number" class="form-control" name="" value="271" required></td>
                                     </tr>
 
                                     <tr>
                                         <th><span class="star">*</span> 기업명</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="롯데리아" required></td>
+                                        <td><input type="text" class="form-control" name="" value="롯데리아" required></td>
                                     </tr>
-
-
                                 </table>
                             </div>
 
@@ -453,14 +490,9 @@ footer {
                                 <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">취소</button>
                             </div>
                         </form>
-                    </div>
-            
-                </div>
-                </div>
-            </div>
-
-
     <!-- 연계기업 목록 수정용 modal end -->
+
+
 
 
 
