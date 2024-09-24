@@ -54,7 +54,15 @@ SELECT COUNT(*) AS COUNT -- count 0 일때 insert
 
 </entry>
 
-
+<!--진료기록 select-->
+<entry key="selectMrecords">
+	SELECT 
+	       TREATMENT_DATE
+	     , DIAGNOSIS_NAME 
+	  FROM MRECORDS
+	 WHERE USER_NO = ?
+	   AND TREATMENT_DATE BETWEEN ? AND ?
+</entry>
 
 
 </properties>

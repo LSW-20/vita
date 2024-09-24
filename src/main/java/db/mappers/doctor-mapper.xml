@@ -302,6 +302,35 @@ SELECT M.USER_NO AS USER_NO
  AND DOC_TYPE = ?
 	
 </entry>
+
+
+
+<entry key="selectDocumentListCount">
+
+SELECT COUNT(*) AS COUNT
+  FROM DOCUMENT D
+  JOIN MRECORDS MR ON MR.CARE_NO = D.CARE_NO
+  JOIN MEMBER M ON MR.USER_NO = M.USER_NO
+ WHERE DOCTOR_NO = ?
+ AND DOC_CHECK = 'R'
+ AND DOC_TYPE = '진단서'
+
+</entry>
+
+<entry key="">
+SELECT COUNT(*) AS COUNT
+  FROM DOCUMENT D
+  JOIN MRECORDS MR ON MR.CARE_NO = D.CARE_NO
+  JOIN MEMBER M ON MR.USER_NO = M.USER_NO
+ WHERE DOCTOR_NO = ?
+ AND DOC_CHECK = 'R'
+ AND DOC_TYPE = '진료확인서'
+
+</entry>
+
+
+
+
 	
 	
 </properties>

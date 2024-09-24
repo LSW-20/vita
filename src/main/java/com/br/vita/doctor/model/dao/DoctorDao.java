@@ -736,6 +736,43 @@ public class DoctorDao {
 		
 		
 	}
+
+	public int selectDocumentListCount(Connection conn, String docNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+		
+		String sql = prop.getProperty("selectDocumentListCount");
+		
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, docNo);
+			
+			rset=pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				listCount = rset.getInt("COUNT");
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+		
+		
+		
+		
+	}
 	
 	
 	

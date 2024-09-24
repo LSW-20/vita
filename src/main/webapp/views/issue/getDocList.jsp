@@ -57,7 +57,7 @@ section{
           <td>미사용</td>
           <td>
             <!-- <button type="button" class="get_doc_btn btn-sm">발급받기</button> -->
-            <a href="/vita/views/issue/getDocDetail.jsp" class="get_doc_btn btn-sm">발급받기</a>
+            <a href="<%= contextPath %>/detail.cr?docType=진료비납입확인서" class="get_doc_btn btn-sm">발급받기</a>
           </td>
         </tr>
         <tr>
@@ -65,7 +65,7 @@ section{
           <td>2000원</td>
           <td>사용</td>
           <td>
-            <a href="/vita/views/issue/getDocDetail.jsp" class="get_doc_btn btn-sm">발급받기</a>
+            <a href="<%= contextPath %>/detail.cr?docType=입퇴원사실확인서" class="get_doc_btn btn-sm">발급받기</a>
           </td>
         </tr>
         <tr>
@@ -74,7 +74,7 @@ section{
           <td>사용</td>
           <td>
             <!-- <button type="button" class="get_doc_btn btn-sm">발급받기</button> -->
-            <a href="/vita/views/issue/getDocDetail.jsp" class="get_doc_btn btn-sm">발급받기</a>
+            <a href="<%= contextPath %>/detail.cr?docType=진료비계산서영수증" class="get_doc_btn btn-sm">발급받기</a>
           </td>
         </tr>
         <tr>
@@ -82,7 +82,7 @@ section{
           <td>2000원</td>
           <td>사용</td>
           <td>
-            <a href="/vita/views/issue/getDocDetail.jsp" class="get_doc_btn btn-sm">발급받기</a>
+            <a href="<%= contextPath %>/detail.cr?docType=처방전사본" class="get_doc_btn btn-sm">발급받기</a>
           </td>
         </tr>      
         <tr>

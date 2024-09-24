@@ -51,7 +51,7 @@ public class EmployeeSelect extends HttpServlet {
 		System.out.println("db로부터 조회된 리스트 : " + empList);
 		
 		
-		// (+) "관리자 건강검진 연계기업 관리 페이지"에서 항상 기업 select 결과를 list로 필요로 한다.
+		// (+) "관리자 건강검진 연계기업 관리 페이지"에서 전체 기업 목록 select 결과를 list로 필요로 한다.
 		List<Company> list = new CompanyService().companySelect();
 
 		
@@ -71,7 +71,7 @@ public class EmployeeSelect extends HttpServlet {
 		}
 		
 		
-		// "관리자 건강검진 연계기업 관리 페이지" 자체가 select 기능이 있다. 고로 company에서 list도 가져와줘야 한다. 
+		// (+) "관리자 건강검진 연계기업 관리 페이지" 자체가 select 기능이 있다. 고로 전체 기업 목록 select 결과를 list로 가져다 줘야 한다.
 		request.setAttribute("list", list);
 		
 		request.getRequestDispatcher("/views/admin/manageCompany.jsp").forward(request, response);

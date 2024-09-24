@@ -182,15 +182,21 @@
 	  
 	 	 <!-- 페이징바 -->
 		 <ul class="pagination d-flex justify-content-center text-dark" id="paging_bar">
+		 
 		   <li class='page-item <%=pi.getCurrentPage() == 1 ? "disabled" : ""%>'>
 		   	<a class="page-link" href="<%= contextPath %>/list.cs?page=<%=pi.getCurrentPage()-1%>">이전</a>
 		   </li>
+		   
 		   <% for(int p = pi.getStartPage(); p<= pi.getEndPage(); p++) {%>
 		   	<li class='page-item <%=p == pi.getCurrentPage() ? "active" : ""%>'>
 		   		<a class="page-link" href="<%= contextPath %>/list.cs?page=<%=p%>&category=<%=category%>"><%= p %></a></li>
 		   	<%} %>
+		   	
+		   	
         <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
-         <a class="page-link" href='<%= contextPath %>/list.cs?page=<%=pi.getCurrentPage()+1 %>&category=<%=category%>'>다음</a>		   	
+         <a class="page-link" href='<%= contextPath %>/list.cs?page=<%=pi.getCurrentPage()+1 %>&category=<%=category%>'>다음</a></li>	
+         
+         	   	
 		 </ul>
 
 	 </div>

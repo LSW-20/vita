@@ -36,7 +36,13 @@ public class EmployeeDao {
 	}
 	
 	
-	
+	/**
+	 * 기업의 사원 검색
+	 * author : 임상우
+	 * @param conn
+	 * @param selectCom
+	 * @return 조회된 값들
+	 */
 	public List<Map<String, Object>> selectEmployee(Connection conn, String selectCom) {
 		
 		List<Map<String, Object>> empList = new ArrayList<Map<String,Object>>();
@@ -89,6 +95,36 @@ public class EmployeeDao {
 		}
 		
 		return empList;
+	}
+
+
+	public int insertEmployee(Connection conn, String compNo, String empName, String empSSN, String empNo) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertEmployee");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, empSSN);
+			pstmt.setString(2, empName);
+			pstmt.setString(3, compNo);
+			pstmt.setString(4, empNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		
+		return result;
 	}
 	
 	
