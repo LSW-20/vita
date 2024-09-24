@@ -52,6 +52,14 @@ public class ReservationService {
 		
 	}
 
+	public boolean SelectConsultation(String userNo) {
+		
+		Connection conn = getConnection();
+		boolean hasAppointment = rdao.SelectConsultation(conn,  userNo);
+		
+		close(conn);
+		return hasAppointment;
+	}
 
 
 	

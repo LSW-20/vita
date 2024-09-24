@@ -38,7 +38,8 @@ public class ReservationPersonalController extends HttpServlet {
 	        
 		HttpSession session = request.getSession();
 		String userId = ((Member)session.getAttribute("loginUser")).getUserId();
-			
+		
+        
 		Member SSNBackNum = new ReservationService().SSNBackNum(userId, userSSN);
 			
 		if (SSNBackNum == null) {
