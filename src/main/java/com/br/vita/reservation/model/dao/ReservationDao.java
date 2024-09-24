@@ -113,7 +113,7 @@ public class ReservationDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("insertCareApp");
+		String sql = prop.getProperty("InsertCareApp");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -174,13 +174,37 @@ public class ReservationDao {
 		return list;
 	}
    
-	public void ConsultationSelect() {
+	public boolean SelectConsultation(Connection conn, String userNo) {
 		
+		boolean hasAppointment = false;
+		PreparedStatement pstmt = null;
+	    ResultSet rset = null;
+	    
+	    String sql = prop.getProperty("SelectConsultation");
+	    
+	    try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			
+			 rset = pstmt.executeQuery();
+	         
+			 if (rset.next()) {
+		            hasAppointment = true; 
+		        }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+	
 		
-		
+	    return hasAppointment; 
+	
 		
 	}
-   
+
+	
    
    
 }

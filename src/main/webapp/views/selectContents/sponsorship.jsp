@@ -91,7 +91,7 @@
         </div>
         <script>
           document.getElementById("directionsLink").addEventListener("click", function() {
-              window.location.href = "/vita/views/selectContents/sponsorshipStatus.jsp";
+              window.location.href = "<%= contextPath %>/sponsorshipStatus.do";
           });
         </script>  
     </section>

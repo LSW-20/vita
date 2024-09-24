@@ -109,7 +109,7 @@
         </div>
         <script>
           document.getElementById("therapyList").addEventListener("click", function() {
-              window.location.href = "/vita/views/selectContents/dietTherapy.jsp";
+              window.location.href = "<%= contextPath %>/dietTherapy.do";
           });
         </script>   
     </section>

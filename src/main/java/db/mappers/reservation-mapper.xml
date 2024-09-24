@@ -32,7 +32,7 @@ SELECT
       SUBSTR(USER_SSN,8,13)  = ?
  </entry>
 
-	<entry key="insertCareApp">
+	<entry key="InsertCareApp">
 	
 	INSERT 
 	    INTO CARE_APP
@@ -59,6 +59,20 @@ SELECT
 	       , 'N'
 	       
 	    )	
+	
+	
+	</entry>
+	
+	<entry key="SelectConsultation">
+	
+	SELECT 
+        USER_NO
+      , APPOINTMENT_DATE
+  FROM 
+        CARE_APP
+ WHERE
+        USER_NO = ?
+    AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE)
 	
 	
 	</entry>

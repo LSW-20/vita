@@ -219,7 +219,7 @@
             <div class="top-img" id="topimgDiv1"><a href="<%= contextPath %>"><img id="vpMark" src="/vita/assets/image/vp마크.png"></a></div>
             <div class="top-img" id="topimgDiv2"><img id="vpNum" src="/vita/assets/image/vp전화번호.png"></div>
             <div class="top-img" id="topimgDiv3"><img id="vpWork" src="/vita/assets/image/vp병원영업시간.png"></div>
-            <div class="top-img" id="topimgDiv4"><a href="/vita/views/selectContents/directions.jsp"><img id="vpLoc" src="/vita/assets/image/vp위치.png" style="cursor: pointer;"></a></div>
+            <div class="top-img" id="topimgDiv4"><a href="<%= contextPath %>/directions.do"><img id="vpLoc" src="/vita/assets/image/vp위치.png" style="cursor: pointer;"></a></div>
         </div>
         
         <div id="mainMenu"> 
@@ -258,7 +258,7 @@
         		<a style="text-decoration: none;" href="<%= contextPath %>/schedule.doc?dept=치과">&nbsp;치과</a><br>
         		<a style="text-decoration: none;" href="<%= contextPath %>/schedule.doc?dept=안과">&nbsp;안과</a><br>
         </div> 
-        <div class="sub"><a href="/vita/views/department/department.jsp" style="text-decoration: none;"><br><b>&nbsp;진료과</a></b></div> 
+        <div class="sub"><a href="<%= contextPath %>/department.do" style="text-decoration: none;"><br><b>&nbsp;진료과</b></a></div> 
         <div class="sub"></div>
        
     </div>
@@ -277,9 +277,9 @@
         <div class="sub" style="font-size: 17px;"><br><b>&nbsp;진료예약/안내 ></b></div>
         <div class="sub">
             <b><br>&nbsp;안내</b><br>
-            <a href="/vita/views/selectContents/directions.jsp" style="text-decoration: none;">&nbsp;오시는길</a><br>
-            <a href="/vita/views/selectContents/parkingInfo.jsp" style="text-decoration: none;">&nbsp;주차안내</a><br>
-            <a href="/vita/views/selectContents/floor.jsp" style="text-decoration: none;">&nbsp;층별안내</a>
+            <a href="<%= contextPath %>/directions.do" style="text-decoration: none;">&nbsp;오시는길</a><br>
+            <a href="<%= contextPath %>/parkingInfo.do" style="text-decoration: none;">&nbsp;주차안내</a><br>
+            <a href="<%= contextPath %>/floor.do" style="text-decoration: none;">&nbsp;층별안내</a>
         </div>
         <div class="sub">
             <b><br>&nbsp;외래진료안내</b><br>
@@ -309,9 +309,9 @@
         <div class="sub" style="font-size: 17px;"><br><b>&nbsp;건강정보 ></b></div>
         <div class="sub">
             <b><br>&nbsp;의료정보</b><br>
-            <a href="/vita/views/selectContents/dietTherapy.jsp" style="text-decoration: none;">&nbsp;식사요법</a>
+            <a href="<%= contextPath %>/dietTherapy.do" style="text-decoration: none;">&nbsp;식사요법</a>
         </div>
-        <div class="sub"><a href="/vita/views/selectContents/healthTV1.jsp" style="text-decoration: none;"><b><br>&nbsp;건강TV</b></a></div>
+        <div class="sub"><a href="<%= contextPath %>/healthTV1.do" style="text-decoration: none;"><b><br>&nbsp;건강TV</b></a></div>
         <div class="sub"></div>
     </div>
 </div>
@@ -346,12 +346,12 @@
         <div class="sub" style="font-size: 17px;"><br><b>&nbsp;병원이야기 ></b></div>
         <div class="sub">
             <b><br>&nbsp;후원</b><br>
-            <a href="/vita/views/selectContents/sponsorship.jsp" style="text-decoration: none;">&nbsp;후원</a><br>
-            <a href="/vita/views/selectContents/sponsorshipStatus.jsp" style="text-decoration: none;">&nbsp;후원현황</a>
+            <a href="<%= contextPath %>/sponsorship.do" style="text-decoration: none;">&nbsp;후원</a><br>
+            <a href="<%= contextPath %>/sponsorshipStatus.do" style="text-decoration: none;">&nbsp;후원현황</a>
         </div>
         <div class="sub">
             <b><br>&nbsp;자원봉사</b><br>
-            <a href="/vita/views/selectContents/service.jsp" style="text-decoration: none;">&nbsp;안내</a>
+            <a href="<%= contextPath %>/service.do" style="text-decoration: none;">&nbsp;안내</a>
         </div>
         <div class="sub"></div>
     </div>
@@ -367,8 +367,8 @@
         <div class="sub" style="font-size: 17px;"><br><b>&nbsp;병원소개 ></b></div>
         <div class="sub">
             <b><br>&nbsp;병원소개</b><br>
-            <a href="/vita/views/selectContents/greetings.jsp" style="text-decoration: none;">&nbsp;병원장인사말</a><br>
-            <a href="/vita/views/selectContents/hospitalInfo.jsp" style="text-decoration: none;">&nbsp;병원안내</a>
+            <a href="<%= contextPath %>/greetings.do" style="text-decoration: none;">&nbsp;병원장인사말</a><br>
+            <a href="<%= contextPath %>/hospitalInfo.do" style="text-decoration: none;">&nbsp;병원안내</a>
         </div>
         <div class="sub">
             <b><br>&nbsp;소식</b><br>

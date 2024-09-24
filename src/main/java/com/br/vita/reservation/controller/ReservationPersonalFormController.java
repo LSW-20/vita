@@ -45,6 +45,15 @@ public class ReservationPersonalFormController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		
+		ReservationService reservationService = new ReservationService();
+        boolean hasAppointment = reservationService.SelectConsultation(userNo);
+
+        if (hasAppointment) {
+            request.getSession().setAttribute("alertMsg", "이미 예약이 있습니다. 하루에 한 번만 예약할 수 있습니다.");
+            request.getRequestDispatcher("/views/reservation/consultation_AfterLogin.jsp").forward(request, response);
+            return;
+        }
+        
 		Consultation c = new Consultation(userNo, doctorName, appointmentTime);
 		
 		// 서비스 호출 (쿼리실행)
