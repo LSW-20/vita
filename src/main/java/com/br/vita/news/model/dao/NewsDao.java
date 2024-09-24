@@ -5,14 +5,17 @@ import static com.br.vita.common.template.JDBCTemplate.close;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 import com.br.vita.common.model.vo.PageInfo;
+import com.br.vita.news.model.vo.News;
 import com.br.vita.news.model.vo.News;
 import com.br.vita.news.model.vo.News;
 
@@ -211,33 +214,38 @@ public class NewsDao {
 
 
 	public List<News> selectNewsList(Connection conn) {
-		List<News> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectNewsMainList");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);		
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				list.add(new News(rset.getInt("news_no")
-						, rset.getString("news_title")
-						, rset.getString("news_content")
-						, rset.getDate("regist_date")
-						, rset.getString("user_no")
-						, rset.getInt("news_count")
-						, rset.getString("status")
-						, rset.getString("user_id")));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		return list;
+	    List<News> list = new ArrayList<>();
+	    PreparedStatement pstmt = null;
+	    ResultSet rset = null;
+	    String sql = prop.getProperty("selectNewsMainList");
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+
+	    try {
+	        pstmt = conn.prepareStatement(sql);        
+	        rset = pstmt.executeQuery();
+	        
+	        while(rset.next()) {
+	            Date registDate = rset.getDate("regist_date");
+	            String registDateStr = sdf.format(registDate);
+	            list.add(new News(rset.getInt("news_no"),
+	                                rset.getString("news_title"),
+	                                rset.getString("news_content"),
+	                                registDate,
+	                                registDateStr, // Pass the formatted date string
+	                                rset.getString("user_no"),
+	                                rset.getInt("news_count"),
+	                                rset.getString("status"),
+	                                rset.getString("user_id")));
+	        }
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(rset);
+	        close(pstmt);
+	    }
+	    System.out.println(list);
+	    return list;
 	}
 
 

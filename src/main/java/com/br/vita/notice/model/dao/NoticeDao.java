@@ -5,9 +5,11 @@ import static com.br.vita.common.template.JDBCTemplate.close;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -210,33 +212,38 @@ public class NoticeDao {
 
 
 	public List<Notice> selectNoticeList(Connection conn) {
-		List<Notice> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectNoticeMainList");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);		
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				list.add(new Notice(rset.getInt("notice_no")
-						, rset.getString("notice_title")
-						, rset.getString("notice_content")
-						, rset.getDate("regist_date")
-						, rset.getString("user_no")
-						, rset.getInt("notice_count")
-						, rset.getString("status")
-						, rset.getString("user_id")));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		return list;
+	    List<Notice> list = new ArrayList<>();
+	    PreparedStatement pstmt = null;
+	    ResultSet rset = null;
+	    String sql = prop.getProperty("selectNoticeMainList");
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+
+	    try {
+	        pstmt = conn.prepareStatement(sql);        
+	        rset = pstmt.executeQuery();
+	        
+	        while(rset.next()) {
+	            Date registDate = rset.getDate("regist_date");
+	            String registDateStr = sdf.format(registDate);
+	            list.add(new Notice(rset.getInt("notice_no"),
+	                                rset.getString("notice_title"),
+	                                rset.getString("notice_content"),
+	                                registDate,
+	                                registDateStr, // Pass the formatted date string
+	                                rset.getString("user_no"),
+	                                rset.getInt("notice_count"),
+	                                rset.getString("status"),
+	                                rset.getString("user_id")));
+	        }
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(rset);
+	        close(pstmt);
+	    }
+	    System.out.println(list);
+	    return list;
 	}
 
 

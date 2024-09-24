@@ -13,6 +13,7 @@ public class News {
 	private String status;
 	
 	private String userId;
+	private String registDateStr;
 	
 	public News() {}
 	
@@ -23,7 +24,17 @@ public class News {
 		this.newsNo = newsNo;
 	}
 
-	
+	public News(int newsNo, String newsTitle, String newsContent, Date registDate, String registDateStr, String userNo, int newsCount, String status, String userId) {
+        this.newsNo = newsNo;
+        this.newsTitle = newsTitle;
+        this.newsContent = newsContent;
+        this.registDate = registDate;
+        this.registDateStr = registDateStr; // Initialize new field
+        this.userNo = userNo;
+        this.newsCount = newsCount;
+        this.status = status;
+        this.userId = userId;
+    }
 	
 
 	public News(int newsNo, String newsTitle, String newsContent, Date registDate, String userNo, int newsCount, String status,
