@@ -1,5 +1,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.br.vita.company.model.vo.Company" %>
+<%@ page import="com.br.vita.employee.model.vo.Employee" %>
+<%@ page import="com.br.vita.member.model.vo.Member" %>
+
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,6 +10,10 @@
 <%
 List<Company> list = (List<Company>)request.getAttribute("list");
 %>
+
+
+<% Boolean threeType = (Boolean) request.getAttribute("threeType"); %>
+<% List<Map<String, Object>> empList = (List<Map<String, Object>>) request.getAttribute("empList"); %>
 
 
 <!DOCTYPE html>
@@ -191,7 +198,7 @@ footer {
                             <th class="company_cell4"></th>
                         </tr>
 
-                        <% if(!list.isEmpty()) {
+                        <% if(list != null && !list.isEmpty()) {
                                 for(int i=0; i<list.size(); i++) { %>
                                     <tr>
                                         <td class="company_cell1"><input type="checkbox" name="del_com_list" value="<%= list.get(i).getCompNo() %>"></td>
@@ -336,9 +343,11 @@ footer {
                             <select name="select_com" style="width: 200px;">
                                 <option>전체</option> 
 
+                              <% if(list != null) { %>  
                                 <% for(int i=0; i<list.size(); i++) { %>
                                     <option><%= list.get(i).getCompName() %></option>
                                 <% } %>        
+                              <% } %>  
                             </select>
                             <%-- option에 value 안주면 텍스트가 value로 넘어간다.--%>
 
@@ -363,7 +372,7 @@ footer {
 
             <%-- 조건처리하는법. 검색 이전상태랑 검색했는데 결과가 없는 경우를 구분하기 위해 flag 변수를 사용한다. --%>
 
-            <% Boolean threeType = (Boolean) request.getAttribute("searchPerformed"); %>
+            <%-- Boolean threeType = (Boolean) request.getAttribute("threeType"); --%>
 
             <%-- 
                 (1) 처음 기업관리 페이지를 오는 경우. threeType은 null이다.
@@ -437,6 +446,8 @@ footer {
 
             <% } else if(threeType == true) { %>
                 
+                <%-- List<Map<String, Object>> empList = (List<Map<String, Object>>) request.getAttribute("empList") --%>
+
                 <!-- case3. 기업의 사원 검색 결과가 있는 경우 -->
                 <br><br>
                 <div class="search_company_result">기업 검색 결과</div> <br>
@@ -454,16 +465,27 @@ footer {
                         <th></th>
                     </tr>
 
-                    <tr>
-                        <td><input type="checkbox" name="delete"></td>
-                        <td>271</td>
-                        <td>롯데리아</td>
-                        <td>465432</td>
-                        <td>박첨지</td>
-                        <td>046</td>
-                        <td>kiosk223</td>
-                        <td><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_company_result_modal">수정</button></td>
-                    </tr>
+                    <%  if(empList != null) {
+                            for(int i=0; i<empList.size(); i++) { 
+                            
+                            Company c = (Company)empList.get(i).get("com"); 
+                            Employee e = (Employee)empList.get(i).get("emp"); 
+                            Member m = (Member)empList.get(i).get("mem"); 
+                    %> 
+
+                            <tr>
+                                <td><input type="checkbox" name="delete"></td>
+                                <td><%= c.getCompNo() %></td>
+                                <td><%= c.getCompName() %></td>
+                                <td><%= e.getEmpNo() %></td>
+                                <td><%= e.getEmpName() %></td>
+                                <td><%= (m.getUserNo() != null) ? m.getUserNo() : "미가입" %></td>
+                                <td><%= (m.getUserId() != null) ? m.getUserId() : "미가입" %></td>
+                                <td><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_company_result_modal">수정</button></td>
+                            </tr>
+                            <% } %>
+                    <% } %>
+
 
                 </table>
 

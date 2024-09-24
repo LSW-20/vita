@@ -44,7 +44,7 @@ public class CompanyDao {
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("companySelect");
-		System.out.println(sql);
+		//System.out.println(sql);
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -91,7 +91,7 @@ public class CompanyDao {
 			pstmt.setString(2, compName);
 			pstmt.setString(3, adminNo);
 			
-			System.out.println(sql);
+			//System.out.println(sql);
 			
 			result = pstmt.executeUpdate();
 			
@@ -131,9 +131,9 @@ public class CompanyDao {
 			pstmt.setString(3, adminNo);
 			pstmt.setString(4, originCompNo);
 			
-			System.out.println(sql);
+			//System.out.println(sql);
 			result = pstmt.executeUpdate();
-			System.out.println(result);
+			//System.out.println(result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -179,9 +179,9 @@ public class CompanyDao {
 				pstmt.setString(i+1, delComList[i]);
 			}
 
-			System.out.println(sql);
+			//System.out.println(sql);
 			result = pstmt.executeUpdate();
-			System.out.println(result);
+			//System.out.println(result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
