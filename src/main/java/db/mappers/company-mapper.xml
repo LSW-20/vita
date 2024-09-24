@@ -3,7 +3,13 @@
 <properties>
 
 	<!-- -->
-	<entry key="">
+	<entry key="companySelect">
+
+		SELECT 
+						COMP_NO
+					, COMP_NAME
+		FROM
+					  COMPANY
 
 	</entry>
 	

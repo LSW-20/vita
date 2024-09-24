@@ -376,7 +376,11 @@ footer {
                 var checkboxEl = document.querySelectorAll('input[type="checkbox"]'); // 체크박스들을 배열로 모음.
 
                 for(var i = 0; i<checkboxEl.length; i++) {
-                    checkboxEl[i].checked = true; // 모든 동적으로 생성된 체크박스들에 checked 속성 주기
+                    if(checkboxEl[i].checked) {  // 모든 동적으로 생성된 체크박스들에 checked 속성 반전
+                        checkboxEl[i].checked = false; 
+                    } else {
+                        checkboxEl[i].checked = true;
+                    }   
                 }
 
             });    

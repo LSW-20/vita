@@ -15,6 +15,17 @@ public class Company {
 	public Company() {
 		super();
 	}
+	
+	
+
+
+	public Company(String compNo, String compName) {
+		super();
+		this.compNo = compNo;
+		this.compName = compName;
+	}
+
+
 
 
 	public Company(String compNo, String compName, Date registDate, String adminNo, Date updateDate) {
