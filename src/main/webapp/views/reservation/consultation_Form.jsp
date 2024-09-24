@@ -208,6 +208,7 @@
 				                        <option id="time-select-placeholder" selected value="">내원시간을 선택하세요</option>
 				                        <option value="오전">오전</option>
 				                        <option value="오후">오후</option>
+				                        
 				                    </select>
 				                </td>
 				                <td style="width:150px; height: 230px; border-right:white; border-left:white;">
@@ -323,8 +324,8 @@
     <!-- 나머지 HTML 코드 유지 -->
     
     <div align="center" style="position: relative;">
-        <button type="submit" class="btn border-1 border-dark" onclick="return validateAndProceed();"style="width:150px; position: absolute; left: 41%; top: 0; z-index: 2;">예약신청하기</button>
-        <a href="/vita/views/reservation/consultation_Success.jsp" class="btn border-1 border-dark" style="width:150px; position: absolute; left: 41%; top: 0; z-index: 1; display:none;" >예약신청하기</a>
+       
+        <a href="<%= contextPath %>/ReservationSuccess.rv"  class="btn border-1 border-dark" style="width:150px; position: absolute; left: 41%; top: 0;" >예약신청하기</a>
         <a href="/vita/views/reservation/personal.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:180px;">이전</a>
     </div>
 </form>

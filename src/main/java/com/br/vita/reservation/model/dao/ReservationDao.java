@@ -173,7 +173,7 @@ public class ReservationDao {
 		return list;
 	}
    
-	public boolean SelectConsultation(Connection conn, String userNo) {
+	public boolean SelectConsultation(Connection conn, String userNo, String appointmentTime) {
 		
 		boolean hasAppointment = false;
 		PreparedStatement pstmt = null;
@@ -184,6 +184,7 @@ public class ReservationDao {
 	    try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userNo);
+			pstmt.setString(2, appointmentTime);
 			
 			 rset = pstmt.executeQuery();
 	         
@@ -231,6 +232,36 @@ public class ReservationDao {
 		return result;
 	}
 
+	public List<Consultation> selectSuccess(Connection conn, String userNo, String appointmentTime) {
+		List<Consultation> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCareAppList");
+		System.out.println(list);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, appointmentTime);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Consultation(rset.getString("deptName")
+										, rset.getString("userNo")
+										, rset.getString("doctorName")
+										, rset.getString("appointmentTime")
+										, rset.getDate("appointmentDate")		
+						));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
    
    

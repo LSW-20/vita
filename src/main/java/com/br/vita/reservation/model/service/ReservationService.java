@@ -66,14 +66,23 @@ public class ReservationService {
 		return consultations;
 	}
 
-	public boolean SelectConsultation(String userNo) {
+	public boolean SelectConsultation(String userNo , String appointmentTime) {
 		
 		Connection conn = getConnection();
-		boolean hasAppointment = rdao.SelectConsultation(conn,  userNo);
+		boolean hasAppointment = rdao.SelectConsultation(conn,  userNo, appointmentTime);
 		
 		close(conn);
 		return hasAppointment;
 	}
+	
+	public List<Consultation> selectSuccess(String userNo, String appointmentTime) {
+		Connection conn = getConnection();
+		List<Consultation> Success = rdao.selectSuccess(conn, userNo, appointmentTime);
+		close(conn);
+		return Success;
+	}
+	
+	
 
 	/**
 	 * 예약 취소 요청

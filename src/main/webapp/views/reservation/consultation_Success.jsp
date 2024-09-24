@@ -1,5 +1,12 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.br.vita.reservation.model.vo.Consultation"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+	List<Consultation> Success = (List<Consultation>)request.getAttribute("Success");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,35 +88,34 @@
                 <h3>결제 내용</h3>
                 <br>
                 
-                
-        
+              	<% for(Consultation c : Success) {%>
                   <table class="table table-bordered" style="width:1004px">
-                    
+        			
                  
                   		 <tr>
                         <td id="color" style="width:200px">진료과</td>
-                        <td style="width:302px">내과(수정요망)</td>
+                        <td style="width:302px"><%= c.getDeptName() %></td>
                         <td id="color" style="width:200px">고객 번호</td>
-                        <td style="width:302px">BT-00000000(수정요망)</td>
+                        <td style="width:302px"><%=  ((Member)session.getAttribute("loginUser")).getUserNo() %></td>
                         
                       </tr>
-                      
+                     
                       <tr>
                         <td id="color" style="width:200px">의료진</td>
-                        <td style="width:302px">홍길동(수정요망)</td>
+                        <td style="width:302px"><%= c.getDoctorName() %></td>
                         <td id="color" style="width:200px">내원 시간</td>
-                        <td style="width:302px">오전(수정요망)</td>
+                        <td style="width:302px"><%= c.getAppointmentTime() %></td>
                         
                       </tr>
                       
                       <tr>
                         <td id="color" >진료 예정일</td>
-                        <td style="border-right: white">2024-00-00(sysdate로)</td>
+                        <td style="border-right: white"><%= c.getAppointmentDate() %></td>
                       
                       </tr>
-                  
+             
                   </table>
-            
+             <%} %>	 
                 <br><br><br><br>
       
                 <div align="center">
