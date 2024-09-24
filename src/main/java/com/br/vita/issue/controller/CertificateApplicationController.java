@@ -1,15 +1,16 @@
 package com.br.vita.issue.controller;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.br.vita.issue.model.service.IssueService;
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class CertificateApplicationController
@@ -38,9 +39,17 @@ public class CertificateApplicationController extends HttpServlet {
 		
 		String Date = cDate.substring(2).replace("-","");
 		
-		System.out.println(Date);
+		
 		
 		int result =  new IssueService().certificateApplicationInsert(userNo,type,Date,purpose);
+		
+		
+		//if(result > 0) {
+			response.setContentType("text/html; charset=UTF-8");
+			response.getWriter().print(result);
+		//}
+		
+		
 		
 		
 		
