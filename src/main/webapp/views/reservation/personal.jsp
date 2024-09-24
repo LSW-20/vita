@@ -132,7 +132,7 @@
                     
                 <tr>
                   <td class="td" id="color" style="width:500px; height: 70px;"><h4 style="margin:auto">성명</h4></td>
-                  <td><h4 style="margin-left: 50px; margin-top: 10px;">이름값 가져오세요</h4></td>
+                  <td><h4 style="margin-left: 50px; margin-top: 10px;"><%= ((Member)session.getAttribute("loginUser")).getUserName() %></h4></td>
                  
                 </tr>
                  <tr>
@@ -142,7 +142,7 @@
                     
                     <td> 
                       <div class="d-flex "> 
-                           <div style="margin-left: 50px; margin-top: 10px;"><h4>생년월일값 가져오세요</h4></div>
+                           <div style="margin-left: 50px; margin-top: 10px;"><h4><%=  ((Member)session.getAttribute("loginUser")).getUserDate() %></h4></div>
                            <div style="margin-left: 25px; margin-top: 10px;"><h4>-</h4></div>
                           <div> <input type="text" class="form-control" maxlength="7" name="SSN-back" id="num" style="width:535px; height:50px; margin-left: 25px" required></div>
                       </div>
@@ -161,7 +161,8 @@
 
             
         		<div align="center" style="position: relative;">
-						    <button type="submit" class="btn border-1 border-dark" id="submitButton" onclick="return validateAndProceed();" style="width:150px; position: absolute; left: 41%; top: 0; z-index: 2;">다음</button>
+						    <button type="submit" class="btn border-1 border-dark" id="submitButton" onclick="return validateAndProceed();" 
+						    				style="width:150px; position: absolute; left: 41%; top: 0; z-index: 2;   background-color: rgb(245, 245, 245); color: rgb(31, 43, 108);">다음</button>
 						    <a href="/vita/views/reservation/first_Success.jsp" class="btn border-1 border-dark" id="btn-color" style="width:150px; position: absolute; left: 41%; top: 0; z-index: 1; display:none;">다음</a>
 						    <a href="/vita/views/reservation/consultation_AfterLogin.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:180px;">이전</a>
 						</div>

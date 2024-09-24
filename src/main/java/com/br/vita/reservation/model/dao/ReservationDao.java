@@ -133,6 +133,12 @@ public class ReservationDao {
 		return result;
 	}
    
+	public void ConsultationSelect() {
+		
+		
+		
+		
+	}
    
    
    

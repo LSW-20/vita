@@ -52,7 +52,7 @@ public class ReservationPersonalFormController extends HttpServlet {
 		
 		if(result >0) {
 			request.getSession().setAttribute("alertMsg", "진료예약에 성공했습니다.");
-			request.getRequestDispatcher("/views/reservation/firstTimeUserReservation.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/reservation/consultation_Success.jsp").forward(request, response);
 		} else {
 			request.setAttribute("msg", "오류");
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);

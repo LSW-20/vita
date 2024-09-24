@@ -83,7 +83,7 @@
     
 
    </style>
-  <form action= "<%= contextPath %>/personalForm.rv"  method="post">
+
   <section>
 
     <h2 id="pad"><b>진료예약</b></h2>
@@ -106,7 +106,7 @@
       </td>
       <td id="color" style="width:346px; height: 230px; border-left:rgb(245, 245, 245);">
         <h4 style="margin-top: 60px"><b style="color:black">의료진</b></h4><br>
-        <h4 id="doctorName" style="margin:auto"><b></b></h4>
+        <h4 id="doctorS" style="margin:auto"><b></b></h4>
       </td>
       <td id="color" style="width:346px; height: 230px; border-left:rgb(245, 245, 245);">
         <h4 style="margin-top: 60px"><b style="color:black">내원시간</b></h4><br>
@@ -199,33 +199,32 @@
     <h3 style="margin-left:150px"><sup style="color:rgb(255, 165, 0)">*</sup><b> 내원시간 선택</b></h3>
     <br><br>
 		<div class="container11" style="margin-left:93px">
-			    <div class="d-flex">
-			        <div style="margin-left:120px">
-			            <table style="margin-left:-55px;">
-			                <tr class="d-flex">
-			                    <td style="width:150px; height: 230px; margin-top:11px; border-right-style: dashed; border-right:white;">
-			                       <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" id="time-select" name="time-select"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:400px; height: 50px;">
-									                <option id="time-select" selected value="">내원시간을 선택하세요</option>
-									                <option value="오전">오전</option>
-									                <option value="오후">오후</option>
-									            </select>
-			                    </td>
-			                    <td style="width:150px; height: 230px; border-right:white; border-left:white;">
-			                        <button type="button" class="btn btn-outline-primary" style="width:120px; height:70px; border-color:rgb(190, 189, 189); background-color: #1F2B6C; margin-left:300px;" onclick="confirmSelection()">
-			                            <h3 style="color:white">선택</h3>
-			                        </button>
-			                    </td>
-			                </tr>
-			            </table>
-			        </div>
-			 
-            <div style="margin-left:600px;">
-                <h3>※ 우리 병원은 <b style="color:red">당일 예약</b>만 가능합니다.</h3>
-                <h3>&nbsp;&nbsp;&nbsp;&nbsp;해당 사항 참고하시고 예약해주시길</h3> 
-                <h3>&nbsp;&nbsp;&nbsp;&nbsp;바랍니다.</h3>
-
-            </div>
-    	</div>
+			   <div class="d-flex">
+				    <div style="margin-left:120px">
+				        <table style="margin-left:-55px;">
+				            <tr class="d-flex">
+				                <td style="width:150px; height: 230px; margin-top:11px; border-right-style: dashed; border-right:white;">
+				                    <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" id="time-select" name="appointmentTimeSelect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:400px; height: 50px;">
+				                        <option id="time-select-placeholder" selected value="">내원시간을 선택하세요</option>
+				                        <option value="오전">오전</option>
+				                        <option value="오후">오후</option>
+				                    </select>
+				                </td>
+				                <td style="width:150px; height: 230px; border-right:white; border-left:white;">
+				                    <button type="button" class="btn btn-outline-primary" style="width:120px; height:70px; border-color:rgb(190, 189, 189); background-color: #1F2B6C; margin-left:300px;" onclick="confirmSelection()">
+				                        <h3 style="color:white">선택</h3>
+				                    </button>
+				                </td>
+				            </tr>
+				        </table>
+				    </div>
+				    
+				    <div style="margin-left:600px;">
+				        <h3>※ 우리 병원은 <b style="color:red">당일 예약</b>만 가능합니다.</h3>
+				        <h3>&nbsp;&nbsp;&nbsp;&nbsp;해당 사항 참고하시고 예약해주시길</h3> 
+				        <h3>&nbsp;&nbsp;&nbsp;&nbsp;바랍니다.</h3>
+				    </div>
+				</div>
     </div>
         
    
@@ -280,10 +279,14 @@
             alert('내원시간을 선택하세요.');
             return;
         }
+        
+        document.getElementById('doctorName').value = doctor;
+        document.getElementById('appointmentTime').value = time;
+
 
      // 선택한 진료과와 의사 이름 업데이트
         document.getElementById('department').querySelector('b').innerHTML = department;
-        document.getElementById('doctorName').querySelector('b').innerHTML = doctor;
+        document.getElementById('doctorS').querySelector('b').innerHTML = doctor;
         
         // 내원시간 업데이트
         document.getElementById('time').querySelector('b').innerHTML = time;
@@ -293,6 +296,7 @@
         document.getElementById('department1').querySelector('b').innerHTML = department;
         document.getElementById('doctor1').querySelector('b').innerHTML = doctor;
         document.getElementById('time1').querySelector('b').innerHTML = time;
+        return true; // 성공적으로 선택되었음을 알림
     }
 </script>
 
@@ -312,14 +316,18 @@
      <br><br><br>
 
      
-    
+    <form action="<%= contextPath %>/personalForm.rv" method="post" >
+    <input type="hidden" name="doctorName" id="doctorName">
+    <input type="hidden" name="appointmentTime" id="appointmentTime">
 
-        
-        <div align="center">
-          <a href="/vita/views/reservation/consultation_Success.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;" >예약신청하기</a>
-          <a href="/vita/views/reservation/personal.jsp" class="btn btn-light border-2 border-dark"  style="width: 150px; margin-left:30px;" >이전</a>
-          
-        </div>
+    <!-- 나머지 HTML 코드 유지 -->
+    
+    <div align="center" style="position: relative;">
+        <button type="submit" class="btn border-1 border-dark" onclick="return validateAndProceed();"style="width:150px; position: absolute; left: 41%; top: 0; z-index: 2;">예약신청하기</button>
+        <a href="/vita/views/reservation/consultation_Success.jsp" class="btn border-1 border-dark" style="width:150px; position: absolute; left: 41%; top: 0; z-index: 1; display:none;" >예약신청하기</a>
+        <a href="/vita/views/reservation/personal.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:180px;">이전</a>
+    </div>
+</form>
 
         <br><br> 
 
@@ -329,7 +337,7 @@
 
         
   </section>
-	</form>
+	
 
 		
 		<%@ include file="/views/common/footer.jsp" %>
