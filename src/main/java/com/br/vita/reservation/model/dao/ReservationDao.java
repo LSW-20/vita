@@ -366,6 +366,17 @@ public class ReservationDao {
 	        
 	}
 
+	
+	/**
+	 * 관리자 진료 예약 관리 조회
+	 * author : 임상우
+	 * @param conn
+	 * @param deptName
+	 * @param docName
+	 * @param appDate1
+	 * @param appDate2
+	 * @return 조회된 list
+	 */
 	public List<Map<String, Object>> selectCareApp(Connection conn, String deptName, String docName, String appDate1, String appDate2) {
 		
 		List<Map<String, Object>> resultList = new ArrayList<>();
