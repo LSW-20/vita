@@ -99,5 +99,26 @@ AND
 
 </entry>
 
+<!--발급 완료 된 증명서 리스트 조회-->
+<entry key="selectDocumentList">
+	SELECT 
+	       DOC_NUM
+	     , C.USER_NO AS USER_NO
+	     , C.CARE_NO AS CARE_NO
+	     , DOC_TYPE
+	     , DOC_CHECK
+	     , DOC_PURPOSE
+	     , PRICE
+	     , APPLY_DATE
+       , DOCTOR_NAME
+       , LICENCE_NO
+       , D.DEPT_NAME
+	  FROM DOCUMENT C
+    JOIN MRECORDS M
+      ON M.CARE_NO = C.CARE_NO
+    JOIN DOCTOR D
+      ON M.DOCTOR_NO = D.DOCTOR_NO
+	 WHERE C.USER_NO = ?
+</entry>
 
 </properties>

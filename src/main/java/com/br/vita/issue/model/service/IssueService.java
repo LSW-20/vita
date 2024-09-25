@@ -81,6 +81,20 @@ public class IssueService {
 		
 		
 	}
+
+
+	/**
+	 * 내가 발급한 증명서 리스트를 가져오는 service
+	 * select
+	 * @param userNo
+	 * @return 
+	 */
+	public List<Document> selectDocumentList(String userNo) {
+		Connection conn = getConnection();
+		List<Document> docList = iDao.selectDocumentList(conn, userNo);
+		close(conn);
+		return docList;
+	}
 	
 	
 	
