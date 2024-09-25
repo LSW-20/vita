@@ -39,8 +39,7 @@ public class EmployeeSelect extends HttpServlet {
 		// 요청시 넘어오는 값 : '전체' 혹은 각 기업명(하나)이 요청시 넘어온다. 
 		// [조회할 것들]
 		// (1) COMPANY : 기업번호, 기업명
-		// (2) EMPLOYEE : 사번, 사원명 (기업번호로)
-		// (3) MEMBER : 회원번호, 회원아이디 (사원의 SSN으로 있는지 확인하고 없으면 '미가입' 상태다.)
+		// (2) EMPLOYEE : 사번, 사원명, 주민등록번호
 		// 쿼리 하나로 조회하고 각각을 Map에 담고 반복문으로 List로 담아서 가져온다.
 		
 
@@ -60,11 +59,12 @@ public class EmployeeSelect extends HttpServlet {
 		// 응답페이지 : 관리자 건강검진 연계기업 관리 페이지(/vita/views/admin/manageCompany.jsp)
 		// 응답데이터 : db로부터 조회된 데이터(응답페이지에서만 필요)
 		
-		// flag 값도 담아서 포워딩
-		
-		request.setAttribute("empList", empList);
 
-		if(empList.isEmpty()) {
+		request.setAttribute("empList", empList);
+		request.setAttribute("selectCom", selectCom); // 화면에 '~기업' 검색결과로 사용자가 선택한 값에 따라 다르게 보여지게끔 한다.
+
+		// flag 값(threeType)도 담아서 포워딩. 이 값에 따라 검색전/검색 후 결과없는 경우/검색 후 결과있는 경우로 다르게 보여진다.
+		if(empList.isEmpty()) { 
 			request.setAttribute("threeType", false);
 		} else {
 			request.setAttribute("threeType", true);

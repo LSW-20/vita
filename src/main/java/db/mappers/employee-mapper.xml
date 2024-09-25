@@ -11,12 +11,10 @@
 				, COMP_NAME
 				, EMP_NO
 				, EMP_NAME
-				, USER_NO
-				, USER_ID
+				, SSN
 	  FROM
 	  			COMPANY 
 	  JOIN  EMPLOYEE USING (COMP_NO)
-	  JOIN  MEMBER ON SSN = USER_SSN							
 
 	</entry>
 	
@@ -38,7 +36,7 @@
 	 (
 	 				?
 	 			, ?
-	 			, ?
+	 			, (SELECT COMP_NO FROM COMPANY WHERE COMP_NAME = ?)
 	 			, ?
 	 )				
 	 		
