@@ -38,7 +38,7 @@ public class DocumentPagingController extends HttpServlet {
 		String docNo = ((Member)request.getSession().getAttribute("loginUser")).getDoctorNo();
 		String type = request.getParameter("type");
 		
-		int listCount = new DoctorService().selectDocumentListCount(docNo);	
+		int listCount = new DoctorService().selectDocumentListCount(docNo,type);	
 		
 		int currentPage = 1;											//사용자가 요청한 페이지 번호
 		
@@ -63,9 +63,11 @@ public class DocumentPagingController extends HttpServlet {
 		//페이징바 제작 위한 데이터 vo생성해서 common에 배치
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
-		List<Member> doculist = new DoctorService().documentSelect(type,docNo);
+		List<Member> doculist = new DoctorService().documentSelect(docNo,type);
 		
 		System.out.println(pi);
+		System.out.println(doculist);
+		
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("doculist", doculist);

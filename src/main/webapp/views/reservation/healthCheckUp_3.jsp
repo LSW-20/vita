@@ -103,7 +103,7 @@
         <h4 style="margin-top: 60px"><b style="color:black">희망검진일</b></h4><br>
         <h4 style="margin:auto"><b>2024년 9월 19일(목)</b></h4>
       </td>
-      <td id="color" style="width:346px; height: 230px; border-left:rgb(245, 245, 245);border-right: rgb(245, 245, 245);"><h4 style="margin:auto">
+      <td id="color" style="width:346px; height: 230px; border-left:rgb(245, 245, 245);border-right: rgb(245, 245, 245);">
         <h4 style="margin-top: 60px"><b style="color:black">검사시간</b></h4><br>
         <h4 style="margin:auto"><b>오전</b></h4>
       </td>
@@ -121,11 +121,14 @@
     <h3 style="margin-left:455px"><sup style="color:rgb(255, 165, 0)">*</sup><b> 내원시간 선택</b></h3>
     </div>
     <br><br>
+        	
+        	
+   <form>
     <div class="container11" style="margin-left:93px">
         <div class="d-flex" >
             
 
-            <form action="/action_page.php">
+            <div>
                 <div class="form-group">
                     <label for="yearSelect">년도</label><br>
                       <select id="year" style="width:345px;">
@@ -165,11 +168,10 @@
                                 </select>
                 </div>
             </div>
+        	</div>
+       
         
-            </form>
-
-        
-        <div  action="/action_page.php" style="border:1px dashed;border-left:#212529; margin-left:175px"> </div>
+        <div style="border:1px dashed;border-left:#212529; margin-left:175px"> </div>
 
         <div style="margin-left:170px">
             <table class="container12 table-bordered" id="table_custom" >
@@ -196,6 +198,7 @@
 
       </div>
     </div>
+    </form>
     <br>
      
 
@@ -331,13 +334,13 @@
      <hr style= "border: 1px dashed; margin-left: 90px; margin-right: 90px;">
      <br><br>
 
-     <form action= "/server/test.do">
-      <filedset>
+    
+      <fieldset>
           <input type="radio" id="check" name="check" value="T" style="margin-left: 93px; cursor: pointer;">
           <label for="checkO">&nbsp;검진 관련 주의사항 안내 및 체크사항을 확인하였습니다. <b style="color:red;">(필수)</b></label>
           
       </fieldset>
-    </form>
+   
 
 
      <br><br><br>

@@ -1,8 +1,6 @@
 package com.br.vita.issue.controller;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,44 +12,46 @@ import javax.servlet.http.HttpServletResponse;
 import com.br.vita.issue.model.service.IssueService;
 import com.br.vita.issue.model.vo.Mrecords;
 import com.br.vita.member.model.vo.Member;
+import com.google.gson.Gson;
 
 /**
- * Servlet implementation class DocDetailController
+ * Servlet implementation class CareListSelectByDateController
  */
-@WebServlet("/detail.cr")
-public class DocDetailController extends HttpServlet {
+@WebServlet("/careList.se")
+public class CareListSelectByDateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DocDetailController() {
+    public CareListSelectByDateController() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	/**
-	 * 발급상세 페이지로 넘어가는 서블릿
-	 * @author 최보겸
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String docType = request.getParameter("docType");
-		String careNo = request.getParameter("careNo");
-		String userNo = ((Member) request.getSession().getAttribute("loginUser")).getUserNo();
-		String startDate = request.getParameter("startDate");
-		String endDate = request.getParameter("endDate");
-
-		//진료기록 정보 가져오는 서비스
-		List<Mrecords> records = new IssueService().selectMrecords(userNo, startDate, endDate);
-		System.out.println(records);
-		if (records == null || records.isEmpty()) {
-            records = new ArrayList<>(); // 빈 리스트로 초기화하여 null 방지
-        }
-		//응답
-		request.setAttribute("records", records);
-		request.setAttribute("docType", docType);
-		request.getRequestDispatcher("/views/issue/getDocDetail.jsp").forward(request, response);
+		
+		String userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
+		
+		String date1 = request.getParameter("careDate1");
+		String date2 = request.getParameter("careDate2");
+		
+		String caredate1 = date1.substring(2).replace("-","");
+		String caredate2 = date2.substring(2).replace("-","");
+		
+		List<Mrecords> mr = new IssueService().careListSelectByDate(userNo,caredate1,caredate2);
+		
+		response.setContentType("application/json; charset=UTF-8");
+		// Gson객체.toJson(응답할데이터(자바객체), 스트림객체);
+		new Gson().toJson(mr, response.getWriter());
+		
+		
+		
+		
+		
 	}
 
 	/**

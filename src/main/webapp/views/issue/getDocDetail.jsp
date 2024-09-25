@@ -49,6 +49,22 @@ function getTodayDate() {
     return year + '/' + month + '/' + day;
 }
 
+function submitDocument(){
+	//선택된 라디오 버튼에서 value값 가져오기
+	const selectedCareNo = document.querySelector('input[name="careNo"]:checked')
+	
+	if(selectedCareNo){
+		//선택 된 careNo값
+		const careNo = selectedCareNo.value;
+		
+		//신청 버튼 링크에 careNo추가
+		const submitLink = document.getElementById('submitLink');
+		submitLink.href = '<%= request.getContextPath() %>/confirm.cr?careNo='+careNo+'&docType=<%= docType %>';
+	}else {
+		alert('진료 기록을 선택 해 주세요.');
+	}
+}
+
 // 페이지 로드 시 시작일과 종료일의 기본값을 오늘 날짜로 설정
 window.onload = function() {
     var today = getTodayDate();
@@ -103,7 +119,7 @@ window.onload = function() {
                     if (records != null && !records.isEmpty()) {
                         for (Mrecords record : records) {
                             %>
-                            <input type="radio" name="record" value="<%= record.getDiagnosisName() %>">
+                            <input type="radio" name="careNo" value="<%= record.getCareNo() %>">
                             <label><%= record.getTreatmentDate() %> - <%= record.getDiagnosisName() %></label><br>
                             <%
                         }
@@ -112,7 +128,7 @@ window.onload = function() {
                     }
                 %>
             </td>
-        </tr>       
+        </tr>        
         <tr>
             <th>발급비용</th>
             <td>2000원</td>
@@ -140,7 +156,8 @@ window.onload = function() {
     </div>
 
     <div class="d-flex justify-content-end">
-        <a href="/vita/views/issue/getDocResultList.jsp" class="btn btn-primary btn-sm m-2" data-toggle="modal" data-target="#paymentModal" >신청</a>
+        <!-- <a id="submitLink" href="#" class="btn btn-primary btn-sm m-2" onclick="submitDocument();" data-toggle="modal" data-target="#paymentModal" >신청</a> -->
+        <a id="submitLink" href="#" class="btn btn-primary btn-sm m-2" onclick="submitDocument();">신청</a>
 	  		<button type="button" class="btn btn-secondary btn-sm m-2" onclick="history.back();">뒤로가기</button>
     </div>   
 

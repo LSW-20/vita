@@ -41,7 +41,7 @@ public class Document {
 
 	//증명서 발급시 별도로 필요한 생성자
 	public Document(int docNum, String docPurpose, Date applyDate, String deptName, String licenceNo,
-			String doctorName) {
+			String doctorName, String careNo) {
 		super();
 		this.docNum = docNum;
 		this.docPurpose = docPurpose;
@@ -49,6 +49,7 @@ public class Document {
 		this.deptName = deptName;
 		this.licenceNo = licenceNo;
 		this.doctorName = doctorName;
+		this.careNo = careNo;
 	}
 
 	public int getDocNum() {

@@ -109,9 +109,9 @@
 
                 <div class="sideMenu" id="d_submenu1">발급 신청 관리
                   <ul class="d_submenu_item1">
-                    <li><a href="<%= contextPath %>/diaList.go" style="text-decoration: none;">진단서</a></li>
+                    <li><a href='<%= contextPath %>/dia_list.do?type=진단서' style="text-decoration: none;">진단서</a></li>
                     <!-- 여기로 포워딩할 예정 /di_list.re -->
-                    <li><a href="<%= contextPath %>/diaList2.go" style="text-decoration: none;">진료확인서</a></li>
+                    <li><a href="<%= contextPath %>/dia_list.do?type=진료확인서" style="text-decoration: none;">진료확인서</a></li>
                   </ul>
                 </div>
 

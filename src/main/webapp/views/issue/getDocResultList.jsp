@@ -1,5 +1,10 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.br.vita.issue.model.vo.Document" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	List<Document> docList = (List<Document>)request.getAttribute("docList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,9 +43,6 @@
    <%@ include file="/views/common/myPageSideBar.jsp" %>
    
    
-   
-   
-   
   <div id="doc_result_content" style="margin-left: 10px;">
     <br><h2><b>&nbsp; 증명서 발급 내역</h2>  
     <br>
@@ -55,15 +57,18 @@
       </thead>
       <tbody>
     <!-- 신청 내역이 없을 경우 -->
-    <!--    
-        <tr><td colspan="3" style="text-align: center;">발급 내역이 없습니다.</td></tr>
-    -->
-    <!-- 신청 내역이 있을 경우 -->
-        <tr>
-          <td>getDocName</td>
-          <td>getApplyDate&nbsp;(getTreatmentDate | 진료과: getDept)</td>
-          <td><button>인쇄</button></td>
-        </tr>
+	    <%if(docList.isEmpty()) {%>
+	        <tr><td colspan="3" style="text-align: center;">발급 내역이 없습니다.</td></tr>
+	    <%}else { %>
+	    <!-- 신청 내역이 있을 경우 -->
+	    	<%for(Document d : docList) {%>
+	        <tr>
+	          <td><%=d.getDocType() %></td>
+	          <td><%=d.getApplyDate() %>&nbsp;(진료과: <%=d.getDeptName() %>)</td>
+	          <td><button>발급</button></td>
+	        </tr>
+	      <%} %>
+	    <%} %>
       </tbody>
     </table>
   </div>   

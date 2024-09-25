@@ -14,6 +14,7 @@ import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 import java.util.Properties;
 
+import com.br.vita.issue.model.vo.Document;
 import com.br.vita.issue.model.vo.Mrecords;
 
 
@@ -39,7 +40,8 @@ public class IssueDao {
 
 	}
 	
-	public int certificateApplicationInsert(Connection conn, String userNo, String type ,String Date,String purpose) {
+	// 의료진승인용 신청서 insert
+	public int certificateApplicationInsert(Connection conn, String userNo, String type ,String Date,String purpose,String careNo) {
 		
 		
 		int result = 0;
@@ -53,10 +55,10 @@ public class IssueDao {
 			pstmt=conn.prepareStatement(sql);
 			
 			pstmt.setString(1,userNo);
-			pstmt.setString(2,userNo);
-			pstmt.setString(3,Date);
-			pstmt.setString(4,type );
-			pstmt.setString(5,purpose);
+			pstmt.setString(2,careNo);
+			pstmt.setString(3,type);
+			pstmt.setString(4,purpose);
+			
 			
 			
 			result=pstmt.executeUpdate();
@@ -131,6 +133,7 @@ public class IssueDao {
 			
 			while(rset.next()) {
 				Mrecords r = new Mrecords();
+				r.setCareNo(rset.getString("CARE_NO"));
 				r.setTreatmentDate(rset.getDate("TREATMENT_DATE"));
 				r.setDiagnosisName(rset.getString("DIAGNOSIS_NAME"));
 				records.add(r);
@@ -144,6 +147,81 @@ public class IssueDao {
 		}
 		
 		return records;
+	}
+
+	/**
+	 * 선택한 진료번호에 맞는 진료정보 증명서에 뿌리기
+	 * @author 최보겸
+	 * @param careNo
+	 * @return documents
+	 */
+	public Document getDocumentByCareNo(Connection conn, String careNo) {
+		Document documents = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getDocumentByCareNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,careNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				documents = new Document(rset.getInt("DOC_NUM")
+						   , rset.getString("DOC_PURPOSE")
+						   , rset.getDate("APPLY_DATE")
+						   , rset.getString("DEPT_NAME")
+						   , rset.getString("LICENCE_NO")
+						   , rset.getString("DOCTOR_NAME")
+						   , rset.getString("CARE_NO"));				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return documents;
+	}
+	
+	
+	public List<Mrecords> careListSelectByDate(Connection conn, String userNo, String caredate1, String caredate2) {
+		
+		List<Mrecords> mr = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("careListSelectByDate");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1,caredate1);
+			pstmt.setString(2,caredate2);
+			pstmt.setString(3,userNo);
+			
+			rset=pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				mr.add(	new Mrecords(rset.getDate("TREATMENT_DATE")
+								  ,rset.getString("DIAGNOSIS_NAME")
+								  ,rset.getString("DEPT_NAME")
+								  ,rset.getString("CARE_NO")));
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return mr;
+		
+		
 	}
 	
 	

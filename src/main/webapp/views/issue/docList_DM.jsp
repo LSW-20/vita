@@ -198,7 +198,12 @@
         <!-- Modal body -->
         <div class="modal-body">
         	<div>문서명 : <input type="text" readonly value="진단서" id="type_name"></div><br>
-        	<div>진료날짜 : <input type="date" id="care_date"></div><br>
+        	
+        	<div>진료조회 : <input type="date" id="care_date"> ~ <input type="date" id="care_date_1"> 
+        	<button onclick="fnCareList();">조회</button>
+        		<div id="CareListsel_result"></div>
+        	</div><br>
+        	
         	<div>발급용도 : 
         		<select id="purpose">
         			<option>보험제출</option>
@@ -226,14 +231,15 @@
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">진단서 신청</h4>
+          <h4 class="modal-title">진료확인서 신청</h4>
           <button type="button" class="close" data-dismiss="modal">×</button>
         </div>
         
         <!-- Modal body -->
         <div class="modal-body">
         	<div>문서명 : <input type="text" readonly value="진료확인서" id="type_name2"></div><br>
-        	<div>진료날짜 : <input type="date" id="care_date2"></div><br>
+        	<div>진료날짜 : <input type="date" id="care_date2" > ~ <input type="date" id="care_date2_1">
+        	</div><br>
         	<div>발급용도 : 
         		<select id="purpose2">
         			<option>보험제출</option>
@@ -271,7 +277,8 @@
  					userNo:<%= loginUser.getUserNo() %>,
  					type: $('#type_name').val(),
  					cDate: $('#care_date').val(),
- 					purpose : $('#purpose').val()
+ 					purpose : $('#purpose').val(),
+ 					careNo: $('#careNo_go').val()
  				},
  				success: function(res){
  					console.log(res)
@@ -288,11 +295,7 @@
  		}
  		
  		
- 		
- 		
  	}
- 	
- 	
  	
  	function fnbtn2(){
  		
@@ -319,6 +322,39 @@
  		
  		
  	}
+ 	
+ 	function fnCareList(){
+ 		
+ let careList = '<select id="careNo_go">';
+ 		
+		$.ajax({
+			url:"<%= contextPath%>/careList.se",
+			type:'post',
+			data:{
+				careDate1: $('#care_date').val(),
+				careDate2: $('#care_date_1').val()
+			},
+				success: function(res){
+					console.log(res);
+					
+					for(let i=0; i<res.length; i++){
+						careList += '<option value="'+ res[i].careNo + '">'+ res[i].treatmentDate +'</option>'
+											
+					}
+					careList	+= '</select>'
+					
+					$('#CareListsel_result').append(careList);
+					
+					}
+				}) 
+	
+				
+		}
+ 	
+ 	
+ 	
+ 	
+ 	
  
  
  </script>
