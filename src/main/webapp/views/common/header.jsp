@@ -245,7 +245,7 @@
                 <div id="popup" class="popup">
 								    <div class="popup-content">
 								        <a href="#" class="close">×</a>
-								        <form action="<%= contextPath %>/views/selectContents/search.jsp" method="get" id="searchForm">
+								        <form action="<%= contextPath %>/search.do" method="get" id="searchForm">
 								            <input type="text" id="searchInput" name="search" placeholder="검색어를 입력하세요" required>
 								            <button type="submit" id="searchBtn" style="margin: -50px;"><i class="bi bi-search"></i></button>
 								        </form>

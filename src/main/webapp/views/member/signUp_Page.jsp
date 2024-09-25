@@ -71,11 +71,11 @@
          </div>
          <form>
          	<div class="box">
-          	<a href="#" class="signup_adult">
+          	<a href="<%= contextPath %>/signup.ad" class="signup_adult">
             	<p style="margin-bottom: 5px; font-weight: 600; font-size: 25px;">만 14세 이상 내국인</p>
               <p>국내거주 내ㆍ외국인</p>
             </a>
-            <a href="#" class="signup_child">
+            <a href="<%= contextPath %>/signup.cd" class="signup_child">
              	<p style="margin-bottom: 5px; font-weight: 600; font-size: 25px;">만 14세 미만 내국인</p>
              	<p>어린이/청소년</p>
             </a>
