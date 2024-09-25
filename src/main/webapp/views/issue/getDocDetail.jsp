@@ -66,7 +66,7 @@ window.onload = function() {
   <div class="container" id="get_doc_content"style="margin-left: -10px;">
 		<br><h2><b>&nbsp; 온라인 증명서 신청</b></h2>  
 		
-	<form id="docDetailForm" method="post" action="<%= request.getContextPath() %>/detail.cr">
+	<form id="docDetailForm" method="post" action="<%= request.getContextPath() %>/detail.cr?docType=<%= docType %>">
     <table id="get_doc_apply" class="table m-4">
 			<tr>
 				<th width="130px">증명서 종류</th>
@@ -74,7 +74,7 @@ window.onload = function() {
 			</tr>
         <tr>
             <th>성명</th>
-            <td><%= ((com.br.vita.member.model.vo.Member)session.getAttribute("loginUser")).getUserName() %> 님(id : <%= ((com.br.vita.member.model.vo.Member)session.getAttribute("loginUser")).getUserId() %> )</td>
+            <td><%= ((Member)session.getAttribute("loginUser")).getUserName() %> 님(등록번호 : <%= ((Member)session.getAttribute("loginUser")).getUserNo() %> )</td>
         </tr>
         <tr>
             <th>발급 용도</th>
@@ -103,7 +103,7 @@ window.onload = function() {
                     if (records != null && !records.isEmpty()) {
                         for (Mrecords record : records) {
                             %>
-                            <input type="checkbox" name="record" value="<%= record.getDiagnosisName() %>">
+                            <input type="radio" name="record" value="<%= record.getDiagnosisName() %>">
                             <label><%= record.getTreatmentDate() %> - <%= record.getDiagnosisName() %></label><br>
                             <%
                         }

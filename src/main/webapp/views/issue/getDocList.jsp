@@ -68,7 +68,7 @@ section{
             <a href="<%= contextPath %>/detail.cr?docType=입퇴원사실확인서" class="get_doc_btn btn-sm">발급받기</a>
           </td>
         </tr>
-        <tr>
+<%--         <tr>
           <td>진료비 계산서 영수증</td>
           <td>2000원</td>
           <td>사용</td>
@@ -76,7 +76,7 @@ section{
             <!-- <button type="button" class="get_doc_btn btn-sm">발급받기</button> -->
             <a href="<%= contextPath %>/detail.cr?docType=진료비계산서영수증" class="get_doc_btn btn-sm">발급받기</a>
           </td>
-        </tr>
+        </tr> --%>
         <tr>
           <td>처방전 사본 발급</td>
           <td>2000원</td>
