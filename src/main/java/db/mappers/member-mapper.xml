@@ -176,4 +176,20 @@ WHERE
 					USER_ID = ?
 	</entry>
 	
+	
+	<!-- (상우) 이름, 핸드폰번호, 주민등록번호로 userNo 찾기 (1/2) 진료예약 추가 -->
+	<entry key="findUserNo">
+	
+		SELECT 
+						USER_NO
+		  FROM 
+		  			MEMBER
+		 WHERE
+		 				USER_NAME = ?
+		 	 AND  PHONE = ?
+		 	 AND  USER_SSN = ?			 			
+	
+	</entry>
+	
+	
 </properties>
