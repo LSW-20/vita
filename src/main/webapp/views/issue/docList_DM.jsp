@@ -119,9 +119,114 @@
     	
     }
     
+    #CareListsel_result1{
+    	color: red;
+    	margin-left: 60px;
+    	margin-top: 22px;
+    }
     
     
+    #CareListsel_result2{
+    	color: red;
+    	margin-left: 60px;
+    	margin-top: 22px;
+    }
     
+   /*  */
+   
+   
+.modal-body {
+    padding: 20px; /* 바디 패딩 */
+    background-color: #f7f9fc; /* 부드러운 배경색 */
+    border-radius: 15px; /* 모서리 둥글게 */
+}
+
+.date-container {
+    display: flex; /* 플렉스 박스 사용 */
+    align-items: center; /* 수직 정렬 */
+    margin-top: 20px; /* 위쪽 마진 */
+}
+
+.date-container input[type="date"] {
+    flex: 1; /* 입력 필드가 공간을 균등하게 차지 */
+    padding: 15px; /* 내부 패딩 */
+    border: 2px solid #007bff; /* 강조된 테두리 */
+    border-radius: 10px; /* 테두리 둥글게 */
+    font-size: 1em; /* 폰트 크기 */
+    margin: 0 10px; /* 좌우 여백 */
+    background-color: #ffffff; /* 흰색 배경 */
+    transition: border-color 0.3s, box-shadow 0.3s; /* 전환 효과 */
+}
+
+.date-container input[type="date"]:focus {
+    border-color: #0056b3; /* 포커스 시 테두리 색상 변경 */
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); /* 포커스 시 그림자 효과 */
+}
+
+.button-group {
+    display: flex; /* 버튼 그룹을 플렉스 박스로 설정 */
+    justify-content: flex-end; /* 버튼을 오른쪽 정렬 */
+    margin-top: 20px; /* 위쪽 마진 */
+}
+
+.button-group button {
+    background-color: #28a745; /* 버튼 배경색 */
+    color: white; /* 버튼 텍스트 색상 */
+    border: none; /* 테두리 없음 */
+    padding: 12px 25px; /* 패딩 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    cursor: pointer; /* 마우스 커서 변경 */
+    font-size: 1.1em; /* 버튼 폰트 크기 */
+    font-weight: bold; /* 버튼 텍스트 두껍게 */
+    margin-left: 15px; /* 버튼 사이 마진 */
+    transition: background-color 0.3s, transform 0.2s; /* 호버 시 효과 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 버튼 그림자 */
+}
+
+.button-group button:hover {
+    background-color: #218838; /* 호버 시 색상 변경 */
+    transform: translateY(-2px); /* 호버 시 약간 위로 이동 */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 강조 */
+}
+
+.button-group button:active {
+    transform: translateY(0); /* 클릭 시 원래 위치로 돌아옴 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 클릭 시 그림자 복원 */
+}
+
+#careNo_go1 {
+    width: 100%; /* 전체 너비 사용 */
+    padding: 15px; /* 내부 패딩 */
+    border: 2px solid #007bff; /* 강조된 테두리 */
+    border-radius: 10px; /* 둥근 모서리 */
+    font-size: 1em; /* 폰트 크기 */
+    background-color: #ffffff; /* 흰색 배경 */
+    transition: border-color 0.3s, box-shadow 0.3s; /* 전환 효과 */
+    appearance: none; /* 기본 셀렉트 스타일 제거 */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 16 16"><path fill="%23007bff" d="M4 6l4 4 4-4H4z"/></svg>'); /* 화살표 아이콘 추가 */
+    background-repeat: no-repeat; /* 반복하지 않음 */
+    background-position: right 10px center; /* 화살표 위치 조정 */
+    background-size: 12px; /* 화살표 크기 조정 */
+}
+
+#careNo_go1:focus {
+    border-color: #0056b3; /* 포커스 시 테두리 색상 변경 */
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); /* 포커스 시 그림자 효과 */
+    outline: none; /* 기본 포커스 아웃라인 제거 */
+}
+
+/* 옵션 스타일링 (선택된 것과 옵션의 스타일을 위한 추가) */
+#careNo_go1 option {
+    padding: 10px; /* 옵션 내부 패딩 */
+    background-color: #ffffff; /* 배경 색상 */
+    color: #333; /* 글자 색상 */
+}
+
+#careNo_go1 option:hover {
+    background-color: #f1f1f1; /* 호버 시 배경색 변경 */
+}
+
+
  
  </style>
  
@@ -197,15 +302,15 @@
         
         <!-- Modal body -->
         <div class="modal-body">
-        	<div>문서명 : <input type="text" readonly value="진단서" id="type_name"></div><br>
+        	<div>문서명 : <input type="text" readonly value="진단서" id="type_name1"></div><br>
         	
-        	<div>진료조회 : <input type="date" id="care_date"> ~ <input type="date" id="care_date_1"> 
-        	<button onclick="fnCareList();">조회</button>
-        		<div id="CareListsel_result"></div>
+        	<div>진료조회 : <input type="date" id="care_date1"> ~ <input type="date" id="care_date_1"> 
+        	<button onclick="fnCareList1();">조회</button>
+        		<div id="CareListsel_result1"></div>
         	</div><br>
         	
         	<div>발급용도 : 
-        		<select id="purpose">
+        		<select id="purpose1">
         			<option>보험제출</option>
         			<option>회사제출</option>
         			<option>개인소장</option>
@@ -223,6 +328,80 @@
     </div>
   </div>
   
+  <script>
+  
+	function fnbtn1(){
+ 		
+ 		if(confirm('"진단서"(을)를 신청하시겠습니까? ')){
+ 			
+ 			$.ajax({
+ 				url: '<%= contextPath%>/appication.ce',
+ 				data:{
+ 					userNo:<%= loginUser.getUserNo() %>,
+ 					type: $('#type_name1').val(),
+ 					/* cDate: $('.care_date').val(), */
+ 					purpose : $('#purpose1').val(),
+ 					careNo: $('#careNo_go1').val()
+ 				},
+ 				success: function(res){
+ 					console.log(res)
+ 					if(res > 0){
+ 						alert("성공적으로 신청하였습니다. 발급신청내역에서 확인하실 수 있습니다.");
+ 						
+ 					}else{
+ 						alert("해당날짜의 진료기록이 없거나 발급내역이 있습니다.");
+ 					}
+ 				}
+ 				
+ 			}) 
+ 			
+ 		}	
+ 	}
+	
+	
+ 	
+	function fnCareList1(){
+ 		
+		 let careList = '<select id="careNo_go1">';
+		 		
+				$.ajax({
+					url:"<%= contextPath%>/careList.se",
+					type:'post',
+					data:{
+						careDate1: $('#care_date1').val(),
+						careDate2: $('#care_date_1').val()
+					},
+						success: function(res){
+							console.log(res);
+							
+								if(res != ""){
+								
+								for(let i=0; i<res.length; i++){
+									
+									careList += '<option value="'+ res[i].careNo + '">'+ res[i].treatmentDate + '일'+'</option>'
+														console.log(careList);
+								}
+								careList	+= '</select>'
+								
+								$('#CareListsel_result1').html(careList);
+								
+								
+							}else{
+								
+								$('#CareListsel_result1').html('조회된 결과가 없습니다').css('color','red');
+							}
+							
+							
+							
+							
+							
+							
+							}
+						}) 
+				}
+  
+  </script>
+  
   
   <!-- The Modal -->
   <div class="modal fade" id="myModal2">
@@ -238,8 +417,13 @@
         <!-- Modal body -->
         <div class="modal-body">
         	<div>문서명 : <input type="text" readonly value="진료확인서" id="type_name2"></div><br>
-        	<div>진료날짜 : <input type="date" id="care_date2" > ~ <input type="date" id="care_date2_1">
+        	
+     			<div>진료조회 : <input type="date" id="care_date2"> ~ <input type="date" id="care_date_2"> 
+        		<button onclick="fnCareList2();">조회</button>
+        		<div id="CareListsel_result2"></div>
         	</div><br>
+        	
+        	
         	<div>발급용도 : 
         		<select id="purpose2">
         			<option>보험제출</option>
@@ -266,19 +450,19 @@
  	
  
  <script>
- 	function fnbtn1(){
+ 
+	function fnbtn2(){
  		
- 		
- 		if(confirm('"진단서"(을)를 신청하시겠습니까? ')){
+ 		if(confirm('"진료확인서"(을)를 신청하시겠습니까? ')){
  			
  			$.ajax({
  				url: '<%= contextPath%>/appication.ce',
  				data:{
  					userNo:<%= loginUser.getUserNo() %>,
- 					type: $('#type_name').val(),
- 					cDate: $('#care_date').val(),
- 					purpose : $('#purpose').val(),
- 					careNo: $('#careNo_go').val()
+ 					type: $('#type_name2').val(),
+/*  					cDate: $('.care_date2').val(), */
+ 					purpose : $('#purpose2').val(),
+ 					careNo: $('#careNo_go2').val()
  				},
  				success: function(res){
  					console.log(res)
@@ -288,7 +472,8 @@
  					}else{
  						alert("해당날짜의 진료기록이 없거나 발급내역이 있습니다.");
  					}
- 				}
+ 				},
+ 				
  				
  			}) 
  			
@@ -296,66 +481,51 @@
  		
  		
  	}
- 	
- 	function fnbtn2(){
- 		
- 		$.ajax({
-				url: '<%= contextPath%>/appication.ce',
-				data:{
-					userNo:<%= loginUser.getUserNo() %>,
-					type: $('#type_name2').val(),
-					cDate: $('#care_date2').val(),
-					purpose : $('#purpose2').val()
-				},
-				success: function(res){
-					console.log(res)
-					if(res > 0){
-						alert("성공적으로 신청하였습니다. 발급신청내역에서 확인하실 수 있습니다.");
-						
-					}else{
-						alert("해당날짜의 진료기록이 없거나 발급내역이 있습니다.");
-					}
-				}
-				
-			}) 
- 		
- 		
- 		
- 	}
- 	
- 	function fnCareList(){
- 		
- let careList = '<select id="careNo_go">';
- 		
-		$.ajax({
-			url:"<%= contextPath%>/careList.se",
-			type:'post',
-			data:{
-				careDate1: $('#care_date').val(),
-				careDate2: $('#care_date_1').val()
-			},
-				success: function(res){
-					console.log(res);
-					
-					for(let i=0; i<res.length; i++){
-						careList += '<option value="'+ res[i].careNo + '">'+ res[i].treatmentDate +'</option>'
-											
-					}
-					careList	+= '</select>'
-					
-					$('#CareListsel_result').append(careList);
-					
-					}
-				}) 
 	
-				
-		}
+	function fnCareList2(){
+ 		
+		 let careList = '<select id="careNo_go2">';
+		
+		
+		 		
+				$.ajax({
+					url:"<%= contextPath%>/careList.se",
+					type:'post',
+					data:{
+						careDate1: $('#care_date2').val(),
+						careDate2: $('#care_date_2').val()
+					},
+						success: function(res){
+							console.log(res);
+							
+							if(res != ""){
+								
+								for(let i=0; i<res.length; i++){
+									 
+									careList += '<option value="'+ res[i].careNo + '">'+ res[i].treatmentDate +'</option>'
+														console.log(careList);
+								}
+								careList	+= '</select>'
+								
+								$('#CareListsel_result2').html(careList);
+								
+								
+							}else{
+								
+								$('#CareListsel_result2').html('조회된 결과가 없습니다').css('color','red');
+							}
+							
+							
+							
+							
+							}
+						
+					
+						}) 
+						
+		
+				}
  	
- 	
- 	
- 	
- 	
- 
  
  </script>
  

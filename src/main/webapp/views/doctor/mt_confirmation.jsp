@@ -147,25 +147,25 @@
                 </table>
                 
               <nav aria-label="Page navigation example" id="pageBar">
-                  <ul class="pagination">
+                  <ul class="pagination"style="margin-left: 88px;">
                   
                   
                     <li class='page-item <%=pi.getCurrentPage() == 1 ? "disabled" : ""%>'>
-                      <a class="page-link" href="<%= contextPath %>/dia_list.do?page=<%=pi.getCurrentPage()-1%>">
+                      <a class="page-link" href='<%= contextPath %>/dia_list.do?page=<%=pi.getCurrentPage()-1%>&type=진료확인서'>
                         <span aria-hidden="true">&laquo;</span>
                       </a>
                     </li>
                     
                     <% for(int p = pi.getStartPage(); p<= pi.getEndPage(); p++) {%>
                     <li class='page-item <%=p == pi.getCurrentPage() ? "active" : ""%>'>
-                    	<a href='<%= contextPath %>/dia_list.do?page=<%=p%>&type="진료확인서"' class="page-link"><%= p %></a>
+                    	<a href='<%= contextPath %>/dia_list.do?page=<%=p%>&type=진료확인서' class="page-link"><%= p %></a>
                     </li>
                     <%} %>
                     
                     
                     
                     <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
-                      <a class="page-link" href='<%= contextPath %>/dia_list.do?page=<%=pi.getCurrentPage()+1 %>&type="진료확인서"'>
+                      <a class="page-link" href='<%= contextPath %>/dia_list.do?page=<%=pi.getCurrentPage()+1 %>&type=진료확인서'>
                         <span aria-hidden="true">&raquo;</span>
                       </a>
                     </li>
@@ -193,39 +193,6 @@
     
     <script>
     
-    
-	<%-- function fnDocumentSel(){
-		
-		$.ajax({
-			url: '<%= contextPath%>/docuSel.do',
-			data : {
-				 type : '진단서'
-				
-			},
-			
-			success: function(res){
-				
-				console.log(res);  // [{}, {}]
-				let table = '';
-				
-				for(let i=0; i<res.length; i++){
-					
-					table += '<tr class="tr_click">'
-								 +  '<td id="u_no_value">'+ res[i].userId + '</td>'
-								 +  '<td id="u_name_value">'+ res[i].userType + '</td>'
-								 +  '<td id="u_ssn_value">'+ res[i].phone + '</td>'
-								 +  '<td id="u_dname_value">'+ res[i].userName + '</td>'
-								 +  '<td id="u_phone_value">'+ res[i].userSSN + '</td>'
-								 +  '<td><button class="btn btn-primary">보기</button></td>' 
-								+ '</tr>'
-					
-				}
-				
-				$('#docuTable').append(table);// 제이쿼리 append 는 기존 내용을 유지하면서 새로 추가할때 씀
-				
-			}
-			
-		}) --%>
 	
 		$(document).ready(function() {
 		    $('#docuTable').on('click', '.tr_click', function() {

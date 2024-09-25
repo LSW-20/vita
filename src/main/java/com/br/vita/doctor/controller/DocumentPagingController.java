@@ -55,15 +55,11 @@ public class DocumentPagingController extends HttpServlet {
 		int startPage = (currentPage -1) / pageLimit * pageLimit+1;		//사용자요청 페이지 하단에 보여질 페이징바의 시작수
 		int endPage = Math.min(startPage + pageLimit - 1, maxPage);//사용자요청 페이지 하단에 보여질 페이징바의 끝수
 		
-		//endPage>maxPage 경우 처리
-		if(endPage > maxPage) {
-			endPage = maxPage;
-		}
 		
 		//페이징바 제작 위한 데이터 vo생성해서 common에 배치
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
-		List<Member> doculist = new DoctorService().documentSelect(docNo,type);
+		List<Member> doculist = new DoctorService().documentSelect(docNo,type,pi);
 		
 		System.out.println(pi);
 		System.out.println(doculist);
@@ -72,8 +68,11 @@ public class DocumentPagingController extends HttpServlet {
 		request.setAttribute("pi", pi);
 		request.setAttribute("doculist", doculist);
 		
-		
-		request.getRequestDispatcher("/views/doctor/diagnosis.jsp").forward(request, response); // 페이지로 포워딩
+		if(type.equals("진단서")) {
+			request.getRequestDispatcher("/views/doctor/diagnosis.jsp").forward(request, response); // 페이지로 포워딩
+		}else if(type.equals("진료확인서")) {
+			request.getRequestDispatcher("/views/doctor/mt_confirmation.jsp").forward(request, response);
+		}
 		
 	}
 
