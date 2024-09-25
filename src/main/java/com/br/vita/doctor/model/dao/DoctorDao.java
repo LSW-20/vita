@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import com.br.vita.common.model.vo.PageInfo;
 import com.br.vita.doctor.model.vo.Doctor;
 import com.br.vita.doctor.model.vo.DoctorSchedule;
 import com.br.vita.member.model.vo.Member;
@@ -673,7 +674,7 @@ public class DoctorDao {
 	
 	
 	// 진단서신청목록 조회
-	public List<Member> documentSelect(Connection conn, String docNo, String type) {
+	public List<Member> documentSelect(Connection conn, String docNo, String type,PageInfo pi) {
 		
 		
 		PreparedStatement pstmt = null;
@@ -690,6 +691,12 @@ public class DoctorDao {
 			
 			pstmt.setString(1, docNo);
 			pstmt.setString(2, type);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4,endRow);
 			
 			rset = pstmt.executeQuery();
 			
@@ -712,7 +719,7 @@ public class DoctorDao {
 //									,rset.getString("PHONE"));
 //				
 				Member docuMem = new Member();
-				docuMem.setUserNo(rset.getString("user_no"));
+				docuMem.setUserNo(rset.getString("USER_NO"));
 				docuMem.setUserName(rset.getString("USER_NAME"));
 				docuMem.setPhone(rset.getString("USER_SSN"));
 				docuMem.setDeptName(rset.getString("DEPT_NAME"));

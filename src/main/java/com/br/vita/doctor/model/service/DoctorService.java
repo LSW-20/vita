@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.br.vita.common.model.vo.PageInfo;
 import com.br.vita.doctor.model.dao.DoctorDao;
 import com.br.vita.doctor.model.vo.Doctor;
 import com.br.vita.doctor.model.vo.DoctorSchedule;
@@ -284,11 +285,11 @@ public class DoctorService {
 	
 	
 	// 의료진페이지 페이징 진단서 신청목록 조회
-	public List<Member> documentSelect(String docNo, String type) {
+	public List<Member> documentSelect(String docNo, String type,PageInfo pi) {
 		
 		Connection conn = getConnection();
 		
-		List<Member> doculist = dDao.documentSelect(conn,docNo,type);
+		List<Member> doculist = dDao.documentSelect(conn,docNo,type,pi);
 		
 		close(conn);
 		

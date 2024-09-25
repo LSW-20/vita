@@ -14,11 +14,11 @@ public class IssueService {
 	private IssueDao iDao = new IssueDao();
 	
 	
-	public int certificateApplicationInsert(String userNo, String type ,String Date,String purpose,String careNo) {
+	public int certificateApplicationInsert(String userNo, String type,String purpose,String careNo) {
 		
 		Connection conn = getConnection();
 		
-		int count =  iDao.certificateApplicationSelect(conn, userNo, type, Date);
+		int count =  iDao.certificateApplicationSelect(conn, careNo, type);
 		int result = 0;
 		// 1) 해당 발급요청 문서가 기존에 존재하는 지 조회 
 		// int count = 현재 진료번호에 확인중(R)상태가 몇개인지
@@ -26,7 +26,7 @@ public class IssueService {
 		
 		if(count == 0) {
 			// 2) 
-			result = iDao.certificateApplicationInsert(conn,userNo,type,Date,purpose,careNo);
+			result = iDao.certificateApplicationInsert(conn,userNo,type,purpose,careNo);
 			
 			if(result>0) {
 				commit(conn);
