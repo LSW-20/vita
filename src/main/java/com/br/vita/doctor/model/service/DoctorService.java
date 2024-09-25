@@ -172,7 +172,7 @@ public class DoctorService {
 	}
 
 	
-	// 의료진 일정 업데이트
+	// 의료진페이지 일정 업데이트
 	public int doctorScheduleUpdate(List<DoctorSchedule> list) {
 
 		Connection conn = getConnection();
@@ -283,12 +283,12 @@ public class DoctorService {
 	}
 	
 	
-	
-	public List<Member> documentSelect(String type, String docNo) {
+	// 의료진페이지 페이징 진단서 신청목록 조회
+	public List<Member> documentSelect(String docNo, String type) {
 		
 		Connection conn = getConnection();
 		
-		List<Member> doculist = dDao.documentSelect(conn,type,docNo);
+		List<Member> doculist = dDao.documentSelect(conn,docNo,type);
 		
 		close(conn);
 		
@@ -298,11 +298,11 @@ public class DoctorService {
 		
 	}
 	
-	public int selectDocumentListCount(String docNo) {
+	public int selectDocumentListCount(String docNo, String type) {
 		
 		Connection conn = getConnection();
 		
-		int listCount = dDao.selectDocumentListCount(conn,docNo);
+		int listCount = dDao.selectDocumentListCount(conn,docNo,type);
 		
 		close(conn);
 		

@@ -129,7 +129,7 @@
             </tr>
         <% } else { %>
             <% for (Member m : doculist) { %>
-                <tr>
+                <tr class="tr_click">
                     <td><%= m.getUserNo() %></td>
                     <td><%= m.getUserName() %></td>
                     <td><%= m.getUserSSN() %></td>
@@ -157,7 +157,9 @@
                     </li>
                     
                     <% for(int p = pi.getStartPage(); p<= pi.getEndPage(); p++) {%>
-                    <li class='page-item <%=p == pi.getCurrentPage() ? "active" : ""%>' href='<%= contextPath %>/dia_list.do?page=<%=p%>&type="진단서"'><%= p %></a></li>
+                    <li class='page-item <%=p == pi.getCurrentPage() ? "active" : ""%>'>
+                    	<a href='<%= contextPath %>/dia_list.do?page=<%=p%>&type="진단서"' class="page-link"><%= p %></a>
+                    </li>
                     <%} %>
                     
                     
@@ -168,9 +170,7 @@
                       </a>
                     </li>
                     
-                    
-                    
-                    
+                 
                   </ul>
                 </nav>
                 

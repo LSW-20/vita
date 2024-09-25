@@ -38,6 +38,20 @@ public class Mrecords {
 		this.diagnosisName = diagnosisName;
 		this.deptName = deptName;
 	}
+	
+	
+
+
+	public Mrecords(Date treatmentDate, String diagnosisName, String deptName, String careNo) {
+		super();
+		this.treatmentDate = treatmentDate;
+		this.diagnosisName = diagnosisName;
+		this.deptName = deptName;
+		this.careNo=careNo;
+	}
+
+
+	
 
 
 	public String getCareNo() {
