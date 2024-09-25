@@ -39,7 +39,13 @@ public class DocumentConfirmController extends HttpServlet {
         Document document = new IssueService().getDocumentByCareNo(careNo);
         request.setAttribute("documents", document);
         request.setAttribute("docType", docType);
-        request.getRequestDispatcher("/views/issue/confirmAdmission.jsp").forward(request, response);
+		if(docType.equals("진료비납입확인서")) {
+			request.getRequestDispatcher("/views/issue/confirmPayment.jsp").forward(request, response);						
+		}else if(docType.equals("입퇴원사실확인서")) {
+			request.getRequestDispatcher("/views/issue/confirmAdmission.jsp").forward(request, response);			
+		}else {
+			request.getRequestDispatcher("/views/issue/confirmPrescription.jsp").forward(request, response);						
+		}
 	}
 
 	/**
