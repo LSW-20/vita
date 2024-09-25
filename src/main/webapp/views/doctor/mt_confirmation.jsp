@@ -1,12 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="java.util.*" %>
+
+<%@ page import="com.br.vita.common.model.vo.PageInfo" %>
+
+<%@ page import="com.br.vita.member.model.vo.*" %>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
+		<% 
+				PageInfo pi = (PageInfo)request.getAttribute("pi");
+				List<Member> doculist = (List<Member>)request.getAttribute("doculist");
+		%>
 
 </head>
 <body>
@@ -110,6 +121,24 @@
                     <th>전화번호</th>
                     <th>진료기록</th>
                   </tr>
+                  
+        
+        <% if (doculist == null || doculist.isEmpty()) { %>
+            <tr>
+                <td colspan="6" style="text-align: center;">존재하는 게시글이 없습니다.</td>
+            </tr>
+        <% } else { %>
+            <% for (Member m : doculist) { %>
+                <tr class="tr_click">
+                    <td><%= m.getUserNo() %></td>
+                    <td><%= m.getUserName() %></td>
+                    <td><%= m.getUserSSN() %></td>
+                    <td><%= m.getDeptName() %></td>
+                    <td><%= m.getPhone() %></td>
+                    <td><button class="btn btn-primary">보기</button></td>
+                </tr>
+            <% } %>
+        <% } %>
 									
                   
                  
@@ -117,23 +146,35 @@
                
                 </table>
                 
-                <nav aria-label="Page navigation example" id="pageBar">
+              <nav aria-label="Page navigation example" id="pageBar">
                   <ul class="pagination">
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Previous">
+                  
+                  
+                    <li class='page-item <%=pi.getCurrentPage() == 1 ? "disabled" : ""%>'>
+                      <a class="page-link" href="<%= contextPath %>/dia_list.do?page=<%=pi.getCurrentPage()-1%>">
                         <span aria-hidden="true">&laquo;</span>
                       </a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next">
+                    
+                    <% for(int p = pi.getStartPage(); p<= pi.getEndPage(); p++) {%>
+                    <li class='page-item <%=p == pi.getCurrentPage() ? "active" : ""%>'>
+                    	<a href='<%= contextPath %>/dia_list.do?page=<%=p%>&type="진료확인서"' class="page-link"><%= p %></a>
+                    </li>
+                    <%} %>
+                    
+                    
+                    
+                    <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
+                      <a class="page-link" href='<%= contextPath %>/dia_list.do?page=<%=pi.getCurrentPage()+1 %>&type="진료확인서"'>
                         <span aria-hidden="true">&raquo;</span>
                       </a>
                     </li>
+                    
+                 
                   </ul>
                 </nav>
+                
+                
                 
               </div>
 
@@ -151,14 +192,15 @@
     <!-- section end -->
     
     <script>
-    fnDocumentSel()
     
-	function fnDocumentSel(){
+    
+	<%-- function fnDocumentSel(){
 		
 		$.ajax({
 			url: '<%= contextPath%>/docuSel.do',
 			data : {
-				 type : '진료확인서'
+				 type : '진단서'
+				
 			},
 			
 			success: function(res){
@@ -183,7 +225,7 @@
 				
 			}
 			
-		})
+		}) --%>
 	
 		$(document).ready(function() {
 		    $('#docuTable').on('click', '.tr_click', function() {
@@ -202,10 +244,14 @@
 		        $('#department').html($deptName); 
 		    });
 		});
-	}
+		
+		
+		
+		
+	/* } */
     
 	
-	
+	/* fnDocumentSel(); */
     
     
     </script>

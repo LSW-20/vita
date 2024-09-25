@@ -39,7 +39,8 @@ public class IssueDao {
 
 	}
 	
-	public int certificateApplicationInsert(Connection conn, String userNo, String type ,String Date,String purpose) {
+	// 의료진승인용 신청서 insert
+	public int certificateApplicationInsert(Connection conn, String userNo, String type ,String Date,String purpose,String careNo) {
 		
 		
 		int result = 0;
@@ -53,10 +54,10 @@ public class IssueDao {
 			pstmt=conn.prepareStatement(sql);
 			
 			pstmt.setString(1,userNo);
-			pstmt.setString(2,userNo);
-			pstmt.setString(3,Date);
-			pstmt.setString(4,type );
-			pstmt.setString(5,purpose);
+			pstmt.setString(2,careNo);
+			pstmt.setString(3,type);
+			pstmt.setString(4,purpose);
+			
 			
 			
 			result=pstmt.executeUpdate();
@@ -144,6 +145,45 @@ public class IssueDao {
 		}
 		
 		return records;
+	}
+	
+	
+	public List<Mrecords> careListSelectByDate(Connection conn, String userNo, String caredate1, String caredate2) {
+		
+		List<Mrecords> mr = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("careListSelectByDate");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1,caredate1);
+			pstmt.setString(2,caredate2);
+			pstmt.setString(3,userNo);
+			
+			rset=pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				mr.add(	new Mrecords(rset.getDate("TREATMENT_DATE")
+								  ,rset.getString("DIAGNOSIS_NAME")
+								  ,rset.getString("DEPT_NAME")
+								  ,rset.getString("CARE_NO")));
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return mr;
+		
+		
 	}
 	
 	

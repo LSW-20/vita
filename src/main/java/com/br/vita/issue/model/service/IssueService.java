@@ -14,7 +14,7 @@ public class IssueService {
 	private IssueDao iDao = new IssueDao();
 	
 	
-	public int certificateApplicationInsert(String userNo, String type ,String Date,String purpose) {
+	public int certificateApplicationInsert(String userNo, String type ,String Date,String purpose,String careNo) {
 		
 		Connection conn = getConnection();
 		
@@ -26,7 +26,7 @@ public class IssueService {
 		
 		if(count == 0) {
 			// 2) 
-			result = iDao.certificateApplicationInsert(conn,userNo,type,Date,purpose);
+			result = iDao.certificateApplicationInsert(conn,userNo,type,Date,purpose,careNo);
 			
 			if(result>0) {
 				commit(conn);
@@ -54,6 +54,16 @@ public class IssueService {
 		Connection conn = getConnection();
 		List<Mrecords> records = iDao.selectMrecords(conn, userNo, startDate, endDate);
 		return records;
+	}
+	
+	
+	public List<Mrecords> careListSelectByDate(String userNo,String caredate1,String caredate2) {
+		
+		Connection conn = getConnection();
+		List<Mrecords> mr = iDao.careListSelectByDate(conn, userNo, caredate1, caredate2);
+		return mr;
+		
+		
 	}
 	
 	
