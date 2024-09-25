@@ -330,7 +330,13 @@ SELECT COUNT(*) AS COUNT
 
 
 
-
+	<!-- (상우)  -->
+	<entry key="selectDoctorList">
+	
+	SELECT DOCTOR_NAME
+	  FROM DOCTOR
+	        			
+	</entry>
 	
 	
 </properties>

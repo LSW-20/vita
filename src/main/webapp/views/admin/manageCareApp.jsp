@@ -1,5 +1,10 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.br.vita.doctor.model.vo.Doctor" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<% List<Doctor> list = (List<Doctor>) request.getAttribute("list"); %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,18 +131,24 @@ footer {
                     <td class="left_cell">진료과</td>
                     <td class="right_cell">
                         <select name="" id="" required>
-                            <option value="">외과</option>
-                            <option value="">내과</option>
-                            <option value="">치과</option>
-                            <option value="">안과</option>
+                            <option>외과</option>
+                            <option>내과</option>
+                            <option>치과</option>
+                            <option>안과</option>
                         </select>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="left_cell">의료진</td>
-                    <td class="right_cell">
-                        <input type="text" name="" size="12" required>
+                    <td>
+                        <select name="doc_name" required>
+                            <% if( list != null && !list.isEmpty() ) {
+                                for(int i=0; i<list.size(); i++) { %>
+                                    <option><%= list.get(i).getDoctorName() %></option>    
+                            <%  }
+                            } %>    
+                        </select>
                     </td>
                 </tr>
 
@@ -190,15 +201,11 @@ footer {
                     <th>회원번호</th>
                     <th>이름</th>
                     <th>핸드폰번호</th>
-                    <th>복용중인 약</th>
-                    <th>최근 수술 여부</th>
-                    <th>수술명</th>
-                    <th>비행예정</th>
                     <th></th>
                 </tr>
 
                 <tr>
-                    <td colspan="13" style="text-align: center;">검색 결과가 없습니다.</td>
+                    <td colspan="9" style="text-align: center;">검색 결과가 없습니다.</td>
                 </tr>
             </table>
 
@@ -223,10 +230,6 @@ footer {
                     <th>회원번호</th>
                     <th>이름</th>
                     <th>핸드폰번호</th>
-                    <th>복용중인 약</th>
-                    <th>최근 수술 여부</th>
-                    <th>수술명</th>
-                    <th>비행예정</th>
                     <th></th>
                 </tr>
 
@@ -238,29 +241,6 @@ footer {
                     <td>오전</td>
                     <td>007</td>
                     <td>지창선</td>
-                    <td>010-4622-4377</td>
-                    <td>혈압약,항혈전제</td>
-                    <td>있음</td>
-                    <td>맹장수술</td>
-                    <td>없음</td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_modal">삭제</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>2325</td>
-                    <td>외과</td>
-                    <td>가가가</td>
-                    <td>20240914</td>
-                    <td>오후</td>
-                    <td>016</td>
-                    <td>이수정</td>
-                    <td>010-2111-1378</td>
-                    <td>없음</td>
-                    <td>없음</td>
-                    <td></td>
-                    <td>있음</td>
                     <td>
                         <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_modal">삭제</button>
                     </td>

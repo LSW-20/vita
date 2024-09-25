@@ -773,6 +773,43 @@ public class DoctorDao {
 		
 		
 	}
+
+	/**
+	 * 현재 전체 의사 이름 조회
+	 * author : 임상우
+	 * @param conn
+	 * @return List<Doctor>
+	 */
+	public List<Doctor> selectDoctorList(Connection conn) {
+		
+		List<Doctor> list = new ArrayList<Doctor>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectDoctorList");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Doctor d = new Doctor();
+				d.setDoctorName(rset.getString("DOCTOR_NAME"));
+				
+				list.add(d);
+			}
+		 	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return list;
+	}
 	
 	
 	
