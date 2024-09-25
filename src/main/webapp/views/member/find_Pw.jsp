@@ -77,7 +77,7 @@
                비타 의료원 사이트에 등록된 회원정보를 입력해주세요.</p>
            <p class="title2"> * 필수입력항목</p>
            <div class="container">
-               <form action="">
+               <form action="<%= contextPath %>/pwfind.me" method="post" id="findPw">
                    <table class="table table-bordered">
                    	 <thead>
                        <colgroup>
@@ -140,8 +140,8 @@
                      </tbody>
                    </table>
                        <div class="btn_okcc">
-                         <a href=""><button type="button" class="btn btn-primary mx-2" id="cc">취소</button></a>
-                         <a href=""><button type="button" class="btn btn-primary mx-2" id="ok">확인</button></a>
+                         <a href="<%= contextPath %>"><button type="button" class="btn btn-primary mx-2" id="cc">취소</button></a>
+                         <button type="submit" class="btn btn-primary mx-2" id="ok">확인</button>
                        </div>
                </form>
            </div>

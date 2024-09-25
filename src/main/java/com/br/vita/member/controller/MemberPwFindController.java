@@ -29,7 +29,7 @@ public class MemberPwFindController extends HttpServlet {
 
 		// 단순 페이지 이동 요청
 		// 응답페이지 : /web/views/member/signUp.jsp
-		request.getRequestDispatcher("/views/member/find_Pw_Send.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/member/find_Pw_Choice.jsp").forward(request, response);
 	}
 
 	/**
