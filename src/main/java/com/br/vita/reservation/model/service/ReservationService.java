@@ -160,10 +160,15 @@ public class ReservationService {
 		Connection conn = getConnection();
 		List<Map<String, Object>> resultList = rdao.selectCareApp(conn, deptName, docName, appDate);
 		close(conn);
+		
 		return resultList;
+		
+	}
+		
 	public void insertHealthCheckList(CheckList ck) {
 
 	
+		
 		
 	}
 
