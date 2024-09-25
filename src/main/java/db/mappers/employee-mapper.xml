@@ -41,5 +41,35 @@
 	 )				
 	 		
 	</entry>
+	
+	
+	
+	<!-- (상우) 기업의 사원 수정 -->
+	<entry key="updateEmployee">
+
+	UPDATE
+	      	EMPLOYEE
+	   SET
+	   			SSN = ?
+	   		, EMP_NAME = ?
+	   		, COMP_NO = (SELECT COMP_NO FROM COMPANY WHERE COMP_NAME = ?)
+	   		, EMP_NO = ?
+	 WHERE
+	  			SSN = ?  			   		
+	 		
+	</entry>
+	
+	
+	
+	<!-- (상우) 기업의 사원 삭제 -->
+	<entry key="deleteEmployee">
+
+	DELETE
+	  FROM
+	    		EMPLOYEE
+	 WHERE
+	 				SSN IN (   			   		
+	 		
+	</entry>
 
 </properties>

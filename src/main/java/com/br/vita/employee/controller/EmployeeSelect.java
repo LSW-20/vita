@@ -44,10 +44,10 @@ public class EmployeeSelect extends HttpServlet {
 		
 
 		String selectCom = request.getParameter("select_com");
-		System.out.println("사용자가 선택한 기업명 : " + selectCom);
+		// System.out.println("사용자가 선택한 기업명 : " + selectCom);
 		
 		List<Map<String, Object>> empList = new EmployeeService().selectEmployee(selectCom);
-		System.out.println("db로부터 조회된 리스트 : " + empList);
+		// System.out.println("db로부터 조회된 리스트 : " + empList);
 		
 		
 		// (+) "관리자 건강검진 연계기업 관리 페이지"에서 전체 기업 목록 select 결과를 list로 필요로 한다.

@@ -548,7 +548,7 @@ public class DoctorDao {
 			pstmt.setString(4, m.getPhone());
 			pstmt.setString(5, uqDoctorSsn);
 			
-			System.out.println(sql);
+			//System.out.println(sql);
 
 			result = pstmt.executeUpdate();
 			
@@ -602,7 +602,7 @@ public class DoctorDao {
 				
 			}
 				
-			System.out.println(sql);
+			//System.out.println(sql);
 
 			result = pstmt.executeUpdate();
 			
@@ -656,7 +656,7 @@ public class DoctorDao {
 				
 			}
 				
-			System.out.println(sql);
+			//System.out.println(sql);
 
 			result = pstmt.executeUpdate();
 			
