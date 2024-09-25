@@ -125,12 +125,12 @@ footer {
 
 
         <br>
-        <form action="#" method="">
+        <form action="/searchCA.admin" method="get">
             <table id="search_table">
                 <tr>
                     <td class="left_cell">진료과</td>
                     <td class="right_cell">
-                        <select name="" id="" required>
+                        <select name="dept_name" required>
                             <option>외과</option>
                             <option>내과</option>
                             <option>치과</option>
@@ -156,7 +156,7 @@ footer {
                     <td class="left_cell">날짜</td>
                     <td class="right_cell">
                         
-                            <input type="date" name="" required> &nbsp;
+                            <input type="date" name="app_date" required> &nbsp;
                             <button type="submit">검색</button>
                         
                     </td>
