@@ -396,7 +396,7 @@ footer {
 
                 <table class="table table-striped search_company_result_table">
                     <tr>
-                        <th></th>
+                        <th><button class="btn btn-sm btn-warning" type="button">all</button></th>
                         <th>기업번호</th>
                         <th>기업명</th>
                         <th>사번</th>
@@ -423,7 +423,7 @@ footer {
 
                     <table class="table table-striped search_company_result_table">
                         <tr>
-                            <th></th>
+                            <th><button class="btn btn-sm btn-warning" type="button">all</button></th>
                             <th>기업번호</th>
                             <th>기업명</th>
                             <th>사번</th>
@@ -451,9 +451,9 @@ footer {
                 <div class="search_company_result"><span style="color: red;"><%= selectCom %></span> 검색 결과</div> <br>
 
 
-                <table class="table table-striped search_company_result_table">
+                <table class="bb">
                     <tr>
-                        <th></th>
+                        <th><button class="btn btn-sm btn-warning" type="button" id="all_btn2">all</button></th>
                         <th>기업번호</th>
                         <th>기업명</th>
                         <th>사번</th>
@@ -470,13 +470,68 @@ footer {
                     %> 
 
                             <tr>
-                                <td><input type="checkbox" name="delete"></td>
+                                <td><input type="checkbox" name="delete" id="<%= e.getSsn() %>"></td>
                                 <td><%= c.getCompNo() %></td>
                                 <td><%= c.getCompName() %></td>
                                 <td><%= e.getEmpNo() %></td>
                                 <td><%= e.getEmpName() %></td>
                                 <td><%= e.getSsn() %></td>
-                                <td><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#update_company_result_modal">수정</button></td>
+                                <td><button type="button" class="btn btn-sm btn-primary" data-toggle="collapse" data-target="#modify<%= e.getEmpNo() %>">수정</button></td>
+                            </tr>
+
+                            <!-- 수정용 행(collapse로 띄움) -->
+                            <tr class="collapse" id="modify<%= e.getEmpNo() %>">
+                                <td colspan="7">
+                                    <form action="<%= contextPath %>/updateEMP.admin" method="post">    
+                                        <input type="hidden" name="before_ssn" value="<%= e.getSsn() %>"> <%-- employee 업데이트 조건 --%>
+
+                                        <div style="display: flex; justify-content: center;">
+                                            <table class="update_table">
+                                                <tr>
+                                                    <td class="nono" colspan="2" style="height: 20px;"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="nono"><span class="star">*</span> 기업선택</th>
+                                                    <td class="nono">
+                                                        <select name="select_com" style="width: 200px;">
+                                                            <% if(list != null) { %>  
+                                                                <% for(int j=0; j<list.size(); j++) { %>
+                                                                    <option><%= list.get(j).getCompName() %></option>
+                                                                <% } %>        
+                                                            <% } %>  
+                                                        </select>
+                                                    </td>
+                                                </tr>
+            
+                                                <tr>
+                                                    <td class="nono" colspan="2" style="height: 20px;"></td>
+                                                </tr>
+            
+                                                <tr>
+                                                    <th class="nono"><span class="star">*</span> 사번</th>
+                                                    <td class="nono"><input type="text" class="form-control" name="emp_no" value="<%= e.getEmpNo() %>" required></td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="nono"><span class="star">*</span> 사원명</th>
+                                                    <td class="nono"><input type="text" class="form-control" name="emp_name" value="<%= e.getEmpName() %>" required></td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="nono"><span class="star">*</span> 사원 주민등록번호</th>
+                                                    <td class="nono"><input type="text" class="form-control" name="emp_ssn" value="<%= e.getSsn() %>" required maxlength="14"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="nono" colspan="2" style="height: 10px;"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="nono" colspan="2"><button type="submit" class="btn btn-sm btn-success">수정</button></td> 
+                                                </tr>
+                                                <tr>
+                                                    <td class="nono" colspan="2" style="height: 10px;"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </form>
+                                </td>
                             </tr>
                             <% } %>
                     <% } %>
@@ -484,13 +539,34 @@ footer {
 
                 </table>
 
+                <br>
                 <div class="company_result_del_add_btn">
-                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_company_result_modal">삭제</button>
+                    <button type="button" class="btn btn-sm btn-danger" id="del_button">삭제</button>
                     <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_company_result_modal">추가</button>
                 </div>
 
             <% } %> 
 
+
+            <style>
+                /* 기업의 사원 검색 결과 테이블과 셀들 */
+                .bb { 
+                    width: 100%;
+                }
+                .bb td, .bb th{
+                    height: 40px;
+                    text-align: center;
+                }
+                .bb td:not(.nono), .bb th:not(.nono){
+                    border: 1px solid silver;
+                }
+                .bb th:not(.update_table th) {
+                    background-color: rgb(196, 239, 245);
+                }
+                .bb td {
+                    background-color: rgb(253, 247, 239);
+                }
+            </style>
 
 
         </div>
@@ -500,19 +576,67 @@ footer {
     <!-- section end -->
 
 
-    <% if(list != null && !list.isEmpty()) {
-        for(int i=0; i<list.size(); i++) { %>
-            <tr>
-                <td class="company_cell1"><input type="checkbox" name="del_com_list" value="<%= list.get(i).getCompNo() %>"></td>
-                <td class="company_cell2"><%= list.get(i).getCompNo() %></td>
-                <td class="company_cell3"><%= list.get(i).getCompName() %></td>
-                <td class="company_cell4">
-                    <button type="button" class="btn btn-sm btn-primary up_btn"
-                        data-compno="<%= list.get(i).getCompNo() %>" data-compname="<%= list.get(i).getCompName() %>">수정</button>
-                </td>
-            </tr>
-        <% }    
-    } %>
+
+    <!-- 기업의 사원 검색 결과 '삭제' 기능 (이번엔 get방식 = location.href이 아닌 post 방식 = 외부 form으로 해보기)-->
+    <script>
+
+        document.getElementById('del_button').addEventListener('click', function() {
+
+            var checkboxEl = document.querySelectorAll('.bb input[type="checkbox"]'); // 체크박스들을 배열로 모음.
+
+            var checked_list = []; // 각 체크박스들의 id 속성값을 담을 배열.
+
+            for(var i = 0; i<checkboxEl.length; i++) {
+                if(checkboxEl[i].checked) {
+                    checked_list.push(checkboxEl[i].id);
+                }
+            }
+
+            if(confirm('정말 삭제하시겠습니까?')) {
+                $('#del_input').val(checked_list.join(','))
+                $('#del_form').submit();
+            }
+        
+        });    
+    </script>
+
+    <!-- get이 아닌 post방식으로 삭제 해보기 -->
+    <form action="<%= contextPath %>/deleteEMP.admin" method="post" id="del_form">
+        <input type="hidden" name="ssn" id="del_input">
+    </form>
+
+
+
+    <!-- 삭제를 위해 전체 선택하는 버튼 -->
+    <script>
+        document.getElementById('all_btn2').addEventListener('click', function() {
+
+            var checkboxEl = document.querySelectorAll('.bb input[type="checkbox"]'); // 체크박스들을 배열로 모음.
+
+            var flag = true; // 토글식으로 하면 일부 선택되어 있는 상태에서는 전체 선택된 결과가 나오지 않는다.
+
+            for(var i = 0; i<checkboxEl.length; i++) {
+                if(!checkboxEl[i].checked) {  
+                    checkboxEl[i].checked = true; 
+                    flag = false;      // falg가 true라는 뜻은 모든 체크박스가 이미 checked 되어있는 상태라는 뜻이다. 
+                }
+            }
+
+            if(flag == true) {
+                for(var i = 0; i<checkboxEl.length; i++) {
+                    checkboxEl[i].checked = false; // 모든 체크박스가 이미 checked 되어있으면 모두 체크 해제한다.
+                }
+            }
+
+        });    
+    </script> 
+
+
+
+
+
+
+    
 
     <!-- 연계기업 목록 추가용 modal start -->
 
@@ -628,109 +752,6 @@ footer {
             </div>
 
     <!-- 기업검색결과 추가용 modal end -->
-
-
-
-
-
-
-
-    <!-- 기업검색결과 삭제용 modal start -->
-  
-        <!-- The Modal -->
-        <div class="modal" id="delete_company_result_modal">
-            <div class="modal-dialog">
-            <div class="modal-content">
-        
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">연계기업 사원 목록 삭제</h4>
-                </div>
-        
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form action="#" method="">
-                        <h6>기업명 '롯데리아', 사번 '465432', 회원아이디 'kiosk223' 사원 목록을 정말 삭제하시겠습니까? </h6> <br>
-                        <div style="text-align: right;">
-                            <button type="submit" class="btn btn-sm btn-danger">삭제</button>
-                            <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">취소</button>
-                        </div>
-                    </form>
-                </div>
-        
-            </div>
-            </div>
-        </div>
-
-    <!-- 기업검색결과 삭제용 modal end -->
-
-
-
-
-
-
-
-
-
-
-    <!-- 기업검색결과 수정용 modal start -->
-
-            <!-- The Modal -->
-            <div class="modal" id="update_company_result_modal">
-                <div class="modal-dialog">
-                <div class="modal-content">
-            
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">연계기업 사원목록 수정</h4>
-                    </div>
-            
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <form action="#" method="">
-                            <div style="display: flex; justify-content: center;">
-                                <table class="add_update_modal_table">
-                                    <tr>
-                                        <th><span class="star">*</span> 기업번호</th>
-                                        <td><input type="number" class="form-control" placeholder="" name="" value="271" required></td>
-                                    </tr>
-
-                                    <tr>
-                                        <th><span class="star">*</span> 기업명</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="롯데리아" required></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td colspan="2" style="height: 20px;"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <th><span class="star">*</span> 사번</th>
-                                        <td><input type="number" class="form-control" placeholder="" name="" value="465432" required></td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="star">*</span> 사원명</th>
-                                        <td><input type="text" class="form-control" placeholder="" name="" value="박첨지" required></td>
-                                    </tr>
-
-                                </table>
-                            </div>
-
-                            <br>
-                            <div style="text-align: right;">
-                                <button type="submit" class="btn btn-sm btn-success">추가</button>
-                                <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">취소</button>
-                            </div>
-                        </form>
-                    </div>
-            
-                </div>
-                </div>
-            </div>
-
-
-    <!-- 기업검색결과 수정용 modal end -->
-
 
 
 

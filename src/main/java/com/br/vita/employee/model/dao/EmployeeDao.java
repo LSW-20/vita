@@ -95,6 +95,16 @@ public class EmployeeDao {
 	}
 
 
+	/**
+	 * 기업의 사원 추가
+	 * author : 임상우
+	 * @param conn
+	 * @param compName
+	 * @param empName
+	 * @param empSSN
+	 * @param empNo
+	 * @return 추가된 행 수
+	 */
 	public int insertEmployee(Connection conn, String compName, String empName, String empSSN, String empNo) {
 
 		int result = 0;
@@ -119,6 +129,94 @@ public class EmployeeDao {
 			close(pstmt);
 		}
 		
+		
+		
+		return result;
+	}
+
+	
+	/**
+	 * 기업의 사원 수정
+	 * author : 임상우
+	 * @param conn
+	 * @param e
+	 * @param compName
+	 * @param beforeSSN
+	 * @return 업데이트된 행 수
+	 */
+	public int updateEmployee(Connection conn, Employee e, String compName, String beforeSSN) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateEmployee");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, e.getSsn());
+			pstmt.setString(2, e.getEmpName());
+			pstmt.setString(3, compName);
+			pstmt.setString(4, e.getEmpNo());
+			pstmt.setString(5, beforeSSN);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException ee) {
+			ee.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+
+	/**
+	 * 기업의 사원 삭제
+	 * @param conn
+	 * @param ssnList
+	 * @return 삭제된 행 수
+	 */
+	public int deleteEmployee(Connection conn, String[] ssnList) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteEmployee");
+		// DELETE FROM EMPLOYEE WHERE SSN IN (   	
+		
+		for(int i=0; i<ssnList.length; i++) {
+			sql += "?";
+			
+			if( i != (ssnList.length-1) ) {
+				sql += ",";
+			}
+		}
+		
+		sql += ")";
+		
+		//System.out.println(sql);
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			for(int i=0; i<ssnList.length; i++) {
+				pstmt.setString(i+1, ssnList[i]);
+			}
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException ee) {
+			ee.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 		
 		
 		return result;

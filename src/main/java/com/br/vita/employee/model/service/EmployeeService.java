@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.br.vita.employee.model.dao.EmployeeDao;
+import com.br.vita.employee.model.vo.Employee;
 
 
 public class EmployeeService {
@@ -30,6 +31,15 @@ public class EmployeeService {
 
 
 
+	/**
+	 * 기업의 사원 추가
+	 * author : 임상우
+	 * @param compName
+	 * @param empName
+	 * @param empSSN
+	 * @param empNo
+	 * @return 추가된 행 수
+	 */
 	public int insertEmployee(String compName, String empName, String empSSN, String empNo) {
 		Connection conn = getConnection();
 		int result = eDao.insertEmployee(conn, compName, empName, empSSN, empNo);
@@ -40,6 +50,51 @@ public class EmployeeService {
 			rollback(conn);
 		}
 		
+		
+		close(conn);
+		return result;
+	}
+
+
+	/**
+	 * 기업의 사원 수정
+	 * author : 임상우
+	 * @param e
+	 * @param compName
+	 * @param beforeSSN
+	 * @return 업데이트된 행 수
+	 */
+	public int updateEmployee(Employee e, String compName, String beforeSSN) {
+		
+		Connection conn = getConnection();
+		int result = eDao.updateEmployee(conn, e, compName, beforeSSN);
+		
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
+
+
+	/**
+	 * 기업의 사원 삭제
+	 * @param ssnList
+	 * @return 삭제된 행 수
+	 */
+	public int deleteEmployee(String[] ssnList) {
+		
+		Connection conn = getConnection();
+		int result = eDao.deleteEmployee(conn, ssnList);
+		
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		
 		close(conn);
 		return result;

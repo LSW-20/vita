@@ -336,14 +336,13 @@ footer {
                     <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal">추가</button>
                 </div>
             <% } %>
-     
 
         <!-- 의료진 계정 삭제 기능 -->
         <script>
 
             document.getElementById('del_button').addEventListener('click', function() {
 
-                var checkboxEl = document.querySelectorAll('input[type="checkbox"]'); // 체크박스들을 배열로 모음.
+                var checkboxEl = document.querySelectorAll('.aa input[type="checkbox"]'); // 체크박스들을 배열로 모음.
 
                 var checked_list = []; // 각 체크박스들의 id 속성값을 담을 배열.
 
@@ -367,7 +366,7 @@ footer {
             삭제 버튼에 이벤트 리스너로 클릭 이벤트를 연결한다. checked된 checkbox 들의 id와 다음 셀들의 값도 가져와서
             배열에 담는다. 팝업창(confirm)에서 확인/취소 받은 다음에 확인의 경우(true) if문 조건으로
             서블릿을 요청한다(location.href).
-            서블릿을 요청하면서 checkbox들의 id들을 배열에 담고, join 메소드로 한 문자열로 만들어서 넘긴다. -->
+            서블릿을 요청하면서 checkbox들의 id들을 배열에 담고, join 메소드로 하나의 문자열로 만들어서 넘긴다. -->
 
 
 
@@ -377,7 +376,7 @@ footer {
 
                 var checkboxEl = document.querySelectorAll('.aa input[type="checkbox"]'); // 체크박스들을 배열로 모음.
 
-                var flag = true; // 토글식으로 일부 선택되어 있는 상태에서는 전체 선택된 결과가 나오지 않는다.
+                var flag = true; // 토글식으로 하면 일부 선택되어 있는 상태에서는 전체 선택된 결과가 나오지 않는다.
 
                 for(var i = 0; i<checkboxEl.length; i++) {
                     if(!checkboxEl[i].checked) {  
