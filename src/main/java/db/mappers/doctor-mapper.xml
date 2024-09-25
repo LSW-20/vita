@@ -296,6 +296,7 @@ FROM(
 			     , MR.DEPT_NAME AS DEPT_NAME
 			     , M.PHONE AS PHONE
 			     
+			     
 			  FROM DOCUMENT D
 			  
 			  JOIN MRECORDS MR ON MR.CARE_NO = D.CARE_NO

@@ -130,12 +130,14 @@
         <% } else { %>
             <% for (Member m : doculist) { %>
                 <tr class="tr_click">
-                    <td><%= m.getUserNo() %></td>
-                    <td><%= m.getUserName() %></td>
-                    <td><%= m.getUserSSN() %></td>
-                    <td><%= m.getDeptName() %></td>
-                    <td><%= m.getPhone() %></td>
-                    <td><button class="btn btn-primary">보기</button></td>
+                    <td id=""><%= m.getUserNo() %></td>
+                    <td id=""><%= m.getUserName() %></td>
+                    <td id=""><%= m.getUserSSN() %></td>
+                    <td id=""><%= m.getDeptName() %></td>
+                    <td id=""><%= m.getPhone() %></td>
+                    <td>
+                    	<button class="btn btn-primary" onclick="fnfilesearch();">보기</button>
+                    </td>
                 </tr>
             <% } %>
         <% } %>
@@ -174,13 +176,7 @@
                   </ul>
                 </nav>
                 
-                
-                
               </div>
-
-
-
-
 
             </div>
 
@@ -211,6 +207,20 @@
 		        $('#department').html($deptName); 
 		    });
 		});
+		
+		function fnfilesearch(){
+			
+			$.ajax({
+				url:'<%= contextPath%>/m_records.me',
+				data:{
+					userNo: 
+				},
+				success:function(res){
+					
+				}
+			})
+			
+		}
 		
 		
 		

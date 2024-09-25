@@ -61,8 +61,7 @@ public class DocumentPagingController extends HttpServlet {
 		
 		List<Member> doculist = new DoctorService().documentSelect(docNo,type,pi);
 		
-		System.out.println(pi);
-		System.out.println(doculist);
+		
 		
 		
 		request.setAttribute("pi", pi);

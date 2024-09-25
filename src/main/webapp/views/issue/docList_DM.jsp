@@ -465,7 +465,7 @@
  					careNo: $('#careNo_go2').val()
  				},
  				success: function(res){
- 					console.log(res)
+ 					
  					if(res > 0){
  						alert("성공적으로 신청하였습니다. 발급신청내역에서 확인하실 수 있습니다.");
  						
@@ -496,7 +496,7 @@
 						careDate2: $('#care_date_2').val()
 					},
 						success: function(res){
-							console.log(res);
+							
 							
 							if(res != ""){
 								

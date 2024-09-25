@@ -724,6 +724,7 @@ public class DoctorDao {
 				docuMem.setPhone(rset.getString("USER_SSN"));
 				docuMem.setDeptName(rset.getString("DEPT_NAME"));
 				docuMem.setUserSSN(rset.getString("PHONE"));
+				
 									
 				list.add(docuMem);
 				
