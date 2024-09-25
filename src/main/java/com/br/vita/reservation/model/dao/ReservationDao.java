@@ -440,6 +440,42 @@ public class ReservationDao {
 		
 	
 	}
+
+	/**
+	 * 진료예약 추가(2/2)
+	 * @param conn
+	 * @param userNo
+	 * @param docName
+	 * @param deptName
+	 * @param appointmentTime
+	 * @return 추가된 행 수
+	 */
+	public int insertCareApp(Connection conn, String userNo, String docName, String deptName, String appointmentTime) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertCareApp");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, docName);
+			pstmt.setString(3, deptName);
+			pstmt.setString(4, appointmentTime);
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
 		
 		
 		
