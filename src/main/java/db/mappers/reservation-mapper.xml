@@ -144,7 +144,7 @@
 
 
 		SELECT
-		USER_ID
+			USER_ID
 		, USER_NAME
 		, USER_SSN
 		, PHONE
@@ -157,5 +157,7 @@
 		AND PHONE = ?
 
 	</entry>
+	
+
 
 </properties>

@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.br.vita.member.model.vo.Member;
 import com.br.vita.reservation.model.dao.ReservationDao;
+import com.br.vita.reservation.model.vo.CheckList;
 import com.br.vita.reservation.model.vo.Consultation;
 
 public class ReservationService {
@@ -150,6 +151,12 @@ public class ReservationService {
 		close(conn);
 		
 		return normal;
+		
+	}
+
+	public void insertHealthCheckList(CheckList ck) {
+
+	
 		
 	}
 
