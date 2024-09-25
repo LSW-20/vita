@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import com.br.vita.member.model.vo.Member;
@@ -359,6 +360,13 @@ public class ReservationDao {
 	           
 	        return m;
 	        
+	}
+
+	public List<Map<String, Object>> selectCareApp(Connection conn, String deptName, String docName, String appDate) {
+		
+		List<Map<String, Object>> resultList = new ArrayList<>();
+		
+		return resultList;
 	}
 	
    
