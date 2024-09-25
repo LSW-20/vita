@@ -35,8 +35,11 @@ public class DocumentConfirmController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String docType = request.getParameter("docType");
 	    String careNo = request.getParameter("careNo");  // 사용자가 선택한 careNo 받아오기
+	    String impUid = request.getParameter("imp_uid");
+	    String merchantUid = request.getParameter("merchant_uid");
   
         Document document = new IssueService().getDocumentByCareNo(careNo);
+        int result = new IssueService().insertDocument()
         request.setAttribute("documents", document);
         request.setAttribute("docType", docType);
 		if(docType.equals("진료비납입확인서")) {

@@ -12,6 +12,10 @@
 <head>
 <meta charset="UTF-8">
 <title>GetDocumentDetail</title>
+<!-- <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.7.js"></script> -->
+<!-- Iamport 결제 라이브러리 -->
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+
 <style>
   #mainMenu{
       display: flex;
@@ -71,6 +75,37 @@ window.onload = function() {
     document.getElementById("startDate").value = today;
     document.getElementById("endDate").value = today;
 };
+
+//아임포트
+function requestPayment() {
+    var IMP = window.IMP; // 아임포트 객체
+    IMP.init('imp19424728'); // 테스트 가맹점 식별코드
+
+    // careNo는 페이지에서 hidden input으로 전달된 값을 가져온다고 가정
+    var careNo = document.querySelector('input[name="careNo"]:checked').value;
+
+    IMP.request_pay({
+        pg: 'html5_inicis',
+        pay_method: 'card',
+        merchant_uid: 'merchant_' + new Date().getTime(), // 주문번호(unique)
+        name: '증명서 발급 결제 테스트',
+        amount: 10, // 결제 금액
+        buyer_email: '<%= ((Member)session.getAttribute("loginUser")).getEmail() %>',
+        buyer_name: '<%= ((Member)session.getAttribute("loginUser")).getUserName() %>',
+        buyer_tel: '<%= ((Member)session.getAttribute("loginUser")).getPhone() %>',
+        buyer_addr: '<%= ((Member)session.getAttribute("loginUser")).getAddress() %>'
+    }, function (rsp) {
+        if (rsp.success) {
+            alert('결제가 완료되었습니다. 결제 금액: ' + rsp.paid_amount);
+            // 결제 성공 시 처리 로직
+            location.href = '<%= request.getContextPath() %>/confirm.cr?careNo=' + careNo + '&docType=<%= docType %>&imp_uid=' + rsp.imp_uid + '&merchant_uid=' + rsp.merchant_uid;
+        } else {
+            alert('결제에 실패하였습니다. 에러 내용: ' + rsp.error_msg);
+            // 결제 실패 시 처리 로직
+        }
+    });
+}
+
 </script>
 
 <body>
@@ -156,8 +191,9 @@ window.onload = function() {
     </div>
 
     <div class="d-flex justify-content-end">
-        <!-- <a id="submitLink" href="#" class="btn btn-primary btn-sm m-2" onclick="submitDocument();" data-toggle="modal" data-target="#paymentModal" >신청</a> -->
-        <a id="submitLink" href="#" class="btn btn-primary btn-sm m-2" onclick="submitDocument();">신청</a>
+        <!-- <a id="submitLink" href="#" class="btn btn-primary btn-sm m-2" onclick="submitDocument();">신청</a> -->
+        <button type="button" onclick="requestPayment()">결제하기</button>
+        
 	  		<button type="button" class="btn btn-secondary btn-sm m-2" onclick="history.back();">뒤로가기</button>
     </div>   
 
