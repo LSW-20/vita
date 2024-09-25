@@ -110,8 +110,8 @@
            <p class="e-mail3">· &nbsp; 등록하신 이메일 정보를 모르실 경우 (237)681-812-255로 연락주시면 소정의 확인 절차 후 안내해 드리도록 하겠습니다.</p>
          </div>
          <div class="btn_etc">
-           <a href=""><button type="button" class="btn btn-primary mx-2" id="login">로그인</button></a>
-           <a href=""><button type="button" class="btn btn-primary mx-2" id="home">홈으로</button></a>
+           <a href="<%= contextPath %>/loginPage.me"><button type="button" class="btn btn-primary mx-2" id="login">로그인</button></a>
+           <a href="<%= contextPath %>"><button type="button" class="btn btn-primary mx-2" id="home">홈으로</button></a>
        	 </div>
        </nav>
 		</section>
