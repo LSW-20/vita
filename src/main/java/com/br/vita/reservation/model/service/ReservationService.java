@@ -155,12 +155,14 @@ public class ReservationService {
 		
 	}
 
-	public List<Map<String, Object>> selectCareApp(String deptName, String docName, String appDate) {
+	public List<Map<String, Object>> selectCareApp(String deptName, String docName, String appDate1, String appDate2) {
 		
 		Connection conn = getConnection();
-		List<Map<String, Object>> resultList = rdao.selectCareApp(conn, deptName, docName, appDate);
+		List<Map<String, Object>> resultList = rdao.selectCareApp(conn, deptName, docName, appDate1, appDate2);
 		close(conn);
 		return resultList;
+	}	
+		
 	public void insertHealthCheckList(CheckList ck) {
 
 	
