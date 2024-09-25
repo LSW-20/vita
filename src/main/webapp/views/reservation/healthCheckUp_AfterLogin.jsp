@@ -87,7 +87,7 @@
             <h6>아래 검진 예약하기 버튼을 클릭하세요.</h6>
             <br><br>
             <div align="left">
-              <a href="/vita/views/reservation/healthCheckUp_1.jsp" class="btn" id="btn-color" style="width:170px;">검진 예약하기</a>
+              <a href="<%= contextPath %>/Healthnormal.rv" class="btn" id="btn-color" style="width:170px;">검진 예약하기</a>
                <a href="/vita/views/reservation/reservationList.jsp" class="btn ml-4" id="btn-color">검진 예약 조회하기</a>
             </div>
           </div>

@@ -39,7 +39,15 @@ public class ReservationDao {
       }
 
    }
-
+   
+   /**
+	 * 첫방문 안내 예약 정보 기존 회원정보와 일치하는지 조회
+	 * select
+	 * @author 정준수
+	 * @param conn
+	 * @param phone, userName, userSSN
+	 * @return m
+	 */
    public Member ComparisonMember(Connection conn, String userId,  String phone, String userName, String userSSN) {
       
        Member m = null;
@@ -77,6 +85,14 @@ public class ReservationDao {
        
    }
    
+   /**
+	 * 진료예약 첫번째페이지 주민번호 뒷자리 기존 정보와 비교
+	 * select
+	 * @author 정준수
+	 * @param conn
+	 * @param userSSN
+	 * @return m
+	 */
    public Member SSNBackNum (Connection conn, String userId,  String userSSN) {
 	   
 	   Member m = null;
@@ -107,6 +123,15 @@ public class ReservationDao {
         return m;
    }
 
+   
+   /**
+	 * 진료예약 회원 추가
+	 * insert
+	 * @author 정준수
+	 * @param conn
+	 * @param UserNo, DoctorNo, AppointmentTime 
+	 * @return result
+	 */
 	public int Consultation(Connection conn, Consultation c) {
 		
 		
@@ -173,6 +198,14 @@ public class ReservationDao {
 		return list;
 	}
    
+	/**
+	 * 하루에 오전 오후 한번씩만 예약가능하도록 정보가 있는지 비교
+	 * select
+	 * @author 정준수
+	 * @param conn
+	 * @param userNo, appointmentTime
+	 * @return hasAppointment
+	 */
 	public boolean SelectConsultation(Connection conn, String userNo, String appointmentTime) {
 		
 		boolean hasAppointment = false;
@@ -232,7 +265,14 @@ public class ReservationDao {
 		return result;
 	}
 	
-	
+	/**
+	 * 예약완료페이지 예약내역 동적으로 수정
+	 * select
+	 * @author 정준수
+	 * @param conn
+	 * @param userNo, appointmentTime
+	 * @return m
+	 */
 	public List<Consultation> selectSuccess(Connection conn, String userNo, String appointmentTime) {
 		List<Consultation> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -262,7 +302,16 @@ public class ReservationDao {
 		
 		return list;
 	}
-
+	
+	
+	/**
+	 * 일반 검진 회원 입력값과 기존 정보 비교
+	 * select
+	 * @author 정준수
+	 * @param conn
+	 * @param userName, userSSN, phone, email
+	 * @return m
+	 */
 	public Member NormalMember(Connection conn, String userId, String userName, String userSSN, String phone,
 			String email) {
 		
@@ -287,7 +336,7 @@ public class ReservationDao {
 	         pstmt.setString(3, phone);
 	         
 	         if( !email.equals("@") ) {
-	        	 pstmt.setString(5, email);
+	        	 pstmt.setString(4, email);
 	         }
 	         
 	         rset = pstmt.executeQuery();

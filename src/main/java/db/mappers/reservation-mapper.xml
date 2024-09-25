@@ -2,155 +2,160 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-	<!-- -->
+	<!-- 첫방문 예약신청 멤버 정보 비교 -->
 	<entry key="ComparisonMember">
 
-SELECT 
-         USER_ID
-      ,  USER_TYPE
-      ,  PHONE
-      ,  USER_NAME
-      ,  USER_SSN 
-      
- FROM
-        MEMBER
-WHERE 
-        PHONE = ?
-  AND   USER_NAME = ?
-  AND   USER_SSN = ?
-  AND   USER_TYPE IN ('U')
+		SELECT
+		USER_ID
+		, USER_TYPE
+		, PHONE
+		, USER_NAME
+		, USER_SSN
+
+		FROM
+		MEMBER
+		WHERE
+		PHONE = ?
+		AND USER_NAME = ?
+		AND USER_SSN = ?
+		AND USER_TYPE IN ('U')
 
 
-</entry>
+	</entry>
 
+	<!-- 진료예약 주민번호 뒷자리로 멤버 비교 -->
 	<entry key="SSNBackNum">
-SELECT 
-     USER_ID  
- FROM 
-      MEMBER
- WHERE
-      SUBSTR(USER_SSN,8,13)  = ?
- </entry>
+		SELECT
+		USER_ID
+		FROM
+		MEMBER
+		WHERE
+		SUBSTR(USER_SSN,8,13) = ?
+	</entry>
 
+	<!-- 진료 예약 내역에 추가 -->
 	<entry key="InsertCareApp">
-	
-	INSERT 
-	    INTO CARE_APP
-	    (   
-	         APPOINTMENT_NO
-	       , USER_NO
-	       , DOCTOR_NO 
-	       , APPOINTMENT_DATE
-	       , APPOINTMENT_TIME
-	       , CARE_STATUS
-	       
-	    ) 
+
+		INSERT
+		INTO CARE_APP
+		(
+		APPOINTMENT_NO
+		, USER_NO
+		, DOCTOR_NO
+		, APPOINTMENT_DATE
+		, APPOINTMENT_TIME
+		, CARE_STATUS
+
+		)
 
 
-	VALUES	
-	    (
-	         'cu'||SEQ_CAN.NEXTVAL
-	       ,  ?
-	       , (SELECT DOCTOR_NO
-	       		FROM DOCTOR
-	       		WHERE DOCTOR_NAME = ?)
-	       , SYSDATE
-	       , ?
-	       , 'N'
-	       
-	    )	
-	
-	
+		VALUES
+		(
+		'cu'||SEQ_CAN.NEXTVAL
+		, ?
+		, (SELECT DOCTOR_NO
+		FROM DOCTOR
+		WHERE DOCTOR_NAME = ?)
+		, SYSDATE
+		, ?
+		, 'N'
+
+		)
+
+
 	</entry>
-	
+
 	<entry key="SelectHealthCheck">
-	
-	SELECT 
-        USER_NO
-      , APPOINTMENT_DATE
-  FROM 
-        CARE_APP
- WHERE
-        USER_NO = ?
-    AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE)
-	
-	
+
+		SELECT
+		USER_NO
+		, APPOINTMENT_DATE
+		FROM
+		CARE_APP
+		WHERE
+		USER_NO = ?
+		AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE)
+
+
 	</entry>
 
-	<!--예약조회_보겸-->
+	<!--예약조회_보겸 -->
 	<entry key="selectCareAppList">
-	SELECT
-	       APPOINTMENT_NO
-	     , APPOINTMENT_DATE
-	     , APPOINTMENT_TIME
-	     , USER_NAME
-	     , DOCTOR_NAME
-	     , DEPT_NAME 
-	  FROM CARE_APP C
-	  JOIN DOCTOR D
-	    ON C.DOCTOR_NO = D.DOCTOR_NO
-	  JOIN MEMBER M
-	    ON C.USER_NO = M.USER_NO
-	 WHERE C.USER_NO = ? 
-	   AND CARE_STATUS = 'N'
+		SELECT
+		APPOINTMENT_NO
+		, APPOINTMENT_DATE
+		, APPOINTMENT_TIME
+		, USER_NAME
+		, DOCTOR_NAME
+		, DEPT_NAME
+		FROM CARE_APP C
+		JOIN DOCTOR D
+		ON C.DOCTOR_NO = D.DOCTOR_NO
+		JOIN MEMBER M
+		ON C.USER_NO = M.USER_NO
+		WHERE C.USER_NO = ?
+		AND CARE_STATUS = 'N'
 	</entry>
-	
-	<!--예약 취소_보겸-->
+
+	<!--예약 취소_보겸 -->
 	<entry key="deleteCareApp">
-	DELETE 
-	  FROM CARE_APP
-	 WHERE APPOINTMENT_NO = ?
+		DELETE
+		FROM CARE_APP
+		WHERE APPOINTMENT_NO = ?
 	</entry>
 
-
+	
+	<!-- 당일 예약 내역 오전, 오후 한번씩만 가능하도록 진료 예약내역 조회 -->
 	<entry key="SelectConsultation">
-	
-		SELECT 
-        USER_NO
-      , APPOINTMENT_DATE
-      , APPOINTMENT_TIME
-  	FROM 
-        CARE_APP
-	 WHERE
-        USER_NO = ?
-     AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE)
-		 AND APPOINTMENT_TIME = ?		
+
+		SELECT
+		USER_NO
+		, APPOINTMENT_DATE
+		, APPOINTMENT_TIME
+		FROM
+		CARE_APP
+		WHERE
+		USER_NO = ?
+		AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE)
+		AND APPOINTMENT_TIME = ?
 	</entry>
-	
-		<entry key="selectSuccess">
-		
-	SELECT
-    D.DEPT_NAME,
-    M.USER_NO,
-    D.DOCTOR_NAME,
-    C.APPOINTMENT_TIME,
-    C.APPOINTMENT_DATE
-FROM CARE_APP C
-JOIN DOCTOR D ON C.DOCTOR_NO = D.DOCTOR_NO
-JOIN MEMBER M ON C.USER_NO = M.USER_NO
-WHERE C.USER_NO = ?
-    AND C.APPOINTMENT_TIME = ?
-    AND TRUNC(C.APPOINTMENT_DATE) = TRUNC(SYSDATE)
-				
+
+	<!-- 진료 예약 완료페이지 동적으로 처리하도록 진료예약정보 조회 -->
+	<entry key="selectSuccess">
+
+		SELECT
+		D.DEPT_NAME,
+		M.USER_NO,
+		D.DOCTOR_NAME,
+		C.APPOINTMENT_TIME,
+		C.APPOINTMENT_DATE
+		FROM CARE_APP C
+		JOIN DOCTOR D ON C.DOCTOR_NO = D.DOCTOR_NO
+		JOIN MEMBER M ON C.USER_NO = M.USER_NO
+		WHERE C.USER_NO = ?
+		AND C.APPOINTMENT_TIME = ?
+		AND TRUNC(C.APPOINTMENT_DATE) = TRUNC(SYSDATE)
+
 
 	</entry>
-	
+
+	<!-- 일반검진회원 입력정보 비교 -->
 	<entry key="NormalMember">
-	
-	
-	SELECT 
-      USER_ID
-    , USER_NAME
-    , USER_SSN
-    , PHONE
-    , EMAIL
-  FROM 
-      MEMBER
- WHERE
-        USER_NAME = ?
-  AND   USER_SSN =  ?
-  AND   PHONE = ?
-	
+
+
+		SELECT
+		USER_ID
+		, USER_NAME
+		, USER_SSN
+		, PHONE
+		, EMAIL
+		FROM
+		MEMBER
+		WHERE
+		USER_NAME = ?
+		AND USER_SSN = ?
+		AND PHONE = ?
+
 	</entry>
 
 </properties>
