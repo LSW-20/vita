@@ -7,6 +7,7 @@ import static com.br.vita.common.template.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 import com.br.vita.member.model.vo.Member;
 import com.br.vita.reservation.model.dao.ReservationDao;
@@ -151,6 +152,14 @@ public class ReservationService {
 		
 		return normal;
 		
+	}
+
+	public List<Map<String, Object>> selectCareApp(String deptName, String docName, String appDate) {
+		
+		Connection conn = getConnection();
+		List<Map<String, Object>> resultList = rdao.selectCareApp(conn, deptName, docName, appDate);
+		close(conn);
+		return resultList;
 	}
 
 	
