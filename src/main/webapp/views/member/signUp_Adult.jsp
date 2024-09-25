@@ -188,9 +188,10 @@
 	      border-bottom: 1px solid #161d49;
 	      background-color: #00000009;
 	    }
-	    #text1{
+	    #text1, #text2, #text3, #text4, #text5, #text6{
 	      font-size:12px;
 	      color:#1F2B6C;
+	      padding-left: 20px;
 	    }
 	    #etc1 {
 	      width: 1080px;
@@ -252,7 +253,7 @@
 
 		<section>
             <nav>
-              <form id="signup-form" action="<%= contextPath %>/SignUp_Adult.me" method="POST">
+              <form id="signup-form" action="<%= contextPath %>/signUp_adult.me" method="POST">
                 <div class="container boxbox" style="display: flex; padding: 0%; width: 1080px;">
                   <div class="container emailCheck1" style="width: 15%;">
                     <p class="line">인증확인</p>
@@ -265,17 +266,17 @@
                 </div>
                 
                   <!-- The Modal -->
-                  <div class="modal" id="myModal">
+                  <!-- <div class="modal" id="myModal">
                     <div class="modal-dialog">
                       <div class="modal-content">
                       
-                        <!-- Modal Header -->
+                        Modal Header
                         <div class="modal-header">
                           <h3 class="modal-title">이메일(EMAIL)로 인증</h3>
                           <button type="button" class="close1" data-dismiss="modal"> × </button>
                         </div>
                         
-                        <!-- Modal body -->
+                        Modal body
                         <div class="modal-body">
                           <p>
                             허위 정보를 입력하시는 경우 정확한 본인확인이 불가능하여<br>
@@ -287,28 +288,44 @@
                               <div class="input-wrapper">
                                 <input type="email" placeholder="ex) aaaaa@naver.com" class="email-input" name="email" required>
 
-                                <!-- 인증번호가 발송되었다는 팝업창 하나 더 띄워야함 -->
+                                인증번호가 발송되었다는 팝업창 하나 더 띄워야함
                                 <a href="#"><button class="get-code-btn">인증번호 받기</button></a>
                               </div>
                               
-                              <!-- 인증번호가 일치/불일치 메시지는 자바스크립트로 -->
+                              인증번호가 일치/불일치 메시지는 자바스크립트로
                               <p class="number1">인증번호</p>
                               <div class="input-wrapper">
-                                <input type="text" placeholder="인증번호 입력" class="code-input" required>
+                                <input type="text" placeholder="인증번호 입력" class="code-input">
                                 <button class="verify-btn">인증하기</button>
                               </div>
 
-                              <!-- Modal footer -->
+                              Modal footer
                               <div class="modal-footer1">
                                 <button class="cancel-btn" data-dismiss="modal">취소</button>
-                                <button type="submit" class="confirm-btn">확인</button>
+                                <button id="submitBtn" type="button" class="confirm-btn">확인</button>
                               </div>
                           </div>
                         </div>
                       </div>
+                      <script>
+										  document.getElementById('submitBtn').addEventListener('click', function(event) {
+										    event.preventDefault(); // 폼 제출 기본 동작 방지
+										
+										    const email = document.querySelector('.email-input').value;
+										
+										    // 이메일 데이터 저장 (예: 로컬 스토리지 사용)
+										    localStorage.setItem('userEmail', email);
+										
+										    // 팝업창 닫기
+										    document.getElementById('modal1').style.display = 'none';
+										
+										    // 추가로 필요한 작업이 있다면 여기에 추가
+										    alert('이메일이 저장되었습니다.');
+										  });
+										</script>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
                 <!-- 회원 정보 입력 칸 -->
                 <div>
@@ -321,12 +338,12 @@
 								                    <th>아이디&nbsp;<span style="color:red;">*</span></th>
 								                    <td colspan="2"><input type="text" class="id_1" name="userId" required>
 								                    <button type="button" class="btn btn-secondary btn-sm" onclick="fnIdCheck();">중복확인</button>
-								                    <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6~15자리 영문 소문자, 숫자만 가능합니다. (한글, 특수문자 입력 불가)</span></td>
+								                    <span id="text1">6~15자리 영문 소문자, 숫자만 가능합니다. (한글, 특수문자 입력 불가)</span></td>
 								                </tr>
 								                <tr>
 								                    <th>비밀번호&nbsp;<span style="color:red;">*</span></th>
 								                    <td colspan="2"><input type="password" class="pwd_1" name="userPwd" required>
-								                    <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;특수문자는 ‘!,@,#,$,%,^,&,*’만 가능합니다.</span></td>
+								                    <span id="text2">6~15자리의 영문 대소문자, 숫자, 특수문자는 ‘!,@,#,$,%,^,&,*’만 가능합니다.</span></td>
 								                </tr>
 								                <tr>
 								                    <th>비밀번호 확인&nbsp;<span style="color:red;">*</span></th>
@@ -336,13 +353,19 @@
 								                    <th>이름&nbsp;<span style="color:red;">*</span></th>
 								                    <td colspan="2">
 								                    <input type="text" id="name" class="name" name="userName" required>
-								                    <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정확한 이름을 입력해주세요.</span></td>
+								                    <span id="text3">정확한 이름을 입력해주세요.</span></td>
 								                </tr>
 								                <tr>
 								                    <th>휴대폰 번호&nbsp;<span style="color:red;">*</span></th>
 								                    <td colspan="2">
 								                    <input type="text" id="phone" class="name" name="phone" required>
-								                    <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 를 포함한 본인 휴대폰번호를 정확하게 입력하세요. &nbsp;&nbsp;ex)010-1111-2222</span></td>
+								                    <span id="text4">- 를 포함한 본인 휴대폰번호를 정확하게 입력하세요. &nbsp;&nbsp;ex)010-1111-2222</span></td>
+								                </tr> 
+								                <tr>
+								                    <th>이메일&nbsp;<span style="color:red;">*</span></th>
+								                    <td colspan="2">
+								                    <input type="email" class="name" name="email" required>
+								                    <span id="text5">@ 를 포함한 본인 이메일주소를 정확하게 입력하세요. &nbsp;&nbsp;ex) aaaaa@naver.com</span></td>
 								                </tr> 
 								                <tr>
 								                    <th>주소&nbsp;<span style="color:red;">*</span></th>
@@ -356,7 +379,7 @@
 								                    <th>주민등록번호&nbsp;<span style="color:red;">*</span></th>
 								                    <td colspan="2">
 								                    <input type="text" id="number2" class="name" name="userSSN" required>
-								                    <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 를 포함해서 적어주세요. &nbsp;&nbsp;ex) 900101-2222222</span></td>
+								                    <span id="text6"> - 를 포함해서 적어주세요. &nbsp;&nbsp;ex) 900101-2222222</span></td>
 								                </tr> 
 								                <tr>
 								                    <th>성별&nbsp;<span style="color:red;">*</span></th>
@@ -384,9 +407,9 @@
                           <tr>
                               <!-- 두 번째 행에 라디오 버튼 -->
                               <td class="radio-container" id="etc3" style="border-top: none;">
-                                  <input type="radio" id="option1" name="options" value="Y" checked>
+                                  <input type="radio" id="option1" name="getCallbackYN" value="Y" checked>
                                   <label for="option1" style="margin-top: 5px;">수신함 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                  <input type="radio" id="option2" name="options" value="N">
+                                  <input type="radio" id="option2" name="getCallbackYN" value="N">
                                   <label for="option2" style="margin-top: 5px;">수신안함</label>
                               </td>
                           </tr>
@@ -436,6 +459,80 @@
 							            }
 							        });
 							    }			    
+							    
+							    
+							    // 비밀번호 유효성 검사
+							    function validatePassword() {
+							        const pwdPattern = /^[a-zA-Z0-9!@#$%^&*]{6,15}$/;
+							        const pwd1 = document.querySelector('.pwd_1').value;
+							        const pwd2 = document.querySelector('.pwd_2').value;
+							        const text2 = document.getElementById('text2');
+
+							        if (!pwdPattern.test(pwd1)) {
+							            text2.style.color = 'red';
+							            text2.textContent = '비밀번호는 6~15자리의 영문 대소문자, 숫자, 특수문자(!,@,#,$,%,^,&,*)만 가능합니다.';
+							            return false;
+							        }
+							        if (pwd1 !== pwd2) {
+							            text2.style.color = 'red';
+							            text2.textContent = '비밀번호가 일치하지 않습니다.';
+							            return false;
+							        }
+							        text2.style.color = 'green';
+							        text2.textContent = '비밀번호가 유효합니다.';
+							        return true;
+							    }
+					    
+							    document.querySelector('.pwd_1').addEventListener('blur', function() {
+							        validatePassword();
+							    });
+
+							    document.querySelector('.pwd_2').addEventListener('blur', function() {
+							        validatePassword();
+							    });
+							    
+							    
+							 		// 휴대폰 유효성 검사
+							    function validatePhone() {
+									    const phonePattern = /^01[016789]-\d{3,4}-\d{4}$/;
+									    const phoneValid = document.querySelector('#phone').value;
+									    const text4 = document.getElementById('text4');
+									    
+									    if (!phonePattern.test(phoneValid)) {
+									        text4.style.color = 'red';
+									        text4.textContent = '올바른 형식의 휴대폰 번호를 입력하세요. 예: 010-1234-5678';
+									        return false;				            
+									    } else {
+									        text4.style.color = 'green';
+									        text4.textContent = '휴대폰번호가 유효합니다.';
+									        return true;
+									    }
+									}
+									
+									document.querySelector('#phone').addEventListener('blur', function() {
+									    validatePhone();
+									});
+							    
+									// 주민등록번호 유효성 검사
+									function validateSSN() {
+									    const ssnPattern = /^\d{6}-\d{7}$/;
+									    const ssnValid = document.querySelector('#number2').value;
+									    const text6 = document.getElementById('text6');
+									    
+									    if (!ssnPattern.test(ssnValid)) {
+									        text6.style.color = 'red';
+									        text6.textContent = '올바른 형식의 주민등록번호를 입력하세요. 예: 900101-2222222';
+									        return false;				            
+									    } else {
+									        text6.style.color = 'green';
+									        text6.textContent = '주민등록번호가 유효합니다.';
+									        return true;
+									    }
+									}
+
+									document.querySelector('#number2').addEventListener('blur', function() {
+									    validateSSN();
+									});
 							</script>
               
             </nav>

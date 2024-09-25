@@ -270,29 +270,36 @@ public class MemberDao {
 	
 	
 	public int signUpAdultMember(Connection conn, Member m) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("signUpAdultMember");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m.getUserId());
-			pstmt.setString(2, m.getUserPwd());
-			pstmt.setString(3, m.getUserName());
-			pstmt.setString(4, m.getPhone());
-			pstmt.setString(5, m.getEmail());
-			pstmt.setString(6, m.getUserSSN());
+	    int result = 0;
+	    PreparedStatement pstmt = null;
+	    String sql = prop.getProperty("signUpAdultMember");
+	    
+	    try {
+	        pstmt = conn.prepareStatement(sql);
+	        
+	        pstmt.setString(1, m.getUserId());
+	        pstmt.setString(2, m.getUserPwd());
+	        pstmt.setString(3, m.getUserName());
+	        pstmt.setString(4, m.getPhone());
+	        pstmt.setString(5, m.getEmail());
+	        pstmt.setString(6, m.getAddress());
+	        pstmt.setString(7, m.getUserSSN());
+	        pstmt.setString(8, m.getCallbackYN());
+	        
+	        // 주민등록번호의 앞 6자리 추출
+	        String userSSNFirst6 = m.getUserSSN().substring(0, 6);
+	        pstmt.setString(9, userSSNFirst6);
+	        
+	        pstmt.setString(10, m.getGender());
 
-			result = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-
+	        result = pstmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(pstmt);
+	    }
+	    System.out.println("다오도착 : " + result);
+	    return result;
 	}
 	
 	

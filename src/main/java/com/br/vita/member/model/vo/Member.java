@@ -22,8 +22,8 @@ public class Member {
 	 private String doctorNo;
 	 private String deptName;
 	 
-	
-	
+
+	 
 	 public String getDoctorNo() {
 		return doctorNo;
 	}
@@ -55,6 +55,23 @@ public class Member {
 	public Member(String userType) {
 		super();
 		this.userType = userType;
+	}
+
+	
+
+	public Member(String userId, String userPwd, String userName, String phone, String email, String address,
+			String userSSN, String callbackYN, String userDate, String gender) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.phone = phone;
+		this.email = email;
+		this.address = address;
+		this.userSSN = userSSN;
+		this.callbackYN = callbackYN;
+		this.userDate = userDate;
+		this.gender = gender;
 	}
 
 

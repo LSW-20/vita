@@ -14,7 +14,7 @@ import com.br.vita.member.model.vo.Member;
 /**
  * Servlet implementation class MemberSignUpAdultController
  */
-@WebServlet("/SignUp_Adult.me")
+@WebServlet("/signUp_adult.me")
 public class MemberSignUpAdultController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,26 +33,49 @@ public class MemberSignUpAdultController extends HttpServlet {
 		// 1. 요청
 		// 요청시 전달값 뽑기
 		request.setCharacterEncoding("UTF-8");
-		String userName = request.getParameter("userName");
-		String userSSN = request.getParameter("userSSN");
+		
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
+		String userName = request.getParameter("userName");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
+		String address = request.getParameter("address");
+		String userSSN = request.getParameter("userSSN");	
+		String callbackYN = request.getParameter("getCallbackYN");
+		String userDate = request.getParameter("getUserDate");
+		String gender = request.getParameter("gender");
 		
-		String userDate = request.getParameter("");
-		String gender= request.getParameter("");
 		
-		
-		Member m = new Member(userId, userPwd, userName, phone, email, userSSN, userDate, gender);
+	
+		Member m = new Member(userId, userPwd, userName, phone, email, address, userSSN, callbackYN, userDate, gender);
 		
 		
 		
 		// 서비스 호출 (쿼리실행)
 		int result = new MemberService().signUpAdultMember(m);
 		
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
-		
+		System.out.println("컨트롤러도착 : " + result);
+		// 2. 응답
+		if(result > 0) {
+			/*
+			 * * 회원가입 성공
+			 *   ㄴ 응답페이지 : 메인페이지
+			 *   ㄴ 응답데이터 : "성공적으로 회원가입 되었습니다." alert 메세지
+			 */
+			
+			request.getSession().setAttribute("alertMsg", "성공적으로 회원가입 되었습니다.");
+			response.sendRedirect(request.getContextPath());
+		}else {
+			/*
+			 * * 회원가입 실패
+			 *   ㄴ 응답페이지 : 에러페이지 
+			 *   ㄴ 응답데이터 : "회원가입 실패" 메세지 (해당 응답페이지에서만 필요)
+			 */
+			
+			request.setAttribute("msg", "회원가입 실패");
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+			
+		}
 	}
 
 	/**

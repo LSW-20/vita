@@ -127,7 +127,7 @@ public class MemberService {
 		}
 	
 		close(conn);
-		
+		System.out.println("서비스도착 : " + result);
 		return result;
 	}
 
