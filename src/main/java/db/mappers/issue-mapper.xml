@@ -64,5 +64,21 @@ SELECT COUNT(*) AS COUNT -- count 0 일때 insert
 	   AND TREATMENT_DATE BETWEEN ? AND ?
 </entry>
 
+<!-- 발급에 필요한 내용 셀렉 -->
+<entry key="">
+	SELECT 
+	       DOC_NUM
+	     , D.DEPT_NAME AS DEPT_NAME 
+	     , DOC_PURPOSE
+	     , APPLY_DATE
+	     , LICENCE_NO 
+	     , DOCTOR_NAME 
+	  FROM DOCUMENT C
+	  JOIN MRECORDS M
+	    ON C.CARE_NO = M.CARE_NO
+	  JOIN DOCTOR D
+	    ON D.DOCTOR_NO = M.DOCTOR_NO	
+</entry>
+
 
 </properties>

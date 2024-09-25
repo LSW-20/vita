@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="com.br.vita.member.model.vo.Member" %>
+    <%@ page import="com.br.vita.issue.model.vo.Document" %>
+    <%@ page import="java.util.*" %>
+    <%@ page import="com.br.vita.doctor.model.vo.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +21,21 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-
+  <% 
+  
+   String contextPath = request.getContextPath();
+   Member loginUser = (Member)session.getAttribute("loginUser");
+   String alertMsg = (String)session.getAttribute("alertMsg");
+	 
+  
+  %>
+  
+  <%
+   Map<String, Object> map = (Map<String, Object>) request.getAttribute("Map");
+   Document documents = (Document)request.getAttribute("documents");
+   
+	
+%>
 <style>
   * {
     box-sizing: border-box;
