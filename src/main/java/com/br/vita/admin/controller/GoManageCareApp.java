@@ -38,7 +38,7 @@ public class GoManageCareApp extends HttpServlet {
 		
 		List<Doctor> list = new DoctorService().selectDoctorList();
 		
-		System.out.println(list);
+		//System.out.println(list);
 		
 		
 		// 2. 응답

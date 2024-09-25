@@ -164,7 +164,6 @@ public class ReservationService {
 		return resultList;
 	}	
 		
-	}
 		
 	public void insertHealthCheckList(CheckList ck) {
 

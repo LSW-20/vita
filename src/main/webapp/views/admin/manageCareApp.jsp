@@ -1,10 +1,18 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.br.vita.doctor.model.vo.Doctor" %>
+<%@ page import="com.br.vita.reservation.model.vo.Consultation" %>
+<%@ page import="com.br.vita.member.model.vo.Member" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <% List<Doctor> list = (List<Doctor>) request.getAttribute("list"); %>    
+
+<% List<Map<String, Object>> resultList = (List<Map<String, Object>>) request.getAttribute("resultList"); %>
+
+
+<% Boolean threeType = (Boolean) request.getAttribute("threeType"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,7 +133,7 @@ footer {
 
 
         <br>
-        <form action="/searchCA.admin" method="get">
+        <form action="<%= contextPath %>/searchCA.admin" method="get">
             <table id="search_table">
                 <tr>
                     <td class="left_cell">진료과</td>
@@ -145,7 +153,9 @@ footer {
                         <select name="doc_name" required>
                             <% if( list != null && !list.isEmpty() ) {
                                 for(int i=0; i<list.size(); i++) { %>
-                                    <option><%= list.get(i).getDoctorName() %></option>    
+                                    <option>
+                                        <%= list.get(i).getDoctorName() %>(<%= list.get(i).getDeptName() %>)
+                                    </option>    
                             <%  }
                             } %>    
                         </select>
@@ -168,29 +178,69 @@ footer {
 
 
 
-        <%-- 조건처리하는법. 검색 이전상태랑 검색했는데 결과가 없는경우를 구분하기 위해 flag 변수 사용한다.
-        <% boolean searchPerformed = (Boolean) request.getAttribute("searchPerformed"); %>
-
-        <% if (!searchPerformed) { %>
-            검색 이전 상태
-            초기 화면을 표시 
-        <% } else if (doctorList.isEmpty()) { %>
-            검색했지만 결과가 없는 경우
-            <div class="search_doctor_result">의료진 검색 결과</div>
-            <table class="table table-striped">
-                <tr>
-                    <td colspan="10" style="text-align: center;">검색 결과가 없습니다.</td>
-                </tr>
-            </table>
-        <% } else { %>
-            검색 결과가 있는 경우 
-        --%> 
+        <%-- 검색 이전상태랑 검색했는데 결과가 없는경우를 구분하기 위해 flag 변수 사용한다. --%> 
 
 
-        <br><br>
-        <!-- case1. 회원 검색 결과가 없는 경우  -->
+        <% if (threeType == null) { %>
+            <!-- case1. 검색 전  -->
+            <div class="search_result">검색 결과</div> 
+            <br>
+    
+                <table class="table table-striped search_result_table">
+                    <tr>
+                        <th>예약번호</th>
+                        <th>진료과</th>
+                        <th>의료진</th>
+                        <th>예약일</th>
+                        <th>예약시간</th>
+                        <th>회원번호</th>
+                        <th>이름</th>
+                        <th>핸드폰번호</th>
+                        <th>예약 상태</th>
+                        <th></th>
+                    </tr>
+                </table>
+    
+                <div class="add_btn">
+                    <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal">추가</button>
+                </div>    
+
+            <br><br>
+
+        <% } else if (threeType == false) { %>
+
+            <!-- case2. 검색 결과가 없는 경우  -->
+            <div class="search_result">검색 결과</div> <br>
+    
+                <table class="table table-striped search_result_table">
+                    <tr>
+                        <th>예약번호</th>
+                        <th>진료과</th>
+                        <th>의료진</th>
+                        <th>예약일</th>
+                        <th>예약시간</th>
+                        <th>회원번호</th>
+                        <th>이름</th>
+                        <th>핸드폰번호</th>
+                        <th>예약 상태</th>
+                        <th></th>
+                    </tr>
+    
+                    <tr>
+                        <td colspan="10" style="text-align: center;">검색 결과가 없습니다.</td>
+                    </tr>
+                </table>
+    
+                <div class="add_btn">
+                    <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal">추가</button>
+                </div>    
+    
+            <br><br>
+
+        <% } else if (threeType == true) { %>
+         
+        <!-- case3. 의료진 검색 결과가 있는 경우 -->
         <div class="search_result">검색 결과</div> <br>
-
 
             <table class="table table-striped search_result_table">
                 <tr>
@@ -202,56 +252,42 @@ footer {
                     <th>회원번호</th>
                     <th>이름</th>
                     <th>핸드폰번호</th>
+                    <th>예약 상태</th>
                     <th></th>
                 </tr>
 
-                <tr>
-                    <td colspan="9" style="text-align: center;">검색 결과가 없습니다.</td>
-                </tr>
-            </table>
+                <% if(resultList != null && !resultList.isEmpty() ) {
+                    for(int i=0; i<resultList.size(); i++) { 
+                
+                        Consultation c = (Consultation) resultList.get(i).get("c");
+                        Member m = (Member) resultList.get(i).get("m");
+                        Doctor d = (Doctor) resultList.get(i).get("d");     %>
 
-            <div class="add_btn">
-                <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal">추가</button>
-            </div>    
+                       
 
-        <br><br>
-
-
-        <!-- case2. 의료진 검색 결과가 있는 경우 -->
-        <div class="search_result">검색 결과</div> <br>
-
-
-            <table class="table table-striped search_result_table">
-                <tr>
-                    <th>예약번호</th>
-                    <th>진료과</th>
-                    <th>의료진</th>
-                    <th>예약일</th>
-                    <th>예약시간</th>
-                    <th>회원번호</th>
-                    <th>이름</th>
-                    <th>핸드폰번호</th>
-                    <th></th>
-                </tr>
-
-                <tr>
-                    <td>2321</td>
-                    <td>외과</td>
-                    <td>가가가</td>
-                    <td>20240914</td>
-                    <td>오전</td>
-                    <td>007</td>
-                    <td>지창선</td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_modal">삭제</button>
-                    </td>
-                </tr>
+                        <tr>
+                            <td><%= c.getAppointmentNo() %></td>
+                            <td><%= d.getDeptName() %></td>
+                            <td><%= d.getDoctorName() %></td>
+                            <td><%= c.getAppointmentDate() %></td>
+                            <td><%= c.getAppointmentTime() %></td>
+                            <td><%= m.getUserNo() %></td>
+                            <td><%= m.getUserName() %></td>
+                            <td><%= m.getPhone() %></td>
+                            <td><%= c.getCareStatus() %></td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_modal">삭제</button>
+                            </td>
+                        </tr>
+                    <% }  
+                } %>
             </table>
 
             <div class="add_btn">
                 <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal">추가</button>
             </div>   
         <br>
+        <% } %>
 
 
     </div>

@@ -775,7 +775,7 @@ public class DoctorDao {
 	}
 
 	/**
-	 * 현재 전체 의사 이름 조회
+	 * 현재 전체 의사 이름, 진료과 조회
 	 * author : 임상우
 	 * @param conn
 	 * @return List<Doctor>
@@ -796,6 +796,7 @@ public class DoctorDao {
 			while(rset.next()) {
 				Doctor d = new Doctor();
 				d.setDoctorName(rset.getString("DOCTOR_NAME"));
+				d.setDeptName(rset.getString("DEPT_NAME"));
 				
 				list.add(d);
 			}

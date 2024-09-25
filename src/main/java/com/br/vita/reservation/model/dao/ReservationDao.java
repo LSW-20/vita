@@ -6,15 +6,18 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import com.br.vita.doctor.model.vo.Doctor;
 import com.br.vita.member.model.vo.Member;
 import com.br.vita.reservation.model.vo.CheckList;
 import com.br.vita.reservation.model.vo.Consultation;
@@ -377,6 +380,37 @@ public class ReservationDao {
 			pstmt.setString(2, docName);
 			pstmt.setString(3, appDate1);
 			pstmt.setString(4, appDate2);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Map<String, Object> map = new HashMap<>();
+				
+				Consultation c = new Consultation();
+				c.setAppointmentNo(rset.getString("APPOINTMENT_NO"));
+				c.setAppointmentDate(rset.getDate("APPOINTMENT_DATE"));
+				c.setAppointmentTime(rset.getString("APPOINTMENT_TIME"));
+				
+				
+				c.setCareStatus(rset.getString("CARE_STATUS").equals("Y") ? "진료 완료" : "진료 전");
+				
+				
+				Member m = new Member();
+				m.setUserNo(rset.getString("USER_NO"));
+				m.setUserName(rset.getString("USER_NAME"));
+				m.setPhone(rset.getString("PHONE"));
+				
+				Doctor d = new Doctor();
+				d.setDeptName(rset.getString("DEPT_NAME"));
+				d.setDoctorName(rset.getString("DOCTOR_NAME"));
+				
+				map.put("c", c);
+				map.put("m", m);
+				map.put("d", d);
+				
+				resultList.add(map);
+				
+			}
 			
 			
 			
@@ -386,8 +420,6 @@ public class ReservationDao {
 			close(rset);
 			close(pstmt);
 		}
-		
-		
 		
 		
 		return resultList;
