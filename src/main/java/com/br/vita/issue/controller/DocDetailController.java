@@ -44,7 +44,6 @@ public class DocDetailController extends HttpServlet {
 
 		//진료기록 정보 가져오는 서비스
 		List<Mrecords> records = new IssueService().selectMrecords(userNo, startDate, endDate);
-		System.out.println(records);
 		if (records == null || records.isEmpty()) {
             records = new ArrayList<>(); // 빈 리스트로 초기화하여 null 방지
         }

@@ -22,6 +22,23 @@ public class Document {
 
 	public Document() {}
 
+	
+	
+	public Document(int docNum, String userNo, String careNo, String docType, String docCheck, String docPurpose,
+			int price, Date applyDate) {
+		super();
+		this.docNum = docNum;
+		this.userNo = userNo;
+		this.careNo = careNo;
+		this.docType = docType;
+		this.docCheck = docCheck;
+		this.docPurpose = docPurpose;
+		this.price = price;
+		this.applyDate = applyDate;
+	}
+
+
+
 	public Document(int docNum, String userNo, String careNo, String docType, String docCheck, String docPurpose,
 			int price, Date applyDate, String deptName, String licenceNo, String doctorName) {
 		super();

@@ -322,10 +322,11 @@ SELECT COUNT(*) AS COUNT
 
 
 
-	<!-- (상우) 현재 전체 의사 이름 조회 -->
+	<!-- (상우) 현재 전체 의사 이름, 진료과 조회 -->
 	<entry key="selectDoctorList">
 	
 	SELECT DOCTOR_NAME
+			 , DEPT_NAME
 	  FROM DOCTOR
 	        			
 	</entry>

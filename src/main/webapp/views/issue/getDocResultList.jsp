@@ -64,7 +64,7 @@
 	    	<%for(Document d : docList) {%>
 	        <tr>
 	          <td><%=d.getDocType() %></td>
-	          <td><%=d.getApplyDate() %>&nbsp;(진료과: <%=d.getDeptName() %>)</td>
+	          <td><%=d.getApplyDate() %>&nbsp;(진료과: <%=d.getDeptName() %> | 담당의: <%=d.getDoctorName() %>)</td>
 	          <td><button>발급</button></td>
 	        </tr>
 	      <%} %>
