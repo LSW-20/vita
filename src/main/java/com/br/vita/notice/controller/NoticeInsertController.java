@@ -64,10 +64,6 @@ public class NoticeInsertController extends HttpServlet {
 	
 	}
 
-	private int integer(String userNo) {
-		return 0;
-	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

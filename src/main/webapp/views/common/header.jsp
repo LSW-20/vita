@@ -208,6 +208,15 @@
             height: auto;
             filter: sepia(10%);
         }
+        #searchBtn {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+		    }
+		    #searchBtn i {
+		        font-size: 1.5em; /* 아이콘 크기 조절 */
+		    }
     
 
      </style>
@@ -236,11 +245,10 @@
                 <div id="popup" class="popup">
 								    <div class="popup-content">
 								        <a href="#" class="close">×</a>
-								        <form action="" method="post" id="searchForm">
+								        <form action="<%= contextPath %>/views/selectContents/search.jsp" method="get" id="searchForm">
 								            <input type="text" id="searchInput" name="search" placeholder="검색어를 입력하세요" required>
-								            <a type="submit" id="searchBtn" style="margin: -50px;"><i class="bi bi-search"></i></a>
+								            <button type="submit" id="searchBtn" style="margin: -50px;"><i class="bi bi-search"></i></button>
 								        </form>
-								        <div id="searchResults"></div>
 								    </div>
 								</div>
 								
@@ -249,15 +257,6 @@
 								        if (event.key === 'Enter') {
 								            event.preventDefault();
 								            document.getElementById('searchBtn').click();
-								        }
-								    });
-								
-								    document.getElementById('searchBtn').addEventListener('click', function(event) {
-								        event.preventDefault();
-								        var searchInput = document.getElementById('searchInput').value;
-								        if (document.getElementById('searchForm').checkValidity()) {
-								            alert('검색 버튼이 실행되었습니다!');
-								            // 여기에 검색 기능을 추가하세요
 								        }
 								    });
 								</script>

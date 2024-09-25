@@ -16,7 +16,7 @@
     section{
         position:absolute;
         width: 100%;
-        height: 1947px;
+        height: 1147px;
         margin-top: 153px;
     }
     td{
@@ -24,7 +24,7 @@
       font-size: 14px;
     }
     footer{
-        margin-top: 2100px !important;
+        margin-top: 1300px !important;
     }
     </style>
     <section>
@@ -33,17 +33,24 @@
         <div class="container" style="text-align: left; font-size: 40px; height: 80px;"><b>통합 검색</b></div>
         <div class="container border" style="height: 10px; background: gray; margin-left: 10px;"></div><br><br>
         <div class="container" style="text-align: left; width: 1000px; height: auto;">
-          <p>통합검색결과: <b style="color: #0E787C;">'진료과'</b> 검색 결과가 총 <b style="color: #0E787C;">4건</b> 입니다.</p>
+          <p>통합검색결과: <b style="color: #0E787C;">'<%= request.getParameter("search") %>'</b> 검색 결과가 총 <b style="color: #0E787C;">
+          <% if(request.getParameter("search").contains("진료과") || request.getParameter("search").contains("의료진") || request.getParameter("search").contains("진료") || request.getParameter("search").contains("의료")) { %>
+          4건
+          <% }else { %>
+          0건
+          <% } %>
+          </b> 입니다.</p>
           <div>
+          <% if(request.getParameter("search").contains("진료과")  || request.getParameter("search").contains("진료")) {%>
             <b style="font-size: 24px;">메뉴 바로가기</b>
-            <div class="container border" style="width: 930px; height: auto; margin-top: 10px; background-color: #fafafa; margin-left: 0px;">
+            <div class="container border" style="width: 930px; height: auto; margin-top: 10px; background-color: #fafafa; margin-left: 0px;">			
               <ul>
                 <li style="margin-top: 10px;">의료진/진료과</li>
                 <a href="http://localhost:9999/vita/department.do" style="color: #0E787C;">http://localhost:9999/vita/department.do</a>
-              </ul>
+              </ul>    
             </div>
             <br>
-            
+                    
             <!-- 진료과 -->
             
             <div class="container" style="width: 930px; border-bottom: 1px solid black; padding: 0px; margin-bottom: -12px; margin-left: 0px;">
@@ -108,9 +115,9 @@
                 <a href="http://localhost:9999/vita/dept_Introduce4.do" style="color: #0E787C;">http://localhost:9999/vita/dept_Introduce4.do</a>
               </div>
             </div>
-            
+            <% } %>
             <!-- 의료진 -->
-            
+            <% if(request.getParameter("search").contains("의료진")  || request.getParameter("search").contains("의료")){%>
             <div class="container" style="width: 930px; border-bottom: 1px solid black; padding: 0px; margin-bottom: -12px; margin-left: 0px;">
             	<b style="font-size: 24px;">의료진</b><span>(<b>총</b> <span style="color: #0E787C;">4건</span>)</span> 
             </div> 
@@ -182,6 +189,7 @@
                 <a href="http://localhost:9999/vita//schedule.doc?dept=안과" style="color: #0E787C;">http://localhost:9999/vita//schedule.doc?dept=안과</a>
               </div>
             </div>
+            <% } %>
           </div>
         </div>
       </div>
