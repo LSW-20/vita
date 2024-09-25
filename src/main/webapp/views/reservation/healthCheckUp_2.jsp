@@ -162,91 +162,91 @@
                   <h5 class="modal-title" id="myModalLabel">예약체크사항</h5>
                 </div>
                 <div class="modal-body">
-							    <form id="checkListForm"  method="post">
-							        <div class="first-group">
-							            <h5>1. 현재 복용중인 약이 있으십니까?</h5>
-							            <input type="radio" name="mediList" value="없음" style="cursor: pointer;" onclick="toggleMedicationInput(false); checkFormValidity()">
-							            <label for="none">없음</label>
-							            <br>
-							            <div>
-							                <input type="radio" name="mediList" value="Y" style="cursor: pointer;" onclick="toggleMedicationInput(true); checkFormValidity()">
-							                <label for="other" id="other">있음</label>
-							                
-							                <input type="text" class="form-control" id="inputText" name="mediListDetails" placeholder="여러항목일경우 띄어쓰기없이 ( , )로 연이어서 입력해주세요" value="" disabled oninput="checkFormValidity()">
-							                <br>
-							                <h7 style="color:rgb(31, 43, 108);">※ 항헌혈제는 고혈압, 당뇨 및 고지혈증약과 병용 투여되는 </h7>
-							                <h7 style="color:rgb(31, 43, 108);">경우가 흔하므로 상기 질환으로 치료중인 경우에는 항혈전제 투약 여부를</h7>
-							                <h7 style="color:rgb(31, 43, 108);">주치의에게 사전에 확인 받으시기 바랍니다.</h7>
-							            </div>
-							        </div>
-							        <br>
-							        
-							        <div class="second-group">
-							            <h5>2. 1년 이내에 수술 받으신 적이 있으십니까?</h5>
-							            <input type="radio" name="Surgery" value="N" style="cursor: pointer;" onclick="toggleSurgeryInput(false); checkFormValidity()">
-							            <label for="none">없음</label>
-							            <br>
-							            <input type="radio" name="Surgery" value="Y" style="cursor: pointer;" onclick="toggleSurgeryInput(true); checkFormValidity()">
-							            <label for="yes">있음</label>
-							            <input type="text" class="form-control" id="SurgerySelf" name="surgeryName" value="" placeholder="수술명 직접입력" disabled oninput="checkFormValidity()">
-							        </div>
-							        <br>
-							        <div class="third-group">
-							            <h5>3. 건강검진이후 14일 이내 비행기 탑승이 예정되어 있으십니까?</h5>
-							            <input type="radio" name="Fly" value="Y" style="cursor: pointer;" onclick="checkFormValidity()">
-							            <label for="none">없음</label>
-							            <br>
-							            <input type="radio" name="Fly" value="N" style="cursor: pointer;" onclick="checkFormValidity()">
-							            <label for="yes">있음(2주이내)</label>
-							            <br><br>
-							            <h7 style="color:rgb(31, 43, 108);">※ 내시경 검사중 조직검사에 제한이 있을 수 있습니다.</h7>
-							        </div>
-							
-							        <div class="modal-footer">
-							            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-							            <button type="button" class="btn btn-primary" id="submitBtn" disabled onclick="handleSubmit()">저장</button>
-							        </div>
-							    </form>
-							</div>
-							
-							<script>
-							    function toggleMedicationInput(isOther) {
-							        document.getElementById("inputText").disabled = !isOther;
-							        
-							        if (!isOther) {
-							            document.getElementById("inputText").value = ""; // 비활성화되면 입력값을 초기화
-							        }
-							        checkFormValidity(); // 상태를 체크하여 버튼 활성화
-							    }
-							
-							    function toggleSurgeryInput(isSurgery) {
-							        document.getElementById("SurgerySelf").disabled = !isSurgery;
-							
-							        if (!isSurgery) {
-							            document.getElementById("SurgerySelf").value = ""; // 비활성화되면 입력값을 초기화
-							        }
-							        checkFormValidity(); // 상태를 체크하여 버튼 활성화
-							    }
-							
-							    function checkFormValidity() {
-							        var mediListChecked = document.querySelector('input[name="mediList"]:checked');
-							        var mediListValid = mediListChecked && (mediListChecked.value === "N" || (mediListChecked.value === "Y" && document.getElementById("inputText").value.trim() !== ""));
-							
-							        var surgeryChecked = document.querySelector('input[name="Surgery"]:checked');
-							        var surgeryValid = surgeryChecked && (surgeryChecked.value === "N" || (surgeryChecked.value === "Y" && document.getElementById("SurgerySelf").value.trim() !== ""));
-							
-							        var flyChecked = document.querySelector('input[name="Fly"]:checked') !== null;
-							
-							        var submitBtn = document.getElementById("submitBtn");
-							        if (mediListValid && surgeryValid && flyChecked) {
-							            submitBtn.disabled = false; // 모든 항목이 체크되고 유효하면 버튼 활성화
-							        } else {
-							            submitBtn.disabled = true; // 하나라도 체크되지 않거나 유효하지 않으면 버튼 비활성화
-							        }
-							    }
-							
-							    function handleSubmit() {
-							        const mediListChecked = document.querySelector('input[name="mediList"]:checked') !== null;
+								    <form id="checkListForm" action="<%= contextPath %>/CheckList.rv" method="post">
+								        <div class="first-group">
+								            <h5>1. 현재 복용중인 약이 있으십니까?</h5>
+								            <input type="radio" name="mediList" value="없음" style="cursor: pointer;" onclick="toggleMedicationInput(false); checkFormValidity()">
+								            <label for="none">없음</label>
+								            <br>
+								            <div>
+								                <input type="radio" name="mediList" value="Y" style="cursor: pointer;" onclick="toggleMedicationInput(true); checkFormValidity()">
+								                <label for="other" id="other">있음</label>
+								                
+								                <input type="text" class="form-control" id="inputText" name="mediListDetails" placeholder="여러항목일경우 띄어쓰기없이 ( , )로 연이어서 입력해주세요" value="" disabled oninput="checkFormValidity()">
+								                <br>
+								                <h7 style="color:rgb(31, 43, 108);">※ 항헌혈제는 고혈압, 당뇨 및 고지혈증약과 병용 투여되는 </h7>
+								                <h7 style="color:rgb(31, 43, 108);">경우가 흔하므로 상기 질환으로 치료중인 경우에는 항혈전제 투약 여부를</h7>
+								                <h7 style="color:rgb(31, 43, 108);">주치의에게 사전에 확인 받으시기 바랍니다.</h7>
+								            </div>
+								        </div>
+								        <br>
+								        
+								        <div class="second-group">
+								            <h5>2. 1년 이내에 수술 받으신 적이 있으십니까?</h5>
+								            <input type="radio" name="Surgery" value="N" style="cursor: pointer;" onclick="toggleSurgeryInput(false); checkFormValidity()">
+								            <label for="none">없음</label>
+								            <br>
+								            <input type="radio" name="Surgery" value="Y" style="cursor: pointer;" onclick="toggleSurgeryInput(true); checkFormValidity()">
+								            <label for="yes">있음</label>
+								            <input type="text" class="form-control" id="SurgerySelf" name="surgeryName" value="" placeholder="수술명 직접입력" disabled oninput="checkFormValidity()">
+								        </div>
+								        <br>
+								        <div class="third-group">
+								            <h5>3. 건강검진이후 14일 이내 비행기 탑승이 예정되어 있으십니까?</h5>
+								            <input type="radio" name="Fly" value="Y" style="cursor: pointer;" onclick="checkFormValidity()">
+								            <label for="none">없음</label>
+								            <br>
+								            <input type="radio" name="Fly" value="N" style="cursor: pointer;" onclick="checkFormValidity()">
+								            <label for="yes">있음(2주이내)</label>
+								            <br><br>
+								            <h7 style="color:rgb(31, 43, 108);">※ 내시경 검사중 조직검사에 제한이 있을 수 있습니다.</h7>
+								        </div>
+								
+								        <div class="modal-footer">
+								            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+								            <button type="button" class="btn btn-primary" id="submitBtn" disabled onclick="handleSubmit()">저장</button>
+								        </div>
+								    </form>
+								</div>
+								
+								<script>
+								    function toggleMedicationInput(isOther) {
+								        document.getElementById("inputText").disabled = !isOther;
+								        
+								        if (!isOther) {
+								            document.getElementById("inputText").value = ""; // 비활성화되면 입력값을 초기화
+								        }
+								        checkFormValidity(); // 상태를 체크하여 버튼 활성화
+								    }
+								
+								    function toggleSurgeryInput(isSurgery) {
+								        document.getElementById("SurgerySelf").disabled = !isSurgery;
+								
+								        if (!isSurgery) {
+								            document.getElementById("SurgerySelf").value = ""; // 비활성화되면 입력값을 초기화
+								        }
+								        checkFormValidity(); // 상태를 체크하여 버튼 활성화
+								    }
+								
+								    function checkFormValidity() {
+								        var mediListChecked = document.querySelector('input[name="mediList"]:checked');
+								        var mediListValid = mediListChecked && (mediListChecked.value === "N" || (mediListChecked.value === "Y" && document.getElementById("inputText").value.trim() !== ""));
+								
+								        var surgeryChecked = document.querySelector('input[name="Surgery"]:checked');
+								        var surgeryValid = surgeryChecked && (surgeryChecked.value === "N" || (surgeryChecked.value === "Y" && document.getElementById("SurgerySelf").value.trim() !== ""));
+								
+								        var flyChecked = document.querySelector('input[name="Fly"]:checked') !== null;
+								
+								        var submitBtn = document.getElementById("submitBtn");
+								        if (mediListValid && surgeryValid && flyChecked) {
+								            submitBtn.disabled = false; // 모든 항목이 체크되고 유효하면 버튼 활성화
+								        } else {
+								            submitBtn.disabled = true; // 하나라도 체크되지 않거나 유효하지 않으면 버튼 비활성화
+								        }
+								    }
+								
+                    function handleSubmit() {
+							    		const mediListChecked = document.querySelector('input[name="mediList"]:checked') !== null;
 							        const surgeryChecked = document.querySelector('input[name="Surgery"]:checked') !== null;
 							        const flyChecked = document.querySelector('input[name="Fly"]:checked') !== null;
 
@@ -273,7 +273,7 @@
 							            alert("모든 항목을 올바르게 체크해주세요.");
 							        }
 							    }
-							</script>
+								</script>
               </div>
             </div>
           </div>
