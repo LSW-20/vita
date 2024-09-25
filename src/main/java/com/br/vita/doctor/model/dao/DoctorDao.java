@@ -673,7 +673,7 @@ public class DoctorDao {
 	
 	
 	// 진단서신청목록 조회
-	public List<Member> documentSelect(Connection conn, String type, String docNo) {
+	public List<Member> documentSelect(Connection conn, String docNo, String type) {
 		
 		
 		PreparedStatement pstmt = null;
@@ -712,10 +712,10 @@ public class DoctorDao {
 //									,rset.getString("PHONE"));
 //				
 				Member docuMem = new Member();
-				docuMem.setUserId(rset.getString("user_no"));
-				docuMem.setUserType(rset.getString("USER_NAME"));
+				docuMem.setUserNo(rset.getString("user_no"));
+				docuMem.setUserName(rset.getString("USER_NAME"));
 				docuMem.setPhone(rset.getString("USER_SSN"));
-				docuMem.setUserName(rset.getString("DEPT_NAME"));
+				docuMem.setDeptName(rset.getString("DEPT_NAME"));
 				docuMem.setUserSSN(rset.getString("PHONE"));
 									
 				list.add(docuMem);
@@ -737,7 +737,7 @@ public class DoctorDao {
 		
 	}
 
-	public int selectDocumentListCount(Connection conn, String docNo) {
+	public int selectDocumentListCount(Connection conn, String docNo, String type) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -750,7 +750,7 @@ public class DoctorDao {
 			pstmt=conn.prepareStatement(sql);
 			
 			pstmt.setString(1, docNo);
-			
+			pstmt.setString(2, type);			
 			rset=pstmt.executeQuery();
 			
 			if(rset.next()) {
