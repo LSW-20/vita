@@ -192,4 +192,12 @@ WHERE
 	</entry>
 	
 	
+	<entry key="idCheck">
+		SELECT
+					 COUNT(*) as COUNT
+			FROM 
+					 MEMBER
+		 WHERE 
+		 			 USER_ID = ?
+	</entry>
 </properties>

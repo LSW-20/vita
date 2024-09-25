@@ -158,6 +158,18 @@ public class MemberService {
 		return list;
 	}
 	
+	public int idCheck(String checkId) {
+		Connection conn = getConnection();
+		int count = mdao.idCheck(conn, checkId);
+		if(count > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return count;
+	}
+	
 	
 	/**
 	 * 이름, 핸드폰번호, 주민등록번호로 userNo 찾기 (1/2) 진료 예약 추가

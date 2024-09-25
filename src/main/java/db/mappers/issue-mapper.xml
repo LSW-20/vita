@@ -36,13 +36,7 @@ VALUES
 
 SELECT COUNT(*) AS COUNT -- count 0 일때 insert
   FROM DOCUMENT
- WHERE CARE_NO = (
-                    SELECT CARE_NO
-                    FROM MRECORDS
-                    WHERE USER_NO = ?
-                    AND TREATMENT_DATE = TO_DATE( ? , 'YYMMDD') 
-                   )
-                   
+ WHERE CARE_NO = ?
   AND DOC_TYPE = ?
   AND DOC_CHECK = 'R'
 

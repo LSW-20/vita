@@ -1,29 +1,25 @@
-package com.br.vita.doctor.controller;
+package com.br.vita.member.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.br.vita.doctor.model.service.DoctorService;
-import com.br.vita.member.model.vo.Member;
-import com.google.gson.Gson;
+import com.br.vita.member.model.service.MemberService;
 
 /**
- * Servlet implementation class DocumentSelectListController
+ * Servlet implementation class MemberIdCheckAjaxController
  */
-@WebServlet("/docuSel.do")
-public class DocumentSelectListController extends HttpServlet {
+@WebServlet("/idcheck.me")
+public class MemberIdCheckAjaxController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DocumentSelectListController() {
+    public MemberIdCheckAjaxController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,22 +29,16 @@ public class DocumentSelectListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String checkId = request.getParameter("checkId");
 		
-		String type = request.getParameter("type");
-		String docNo = ((Member)request.getSession().getAttribute("loginUser")).getDoctorNo();
+		int count = new MemberService().idCheck(checkId);
 		
-		
-		List<Member> doculist = new DoctorService().documentSelect(type,docNo);
-		
-		
-		
-		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(doculist, response.getWriter());
-		
-		
-		
-		
-		
+		response.setContentType("text/html; charset=UTF-8");
+		if(count > 0) { // 이미 존재 == 사용불가(NNNNN)
+			response.getWriter().print("NNNNN");;
+		}else { // 존재 X == 사용가능(NNNNY)
+			response.getWriter().print("NNNNY");;	
+		}
 	}
 
 	/**

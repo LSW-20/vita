@@ -34,18 +34,17 @@ public class CertificateApplicationController extends HttpServlet {
 		
 		String userNo = request.getParameter("userNo");
 		String type = request.getParameter("type");
-		String cDate = request.getParameter("cDate");
-//		String cDate2 = request.getParameter("cDate2");
 		String purpose = request.getParameter("purpose");
 		String careNo = request.getParameter("careNo");
 		
-		String Date = cDate.substring(2).replace("-","");
+//		String cDate2 = request.getParameter("cDate2");
+		/* String Date = cDate.substring(2).replace("-",""); */
 		
 //		String Date2 = cDate2.substring(2).replace("-","");
 		
 		
 		
-		int result =  new IssueService().certificateApplicationInsert(userNo,type,Date,purpose,careNo);
+		int result =  new IssueService().certificateApplicationInsert(userNo,type,purpose,careNo);
 		
 		
 		//if(result > 0) {
