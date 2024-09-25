@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MemberIdFdController
  */
-@WebServlet("/idfind.do")
-public class MemberIdFdController extends HttpServlet {
+@WebServlet("/pwfind.sd")
+public class MemberPwSendController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberIdFdController() {
+    public MemberPwSendController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,7 +29,7 @@ public class MemberIdFdController extends HttpServlet {
 
 		// 단순 페이지 이동 요청
 		// 응답페이지 : /web/views/member/signUp.jsp
-		request.getRequestDispatcher("/views/member/find_Id.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/member/find_Pw_Send.jsp").forward(request, response);
 	}
 
 	/**

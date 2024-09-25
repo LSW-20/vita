@@ -11,6 +11,7 @@ import java.util.Map;
 
 import com.br.vita.member.model.vo.Member;
 import com.br.vita.reservation.model.dao.ReservationDao;
+import com.br.vita.reservation.model.vo.CheckList;
 import com.br.vita.reservation.model.vo.Consultation;
 
 public class ReservationService {
@@ -160,6 +161,10 @@ public class ReservationService {
 		List<Map<String, Object>> resultList = rdao.selectCareApp(conn, deptName, docName, appDate);
 		close(conn);
 		return resultList;
+	public void insertHealthCheckList(CheckList ck) {
+
+	
+		
 	}
 
 	

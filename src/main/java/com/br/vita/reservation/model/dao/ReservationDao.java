@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.br.vita.member.model.vo.Member;
+import com.br.vita.reservation.model.vo.CheckList;
 import com.br.vita.reservation.model.vo.Consultation;
 
 
@@ -368,6 +369,15 @@ public class ReservationDao {
 		
 		return resultList;
 	}
+
+	public void insertHealthCheckList(Connection conn, CheckList ck) {
+		
+	
+	}
+		
+		
+		
+		
 	
    
    
