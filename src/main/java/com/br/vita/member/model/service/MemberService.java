@@ -188,6 +188,29 @@ public class MemberService {
 		return userNo;
 		
 	}
+	public int hpCheck(String checkHp) {
+		
+		Connection conn = getConnection();
+		int count = mdao.hpCheck(conn, checkHp);
+		if(count > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return count;
+	}
+	public int userSSNCheck(String checkUserSSN) {
+		Connection conn = getConnection();
+		int count = mdao.userSSNCheck(conn, checkUserSSN);
+		if(count > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return count;
+	}
 	
 	
 }

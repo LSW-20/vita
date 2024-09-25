@@ -287,8 +287,8 @@ public class MemberDao {
 	        pstmt.setString(8, m.getCallbackYN());
 	        
 	        // 주민등록번호의 앞 6자리 추출
-	        String userSSNFirst6 = m.getUserSSN().substring(0, 6);
-	        pstmt.setString(9, userSSNFirst6);
+	        String userDate = m.getUserSSN().substring(0, 6);
+	        pstmt.setString(9, userDate);
 	        
 	        pstmt.setString(10, m.getGender());
 
@@ -462,6 +462,56 @@ public class MemberDao {
 		
 		
 		return userNo;
+	}
+
+	public int hpCheck(Connection conn, String checkHp) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("hpCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, checkHp);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				count = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+	
+		return count;
+	}
+
+	public int userSSNCheck(Connection conn, String checkUserSSN) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("userSSNCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, checkUserSSN);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				count = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+	
+		return count;
 	}
 	
 	

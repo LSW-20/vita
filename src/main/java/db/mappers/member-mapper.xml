@@ -122,7 +122,7 @@ WHERE
 		 	 )
 		 	 VALUES
 		 	 (
-		 	 	 SEQ_UNO.NEXTVAL
+		 	 	 TO_CHAR(SYSDATE, 'YYMMDD') || LPAD(SEQ_UNO.NEXTVAL, 3, '0')
 		 	 , ?
 		 	 , ?
 		 	 , ?
@@ -200,4 +200,23 @@ WHERE
 		 WHERE 
 		 			 USER_ID = ?
 	</entry>
+	
+	<entry key="hpCheck">
+		SELECT
+					 COUNT(*) as COUNT
+			FROM 
+					 MEMBER
+		 WHERE 
+		 			 PHONE = ?
+	</entry>
+	
+	<entry key="userSSNCheck">
+		SELECT
+					 COUNT(*) as COUNT
+			FROM 
+					 MEMBER
+		 WHERE 
+		 			 USER_SSN = ?
+	</entry>
+	
 </properties>

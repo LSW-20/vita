@@ -166,7 +166,7 @@
 	      margin-left: 200px;
 	      font-weight: 500;
 	    }
-	    .name, #e-mail, #email-domain, #phone_number, #number2, .id_1, .pwd_1, .pwd_2, #phone12{
+	    .name, #e-mail, #email-domain, #phone_number, #userSSN, .id_1, .pwd_1, .pwd_2, #phone12{
 	        border: 1px solid rgb(207, 207, 207);
 	        border-radius: 5px;
 	        width: 250px;
@@ -253,7 +253,7 @@
 
 		<section>
             <nav>
-              <form id="signup-form" action="<%= contextPath %>/signUp_adult.me" method="POST">
+              <form name="signUpForm" id="signup-form" action="<%= contextPath %>/signUp_adult.me" method="POST" onsubmit="return validateForm()">
                 <div class="container boxbox" style="display: flex; padding: 0%; width: 1080px;">
                   <div class="container emailCheck1" style="width: 15%;">
                     <p class="line">인증확인</p>
@@ -266,17 +266,17 @@
                 </div>
                 
                   <!-- The Modal -->
-                  <!-- <div class="modal" id="myModal">
+                  <div class="modal" id="myModal">
                     <div class="modal-dialog">
                       <div class="modal-content">
                       
-                        Modal Header
+                        <!-- Modal Header -->
                         <div class="modal-header">
                           <h3 class="modal-title">이메일(EMAIL)로 인증</h3>
                           <button type="button" class="close1" data-dismiss="modal"> × </button>
                         </div>
                         
-                        Modal body
+                        <!-- Modal body -->
                         <div class="modal-body">
                           <p>
                             허위 정보를 입력하시는 경우 정확한 본인확인이 불가능하여<br>
@@ -285,21 +285,21 @@
                           <div id="modal1" class="modal1">
                             <div class="modal-content1">
                               <p class="e-mail_address">E-MAIL 주소</p>
-                              <div class="input-wrapper">
-                                <input type="email" placeholder="ex) aaaaa@naver.com" class="email-input" name="email" required>
+                              <div class="input-wrapper form-group">
+                                <input id="email" type="email" placeholder="ex) aaaaa@naver.com" class="email-input" name="email" required>
 
-                                인증번호가 발송되었다는 팝업창 하나 더 띄워야함
+                                <!-- 인증번호가 발송되었다는 팝업창 하나 더 띄워야함 -->
                                 <a href="#"><button class="get-code-btn">인증번호 받기</button></a>
                               </div>
                               
-                              인증번호가 일치/불일치 메시지는 자바스크립트로
+                              <!-- 인증번호가 일치/불일치 메시지는 자바스크립트로 -->
                               <p class="number1">인증번호</p>
                               <div class="input-wrapper">
                                 <input type="text" placeholder="인증번호 입력" class="code-input">
                                 <button class="verify-btn">인증하기</button>
                               </div>
 
-                              Modal footer
+                              <!-- Modal footer -->
                               <div class="modal-footer1">
                                 <button class="cancel-btn" data-dismiss="modal">취소</button>
                                 <button id="submitBtn" type="button" class="confirm-btn">확인</button>
@@ -325,60 +325,54 @@
 										</script>
                     </div>
                   </div>
-                </div> -->
+                </div>
 
                 <!-- 회원 정보 입력 칸 -->
                 <div>
                   <p class="title1"><strong>회원 정보</strong></p>
                   <p class="title2" style="width: 200px;"> * 필수입력항목</p>
-                  <div class="container123">
+                  <div class="container123 form-group">
                           <table class="table table-borderless">
 								            <tbody>
 								                <tr>
 								                    <th>아이디&nbsp;<span style="color:red;">*</span></th>
-								                    <td colspan="2"><input type="text" class="id_1" name="userId" required>
+								                    <td colspan="2"><input id="userId" type="text" class="id_1" name="userId" required>
 								                    <button type="button" class="btn btn-secondary btn-sm" onclick="fnIdCheck();">중복확인</button>
 								                    <span id="text1">6~15자리 영문 소문자, 숫자만 가능합니다. (한글, 특수문자 입력 불가)</span></td>
 								                </tr>
 								                <tr>
 								                    <th>비밀번호&nbsp;<span style="color:red;">*</span></th>
-								                    <td colspan="2"><input type="password" class="pwd_1" name="userPwd" required>
+								                    <td colspan="2"><input id="userPwd" type="password" class="pwd_1" name="userPwd" required>
 								                    <span id="text2">6~15자리의 영문 대소문자, 숫자, 특수문자는 ‘!,@,#,$,%,^,&,*’만 가능합니다.</span></td>
 								                </tr>
 								                <tr>
 								                    <th>비밀번호 확인&nbsp;<span style="color:red;">*</span></th>
-								                    <td colspan="2"><input type="password" class="pwd_2" name="userPwdConfirm" required></td>
+								                    <td colspan="2"><input id="userPwdConfirm" type="password" class="pwd_2" name="userPwdConfirm" required></td>
 								                </tr>
 								                <tr>
 								                    <th>이름&nbsp;<span style="color:red;">*</span></th>
 								                    <td colspan="2">
-								                    <input type="text" id="name" class="name" name="userName" required>
+								                    <input type="text" id="userName" class="name" name="userName" required>
 								                    <span id="text3">정확한 이름을 입력해주세요.</span></td>
 								                </tr>
 								                <tr>
 								                    <th>휴대폰 번호&nbsp;<span style="color:red;">*</span></th>
 								                    <td colspan="2">
 								                    <input type="text" id="phone" class="name" name="phone" required>
+								                    <button type="button" class="btn btn-secondary btn-sm" onclick="fnHpCheck();">중복확인</button>
 								                    <span id="text4">- 를 포함한 본인 휴대폰번호를 정확하게 입력하세요. &nbsp;&nbsp;ex)010-1111-2222</span></td>
-								                </tr> 
-								                <tr>
-								                    <th>이메일&nbsp;<span style="color:red;">*</span></th>
-								                    <td colspan="2">
-								                    <input type="email" class="name" name="email" required>
-								                    <span id="text5">@ 를 포함한 본인 이메일주소를 정확하게 입력하세요. &nbsp;&nbsp;ex) aaaaa@naver.com</span></td>
 								                </tr> 
 								                <tr>
 								                    <th>주소&nbsp;<span style="color:red;">*</span></th>
 								                    <td colspan="2">
-								                        <div>
-								                            <input type="text" id="address" class="name" name="address" required>                                        
-								                        </div>
-								                    </td>
+								                    <input type="text" id="address" class="name" name="address" required>                                        					                        
+								                    <span id="text5">상세주소를 입력해주세요. &nbsp;&nbsp;ex)전라북도 전주시 덕진구 백제대로 78</span></td>
 								                </tr>
 								                <tr>
 								                    <th>주민등록번호&nbsp;<span style="color:red;">*</span></th>
 								                    <td colspan="2">
-								                    <input type="text" id="number2" class="name" name="userSSN" required>
+								                    <input type="text" id="userSSN" class="name" name="userSSN" required>
+								                    <button type="button" class="btn btn-secondary btn-sm" onclick="fnUserSSNCheck();">중복확인</button>
 								                    <span id="text6"> - 를 포함해서 적어주세요. &nbsp;&nbsp;ex) 900101-2222222</span></td>
 								                </tr> 
 								                <tr>
@@ -396,7 +390,7 @@
                   </div>
 
                   <!-- 이메일 수신 여부 -->
-                   <div>
+                   <div class="form-group">
                     <p class="title1" style="margin-top: 50px;"><strong>이메일 수신 여부</strong></p>
                     <table id="etc1">
                       <tbody>
@@ -407,132 +401,280 @@
                           <tr>
                               <!-- 두 번째 행에 라디오 버튼 -->
                               <td class="radio-container" id="etc3" style="border-top: none;">
-                                  <input type="radio" id="option1" name="getCallbackYN" value="Y" checked>
-                                  <label for="option1" style="margin-top: 5px;">수신함 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                  <input type="radio" id="option2" name="getCallbackYN" value="N">
-                                  <label for="option2" style="margin-top: 5px;">수신안함</label>
+                                  <input type="radio" id="callbackYN" name="callbackYN" value="Y" checked>
+                                  <label for="callbackYN" style="margin-top: 5px;">수신함 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                  <input type="radio" id="callbackYN" name="callbackYN" value="N">
+                                  <label for="callbackYN" style="margin-top: 5px;">수신안함</label>
                               </td>
                           </tr>
                       </tbody>
                     </table>
                    </div>                 
                    <div style="width: 1080px; text-align: center; margin-left: 200px;">
-                    <button type="submit" class="btn btn-primary mx-2" id="signup">회원가입</button>
+                    <button type="submit" class="btn btn-primary mx-2" id="signup" onclick="onSubmit()">회원가입</button>
                     <a href=""><button type="button" class="btn btn-primary mx-2" id="cc">취소</button></a>
                 </div>
               </form>
               
-             	<script>
-							    // 아이디 중복체크용 함수
-							    function fnIdCheck() {
-							        const $idInput = $("#signup-form input[name=userId]");
-							        const userId = $idInput.val();
-							        
-							        // 아이디 유효성 검사
-							        const idPattern = /^[a-z0-9]{6,15}$/;
-							        if (!idPattern.test(userId)) {
-							            alert('아이디는 6~15자리의 영문 소문자와 숫자만 가능합니다.');
-							            $idInput.select(); // 다시 입력 유도
-							            return;
-							        }
+             	<script>           	
+             	
+             		function onSubmit() {
+             	    if (validateForm()) {
+             	      document.getElementById("signup-form").submit();
+             	    }
+             	  }
+
+             		function validateForm() {
+           			  event.preventDefault(); // 기본 폼 제출 동작 방지
+
+           			  const fields = ["email", "userId", "userPwd", "userPwdConfirm", "userName", "phone", "address", "userSSN"];
+           			  
+           			  fields.forEach(field => {
+           			    document.getElementById(field).removeAttribute("autofocus");
+           			    document.getElementById(field).removeAttribute("required");
+           			  });
+
+           			  // 성별 입력란의 autofocus와 required 속성 제거
+           			  const genderInputs = document.getElementsByName("gender");
+           			  genderInputs.forEach(input => {
+           			    input.removeAttribute("autofocus");
+           			    input.removeAttribute("required");
+           			  });
+
+           			  const email = document.getElementById("email").value;
+           			  const userId = document.getElementById("userId").value;
+           			  const userPwd = document.getElementById("userPwd").value;
+           			  const userPwdConfirm = document.getElementById("userPwdConfirm").value;
+           			  const userName = document.getElementById("userName").value;
+           			  const phone = document.getElementById("phone").value;
+           			  const address = document.getElementById("address").value;
+           			  const userSSN = document.getElementById("userSSN").value;
+           			  const gender = document.querySelector('input[name="gender"]:checked')?.value;
+
+           			  if (!userId) {
+           			    alert("사용자 ID를 입력해 주세요.");
+           			    return false;
+           			  }
+           				if (!document.getElementById("userId").readOnly) {
+           			    alert("아이디 중복 확인을 해주세요.");
+           			    return false;
+           			  }
+           			  if (!userPwd) {
+           			    alert("비밀번호를 입력해 주세요.");
+           			    return false;
+           			  }
+           			  if (!userPwdConfirm) {
+           			    alert("비밀번호 확인을 입력해 주세요.");
+           			    return false;
+           			  }
+           			  if (userPwd !== userPwdConfirm) {
+           			    alert("비밀번호가 일치하지 않습니다.");
+           			    return false;
+           			  }
+           			  if (!userName) {
+           			    alert("이름을 입력해 주세요.");
+           			    return false;
+           			  }
+           			  if (!phone) {
+           			    alert("전화번호를 입력해 주세요.");
+           			    return false;
+           			  }
+           				if (!document.getElementById("phone").readOnly) {
+           			    alert("전화번호 중복 확인을 해주세요.");
+           			    return false;
+           			  }
+           			  if (!address) {
+           			    alert("주소를 입력해 주세요.");
+           			    return false;
+           			  }
+           			  if (!userSSN) {
+           			    alert("주민등록번호를 입력해 주세요.");
+           			    return false;
+           			  }
+           				// 주민등록번호의 생년월일 확인
+           			  const birthDate = userSSN.substring(0, 6);
+           			  const year = parseInt(birthDate.substring(0, 2), 10);
+           			  const month = parseInt(birthDate.substring(2, 4), 10) - 1; // 월은 0부터 시작
+           			  const day = parseInt(birthDate.substring(4, 6), 10);
+           			  const currentYear = new Date().getFullYear();
+           			  const fullYear = year < 50 ? 2000 + year : 1900 + year; // 2000년 이후 출생자는 2000년대, 그 이전은 1900년대
+           			  const age = currentYear - fullYear;
+
+           			  if (age < 14 || (age === 14 && new Date().setFullYear(fullYear, month, day) > new Date())) {
+           			    alert("만 14세 이하입니다.");
+           			    return false;
+           			  }
+           				if (!document.getElementById("userSSN").readOnly) {
+           			    alert("주민등록번호 중복 확인을 해주세요.");
+           			    return false;
+           			  }
+           			  if (!gender) {
+           			    alert("성별을 선택해 주세요.");
+           			    return false;
+           			  }
+           			  if (!email) {
+           			    alert("이메일을 인증해 주세요.");
+           			    return false;
+           			  }
+           			  return true;
+           			}
+             	  
+             		
+						    // 아이디 중복체크용 함수
+						    function fnIdCheck() {
+						        const $idInput = $("#signup-form input[name=userId]");
+						        const userId = $idInput.val();
+						        
+						        // 아이디 유효성 검사
+						        const idPattern = /^[a-z0-9]{6,15}$/;
+						        if (!idPattern.test(userId)) {
+						            alert('아이디는 6~15자리의 영문 소문자와 숫자만 가능합니다.');
+						            $idInput.select(); // 다시 입력 유도
+						            return;
+						        }
+						
+						        // 사용자가 입력한 아이디값 전달하면서 ajax요청
+						        $.ajax({
+						            url: '<%= contextPath %>/idcheck.me',
+						            data: {checkId: userId},
+						            success: function(res){
+						                console.log(res);
+						                if(res == 'NNNNN'){ // 사용불가능
+						                    alert('이미 존재하거나 탈퇴한 회원의 아이디입니다.');
+						                    $idInput.select(); // 다시 입력 유도
+						                }else{ // 사용가능
+						                    if(confirm('사용가능한 아이디입니다. 사용하시겠습니까?')){
+						                        $('#signup-form :submit').removeAttr('disabled'); // 회원가입 버튼 활성화
+						                        $idInput.prop('readonly', true); // 더이상 아이디 수정 불가하도록
+						                    }else{
+						                        $idInput.select(); // 다시 입력 유도
+						                    }
+						                }
+						            },
+						            error: function() {
+						                console.log('아이디 중복체크용 ajax 통신 실패');
+						            }
+						        });
+						    }	
+						    
+						 		// 휴대폰 중복체크용 함수
+						    function fnHpCheck() {
+						        const $hpInput = $("#signup-form input[name=phone]");
+						        const phone = $hpInput.val();
+						        
+						        // 휴대폰 유효성 검사
+						        const phPattern = /^01[016789]-\d{3,4}-\d{4}$/;
+						        if (!phPattern.test(phone)) {
+						            alert('올바른 형식의 휴대폰 번호를 입력하세요. 예: 010-1234-5678');
+						            $hpInput.select(); // 다시 입력 유도
+						            return;
+						        }
+						
+						        // 사용자가 입력한 휴대폰값 전달하면서 ajax요청
+						        $.ajax({
+						            url: '<%= contextPath %>/hpcheck.me',
+						            data: {checkHp: phone},
+						            success: function(res){
+						                console.log(res);
+						                if(res == 'NNNNN'){ // 사용불가능
+						                    alert('이미 존재는 번호입니다.');
+						                    $hpInput.select(); // 다시 입력 유도
+						                }else{ // 사용가능
+						                    if(confirm('사용가능한 휴대폰 번호입니다. 사용하시겠습니까?')){
+						                        $('#signup-form :submit').removeAttr('disabled'); // 회원가입 버튼 활성화
+						                        $hpInput.prop('readonly', true); // 더이상 아이디 수정 불가하도록
+						                    }else{
+						                        $hpInput.select(); // 다시 입력 유도
+						                    }
+						                }
+						            },
+						            error: function() {
+						                console.log('휴대폰 중복체크용 ajax 통신 실패');
+						            }
+						        });
+						    }		
+						    
+								// 주민등록번호 중복체크용 함수
+						    function fnUserSSNCheck() {
+							  const $userSSNInput = $("#signup-form input[name=userSSN]");
+							  const userSSN = $userSSNInput.val();
+							  
+							  // 주민등록번호 유효성 검사
+							  const userSSNPattern = /^\d{6}-\d{7}$/;
+							  if (!userSSNPattern.test(userSSN)) {
+							    alert('올바른 형식의 주민등록번호를 입력하세요. 예: 900101-2222222');
+							    $userSSNInput.select(); // 다시 입력 유도
+							    return;
+							  }
 							
-							        // 사용자가 입력한 아이디값 전달하면서 ajax요청
-							        $.ajax({
-							            url: '<%= contextPath %>/idcheck.me',
-							            data: {checkId: userId},
-							            success: function(res){
-							                console.log(res);
-							                if(res == 'NNNNN'){ // 사용불가능
-							                    alert('이미 존재하거나 탈퇴한 회원의 아이디입니다.');
-							                    $idInput.select(); // 다시 입력 유도
-							                }else{ // 사용가능
-							                    if(confirm('사용가능한 아이디입니다. 사용하시겠습니까?')){
-							                        $('#signup-form :submit').removeAttr('disabled'); // 회원가입 버튼 활성화
-							                        $idInput.prop('readonly', true); // 더이상 아이디 수정 불가하도록
-							                    }else{
-							                        $idInput.select(); // 다시 입력 유도
-							                    }
-							                }
-							            },
-							            error: function() {
-							                console.log('아이디 중복체크용 ajax 통신 실패');
-							            }
-							        });
-							    }			    
-							    
-							    
-							    // 비밀번호 유효성 검사
-							    function validatePassword() {
-							        const pwdPattern = /^[a-zA-Z0-9!@#$%^&*]{6,15}$/;
-							        const pwd1 = document.querySelector('.pwd_1').value;
-							        const pwd2 = document.querySelector('.pwd_2').value;
-							        const text2 = document.getElementById('text2');
-
-							        if (!pwdPattern.test(pwd1)) {
-							            text2.style.color = 'red';
-							            text2.textContent = '비밀번호는 6~15자리의 영문 대소문자, 숫자, 특수문자(!,@,#,$,%,^,&,*)만 가능합니다.';
-							            return false;
+							  // 생년월일 확인
+							  const birthDate = userSSN.substring(0, 6);
+							  const year = parseInt(birthDate.substring(0, 2), 10);
+							  const month = parseInt(birthDate.substring(2, 4), 10) - 1; // 월은 0부터 시작
+							  const day = parseInt(birthDate.substring(4, 6), 10);
+							  const currentYear = new Date().getFullYear();
+							  const fullYear = year < 50 ? 2000 + year : 1900 + year; // 2000년 이후 출생자는 2000년대, 그 이전은 1900년대
+							  const age = currentYear - fullYear;
+							
+							  if (age < 14 || (age === 14 && new Date().setFullYear(fullYear, month, day) > new Date())) {
+							    alert("만 14세 이하입니다.");
+							    return;
+							  }
+							
+							  // 사용자가 입력한 주민등록번호값 전달하면서 ajax요청
+							  $.ajax({
+							    url: '<%= contextPath %>/userSSNcheck.me',
+							    data: {checkUserSSN: userSSN},
+							    success: function(res){
+							      console.log(res);
+							      if(res == 'NNNNN'){ // 사용불가능
+							        alert('이미 존재는 주민등록번호입니다.');
+							        $userSSNInput.select(); // 다시 입력 유도
+							      }else{ // 사용가능
+							        if(confirm('사용가능한 주민등록번호입니다. 사용하시겠습니까?')){
+							          $('#signup-form :submit').removeAttr('disabled'); // 회원가입 버튼 활성화
+							          $userSSNInput.prop('readonly', true); // 더이상 아이디 수정 불가하도록
+							        }else{
+							          $userSSNInput.select(); // 다시 입력 유도
 							        }
-							        if (pwd1 !== pwd2) {
-							            text2.style.color = 'red';
-							            text2.textContent = '비밀번호가 일치하지 않습니다.';
-							            return false;
-							        }
-							        text2.style.color = 'green';
-							        text2.textContent = '비밀번호가 유효합니다.';
-							        return true;
+							      }
+							    },
+							    error: function() {
+							      console.log('주민등록번호 중복체크용 ajax 통신 실패');
 							    }
-					    
-							    document.querySelector('.pwd_1').addEventListener('blur', function() {
-							        validatePassword();
-							    });
-
-							    document.querySelector('.pwd_2').addEventListener('blur', function() {
-							        validatePassword();
-							    });
+							  });
+								}	
 							    
-							    
-							 		// 휴대폰 유효성 검사
-							    function validatePhone() {
-									    const phonePattern = /^01[016789]-\d{3,4}-\d{4}$/;
-									    const phoneValid = document.querySelector('#phone').value;
-									    const text4 = document.getElementById('text4');
-									    
-									    if (!phonePattern.test(phoneValid)) {
-									        text4.style.color = 'red';
-									        text4.textContent = '올바른 형식의 휴대폰 번호를 입력하세요. 예: 010-1234-5678';
-									        return false;				            
-									    } else {
-									        text4.style.color = 'green';
-									        text4.textContent = '휴대폰번호가 유효합니다.';
-									        return true;
-									    }
-									}
-									
-									document.querySelector('#phone').addEventListener('blur', function() {
-									    validatePhone();
-									});
-							    
-									// 주민등록번호 유효성 검사
-									function validateSSN() {
-									    const ssnPattern = /^\d{6}-\d{7}$/;
-									    const ssnValid = document.querySelector('#number2').value;
-									    const text6 = document.getElementById('text6');
-									    
-									    if (!ssnPattern.test(ssnValid)) {
-									        text6.style.color = 'red';
-									        text6.textContent = '올바른 형식의 주민등록번호를 입력하세요. 예: 900101-2222222';
-									        return false;				            
-									    } else {
-									        text6.style.color = 'green';
-									        text6.textContent = '주민등록번호가 유효합니다.';
-									        return true;
-									    }
-									}
-
-									document.querySelector('#number2').addEventListener('blur', function() {
-									    validateSSN();
-									});
+						    // 비밀번호 유효성 검사
+						    function validatePassword() {
+						        const pwdPattern = /^[a-zA-Z0-9!@#$%^&*]{6,15}$/;
+						        const pwd1 = document.querySelector('.pwd_1').value;
+						        const pwd2 = document.querySelector('.pwd_2').value;
+						        const text2 = document.getElementById('text2');
+	
+						        if (!pwdPattern.test(pwd1)) {
+						            text2.style.color = 'red';
+						            text2.textContent = '비밀번호는 6~15자리의 영문 대소문자, 숫자, 특수문자(!,@,#,$,%,^,&,*)만 가능합니다.';
+						            return false;
+						        }
+						        if (pwd1 !== pwd2) {
+						            text2.style.color = 'red';
+						            text2.textContent = '비밀번호가 일치하지 않습니다.';
+						            return false;
+						        }
+						        text2.style.color = 'green';
+						        text2.textContent = '비밀번호가 유효합니다.';
+						        return true;
+						    }
+				    
+						    document.querySelector('.pwd_1').addEventListener('blur', function() {
+						        validatePassword();
+						    });
+	
+						    document.querySelector('.pwd_2').addEventListener('blur', function() {
+						        validatePassword();
+						    });
+							    						   
 							</script>
               
             </nav>

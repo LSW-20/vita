@@ -41,8 +41,8 @@ public class MemberSignUpAdultController extends HttpServlet {
 		String email = request.getParameter("email");
 		String address = request.getParameter("address");
 		String userSSN = request.getParameter("userSSN");	
-		String callbackYN = request.getParameter("getCallbackYN");
-		String userDate = request.getParameter("getUserDate");
+		String callbackYN = request.getParameter("callbackYN");
+		String userDate = request.getParameter("userDate");
 		String gender = request.getParameter("gender");
 		
 		
