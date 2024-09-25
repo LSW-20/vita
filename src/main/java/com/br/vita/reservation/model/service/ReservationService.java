@@ -155,6 +155,14 @@ public class ReservationService {
 		
 	}
 
+	/**
+	 * 관리자 진료 예약 관리 조회 기능
+	 * @param deptName
+	 * @param docName
+	 * @param appDate1
+	 * @param appDate2
+	 * @return 조회된 list
+	 */
 	public List<Map<String, Object>> selectCareApp(String deptName, String docName, String appDate1, String appDate2) {
 		
 		Connection conn = getConnection();
@@ -164,7 +172,6 @@ public class ReservationService {
 		return resultList;
 	}	
 		
-	}
 		
 	public void insertHealthCheckList(CheckList ck) {
 

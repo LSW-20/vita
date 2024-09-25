@@ -46,7 +46,8 @@ SELECT COUNT(*) AS COUNT -- count 0 일때 insert
 <!--진료기록 select-->
 <entry key="selectMrecords">
 	SELECT 
-	       TREATMENT_DATE
+	       CARE_NO
+	     , TREATMENT_DATE
 	     , DIAGNOSIS_NAME 
 	  FROM MRECORDS
 	 WHERE USER_NO = ?
@@ -56,10 +57,11 @@ SELECT COUNT(*) AS COUNT -- count 0 일때 insert
 
 
 <!-- 발급에 필요한 내용 셀렉 -->
-<entry key="">
+<entry key="getDocumentByCareNo">
 	SELECT 
-	       DOC_NUM
-	     , D.DEPT_NAME AS DEPT_NAME 
+				 DOC_NUM
+	     , C.CARE_NO AS CARE_NO
+	     , D.DEPT_NAME AS DEPT_NAME
 	     , DOC_PURPOSE
 	     , APPLY_DATE
 	     , LICENCE_NO 
@@ -68,7 +70,9 @@ SELECT COUNT(*) AS COUNT -- count 0 일때 insert
 	  JOIN MRECORDS M
 	    ON C.CARE_NO = M.CARE_NO
 	  JOIN DOCTOR D
-	    ON D.DOCTOR_NO = M.DOCTOR_NO	
+	    ON D.DOCTOR_NO = M.DOCTOR_NO
+	 WHERE C.CARE_NO = ?
+
 </entry>
 
 
@@ -89,5 +93,26 @@ AND
 
 </entry>
 
+<!--발급 완료 된 증명서 리스트 조회-->
+<entry key="selectDocumentList">
+	SELECT 
+	       DOC_NUM
+	     , C.USER_NO AS USER_NO
+	     , C.CARE_NO AS CARE_NO
+	     , DOC_TYPE
+	     , DOC_CHECK
+	     , DOC_PURPOSE
+	     , PRICE
+	     , APPLY_DATE
+       , DOCTOR_NAME
+       , LICENCE_NO
+       , D.DEPT_NAME
+	  FROM DOCUMENT C
+    JOIN MRECORDS M
+      ON M.CARE_NO = C.CARE_NO
+    JOIN DOCTOR D
+      ON M.DOCTOR_NO = D.DOCTOR_NO
+	 WHERE C.USER_NO = ?
+</entry>
 
 </properties>

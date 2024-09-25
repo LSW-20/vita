@@ -14,6 +14,7 @@ import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 import java.util.Properties;
 
+import com.br.vita.issue.model.vo.Document;
 import com.br.vita.issue.model.vo.Mrecords;
 
 
@@ -131,6 +132,7 @@ public class IssueDao {
 			
 			while(rset.next()) {
 				Mrecords r = new Mrecords();
+				r.setCareNo(rset.getString("CARE_NO"));
 				r.setTreatmentDate(rset.getDate("TREATMENT_DATE"));
 				r.setDiagnosisName(rset.getString("DIAGNOSIS_NAME"));
 				records.add(r);
@@ -144,6 +146,42 @@ public class IssueDao {
 		}
 		
 		return records;
+	}
+
+	/**
+	 * 선택한 진료번호에 맞는 진료정보 증명서에 뿌리기
+	 * @author 최보겸
+	 * @param careNo
+	 * @return documents
+	 */
+	public Document getDocumentByCareNo(Connection conn, String careNo) {
+		Document documents = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getDocumentByCareNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,careNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				documents = new Document(rset.getInt("DOC_NUM")
+						   , rset.getString("DOC_PURPOSE")
+						   , rset.getDate("APPLY_DATE")
+						   , rset.getString("DEPT_NAME")
+						   , rset.getString("LICENCE_NO")
+						   , rset.getString("DOCTOR_NAME")
+						   , rset.getString("CARE_NO"));				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return documents;
 	}
 	
 	
@@ -184,6 +222,48 @@ public class IssueDao {
 		
 		
 	}
+
+	/**
+	 * 발급 완료된 증명서 리스트 
+	 * select - rset
+	 * @author 최보겸
+	 * @param conn
+	 * @param userNo 회원 식별할 userNo
+	 * @return docList 주섬주섬 담아
+	 */
+	public List<Document> selectDocumentList(Connection conn, String userNo) {
+		List<Document> docList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectDocumentList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				docList.add(new Document(rset.getInt("DOC_NUM")
+									   , rset.getString("USER_NO")
+									   , rset.getString("CARE_NO")
+									   , rset.getString("DOC_TYPE")
+									   , rset.getString("DOC_CHECK")
+									   , rset.getString("DOC_PURPOSE")
+									   , rset.getInt("PRICE")
+									   , rset.getDate("APPLY_DATE")
+									   , rset.getString("DEPT_NAME")
+									   , rset.getString("LICENCE_NO")
+									   , rset.getString("DOCTOR_NAME")
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return docList;
+	}//selectdocumentList
 	
 	
 	

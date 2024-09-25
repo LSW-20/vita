@@ -10,7 +10,7 @@
 	    section{
         /* background-color: aqua; */
         width: 100%;
-        height: 1300px;
+        height: 300px;
         position: absolute;
         top: 80px;
 	    }
@@ -19,20 +19,19 @@
 	      width: 79%; 
 	      margin-left: 200px !important; 
 	    }
-	    .col-xl-2{
+	    .emailCheck1{
 	      background-color:#A3B3D4;
 	      color:white;
 	      padding: 20px 30px;
 	      font-size: 25px;
-	      height: 150px;
-	      
+	      height: 150px;   
 	    }
 	    .line {
 	      display: inline-block;
 	      padding-bottom: 5px;
 	      border-bottom: 2px solid white;
 	    }
-	    .col-xl-10 {
+	    .emailCheck2 {
 	      background-color:#00000009;
 	      font-size: 15px;
 	      padding: 20px 20px;
@@ -178,12 +177,12 @@
 	    .title2 {
 	        font-size: 14px;
 	        color: red;
-	        margin-left: 1600px;
+	        margin-left: 1180px;
 	        font-weight: 600;
 	        margin-bottom: 5px;
 	    }
 	    .table.table-borderless {
-	      width: 1500px;
+	      width: 1080px;
 	      margin-left: 200px;
 	      border-top: 1px solid #161d49;
 	      border-bottom: 1px solid #161d49;
@@ -194,7 +193,7 @@
 	      color:#1F2B6C;
 	    }
 	    #etc1 {
-	      width: 1500px;
+	      width: 1080px;
 	      border-collapse: collapse; /* 테두리 겹침 방지 */
 	      margin-top: 40px;
 	      margin-left: 200px;
@@ -219,11 +218,6 @@
 	    .radio-container input {
 	        margin-right: 10px;
 	    }
-	    .btn_signupcc {
-	      margin-top: 40px;
-	      display: flex;
-	      justify-content: center;
-	    }
 	    #signup, #cc {
 	      width: 180px;
 	      padding: 10px;
@@ -247,7 +241,7 @@
 		      position:absolute;
 		      width: 100%;
 		      height: 300px;
-		      margin-top: 2500px;
+		      margin-top: 1500px;
 		  }
 
             
@@ -258,12 +252,12 @@
 
 		<section>
             <nav>
-              <form action="<%= contextPath %>/SignUp_Adult.me" method="POST">
-                <div class="boxbox" style="display: flex;">
-                  <div class="col-xl-2">
+              <form id="signup-form" action="<%= contextPath %>/SignUp_Adult.me" method="POST">
+                <div class="container boxbox" style="display: flex; padding: 0%; width: 1080px;">
+                  <div class="container emailCheck1" style="width: 15%;">
                     <p class="line">인증확인</p>
                   </div>
-                  <div class="col-xl-10">
+                  <div class="container emailCheck2">
                     <p>본인인증을 위해 입력하신 개인정보는 본인인증기관에서 수집하는 정보이며<br>
                     본인인증 외 어떠한 용도로도 이용되거나 별도 저장되지 않습니다.</p>
                     <a href="#"><button type="button" id="e-mail1" class="btn btn-primary" data-toggle="modal" data-target="#myModal">이메일 인증</button></a>
@@ -291,7 +285,7 @@
                             <div class="modal-content1">
                               <p class="e-mail_address">E-MAIL 주소</p>
                               <div class="input-wrapper">
-                                <input type="email" placeholder="ex) aaaaa@naver.com" class="email-input">
+                                <input type="email" placeholder="ex) aaaaa@naver.com" class="email-input" name="email" required>
 
                                 <!-- 인증번호가 발송되었다는 팝업창 하나 더 띄워야함 -->
                                 <a href="#"><button class="get-code-btn">인증번호 받기</button></a>
@@ -300,7 +294,7 @@
                               <!-- 인증번호가 일치/불일치 메시지는 자바스크립트로 -->
                               <p class="number1">인증번호</p>
                               <div class="input-wrapper">
-                                <input type="text" placeholder="인증번호 입력" class="code-input">
+                                <input type="text" placeholder="인증번호 입력" class="code-input" required>
                                 <button class="verify-btn">인증하기</button>
                               </div>
 
@@ -319,61 +313,62 @@
                 <!-- 회원 정보 입력 칸 -->
                 <div>
                   <p class="title1"><strong>회원 정보</strong></p>
-                  <p class="title2"> * 필수입력항목</p>
+                  <p class="title2" style="width: 200px;"> * 필수입력항목</p>
                   <div class="container123">
                           <table class="table table-borderless">
-                          <thead>
-                              <colgroup>
-                                  <col width="200">
-                                  <col width="*">
-                              </colgroup>
-                              <tr>
-                                <th><br>이름&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><br><input type="text" class="name" name="userName" required>
-                                  <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정확한 이름을 입력해주세요.</span></td>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr>
-                                <th>주민등록번호&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2">
-                                    <input type="text" id="number2" name="userSSN" required>
-                                    <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 를 포함해서 적어주세요. &nbsp;&nbsp;ex) 900101-2222222</span>
-                                  </td>
-                              </tr>
-                              <tr>
-                                <th>아이디&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><input type="text" class="id_1" name="userId" required>
-                                  <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6~15자리 영문 소문자, 숫자만 가능합니다. (한글, 특수문자 입력 불가)</span></td>
-                              </tr>
-                              <tr>
-                                <th>비밀번호&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><input type="password" class="pwd_1" name="userPwd" required>
-                                  <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;특수문자는 ‘!,@,#,$,%,^,&,*’만 가능합니다.</span></td>
-                              </tr>
-                              <tr>
-                                <th>비밀번호 확인&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2"><input type="password" class="pwd_2" required></td>
-                              </tr>
-                              <tr>
-                                <th>휴대폰 번호&nbsp;<span style="color:red;">*</span></th>
-                                <td colspan="2">
-                                  <input type="text" id="phone12" name="phone" required>
-                                  <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 를 포함한 본인 휴대폰번호를 정확하게 입력하세요. &nbsp;&nbsp;ex)010-1111-2222</span>
-                                </td>
-                            </tr>
-                              <tr>
-                                <th>이메일 주소&nbsp;<span style="color:red;">*</span></th>
-                                  <td colspan="2">
-                                      <div>
-                                          <input type="text" id="e-mail" name="email" required>
-                                          <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @ 를 포함한 이메일 주소를 입력하세요. &nbsp;&nbsp;ex)abc@naver.com</span>
-                                      </div><br>
-                                  </td>
-                              </tr>
-                          </tbody>
-                          </table>
-
+								            <tbody>
+								                <tr>
+								                    <th>아이디&nbsp;<span style="color:red;">*</span></th>
+								                    <td colspan="2"><input type="text" class="id_1" name="userId" required>
+								                    <button type="button" class="btn btn-secondary btn-sm" onclick="fnIdCheck();">중복확인</button>
+								                    <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6~15자리 영문 소문자, 숫자만 가능합니다. (한글, 특수문자 입력 불가)</span></td>
+								                </tr>
+								                <tr>
+								                    <th>비밀번호&nbsp;<span style="color:red;">*</span></th>
+								                    <td colspan="2"><input type="password" class="pwd_1" name="userPwd" required>
+								                    <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;특수문자는 ‘!,@,#,$,%,^,&,*’만 가능합니다.</span></td>
+								                </tr>
+								                <tr>
+								                    <th>비밀번호 확인&nbsp;<span style="color:red;">*</span></th>
+								                    <td colspan="2"><input type="password" class="pwd_2" name="userPwdConfirm" required></td>
+								                </tr>
+								                <tr>
+								                    <th>이름&nbsp;<span style="color:red;">*</span></th>
+								                    <td colspan="2">
+								                    <input type="text" id="name" class="name" name="userName" required>
+								                    <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정확한 이름을 입력해주세요.</span></td>
+								                </tr>
+								                <tr>
+								                    <th>휴대폰 번호&nbsp;<span style="color:red;">*</span></th>
+								                    <td colspan="2">
+								                    <input type="text" id="phone" class="name" name="phone" required>
+								                    <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 를 포함한 본인 휴대폰번호를 정확하게 입력하세요. &nbsp;&nbsp;ex)010-1111-2222</span></td>
+								                </tr> 
+								                <tr>
+								                    <th>주소&nbsp;<span style="color:red;">*</span></th>
+								                    <td colspan="2">
+								                        <div>
+								                            <input type="text" id="address" class="name" name="address" required>                                        
+								                        </div>
+								                    </td>
+								                </tr>
+								                <tr>
+								                    <th>주민등록번호&nbsp;<span style="color:red;">*</span></th>
+								                    <td colspan="2">
+								                    <input type="text" id="number2" class="name" name="userSSN" required>
+								                    <span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 를 포함해서 적어주세요. &nbsp;&nbsp;ex) 900101-2222222</span></td>
+								                </tr> 
+								                <tr>
+								                    <th>성별&nbsp;<span style="color:red;">*</span></th>
+								                    <td colspan="2">
+								                        <div>
+								                            남&nbsp;<input type="radio" id="gender" name="gender" value="M" required>&nbsp;&nbsp;&nbsp; 
+								                            여&nbsp;<input type="radio" id="gender" name="gender" value="F" required>                                       
+								                        </div><br>
+								                    </td>
+								                </tr>
+								            </tbody>
+								        </table>
                       </div>
                   </div>
 
@@ -389,98 +384,60 @@
                           <tr>
                               <!-- 두 번째 행에 라디오 버튼 -->
                               <td class="radio-container" id="etc3" style="border-top: none;">
-                                  <input type="radio" id="option1" name="options" value="1">
+                                  <input type="radio" id="option1" name="options" value="Y" checked>
                                   <label for="option1" style="margin-top: 5px;">수신함 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                  <input type="radio" id="option1" name="options" value="1">
-                                  <label for="option1" style="margin-top: 5px;">수신안함</label>
+                                  <input type="radio" id="option2" name="options" value="N">
+                                  <label for="option2" style="margin-top: 5px;">수신안함</label>
                               </td>
                           </tr>
                       </tbody>
                     </table>
-                   </div>
-
-                   <!-- 이용약관 동의 여부 -->
-                   <div>
-                    <p class="title1" style="margin-top: 50px;"><strong>이용약관</strong></p>
-                    <table id="etc1">
-                      <tbody>
-                          <tr>
-                              <td id="etc2" style="padding: 30px 0 30px 30px;">
-                                <strong style="font-size: 20px; color:#2970BA;">제1장 총칙</strong><br>
-                                <strong style="font-size: 14px; color:black;">제1조 (목적)</strong><br>
-                                한양대학교의료원(이하 "병원"이라 합니다)에서 운영하는 인터넷 홈페이지/모바일 웹, 앱에서 제공하는 인터넷 관련 서비스(이하 "서비스"라 합니다)의 이용에 관한 사항을 규정함을 목적으로 합니다.<br><br>
-                                <strong style="font-size: 14px; color:black;">제2조 (정의)</strong><br>
-                                1. &nbsp;이용자(회원) : 병원 인터넷 홈페이지/모바일 웹, 앱에 로그인하여 본 약관에 따라 병원이 제공 하는 서비스를 받는 자를 말합니다.<br>
-                                2. &nbsp;운영자 : 서비스의 전반적인 관리와 원활한 운영을 위하여 병원에서 선정한 사람<br>
-                                3. &nbsp;연결사이트 : 병원 홈페이지/모바일 웹, 앱과 하이퍼링크 방식(하이퍼링크의 대상에는 문자, 정지 및 동화상 등이 포함됨) 등으로 연결된 웹 사이트를 말합니다.<br>
-                                4. &nbsp;개인정보 : 당해 정보에 포함되어 있는 성명, ID,환자번호등의 사항에 의하여 특정 개인을 식별할 수 있는 정보<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;(당해 정보만으로는 특정 개인을 인식할 수 없더라도 다른 정보와 용이하게 결합하여 식별할 수 있는 것을 포함한다)를 말합니다.<br>
-                                5. &nbsp;해지 : 이용자가 서비스 개통 후 이용계약을 해약하는 것<br>
-                              </td>
-                          </tr>
-                          <tr>
-                              <!-- 두 번째 행에 라디오 버튼 -->
-                              <td class="radio-container" id="etc3" style="border-top: none;">
-                                  <input type="radio" id="option1" name="options" value="1">
-                                  <label for="option1" style="margin-top: 5px;">동의함 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                  <input type="radio" id="option1" name="options" value="1">
-                                  <label for="option1" style="margin-top: 5px;">동의하지 않음</label>
-                              </td>
-                          </tr>
-                      </tbody>
-                    </table>
-                   </div>
-
-                   <!-- 개인정보 수집·이용 동의 여부  -->
-                   <div>
-                    <p class="title1" style="margin-top: 50px;"><strong>개인정보 수집·이용 동의 여부</strong></p>
-                    <table id="etc1">
-                      <tbody>
-                          <tr>
-                              <td id="etc2" style="padding: 30px 0 30px 30px;">병원은 다음의 목적을 위하여 개인정보를 활용합니다. 개인정보는 다음 각 호의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경되는 경우에는 개인정보보호법 제18조에 따라<br>
-                                별도의 동의를 받는 등 필요한 조치를 이행할 것입니다.<br><br>
-                                개인정보 수집·이용에 대한 동의를 거부할 권리가 있습니다. 그러나 동의를 거부할 경우 회원가입 및 홈페이지 이용이 제한됩니다.<br><br>
-                                <strong style="font-size: 14px; color:black;">1. 수집·이용 목적</strong><br>
-                                <strong>·</strong> &nbsp;&nbsp;진료예약, 빠른진료예약, 종합검진 예약, 외국인 진료예약, 예약조회 및 회원제 서비스 이용에 따른 본인 확인 절차에 사용<br>
-                                <strong>·</strong> &nbsp;&nbsp;진단 및 치료를 위한 진료서비스 제공<br>
-                                <strong>·</strong> &nbsp;&nbsp;고객 온라인 상담(고객의소리, 신문고, 칭찬합시다, 암센터 문의) 답변 처리를 위한 자료<br>
-                                <strong>·</strong> &nbsp;&nbsp;기업 및 관계자 상담(기업검진 상담, 지역의약품안전센터 보고&상담)<br>
-                                <strong>·</strong> &nbsp;&nbsp;건강정보 및 의료 소식지 등 홍보자료 제공<br>
-                                <strong>·</strong> &nbsp;&nbsp;의사회원 : 협력병원 체결 및 온라인 진료의뢰, 의뢰환자 검사결과 조회, 진료회신서 회송서비스를 위한 본인 확인 절차에 사용<br>
-                                <strong>·</strong> &nbsp;&nbsp;새로운 서비스 및 행사정보 안내 제공<br>
-                              </td>
-                                
-                          </tr>
-                          <tr>
-                              <!-- 두 번째 행에 라디오 버튼 -->
-                              <td class="radio-container" id="etc3" style="border-top: none;">
-                                  <input type="radio" id="option1" name="options" value="1">
-                                  <label for="option1" style="margin-top: 5px;">동의함 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                  <input type="radio" id="option1" name="options" value="1">
-                                  <label for="option1" style="margin-top: 5px;">동의하지 않음</label>
-                              </td>
-                          </tr>
-                      </tbody>
-                    </table>
-                   </div>
-
-                   <!-- 동의 거부 시 불이익에 관한 사항 -->
-                   <div>
-                    <p class="title1" style="margin-top: 50px;"><strong>동의 거부 시 불이익에 관한 사항</strong></p>
-                    <table id="etc1">
-                      <tbody>
-                          <tr>
-                              <td id="etc2"><strong style="color: red;">귀하는 위 항목에 대해 동의를 거부할 수 있으며, 동의 후에도 언제든지 철회 가능합니다.</strong><br><br>
-                                다만, 수집하는 개인정보는 원활한 서비스 제공을 위해 필요한 최소한의 기본정보로서, 동의를 거부하실 경우에는 회원에게 제공되는 서비스 이용에 제한될 수 있음을 알려드립니다.</td>
-                          </tr>
-                      </tbody>
-                    </table>
-                   </div>
-                   <div class="btn_signupcc">
+                   </div>                 
+                   <div style="width: 1080px; text-align: center; margin-left: 200px;">
                     <button type="submit" class="btn btn-primary mx-2" id="signup">회원가입</button>
                     <a href=""><button type="button" class="btn btn-primary mx-2" id="cc">취소</button></a>
                 </div>
               </form>
+              
+             	<script>
+							    // 아이디 중복체크용 함수
+							    function fnIdCheck() {
+							        const $idInput = $("#signup-form input[name=userId]");
+							        const userId = $idInput.val();
+							        
+							        // 아이디 유효성 검사
+							        const idPattern = /^[a-z0-9]{6,15}$/;
+							        if (!idPattern.test(userId)) {
+							            alert('아이디는 6~15자리의 영문 소문자와 숫자만 가능합니다.');
+							            $idInput.select(); // 다시 입력 유도
+							            return;
+							        }
+							
+							        // 사용자가 입력한 아이디값 전달하면서 ajax요청
+							        $.ajax({
+							            url: '<%= contextPath %>/idcheck.me',
+							            data: {checkId: userId},
+							            success: function(res){
+							                console.log(res);
+							                if(res == 'NNNNN'){ // 사용불가능
+							                    alert('이미 존재하거나 탈퇴한 회원의 아이디입니다.');
+							                    $idInput.select(); // 다시 입력 유도
+							                }else{ // 사용가능
+							                    if(confirm('사용가능한 아이디입니다. 사용하시겠습니까?')){
+							                        $('#signup-form :submit').removeAttr('disabled'); // 회원가입 버튼 활성화
+							                        $idInput.prop('readonly', true); // 더이상 아이디 수정 불가하도록
+							                    }else{
+							                        $idInput.select(); // 다시 입력 유도
+							                    }
+							                }
+							            },
+							            error: function() {
+							                console.log('아이디 중복체크용 ajax 통신 실패');
+							            }
+							        });
+							    }			    
+							</script>
+              
             </nav>
         </section>
 <%@ include file="/views/common/footer.jsp" %>

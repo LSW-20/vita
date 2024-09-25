@@ -78,6 +78,10 @@
       margin-top: 2550px;
     }   
     
+    .disabled {
+    pointer-events: none;
+    opacity: 0.5; /* 비활성화된 버튼의 투명도 조절 */
+	}
 
    </style>
   <section>
@@ -134,9 +138,14 @@
      </table>
 		
 		<script>
+		
+		let healthCheckClicked = false; 
+		
     function updateCost() {
         let priceDisplay = document.getElementById("price");
         priceDisplay.innerText = "50,000원"; // 가격을 50,000원으로 설정
+        healthCheckClicked = true; // 버튼 클릭 시 상태 업데이트
+        checkNextButtonStatus();
     }
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -144,7 +153,9 @@
         if (healthCheckButtons.length > 0) {
             healthCheckButtons[0].addEventListener("click", updateCost);
         }
+    
     });
+    
 </script>
      
     <br><br><br>
@@ -165,7 +176,7 @@
 								    <form id="checkListForm" action="<%= contextPath %>/CheckList.rv" method="post">
 								        <div class="first-group">
 								            <h5>1. 현재 복용중인 약이 있으십니까?</h5>
-								            <input type="radio" name="mediList" value="없음" style="cursor: pointer;" onclick="toggleMedicationInput(false); checkFormValidity()">
+								            <input type="radio" name="mediList" value="N" style="cursor: pointer;" onclick="toggleMedicationInput(false); checkFormValidity()">
 								            <label for="none">없음</label>
 								            <br>
 								            <div>
@@ -210,6 +221,9 @@
 								</div>
 								
 								<script>
+										
+								let checklistSubmitted = false;
+								
 								    function toggleMedicationInput(isOther) {
 								        document.getElementById("inputText").disabled = !isOther;
 								        
@@ -261,6 +275,8 @@
 							                if (!response.ok) {
 							                    throw new Error('Network response was not ok');
 							                }
+							                checklistSubmitted = true; // 제출 후 상태 업데이트
+							                checkNextButtonStatus(); 
 							                return response.text(); // JSON 대신 텍스트로 응답 처리
 							            })
 							            .then(data => {
@@ -273,6 +289,17 @@
 							            alert("모든 항목을 올바르게 체크해주세요.");
 							        }
 							    }
+                    
+                    function checkNextButtonStatus() {
+                        const nextButton = document.querySelector("a[href='/vita/views/reservation/healthCheckUp_3.jsp']");
+                        if (healthCheckClicked && checklistSubmitted) {
+                            nextButton.classList.remove("disabled");
+                            nextButton.style.pointerEvents = "auto"; // 클릭 가능하게 설정
+                        } else {
+                            nextButton.classList.add("disabled");
+                            nextButton.style.pointerEvents = "none"; // 클릭 불가능하게 설정
+                        }
+                    }
 								</script>
               </div>
             </div>

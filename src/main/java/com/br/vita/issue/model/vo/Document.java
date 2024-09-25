@@ -22,6 +22,23 @@ public class Document {
 
 	public Document() {}
 
+	
+	
+	public Document(int docNum, String userNo, String careNo, String docType, String docCheck, String docPurpose,
+			int price, Date applyDate) {
+		super();
+		this.docNum = docNum;
+		this.userNo = userNo;
+		this.careNo = careNo;
+		this.docType = docType;
+		this.docCheck = docCheck;
+		this.docPurpose = docPurpose;
+		this.price = price;
+		this.applyDate = applyDate;
+	}
+
+
+
 	public Document(int docNum, String userNo, String careNo, String docType, String docCheck, String docPurpose,
 			int price, Date applyDate, String deptName, String licenceNo, String doctorName) {
 		super();
@@ -41,7 +58,7 @@ public class Document {
 
 	//증명서 발급시 별도로 필요한 생성자
 	public Document(int docNum, String docPurpose, Date applyDate, String deptName, String licenceNo,
-			String doctorName) {
+			String doctorName, String careNo) {
 		super();
 		this.docNum = docNum;
 		this.docPurpose = docPurpose;
@@ -49,6 +66,7 @@ public class Document {
 		this.deptName = deptName;
 		this.licenceNo = licenceNo;
 		this.doctorName = doctorName;
+		this.careNo = careNo;
 	}
 
 	public int getDocNum() {

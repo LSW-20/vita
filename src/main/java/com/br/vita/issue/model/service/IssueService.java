@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.br.vita.issue.model.dao.IssueDao;
+import com.br.vita.issue.model.vo.Document;
 import com.br.vita.issue.model.vo.Mrecords;
 
 import static com.br.vita.common.template.JDBCTemplate.*;
@@ -53,7 +54,22 @@ public class IssueService {
 	public List<Mrecords> selectMrecords(String userNo, String startDate, String endDate) {
 		Connection conn = getConnection();
 		List<Mrecords> records = iDao.selectMrecords(conn, userNo, startDate, endDate);
+		close(conn);
 		return records;
+	}
+
+
+	/**
+	 * 진료기록을 바탕으로 발급문서에 정보 넣어주는 Service
+	 * @author 최보겸
+	 * @param careNo 식별할 진료번호
+	 * @return documents 뿌려줄 데이터 받아오는 Document객체
+	 */
+	public Document getDocumentByCareNo(String careNo) {
+		Connection conn = getConnection();
+		Document documents = iDao.getDocumentByCareNo(conn, careNo);
+		close(conn);
+		return documents;
 	}
 	
 	
@@ -64,6 +80,20 @@ public class IssueService {
 		return mr;
 		
 		
+	}
+
+
+	/**
+	 * 내가 발급한 증명서 리스트를 가져오는 service
+	 * select
+	 * @param userNo
+	 * @return 
+	 */
+	public List<Document> selectDocumentList(String userNo) {
+		Connection conn = getConnection();
+		List<Document> docList = iDao.selectDocumentList(conn, userNo);
+		close(conn);
+		return docList;
 	}
 	
 	

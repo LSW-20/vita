@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
 </head>
 <body>
 
@@ -99,14 +101,14 @@
              
     <tr class="d-flex">
 
-      <td id="color" style="width:346px; height: 230px; border-right-style: dashed; ">
-        <h4 style="margin-top: 60px"><b style="color:black">희망검진일</b></h4><br>
-        <h4 style="margin:auto"><b>2024년 9월 19일(목)</b></h4>
-      </td>
-      <td id="color" style="width:346px; height: 230px; border-left:rgb(245, 245, 245);border-right: rgb(245, 245, 245);"><h4 style="margin:auto">
-        <h4 style="margin-top: 60px"><b style="color:black">검사시간</b></h4><br>
-        <h4 style="margin:auto"><b>오전</b></h4>
-      </td>
+	      <td id="color" style="width:346px; height: 230px; border-right-style: dashed; ">
+	        <h4 style="margin-top: 60px"><b style="color:black">희망검진일</b></h4><br>
+	        <h4 id="wantday" style="margin:auto"><b></b></h4>
+	      </td>
+	      <td id="color" style="width:346px; height: 230px; border-left:rgb(245, 245, 245);border-right: rgb(245, 245, 245);">
+	        <h4 style="margin-top: 60px"><b style="color:black">검사시간</b></h4><br>
+	        <h4 id="wanttime" style="margin:auto"><b></b></h4>
+	      </td>
       <td id="color" style="width:346px; height: 230px; border-left:rgb(245, 245, 245); border-right: rgb(245, 245, 245);"></td>
       <td id="color" style="width:346px; height: 230px; border-left:rgb(245, 245, 245); border-right: rgb(245, 245, 245);" ></td>
       <td id="color" style="width:346px; height: 230px; border-left:rgb(245, 245, 245);"></td>
@@ -121,69 +123,105 @@
     <h3 style="margin-left:455px"><sup style="color:rgb(255, 165, 0)">*</sup><b> 내원시간 선택</b></h3>
     </div>
     <br><br>
+        	
+        	
+   <form>
     <div class="container11" style="margin-left:93px">
-        <div class="d-flex" >
-            
-
-            <form action="/action_page.php">
-                <div class="form-group">
-                    <label for="yearSelect">년도</label><br>
-                      <select id="year" style="width:345px;">
-                                    <option value="">년도</option>
-                                    <script>
-                                    const currentYear = new Date().getFullYear();
-                                    document.write('<option value="' + currentYear + '">' + currentYear + '</option>');
-                                    </script>
-                                </select>
-                </div>
-                
-                <div class="d-flex" >
-                <div class="form-group mt-3">
-                    <label for="monthSelect">월</label><br>
-                        <!-- 월 선택 -->
-                         <select id="month" style="width:150px;">
-                                    <option value="">월</option>
-                                    <script>
-                                        // 1월부터 12월까지 표시
-                                        for (let i = 1; i <= 12; i++) {
-                                            document.write('<option value="' + i + '">' + i + '월</option>');
-                                        }
-                                    </script>
-                                </select>
-                </div>
-        
-                <div class="form-group mt-3" style="margin-left:45px;">
-                    <label for="daySelect" >일</label><br>
-                                <select id="day" style="width:150px;">
-                                    <option value="">일</option>
-                                    <script>
-                                        // 1일부터 31일까지 표시
-                                        for (let i = 1; i <= 31; i++) {
-                                            document.write('<option value="' + i + '">' + i + '일</option>');
-                                        }
-                                    </script>
-                                </select>
-                </div>
+    <div class="d-flex">
+        <div>
+            <div>
+                <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" 
+                        id="year" name="year" 
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+                        style="width:325px; height: 50px; margin-left:15px;" 
+                        onchange="updateDate()" aria-label="년도 선택">
+                    <option id="year-placeholder" selected value="2024">2024</option>
+                    
+                </select> 년
             </div>
-        
-            </form>
+           
+            <div class="d-flex" style="margin-top: 60px;">
+                    <div>
+                        <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" 
+                                id="month" name="month" 
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+                                style="width:140px; height: 50px; margin-left:15px;" 
+                                onchange="updateDate()" aria-label="월 선택">
+                            <option id="month-placeholder" selected value="1">1</option> 
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select> 월
+                    </div>
+                    <div>
+                        <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" 
+                                id="day" name="day" 
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+                                style="width:140px; height: 50px; margin-left:25px;" 
+                                aria-label="일 선택">
+                            <option id="day-placeholder" selected value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+            
+                        </select> 일
+                    </div>
+               
+            </div>
+        </div>
+ 
 
-        
-        <div  action="/action_page.php" style="border:1px dashed;border-left:#212529; margin-left:175px"> </div>
 
-        <div style="margin-left:170px">
+        <div style="border:1px dashed;border-left:#212529; margin-left:175px"> </div>
+
+        <div style="margin-left:155px">
             <table class="container12 table-bordered" id="table_custom" >
              
                 <tr class="d-flex">
             
                   <td  style="width:346px; height: 230px; border-right-style: dashed; border-right:white;">
-                    <button type="button" class="btn btn-outline-primary" style="width:200px; height:70px; margin-top:65px; border-color:rgb(190, 189, 189)" clicked><h3 style="color:black">오전</h3></button>
+                    <button type="button" class="btn btn-outline-primary" style="width:200px; height:70px; margin-top:65px; border-color:rgb(190, 189, 189); background-color: white;"	><h3 style="color:black" id="AM">오전</h3></button>
                   </td>
                   <td style="width:346px; height: 230px; border-right-style: dashed; border-right:white; border-left:white;">
-                    <button type="button" class="btn btn-outline-primary" style="width:200px; height:70px; margin-top:65px; border-color:rgb(190, 189, 189)"><h3 style="color:black">오후</h3></button>
+                    <button type="button" class="btn btn-outline-primary" style="width:200px; height:70px; margin-top:65px; border-color:rgb(190, 189, 189); background-color: white;" ><h3 style="color:black" id="PM">오후</h3></button>
                   </td>
                   <td style="width:346px; height: 230px;  border-left:white;">
-                    <button type="submit" class="btn btn-outline-primary" style="width:200px; height:70px; margin-top:65px; border-color:rgb(190, 189, 189); background-color: #1F2B6C;"><h3 style="color:white">선택</h3></button>
+                    <button type="button" class="btn btn-primary" style="width:200px; height:70px; margin-top:65px; border-color:rgb(190, 189, 189); background-color: #1F2B6C;" onclick="confirmSelection()"><h3 style="color:white">선택</h3></button>
                   </td>
                   
                   
@@ -196,6 +234,72 @@
 
       </div>
     </div>
+    </form>
+				<script>
+			
+						
+				    function updateDate() {
+				        const year = document.getElementById('year').value;
+				        const month = document.getElementById('month').value;
+				        const daySelect = document.getElementById('day');
+				
+				        // 일 선택 상자 초기화
+				        daySelect.innerHTML = '<option id="day-placeholder" selected value="">일</option>';
+				
+				        if (year && month) {
+				            const daysInMonth = new Date(year, month, 0).getDate(); // 선택한 월의 일수
+				            for (let day = 1; day <= daysInMonth; day++) {
+				                const option = document.createElement('option');
+				                option.value = day;
+				                option.textContent = day;
+				                daySelect.appendChild(option);
+				            }
+				        }
+				    }
+				    
+				    function confirmSelection() {
+				        const year = document.getElementById('year').value;
+				        const month = document.getElementById('month').value;
+				        const daySelect = document.getElementById('day').value;
+				        const selectedTime = document.querySelector('.btn-outline-primary.active h3')?.innerText; // 선택된 시간
+				        const selectedDate = year + '년 ' + month + '월 ' + daySelect + '일';
+							
+				        // 필수 입력 확인
+				        if (!year) {
+				            alert('년도를 선택하세요.');
+				            return;
+				        }
+				        if (!month) {
+				            alert('월을 선택하세요.');
+				            return;
+				        }
+				        if (!daySelect) {
+				            alert('일을 선택하세요.');
+				            return;
+				        }
+				        if (!selectedTime) {
+				            alert('내원시간을 선택하세요.');
+				            return;
+				        }
+
+				        // 선택된 날짜와 시간 표시
+				        document.getElementById('wantday').querySelector('b').innerHTML = selectedDate;
+				        document.getElementById('wanttime').querySelector('b').innerHTML = selectedTime;
+
+				        return true; // 성공적으로 선택되었음을 알림
+				        document.querySelectorAll('.btn-outline-primary').forEach(button => button.classList.remove('active'));
+				    }
+
+				        document.querySelectorAll('.btn-outline-primary').forEach(button => {
+				            button.addEventListener('click', function() {
+				                document.querySelectorAll('.btn-outline-primary').forEach(btn => btn.classList.remove('active'));
+				                this.classList.add('active');
+				            });
+				        });
+			
+				        
+				 
+				</script>
     <br>
      
 
@@ -331,13 +435,13 @@
      <hr style= "border: 1px dashed; margin-left: 90px; margin-right: 90px;">
      <br><br>
 
-     <form action= "/server/test.do">
-      <filedset>
+    
+      <fieldset>
           <input type="radio" id="check" name="check" value="T" style="margin-left: 93px; cursor: pointer;">
           <label for="checkO">&nbsp;검진 관련 주의사항 안내 및 체크사항을 확인하였습니다. <b style="color:red;">(필수)</b></label>
           
       </fieldset>
-    </form>
+   
 
 
      <br><br><br>

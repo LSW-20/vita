@@ -49,8 +49,6 @@ public class CsUpdateController extends HttpServlet {
 		c.setBoardContent(boardContent);
 		c.setcEmp(cEmp);
 		c.setcDept(cDept);
-		
-		System.out.println(c);
 		int result = new CsService().updateCs(c, boardNo);
 		
 		if(result > 0) {
