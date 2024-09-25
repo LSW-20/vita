@@ -41,7 +41,7 @@ public class IssueDao {
 	}
 	
 	// 의료진승인용 신청서 insert
-	public int certificateApplicationInsert(Connection conn, String userNo, String type ,String Date,String purpose,String careNo) {
+	public int certificateApplicationInsert(Connection conn, String userNo, String type ,String purpose,String careNo) {
 		
 		
 		int result = 0;
@@ -75,7 +75,7 @@ public class IssueDao {
 		
 	}
 	
-	public int certificateApplicationSelect(Connection conn, String userNo,String type, String date) {
+	public int certificateApplicationSelect(Connection conn, String careNo,String type) {
 		
 		int count = 0;
 
@@ -87,9 +87,8 @@ public class IssueDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			
-			pstmt.setString(1, userNo);
-			pstmt.setString(2, date);
-			pstmt.setString(3, type);
+			pstmt.setString(1, careNo);
+			pstmt.setString(2, type);
 			
 			rset = pstmt.executeQuery();
 			

@@ -344,38 +344,34 @@ footer {
 
 <!-- Modal body -->
 <div class="modal-body">
-    <form action="#" method="">
+    <form action="<%= contextPath %>/addCA.admin" method="post">
+        
+
         <div style="display: flex; justify-content: center;">
             <table class="add_modal_table">
                 <tr>
-                    <th><span class="star">*</span> 진료과</th>
-                    <td>
-                        <input type="radio" class="noselect" name="dept" value="외과" checked>&nbsp외과&nbsp&nbsp
-                        <input type="radio" class="noselect" name="dept" value="내과">&nbsp내과&nbsp&nbsp
-                        <input type="radio" class="noselect" name="dept" value="치과">&nbsp치과&nbsp&nbsp
-                        <input type="radio" class="noselect" name="dept" value="안과">&nbsp안과
-                    </td>
-                </tr>
-                <tr>
                     <th><span class="star">*</span> 의료진</th>
                     <td>
-                        <select name="" id="">
-                            <option value="">가가가</option>
-                            <option value="">나나나</option>
-                            <option value="">다다다</option>
-                            <option value="">라라라</option>
+                        <select name="doc_and_dept_name" required> 
+                            <% if( list != null && !list.isEmpty() ) {
+                                for(int i=0; i<list.size(); i++) { %>
+                                    <option>
+                                        <%= list.get(i).getDoctorName() %>(<%= list.get(i).getDeptName() %>)
+                                    </option>    
+                            <%  }
+                            } %>    
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <th><span class="star">*</span> 예약일</th>
-                    <td><input type="date" class="form-control" placeholder="" name="" value="" required></td>
+                    <th>예약일</th>
+                    <td><input type="text" class="form-control" value="당일 예약만 가능" readonly required></td>
                 </tr>
                 <tr>
                     <th><span class="star">*</span> 예약시간</th>
                     <td>
-                            <input type="radio" name="reservation_time" value="AM" class="noselect">&nbsp; 오전&nbsp;&nbsp;
-                            <input type="radio" name="reservation_time" value="PM" class="noselect">&nbsp; 오후
+                            <input type="radio" name="reservation_time" value="오전" class="noselect">&nbsp; 오전&nbsp;&nbsp;
+                            <input type="radio" name="reservation_time" value="오후" class="noselect">&nbsp; 오후
                     </td>
                 </tr>
 
@@ -385,44 +381,22 @@ footer {
                 </tr>
 
                 <tr>
-                    <th><span class="star">*</span> 회원번호</th>
-                    <td><input type="number" class="form-control" placeholder="" name="" value="" required></td>
+                    <th><span class="star">*</span> 이름</th>
+                    <td><input type="text" class="form-control" name="name" required></td>
                 </tr>
                 <tr>
-                    <th><span class="star">*</span> 이름</th>
-                    <td><input type="text" class="form-control" placeholder="" name="" value="" required></td>
+                    <th><span class="star">*</span> 주민등록번호</th>
+                    <td><input type="text" class="form-control" placeholder="'-'를 포함하여 최대 14자" name="ssn" required maxlength="14"></td>
                 </tr>
                 <tr>
                     <th><span class="star">*</span> 핸드폰 번호</th>
-                    <td><input type="text" class="form-control" placeholder="'-'을 포함해서 작성하시오." name="" value="" required></td>
+                    <td><input type="text" class="form-control" placeholder="'-'을 포함해서 최대 13자" name="phone" maxlength="13" required></td>
                 </tr>
 
                 <tr>
                     <td colspan="2" style="height: 20px;"></td>
                 </tr>
 
-                <tr>
-                    <th> 복용중인 약</th>
-                    <td><input type="text" class="form-control" placeholder="" name="" value="" required></td>
-                </tr>
-                <tr>
-                    <th><span class="star">*</span> 최근 수술 여부</th>
-                    <td>
-                        <input type="radio" name="surgery_yn" value="Y" class="noselect">&nbsp; 있음&nbsp;&nbsp;
-                        <input type="radio" name="surgery_yn" value="N" class="noselect">&nbsp; 없음
-                    </td>
-                </tr>
-                <tr>
-                    <th> 수술명</th>
-                    <td><input type="text" class="form-control" placeholder="" name="" value="" required></td>
-                </tr>
-                <tr>
-                    <th><span class="star">*</span> 비행 예정</th>
-                    <td>
-                        <input type="radio" name="flight_yn" value="Y" class="noselect">&nbsp; 있음&nbsp;&nbsp;
-                        <input type="radio" name="flight_yn" value="N" class="noselect">&nbsp; 없음
-                    </td>
-                </tr>
 
 
             </table>

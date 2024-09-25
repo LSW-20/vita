@@ -157,6 +157,7 @@ public class ReservationService {
 
 	/**
 	 * 관리자 진료 예약 관리 조회 기능
+	 * author : 임상우
 	 * @param deptName
 	 * @param docName
 	 * @param appDate1
@@ -179,6 +180,33 @@ public class ReservationService {
 		
 		
 	}
+ 
+	/**
+	 * 진료예약 추가(2/2)
+	 * @param userNo
+	 * @param docName
+	 * @param deptName
+	 * @param appointmentTime
+	 * @return 추가된 행 수 
+	 */
+	public int insertCareApp(String userNo, String docName, String deptName, String appointmentTime) {
+		
+		Connection conn = getConnection();
+		int result = rdao.insertCareApp(conn, userNo, docName, deptName, appointmentTime);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		
+		close(conn);
+		
+		return result;
+	}
+
+
 
 	
 	

@@ -183,4 +183,32 @@
 	</entry>
 
 
+	<!-- (상우) 진료예약 추가(2/2) -->
+
+	<entry key="insertCareApp">
+	
+		INSERT 
+		  INTO
+		  			CARE_APP
+		  (
+		  	APPOINTMENT_NO
+		  , USER_NO
+		  , DOCTOR_NO
+		  , APPOINTMENT_DATE
+		  , APPOINTMENT_TIME
+		  , CARE_STATUS
+		  )		
+		  VALUES
+		  (
+		  	'cu' || SEQ_CAN.NEXTVAL
+		  , ?
+		  , (SELECT DOCTOR_NO FROM DOCTOR WHERE DOCTOR_NAME = ? AND DEPT_NAME = ?)
+		  , SYSDATE
+		  , ?
+		  ,	'N'
+		  )
+		  								
+		
+	</entry>
+
 </properties>

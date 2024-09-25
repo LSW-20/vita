@@ -422,6 +422,49 @@ public class MemberDao {
 	}
 	
 	
+	/**
+	 * 이름, 핸드폰번호, 주민등록번호로 userNo 찾기 (1/2) 진료예약 추가
+	 * author : 임상우
+	 * @param conn
+	 * @param name
+	 * @param ssn
+	 * @param phone
+	 * @return userNo
+	 */
+	public String findUserNo(Connection conn, String name, String ssn, String phone) {
+		
+		String userNo = "";
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("findUserNo");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			pstmt.setString(3, ssn);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				userNo = rset.getString("USER_NO");
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		
+		return userNo;
+	}
+	
+	
 	
 
 }

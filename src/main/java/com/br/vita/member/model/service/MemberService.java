@@ -171,6 +171,24 @@ public class MemberService {
 	}
 	
 	
+	/**
+	 * 이름, 핸드폰번호, 주민등록번호로 userNo 찾기 (1/2) 진료 예약 추가
+	 * author : 임상우
+	 * @param name
+	 * @param ssn
+	 * @param phone
+	 * @return userNo
+	 */
+	public String findUserNo(String name, String ssn, String phone) {
+
+		Connection conn = getConnection();
+		String userNo = mdao.findUserNo(conn, name, ssn, phone);
+		
+		close(conn);
+		return userNo;
+		
+	}
+	
 	
 }
 
