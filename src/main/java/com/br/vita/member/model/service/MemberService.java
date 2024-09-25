@@ -158,6 +158,18 @@ public class MemberService {
 		return list;
 	}
 	
+	public int idCheck(String checkId) {
+		Connection conn = getConnection();
+		int count = mdao.idCheck(conn, checkId);
+		if(count > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return count;
+	}
+	
 	
 	
 }

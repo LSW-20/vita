@@ -10,7 +10,7 @@
      section{
 	       /* background-color: aqua; */
 	       width: 100%;
-	       height: 1300px;
+	       height: 1600px;
 	       position: absolute;
 	       top: 80px;
      }
@@ -255,7 +255,7 @@
 	       position:absolute;
 	       width: 100%;
 	       height: 300px;
-	       margin-top: 2800px;
+	       margin-top: 3100px;
 		  }
 	</style>
 <body>
