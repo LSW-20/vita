@@ -12,9 +12,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import com.br.vita.member.model.vo.Member;
+import com.br.vita.reservation.model.vo.CheckList;
 import com.br.vita.reservation.model.vo.Consultation;
 
 
@@ -360,6 +362,45 @@ public class ReservationDao {
 	        return m;
 	        
 	}
+
+	public List<Map<String, Object>> selectCareApp(Connection conn, String deptName, String docName, String appDate1, String appDate2) {
+		
+		List<Map<String, Object>> resultList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectCareApp");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, deptName);
+			pstmt.setString(2, docName);
+			pstmt.setString(3, appDate1);
+			pstmt.setString(4, appDate2);
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		
+		
+		return resultList;
+	}
+
+	public void insertHealthCheckList(Connection conn, CheckList ck) {
+		
+	
+	}
+		
+		
+		
+		
 	
    
    

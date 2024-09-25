@@ -92,7 +92,7 @@
            <p class="e-mail2">회원가입 시 등록한 e-mail로 
              <br>임시비밀번호를 발급 받으실 수 있습니다.</p>
            <p class="e-mail3">aaa******@naver.com</p>
-           <a href=""><button type="button" id="select" class="btn btn-primary">선택</button></a>
+           <a href="<%= contextPath %>/pwfind.sd"><button type="button" id="select" class="btn btn-primary">선택</button></a>
          </div>
        </nav>
 		</section>

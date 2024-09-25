@@ -322,7 +322,7 @@
 
                 <!-- 회원 정보 입력 칸 -->
                 <div>
-                  <p class="title2"> * 필수입력항목</p>
+                  <p class="title2"> * 필수입력항목</p><br>
                   <div class="container123">
                           <table class="table table-borderless">
                           <thead>

@@ -52,7 +52,7 @@ public class HealthCheckNormalController extends HttpServlet {
 		String userId = ((Member)session.getAttribute("loginUser")).getUserId();
 		
 		Member normal = new ReservationService().NormalMember(userId, userName, userSSN, phone, email);
-		System.out.println(normal);
+		
 		if (normal == null) {
 			session.setAttribute("alertMsg", "등록된 회원정보와 일치하지 않습니다.");
 			request.getRequestDispatcher("/views/reservation/healthCheckUp_1.jsp").forward(request, response);

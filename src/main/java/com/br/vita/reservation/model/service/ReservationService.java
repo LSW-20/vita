@@ -7,9 +7,11 @@ import static com.br.vita.common.template.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 import com.br.vita.member.model.vo.Member;
 import com.br.vita.reservation.model.dao.ReservationDao;
+import com.br.vita.reservation.model.vo.CheckList;
 import com.br.vita.reservation.model.vo.Consultation;
 
 public class ReservationService {
@@ -150,6 +152,24 @@ public class ReservationService {
 		close(conn);
 		
 		return normal;
+		
+	}
+
+	public List<Map<String, Object>> selectCareApp(String deptName, String docName, String appDate1, String appDate2) {
+		
+		Connection conn = getConnection();
+		List<Map<String, Object>> resultList = rdao.selectCareApp(conn, deptName, docName, appDate1, appDate2);
+		close(conn);
+		
+		return resultList;
+	}	
+		
+	}
+		
+	public void insertHealthCheckList(CheckList ck) {
+
+	
+		
 		
 	}
 

@@ -268,6 +268,7 @@
 						    <a href="/vita/views/reservation/healthCheckUp_AfterLogin.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:180px;">이전</a>
 						</div>
         
+        <br><br> <br><br> <br><br> 
 						<script>
 					
 						    function validateAndProceed() {
@@ -284,7 +285,6 @@
 						    }
 						</script>
 
-        <br><br> <br><br> <br><br> 
 
   </section>
 </form>

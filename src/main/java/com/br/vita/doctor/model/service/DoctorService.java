@@ -309,6 +309,23 @@ public class DoctorService {
 		return listCount;
 		
 	}
+
+
+	/**
+	 * 현재 전체 의사 이름 조회
+	 * author : 임상우
+	 * @return List<Doctor>
+	 */
+	public List<Doctor> selectDoctorList() {
+		
+		Connection conn = getConnection();
+		
+		List<Doctor> list = dDao.selectDoctorList(conn);
+		
+		close(conn);
+		
+		return list;
+	}
 	
 	
 	

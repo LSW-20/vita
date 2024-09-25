@@ -131,7 +131,7 @@
                     </tr>
 
                     <tr>
-                        <td style="height: 65px; padding-left: 40px; font-size: 20px;"><a href="/vita/views/admin/manageCareApp.jsp">▷ 진료 예약 관리</a></td>
+                        <td style="height: 65px; padding-left: 40px; font-size: 20px;"><a href="<%= contextPath %>/manageCA.admin">▷ 진료 예약 관리</a></td>
                     </tr>
 
                     <tr>

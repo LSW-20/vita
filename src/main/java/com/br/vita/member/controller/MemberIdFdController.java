@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MemberSignUpController
+ * Servlet implementation class MemberIdFdController
  */
-@WebServlet("/signup.me")
-public class MemberSignUpController extends HttpServlet {
+@WebServlet("/idfind.do")
+public class MemberIdFdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberSignUpController() {
+    public MemberIdFdController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,8 +29,7 @@ public class MemberSignUpController extends HttpServlet {
 
 		// 단순 페이지 이동 요청
 		// 응답페이지 : /web/views/member/signUp.jsp
-		request.getRequestDispatcher("/views/member/signUp_Adult.jsp").forward(request, response);
-	
+		request.getRequestDispatcher("/views/member/find_Id.jsp").forward(request, response);
 	}
 
 	/**

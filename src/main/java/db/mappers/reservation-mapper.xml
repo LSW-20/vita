@@ -144,7 +144,7 @@
 
 
 		SELECT
-		USER_ID
+			USER_ID
 		, USER_NAME
 		, USER_SSN
 		, PHONE
@@ -157,5 +157,29 @@
 		AND PHONE = ?
 
 	</entry>
+	
+
+	<!-- (상우) 진료예약 조회 -->
+	<entry key="selectCareApp">
+	
+		SELECT 
+						APPOINTMENT_NO
+					, DEPT_NAME
+					, DOCTOR_NAME
+					, APPOINTMENT_DATE
+					, APPOINTMENT_TIME
+					, C.USER_NO
+					, USER_NAME
+					, PHONE
+		  FROM
+		 				CARE_APP C 
+		 	JOIN  MEMBER M ON C.USER_NO = M.USER_NO
+      JOIN  DOCTOR D ON C.DOCTOR_NO = D.DOCTOR_NO
+     WHERE  DEPT_NAME = ?
+       AND  DOCTOR_NAME = '?'
+		  	AND APPOINTMENT_DATE BETWEEN ? AND ?							
+		
+	</entry>
+
 
 </properties>

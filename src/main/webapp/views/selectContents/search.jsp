@@ -16,7 +16,7 @@
     section{
         position:absolute;
         width: 100%;
-        height: 1947px;
+        height: 1147px;
         margin-top: 153px;
     }
     td{
@@ -24,7 +24,7 @@
       font-size: 14px;
     }
     footer{
-        margin-top: 2100px !important;
+        margin-top: 1300px !important;
     }
     </style>
     <section>
@@ -33,17 +33,24 @@
         <div class="container" style="text-align: left; font-size: 40px; height: 80px;"><b>통합 검색</b></div>
         <div class="container border" style="height: 10px; background: gray; margin-left: 10px;"></div><br><br>
         <div class="container" style="text-align: left; width: 1000px; height: auto;">
-          <p>통합검색결과: <b style="color: #0E787C;">'진료과'</b> 검색 결과가 총 <b style="color: #0E787C;">4건</b> 입니다.</p>
+          <p>통합검색결과: <b style="color: #0E787C;">'<%= request.getParameter("search") %>'</b> 검색 결과가 총 <b style="color: #0E787C;">
+          <% if(request.getParameter("search").contains("진료과") || request.getParameter("search").contains("의료진") || request.getParameter("search").contains("진료") || request.getParameter("search").contains("의료")) { %>
+          4건
+          <% }else { %>
+          0건
+          <% } %>
+          </b> 입니다.</p>
           <div>
+          <% if(request.getParameter("search").contains("진료과")  || request.getParameter("search").contains("진료")) {%>
             <b style="font-size: 24px;">메뉴 바로가기</b>
-            <div class="container border" style="width: 930px; height: auto; margin-top: 10px; background-color: #fafafa; margin-left: 0px;">
+            <div class="container border" style="width: 930px; height: auto; margin-top: 10px; background-color: #fafafa; margin-left: 0px;">			
               <ul>
                 <li style="margin-top: 10px;">의료진/진료과</li>
                 <a href="http://localhost:9999/vita/department.do" style="color: #0E787C;">http://localhost:9999/vita/department.do</a>
-              </ul>
+              </ul>    
             </div>
             <br>
-            
+                    
             <!-- 진료과 -->
             
             <div class="container" style="width: 930px; border-bottom: 1px solid black; padding: 0px; margin-bottom: -12px; margin-left: 0px;">
@@ -108,9 +115,9 @@
                 <a href="http://localhost:9999/vita/dept_Introduce4.do" style="color: #0E787C;">http://localhost:9999/vita/dept_Introduce4.do</a>
               </div>
             </div>
-            
+            <% } %>
             <!-- 의료진 -->
-            
+            <% if(request.getParameter("search").contains("의료진")  || request.getParameter("search").contains("의료")){%>
             <div class="container" style="width: 930px; border-bottom: 1px solid black; padding: 0px; margin-bottom: -12px; margin-left: 0px;">
             	<b style="font-size: 24px;">의료진</b><span>(<b>총</b> <span style="color: #0E787C;">4건</span>)</span> 
             </div> 
@@ -124,9 +131,7 @@
                 </div>
               </div>
               <div class="container" style="width: 800px; height: 130px; margin-top: 20px;">
-                전문적인 진료와 따뜻한 마음으로 여러분의 건강을 책임지겠습니다.<br> 
-                내과 전문의들이 상부위장관, 하부위장관, 간질환, 췌담도 질환 등 다양한 내과 질환을 진단하고 치료합니다.<br> 
-                언제든지 편안하게 상담받으실 수 있으며, 최상의 의료 서비스를 제공하기 위해 최선을 다하겠습니다.<br>
+                식도, 위, 대장, 위내시경, 대장내시경 검사 및 치료, 내시경초음파, 위장관기능검사<br>
                 <a href="http://localhost:9999/vita//schedule.doc?dept=내과" style="color: #0E787C;">http://localhost:9999/vita//schedule.doc?dept=내과</a>
               </div>
             </div>
@@ -141,8 +146,7 @@
                 </div>
               </div>
               <div class="container" style="width: 800px; height: 130px; margin-top: 20px;">
-                우리 병원의 외과는 최신 기술과 전문 지식을 바탕으로 다양한 외과적 질환을 치료합니다.<br> 
-                환자의 안전과 빠른 회복을 최우선으로 생각하며, 최상의 의료 서비스를 제공합니다.<br>
+                정형외과 마취, 중환자의학, 통증생리, 심장판막질환, 관상동맥질환, 대동맥질환, 선천성 심질환 <br>
                 <a href="http://localhost:9999/vita//schedule.doc?dept=외과" style="color: #0E787C;">http://localhost:9999/vita//schedule.doc?dept=외과</a>
               </div>
             </div>
@@ -157,10 +161,7 @@
                 </div>
               </div>
               <div class="container" style="width: 800px; height: 130px; margin-top: 20px;">
-                안녕하세요! 저희 비타병원 치과를 찾아주셔서 감사합니다.<br> 
-                환자분들의 건강한 미소를 위해 최선을 다하겠습니다.<br>  
-                편안하고 친절한 진료로 여러분의 치아 건강을 책임지겠습니다.<br>  
-                언제든지 궁금한 점이 있으면 문의해 주세요. <br>
+                치주질환, 치주성형, 치주조직재생, 임플란트, 충치치료, 심미수복치료, 치아미백, 근관치료 및 보철치료 <br>
                 <a href="http://localhost:9999/vita//schedule.doc?dept=치과" style="color: #0E787C;">http://localhost:9999/vita//schedule.doc?dept=치과</a>
               </div>
             </div>
@@ -175,13 +176,11 @@
                 </div>
               </div>
               <div class="container" style="width: 800px; height: 130px; margin-top: 20px;">
-                안녕하세요! 저희 비타병원 안과를 찾아주셔서 감사합니다. <br>
-                환자분들의 소중한 눈 건강을 위해 최선을 다하겠습니다. <br>
-                편안하고 친절한 진료로 여러분의 시력을 지켜드리겠습니다. <br>
-                언제든지 궁금한 점이 있으면 문의해 주세요. <br>
+                사시, 소아안과, 성형안과, 백내장, 망막, 유리체, 포도막염, 황반변성, 유전성 망막질환,고도근시 <br>
                 <a href="http://localhost:9999/vita//schedule.doc?dept=안과" style="color: #0E787C;">http://localhost:9999/vita//schedule.doc?dept=안과</a>
               </div>
             </div>
+            <% } %>
           </div>
         </div>
       </div>

@@ -322,7 +322,13 @@ SELECT COUNT(*) AS COUNT
 
 
 
-
+	<!-- (상우) 현재 전체 의사 이름 조회 -->
+	<entry key="selectDoctorList">
+	
+	SELECT DOCTOR_NAME
+	  FROM DOCTOR
+	        			
+	</entry>
 	
 	
 </properties>
