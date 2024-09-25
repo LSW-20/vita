@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.br.vita.reservation.model.service.ReservationService;
+
 /**
  * Servlet implementation class SelectCareApp
  */
@@ -35,9 +37,11 @@ public class SelectCareApp extends HttpServlet {
 		
 		String deptName = request.getParameter("dept_name");
 		String docName = request.getParameter("doc_name");
-		String appDate = request.getParameter("app_date");
+		String appDate1 = request.getParameter("app_date1");
+		String appDate2 = request.getParameter("app_date2");
 		
-		List<Map<String, Object>> resultList = new ReservationService().selectCareApp(deptName, docName, appDate);
+		System.out.println(deptName +","+ docName +","+ appDate1 + "," + appDate2);
+		List<Map<String, Object>> resultList = new ReservationService().selectCareApp(deptName, docName, appDate1, appDate2);
 		System.out.println(resultList);
 		
 		

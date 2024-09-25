@@ -42,7 +42,7 @@ public class GoManageCareApp extends HttpServlet {
 		
 		
 		// 2. 응답
-		// 응답 페이지 : /vita/views/admin/manageCareApp.jsp
+		// 응답 페이지 : 관리자 진료예약 관리 페이지 (/vita/views/admin/manageCareApp.jsp)
 
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/admin/manageCareApp.jsp").forward(request, response);

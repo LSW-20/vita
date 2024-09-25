@@ -156,7 +156,8 @@ footer {
                     <td class="left_cell">날짜</td>
                     <td class="right_cell">
                         
-                            <input type="date" name="app_date" required> &nbsp;
+                            <input type="date" name="app_date1" required> 부터 &nbsp; &nbsp; 
+                            <input type="date" name="app_date2" required> 까지 &nbsp; &nbsp;  
                             <button type="submit">검색</button>
                         
                     </td>

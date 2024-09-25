@@ -363,9 +363,32 @@ public class ReservationDao {
 	        
 	}
 
-	public List<Map<String, Object>> selectCareApp(Connection conn, String deptName, String docName, String appDate) {
+	public List<Map<String, Object>> selectCareApp(Connection conn, String deptName, String docName, String appDate1, String appDate2) {
 		
 		List<Map<String, Object>> resultList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectCareApp");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, deptName);
+			pstmt.setString(2, docName);
+			pstmt.setString(3, appDate1);
+			pstmt.setString(4, appDate2);
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		
 		
 		return resultList;
 	}
