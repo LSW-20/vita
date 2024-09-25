@@ -312,7 +312,7 @@ public class DoctorService {
 
 
 	/**
-	 * 현재 전체 의사 이름 조회
+	 * 현재 전체 의사 이름, 진료과 조회
 	 * author : 임상우
 	 * @return List<Doctor>
 	 */
