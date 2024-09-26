@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
+ <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 </head>
 <body>
 
@@ -302,8 +302,70 @@
 				</script>
     <br>
      
+		<script>
+		
 
-     
+
+    const requestPayment = async () => {
+				const isChecked1 = document.getElementById('customCheck1').checked; // 첫 번째 동의 라디오 버튼
+        const isChecked2 = document.getElementById('customCheck2').checked; // 두 번째 동의 라디오 버튼
+
+
+	    if (!isChecked1 || !isChecked2) {
+	        alert("모든 동의 항목을 체크해주세요.");
+	        return false; // 폼 제출 방지
+	    }
+	
+	    
+        const selectedPG = document.getElementById('cardBank').value;
+		    const IMP = window.IMP; 
+		    IMP.init("imp03551748");
+        IMP.request_pay({
+            pg: selectedPG, // 결제할 PG사
+            pay_method: 'card', // 결제 방법 (신용카드)
+            name: '일반 건강검진(비타병원)', // 상품 이름
+            amount: 1, // 결제 금액
+            merchant_uid: 'PN_' + new Date().getTime(), // 주문번호(unique)
+            buyer_name: '<%= ((Member)session.getAttribute("loginUser")).getUserName() %>', 
+            buyer_tel:  '<%= ((Member)session.getAttribute("loginUser")).getPhone() %>',
+            buyer_email: '<%= ((Member)session.getAttribute("loginUser")).getEmail() %>',
+            buyer_addr:'<%= ((Member)session.getAttribute("loginUser")).getAddress() %>'
+        }, function (rsp) {
+            if (rsp.success) {
+                // 결제 성공 시 처리
+                console.log('결제 성공:', rsp);
+                alert('결제가 완료되었습니다.');
+                isPaymentCompleted = true; // 결제 완료 상태로 설정
+                $('#paymentModal').modal('hide'); // 모달 닫기
+            } else {
+                // 결제 실패 시 처리
+                console.log('결제 실패:', rsp);
+                alert('결제가 실패되었습니다.');
+            }
+        });
+    };
+		
+		    // 결제 버튼에 클릭 이벤트 리스너 추가
+		    document.addEventListener("DOMContentLoaded", function() {
+		        const button = document.querySelector('button[name="payment"]');
+		        if (button) {
+		            button.addEventListener("click", requestPayment);
+		        }
+		    });
+		    
+		    document.addEventListener("DOMContentLoaded", function() {
+		        const paymentButton = document.querySelector('button[name="pay"]'); // 결제 버튼
+		        if (paymentButton) {
+		            paymentButton.addEventListener("click", function() {
+		                if (isPaymentCompleted) {
+		                    alert('이미 결제가 완료되었습니다.'); // 이미 결제된 경우 알림
+		                    event.stopPropagation();
+		                }
+		            });
+		        }
+		    });
+		</script>
+		     
     <br><br><br>
     <h3 style="margin-left:93px"><b>예약하신 정보</b></h3>
     <hr style="border-color:rgb(31, 43, 108); margin-left: 90px; margin-right: 90px;">
@@ -325,7 +387,7 @@
                     <h5 align="left" style="margin-left:30px; margin-top:10px;">
                         <b style="color:#1F2B6C">50,000원</b> (추가검사 포함 : 50,000원)
                        
-                        <button type="button" class="btn border-1 border-dark" id="btn-color" data-toggle="modal" data-target="#paymentModal" style="margin-left:50px; width:150px;">
+                        <button type="button" name="pay" class="btn border-1 border-dark" id="btn-color" data-toggle="modal" data-target="#paymentModal" style="margin-left:50px; width:150px;">
                             결제하기
                         </button>
                     </h5>
@@ -337,7 +399,7 @@
    
     <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document" >
-            <div class="modal-content" style="margin-left:-200px; width:1200px; height:1250px;">
+            <div class="modal-content" style="position: absolute; margin-left:-42px; width:900px; height:900px;">
                 <div class="modal-header" >
                     <h3 class="modal-title" id="paymentModalLabel"><b>결제</b></h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -381,26 +443,16 @@
                             </select>
                             <br>
                             <label for="cardBank">카드 선택</label>
-                            <select class="form-control" id="cardBank" disabled>
-                                <option>비타은행</option>
+                            <select class="form-control" id="cardBank">
+                                <option value="kakaopay" selected>카카오페이</option>
+                                <option value="tosspay">토스페이</option>
+                                <option value="payco">페이코</option>
                             </select>
                             <br>
-                            <label for="installmentPeriod">할부 기간</label>
-                            <select class="form-control" id="installmentPeriod" disabled>
-                                <option>일시불</option>
-                            </select>
                         </div>
                         <br>
-                        <div class="form-group">
-                            <h4><b>결제 정보</b></h4>
-                            <br>
-                            <label for="accountNumber">계좌번호</label>
-                            <input type="text" class="form-control" id="accountNumber" placeholder="계좌번호 입력">
-                            <br>
-                            <label for="password">비밀번호</label>
-                            <input type="password" class="form-control" id="password" placeholder="비밀번호 입력">
-                        </div>
-                        <br><br>
+                        
+                        
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="customCheck1">
                             <label class="custom-control-label" for="customCheck1">결제 대행서비스 약관 동의<b style="color:red;">(필수)</b></label>
@@ -414,7 +466,7 @@
                 </div>
                 
                 <div class="modal-footer" style="background-color: #1F2B6C;">
-                    <button type="submit" class="btn border-1 border-dark" id="btn-color" style=" width:1197px;">
+                    <button type="submit"  name="payment" class="btn" id="btn-color" style=" width:1197px;" onclick="requestPayment()">
                          <h5>50,000 원 결제하기</h5>
                			 </button>    
                 </div>
@@ -437,7 +489,7 @@
 
     
       <fieldset>
-          <input type="radio" id="check" name="check" value="T" style="margin-left: 93px; cursor: pointer;">
+          <input type="radio" id="checkAgree" name="check" value="T" style="margin-left: 93px; cursor: pointer;">
           <label for="checkO">&nbsp;검진 관련 주의사항 안내 및 체크사항을 확인하였습니다. <b style="color:red;">(필수)</b></label>
           
       </fieldset>
@@ -451,13 +503,25 @@
 
         
         <div align="center">
-          <a href="/vita/views/reservation/healthCheckUp_Success.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;">예약 신청하기</a>
+          <a href="/vita/views/reservation/healthCheckUp_Success.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;" onclick="validateAndProceed()">예약 신청하기</a>
           <a href="/vita/views/reservation/healthCheckUp_2.jsp" class="btn btn-light border-2 border-dark"  style="width: 150px; margin-left:30px;">이전</a>
         </div>
 
         <br><br> 
 
-
+				<script>
+					
+						    function validateAndProceed() {
+							    		const isChecked1 = document.getElementById('checkAgree').checked; 
+							     
+						    	    if (!isChecked1) {
+						    	        alert("모든 동의 항목을 체크해주세요.");
+						    	        return false; // 폼 제출 방지
+						    	    }
+						        
+						   
+						    }
+						</script>
 
 
 
