@@ -182,6 +182,16 @@ public class Member {
 
 
 	// 첫방문 고객 예약 조회용 생성자 -준수
+	public Member(String userId, String userType, String phone, String userName, String userSSN) {
+		super();
+		this.userId = userId;
+		this.userType = userType;
+		this.phone = phone;
+		this.userName = userName;
+		this.userSSN = userSSN;
+		
+	}
+	
 	public Member(String userId, String userType, String phone, String userName, String userSSN,String careNo) {
 		super();
 		this.userId = userId;
