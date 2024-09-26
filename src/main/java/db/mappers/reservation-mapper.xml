@@ -184,7 +184,6 @@
 
 
 	<!-- (상우) 진료예약 추가(2/2) -->
-
 	<entry key="insertCareApp">
 	
 		INSERT 
@@ -207,8 +206,64 @@
 		  , ?
 		  ,	'N'
 		  )
-		  								
-		
 	</entry>
+	
+	
+	<!-- (상우) 일반 건강검진 예약 조회 -->
+	<entry key="selectCheckupAppN">
+	
+		SELECT				  
+						APPOINTMENT_NO
+					, CHECKUP_DATE
+					, APPOINTMENT_TIME
+					, TOTAL_PRICE
+					, USER_NAME	
+		      , USER_ID
+		      , MEDI_LIST
+		      , SURGERY_YN
+		      , SURGERY_NAME
+		      , FLY_YN
+		  FROM 
+		  			CHECKUP_APP
+		  JOIN  MEMBER USING (USER_NO)
+		  JOIN  CHECK_LIST CL ON APPOINTMENT_NO = CHECKUP_NO
+
+			WHERE APPOINTMENT_TYPE = 'A'
+			  AND TRUNC(CHECKUP_DATE) BETWEEN ? AND ?
+			  
+	</entry>
+	
+
+	<!-- (상우) 기업 건강검진 예약 조회 -->
+	<entry key="selectCheckupAppC">
+	
+	SELECT	
+					APPOINTMENT_NO
+				, CHECKUP_DATE
+				, APPOINTMENT_TIME
+				, TOTAL_PRICE	
+        , EMP_NO
+        , EMP_NAME
+        , MEDI_LIST
+        , SURGERY_YN
+        , SURGERY_NAME
+        , FLY_YN
+	  FROM  
+	  			CHECKUP_APP
+    JOIN  COMPANY ON COMPANY_NO = COMP_NO
+    JOIN  MEMBER USING (USER_NO)
+    JOIN  EMPLOYEE ON USER_SSN = SSN
+    JOIN  CHECK_LIST CL ON APPOINTMENT_NO = CHECKUP_NO
+
+	 WHERE  APPOINTMENT_TYPE = 'B'
+     AND  TRUNC(CHECKUP_DATE) BETWEEN ? AND ?	  
+		 AND  COMP_NAME = ?
+	</entry>
+
+
+
+
+
+
 
 </properties>
