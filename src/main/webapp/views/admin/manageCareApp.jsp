@@ -276,15 +276,18 @@ footer {
                             <td><%= m.getPhone() %></td>
                             <td><%= c.getCareStatus() %></td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_modal">삭제</button>
+                                <button type="button" class="btn btn-sm btn-danger del_button" data-date="<%= c.getAppointmentDate() %>" 
+                                        data-name="<%= m.getUserName() %>" data-care-no="<%= c.getAppointmentNo() %>">삭제</button>
                             </td>
+
+
                         </tr>
                     <% }  
                 } %>
             </table>
 
             <div class="add_btn">
-                <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal">추가</button>
+                <button type="button" class="btn btn-sm btn-dark" id="add_button" data-toggle="modal" data-target="#add_modal">추가</button>
             </div>   
         <br>
         <% } %>
@@ -298,34 +301,36 @@ footer {
 
 
 
-<!-- 삭제용 modal start -->
 
-<!-- The Modal -->
-<div class="modal" id="delete_modal">
-    <div class="modal-dialog">
-    <div class="modal-content">
+<!-- 진료예약 '삭제' 기능 (이번엔 get방식 = location.href이 아닌 post 방식 = 외부 form으로 해보기)-->
+<script>
 
-        <!-- Modal Header -->
-        <div class="modal-header">
-            <h4 class="modal-title">진료 예약 삭제</h4>
-        </div>
+    $(document).ready(function() {
 
-        <!-- Modal body -->
-        <div class="modal-body">
-            <form action="#" method="">
-                <h6>예약번호 '2321', 이름 '지창선' 진료 예약을 정말 삭제하시겠습니까? </h6> <br>
-                <div style="text-align: right;">
-                    <button type="submit" class="btn btn-sm btn-danger">삭제</button>
-                    <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">취소</button>
-                </div>
-            </form>
-        </div>
+        // del_button 클래스를 가진 모든 버튼에 대해 이벤트 리스너를 추가
+        $('.del_button').on('click', function() {
+            var date = this.getAttribute('data-date');
+            var name = this.getAttribute('data-name');
+            var careNo = this.getAttribute('data-care-no');
 
-    </div>
-    </div>
-</div>
+            if (confirm(name + '님의 ' + date + ' 날짜의 진료 예약을 정말 삭제하시겠습니까?')) {
+                $('#hidden_data').val(careNo);
+                $('#del_form').submit();
+            }
+        });
 
-<!-- 삭제용 modal end -->
+    });
+
+</script>
+
+<!-- get이 아닌 post방식으로 삭제 해보기 -->
+<form action="<%= contextPath %>/deleteCA.admin" method="post" id="del_form">
+    <input type="hidden" name="care_no" id="hidden_data">
+</form>
+
+
+
+
 
 
 
@@ -370,7 +375,7 @@ footer {
                 <tr>
                     <th><span class="star">*</span> 예약시간</th>
                     <td>
-                            <input type="radio" name="reservation_time" value="오전" class="noselect">&nbsp; 오전&nbsp;&nbsp;
+                            <input type="radio" name="reservation_time" value="오전" class="noselect" checked required>&nbsp; 오전&nbsp;&nbsp;
                             <input type="radio" name="reservation_time" value="오후" class="noselect">&nbsp; 오후
                     </td>
                 </tr>

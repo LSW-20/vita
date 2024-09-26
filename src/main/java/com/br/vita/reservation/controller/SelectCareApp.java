@@ -42,9 +42,12 @@ public class SelectCareApp extends HttpServlet {
 		String appDate1 = request.getParameter("app_date1");
 		String appDate2 = request.getParameter("app_date2");
 		
+		//System.out.println("시작일 : " + appDate1);
+		//System.out.println("종료일 : " + appDate2);
+		
 		// System.out.println(deptName +","+ docName +","+ appDate1 + "," + appDate2);
 		List<Map<String, Object>> resultList = new ReservationService().selectCareApp(deptName, docName, appDate1, appDate2);
-		// System.out.println(resultList);
+		//System.out.println("resultList : " + resultList);
 		
 		
 		// 2. 응답

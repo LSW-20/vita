@@ -1,5 +1,12 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.br.vita.company.model.vo.Company" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<% List<Company> companyList = (List<Company>)request.getAttribute("companyList"); 
+    %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,24 +49,44 @@ footer {
     padding-bottom: 30px;
 }
 
-.select_which { /* '일반건강검진, 기업건강검진 조회하기' 테이블 */
-    margin-left: 40px;
+
+.select_type td, .select_type th{ /* '일반건강검진, 기업건강검진 조회하기' 테이블 */
+    /* border: 1px solid black; */
 }
+.select_type {
+    text-align: center;
+}
+
+
+
 
 
 #search_table { /* 검색창 '테이블' */
-    margin-left: 40px;
     font-size: 18px;
 }
+
+.left_cell {
+    width: 100px;
+    height: 50px;
+}
+.right_cell {
+    width: 200px;
+}
+.cell2 {
+    height: 55px;
+}
+
+
+
+
+
+
 
 .search_result_table th, .search_result_table td { /* 검색 결과 '테이블'의 각 셀들 */
     text-align: center;
 }
 
-.left_cell { /* 검색 테이블의 왼쪽 셀 */
-    width: 70px;
-    height: 50px;
-}
+
 
 
 
@@ -121,63 +148,89 @@ footer {
 
             <br><br><br><br>
 
+            <div style="display: flex; justify-content: center;">
+                <table class="select_type" style="width: 90%;">
+                        <tr>
+                            <td style="width: 45%;">
+                                <button type="button" class="btn btn-lg btn-primary"
+                                    data-toggle="collapse" data-target="#normalC">일반건강검진 조회하기</button>
+                            </td>
+                            <td style="width: 10%;"></td>
+                            <td style="width: 45%;">
+                                <button type="button" class="btn btn-lg btn-danger"
+                                    data-toggle="collapse" data-target="#companyC">기업건강검진 조회하기</button>
+                            </td>
+                        </tr>
 
-                <table class="select_which">
-                    <tr>
-                        <td><button type="button" class="btn btn-lg btn-primary">일반건강검진 조회하기</button></td>
-                    </tr>
-                    <tr>
-                        <td><button type="button" class="btn btn-lg btn-danger">기업건강검진 조회하기</button></td>
-                    </tr>
+                        <tr>
+                            <td style="display: flex; justify-content: center; margin-top: 30px;" >
+                                <!-- 일반건강검진 -->
+                                <form action="#" method="get" class="collapse" id="normalC">
+                                    <table id="search_table">
+                                        <tr>
+                                            <th class="left_cell">시작일</th>
+                                            <td class="right_cell">
+                                                <input type="date" name="start_date">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="left_cell">종료일</th>
+                                            <td class="right_cell">
+                                                <input type="date" name="end_date">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="cell2"><button type="submit" class="btn btn-sm btn-success">검색</button></td> 
+                                        </tr>
+                                    </table>
+                                </form>
+                            </td>
+
+                            <td></td>
+
+                            <td style="display: flex; justify-content: center; margin-top: 30px;">
+                                <!-- 기업건강검진-->
+                                <form action="#" method="get" class="collapse" id="companyC">
+                                    <table id="search_table">
+                                        <tr>
+                                            <th class="left_cell">기업</th>
+                                            <td class="right_cell">
+                                                <select name="com">
+                                                    <% if(companyList != null && !companyList.isEmpty()) {
+                                                        for(int i=0; i<companyList.size(); i++) { %>
+                                                            <option><%= companyList.get(i).getCompName() %></option>     
+                                                    <% }
+                                                    } %>
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="left_cell">시작일</th>
+                                            <td  class="right_cell">
+                                                <input type="date" name="start_date">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="left_cell">종료일</th>
+                                            <td  class="right_cell">
+                                                <input type="date" name="end_date">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="cell2"><button type="submit" class="btn btn-sm btn-success">검색</button></td> 
+                                        </tr>
+                                    </table>
+                                </form>
+                            </td>
+                        </tr>
                 </table>
+            </div>
+            
+            
 
-                <br><br>
+            <br>
 
-                <!-- case1. 일반건강검진 조회하기 버튼 클릭시 -->
-                <form action="#" method="">
-                    <table id="search_table">
-                        <tr>
-                            <td class="left_cell">날짜</td>
-                            <td class="right_cell">
-                                
-                                    <input type="date"> &nbsp;
-                                    <button type="submit">검색</button>
-                                
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-                <br>
-
-
-                <!-- case2. 기업건강검진 조회하기 버튼 클릭시 -->
-                <form action="#" method="">
-                    <table id="search_table">
-                        <tr>
-                            <td class="left_cell">기업</td>
-                            <td class="right_cell">
-                                <select name="" id="">
-                                    <option value="">전체</option>
-                                    <option value="">기업1</option>
-                                    <option value="">기업2</option>
-                                    <option value="">기업3</option>
-                                    <option value="">기업4</option>
-                                </select>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="left_cell">날짜</td>
-                            <td class="right_cell">
-                                
-                                    <input type="date"> &nbsp;
-                                    <button type="submit">검색</button>
-                                
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-                <br>
 
 
 

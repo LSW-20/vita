@@ -54,6 +54,7 @@ public class InsertCareApp extends HttpServlet {
 		// (1) 이름, 주민등록번호, 핸드폰 번호로 MEMBER 테이블에서 select 해서 USER_NO를 가져온다. 없으면 여기서 종료하고 ALERT 띄우기.
 		String userNo = new MemberService().findUserNo(name, ssn, phone);
 		
+		/*
 		// null 또는 빈 문자열 체크
 		if (userNo == null) {
 		    System.out.println("userNo는 null입니다.");
@@ -67,13 +68,13 @@ public class InsertCareApp extends HttpServlet {
 			session.setAttribute("alertMsg", "회원 정보를 잘못입력하셨습니다. \\n이름, 핸드폰번호, 주민등록번호를 확인해 주세요."); // 자바에서 문자열 내에서 \는 특수 문자(escape character)로 동작하므로, 이를 문자 그대로 사용하려면 \\
             response.sendRedirect(request.getContextPath() + "/manageCA.admin");
 		} 
-		
+		*/
 		
 		
 		// (2) CARE_APP 테이블에 INSERT
 		
 		int result = new ReservationService().insertCareApp(userNo, docName, deptName, appointmentTime);
-		
+		//System.out.println(result);
 		
 	
 		// 2. 응답

@@ -135,7 +135,7 @@
                     </tr>
 
                     <tr>
-                        <td style="height: 65px; padding-left: 40px; font-size: 20px;"><a href="/vita/views/admin/manageCheckupApp.jsp">▷ 건강검진 예약 관리</a></td>
+                        <td style="height: 65px; padding-left: 40px; font-size: 20px;"><a href="<%= contextPath %>/manageCH.admin">▷ 건강검진 예약 관리</a></td>
                     </tr>
 
                     <tr>

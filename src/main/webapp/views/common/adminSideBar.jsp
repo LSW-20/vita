@@ -174,7 +174,7 @@ $(document).ready(function() {
             <div id="side5"><span id="side5_event">• &nbsp예약 관리</span></div>
             <div id="side6">
                 <div class="no_style6"><a href="<%= contextPath %>/manageCA.admin">-  &nbsp 진료 예약 관리</a></div>
-                <div class="no_style6"><a href="/vita/views/admin/manageCheckupApp.jsp">-  &nbsp 건강검진 예약 관리</a></div>
+                <div class="no_style6"><a href="<%= contextPath %>/manageCH.admin">-  &nbsp 건강검진 예약 관리</a></div>
                 <div class="no_style6"><a href="<%= contextPath %>/manageCOM.admin">-  &nbsp 건강검진 연계기업 관리</a></div>
             </div>
             <div id="side7"><span id="side7_event">• &nbsp고객의 소리</span></div>
