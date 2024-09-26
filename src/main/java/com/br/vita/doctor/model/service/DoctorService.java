@@ -343,7 +343,7 @@ public class DoctorService {
 		
 	}
 	
-	
+	// 진단서 승인|거절 업데이트
 	public int yesNoUpdateByDiagnosis(String yes, String careNo, String type) {
 		
 		Connection conn = getConnection();
@@ -365,6 +365,7 @@ public class DoctorService {
 		
 	}
 	
+//	진료실페이지 예약리스트 조회
 	public List<Map<String,Object>> selectRes() {
 		Connection conn = getConnection();
 		List<Map<String,Object>> relist = dDao.selectRes(conn);
@@ -373,6 +374,19 @@ public class DoctorService {
 		 
 		 return relist;
 		 
+		
+	}
+	
+	public Member teatmentRoomGo(String userNo){
+		
+		
+		Connection conn = getConnection();
+		
+		Member mem = dDao.teatmentRoomGo(conn,userNo);
+		
+		close(conn);
+		
+		return mem;
 		
 	}
 	

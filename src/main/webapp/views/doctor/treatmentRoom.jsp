@@ -1,10 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@ page import="com.br.vita.member.model.vo.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
+<% 
+	
+		Member mem = (Member)request.getAttribute("Member");
+
+%>
+
+
 </head>
 <body>
 
@@ -216,10 +227,40 @@
                 <h2>진료실</h2>
                 <div class="doctor_container">
                     <div class="d_container">
-                        <div id="doctor_img"><img src="/vita/assets/image/시우.jpg" alt="" style="width:100%; height:100%;"></div>
+                    
+<% 
+    switch(mem.getDeptName()) {
+        case "내과":
+%>
+            <div id="doctor_img"><img src="/vita/assets/image/시우.jpg" alt="" style="width:100%; height:100%;"></div>
+<%
+            break;
+        case "외과":
+%>
+            <div id="doctor_img"><img src="/vita/assets/image/상우님.jpg" alt="" style="width:100%; height:100%;"></div>
+<%
+            break;
+        case "치과":
+%>
+            <div id="doctor_img"><img src="/vita/assets/image/재운님.jpg" alt="" style="width:100%; height:100%;"></div>
+<%
+            break;
+        case "안과":
+%>
+            <div id="doctor_img"><img src="/vita/assets/image/준수님.jpg" alt="" style="width:100%; height:100%;"></div>
+<%
+            break;
+        default:
+%>
+            <div id="doctor_img"><img src="/vita/assets/image/default.jpg" alt="기본 이미지" style="width:100%; height:100%;"></div>
+<%
+            break;
+    }
+%>
+                        
                         <div id="doctor_detail">
-                            <b>진료과   : <b></b></b> <br><br>
-                            <b>담당교수 : <b></b></b>    
+                            <b>진료과   : <b><%= mem.getDeptName() %></b></b> <br><br>
+                            <b>담당교수 : <b><%= mem.getUserName() %></b></b>    
                         </div>
                     </div>
                     <div id="userCount">

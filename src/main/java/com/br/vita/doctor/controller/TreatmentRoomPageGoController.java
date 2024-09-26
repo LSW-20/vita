@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.br.vita.doctor.model.service.DoctorService;
+import com.br.vita.member.model.vo.Member;
 
 /**
  * Servlet implementation class TreatmentRoomPageGoController
@@ -33,12 +34,10 @@ public class TreatmentRoomPageGoController extends HttpServlet {
 		
 		String userNo = request.getParameter("userNo");
 		
-		new DoctorService().teatmentRoomGo(userNo);
+		Member mem = new DoctorService().teatmentRoomGo(userNo);
 		
 		
-		
-		
-		
+		request.setAttribute("Member", mem);
 		
 		request.getRequestDispatcher("/views/doctor/treatmentRoom.jsp").forward(request, response);
 		

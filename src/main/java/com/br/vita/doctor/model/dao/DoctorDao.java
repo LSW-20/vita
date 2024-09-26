@@ -887,6 +887,9 @@ public class DoctorDao {
 		
 	}
 	
+	
+	
+//	증명서 승인|거절 업데이트
 	public int yesNoUpdateByDiagnosis(Connection conn, String yes, String careNo, String type) {
 		
 		int result = 0;
@@ -918,6 +921,7 @@ public class DoctorDao {
 	
 	}
 	
+//  진료실 예약조회 리스트 조회
 	public List<Map<String,Object>> selectRes(Connection conn) {
 		
 		List<Map<String,Object>> relist = new ArrayList<>();
@@ -959,6 +963,41 @@ public class DoctorDao {
 		return relist;
 		
 		
+		
+	}
+	
+	
+	public Member teatmentRoomGo(Connection conn, String userNo){
+		
+		Member mem = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("teatmentRoomGo");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userNo);
+			
+			rset=pstmt.executeQuery();
+			
+			if(rset.next()) {
+				mem = new Member(rset.getString("USER_NAME")
+								,rset.getString("DEPT_NAME"));
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return mem;
 		
 		
 		

@@ -58,8 +58,16 @@ public class Member {
 
 
 	public Member() {}
+	
+	
 	 
 
+
+	public Member(String userName, String deptName) {
+		super();
+		this.userName = userName;
+		this.deptName = deptName;
+	}
 
 	public Member(String userType) {
 		super();
