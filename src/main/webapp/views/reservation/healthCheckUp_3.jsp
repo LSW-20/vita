@@ -236,9 +236,8 @@
     </div>
     </form>
 				<script>
-				    		let isButtonn = false;
-			
-						
+				    let isButtonn = false;
+					
 				    function updateDate() {
 				        const year = document.getElementById('year').value;
 				        const month = document.getElementById('month').value;
@@ -259,6 +258,7 @@
 				    }
 				    
 				    function confirmSelection() {
+				    		
 				    	
 				        const year = document.getElementById('year').value;
 				        const month = document.getElementById('month').value;
@@ -285,11 +285,15 @@
 				        }
 
 				        // 선택된 날짜와 시간 표시
+				        
 				        document.getElementById('wantday').querySelector('b').innerHTML = selectedDate;
 				        document.getElementById('wanttime').querySelector('b').innerHTML = selectedTime;
+				      
+
 				        isButtonn = true;
+				     
 				        
-				        return true; // 성공적으로 선택되었음을 알림
+				        return ; // 성공적으로 선택되었음을 알림
 				     
 				    }
 
@@ -362,12 +366,20 @@
 		                const month = document.getElementById('month').value; // 월
 		                const daySelect = document.getElementById('day').value; // 일
 		                const selectedTime = document.querySelector('.btn-outline-primary.active h3')?.innerText; // 내원 시간
+		                const selectedDate = year + '년 ' + month + '월 ' + daySelect + '일';
+		              
 		                // 모든 값이 선택되지 않았는지 확인
 		                if (!year || !month || !daySelect || !selectedTime || !isButtonn) {
 		                    alert('희망검진일 또는 내원시간을 선택해주세요');
 		                    event.stopPropagation(); // 링크 이동 방지
 		                    return ; 
 		                }
+		         
+		           			
+		                document.getElementById('wantday1').innerHTML = selectedDate;
+		                document.getElementById('wanttime1').innerHTML = selectedTime;
+		           			
+		                
 		                // 결제 완료 상태 체크
 		                if (isPaymentCompleted) {
 		                    alert('이미 결제가 완료되었습니다.'); // 이미 결제된 경우 알림
@@ -401,7 +413,7 @@
                 <td id="color" style="height:70px; margin-top:15px;"><h5>총 예상비용</h5></td>
                 <td>
                     <h5 align="left" style="margin-left:30px; margin-top:10px;">
-                        <b style="color:#1F2B6C">50,000원</b> (추가검사 포함 : 50,000원)
+                        <b style="color:#1F2B6C" >50,000원</b> (추가검사 포함 : 50,000원)
                        
                         <button type="button" name="pay" class="btn border-1 border-dark" id="btn-color" data-toggle="modal" data-target="#paymentModal" style="margin-left:50px; width:150px;">
                             결제하기
@@ -436,11 +448,11 @@
                                     </tr>
                                     <tr>
                                         <td style="border-right: 1px dashed; border-right-color: rgb(204, 204, 204);"><b>희망 진료일</b></td>
-                                        <td><b style="color:#1F2B6C">2024년 9월 19일(목)</b></td>
+                                        <td><b style="color:#1F2B6C"id="wantday1" ></b></td>
                                     </tr>
                                     <tr>
                                         <td style="border-right: 1px dashed; border-right-color: rgb(204, 204, 204);"><b>내원 시간</b></td>
-                                        <td><b style="color:#1F2B6C">오전</b></td>
+                                        <td><b style="color:#1F2B6C" id="wanttime1"></b></td>
                                     </tr>
                                     <tr style="border-bottom:1px solid ;border-bottom-color: rgb(224, 222, 222);">
                                         <td style="border-right: 1px dashed; border-right-color: rgb(204, 204, 204);"><b>가격</b></td>
@@ -491,7 +503,7 @@
         </div>
     </div>
 
-
+		
 
 
 
@@ -545,7 +557,7 @@
 							    }
 			
 							    if (!checkedAgree) {
-							        alert("검진 관련 주의사항 안내 및 체크사항을 확인하였습니다. (필수)");
+							        alert("검진 관련 주의사항 체크를 해주세요");
 							        event.preventDefault(); // 링크 이동 방지
 							        return false; 
 							    }
@@ -559,6 +571,8 @@
 							    // 모든 조건이 충족되면 true를 반환하여 링크 이동
 							    return true; 
 							}
+							
+						   
  
 						</script>
 
