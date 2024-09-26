@@ -83,7 +83,10 @@ function requestPayment() {
 
     // careNo는 페이지에서 hidden input으로 전달된 값을 가져온다고 가정
     var careNo = document.querySelector('input[name="careNo"]:checked').value;
-
+		
+    //docPurpose 의 selected된 value를 결제 성공시 url에 함께 넘기고 싶음
+     var docPurpose = document.querySelector('select[name="docPurpose"]').value;
+    
     IMP.request_pay({
         pg: 'html5_inicis',
         pay_method: 'card',
@@ -98,7 +101,8 @@ function requestPayment() {
         if (rsp.success) {
             alert('결제가 완료되었습니다. 결제 금액: ' + rsp.paid_amount);
             // 결제 성공 시 처리 로직
-            location.href = '<%= request.getContextPath() %>/confirm.cr?careNo=' + careNo + '&docType=<%= docType %>&imp_uid=' + rsp.imp_uid + '&merchant_uid=' + rsp.merchant_uid;
+            location.href = 
+            	'<%= request.getContextPath() %>/confirm.cr?careNo=' + careNo + '&docType=<%= docType %>&imp_uid=' + rsp.imp_uid + '&merchant_uid=' + rsp.merchant_uid + '&docPurpose='+docPurpose;
         } else {
             alert('결제에 실패하였습니다. 에러 내용: ' + rsp.error_msg);
             // 결제 실패 시 처리 로직

@@ -35,20 +35,36 @@ public class DocumentConfirmController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String docType = request.getParameter("docType");
 	    String careNo = request.getParameter("careNo");  // 사용자가 선택한 careNo 받아오기
-	    String impUid = request.getParameter("imp_uid");
+	    String impUid = request.getParameter("imp_uid"); //
 	    String merchantUid = request.getParameter("merchant_uid");
+	    String docPurpose = request.getParameter("docPurpose");
   
-        Document document = new IssueService().getDocumentByCareNo(careNo);
-        int result = new IssueService().insertDocument()
-        request.setAttribute("documents", document);
-        request.setAttribute("docType", docType);
-		if(docType.equals("진료비납입확인서")) {
-			request.getRequestDispatcher("/views/issue/confirmPayment.jsp").forward(request, response);						
-		}else if(docType.equals("입퇴원사실확인서")) {
-			request.getRequestDispatcher("/views/issue/confirmAdmission.jsp").forward(request, response);			
-		}else {
-			request.getRequestDispatcher("/views/issue/confirmPrescription.jsp").forward(request, response);						
-		}
+	    System.out.println(docType);
+	    System.out.println(careNo);
+	    System.out.println(impUid);
+	    System.out.println(merchantUid);
+	    System.out.println(docPurpose);
+	    int result = new IssueService().insertDocument(careNo, docType, docPurpose);
+	    
+	    if(result > 0) {
+	    	//결제 완료 후 문서 발급 완료 페이지로 이동
+	    	Document document = new IssueService().getDocumentByCareNo(careNo);
+	    	request.setAttribute("documents", document);
+	    	request.setAttribute("docType", docType);
+	    	
+//	    	if(docType.equals("진료비납입확인서")) {
+//	    		request.getRequestDispatcher("/views/issue/confirmPayment.jsp").forward(request, response);						
+//	    	}else if(docType.equals("입퇴원사실확인서")) {
+//	    		request.getRequestDispatcher("/views/issue/confirmAdmission.jsp").forward(request, response);			
+//	    	}else {
+//	    		request.getRequestDispatcher("/views/issue/confirmPrescription.jsp").forward(request, response);						
+//	    	}
+	    	response.sendRedirect(request.getContextPath()+"/listSel.cr");
+	    } else {
+	    	request.getRequestDispatcher("/views/common/errorPage.jsp");	    
+	    }
+	    
+        
 	}
 
 	/**

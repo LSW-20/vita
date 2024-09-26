@@ -115,4 +115,32 @@ AND
 	 WHERE C.USER_NO = ?
 </entry>
 
+<!-- 발급 신청 insert -->
+<entry key="insertDocument">
+INSERT
+  INTO 
+       DOCUMENT 
+       (
+       DOC_NUM
+     , USER_NO
+     , CARE_NO
+     , DOC_TYPE
+     , DOC_CHECK
+     , DOC_PURPOSE
+     , PRICE
+     , APPLY_DATE
+     ) 
+VALUES 
+   (
+      SEQ_DNO.NEXTVAL
+    , '200321008'
+    , ? 
+    , ? 
+    , null
+    , ?
+    , 2000
+    , TO_DATE(SYSDATE,'RR/MM/DD')
+   )
+</entry>
+
 </properties>
