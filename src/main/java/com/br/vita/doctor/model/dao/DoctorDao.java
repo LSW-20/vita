@@ -918,7 +918,49 @@ public class DoctorDao {
 	
 	}
 	
-	public void selectRes(Connection conn) {
+	public List<Map<String,Object>> selectRes(Connection conn) {
+		
+		List<Map<String,Object>> relist = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectRes");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			rset=pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Map<String,Object> reMap = new HashMap<>();
+				
+				reMap.put("userName", rset.getString("USER_NAME"));
+				reMap.put("userDate", rset.getString("USER_DATE"));
+				reMap.put("userNo", rset.getString("USER_NO"));
+				reMap.put("appointment", rset.getString("APP_NO"));
+				reMap.put("count", rset.getString("COUNT"));
+				
+				
+				relist.add(reMap);
+				
+				
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return relist;
+		
+		
+		
+		
 		
 	}
 	

@@ -237,7 +237,7 @@
 										
 										
 										
-                        <div class="userList">
+                     <!--    <div class="userList">
                             <div class="user_detail_div">
                                 <span class="u_name"><b>홍길동</b></span><br>
                                 <span class="u_ssn">1990/05/19</span>
@@ -245,7 +245,7 @@
                                 <span class="u_no">병원등록번호:11111</span>
                             </div>
                         </div>
-                        
+                         -->
                         
 
                    
@@ -324,12 +324,30 @@
     
     <script>
     
-    function fnSelectRes (){
+    function fnSelectRes(){
     	
     	$.ajax({
     		url: '<%= contextPath %>/listRes.se',
-    		success:function(){
+    		success:function(res){
+    			console.log(res);
+    			let listdiv = '';
     			
+    			for(let i=0; i<res.length; i++){
+    				console.log(res[i].userName)
+    				
+                   listdiv += '<div class="userList">' 
+                   					+ '<div class="user_detail_div">'
+                   					+ '<span class="u_name"><b>' + res[i].userName + '</b></span><br>'
+                   					+ '<span class="u_ssn">' + res[i].userDate + '</span>'
+                   					+ '<span class="u_time"><b>예약번호 : '+ res[i].appointment + '</b></span><br>' 
+                   					+ '<span class="u_no">병원등록번호 : ' + res[i].userNo + '</span>'
+                   					+ '</div>'
+                   					+ '</div>';
+                   	
+    				
+    			}
+    			
+    			$('#u_list_div').append(listdiv);
     		},
     		
     		

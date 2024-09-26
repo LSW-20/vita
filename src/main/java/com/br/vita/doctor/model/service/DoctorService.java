@@ -365,12 +365,13 @@ public class DoctorService {
 		
 	}
 	
-	public void selectRes() {
+	public List<Map<String,Object>> selectRes() {
 		Connection conn = getConnection();
-		 dDao.selectRes(conn);
+		List<Map<String,Object>> relist = dDao.selectRes(conn);
 		 
 		 close(conn);
 		 
+		 return relist;
 		 
 		
 	}
