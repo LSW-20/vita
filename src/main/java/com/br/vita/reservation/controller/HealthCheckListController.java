@@ -16,7 +16,7 @@ import com.br.vita.reservation.model.vo.CheckList;
 /**
  * Servlet implementation class HealthCheckListController
  */
-@WebServlet("/CheckList.rv")
+@WebServlet("/CheckForm.rv")
 public class HealthCheckListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,7 +42,7 @@ public class HealthCheckListController extends HttpServlet {
 		ck.setUserNo(userNo);
     	ck.setMediList(request.getParameter("mediList"));
     	ck.setSurgeryName(request.getParameter("surgeryName"));
-    	ck.setSurgeryYN(request.getParameter("doctor_phone"));
+    	ck.setSurgeryYN(request.getParameter("surgeryYN"));
     	ck.setFlyYN(request.getParameter("doctor_email"));
     	
     	new ReservationService().insertHealthCheckList(ck);

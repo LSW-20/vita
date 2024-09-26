@@ -145,7 +145,7 @@
         let priceDisplay = document.getElementById("price");
         priceDisplay.innerText = "50,000원"; // 가격을 50,000원으로 설정
         healthCheckClicked = true; // 버튼 클릭 시 상태 업데이트
-        checkNextButtonStatus();
+
     }
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -173,7 +173,7 @@
                   <h5 class="modal-title" id="myModalLabel">예약체크사항</h5>
                 </div>
                 <div class="modal-body">
-								    <form id="checkListForm" action="<%= contextPath %>/CheckList.rv" method="post">
+								    <form id="checkListForm" action="<%= contextPath %>/CheckForm.rv" method="post">
 								        <div class="first-group">
 								            <h5>1. 현재 복용중인 약이 있으십니까?</h5>
 								            <input type="radio" name="mediList" value="N" style="cursor: pointer;" onclick="toggleMedicationInput(false); checkFormValidity()">
@@ -194,20 +194,20 @@
 								        
 								        <div class="second-group">
 								            <h5>2. 1년 이내에 수술 받으신 적이 있으십니까?</h5>
-								            <input type="radio" name="Surgery" value="N" style="cursor: pointer;" onclick="toggleSurgeryInput(false); checkFormValidity()">
+								            <input type="radio" name="surgeryYN" value="N" style="cursor: pointer;" onclick="toggleSurgeryInput(false); checkFormValidity()">
 								            <label for="none">없음</label>
 								            <br>
-								            <input type="radio" name="Surgery" value="Y" style="cursor: pointer;" onclick="toggleSurgeryInput(true); checkFormValidity()">
+								            <input type="radio" name="surgeryYN" value="Y" style="cursor: pointer;" onclick="toggleSurgeryInput(true); checkFormValidity()">
 								            <label for="yes">있음</label>
 								            <input type="text" class="form-control" id="SurgerySelf" name="surgeryName" value="" placeholder="수술명 직접입력" disabled oninput="checkFormValidity()">
 								        </div>
 								        <br>
 								        <div class="third-group">
 								            <h5>3. 건강검진이후 14일 이내 비행기 탑승이 예정되어 있으십니까?</h5>
-								            <input type="radio" name="Fly" value="Y" style="cursor: pointer;" onclick="checkFormValidity()">
+								            <input type="radio" name="flyYN" value="Y" style="cursor: pointer;" onclick="checkFormValidity()">
 								            <label for="none">없음</label>
 								            <br>
-								            <input type="radio" name="Fly" value="N" style="cursor: pointer;" onclick="checkFormValidity()">
+								            <input type="radio" name="flyYN" value="N" style="cursor: pointer;" onclick="checkFormValidity()">
 								            <label for="yes">있음(2주이내)</label>
 								            <br><br>
 								            <h7 style="color:rgb(31, 43, 108);">※ 내시경 검사중 조직검사에 제한이 있을 수 있습니다.</h7>
@@ -223,7 +223,7 @@
 								<script>
 										
 								let checklistSubmitted = false;
-								
+								let clickkk = false;
 								    function toggleMedicationInput(isOther) {
 								        document.getElementById("inputText").disabled = !isOther;
 								        
@@ -246,10 +246,10 @@
 								        var mediListChecked = document.querySelector('input[name="mediList"]:checked');
 								        var mediListValid = mediListChecked && (mediListChecked.value === "N" || (mediListChecked.value === "Y" && document.getElementById("inputText").value.trim() !== ""));
 								
-								        var surgeryChecked = document.querySelector('input[name="Surgery"]:checked');
+								        var surgeryChecked = document.querySelector('input[name="surgeryYN"]:checked');
 								        var surgeryValid = surgeryChecked && (surgeryChecked.value === "N" || (surgeryChecked.value === "Y" && document.getElementById("SurgerySelf").value.trim() !== ""));
 								
-								        var flyChecked = document.querySelector('input[name="Fly"]:checked') !== null;
+								        var flyChecked = document.querySelector('input[name="flyYN"]:checked') !== null;
 								
 								        var submitBtn = document.getElementById("submitBtn");
 								        if (mediListValid && surgeryValid && flyChecked) {
@@ -261,13 +261,13 @@
 								
                     function handleSubmit() {
 							    		const mediListChecked = document.querySelector('input[name="mediList"]:checked') !== null;
-							        const surgeryChecked = document.querySelector('input[name="Surgery"]:checked') !== null;
-							        const flyChecked = document.querySelector('input[name="Fly"]:checked') !== null;
+							        const surgeryChecked = document.querySelector('input[name="surgeryYN"]:checked') !== null;
+							        const flyChecked = document.querySelector('input[name="flyYN"]:checked') !== null;
 
 							        if (mediListChecked && surgeryChecked && flyChecked) {
 							            const formData = new FormData(document.getElementById("checkListForm"));
 
-							            fetch("<%= contextPath %>/CheckList.rv", {
+							            fetch("<%= contextPath %>/CheckForm.rv", {
 							                method: "POST",
 							                body: formData,
 							            })
@@ -276,11 +276,11 @@
 							                    throw new Error('Network response was not ok');
 							                }
 							                checklistSubmitted = true; // 제출 후 상태 업데이트
-							                checkNextButtonStatus(); 
 							                return response.text(); // JSON 대신 텍스트로 응답 처리
 							            })
 							            .then(data => {
 							                alert("저장되었습니다."); // 여기서 data를 사용할 수 있습니다.
+							                clickkk = true;
 							            })
 							            .catch(error => {
 							                alert("전송 실패: " + error.message);
@@ -290,16 +290,24 @@
 							        }
 							    }
                     
-                    function checkNextButtonStatus() {
-                        const nextButton = document.querySelector("a[href='/vita/views/reservation/healthCheckUp_3.jsp']");
-                        if (healthCheckClicked && checklistSubmitted) {
-                            nextButton.classList.remove("disabled");
-                            nextButton.style.pointerEvents = "auto"; // 클릭 가능하게 설정
-                        } else {
-                            nextButton.classList.add("disabled");
-                            nextButton.style.pointerEvents = "none"; // 클릭 불가능하게 설정
-                        }
-                    }
+                    function validateAndProceed(event) {
+									  
+									    if (!healthCheckClicked) {
+									        alert('필수란의 버튼을 선택해주세요.');
+									        event.preventDefault(); // 링크 이동 방지
+									        return false; 
+									    }
+					
+									    if (!clickkk) {
+									        alert("예약체크사항을 작성해주세요");
+									        event.preventDefault(); // 링크 이동 방지
+									        return false; 
+									    }
+									  
+									    // 모든 조건이 충족되면 true를 반환하여 링크 이동
+									    return true; 
+									}
+					
 								</script>
               </div>
             </div>
@@ -347,7 +355,7 @@
         
         <div align="center">
      
-           <a href="/vita/views/reservation/healthCheckUp_3.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;">다음</a>
+           <a href="/vita/views/reservation/healthCheckUp_3.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;" onclick="return validateAndProceed(event)">다음</a>
            <a href="/vita/views/reservation/healthCheckUp_1.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:30px;">이전</a>
           
         </div>
