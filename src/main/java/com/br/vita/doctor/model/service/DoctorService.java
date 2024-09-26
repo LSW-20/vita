@@ -344,6 +344,28 @@ public class DoctorService {
 	}
 	
 	
+	public int yesNoUpdateByDiagnosis(String yes, String careNo, String type) {
+		
+		Connection conn = getConnection();
+		
+		int result = dDao.yesNoUpdateByDiagnosis(conn, yes,careNo,type);
+		
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		
+		close(conn);
+		
+		return result;
+		
+		
+	}
+	
+	
 	
 	
 	

@@ -87,66 +87,8 @@
               .text_value{
               	margin-left: 10px;
               }
-             
-             </style>
-             
-             
-             
-            <div class="container mt-5">
-              <h2>발급 신청 관리</h2><br>
-              <h3>진단서 신청목록</h3>
               
-
-              <div class="userSelectDiv">
-                <div class="userSelName">
-                  <span class="userSel-1" id="userName">환자이름</span>
-                  <span class="userSel-1" id="department">진료과</span>
-                </div>
-                <div id="userNumbers">
-                  <br>
-                  <div id="user_no_div"><b>병원등록번호 :</b> <span id="user_no_value" class="text_value"></span> </div><br>
-                  <div id="user_ssn_div"><b>주민번호 : </b><span id="user_ssn_value" class="text_value"></span> </div><br>
-                  <div id="user_phone_div"><b>전화번호 : </b><span id="user_phone_value" class="text_value"></span> </div><br>
-                </div>
-              </div>
-
-
-              <div id="table-container">
-                <table class="table table-bordered" id="docuTable">
-                
-                  <tr>
-                    <th>병원등록번호</th>
-                    <th>이름</th>
-                    <th>주민등록번호</th>
-                    <th>진료과</th>
-                    <th>전화번호</th>
-                    <th>진료기록</th>
-                  </tr>
-                  
-        
-        <% if (doculist == null || doculist.isEmpty()) { %>
-            <tr>
-                <td colspan="6" style="text-align: center;">존재하는 게시글이 없습니다.</td>
-            </tr>
-        <% } else { %>
-            <% for (Member m : doculist) { %>
-                <tr class="tr_click">
-                    <td id="">
-                    	<%= m.getUserNo() %>
-                    	<input type="hidden" value ="<%= m.getCareNo() %>" class="care_no_data1">
-                    	<input type="hidden" value ="<%= m.getUserNo() %>" class="user_no_data1">
-                    </td>
-                    <td id=""><%= m.getUserName() %></td>
-                    <td id=""><%= m.getUserSSN() %></td>
-                    <td id=""><%= m.getDeptName() %></td>
-                    <td id=""><%= m.getPhone() %></td>
-                    <td>
-                    	<!-- <button class="btn btn-primary" onclick="fnfilesearch();">보기</button> -->
-                    	
-  <style>
-
-
-
+              
   .t_container{
     border: 1px solid black;
     width: 900px;
@@ -225,94 +167,141 @@
   	margin-right: 145px;
   	
   }
-
+             
   </style>
-  
-  	
-<div class="container">
-    <div class="btns_div">
-      <button id="btn1_1" class="btn btn-secondary" 
-        data-toggle="modal" 
-        data-target="#myModal1" 
-        data-care-no="<%= m.getCareNo() %>" 
-        data-user-no="<%= m.getUserNo() %>" 
-        onclick="fnfilesearch1(this);">보기</button>
-    </div>
-    
+             
+             
+             
+            <div class="container mt-5">
+              <h2>발급 신청 관리</h2><br>
+              <h3>진단서 신청목록</h3>
+              
 
- <!-- The Modal -->
- <div class="modal fade" id="myModal1">
-   <div class="modal-dialog">
-     <div class="modal-content" style="margin-top: 170px;">
-     
+              <div class="userSelectDiv">
+                <div class="userSelName">
+                  <span class="userSel-1" id="userName">환자이름</span>
+                  <span class="userSel-1" id="department">진료과</span>
+                </div>
+                <div id="userNumbers">
+                  <br>
+                  <div id="user_no_div"><b>병원등록번호 :</b> <span id="user_no_value" class="text_value"></span> </div><br>
+                  <div id="user_ssn_div"><b>주민번호 : </b><span id="user_ssn_value" class="text_value"></span> </div><br>
+                  <div id="user_phone_div"><b>전화번호 : </b><span id="user_phone_value" class="text_value"></span> </div><br>
+                </div>
+              </div>
+
+
+              <div id="table-container">
+                <table class="table table-bordered" id="docuTable">
+                
+                  <tr>
+                    <th>병원등록번호</th>
+                    <th>이름</th>
+                    <th>주민등록번호</th>
+                    <th>진료과</th>
+                    <th>전화번호</th>
+                    <th>진료기록</th>
+                  </tr>
+                  
         
-<div class="t_container">
-  <div class="t_header">진&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;단&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서</div>
-  <div class="table_div">
-    <table border="1" id="table_container_tb">
-      <tr>
-        <td class="u_name"><b>환자의 성명</b></td>
-        <td id="userName_result">qweqwe</td>
-   
-        <td class="u_ssn"><b>주민등록번호</b></td>
-        <td id="userSSN_result">wqeqwe</td>
-      </tr>
-      
-      <tr>
-        <td class="u_addr"><b>환자의 주소</b></td>
-        <td colspan="3" id="userAddress_result">asdasdasdsa</td>
-      </tr>
-      <tr>
-      
-        <td class="symptoms"><b>증상</b></td>
-        <td colspan="3" id="syptoms_result">asdasdasdasd</td>
-      </tr>
-      
-      <tr>
-        <td class="opinion"><b>진단 및 소견</b></td>
-        <td colspan="3" id="opinion_result">asdasdasdas</td>
-      </tr>
-      
-    </table>
-
-    <div class="doc_detail" style="text-align: left;">
-      <br>
-      [의료법] 제 17 조 및 같은 법 시행규칙 제9조1항에 따라 위와 같이 진단합니다.
-      
-      <div style="margin-top: 20px;">의료기관 명칭 : <b>VitaPrimus</b> <b class="c_date" id="treatmentDate_result" style="margin-left: 434px;"></b></div>
-      <br>
-      <div class="side_detail">
-        <div>주소 : 서울특별시 금천구 가산디지털2로 95 KM타워 3층 305호</div>
-        <div class="doc_num">[ ■ ] 의사  면허 <b id="doc_licence"></b> 호</div>
-      </div>
-      <br>
-      <div class="doc_name">담당의 : <b id="docName_result"></b></div>
-
-      
-      
-    </div>
-    
-    <!-- Modal footer -->
-       <div class="modal-footer">
-         <button type="button" class="btn btn-success" data-dismiss="modal" id="yes_btn1" onclick="fnYes()">승인</button>
-         <button type="button" class="btn btn-danger" data-dismiss="modal" id="no_btn1" onclick="fnNo()">거절</button>
-       </div>
-  </div>
-  
-
-</div>
-
-
- 
- </div>
- 
- 
-       
-      
-       
-     </div>
-   </div>
- </div>
+        <% if (doculist == null || doculist.isEmpty()) { %>
+            <tr>
+                <td colspan="6" style="text-align: center;">존재하는 게시글이 없습니다.</td>
+            </tr>
+        <% } else { %>
+            <% for (Member m : doculist) { %>
+                <tr class="tr_click">
+                    <td id="">
+                    	<%= m.getUserNo() %>
+                    	<input type="hidden" value ="<%= m.getCareNo() %>" class="care_no_data1">
+                    	<input type="hidden" value ="<%= m.getUserNo() %>" class="user_no_data1">
+                    </td>
+                    <td id=""><%= m.getUserName() %></td>
+                    <td id=""><%= m.getUserSSN() %></td>
+                    <td id=""><%= m.getDeptName() %></td>
+                    <td id=""><%= m.getPhone() %></td>
+                    <td>
+										
+													<div class="container">
+													    <div class="btns_div">
+													      <button id="btn1_1" class="btn btn-secondary" 
+													        data-toggle="modal" 
+													        data-target="#myModal1" 
+													        data-care-no="<%= m.getCareNo() %>" 
+													        data-user-no="<%= m.getUserNo() %>" 
+													        onclick="fnfilesearch1(this);">보기</button>
+													    </div>
+													    
+													
+													 <!-- The Modal -->
+													 <div class="modal fade" id="myModal1">
+													   <div class="modal-dialog">
+													     <div class="modal-content" style="margin-top: 170px;">
+													     
+													        
+													<div class="t_container">
+													  <div class="t_header">진&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;단&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서</div>
+													  <div class="table_div">
+													    <table border="1" id="table_container_tb">
+													      <tr>
+													        <td class="u_name"><b>환자의 성명</b></td>
+													        <td id="userName_result">qweqwe</td>
+													   
+													        <td class="u_ssn"><b>주민등록번호</b></td>
+													        <td id="userSSN_result">wqeqwe</td>
+													      </tr>
+													      
+													      <tr>
+													        <td class="u_addr"><b>환자의 주소</b></td>
+													        <td colspan="3" id="userAddress_result">asdasdasdsa</td>
+													      </tr>
+													      <tr>
+													      
+													        <td class="symptoms"><b>증상</b></td>
+													        <td colspan="3" id="syptoms_result">asdasdasdasd</td>
+													      </tr>
+													      
+													      <tr>
+													        <td class="opinion"><b>진단 및 소견</b></td>
+													        <td colspan="3" id="opinion_result">asdasdasdas</td>
+													      </tr>
+													      
+													    </table>
+													
+													    <div class="doc_detail" style="text-align: left;">
+													      <br>
+													      [의료법] 제 17 조 및 같은 법 시행규칙 제9조1항에 따라 위와 같이 진단합니다.
+													      
+													      <div style="margin-top: 20px;">의료기관 명칭 : <b>VitaPrimus</b> <b class="c_date" id="treatmentDate_result" style="margin-left: 434px;"></b></div>
+													      <br>
+													      <div class="side_detail">
+													        <div>주소 : 서울특별시 금천구 가산디지털2로 95 KM타워 3층 305호</div>
+													        <div class="doc_num">[ ■ ] 의사  면허 <b id="doc_licence"></b> 호</div>
+													      </div>
+													      <br>
+													      <div class="doc_name">담당의 : <b id="docName_result"></b></div>
+													
+													      
+													      
+													    </div>
+													    
+													    <!-- Modal footer -->
+													       <div class="modal-footer">
+													         <button type="button" class="btn btn-success" data-dismiss="modal" id="yes_btn1" onclick="fnYes();"
+													         	data-care-no="<%= m.getCareNo() %>" >승인</button>
+													       	 
+													         <button type="button" class="btn btn-danger" data-dismiss="modal" id="no_btn1" onclick="fnNo();"
+													          data-care-no="<%= m.getCareNo() %>" >거절</button>
+													       </div>
+													  </div>
+													  
+													</div>
+													
+													 </div>
+													 
+													     </div>
+													   </div>
+													 </div>
                     	
                     </td>
                 </tr>
@@ -421,18 +410,68 @@
 		
 		function fnYes(){
 			
-			$.ajax({
-				url: '<%= contextPath %>/dia_mt.up',
-				data:{
+			if(confirm('승인하시겠습니까?')){
+				
+				 const careNo = $('#myModal1').find('#yes_btn1').data('careNo');
+					console.log(careNo);
+				 
+					$.ajax({
+						url: '<%= contextPath %>/dia_mt.up',
+						data:{
+							yes: 'Y',
+							careNo: careNo,
+							type: '진단서'
+						},
+						success:function(res){
+							
+							console.log(res);
+							
+							if(res > 0){
+								alert('해당 "진단서"를 성공적으로 승인하였습니다');
+								location.reload();
+							}else{
+								alert('승인오류');
+							}
+							
+							
+						}
+					})
 					
-				},
-				success:function(){
+			}
+			
+		}
+		
+		
+		function fnNo(){
+			
+			if(confirm('거절하시겠습니까?')){
+				
+				 const careNo = $('#myModal1').find('#yes_btn1').data('careNo');
+					console.log(careNo);
+				 
+					$.ajax({
+						url: '<%= contextPath %>/dia_mt.up',
+						data:{
+							yes: 'N',
+							careNo: careNo,
+							type: '진단서'
+						},
+						success:function(res){
+							
+							console.log(res);
+							
+							if(res > 0){
+								alert('해당 "진단서"를 거절하였습니다');
+								location.reload();
+							}else{
+								alert('거절오류');
+							}
+							
+							
+						}
+					})
 					
-				}
-			})
-			
-			
-			
+			}
 			
 		}
 		

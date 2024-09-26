@@ -243,6 +243,22 @@ public class ReservationService {
 		
 	}
 
+	public int deleteCheckupApp(String appNo) {
+		
+		Connection conn = getConnection();
+		int result = rdao.deleteCheckupApp(conn, appNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+		
+	}
+
 
 
 	

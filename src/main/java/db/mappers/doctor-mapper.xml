@@ -370,6 +370,18 @@ AND DO.DOC_TYPE = ?
 	
 	
 	
+	<!-- 진단서 (승인|거절) 업데이트 -->
+<entry key="yesNoUpdateByDiagnosis">
+	
+	UPDATE DOCUMENT 
+SET DOC_CHECK = ?
+WHERE CARE_NO = ?
+AND DOC_TYPE = ?
+	
+	
+</entry>
+	
+	
 	
 	
 	

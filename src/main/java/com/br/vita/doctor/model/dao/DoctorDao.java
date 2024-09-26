@@ -887,6 +887,43 @@ public class DoctorDao {
 		
 	}
 	
+	public int yesNoUpdateByDiagnosis(Connection conn, String yes, String careNo, String type) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("yesNoUpdateByDiagnosis");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, yes);
+			pstmt.setString(2, careNo);
+			pstmt.setString(3, type);
+			
+		
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+			
+		
+			
+			
+			
+			
+
+			
+			
+		
+		
 	
 	
 	
@@ -896,5 +933,7 @@ public class DoctorDao {
 	
 	
 	
+	
+	}
 	
 }
