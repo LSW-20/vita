@@ -369,6 +369,7 @@
     	
     	$.ajax({
     		url: '<%= contextPath %>/listRes.se',
+    		data:{dname}
     		success:function(res){
     			console.log(res);
     			let listdiv = '';
