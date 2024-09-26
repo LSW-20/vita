@@ -9,14 +9,14 @@ public class HealthCheck {
 	private Date appointmentDate;
 	private String appointmentType;
 	private String appointmentTime;
-	private String checkUpDate;
+	private Date checkUpDate;
 	private String totalPrice;
 	private String upCheckYN;
 	
 	public HealthCheck() {}
 
 	public HealthCheck(String appointmentNo, String userNo, String companyNo, Date appointmentDate,
-			String appointmentType, String appointmentTime, String checkUpDate, String totalPrice, String upCheckYN) {
+			String appointmentType, String appointmentTime, Date checkUpDate, String totalPrice, String upCheckYN) {
 		super();
 		this.appointmentNo = appointmentNo;
 		this.userNo = userNo;
@@ -77,11 +77,11 @@ public class HealthCheck {
 		this.appointmentTime = appointmentTime;
 	}
 
-	public String getCheckUpDate() {
+	public Date getCheckUpDate() {
 		return checkUpDate;
 	}
 
-	public void setCheckUpDate(String checkUpDate) {
+	public void setCheckUpDate(Date checkUpDate) {
 		this.checkUpDate = checkUpDate;
 	}
 

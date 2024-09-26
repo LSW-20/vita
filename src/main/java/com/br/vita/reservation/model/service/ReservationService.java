@@ -183,6 +183,7 @@ public class ReservationService {
  
 	/**
 	 * 진료예약 추가(2/2)
+	 * author : 임상우
 	 * @param userNo
 	 * @param docName
 	 * @param deptName

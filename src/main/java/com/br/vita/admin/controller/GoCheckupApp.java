@@ -1,4 +1,4 @@
-package com.br.vita.company.controller;
+package com.br.vita.admin.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,16 +13,16 @@ import com.br.vita.company.model.service.CompanyService;
 import com.br.vita.company.model.vo.Company;
 
 /**
- * Servlet implementation class CompanySelect
+ * Servlet implementation class GoCheckupApp
  */
-@WebServlet("/manageCOM.admin")
-public class CompanySelect extends HttpServlet {
+@WebServlet("/manageCH.admin")
+public class GoCheckupApp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CompanySelect() {
+    public GoCheckupApp() {
         super();
     }
 
@@ -32,19 +32,16 @@ public class CompanySelect extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// 1. 요청
-		// 요청시 넘어온 값 없음. 
-		// 쿼리 실행은 한다. 전체 연계기업 목록 list를 전부 select 해온다.
-		
-		List<Company> list = new CompanyService().companySelect();
-		//System.out.println(list);
+		// 전체 기업명이 응답페이지에서 필요하다. GoManageCompany.java에서 만들었던 메소드를 재사용한다. 기업명과 사업자번호가 들어가 있다.
+		List<Company> companyList = new CompanyService().companySelect();
 		
 		
-		// 2. 응답
-		// 응답페이지 : 관리자 건강검진 연계기업 관리 페이지(/vita/views/admin/manageCompany.jsp)
-		// 응답데이터 : db로부터 조회된 데이터(응답페이지에서만 필요)
 		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/admin/manageCompany.jsp").forward(request, response);
+		// 2. 응답 
+		// 응답 페이지 : /vita/views/admin/manageCheckupApp.jsp
+		// 응답 데이터 : 기업명과 사업자번호
+		request.setAttribute("companyList", companyList);
+		request.getRequestDispatcher("/views/admin/manageCheckupApp.jsp").forward(request, response);
 		
 		
 	}

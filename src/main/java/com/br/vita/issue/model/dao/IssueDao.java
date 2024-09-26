@@ -237,6 +237,7 @@ public class IssueDao {
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectDocumentList");
 		
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userNo);
@@ -264,6 +265,36 @@ public class IssueDao {
 		}
 		return docList;
 	}//selectdocumentList
+
+	/**
+	 * 새 발급 신청 insert
+	 * @author 최보겸
+	 * @param conn
+	 * @param careNo
+	 * @param docType
+	 * @param docPurpose
+	 * @return result 처리행수
+	 */
+	public int insertDocument(Connection conn, String careNo, String docType, String docPurpose) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertDocument");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, careNo);
+			pstmt.setString(2, docType);
+			pstmt.setString(3, docPurpose);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}//insertDocument
 	
 	
 	

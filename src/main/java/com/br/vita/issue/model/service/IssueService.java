@@ -86,14 +86,38 @@ public class IssueService {
 	/**
 	 * 내가 발급한 증명서 리스트를 가져오는 service
 	 * select
+	 * @author 최보겸
 	 * @param userNo
-	 * @return 
+	 * @return docList
 	 */
 	public List<Document> selectDocumentList(String userNo) {
 		Connection conn = getConnection();
 		List<Document> docList = iDao.selectDocumentList(conn, userNo);
 		close(conn);
 		return docList;
+	}
+
+
+	/**
+	 * 발급 신청 Document 테이블에 insert
+	 * @author chlqhrua
+	 * @param careNo
+	 * @param docType
+	 * @param docPurpose
+	 * @return result 처리 행수
+	 */
+	public int insertDocument(String careNo, String docType, String docPurpose) {
+		Connection conn = getConnection();
+		int result = iDao.insertDocument(conn, careNo, docType, docPurpose);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
 	}
 	
 	
