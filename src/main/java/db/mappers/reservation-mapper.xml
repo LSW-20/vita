@@ -270,8 +270,61 @@
 		 WHERE  
 		 				APPOINTMENT_NO = ?
 	</entry>
+	
+	<!-- (준수) 일반검진 체크리스트 추가 아직안씀--> 
+	<entry key ="insertCheckList">
+	
+	INSERT
+		INTO CHECK_LIST
+		(
+		  USER_NO
+		, MEDI_LIST
+		, SURGERY_NAME
+		, SURGERY_YN
+		, FLY_YN
+    , CHECKUP_NO
+    , CARE_NO
 
+		)
 
+		VALUES
+		(
+		  ?
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+    , Null
+		)
+	
+	</entry>
 
+	<!-- (준수) 일반검진 예약 추가 아직안씀-->
+	<entry key ="insertNormalCheckUp">
+	INSERT
+		INTO CHECKUP_APP
+		(
+		  APPOINTMENT_NO
+		, USER_NO
+		, COMPANY_NO
+		, APPOINTMENT_DATE
+		, APPOINTMENT_TYPE
+    , APPOINTMENT_TIME
+    , CHECKUP_DATE
+    , TOTAL_PRICE
+		)
 
+		VALUES
+		(
+		  ?
+		, ?
+		, NULL
+		, SYSDATE
+		, 'A'
+		, ?
+    , ?
+    , 50000
+		)
+	</entry>
 </properties>

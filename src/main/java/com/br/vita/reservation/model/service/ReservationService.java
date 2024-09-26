@@ -13,6 +13,7 @@ import com.br.vita.member.model.vo.Member;
 import com.br.vita.reservation.model.dao.ReservationDao;
 import com.br.vita.reservation.model.vo.CheckList;
 import com.br.vita.reservation.model.vo.Consultation;
+import com.br.vita.reservation.model.vo.HealthCheck;
 
 public class ReservationService {
 
@@ -174,9 +175,21 @@ public class ReservationService {
 	}	
 		
 		
-	public void insertHealthCheckList(CheckList ck) {
+	public int insertHealthCheckList(CheckList ck) {
 
-	
+		Connection conn = getConnection();
+		int result = rdao.insertHealthCheckList(conn, ck);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		
+		close(conn);
+		
+		return result;
 		
 		
 	}
@@ -256,6 +269,22 @@ public class ReservationService {
 		
 		close(conn);
 		return result;
+		
+	}
+
+	public void insertHealtchCareList(HealthCheck hc) {
+		
+		Connection conn = getConnection();
+		int result = rdao.insertHealtchCareList(conn, hc);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		
+		close(conn);
 		
 	}
 

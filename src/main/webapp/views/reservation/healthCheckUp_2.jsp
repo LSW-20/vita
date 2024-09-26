@@ -136,7 +136,7 @@
     
         
      </table>
-		
+		</div>
 		<script>
 		
 		let healthCheckClicked = false; 

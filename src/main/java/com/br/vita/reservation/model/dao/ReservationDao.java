@@ -437,10 +437,34 @@ public class ReservationDao {
 		return resultList;
 	}
 
-	public void insertHealthCheckList(Connection conn, CheckList ck) {
+	public int insertHealthCheckList(Connection conn, CheckList ck) {
 		
-	
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertCheckList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ck.userNo);
+			pstmt.setString(2, ck.mediList);
+			pstmt.setString(3, ck.surgeryName);
+			pstmt.setString(4, ck.surgeryYN);
+			pstmt.setString(5, ck.flyYN);
+			pstmt.setString(6, ck.careNo);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
+	
 
 	/**
 	 * 진료예약 추가(2/2)
@@ -627,6 +651,17 @@ public class ReservationDao {
 		}
 		
 		return result;
+	}
+
+	public int insertHealtchCareList(Connection conn, HealthCheck hc) {
+		
+		
+		
+		
+		
+		
+		return 0;
+		
 	}
 
 

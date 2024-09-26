@@ -87,6 +87,7 @@
    </style>
   <section>
 
+   <form action="<%= contextPath %>/CheckForm.rv" method="post">
     <h2 id="pad"><b>검진예약</b></h2>
     <br>
 
@@ -99,7 +100,7 @@
 
    <table class="container11 table-bordered" id="table_custom" style="margin-left:93px; ">
              
-    <tr class="d-flex">
+    <tr class="d-flex" >
 
 	      <td id="color" style="width:346px; height: 230px; border-right-style: dashed; ">
 	        <h4 style="margin-top: 60px"><b style="color:black">희망검진일</b></h4><br>
@@ -125,7 +126,6 @@
     <br><br>
         	
         	
-   <form>
     <div class="container11" style="margin-left:93px">
     <div class="d-flex">
         <div>
@@ -234,7 +234,6 @@
 
       </div>
     </div>
-    </form>
 				<script>
 				    let isButtonn = false;
 					
@@ -399,6 +398,7 @@
     <hr style="border-color:rgb(31, 43, 108); margin-left: 90px; margin-right: 90px;">
     <br>
 
+
     <div class="d-flex" style="margin-left:93px">
         <table class="container11 table-bordered" id="table_custom">
             <tr>
@@ -425,6 +425,7 @@
     </div>
 
    
+ 
     <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document" >
             <div class="modal-content" style="position: absolute; margin-left:-42px; width:900px; height:900px;">
@@ -435,7 +436,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="paymentForm">
                         <div class="form-group">
                             <br>
                             <h4><b>결제 내용</b></h4>
@@ -490,7 +490,6 @@
                             <input type="checkbox" class="custom-control-input" id="customCheck2" >
                             <label class="custom-control-label" for="customCheck2">개인정보 수집 및 이용 동의<b style="color:red;">(필수)</b></label>
                         </div>
-                    </form>
                 </div>
                 
                 <div class="modal-footer" style="background-color: #1F2B6C;">
@@ -502,6 +501,7 @@
             </div>
         </div>
     </div>
+
 
 		
 
@@ -529,6 +529,10 @@
      
     
 
+        <input type="hidden" name="merchant_uid" id="merchant_uid">
+        <input type="hidden" name="selectedTime" id="selectedTime">
+        <input type="hidden" name="selectedDate" id="selectedDate">
+        
         
         <div align="center">
         
@@ -578,6 +582,7 @@
 
 
 
+    </form>
         
   </section>
 		
