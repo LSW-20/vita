@@ -117,7 +117,7 @@
 
                 <div class="sideMenu" id="d_submenu2">진료 기록 관리
                     <ul class="d_submenu_item2">
-                        <li><a href="/vita/views/doctor/treatmentRoom.jsp" style="text-decoration: none;">진료실</a></li>
+                        <li><a href="<%= contextPath %>/t_room.go" style="text-decoration: none;">진료실</a></li>
                         <li><a href="/vita/views/doctor/m_records.jsp" style="text-decoration: none;">진료기록</a></li>
                     </ul>
                 </div>
