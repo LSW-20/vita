@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,9 +17,11 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.br.vita.doctor.model.vo.Doctor;
+import com.br.vita.employee.model.vo.Employee;
 import com.br.vita.member.model.vo.Member;
 import com.br.vita.reservation.model.vo.CheckList;
 import com.br.vita.reservation.model.vo.Consultation;
+import com.br.vita.reservation.model.vo.HealthCheck;
 
 
 
@@ -389,7 +390,7 @@ public class ReservationDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, deptName);
 			pstmt.setString(2, docName);
-			pstmt.setString(3, appDate1);
+			pstmt.setString(3, appDate1); 
 			pstmt.setString(4, appDate2);
 			rset = pstmt.executeQuery();
 			
@@ -473,6 +474,138 @@ public class ReservationDao {
 		}
 		
 		return result;
+	}
+	
+	
+	/**
+	 * 일반건강검진 조회
+	 * author : 임상우
+	 * @param conn
+	 * @param startDate
+	 * @param endDate
+	 * @return 조회된 list
+	 */
+	public List<Map<String, Object>> selectCheckupAppN(Connection conn, String startDate, String endDate) {
+
+		List<Map<String, Object>> listN = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectCheckupAppN");
+		
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, startDate);
+			pstmt.setString(2, endDate); 
+			rset=pstmt.executeQuery();
+			
+			
+			while(rset.next()) {
+				
+				Map<String, Object> map = new HashMap<>();
+				
+				HealthCheck h = new HealthCheck();
+				h.setAppointmentNo(rset.getString("APPOINTMENT_NO"));
+				h.setCheckUpDate(rset.getDate("CHECKUP_DATE"));
+				h.setAppointmentTime(rset.getString("APPOINTMENT_TIME"));
+				h.setTotalPrice(rset.getString("TOTAL_PRICE"));
+				
+				Member m = new Member();
+				m.setUserId(rset.getString("USER_ID"));
+				m.setUserName(rset.getString("USER_NAME"));
+				
+				CheckList c = new CheckList();
+				c.setMediList(rset.getString("MEDI_LIST"));
+				c.setSurgeryYN(rset.getString("SURGERY_YN"));
+				c.setSurgeryName(rset.getString("SURGERY_NAME"));
+				c.setFlyYN(rset.getString("FLY_YN"));
+				
+				
+				map.put("h", h);
+ 				map.put("m", m);
+				map.put("c", c);
+			
+				listN.add(map);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listN;
+		
+		
+	}
+
+	
+	/**
+	 * 기업건강검진 조회
+	 * author : 임상우
+	 * @param conn
+	 * @param com
+	 * @param startDate
+	 * @param endDate
+	 * @return 조회된 list
+	 */
+	public List<Map<String, Object>> selectCheckupAppC(Connection conn, String com, String startDate, String endDate) {
+		
+		List<Map<String, Object>> listC = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectCheckupAppC");
+		
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, startDate);
+			pstmt.setString(2, endDate); 
+			pstmt.setString(3, com);
+			rset=pstmt.executeQuery();
+			
+			
+			while(rset.next()) {
+				
+				Map<String, Object> map = new HashMap<>();
+				
+				HealthCheck h = new HealthCheck();
+				h.setAppointmentNo(rset.getString("APPOINTMENT_NO"));
+				h.setCheckUpDate(rset.getDate("CHECKUP_DATE"));
+				h.setAppointmentTime(rset.getString("APPOINTMENT_TIME"));
+				h.setTotalPrice(rset.getString("TOTAL_PRICE"));
+				
+				Employee e = new Employee();
+				e.setEmpName(rset.getString("EMP_NAME"));
+				e.setEmpNo(rset.getString("EMP_NO"));
+				
+				CheckList c = new CheckList();
+				c.setMediList(rset.getString("MEDI_LIST"));
+				c.setSurgeryYN(rset.getString("SURGERY_YN"));
+				c.setSurgeryName(rset.getString("SURGERY_NAME"));
+				c.setFlyYN(rset.getString("FLY_YN"));
+				
+				
+				map.put("h", h);
+ 				map.put("e", e);
+				map.put("c", c);
+				map.put("com", com);
+			
+				listC.add(map);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listC;
+		
 	}
 
 

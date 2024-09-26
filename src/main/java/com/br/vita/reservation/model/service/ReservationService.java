@@ -207,6 +207,42 @@ public class ReservationService {
 		return result;
 	}
 
+	
+	/**
+	 * 일반건강검진 조회
+	 * author : 임상우
+	 * @param startDate
+	 * @param endDate
+	 * @return 조회된 list
+	 */
+	public List<Map<String, Object>> selectCheckupAppN(String startDate, String endDate) {
+
+		Connection conn = getConnection();
+		List<Map<String, Object>> listN = rdao.selectCheckupAppN(conn, startDate, endDate);
+		close(conn);
+		return listN;
+		
+		
+		
+	}
+
+	/**
+	 * 기업건강검진 조회
+	 * author : 임상우
+	 * @param com
+	 * @param startDate
+	 * @param endDate
+	 * @return 조회된 list
+	 */
+	public List<Map<String, Object>> selectCheckupAppC(String com, String startDate, String endDate) {
+		
+		Connection conn = getConnection();
+		List<Map<String, Object>> listC = rdao.selectCheckupAppC(conn, com, startDate, endDate);
+		close(conn);
+		return listC;
+		
+	}
+
 
 
 	

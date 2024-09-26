@@ -335,7 +335,7 @@ footer {
 
 
 
-<!-- 추가용 modal start -->
+<!-- 진료 예약 추가용 modal start -->
 
 <!-- The Modal -->
 <div class="modal" id="add_modal">

@@ -1,11 +1,23 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.br.vita.company.model.vo.Company" %>
+<%@ page import="com.br.vita.member.model.vo.Member" %>
+<%@ page import="com.br.vita.employee.model.vo.Employee" %>
+<%@ page import="com.br.vita.reservation.model.vo.CheckList" %>
+<%@ page import="com.br.vita.reservation.model.vo.HealthCheck" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<% List<Company> companyList = (List<Company>)request.getAttribute("companyList"); 
-    %>
+<% List<Company> companyList = (List<Company>)request.getAttribute("companyList"); %>
+
+<% List<Map<String, Object>> listN = (List<Map<String, Object>>) request.getAttribute("listN"); %>
+<% List<Map<String, Object>> listC = (List<Map<String, Object>>) request.getAttribute("listC"); %>
+
+
+<% Boolean NthreeType = (Boolean) request.getAttribute("NthreeType"); %>
+<% Boolean CthreeType = (Boolean) request.getAttribute("CthreeType"); %>
+
+    
 
 <!DOCTYPE html>
 <html>
@@ -50,10 +62,7 @@ footer {
 }
 
 
-.select_type td, .select_type th{ /* '일반건강검진, 기업건강검진 조회하기' 테이블 */
-    /* border: 1px solid black; */
-}
-.select_type {
+.select_type { /* '일반건강검진, 기업건강검진 조회하기' 테이블 */
     text-align: center;
 }
 
@@ -78,18 +87,9 @@ footer {
 
 
 
-
-
-
-
 .search_result_table th, .search_result_table td { /* 검색 결과 '테이블'의 각 셀들 */
     text-align: center;
 }
-
-
-
-
-
 
 
 .search_result { /* '검색 결과' 텍스트 */
@@ -148,6 +148,7 @@ footer {
 
             <br><br><br><br>
 
+            <!-- 일반, 기업 건강검진 조회하는 부분 START -->
             <div style="display: flex; justify-content: center;">
                 <table class="select_type" style="width: 90%;">
                         <tr>
@@ -165,18 +166,18 @@ footer {
                         <tr>
                             <td style="display: flex; justify-content: center; margin-top: 30px;" >
                                 <!-- 일반건강검진 -->
-                                <form action="#" method="get" class="collapse" id="normalC">
+                                <form action="<%= contextPath %>/searchCHN.admin" method="get" class="collapse" id="normalC">
                                     <table id="search_table">
                                         <tr>
                                             <th class="left_cell">시작일</th>
                                             <td class="right_cell">
-                                                <input type="date" name="start_date">
+                                                <input type="date" name="start_date" required>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th class="left_cell">종료일</th>
                                             <td class="right_cell">
-                                                <input type="date" name="end_date">
+                                                <input type="date" name="end_date" required>
                                             </td>
                                         </tr>
                                         <tr>
@@ -190,12 +191,12 @@ footer {
 
                             <td style="display: flex; justify-content: center; margin-top: 30px;">
                                 <!-- 기업건강검진-->
-                                <form action="#" method="get" class="collapse" id="companyC">
+                                <form action="<%= contextPath %>/searchCHC.admin" method="get" class="collapse" id="companyC">
                                     <table id="search_table">
                                         <tr>
                                             <th class="left_cell">기업</th>
                                             <td class="right_cell">
-                                                <select name="com">
+                                                <select name="com" required>
                                                     <% if(companyList != null && !companyList.isEmpty()) {
                                                         for(int i=0; i<companyList.size(); i++) { %>
                                                             <option><%= companyList.get(i).getCompName() %></option>     
@@ -208,13 +209,13 @@ footer {
                                         <tr>
                                             <th class="left_cell">시작일</th>
                                             <td  class="right_cell">
-                                                <input type="date" name="start_date">
+                                                <input type="date" name="start_date" required>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th class="left_cell">종료일</th>
                                             <td  class="right_cell">
-                                                <input type="date" name="end_date">
+                                                <input type="date" name="end_date" required>
                                             </td>
                                         </tr>
                                         <tr>
@@ -226,7 +227,7 @@ footer {
                         </tr>
                 </table>
             </div>
-            
+            <!-- 일반, 기업 건강검진 조회하는 부분 END -->
             
 
             <br>
@@ -234,34 +235,56 @@ footer {
 
 
 
-            <%-- 조건처리하는법. 검색 이전상태랑 검색했는데 결과가 없는경우를 구분하기 위해 flag 변수 사용한다.
-            <% boolean searchPerformed = (Boolean) request.getAttribute("searchPerformed"); %>
-
-            <% if (!searchPerformed) { %>
-               검색 이전 상태
-                초기 화면을 표시 
-            <% } else if (doctorList.isEmpty()) { %>
-                검색했지만 결과가 없는 경우
-                <div class="search_doctor_result">의료진 검색 결과</div>
-                <table class="table table-striped">
-                    <tr>
-                        <td colspan="10" style="text-align: center;">검색 결과가 없습니다.</td>
-                    </tr>
-                </table>
-            <% } else { %>
-                검색 결과가 있는 경우 
-            --%> 
 
 
-            <br><br>
-            <!-- case1. '일반건강검진' 검색 결과가 없는 경우  -->
-            <div class="search_result">일반건강검진 검색 결과</div> <br>
+
+            <%-- 조건처리. 검색 이전상태랑 검색했는데 결과가 없는경우를 구분하기 위해 flag 변수 사용한다. --%>
+
+            <% if (NthreeType == null) { %>
+                <%-- 일반 건강검진 예약 검색 이전 상태 (아무것도 없음) --%>
+
+
+            <% } else if (NthreeType == false) { %>
+                <%-- 일반 건강검진 예약을 검색했지만 결과가 없는 경우 --%>
+
+                <div class="search_result">일반건강검진 검색 결과</div> <br>
+
+                    <table class="table table-striped search_result_table">
+                        <tr>
+                            <th>예약번호</th>
+                            <th>검진일</th>
+                            <th>예약시간</th>
+                            <th>검진비용</th>
+
+                            <th>회원아이디</th>
+                            <th>이름</th>
+
+                            <th>복용중인 약</th>
+                            <th>최근 수술 여부</th>
+                            <th>수술명</th>
+                            <th>비행예정</th>
+                            <th></th>
+                        </tr>
+
+                        <tr>
+                            <td colspan="11" style="text-align: center;">검색 결과가 없습니다.</td>
+                        </tr>
+                    </table>
+
+                    <div class="add_btn">
+                        <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal_noraml">추가</button>
+                    </div>    
+
+            <% } else if (NthreeType == true) { %>
+                <%-- 일반 건강검진 예약을 검색했는데 결과가 있는 경우 --%>
+
+                <div class="search_result">일반건강검진 검색 결과</div> <br>
 
 
                 <table class="table table-striped search_result_table">
                     <tr>
                         <th>예약번호</th>
-                        <th>예약일</th>
+                        <th>검진일</th>
                         <th>예약시간</th>
                         <th>검진비용</th>
 
@@ -275,91 +298,94 @@ footer {
                         <th></th>
                     </tr>
 
-                    <tr>
-                        <td colspan="11" style="text-align: center;">검색 결과가 없습니다.</td>
-                    </tr>
-                </table>
-
-                <div class="add_btn">
-                    <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal_noraml">추가</button>
-                </div>    
-
-            <br><br>
-
-
-            <!-- case2. '일반건강검진' 검색 결과가 있는 경우 -->
-            <div class="search_result">일반건강검진 검색 결과</div> <br>
-
-
-                <table class="table table-striped search_result_table">
-                    <tr>
-                        <th>예약번호</th>
-                        <th>예약일</th>
-                        <th>예약시간</th>
-                        <th>검진비용</th>
-
-                        <th>회원아이디</th>
-                        <th>이름</th>
-
-                        <th>복용중인 약</th>
-                        <th>최근 수술 여부</th>
-                        <th>수술명</th>
-                        <th>비행예정</th>
-                        <th></th>
-                    </tr>
+                    <% if(listN != null && !listN.isEmpty() ) {
+                        for(int i=0; i<listN.size(); i++) { 
+                    
+                            HealthCheck h = (HealthCheck) listN.get(i).get("h");
+                            Member m = (Member) listN.get(i).get("m");
+                            CheckList c = (CheckList) listN.get(i).get("c");     %>
 
                     <tr>
-                        <td>401</td>
-                        <td>20240927</td>
-                        <td>오후</td>
-                        <td>50000원</td>
+                        <td><%= h.getAppointmentNo() %></td>
+                        <td><%= h.getCheckUpDate() %></td>
+                        <td><%= h.getAppointmentTime() %></td>
+                        <td><%= h.getTotalPrice() %></td>
 
-                        <td>asdf123</td>
-                        <td>심수빈</td>
+                        <td><%= m.getUserId() %></td>
+                        <td><%= m.getUserName() %></td>
 
-                        <td>혈압약,항혈전제</td>
-                        <td>있음</td>
-                        <td>맹장수술</td>
-                        <td>없음</td>
+                        <td><%= c.getMediList() %></td>
+                        <td><%= c.getSurgeryYN() %></td>
+                        <td><%= c.getSurgeryName() %></td>
+                        <td><%= c.getFlyYN() %></td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_modal">삭제</button>
+                            <button type="button" class="btn btn-sm btn-danger del_button" data-app-no="<%= h.getAppointmentNo() %>"
+                                data-date="<%= h.getCheckUpDate() %>" data-name="<%= m.getUserName() %>" data-type="일반">삭제</button>
                         </td>
                     </tr>
 
-                    <tr>
-                        <td>403</td>
-                        <td>20240930</td>
-                        <td>오전</td>
-                        <td>35000원</td>
-
-                        <td>kekeke223</td>
-                        <td>이주형</td>
-
-                        <td>없음</td>
-                        <td>없음</td>
-                        <td></td>
-                        <td>없음</td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_modal">삭제</button>
-                        </td>
-                    </tr>
+                        <% }  
+                    } %>
                 </table>
 
                 <div class="add_btn">
                     <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal_noraml">추가</button>
                 </div>   
-            <br>
+        
+            <% } %>
 
 
-            <br><br>
-            <!-- case1. '기업건강검진' 검색 결과가 없는 경우  -->
-            <div class="search_result">기업건강검진 검색 결과</div> <br>
+
+
+            <!-- 일반건강검진, 기업건강검진 '삭제' 기능 (get방식 = location.href이 아닌 post 방식 = 외부 form으로 해보기)-->
+            <script>
+
+                $(document).ready(function() {
+
+                    // del_button 클래스를 가진 모든 버튼에 대해 이벤트 리스너를 추가
+                    $('.del_button').on('click', function() {
+                        var date = this.getAttribute('data-date');
+                        var name = this.getAttribute('data-name');
+                        var appNo = this.getAttribute('data-app-no');
+                        var type = this.getAttribute('data-type');
+
+
+                        if (confirm(name + '님의 ' + date + ' 날짜의 ' + type + '건강검진 예약을 정말 삭제하시겠습니까?')) {
+                            $('#hidden_data').val(appNo);
+                            $('#del_form_n').submit();
+                        }
+                    });
+
+                });
+
+            </script>
+
+            <!-- get이 아닌 post방식으로 삭제 해보기 -->
+            <form action="<%= contextPath %>/deleteCHN.admin" method="post" id="del_form_n">
+                <input type="hidden" name="app_no" id="hidden_data">
+            </form>
+
+
+
+
+
+
+
+
+            <% if (CthreeType == null) { %>
+                <%-- 기업 건강검진 예약 검색 이전 상태 (아무것도 없음) --%>
+
+
+            <% } else if (CthreeType == false) { %>
+                <%-- 기업 건강검진 예약을 검색했지만 결과가 없는 경우 --%>
+
+                <div class="search_result">기업건강검진 검색 결과</div> <br>
 
 
                 <table class="table table-striped search_result_table">
                     <tr>
                         <th>예약번호</th>
-                        <th>예약일</th>
+                        <th>검진일</th>
                         <th>예약시간</th>
                         <th>검진비용</th>
 
@@ -383,17 +409,16 @@ footer {
                     <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal_company">추가</button>
                 </div>    
 
-            <br><br>
 
+            <% } else if (CthreeType == true) { %>
+                <%-- 기업 건강검진 예약을 검색했는데 결과가 있는 경우 --%>
 
-            <!-- case4. '기업건강검진' 검색 결과가 있는 경우 -->
-            <div class="search_result">기업건강검진 검색 결과</div> <br>
-
+                <div class="search_result">기업건강검진 검색 결과</div> <br>
 
                 <table class="table table-striped search_result_table">
                     <tr>
                         <th>예약번호</th>
-                        <th>예약일</th>
+                        <th>검진일</th>
                         <th>예약시간</th>
                         <th>검진비용</th>
 
@@ -408,52 +433,47 @@ footer {
                         <th></th>
                     </tr>
 
-                    <tr>
-                        <td>1121</td>
-                        <td>20241012</td>
-                        <td>오후</td>
-                        <td>50000원</td>
+                    
+                    <% if(listC != null && !listC.isEmpty() ) {
+                        for(int i=0; i<listC.size(); i++) { 
+                    
+                            HealthCheck h = (HealthCheck) listC.get(i).get("h");
+                            Employee e = (Employee) listC.get(i).get("e");
+                            CheckList c = (CheckList) listC.get(i).get("c");
+                            String com = (String) listC.get(i).get("com");     %>
 
-                        <td>롯데리아</td>
-                        <td>20041011004</td>
-                        <td>하수빈</td>
+                        <tr>
+                            <td><%= h.getAppointmentNo() %></td>
+                            <td><%= h.getCheckUpDate() %></td>
+                            <td><%= h.getAppointmentTime() %></td>
+                            <td><%= h.getTotalPrice() %></td>
 
-                        <td>혈압약,항혈전제</td>
-                        <td>있음</td>
-                        <td>맹장수술</td>
-                        <td>없음</td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_modal">삭제</button>
-                        </td>
-                    </tr>
+                            <td><%= com %></td>
+                            <td><%= e.getEmpNo() %></td>
+                            <td><%= e.getEmpName() %></td>
 
-                    <tr></tr>
-                        <td>1132</td>
-                        <td>202411104</td>
-                        <td>오후</td>
-                        <td>50000원</td>
+                            <td><%= c.getMediList() %></td>
+                            <td><%= c.getSurgeryYN() %></td>
+                            <td><%= c.getSurgeryName() %></td>
+                            <td><%= c.getFlyYN() %></td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-danger del_button" data-app-no="<%= h.getAppointmentNo() %>"
+                                    data-date="<%= h.getCheckUpDate() %>" data-name="<%= e.getEmpName() %>" data-type="기업">삭제</button>
+                            </td>
+                        </tr>
 
-                        <td>맥도날드</td>
-                        <td>20100415007</td>
-                        <td>김맥날</td>
-
-                        <td>없음</td>
-                        <td>없음</td>
-                        <td>없음</td>
-                        <td>있음</td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete_modal">삭제</button>
-                        </td>
-                    </tr>
-
-
+                        <% }  
+                    } %>
                 </table>
 
                 <div class="add_btn">
                     <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#add_modal_company">추가</button>
                 </div>   
-            <br>
+            <% } %>
 
+
+
+ 
 
         </div>
     </div>
@@ -462,34 +482,8 @@ footer {
     <!-- section end -->
 
 
-        <!-- 삭제용 modal start -->
-  
-        <!-- The Modal -->
-        <div class="modal" id="delete_modal">
-            <div class="modal-dialog">
-            <div class="modal-content">
-        
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">건강검진 예약 삭제</h4>
-                </div>
-        
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form action="#" method="">
-                        <h6>예약번호 '401', 이름 '심수빈' 진료 예약을 정말 삭제하시겠습니까? </h6> <br>
-                        <div style="text-align: right;">
-                            <button type="submit" class="btn btn-sm btn-danger">삭제</button>
-                            <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">취소</button>
-                        </div>
-                    </form>
-                </div>
-        
-            </div>
-            </div>
-        </div>
 
-    <!-- 삭제용 modal end -->
+
 
 
 
