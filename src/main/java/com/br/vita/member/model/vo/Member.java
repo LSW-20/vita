@@ -21,17 +21,26 @@ public class Member {
 	 private String representative;
 	 private String doctorNo;
 	 private String deptName;
+	 private String careNo;
 	 
 
 	 
 	 public String getDoctorNo() {
 		return doctorNo;
 	}
+	 
+	 public String getCareNo() {
+		 return careNo;
+	 }
 
 
 
 	public void setDoctorNo(String doctorNo) {
 		this.doctorNo = doctorNo;
+	}
+	
+	public void setCareNo(String careNo) {
+		this.careNo = careNo;
 	}
 
 
@@ -173,13 +182,14 @@ public class Member {
 
 
 	// 첫방문 고객 예약 조회용 생성자 -준수
-	public Member(String userId, String userType, String phone, String userName, String userSSN) {
+	public Member(String userId, String userType, String phone, String userName, String userSSN,String careNo) {
 		super();
 		this.userId = userId;
 		this.userType = userType;
 		this.phone = phone;
 		this.userName = userName;
 		this.userSSN = userSSN;
+		this.careNo = careNo;
 	}
 	
 	

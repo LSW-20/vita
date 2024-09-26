@@ -130,12 +130,247 @@
         <% } else { %>
             <% for (Member m : doculist) { %>
                 <tr class="tr_click">
-                    <td><%= m.getUserNo() %></td>
-                    <td><%= m.getUserName() %></td>
-                    <td><%= m.getUserSSN() %></td>
-                    <td><%= m.getDeptName() %></td>
-                    <td><%= m.getPhone() %></td>
-                    <td><button class="btn btn-primary">보기</button></td>
+                    <td id="">
+                    	<%= m.getUserNo() %>
+                    	<input type="hidden" value ="<%= m.getCareNo() %>" id="care_no_data2">
+                    	<input type="hidden" value ="<%= m.getUserNo() %>" id="user_no_data2">
+                    </td>
+                    <td id=""><%= m.getUserName() %></td>
+                    <td id=""><%= m.getUserSSN() %></td>
+                    <td id=""><%= m.getDeptName() %></td>
+                    <td id=""><%= m.getPhone() %></td>
+                    <td>
+                    	<!-- <button class="btn btn-primary" onclick="fnfilesearch();">보기</button> -->
+                    	
+  <style>
+
+
+
+  .t_container{
+    border: 1px solid black;
+    width: 900px;
+    height: 1050px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .t_header{
+    border: 1px solid black;
+    width: 100%;
+    height: 70px;
+    text-align: center;
+    font-size: 30px;
+    padding-top: 10px;
+    background-color: lightgray;
+  }
+  .table_div{
+    margin-left: 70px;
+    margin-top: 20px;
+  }
+  #table_container_tb{
+    width: 760px;
+    height: 700px;
+    text-align: center;
+  }
+  .u_name{
+    height: 50px;
+    width: 140px;
+  }
+  .u_ssn{
+    width: 145px;
+  }
+  .u_addr{
+    height: 65px;
+  }
+  .symptoms{
+    height: 150px;
+  }
+
+  .doc_detail{
+    display: flex;
+    flex-direction: column;
+   
+    width: 760px;
+  }
+  .c_date{
+    text-align: right;
+  }
+  .side_detail{
+    display: flex;
+  }
+  .doc_num{
+    margin-left: 140px;
+  }
+  .doc_name{
+    text-align-last: right;
+  }
+  .opinion_date{
+    height: 80px;
+  }
+  .modal-content{
+    
+    width: 902px;
+    height: 1036px;
+    margin-top: 60px;
+    margin-left: -185px;
+  }
+  .modal-footer{
+  	margin-right: 73px;
+  }
+  #success_btn1_1{
+  	margin-right: 145px;
+  	
+  }
+
+  </style>
+  
+  	
+<div class="container">
+    <div class="btns_div">
+      <button id="btn1_1" class="btn btn-secondary" data-toggle="modal" data-target="#myModal2" onclick ="fnfilesearch2()">보기</button>
+    </div>
+    
+
+ <!-- The Modal -->
+ <div class="modal fade" id="myModal2">
+   <div class="modal-dialog">
+     <div class="modal-content" style="margin-top: 170px;">
+     
+   <style>
+        * {
+          box-sizing: border-box;
+        }
+      
+        .t_container{
+          border: 1px solid black;
+          width: 900px;
+          height: 1050px;
+          display: flex;
+          flex-direction: column;
+        }
+      
+        .t_header{
+          border: 1px solid black;
+          width: 100%;
+          height: 70px;
+          text-align: center;
+          font-size: 30px;
+          padding-top: 10px;
+          background-color: lightgray;
+        }
+        .table_div{
+          margin-left: 70px;
+          margin-top: 20px;
+        }
+        #table_container{
+          width: 760px;
+          height: 700px;
+          text-align: center;
+        }
+        .u_name{
+          height: 50px;
+          width: 140px;
+        }
+        .u_ssn{
+          width: 145px;
+        }
+        .u_addr{
+          height: 65px;
+        }
+        .symptoms{
+          height: 150px;
+        }
+      
+        .doc_detail{
+          display: flex;
+          flex-direction: column;
+         
+          width: 760px;
+        }
+        .c_date{
+          text-align: right;
+        }
+        .side_detail{
+          display: flex;
+        }
+        .doc_num{
+          margin-left: 140px;
+        }
+        .doc_name{
+          text-align-last: right;
+        }
+        .opinion_date{
+          height: 80px;
+        }
+      
+       
+      </style>  
+<div class="t_container">
+  <div class="t_header">
+    진&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;료&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;확
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서
+  </div>
+  <div class="table_div">
+    <table border="1" id="table_container">
+      <tr>
+        <td class="u_name"><b>환자의 성명</b></td>
+        <td><div>qweqwe</div></td>
+        <td class="u_ssn"><b>주민등록번호</b></td>
+        <td><div>wqeqwe</div></td>
+      </tr>
+      <tr>
+        <td class="u_addr"><b>환자의 주소</b></td>
+        <td colspan="3"><div>asdasdasdsa</div></td>
+      </tr>
+      <tr>
+        <td class="symptoms"><b>진단명</b></td>
+        <td colspan="3"><div>asdasd</div></td>
+      </tr>
+      <tr>
+        <td class="opinion"><b>치료내용</b></td>
+        <td colspan="3"><div>asdasdasd</div></td>
+      </tr>
+      
+    </table>
+
+    <div class="doc_detail">
+      <br>
+      [의료법] 제 17 조 및 같은 법 시행규칙 제9조1항에 따라 위와 같이 진단합니다.
+      <div class="c_date">2024 년 08월 30일</div>
+      <div>의료기관 명칭 : <b>VitaPrimus</b></div>
+      <br>
+      <div class="side_detail">
+        <div>주소 : 서울특별시 금천구 가산디지털2로 95 KM타워 3층 305호</div>
+        <div class="doc_num">[ ■ ] 의사  면허  12345  호</div>
+      </div>
+      <br>
+      <div class="doc_name">담당의 : <b>박시우</b></div>
+
+      
+      
+    </div>
+  </div>
+
+
+
+</div>
+
+
+
+
+</div>
+       
+       <!-- Modal footer -->
+       <div class="modal-footer">
+         <button type="button" class="btn btn-success" data-dismiss="modal" id="success_btn1_1" onclick="">승인</button>
+         <button type="button" class="btn btn-danger" data-dismiss="modal" id="success_btn2_2" onclick="">거절</button>
+       </div>
+       
+     </div>
+   </div>
+ </div>
+                    	
+                    </td>
                 </tr>
             <% } %>
         <% } %>
@@ -147,11 +382,11 @@
                 </table>
                 
               <nav aria-label="Page navigation example" id="pageBar">
-                  <ul class="pagination"style="margin-left: 88px;">
+                  <ul class="pagination" style="margin-left: 88px;">
                   
                   
                     <li class='page-item <%=pi.getCurrentPage() == 1 ? "disabled" : ""%>'>
-                      <a class="page-link" href='<%= contextPath %>/dia_list.do?page=<%=pi.getCurrentPage()-1%>&type=진료확인서'>
+                      <a class="page-link" href="<%= contextPath %>/dia_list.do?page=<%=pi.getCurrentPage()-1%>&type=진료확인서">
                         <span aria-hidden="true">&laquo;</span>
                       </a>
                     </li>
@@ -161,8 +396,6 @@
                     	<a href='<%= contextPath %>/dia_list.do?page=<%=p%>&type=진료확인서' class="page-link"><%= p %></a>
                     </li>
                     <%} %>
-                    
-                    
                     
                     <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
                       <a class="page-link" href='<%= contextPath %>/dia_list.do?page=<%=pi.getCurrentPage()+1 %>&type=진료확인서'>
@@ -174,13 +407,7 @@
                   </ul>
                 </nav>
                 
-                
-                
               </div>
-
-
-
-
 
             </div>
 
@@ -193,25 +420,44 @@
     
     <script>
     
-	
+  
 		$(document).ready(function() {
-		    $('#docuTable').on('click', '.tr_click', function() {
-		        
-		        let $userNo = $(this).find('td').eq(0).text(); // 병원등록번호
-		        let $userName = $(this).find('td').eq(1).text(); // 이름
-		        let $userSSN = $(this).find('td').eq(2).text(); // 주민등록번호
-		        let $deptName = $(this).find('td').eq(3).text(); // 진료과
-		        let $userPhone = $(this).find('td').eq(4).text(); // 전화번호
-		        
-		        // 해당 span에 값 설정
-		        $('#user_no_value').html($userNo);
-		        $('#user_ssn_value').html($userSSN);
-		        $('#user_phone_value').html($userPhone);
-		        $('#userName').html($userName); 
-		        $('#department').html($deptName); 
-		    });
-		});
+			  $(document).on('click', '#docuTable .tr_click', function() {
+			        let $userNo = $(this).find('td').eq(0).text(); // 병원등록번호
+			        let $userName = $(this).find('td').eq(1).text(); // 이름
+			        let $userSSN = $(this).find('td').eq(2).text(); // 주민등록번호
+			        let $deptName = $(this).find('td').eq(3).text(); // 진료과
+			        let $userPhone = $(this).find('td').eq(4).text(); // 전화번호
+			        
+			        // 해당 span에 값 설정
+			        $('#user_no_value').html($userNo);
+			        $('#user_ssn_value').html($userSSN);
+			        $('#user_phone_value').html($userPhone);
+			        $('#userName').html($userName); 
+			        $('#department').html($deptName); 
+			        
+			        console.log($('#docuTable').html());
+			});
+	});
 		
+	function fnfilesearch2(){
+			
+			$.ajax({
+				url:'<%= contextPath%>/diagnosis.se',
+				data: {
+					careNo: $('#care_no_data2').val(),
+					userNo: $('#user_no_data2').val(),
+					type: '진료확인서'
+				
+				},
+				success:function(res){
+					
+					
+				}
+			})
+			
+		}
+		 
 		
 		
 		

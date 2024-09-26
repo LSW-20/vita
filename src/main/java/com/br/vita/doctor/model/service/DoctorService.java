@@ -14,6 +14,7 @@ import com.br.vita.common.model.vo.PageInfo;
 import com.br.vita.doctor.model.dao.DoctorDao;
 import com.br.vita.doctor.model.vo.Doctor;
 import com.br.vita.doctor.model.vo.DoctorSchedule;
+import com.br.vita.issue.model.vo.Mrecords;
 import com.br.vita.member.model.vo.Member;
 
 public class DoctorService {
@@ -326,6 +327,20 @@ public class DoctorService {
 		close(conn);
 		
 		return list;
+	}
+	
+	
+	// 진료기록(진단서용) 조회
+	public Map<String,Object> diagnosisSelectFile(String userNo,String careNo,String type) {
+		
+		Connection conn = getConnection();
+
+		Map<String,Object> careMap = dDao.diagnosisSelectFile(conn,userNo,careNo,type);
+
+		close(conn);
+
+		return careMap;
+		
 	}
 	
 	

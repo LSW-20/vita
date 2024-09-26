@@ -40,6 +40,16 @@ public class Doctor {
 		this.licenceNo = licenceNo;
 		this.deptName = deptName;
 	}
+	
+	
+
+
+
+	public Doctor(String licenceNo,String doctorName) {
+		super();
+		this.licenceNo = licenceNo;
+		this.doctorName = doctorName;
+	}
 
 
 

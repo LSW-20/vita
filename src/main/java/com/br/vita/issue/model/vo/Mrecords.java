@@ -49,9 +49,19 @@ public class Mrecords {
 		this.deptName = deptName;
 		this.careNo=careNo;
 	}
-
-
 	
+	
+
+
+	public Mrecords(String symptoms, String opinion, String diagnosisName,
+			String treatmentContent,String deptName) {
+		super();
+		this.symptoms = symptoms;
+		this.opinion = opinion;
+		this.treatmentContent = treatmentContent;
+		this.diagnosisName = diagnosisName;
+		this.deptName = deptName;
+	}
 
 
 	public String getCareNo() {

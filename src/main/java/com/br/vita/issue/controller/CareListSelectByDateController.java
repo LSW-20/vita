@@ -13,6 +13,7 @@ import com.br.vita.issue.model.service.IssueService;
 import com.br.vita.issue.model.vo.Mrecords;
 import com.br.vita.member.model.vo.Member;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * Servlet implementation class CareListSelectByDateController
@@ -46,7 +47,12 @@ public class CareListSelectByDateController extends HttpServlet {
 		
 		response.setContentType("application/json; charset=UTF-8");
 		// Gson객체.toJson(응답할데이터(자바객체), 스트림객체);
-		new Gson().toJson(mr, response.getWriter());
+		
+		
+		new GsonBuilder().setDateFormat("YYYY년MM월DD일").create().toJson(mr, response.getWriter());
+		// GsonBuilder 객체를 이용해서 date 타입(형식)으로 
+		//받아온 데이터값을 원하는대로 형식을 새로 갖춰 담을 수 있음 
+		
 		
 		
 		

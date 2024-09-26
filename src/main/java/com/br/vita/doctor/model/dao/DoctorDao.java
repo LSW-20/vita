@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,6 +19,7 @@ import java.util.Properties;
 import com.br.vita.common.model.vo.PageInfo;
 import com.br.vita.doctor.model.vo.Doctor;
 import com.br.vita.doctor.model.vo.DoctorSchedule;
+import com.br.vita.issue.model.vo.Mrecords;
 import com.br.vita.member.model.vo.Member;
 
 public class DoctorDao {
@@ -724,6 +724,8 @@ public class DoctorDao {
 				docuMem.setPhone(rset.getString("USER_SSN"));
 				docuMem.setDeptName(rset.getString("DEPT_NAME"));
 				docuMem.setUserSSN(rset.getString("PHONE"));
+				docuMem.setCareNo(rset.getString("CARE_NO"));
+				
 				
 									
 				list.add(docuMem);
@@ -818,6 +820,71 @@ public class DoctorDao {
 		
 		
 		return list;
+	}
+	
+	
+	
+//    진료기록(진단서) 조회용
+	public Map<String,Object> diagnosisSelectFile(Connection conn,String userNo,String careNo,String type) {
+		
+		Map<String,Object> careMap = new HashMap<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("diagnosisSelectFile");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, careNo);
+			pstmt.setString(3, type);
+			
+			rset=pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Member mem = new Member();
+				Mrecords mrc = new Mrecords();
+				Doctor doc = new Doctor();
+				
+				mem.setUserName(rset.getString("USER_NAME"));
+				mem.setUserSSN(rset.getString("USER_SSN"));
+				mem.setAddress(rset.getString("ADDRESS"));
+				
+				mrc.setSymptoms(rset.getString("SYMPTOMS"));
+				mrc.setOpinion(rset.getString("OPINION"));
+				mrc.setDiagnosisName(rset.getString("DIAGNOSIS_NAME"));
+				mrc.setTreatmentContent(rset.getString("TREATMENT_CONTENT"));
+				mrc.setTreatmentDate(rset.getDate("TREATMENT_DATE"));
+				
+				doc.setLicenceNo(rset.getString("LICENCE_NO"));
+				doc.setDoctorName(rset.getString("DOCTOR_NAME"));
+			
+				
+				
+				careMap.put("Member", mem);
+				careMap.put("Mrecords", mrc);
+				careMap.put("Doctor", doc);
+				
+			}
+			
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return careMap;
+		
+		
+		
+		
 	}
 	
 	
