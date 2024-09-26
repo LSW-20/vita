@@ -362,11 +362,14 @@
       
     </div>
     
-     <!-- Modal footer -->
-       <div class="modal-footer">
-         <button type="button" class="btn btn-success" data-dismiss="modal" id="yes_btn2" onclick="fnYes2()">승인</button>
-         <button type="button" class="btn btn-danger" data-dismiss="modal" id="no_btn2" onclick="fnNo2()">거절</button>
-       </div>
+    <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" id="yes_btn2" onclick="fnYes2();"
+        	data-care-no="<%= m.getCareNo() %>" >승인</button>
+      	 
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="no_btn2" onclick="fnNo2();"
+         data-care-no="<%= m.getCareNo() %>" >거절</button>
+      </div>
        
   </div>
 
@@ -485,10 +488,77 @@
 		    });
 		}
 		
-	/* } */
-    
+		
+
+		function fnYes2(){
+			
+			if(confirm('승인하시겠습니까?')){
+				
+				 const careNo = $('#myModal2').find('#yes_btn2').data('careNo');
+					console.log(careNo);
+				 
+					$.ajax({
+						url: '<%= contextPath %>/dia_mt.up',
+						data:{
+							yes: 'Y',
+							careNo: careNo,
+							type: '진료확인서'
+						},
+						success:function(res){
+							
+							console.log(res);
+							
+							if(res > 0){
+								alert('해당 "진료확인서"를 성공적으로 승인하였습니다');
+								location.reload();
+							}else{
+								alert('승인오류');
+							}
+							
+							
+						}
+					})
+					
+			}
+			
+		}
+		
+		
+		
+		function fnNo2(){
+			
+			if(confirm('거절하시겠습니까?')){
+				
+				 const careNo = $('#myModal2').find('#no_btn2').data('careNo');
+					console.log(careNo);
+				 
+					$.ajax({
+						url: '<%= contextPath %>/dia_mt.up',
+						data:{
+							yes: 'N',
+							careNo: careNo,
+							type: '진료확인서'
+						},
+						success:function(res){
+							
+							console.log(res);
+							
+							if(res > 0){
+								alert('해당 "진료확인서"를 거절하였습니다');
+								location.reload();
+							}else{
+								alert('거절오류');
+							}
+							
+							
+						}
+					})
+					
+			}
+			
+		}
+		
 	
-	/* fnDocumentSel(); */
     
     
     </script>

@@ -205,8 +205,6 @@ public class Member {
 	
 	
 
-
-
 	public String getUserNo() {
 		return userNo;
 	}
