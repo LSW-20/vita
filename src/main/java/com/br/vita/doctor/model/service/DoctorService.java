@@ -365,6 +365,16 @@ public class DoctorService {
 		
 	}
 	
+	public void selectRes() {
+		Connection conn = getConnection();
+		 dDao.selectRes(conn);
+		 
+		 close(conn);
+		 
+		 
+		
+	}
+	
 	
 	
 	

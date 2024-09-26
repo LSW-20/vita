@@ -218,90 +218,41 @@
                     <div class="d_container">
                         <div id="doctor_img"><img src="/vita/assets/image/시우.jpg" alt="" style="width:100%; height:100%;"></div>
                         <div id="doctor_detail">
-                            <b>진료과   : 내과</b> <br><br>
-                            <b>담당교수 : 박시우</b>    
+                            <b>진료과   : <b></b></b> <br><br>
+                            <b>담당교수 : <b></b></b>    
                         </div>
                     </div>
                     <div id="userCount">
-                        총 예약인원 : 00명
+                        총 예약인원 : <b></b>
                     </div>
                 </div>
 
                 <div id="select_btnDiv">
-                    <div id="s_btn"><button class="btn btn-secondary" id="btn1">예약조회</button></div>
+                    <div id="s_btn"><button class="btn btn-secondary" id="btn1" onclick="fnSelectRes();">예약조회</button></div>
                 </div>
                 <div class="select_Div">
 
                     <div id="u_list_div">
                          <!-- for문 돌려서 동적으로 생성 -->
+										
+										
+										
+                        <div class="userList">
+                            <div class="user_detail_div">
+                                <span class="u_name"><b>홍길동</b></span><br>
+                                <span class="u_ssn">1990/05/19</span>
+                                <span class="u_time"><b>예약번호 : </b></span><br>
+                                <span class="u_no">병원등록번호:11111</span>
+                            </div>
+                        </div>
+                        
+                        
 
-                        <div class="userList">
-                            <div class="user_detail_div">
-                                <span class="u_name"><b>홍길동</b></span><br>
-                                <span class="u_ssn">1990.05.19 |35세|남</span>
-                                <span class="u_time"><b>오전 10:10</b><span><br>
-                                <span class="u_no">병원등록번호:11111</span>
-                            </div>
-                        </div>
+                   
+                        
+                     </div>
 
-                        <div class="userList">
-                            <div class="user_detail_div">
-                                <span class="u_name"><b>홍길동</b></span><br>
-                                <span class="u_ssn">1990.05.19 |35세|남</span>
-                                <span class="u_time"><b>오전 10:10</b><span><br>
-                                <span class="u_no">병원등록번호:11111</span>
-                            </div>
-                        </div>
-                        <div class="userList">
-                            <div class="user_detail_div">
-                                <span class="u_name"><b>홍길동</b></span><br>
-                                <span class="u_ssn">1990.05.19 |35세|남</span>
-                                <span class="u_time"><b>오전 10:10</b><span><br>
-                                <span class="u_no">병원등록번호:11111</span>
-                            </div>
-                        </div>
-                        <div class="userList">
-                            <div class="user_detail_div">
-                                <span class="u_name"><b>홍길동</b></span><br>
-                                <span class="u_ssn">1990.05.19 |35세|남</span>
-                                <span class="u_time"><b>오전 10:10</b><span><br>
-                                <span class="u_no">병원등록번호:11111</span>
-                            </div>
-                        </div>
-                        <div class="userList">
-                            <div class="user_detail_div">
-                                <span class="u_name"><b>홍길동</b></span><br>
-                                <span class="u_ssn">1990.05.19 |35세|남</span>
-                                <span class="u_time"><b>오전 10:10</b><span><br>
-                                <span class="u_no">병원등록번호:11111</span>
-                            </div>
-                        </div>
-                        <div class="userList">
-                            <div class="user_detail_div">
-                                <span class="u_name"><b>홍길동</b></span><br>
-                                <span class="u_ssn">1990.05.19 |35세|남</span>
-                                <span class="u_time"><b>오전 10:10</b><span><br>
-                                <span class="u_no">병원등록번호:11111</span>
-                            </div>
-                        </div>
-                        <div class="userList">
-                            <div class="user_detail_div">
-                                <span class="u_name"><b>홍길동</b></span><br>
-                                <span class="u_ssn">1990.05.19 |35세|남</span>
-                                <span class="u_time"><b>오전 10:10</b><span><br>
-                                <span class="u_no">병원등록번호:11111</span>
-                            </div>
-                        </div>
-                        <div class="userList">
-                            <div class="user_detail_div">
-                                <span class="u_name"><b>홍길동</b></span><br>
-                                <span class="u_ssn">1990.05.19 |35세|남</span>
-                                <span class="u_time"><b>오전 10:10</b><span><br>
-                                <span class="u_no">병원등록번호:11111</span>
-                            </div>
-                        </div>
-
-                    </div>
+                   </div>
                 </div>
             </div>
 
@@ -311,8 +262,8 @@
                 <div class="u_ssn_div">
                     <ul>
                         <li>주민번호 : <span>900808-1*****</span></li>
-                        <li>나이 : <span>35</span></li>
-                        <li>성별 : <span>남</span></li>
+                        <li>진료번호 : <span></span></li>
+                        <li>예약번호 : <span></span></li>
                         <li>전화번호 : <span>010-5555-5555</span></li>
                         <li>주소 : <span>경기도</span></li>  
                     </ul>
@@ -323,7 +274,7 @@
                         <ul>
                             <li class="care_type"><b>진료(진단서용)</b></li>
                             <li>환자 등록번호 입력 : <input type="text"></li>
-                            <li>진료날짜 입력 : <input type="date"></li>
+                            <li>환자 예약번호 입력 : <input type="text"></li>
                         </ul>
                     </div>
                     <div class="care_content">
@@ -372,6 +323,19 @@
     </section>
     
     <script>
+    
+    function fnSelectRes (){
+    	
+    	$.ajax({
+    		url: '<%= contextPath %>/listRes.se',
+    		success:function(){
+    			
+    		},
+    		
+    		
+    	})
+    }
+    
       
 
 

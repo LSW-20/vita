@@ -915,25 +915,14 @@ public class DoctorDao {
 		return result;
 			
 		
-			
-			
-			
-			
-
-			
-			
-		
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	}
+	
+	public void selectRes(Connection conn) {
+		
+	}
+	
+	
+	
 	
 }
