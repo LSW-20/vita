@@ -378,7 +378,7 @@
 								
 								for(let i=0; i<res.length; i++){
 									
-									careList += '<option value="'+ res[i].careNo + '">'+ res[i].treatmentDate + '일'+'</option>'
+									careList += '<option value="'+ res[i].careNo + '">'+ res[i].treatmentDate +'</option>'
 														console.log(careList);
 								}
 								careList	+= '</select>'

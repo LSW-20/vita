@@ -17,6 +17,7 @@
 		<% 
 				PageInfo pi = (PageInfo)request.getAttribute("pi");
 				List<Member> doculist = (List<Member>)request.getAttribute("doculist");
+				
 		%>
 
 </head>
@@ -130,13 +131,174 @@
         <% } else { %>
             <% for (Member m : doculist) { %>
                 <tr class="tr_click">
-                    <td id=""><%= m.getUserNo() %></td>
+                    <td id="">
+                    	<%= m.getUserNo() %>
+                    	<input type="hidden" value ="<%= m.getCareNo() %>" id="care_no_data1">
+                    	<input type="hidden" value ="<%= m.getUserNo() %>" id="user_no_data1">
+                    </td>
                     <td id=""><%= m.getUserName() %></td>
                     <td id=""><%= m.getUserSSN() %></td>
                     <td id=""><%= m.getDeptName() %></td>
                     <td id=""><%= m.getPhone() %></td>
                     <td>
-                    	<button class="btn btn-primary" onclick="fnfilesearch();">보기</button>
+                    	<!-- <button class="btn btn-primary" onclick="fnfilesearch();">보기</button> -->
+                    	
+  <style>
+
+
+
+  .t_container{
+    border: 1px solid black;
+    width: 900px;
+    height: 1050px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .t_header{
+    border: 1px solid black;
+    width: 100%;
+    height: 70px;
+    text-align: center;
+    font-size: 30px;
+    padding-top: 10px;
+    background-color: lightgray;
+  }
+  .table_div{
+    margin-left: 70px;
+    margin-top: 20px;
+  }
+  #table_container_tb{
+    width: 760px;
+    height: 700px;
+    text-align: center;
+  }
+  .u_name{
+    height: 50px;
+    width: 140px;
+  }
+  .u_ssn{
+    width: 145px;
+  }
+  .u_addr{
+    height: 65px;
+  }
+  .symptoms{
+    height: 150px;
+  }
+
+  .doc_detail{
+    display: flex;
+    flex-direction: column;
+   
+    width: 760px;
+  }
+  .c_date{
+    text-align: right;
+  }
+  .side_detail{
+    display: flex;
+  }
+  .doc_num{
+    margin-left: 140px;
+  }
+  .doc_name{
+    text-align-last: right;
+  }
+  .opinion_date{
+    height: 80px;
+  }
+  .modal-content{
+    
+    width: 902px;
+    height: 1036px;
+    margin-top: 60px;
+    margin-left: -185px;
+  }
+  .modal-footer{
+  	margin-right: 73px;
+  }
+  #success_btn1{
+  	margin-right: 145px;
+  	
+  }
+
+  </style>
+  
+  	
+<div class="container">
+    <div class="btns_div">
+      <button id="btn1_1" class="btn btn-secondary" data-toggle="modal" data-target="#myModal1" onclick="fnfilesearch1();">보기</button>
+    </div>
+    
+
+ <!-- The Modal -->
+ <div class="modal fade" id="myModal1">
+   <div class="modal-dialog">
+     <div class="modal-content" style="margin-top: 170px;">
+     
+        
+<div class="t_container">
+  <div class="t_header">진&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;단&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서</div>
+  <div class="table_div">
+    <table border="1" id="table_container_tb">
+      <tr>
+        <td class="u_name"><b>환자의 성명</b></td>
+        <td id="userName_result">qweqwe</td>
+   
+        <td class="u_ssn"><b>주민등록번호</b></td>
+        <td id="userSSN_result">wqeqwe</td>
+      </tr>
+      
+      <tr>
+        <td class="u_addr"><b>환자의 주소</b></td>
+        <td colspan="3" id="userAddress_result">asdasdasdsa</td>
+      </tr>
+      <tr>
+      
+        <td class="symptoms"><b>증상</b></td>
+        <td colspan="3" id="syptoms_result">asdasdasdasd</td>
+      </tr>
+      
+      <tr>
+        <td class="opinion"><b>진단 및 소견</b></td>
+        <td colspan="3" id="opinion_result">asdasdasdas</td>
+      </tr>
+      
+    </table>
+
+    <div class="doc_detail" style="text-align: left;">
+      <br>
+      [의료법] 제 17 조 및 같은 법 시행규칙 제9조1항에 따라 위와 같이 진단합니다.
+      
+      <div style="margin-top: 20px;">의료기관 명칭 : <b>VitaPrimus</b> <b class="c_date" id="treatmentDate_result" style="margin-left: 434px;"></b></div>
+      <br>
+      <div class="side_detail">
+        <div>주소 : 서울특별시 금천구 가산디지털2로 95 KM타워 3층 305호</div>
+        <div class="doc_num">[ ■ ] 의사  면허 <b id="doc_licence"></b> 호</div>
+      </div>
+      <br>
+      <div class="doc_name">담당의 : <b id="docName_result"></b></div>
+
+      
+      
+    </div>
+  </div>
+
+</div>
+
+       </div>
+       
+       <!-- Modal footer -->
+       <div class="modal-footer">
+         <button type="button" class="btn btn-success" data-dismiss="modal" id="success_btn1" onclick="">승인</button>
+         <button type="button" class="btn btn-danger" data-dismiss="modal" id="success_btn2" onclick="">거절</button>
+       </div>
+       
+     </div>
+   </div>
+ </div>
+                    	
                     </td>
                 </tr>
             <% } %>
@@ -164,8 +326,6 @@
                     </li>
                     <%} %>
                     
-                    
-                    
                     <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
                       <a class="page-link" href='<%= contextPath %>/dia_list.do?page=<%=pi.getCurrentPage()+1 %>&type=진단서'>
                         <span aria-hidden="true">&raquo;</span>
@@ -191,37 +351,59 @@
     
   
 		$(document).ready(function() {
-		    $('#docuTable').on('click', '.tr_click', function() {
-		        
-		        let $userNo = $(this).find('td').eq(0).text(); // 병원등록번호
-		        let $userName = $(this).find('td').eq(1).text(); // 이름
-		        let $userSSN = $(this).find('td').eq(2).text(); // 주민등록번호
-		        let $deptName = $(this).find('td').eq(3).text(); // 진료과
-		        let $userPhone = $(this).find('td').eq(4).text(); // 전화번호
-		        
-		        // 해당 span에 값 설정
-		        $('#user_no_value').html($userNo);
-		        $('#user_ssn_value').html($userSSN);
-		        $('#user_phone_value').html($userPhone);
-		        $('#userName').html($userName); 
-		        $('#department').html($deptName); 
-		    });
-		});
+			  $(document).on('click', '#docuTable .tr_click', function() {
+			        let $userNo = $(this).find('td').eq(0).text(); // 병원등록번호
+			        let $userName = $(this).find('td').eq(1).text(); // 이름
+			        let $userSSN = $(this).find('td').eq(2).text(); // 주민등록번호
+			        let $deptName = $(this).find('td').eq(3).text(); // 진료과
+			        let $userPhone = $(this).find('td').eq(4).text(); // 전화번호
+			        
+			        // 해당 span에 값 설정
+			        $('#user_no_value').html($userNo);
+			        $('#user_ssn_value').html($userSSN);
+			        $('#user_phone_value').html($userPhone);
+			        $('#userName').html($userName); 
+			        $('#department').html($deptName); 
+			        
+			        console.log($('#docuTable').html());
+			});
+	});
 		
-		function fnfilesearch(){
+		
+		
+		function fnfilesearch1(){
 			
 			$.ajax({
-				url:'<%= contextPath%>/m_records.me',
-				data:{
-					userNo: 
+				url:'<%= contextPath %>/diagnosis.se',
+				data: {
+					careNo: $('#care_no_data1').val(),
+					userNo: $('#user_no_data1').val(),
+					type:'진단서'
+				
 				},
 				success:function(res){
+						console.log(res);  // {Doctor:{}, Member:{}, ..}
+						
+						let doc = res.Doctor;
+						let mem = res.Member; // {phone:이름, ..}
+						let mrc = res.Mrecords;
 					
+						
+							
+						$('#userName_result').text(mem.userName)
+						$('#userSSN_result').text(mem.userSSN)
+						$('#userAddress_result').text(mem.address)
+						$('#syptoms_result').text(mrc.symptoms)
+						$('#opinion_result').text(mrc.opinion)
+						$('#treatmentDate_result').text(mrc.treatmentDate)
+						$('#doc_licence').text(doc.licenceNo)
+						$('#docName_result').text(doc.doctorName)
+							
 				}
 			})
 			
 		}
-		
+		 
 		
 		
 		
