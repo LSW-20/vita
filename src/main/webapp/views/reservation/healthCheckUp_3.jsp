@@ -236,6 +236,7 @@
     </div>
     </form>
 				<script>
+				    		let isButtonn = false;
 			
 						
 				    function updateDate() {
@@ -258,6 +259,7 @@
 				    }
 				    
 				    function confirmSelection() {
+				    	
 				        const year = document.getElementById('year').value;
 				        const month = document.getElementById('month').value;
 				        const daySelect = document.getElementById('day').value;
@@ -285,9 +287,10 @@
 				        // 선택된 날짜와 시간 표시
 				        document.getElementById('wantday').querySelector('b').innerHTML = selectedDate;
 				        document.getElementById('wanttime').querySelector('b').innerHTML = selectedTime;
-
+				        isButtonn = true;
+				        
 				        return true; // 성공적으로 선택되었음을 알림
-				        document.querySelectorAll('.btn-outline-primary').forEach(button => button.classList.remove('active'));
+				     
 				    }
 
 				        document.querySelectorAll('.btn-outline-primary').forEach(button => {
@@ -307,6 +310,8 @@
 
 
     const requestPayment = async () => {
+    	
+    	
 				const isChecked1 = document.getElementById('customCheck1').checked; // 첫 번째 동의 라디오 버튼
         const isChecked2 = document.getElementById('customCheck2').checked; // 두 번째 동의 라디오 버튼
 
@@ -345,22 +350,33 @@
         });
     };
 		
-		    // 결제 버튼에 클릭 이벤트 리스너 추가
-		    document.addEventListener("DOMContentLoaded", function() {
-		        const button = document.querySelector('button[name="payment"]');
-		        if (button) {
-		            button.addEventListener("click", requestPayment);
-		        }
-		    });
-		    
+		 
 		    document.addEventListener("DOMContentLoaded", function() {
 		        const paymentButton = document.querySelector('button[name="pay"]'); // 결제 버튼
+
 		        if (paymentButton) {
-		            paymentButton.addEventListener("click", function() {
+		            paymentButton.addEventListener("click", function(event) {
+		             		
+		            		// 희망검진일 및 내원시간 선택 확인
+		                const year = document.getElementById('year').value; // 연도
+		                const month = document.getElementById('month').value; // 월
+		                const daySelect = document.getElementById('day').value; // 일
+		                const selectedTime = document.querySelector('.btn-outline-primary.active h3')?.innerText; // 내원 시간
+		                // 모든 값이 선택되지 않았는지 확인
+		                if (!year || !month || !daySelect || !selectedTime || !isButtonn) {
+		                    alert('희망검진일 또는 내원시간을 선택해주세요');
+		                    event.stopPropagation(); // 링크 이동 방지
+		                    return ; 
+		                }
+		                // 결제 완료 상태 체크
 		                if (isPaymentCompleted) {
 		                    alert('이미 결제가 완료되었습니다.'); // 이미 결제된 경우 알림
-		                    event.stopPropagation();
+		                    event.stopPropagation(); // 이벤트 전파 중단
+		                    return; // 결제 진행 중단
 		                }
+		               
+		                // 결제 요청
+		                requestPayment(); // 검증이 완료된 경우 결제 요청
 		            });
 		        }
 		    });
@@ -503,7 +519,8 @@
 
         
         <div align="center">
-          <a href="/vita/views/reservation/healthCheckUp_Success.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;" onclick="validateAndProceed()">예약 신청하기</a>
+        
+          <a href="/vita/views/reservation/healthCheckUp_Success.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;" onclick="return validateAndProceed(event)">예약 신청하기</a>
           <a href="/vita/views/reservation/healthCheckUp_2.jsp" class="btn btn-light border-2 border-dark"  style="width: 150px; margin-left:30px;">이전</a>
         </div>
 
@@ -511,16 +528,38 @@
 
 				<script>
 					
-						    function validateAndProceed() {
-							    		const isChecked1 = document.getElementById('checkAgree').checked; 
-							     
-						    	    if (!isChecked1) {
-						    	        alert("모든 동의 항목을 체크해주세요.");
-						    	        return false; // 폼 제출 방지
-						    	    }
-						        
-						   
-						    }
+							function validateAndProceed(event) {
+							    const checkedAgree = document.getElementById('checkAgree').checked; 
+							    const isPaymentCompleted = window.isPaymentCompleted; // 결제 완료 상태 확인
+			
+							    // 모든 항목 체크
+							    const year = document.getElementById('year').value; // 연도
+							    const month = document.getElementById('month').value; // 월
+							    const daySelect = document.getElementById('day').value; // 일
+							    const selectedTime = document.querySelector('.btn-outline-primary.active h3')?.innerText; // 내원 시간
+			
+							    if (!year || !month || !daySelect || !selectedTime) {
+							        alert('희망검진일 또는 내원시간을 선택해주세요');
+							        event.preventDefault(); // 링크 이동 방지
+							        return false; 
+							    }
+			
+							    if (!checkedAgree) {
+							        alert("검진 관련 주의사항 안내 및 체크사항을 확인하였습니다. (필수)");
+							        event.preventDefault(); // 링크 이동 방지
+							        return false; 
+							    }
+							    
+							    if (!isPaymentCompleted) {
+							        alert('결제를 해주세요'); 
+							        event.preventDefault(); // 링크 이동 방지
+							        return false; 
+							    }
+			
+							    // 모든 조건이 충족되면 true를 반환하여 링크 이동
+							    return true; 
+							}
+ 
 						</script>
 
 
@@ -528,15 +567,6 @@
         
   </section>
 		
-
-
-
-
-
-
-
-
-
 
 
 
