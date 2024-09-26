@@ -133,8 +133,8 @@
                 <tr class="tr_click">
                     <td id="">
                     	<%= m.getUserNo() %>
-                    	<input type="hidden" value ="<%= m.getCareNo() %>" id="care_no_data1">
-                    	<input type="hidden" value ="<%= m.getUserNo() %>" id="user_no_data1">
+                    	<input type="hidden" value ="<%= m.getCareNo() %>" class="care_no_data1">
+                    	<input type="hidden" value ="<%= m.getUserNo() %>" class="user_no_data1">
                     </td>
                     <td id=""><%= m.getUserName() %></td>
                     <td id=""><%= m.getUserSSN() %></td>
@@ -216,9 +216,12 @@
     margin-left: -185px;
   }
   .modal-footer{
-  	margin-right: 73px;
+  	
+  	margin-top: -16px;
+    border: none;
+    margin-right: 300px;
   }
-  #success_btn1{
+  #yes_btn1{
   	margin-right: 145px;
   	
   }
@@ -228,7 +231,12 @@
   	
 <div class="container">
     <div class="btns_div">
-      <button id="btn1_1" class="btn btn-secondary" data-toggle="modal" data-target="#myModal1" onclick="fnfilesearch1();">보기</button>
+      <button id="btn1_1" class="btn btn-secondary" 
+        data-toggle="modal" 
+        data-target="#myModal1" 
+        data-care-no="<%= m.getCareNo() %>" 
+        data-user-no="<%= m.getUserNo() %>" 
+        onclick="fnfilesearch1(this);">보기</button>
     </div>
     
 
@@ -283,17 +291,24 @@
       
       
     </div>
+    
+    <!-- Modal footer -->
+       <div class="modal-footer">
+         <button type="button" class="btn btn-success" data-dismiss="modal" id="yes_btn1" onclick="fnYes()">승인</button>
+         <button type="button" class="btn btn-danger" data-dismiss="modal" id="no_btn1" onclick="fnNo()">거절</button>
+       </div>
   </div>
+  
 
 </div>
 
-       </div>
+
+ 
+ </div>
+ 
+ 
        
-       <!-- Modal footer -->
-       <div class="modal-footer">
-         <button type="button" class="btn btn-success" data-dismiss="modal" id="success_btn1" onclick="">승인</button>
-         <button type="button" class="btn btn-danger" data-dismiss="modal" id="success_btn2" onclick="">거절</button>
-       </div>
+      
        
      </div>
    </div>
@@ -352,6 +367,7 @@
   
 		$(document).ready(function() {
 			  $(document).on('click', '#docuTable .tr_click', function() {
+				  
 			        let $userNo = $(this).find('td').eq(0).text(); // 병원등록번호
 			        let $userName = $(this).find('td').eq(1).text(); // 이름
 			        let $userSSN = $(this).find('td').eq(2).text(); // 주민등록번호
@@ -365,52 +381,62 @@
 			        $('#userName').html($userName); 
 			        $('#department').html($deptName); 
 			        
-			        console.log($('#docuTable').html());
+			        
 			});
 	});
 		
 		
 		
-		function fnfilesearch1(){
+		function fnfilesearch1(button) {
+		    const careNo = $(button).data('care-no');
+		    const userNo = $(button).data('user-no');
+
+		    $.ajax({
+		        url: '<%= contextPath %>/diagnosis.se',
+		        data: {
+		            careNo: careNo,
+		            userNo: userNo,
+		            type: '진단서'
+		        },
+		        success: function(res) {
+		            console.log(res);  // {Doctor:{}, Member:{}, ..}
+
+		            let doc = res.Doctor;
+		            let mem = res.Member; // {phone:이름, ..}
+		            let mrc = res.Mrecords;
+
+		            $('#userName_result').text(mem.userName);
+		            $('#userSSN_result').text(mem.userSSN);
+		            $('#userAddress_result').text(mem.address);
+		            $('#syptoms_result').text(mrc.symptoms);
+		            $('#opinion_result').text(mrc.opinion);
+		            $('#treatmentDate_result').text(mrc.treatmentDate);
+		            $('#doc_licence').text(doc.licenceNo);
+		            $('#docName_result').text(doc.doctorName);
+		        }
+		    });
+		}
+		
+		
+		
+		function fnYes(){
 			
 			$.ajax({
-				url:'<%= contextPath %>/diagnosis.se',
-				data: {
-					careNo: $('#care_no_data1').val(),
-					userNo: $('#user_no_data1').val(),
-					type:'진단서'
-				
-				},
-				success:function(res){
-						console.log(res);  // {Doctor:{}, Member:{}, ..}
-						
-						let doc = res.Doctor;
-						let mem = res.Member; // {phone:이름, ..}
-						let mrc = res.Mrecords;
+				url: '<%= contextPath %>/dia_mt.up',
+				data:{
 					
-						
-							
-						$('#userName_result').text(mem.userName)
-						$('#userSSN_result').text(mem.userSSN)
-						$('#userAddress_result').text(mem.address)
-						$('#syptoms_result').text(mrc.symptoms)
-						$('#opinion_result').text(mrc.opinion)
-						$('#treatmentDate_result').text(mrc.treatmentDate)
-						$('#doc_licence').text(doc.licenceNo)
-						$('#docName_result').text(doc.doctorName)
-							
+				},
+				success:function(){
+					
 				}
 			})
 			
+			
+			
+			
 		}
-		 
 		
-		
-		
-	/* } */
-    
 	
-	/* fnDocumentSel(); */
     
     
     </script>

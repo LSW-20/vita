@@ -17,6 +17,7 @@
 		<% 
 				PageInfo pi = (PageInfo)request.getAttribute("pi");
 				List<Member> doculist = (List<Member>)request.getAttribute("doculist");
+				
 		%>
 
 </head>
@@ -132,8 +133,8 @@
                 <tr class="tr_click">
                     <td id="">
                     	<%= m.getUserNo() %>
-                    	<input type="hidden" value ="<%= m.getCareNo() %>" id="care_no_data2">
-                    	<input type="hidden" value ="<%= m.getUserNo() %>" id="user_no_data2">
+                    	<input type="hidden" value ="<%= m.getCareNo() %>" class="care_no_data1">
+                    	<input type="hidden" value ="<%= m.getUserNo() %>" class="user_no_data1">
                     </td>
                     <td id=""><%= m.getUserName() %></td>
                     <td id=""><%= m.getUserSSN() %></td>
@@ -215,19 +216,28 @@
     margin-left: -185px;
   }
   .modal-footer{
-  	margin-right: 73px;
+  	margin-top: -16px;
+    border: none;
+    margin-right: 300px;
   }
-  #success_btn1_1{
+  #yes_btn2{
   	margin-right: 145px;
   	
   }
+
+
 
   </style>
   
   	
 <div class="container">
     <div class="btns_div">
-      <button id="btn1_1" class="btn btn-secondary" data-toggle="modal" data-target="#myModal2" onclick ="fnfilesearch2()">보기</button>
+      <button id="btn1_1" class="btn btn-secondary" 
+        data-toggle="modal" 
+        data-target="#myModal2" 
+        data-care-no2="<%= m.getCareNo() %>" 
+        data-user-no2="<%= m.getUserNo() %>" 
+        onclick="fnfilesearch2(this);">보기</button>
     </div>
     
 
@@ -236,7 +246,7 @@
    <div class="modal-dialog">
      <div class="modal-content" style="margin-top: 170px;">
      
-   <style>
+    <style>
         * {
           box-sizing: border-box;
         }
@@ -314,58 +324,60 @@
     <table border="1" id="table_container">
       <tr>
         <td class="u_name"><b>환자의 성명</b></td>
-        <td><div>qweqwe</div></td>
+        <td id="userName_result2">qweqwe</td>
+   
         <td class="u_ssn"><b>주민등록번호</b></td>
-        <td><div>wqeqwe</div></td>
+        <td id="userSSN_result2">wqeqwe</td>
       </tr>
+      
       <tr>
         <td class="u_addr"><b>환자의 주소</b></td>
-        <td colspan="3"><div>asdasdasdsa</div></td>
+        <td colspan="3" id="userAddress_result2">asdasdasdsa</td>
       </tr>
       <tr>
         <td class="symptoms"><b>진단명</b></td>
-        <td colspan="3"><div>asdasd</div></td>
+        <td colspan="3" id="diagnosisName_result2">asdasd</td>
       </tr>
       <tr>
         <td class="opinion"><b>치료내용</b></td>
-        <td colspan="3"><div>asdasdasd</div></td>
+        <td colspan="3" id="treatmentContent_result2">asdasdasd</td>
       </tr>
       
     </table>
 
-    <div class="doc_detail">
+  <div class="doc_detail" style="text-align: left;">
       <br>
       [의료법] 제 17 조 및 같은 법 시행규칙 제9조1항에 따라 위와 같이 진단합니다.
-      <div class="c_date">2024 년 08월 30일</div>
-      <div>의료기관 명칭 : <b>VitaPrimus</b></div>
+      
+      <div style="margin-top: 20px;">의료기관 명칭 : <b>VitaPrimus</b> <b class="c_date" id="treatmentDate_result2" style="margin-left: 434px;"></b></div>
       <br>
       <div class="side_detail">
         <div>주소 : 서울특별시 금천구 가산디지털2로 95 KM타워 3층 305호</div>
-        <div class="doc_num">[ ■ ] 의사  면허  12345  호</div>
+        <div class="doc_num">[ ■ ] 의사  면허 <b id="doc_licence2"></b> 호</div>
       </div>
       <br>
-      <div class="doc_name">담당의 : <b>박시우</b></div>
+      <div class="doc_name">담당의 : <b id="docName_result2"></b></div>
 
       
       
     </div>
+    
+     <!-- Modal footer -->
+       <div class="modal-footer">
+         <button type="button" class="btn btn-success" data-dismiss="modal" id="yes_btn2" onclick="fnYes2()">승인</button>
+         <button type="button" class="btn btn-danger" data-dismiss="modal" id="no_btn2" onclick="fnNo2()">거절</button>
+       </div>
+       
   </div>
 
 
 
 </div>
 
-
-
-
-</div>
+  
+  </div>
        
-       <!-- Modal footer -->
-       <div class="modal-footer">
-         <button type="button" class="btn btn-success" data-dismiss="modal" id="success_btn1_1" onclick="">승인</button>
-         <button type="button" class="btn btn-danger" data-dismiss="modal" id="success_btn2_2" onclick="">거절</button>
-       </div>
-       
+      
      </div>
    </div>
  </div>
@@ -423,6 +435,7 @@
   
 		$(document).ready(function() {
 			  $(document).on('click', '#docuTable .tr_click', function() {
+				  
 			        let $userNo = $(this).find('td').eq(0).text(); // 병원등록번호
 			        let $userName = $(this).find('td').eq(1).text(); // 이름
 			        let $userSSN = $(this).find('td').eq(2).text(); // 주민등록번호
@@ -436,30 +449,41 @@
 			        $('#userName').html($userName); 
 			        $('#department').html($deptName); 
 			        
-			        console.log($('#docuTable').html());
+			       
 			});
 	});
 		
-	function fnfilesearch2(){
-			
-			$.ajax({
-				url:'<%= contextPath%>/diagnosis.se',
-				data: {
-					careNo: $('#care_no_data2').val(),
-					userNo: $('#user_no_data2').val(),
-					type: '진료확인서'
-				
-				},
-				success:function(res){
-					
-					
-				}
-			})
-			
+		
+		
+		function fnfilesearch2(button) {
+		    const careNo = $(button).data('care-no2');
+		    const userNo = $(button).data('user-no2');
+
+		    $.ajax({
+		        url: '<%= contextPath %>/diagnosis.se',
+		        data: {
+		            careNo: careNo,
+		            userNo: userNo,
+		            type: '진료확인서'
+		        },
+		        success: function(res) {
+		            console.log(res);  
+
+		            let doc = res.Doctor;
+		            let mem = res.Member; 
+		            let mrc = res.Mrecords;
+
+		            $('#userName_result2').text(mem.userName);
+		            $('#userSSN_result2').text(mem.userSSN);
+		            $('#userAddress_result2').text(mem.address);
+		            $('#diagnosisName_result2').text(mrc.diagnosisName);
+		            $('#treatmentContent_result2').text(mrc.treatmentContent);
+		            $('#treatmentDate_result2').text(mrc.treatmentDate);
+		            $('#doc_licence2').text(doc.licenceNo);
+		            $('#docName_result2').text(doc.doctorName);
+		        }
+		    });
 		}
-		 
-		
-		
 		
 	/* } */
     

@@ -44,6 +44,8 @@ public class DiagnosisFileSelectController extends HttpServlet {
 		response.setContentType("application/json; charset=UTF-8");
 		
 		//new Gson().toJson(careMap, response.getWriter());
+		
+		
 		new GsonBuilder().setDateFormat("YYYY년MM월DD일").create().toJson(careMap, response.getWriter());
 		
 		
