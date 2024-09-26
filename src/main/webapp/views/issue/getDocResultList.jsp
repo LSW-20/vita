@@ -65,7 +65,13 @@
 	        <tr>
 	          <td><%=d.getDocType() %></td>
 	          <td><%=d.getApplyDate() %>&nbsp;(진료과: <%=d.getDeptName() %> | 담당의: <%=d.getDoctorName() %>)</td>
-	          <td><button>발급</button></td>
+	          <td>
+	            <form action="<%=request.getContextPath() %>/pdfGenerate.cr" method="get">
+	              <input type="hidden" name="careNo" value="<%= d.getCareNo() %>">
+	              <input type="hidden" name="docType" value="<%= d.getDocType() %>">
+	              <button type="submit">발급</button>	   
+	            </form>       
+						</td>
 	        </tr>
 	      <%} %>
 	    <%} %>
