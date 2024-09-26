@@ -262,6 +262,14 @@
 
 
 
+	<!-- (상우) 기업 건강검진 예약 삭제 -->
+	<entry key="deleteCheckupApp">
+		DELETE
+		  FROM  
+		  			CHECKUP_APP
+		 WHERE  
+		 				APPOINTMENT_NO = ?
+	</entry>
 
 
 

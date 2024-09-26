@@ -348,9 +348,15 @@ footer {
                         var name = this.getAttribute('data-name');
                         var appNo = this.getAttribute('data-app-no');
                         var type = this.getAttribute('data-type');
+                        var com = this.getAttribute('data-com');
+                        if(com == null) {
+                            com = ''; // com이 없으면 빈문자열
+                        } else {
+                            com += ' '; // com이 있으면 뒤에 한칸 띄기
+                        }
+                        
 
-
-                        if (confirm(name + '님의 ' + date + ' 날짜의 ' + type + '건강검진 예약을 정말 삭제하시겠습니까?')) {
+                        if (confirm(com + name + '님의 ' + date + ' 날짜의 ' + type + '건강검진 예약을 정말 삭제하시겠습니까?')) {
                             $('#hidden_data').val(appNo);
                             $('#del_form_n').submit();
                         }
@@ -361,7 +367,7 @@ footer {
             </script>
 
             <!-- get이 아닌 post방식으로 삭제 해보기 -->
-            <form action="<%= contextPath %>/deleteCHN.admin" method="post" id="del_form_n">
+            <form action="<%= contextPath %>/deleteCH.admin" method="post" id="del_form_n">
                 <input type="hidden" name="app_no" id="hidden_data">
             </form>
 
@@ -457,8 +463,9 @@ footer {
                             <td><%= c.getSurgeryName() %></td>
                             <td><%= c.getFlyYN() %></td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-danger del_button" data-app-no="<%= h.getAppointmentNo() %>"
-                                    data-date="<%= h.getCheckUpDate() %>" data-name="<%= e.getEmpName() %>" data-type="기업">삭제</button>
+                                <button type="button" class="btn btn-sm btn-danger del_button" 
+                                data-app-no="<%= h.getAppointmentNo() %>" data-date="<%= h.getCheckUpDate() %>" 
+                                data-name="<%= e.getEmpName() %>" data-type="기업" data-com="<%= com %>">삭제</button>
                             </td>
                         </tr>
 
