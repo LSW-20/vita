@@ -37,6 +37,8 @@ public class YesNoUpdateByDiagnosisController extends HttpServlet {
 		
 		int result = new DoctorService().yesNoUpdateByDiagnosis(yes,careNo,type);
 		
+
+		
 		response.setContentType("text/html; charset=UTF-8");
 		new Gson().toJson(result, response.getWriter());
 		

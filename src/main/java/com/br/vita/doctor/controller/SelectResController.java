@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.br.vita.doctor.model.service.DoctorService;
+import com.br.vita.member.model.vo.Member;
 import com.google.gson.Gson;
 
 @WebServlet("/listRes.se")
@@ -21,11 +22,14 @@ public class SelectResController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
-        List<Map<String, Object>> relist = new DoctorService().selectRes();
+    	String docNo = ((Member)request.getSession().getAttribute("loginUser")).getDoctorNo();
+    	
+        List<Map<String, Object>> relist = new DoctorService().selectRes(docNo);
 
         // 변환된 결과 리스트
         for (Map<String, Object> map : relist) {
             String originalDate = (String) map.get("userDate"); // "801010" 형식의 데이터
+            
             if (originalDate != null && originalDate.length() == 6) {
                 String formattedDate = formatDate(originalDate);
                 map.put("userDate", formattedDate); // 변환된 데이터로 교체

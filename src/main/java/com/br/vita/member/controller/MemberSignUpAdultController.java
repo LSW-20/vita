@@ -49,7 +49,7 @@ public class MemberSignUpAdultController extends HttpServlet {
 	
 		Member m = new Member(userId, userPwd, userName, phone, email, address, userSSN, callbackYN, userDate, gender);
 		
-		
+		System.out.println("가져온값 : " + m);
 		
 		// 서비스 호출 (쿼리실행)
 		int result = new MemberService().signUpAdultMember(m);

@@ -513,6 +513,83 @@ public class MemberDao {
 	
 		return count;
 	}
+
+	/**
+	 * 회원번호, 이름으로 userNo 찾기 (1/3) 일반건강검진 예약 추가
+	 * author : 임상우
+	 * @param conn
+	 * @param userId
+	 * @param userName
+	 * @return 회원번호
+	 */
+	public String findUserNo2(Connection conn, String userId, String userName) {
+		
+		String userNo = "";
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("findUserNo2");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userName);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				userNo = rset.getString("USER_NO");
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return userNo;
+	}
+
+	/**
+	 * 이름, 주민등록번호로 userNo 찾기 (2/4) 기업건강검진 예약 추가
+	 * author : 임상우
+	 * @param conn
+	 * @param name
+	 * @param ssn
+	 * @return 회원번호
+	 */
+	public String findUserNo3(Connection conn, String name, String ssn) {
+
+		String userNo = "";
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("findUserNo3");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, ssn);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				userNo = rset.getString("USER_NO");
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return userNo;
+		
+	}
 	
 	
 	

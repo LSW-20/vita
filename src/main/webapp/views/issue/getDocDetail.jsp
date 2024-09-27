@@ -77,42 +77,144 @@ window.onload = function() {
 };
 
 //아임포트
-function requestPayment() {
-    var IMP = window.IMP; // 아임포트 객체
-    IMP.init('imp19424728'); // 테스트 가맹점 식별코드
 
-    // careNo는 페이지에서 hidden input으로 전달된 값을 가져온다고 가정
-    var careNo = document.querySelector('input[name="careNo"]:checked').value;
-		
-    //docPurpose 의 selected된 value를 결제 성공시 url에 함께 넘기고 싶음
-     var docPurpose = document.querySelector('select[name="docPurpose"]').value;
-    
-    IMP.request_pay({
-        pg: 'html5_inicis',
-        pay_method: 'card',
-        merchant_uid: 'merchant_' + new Date().getTime(), // 주문번호(unique)
-        name: '증명서 발급 결제 테스트',
-        amount: 10, // 결제 금액
-        buyer_email: '<%= ((Member)session.getAttribute("loginUser")).getEmail() %>',
-        buyer_name: '<%= ((Member)session.getAttribute("loginUser")).getUserName() %>',
-        buyer_tel: '<%= ((Member)session.getAttribute("loginUser")).getPhone() %>',
-        buyer_addr: '<%= ((Member)session.getAttribute("loginUser")).getAddress() %>'
-    }, function (rsp) {
-        if (rsp.success) {
-            alert('결제가 완료되었습니다. 결제 금액: ' + rsp.paid_amount);
-            // 결제 성공 시 처리 로직
-            location.href = 
-            	'<%= request.getContextPath() %>/confirm.cr?careNo=' + careNo + '&docType=<%= docType %>&imp_uid=' + rsp.imp_uid + '&merchant_uid=' + rsp.merchant_uid + '&docPurpose='+docPurpose;
-        } else {
-            alert('결제에 실패하였습니다. 에러 내용: ' + rsp.error_msg);
-            // 결제 실패 시 처리 로직
-        }
-    });
-}
+	 const requestPayment = async () => {
+	       
+     const selectedPG = document.getElementById('cardBank').value;
+     // careNo는 페이지에서 hidden input으로 전달된 값을 가져온다고 가정
+     var careNo = document.querySelector('input[name="careNo"]:checked').value;
+     //docPurpose 의 selected된 value를 결제 성공시 url에 함께 넘기고 싶음
+     var docPurpose = document.querySelector('select[name="docPurpose"]').value;     
+     
+       const IMP = window.IMP; 
+     IMP.init("imp03551748");
+     IMP.request_pay({
+         pg: selectedPG, // 결제할 PG사
+         pay_method: 'card', // 결제 방법 (신용카드)
+         name: '일반 건강검진(비타병원)', // 상품 이름
+         amount: 1, // 결제 금액
+         merchant_uid: 'PN_' + new Date().getTime(), // 주문번호(unique)
+         buyer_name: '<%= ((Member)session.getAttribute("loginUser")).getUserName() %>', 
+         buyer_tel:  '<%= ((Member)session.getAttribute("loginUser")).getPhone() %>',
+         buyer_email: '<%= ((Member)session.getAttribute("loginUser")).getEmail() %>',
+         buyer_addr:'<%= ((Member)session.getAttribute("loginUser")).getAddress() %>'
+     }, function (rsp) {
+         if (rsp.success) {
+             // 결제 성공 시 처리
+             console.log('결제 성공:', rsp);
+             alert('결제가 완료되었습니다.');
+             isPaymentCompleted = true; // 결제 완료 상태로 설정
+             $('#paymentModal').modal('hide'); // 모달 닫기
+             location.href = 
+             	'<%= request.getContextPath() %>/confirm.cr?careNo=' + careNo + '&docType=<%= docType %>&imp_uid=' + rsp.imp_uid + '&merchant_uid=' + rsp.merchant_uid + '&docPurpose='+docPurpose;
+         } else {
+             // 결제 실패 시 처리
+             console.log('결제 실패:', rsp);
+             alert('결제가 실패되었습니다.');
+             location.href = 
+             	'<%= request.getContextPath() %>/detail.cr';             
+         }
+     });
+ };
+
+ document.addEventListener("DOMContentLoaded", function() {
+	    const paymentButton = document.querySelector('button[name="pay"]'); // 결제 버튼
+
+	    if (paymentButton) {
+	        paymentButton.addEventListener("click", function(event) {
+	            // 선택된 진료 내역(careNo) 확인
+	            const selectedCareNo = document.querySelector('input[name="careNo"]:checked');
+	           
+	            // 선택된 내역이 없을 경우 모달을 띄우지 않고 경고 메시지를 출력
+	            if (!selectedCareNo) {
+	                alert('진료 내역을 선택해 주세요');
+	                event.stopPropagation(); // 결제 모달 표시 방지
+	                return; 
+	            }
+
+	            // 결제 완료 상태 체크 (이미 결제된 경우 중복 결제 방지)
+	            if (isPaymentCompleted) {
+	                alert('이미 결제가 완료되었습니다.');
+	                event.stopPropagation(); // 이벤트 전파 중단
+	                return; // 결제 진행 중단
+	            }
+	            
+	            // 결제 요청
+	            requestPayment(); // 검증이 완료된 경우 결제 요청
+	        });
+	    }
+	});
 
 </script>
 
 <body>
+    <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document" >
+            <div class="modal-content" style="position: absolute; margin-left:-42px; width:900px; height:900px;">
+                <div class="modal-header" >
+                    <h3 class="modal-title" id="paymentModalLabel"><b>결제</b></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                        <div class="form-group">
+                            <br>
+                            <h4><b>결제 내용</b></h4>
+                            <br>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td style="border-right: 1px dashed; border-right-color: rgb(204, 204, 204);"><b>선택항목</b></td>
+                                        <td><b style="color:#1F2B6C"><%= docType %></b></td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid ;border-bottom-color: rgb(224, 222, 222);">
+                                        <td style="border-right: 1px dashed; border-right-color: rgb(204, 204, 204);"><b>가격</b></td>
+                                        <td><b style="color:#1F2B6C">2,000원</b></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="form-group">
+                            <h4><b>결제 수단</b></h4>
+                            <br>
+                            <label for="paymentMethod">결제 수단 선택</label>
+                            <select class="form-control" id="paymentMethod" disabled>
+                                <option>신용카드</option>
+                            </select>
+                            <br>
+                            <label for="cardBank">카드 선택</label>
+                            <select class="form-control" id="cardBank">
+                                <option value="kakaopay" selected>카카오페이</option>
+                                <option value="tosspay">토스페이</option>
+                                <option value="payco">페이코</option>
+                            </select>
+                            <br>
+                        </div>
+                        <br>
+                        
+                        
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">결제 대행서비스 약관 동의<b style="color:red;">(필수)</b></label>
+                        </div>
+                        <br>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck2" >
+                            <label class="custom-control-label" for="customCheck2">개인정보 수집 및 이용 동의<b style="color:red;">(필수)</b></label>
+                        </div>
+                </div>
+                
+                <div class="modal-footer" style="background-color: #1F2B6C;">
+                    <button type="button"  name="payment" class="btn" id="btn-color" style=" width:1197px;" onclick="requestPayment()">
+                         <h5>50,000 원 결제하기</h5>
+                         </button>    
+                </div>
+                
+            </div>
+        </div>
+    </div>
 	<!-- header sideBar include start -->
 	<%@ include file="/views/common/header.jsp" %>
 	<%@ include file="/views/common/myPageSideBar.jsp" %>
@@ -159,6 +261,7 @@ function requestPayment() {
                         for (Mrecords record : records) {
                             %>
                             <input type="radio" name="careNo" value="<%= record.getCareNo() %>">
+                            <input type="hidden" name="docNum" value="<%= record.getDocNum() %>">
                             <label><%= record.getTreatmentDate() %> - <%= record.getDiagnosisName() %></label><br>
                             <%
                         }
@@ -196,8 +299,10 @@ function requestPayment() {
 
     <div class="d-flex justify-content-end">
         <!-- <a id="submitLink" href="#" class="btn btn-primary btn-sm m-2" onclick="submitDocument();">신청</a> -->
-        <button type="button" onclick="requestPayment()">결제하기</button>
-        
+<!--         <button type="button" onclick="requestPayment()">결제하기</button>
+ -->        <button type="button" name="pay" class="btn btn-primary btn-sm m-2" id="btn-color" data-toggle="modal" data-target="#paymentModal">
+                            결제하기
+                        </button>
 	  		<button type="button" class="btn btn-secondary btn-sm m-2" onclick="history.back();">뒤로가기</button>
     </div>   
 

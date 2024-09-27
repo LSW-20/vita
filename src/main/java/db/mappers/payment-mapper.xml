@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	
+	<!--증명서발급 결제-->
+	<entry key="insertPayDocument">
+		INSERT
+		  INTO 
+		       PAYMENT 
+		       (
+		       PAY_NO
+		     , USER_NO
+		     , DOC_NUM
+		     , PAY_ID
+		     , PRICE
+		     )
+		 VALUES
+		      (
+		      ?
+		    , ?
+		    , SEQ_DNO.NEXTVAL
+		    , ?
+		    , '2000'
+		      )		
+	</entry>
+	
+</properties>

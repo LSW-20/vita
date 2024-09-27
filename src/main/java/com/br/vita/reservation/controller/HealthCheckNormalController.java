@@ -58,7 +58,7 @@ public class HealthCheckNormalController extends HttpServlet {
 			request.getRequestDispatcher("/views/reservation/healthCheckUp_1.jsp").forward(request, response);
 		} else {
 			session.setAttribute("alertMsg", "회원정보와 일치합니다.");
-			request.getRequestDispatcher("/views/reservation/healthCheckUp_2.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/reservation/healthCheckUp_3.jsp").forward(request, response);
 		}
 	}
 

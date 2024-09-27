@@ -211,7 +211,40 @@ public class MemberService {
 		close(conn);
 		return count;
 	}
+
+	/**
+	 * 회원번호, 이름으로 userNo 찾기 (1/3) 일반건강검진 예약 추가
+	 * author : 임상우
+	 * @param userId
+	 * @param userName
+	 * @return 회원번호
+	 */
+	public String findUserNo2(String userId, String userName) {
+
+		Connection conn = getConnection();
+		String userNo = mdao.findUserNo2(conn, userId, userName);
+		
+		close(conn);
+		return userNo;
+		
+	}
 	
+	/**
+	 * 이름, 주민등록번호로 userNo 찾기 (2/4) 기업건강검진 예약 추가
+	 * author : 임상우
+	 * @param name
+	 * @param ssn
+	 * @return 회원번호
+	 */
+	public String findUserNo3(String name, String ssn) {
+		
+		Connection conn = getConnection();
+		String userNo = mdao.findUserNo3(conn, name, ssn);
+		
+		close(conn);
+		return userNo;
+		
+	}
 	
 }
 

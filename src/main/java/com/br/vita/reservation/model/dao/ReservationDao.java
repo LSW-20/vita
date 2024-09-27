@@ -437,34 +437,6 @@ public class ReservationDao {
 		return resultList;
 	}
 
-	public int insertHealthCheckList(Connection conn, CheckList ck) {
-		
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String sql = prop.getProperty("insertCheckList");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, ck.userNo);
-			pstmt.setString(2, ck.mediList);
-			pstmt.setString(3, ck.surgeryName);
-			pstmt.setString(4, ck.surgeryYN);
-			pstmt.setString(5, ck.flyYN);
-			pstmt.setString(6, ck.careNo);
-			
-			result = pstmt.executeUpdate();
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-	
 
 	/**
 	 * 진료예약 추가(2/2)
@@ -631,6 +603,7 @@ public class ReservationDao {
 		return listC;
 		
 	}
+	
 
 	public int deleteCheckupApp(Connection conn, String appNo) {
 		
@@ -653,15 +626,180 @@ public class ReservationDao {
 		return result;
 	}
 
+	public int insertHealthCheckList(Connection conn, CheckList ck) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertCheckList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ck.userNo);
+			pstmt.setString(2, ck.mediList);
+			pstmt.setString(3, ck.surgeryName);
+			pstmt.setString(4, ck.surgeryYN);
+			pstmt.setString(5, ck.flyYN);
+			pstmt.setString(6, ck.careNo);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
 	public int insertHealtchCareList(Connection conn, HealthCheck hc) {
 		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertCheckList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, hc.getAppointmentNo());
+			pstmt.setString(2, hc.getUserNo());
+			pstmt.setString(3, hc.getAppointmentTime());
+			pstmt.setDate(4, hc.getAppointmentDate());
+		
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
+	/**
+	 * 일반건강검진 예약 추가 (2/3)
+	 * author : 임상우
+	 * @param conn
+	 * @param userNo
+	 * @param time
+	 * @param date
+	 * @param price
+	 * @return 삽입된 행 수
+	 */
+	public int insertCheckupAppN(Connection conn, String userNo, String time, String date, String price) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertCheckupAppN");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, time);
+			pstmt.setString(3, date);
+			pstmt.setString(4, price);
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 		
 		
 		
+	}
+
+	/**
+	 * 일반건강검진 예약 추가 (3/3), 기업건강검진 예약 추가(4/4)
+	 * author : 임상우
+	 * @param conn
+	 * @param userNo
+	 * @param mediList
+	 * @param surgeryYN
+	 * @param surgeryName
+	 * @param flightYN
+	 * @param time
+	 * @param date
+	 * @param price
+	 * @return 삽입된 행 수
+	 */
+	public int insertChecklist(Connection conn, String userNo, String mediList, String surgeryYN, String surgeryName,
+			String flightYN, String time, String date, String price) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
 		
+		String sql = prop.getProperty("insertChecklist");
 		
-		return 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, mediList);
+			pstmt.setString(3, surgeryName);
+			pstmt.setString(4, surgeryYN);
+			pstmt.setString(5, flightYN);
+			pstmt.setString(6, userNo);
+			pstmt.setString(7, date);
+			pstmt.setString(8, time);
+			pstmt.setString(9, price);
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 		
+		return result;
+		
+	}
+
+	/**
+	 * 기업건강검진 예약 추가 (3/4)
+	 * author : 임상우
+	 * @param conn
+	 * @param com
+	 * @param time
+	 * @param date
+	 * @param price
+	 * @return 삽입된 행 수
+	 */
+	public int insertCheckupAppC(Connection conn, String userNo, String com, String time, String date, String price) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertCheckupAppC");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, com);
+			pstmt.setString(3, time);
+			pstmt.setString(4, date);
+			pstmt.setString(5, price);
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 
@@ -673,3 +811,4 @@ public class ReservationDao {
    
    
 }
+

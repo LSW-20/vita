@@ -26,8 +26,8 @@
 
    <style>
    
-  footer{margin-top: 1853px;}
- 	section{height:1700px;}
+  footer{margin-top: 1960px;}
+ 	section{height:1807px;}
  	#sideMenu{height:100%}
  	
               h2{font-size: 2rem;}
@@ -74,7 +74,7 @@
                 margin-top: -1px;
                 border: 1px solid black;
                 width: 450px;
-                height: 1200px;
+                height: 1236px;
                 overflow-y: auto;
                 background-color: lightgray;
                 
@@ -152,11 +152,12 @@
             }
             .care_div{
                 width: 880px;
-                height: 500px;
+                height: 552px;
                 margin-top: 110px;
                 border-radius: 20px;
                 border: 2px solid #3C66D3;;
                 box-shadow: 1px 1px 5px rgb(92, 92, 92);
+                padding-top: 20px;
             }
             .care_div ul{
                 display: flex;
@@ -171,7 +172,8 @@
             }
             .care_type{
                 color: #3C66D3;
-                font-size: 20px;
+                font-size: 15px;
+                text-align-last: center;
             }
             .care_type2{
                 color: #3C66D3;
@@ -214,7 +216,7 @@
              #c_btn1,#c_btn2{width: 100px;box-shadow: 1px 1px 3px black;}
              h4{color: rgb(64, 99, 214);}
             
-            
+          
 
              
               
@@ -264,7 +266,7 @@
                         </div>
                     </div>
                     <div id="userCount">
-                        총 예약인원 : <b></b>
+                        총 예약인원 : <b id="res_count"></b>
                     </div>
                 </div>
 
@@ -274,24 +276,9 @@
                 <div class="select_Div">
 
                     <div id="u_list_div">
-                    
-                    
-                         <!-- for문 돌려서 동적으로 생성 -->
+                         
 										
-										
-										
-                     <!--    <div class="userList">
-                            <div class="user_detail_div">
-                                <span class="u_name"><b>홍길동</b></span><br>
-                                <span class="u_ssn">1990/05/19</span>
-                                <span class="u_time"><b>예약번호 : </b></span><br>
-                                <span class="u_no">병원등록번호:11111</span>
-                            </div>
-                        </div>
-                         -->
-                        
-
-                   
+										<!-- ajax로 채우기  -->
                         
                      </div>
 
@@ -301,33 +288,41 @@
 
             <div class="user_detail_div2">
                
-                <div class="u_name_div"><b>홍길동</b></div>
+                <div class="u_name_div">
+                		<b>이름 : <b id="data_u_name"></b></b>
+                </div>
                 <div class="u_ssn_div">
                     <ul>
-                        <li>주민번호 : <span>900808-1*****</span></li>
-                        <li>진료번호 : <span></span></li>
-                        <li>예약번호 : <span></span></li>
-                        <li>전화번호 : <span>010-5555-5555</span></li>
-                        <li>주소 : <span>경기도</span></li>  
+                    		
+                        <li>주민번호 : <span id="data_u_ssn"></span></li><p></p>
+                        <li>예약번호 : <span id="data_u_res"></span></li><p></p>
+                        <li>전화번호 : <span id="data_u_phone"></span></li><p></p>
+                        <li>주소 : <span id="data_u_address"></span></li>  
                     </ul>
                 </div>
+                
+                
+                
             
-                <div class="care_div">
-                    <div class="care_title">
-                        <ul>
-                            <li class="care_type"><b>진료(진단서용)</b></li>
-                            <li>환자 등록번호 입력 : <input type="text"></li>
-                            <li>환자 예약번호 입력 : <input type="text"></li>
+                <div class="care_div" id="care_div_2">
+                    <div class="care_title" id="care_tittle_div">
+                    		<div class="care_type"><b>진료(진단서용)</b></div>
+                        <ul style="margin-right: 140px;">
+                            <li>
+	                            <span style="margin-right: 17px;">환자 등록번호 입력 : <input type="text" id="form_userNO"></span>
+	                           	<span>환자 예약번호 입력 : <input type="text" id="form_resNO"></span>
+	                            <span>환자 이름 : <b id="click_Name"></b></span>
+                            </li>
                         </ul>
                     </div>
                     <div class="care_content">
                         <div class="c_text">
                             <h4>환자증상</h4>
-                            <textarea name="" id="">일주일 전부터 어지럽고 피로감을 많이 느낌</textarea>
+                            <textarea id="care_symptoms"></textarea>
                         </div>
                         <div class="c_text">
                             <h4>진단 및 소견</h4>
-                            <textarea name="" id="">mri 검사 후 확인한 바 3일간 안정치료가 필요함 그 후에 추가 진단이 필요함</textarea>
+                            <textarea id="care_opinion"></textarea>
                         </div>
                     </div>
                     
@@ -344,16 +339,16 @@
                     <div class="care_content">
                         <div class="c_text">
                             <h4>치료내용</h4>
-                            <textarea name="" id="">mri 촬영,Bolus 정맥주사- 50 mg주사처방,약처방</textarea>
+                            <textarea id="care_treatment_content"></textarea>
                         </div>
                         <div class="c_text">
                             <h4>진단명</h4>
-                            <textarea name="" id="">고혈압</textarea>
+                            <textarea id="care_diagnosis_name"></textarea>
                         </div>
                     </div>
                 </div>
                     <div class="care_btn">
-                        <button class="btn btn-primary" id="c_btn2">등록</button>
+                        <button class="btn btn-primary" id="c_btn2" onclick="fnMrecordsIn();">등록</button>
                     </div>
 
             </div>
@@ -371,9 +366,7 @@
     	
     	$.ajax({
     		url: '<%= contextPath %>/listRes.se',
-    		data:{
-    			
-    		},
+    		
     		success:function(res){
     			console.log(res);
     			let listdiv = '';
@@ -383,22 +376,109 @@
     				
                    listdiv += '<div class="userList">' 
                    					+ '<div class="user_detail_div">'
+                   					
                    					+ '<span class="u_name"><b>' + res[i].userName + '</b></span><br>'
-                   					+ '<span class="u_ssn">' + res[i].userDate + '</span>'
-                   					+ '<span class="u_time"><b>예약번호 : '+ res[i].appointment + '</b></span><br>' 
-                   					+ '<span class="u_no">병원등록번호 : ' + res[i].userNo + '</span>'
+                   					+ '<span class="u_ssn" style="color: #0f6ce3;">' + res[i].userDate + '</span>'
+                   					+ '<span class="u_time"><b style="color: #077f07;">예약번호 : '+ res[i].appointment + '</b></span><br>' 
+                   					+ '<span class="u_no" style="color: mediumvioletred;">병원등록번호 : ' + res[i].userNo + '</span>'
+                   					
+                   					+ '<input class="u_p_ssn" type="hidden" value="' + res[i].userSSN + '">' 
+                   					+ '<input class="u_phone" type="hidden" value="' + res[i].phone + '">' 
+                   					+ '<input class="u_address" type="hidden" value="' + res[i].address + '">' 
+                   					
                    					+ '</div>'
                    					+ '</div>';
                    	
+    				$('#res_count').html(res[i].count);			
+                   					
     				
     			}
     			
     			$('#u_list_div').append(listdiv);
+    			
+    			
     		},
     		
     		
     	})
     }
+    
+	$(document).ready(function() {
+		
+		  $(document).on('click', '.userList', function() {
+			  
+		   
+		        let $userName = $(this).find('.u_name').text(); // 이름
+		        let $userDate = $(this).find('.u_ssn').val(); // 생년월일
+		        let $resNo = $(this).find('.u_time').text(); // 예약번호
+		        let $userNo = $(this).find('.u_no').text();// 병원등록번호
+		        
+		        let $userPhone = $(this).find('.u_phone').val(); // 폰번호
+		        let $userAddress = $(this).find('.u_address').val(); // 주소
+		        let $userSSN = $(this).find('.u_p_ssn').val();//주민번호
+		        
+		        $('#data_u_name').text($userName);
+		        $('#data_u_ssn').text($userSSN);
+		        $('#data_u_res').text($resNo.split(': ')[1]);
+		        $('#data_u_phone').text($userPhone);
+		        $('#data_u_address').text($userAddress);
+		        
+		        
+		        $('#click_Name').text($userName);
+		        $('#form_userNO').val($userNo.split(': ')[1]);
+		        $('#form_resNO').val($resNo.split(': ')[1]);
+		      
+		        
+		        
+		});
+});
+    
+	
+	function fnMrecordsIn() {
+		
+	    if (confirm("해당 진료내용을 등록하시겠습니까?")) {
+	        
+	        let $uNo = $('#form_userNO').val();
+	        let $resNo = $('#form_resNO').val();
+	        let $uName = $('#click_Name').text();
+	        let $sympt = $('#care_symptoms').val();
+	        let $opin = $('#care_opinion').val();
+	        let $ctc = $('#care_treatment_content').val();
+	        let $cdn = $('#care_diagnosis_name').val();
+	        
+	        // 모든 값이 비어있지 않은지 확인
+	        console.log($uNo, $resNo, $uName, $sympt, $opin, $ctc, $cdn);
+	        
+	        if ($uNo && $resNo && $uName && $sympt && $opin && $ctc && $cdn) {
+	            
+	            $.ajax({
+	                url: '<%= contextPath %>/mrecords.up',
+	                data: {
+	                    userNo: $uNo,
+	                    resNo: $resNo,
+	                    userName: $uName,
+	                    symptoms: $sympt, 
+	                    opinion: $opin,
+	                    treatment: $ctc,
+	                    diagnosis: $cdn
+	                },
+	                success: function(res) {
+	                    if (res > 0) {
+	                        alert('성공적으로 등록되었습니다');
+	                        location.reload();
+	                    } else {
+	                        alert('등록 실패');
+	                    }
+	                }
+	            });
+	            
+	        } else {
+	            alert("작성하지 않은 진료목록이 있습니다. 다시 확인해주세요");
+	        }
+	    }
+	}
+	
+	
     
       
 
