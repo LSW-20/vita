@@ -177,6 +177,7 @@ public class EmployeeDao {
 
 	/**
 	 * 기업의 사원 삭제
+	 * author : 임상우
 	 * @param conn
 	 * @param ssnList
 	 * @return 삭제된 행 수
@@ -229,9 +230,10 @@ public class EmployeeDao {
 	 * @param conn
 	 * @param name
 	 * @param ssn
+	 * @param com 
 	 * @return empNo
 	 */
-	public String findEmpNo(Connection conn, String name, String ssn) {
+	public String findEmpNo(Connection conn, String name, String ssn, String com) {
 		
 		String empNo = "";
 		PreparedStatement pstmt = null;
@@ -246,6 +248,7 @@ public class EmployeeDao {
 			
 			pstmt.setString(1, name);
 			pstmt.setString(2, ssn);
+			pstmt.setString(3, com);
 
 			rset = pstmt.executeQuery();
 			

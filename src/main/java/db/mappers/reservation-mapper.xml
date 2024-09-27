@@ -358,7 +358,7 @@
 		  )
 	</entry>
 	
-	<!-- (상우) 일반건강검진 예약 추가(3/3) -->
+	<!-- (상우) 일반건강검진 예약 추가(3/3), 기업건강검진 예약 추가(4/4) -->
 	<entry key="insertChecklist">
 	
 		INSERT 
@@ -382,6 +382,36 @@
 		  , ?
 		  , (SELECT APPOINTMENT_NO FROM CHECKUP_APP WHERE USER_NO = ? AND CHECKUP_DATE = ? AND APPOINTMENT_TIME = ? AND TOTAL_PRICE = ?)
 		  ,	NULL
+		  )
+	</entry>
+	
+	
+	<!-- (상우) 기업건강검진 예약 추가(3/4) -->
+	<entry key="insertCheckupAppC">
+	
+		INSERT 
+		  INTO
+		  			CHECKUP_APP
+		  (
+		  	APPOINTMENT_NO
+		  , USER_NO
+		  , COMPANY_NO
+		  , APPOINTMENT_DATE
+		  , APPOINTMENT_TYPE
+		  , APPOINTMENT_TIME
+		  , CHECKUP_DATE
+		  , TOTAL_PRICE
+		  )		
+		  VALUES
+		  (
+		  	'ch' || SEQ_CHN.NEXTVAL
+		  , ?
+		  , (SELECT COMP_NO FROM COMPANY WHERE COMP_NAME = ?)
+		  , SYSDATE
+		  , 'B'
+		  , ?
+		  ,	?
+		  , ?
 		  )
 	</entry>
 	

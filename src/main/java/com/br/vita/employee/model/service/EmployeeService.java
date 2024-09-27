@@ -108,11 +108,12 @@ public class EmployeeService {
 	 * author : 임상우
 	 * @param name
 	 * @param ssn
+	 * @param com 
 	 * @return empNo
 	 */
-	public String findEmpNo(String name, String ssn) {
+	public String findEmpNo(String name, String ssn, String com) {
 		Connection conn = getConnection();
-		String empNo = eDao.findEmpNo(conn, name, ssn);
+		String empNo = eDao.findEmpNo(conn, name, ssn, com);
 		close(conn);
 		return empNo;
 	}
