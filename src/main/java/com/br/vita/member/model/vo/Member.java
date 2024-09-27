@@ -75,6 +75,23 @@ public class Member {
 	}
 
 	
+	
+
+	public Member(String userId, String userPwd, String userName, String phone, String email,
+			String address, String userSSN, String callbackYN, String userDate, String gender, String representative) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.phone = phone;
+		this.email = email;
+		this.address = address;
+		this.userSSN = userSSN;
+		this.callbackYN = callbackYN;
+		this.userDate = userDate;
+		this.gender = gender;
+		this.representative = representative;
+	}
 
 	public Member(String userId, String userPwd, String userName, String phone, String email, String address,
 			String userSSN, String callbackYN, String userDate, String gender) {

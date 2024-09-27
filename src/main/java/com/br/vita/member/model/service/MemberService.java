@@ -245,6 +245,20 @@ public class MemberService {
 		return userNo;
 		
 	}
+	public int signUpChildrenMember(Member m) {
+		Connection conn = getConnection();
+		int result = mdao.signUpChildrenMember(conn, m);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+	
+		close(conn);
+		System.out.println("서비스도착 : " + result);
+		return result;
+	}
 	
 }
 

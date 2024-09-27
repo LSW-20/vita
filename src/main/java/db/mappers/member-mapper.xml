@@ -242,6 +242,44 @@ WHERE
 		 	 AND  USER_SSN = ?		
 	</entry>
 	
-	
+	<entry key="signUpChildrenMember">
+		 INSERT
+		 	 INTO MEMBER
+		 	 (
+		 	   USER_NO
+		 	 , USER_ID
+		 	 , USER_PWD
+		 	 , USER_NAME
+		 	 , PHONE
+		 	 , EMAIL
+		 	 , ADDRESS
+		 	 , ENROLL_DATE
+		 	 , USER_TYPE
+		 	 , USER_SSN
+		 	 , CALLBACK_YN
+		 	 , RESIGN_YN
+		 	 , USER_DATE
+		 	 , USER_GENDER
+		 	 , REPRESENTATIVE
+		 	 )
+		 	 VALUES
+		 	 (
+		 	 	 TO_CHAR(SYSDATE, 'YYMMDD') || LPAD(SEQ_UNO.NEXTVAL, 3, '0')
+		 	 , ?
+		 	 , ?
+		 	 , ?
+			 , ?
+			 , ?
+			 , ?
+			 , SYSDATE
+			 , 'U'
+			 , ?
+			 , ?
+			 , 'N'
+			 , ?
+			 , ?
+			 , ?
+			 )
+	</entry>
 	
 </properties>
