@@ -7,10 +7,18 @@ public class PaymentService {
 	private PaymentDao pDao = new PaymentDao();
 
 	
-	
-	public int insertPayDocument(String payNo, String userNo, String docNum, String payId) {
+	/**
+	 * 증명서 결제시 insert
+	 * @author 최보겸
+	 * @param payNo
+	 * @param userNo
+	 * @param docNum
+	 * @param payId
+	 * @return
+	 */
+	public int insertPayDocument(String payNo, String userNo, String payId) {
 		Connection conn = getConnection();
-		int payResult = pDao.insertPayDocument(conn, payNo, userNo, docNum, payId);
+		int payResult = pDao.insertPayDocument(conn, payNo, userNo, payId);
 		
 		if(payResult > 0) {
 			commit(conn);

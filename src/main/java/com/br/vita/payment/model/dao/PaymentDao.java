@@ -39,7 +39,7 @@ public class PaymentDao {
 	 * @param payId - imp_id
 	 * @return payResult
 	 */
-	public int insertPayDocument(Connection conn, String payNo, String userNo, String docNum, String payId) {
+	public int insertPayDocument(Connection conn, String payNo, String userNo, String payId) {
 		int payResult = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertPayDocument");
@@ -49,8 +49,8 @@ public class PaymentDao {
 			
 			pstmt.setString(1, payNo);
 			pstmt.setString(2, userNo);
-			pstmt.setString(3, docNum);
-			pstmt.setString(4, payId);
+			
+			pstmt.setString(3, payId);
 			
 			payResult = pstmt.executeUpdate();
 		} catch (SQLException e) {
