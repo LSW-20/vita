@@ -67,25 +67,29 @@ public class InsertCheckupAppC extends HttpServlet {
 		
 		
 		
-		// (1) 이름, 주민등록번호로 EMPLOYEE 테이블에서 select 해서 EMP_NO를 가져온다. 없으면 여기서 종료하고 ALERT 띄우기.
-		String empNo = new EmployeeService().findEmpNo(name, ssn);
-		System.out.println(empNo);
+		// (1) 이름, 주민등록번호, + 기업명으로 EMPLOYEE 테이블에서 select 해서 EMP_NO를 가져온다. 없으면 여기서 종료하고 ALERT 띄우기.
+		String empNo = new EmployeeService().findEmpNo(name, ssn, com);
+		System.out.println("사번 : " + empNo);
 					
 		if(empNo.isEmpty()) {
 			session.setAttribute("alertMsg", "사원 정보를 잘못입력하셨습니다. \\n사원 이름과 주민등록번호를 확인해 주세요."); // 자바에서 문자열 내에서 \는 특수 문자(escape character)로 동작하므로, 이를 문자 그대로 사용하려면 \\
-            response.sendRedirect(request.getContextPath() + "/manageCH.admin");
+			
+			request.setAttribute("msg", "사원 정보를 찾을 수 없습니다.<br>사원 정보를 잘못입력하셨거나 Employee 테이블에 존재하지 않는 사원입니다.<br>건강검진 연계기업 관리에서 사원을 추가할 수 있습니다.");
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
             return;
 		} 
 		
 		
 		// (2) 이름, 주민등록번호로 MEMBER 테이블에서 select 해서 USER_NO를 가져온다. 없으면 여기서 종료하고 ALERT 띄우기.
 		String userNo = new MemberService().findUserNo3(name, ssn);
-		System.out.println(userNo);
+		System.out.println("회원번호 : " + userNo);
 
 		if(userNo.isEmpty()) {
 			session.setAttribute("alertMsg", "회원 정보를 잘못입력하셨습니다. \\n회원이름과 주민등록번호를 확인해 주세요."); // 자바에서 문자열 내에서 \는 특수 문자(escape character)로 동작하므로, 이를 문자 그대로 사용하려면 \\
-            response.sendRedirect(request.getContextPath() + "/manageCH.admin");
-            return;
+
+			request.setAttribute("msg", "회원 정보를 찾을 수 없습니다.<br>회원 정보를 잘못입력하셨거나 Member 테이블에 존재하지 않는 사원입니다.<br>건강검진 예약은 회원만 가능합니다.");
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+			return;
 		} 
 		
 		
@@ -94,7 +98,7 @@ public class InsertCheckupAppC extends HttpServlet {
 		
 		// (3, 4) CARE_APP, CHECK_LIST 테이블에 INSERT
 		
-		int result=0; //= new ReservationService().insertCheckupAppC(userNo, com, time, date, price); // 사업자번호는 기업명으로 select(서브쿼리)하기.
+		int result= new ReservationService().insertCheckupAppC(userNo, com, time, date, price); // 사업자번호는 기업명으로 select(서브쿼리)하기.
 		int result2 = new ReservationService().insertChecklist(userNo, mediList, surgeryYN, surgeryName, flightYN, time, date, price); // 검진 예약번호는 time, date, price, userNo로 select(서브쿼리)하기.
 		
 		System.out.println("result : " + result);
@@ -114,10 +118,11 @@ public class InsertCheckupAppC extends HttpServlet {
             
         }else { 
         	// insert 실패
-    		// 응답페이지 : 관리자 건강검진예약 관리 페이지 (/vita/views/admin/manageCheckupApp.jsp)
+    		// 응답페이지 : 에러페이지 (/vita/views/common/errorPage.jsp)
     		// 응답데이터 : "추가에 실패하였습니다." alert 메세지
             session.setAttribute("alertMsg", "추가에 실패하였습니다.");
-            response.sendRedirect(request.getContextPath() + "/manageCH.admin");
+			request.setAttribute("msg", "건강검진 예약에 실패하였습니다.");
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
             
         }
 				

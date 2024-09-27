@@ -289,7 +289,7 @@ public class ReservationService {
 	}
 
 	/**
-	 * 건강검진 예약 추가 (2/3)
+	 * 일반건강검진 예약 추가 (2/3)
 	 * author : 임상우
 	 * @param userNo
 	 * @param time
@@ -315,7 +315,7 @@ public class ReservationService {
 	}
 
 	/**
-	 * 건강검진 예약 추가 (3/3)
+	 * 일반건강검진 예약 추가 (3/3), 기업건강검진 예약 추가 (4/4)
 	 * author : 임상우
 	 * @param userNo
 	 * @param mediList
@@ -342,6 +342,33 @@ public class ReservationService {
 		
 		close(conn);
 		return result;
+	}
+
+	
+	/**
+	 * 기업건강검진 예약 추가 (3/4)
+	 * author : 임상우
+	 * @param userNo
+	 * @param com
+	 * @param time
+	 * @param date
+	 * @param price
+	 * @return
+	 */
+	public int insertCheckupAppC(String userNo, String com, String time, String date, String price) {
+
+		Connection conn = getConnection();
+		int result = rdao.insertCheckupAppC(conn, userNo, com, time, date, price);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+		
 	}
 
 

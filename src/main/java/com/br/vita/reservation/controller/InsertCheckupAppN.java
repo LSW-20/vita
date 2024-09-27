@@ -79,10 +79,12 @@ public class InsertCheckupAppN extends HttpServlet {
 		*/
 		
 		
-		if(userNo.isEmpty()) {
+		if(userNo == null || userNo.isEmpty()) {
 			session.setAttribute("alertMsg", "회원 정보를 잘못입력하셨습니다. \\n회원ID와 회원이름을 확인해 주세요."); // 자바에서 문자열 내에서 \는 특수 문자(escape character)로 동작하므로, 이를 문자 그대로 사용하려면 \\
-            response.sendRedirect(request.getContextPath() + "/manageCH.admin");
-            return;
+            
+			request.setAttribute("msg", "회원 정보를 찾을 수 없습니다.<br>회원 정보를 잘못입력하셨거나 Member 테이블에 존재하지 않는 사원입니다.<br>건강검진 예약은 회원만 가능합니다.");
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+			return;
 		} 
 		
 		
@@ -106,15 +108,17 @@ public class InsertCheckupAppN extends HttpServlet {
     		// 응답데이터 : "성공적으로 추가되었습니다." alert 메세지
             session.setAttribute("alertMsg", "성공적으로 추가되었습니다.");
             response.sendRedirect(request.getContextPath() + "/manageCH.admin");
-            
+
             
         }else { 
         	// insert 실패
-    		// 응답페이지 : 관리자 건강검진예약 관리 페이지 (/vita/views/admin/manageCheckupApp.jsp)
+    		// 응답페이지 : 에러페이지 (/vita/views/common/errorPage.jsp)
     		// 응답데이터 : "추가에 실패하였습니다." alert 메세지
             session.setAttribute("alertMsg", "추가에 실패하였습니다.");
-            response.sendRedirect(request.getContextPath() + "/manageCH.admin");
-            
+			request.setAttribute("msg", "일반건강검진 예약에 실패하였습니다.");
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+         
+		
         }
 				
         //System.out.println("sendRedirect()는 즉시 메소드 실행을 종료하는 것이 아니다.");

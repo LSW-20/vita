@@ -703,7 +703,7 @@ public class ReservationDao {
 	}
 
 	/**
-	 * 일반건강검진 예약 추가 (3/3)
+	 * 일반건강검진 예약 추가 (3/3), 기업건강검진 예약 추가(4/4)
 	 * author : 임상우
 	 * @param conn
 	 * @param userNo
@@ -746,6 +746,42 @@ public class ReservationDao {
 		
 		return result;
 		
+	}
+
+	/**
+	 * 기업건강검진 예약 추가 (3/4)
+	 * author : 임상우
+	 * @param conn
+	 * @param com
+	 * @param time
+	 * @param date
+	 * @param price
+	 * @return 삽입된 행 수
+	 */
+	public int insertCheckupAppC(Connection conn, String userNo, String com, String time, String date, String price) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertCheckupAppC");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, com);
+			pstmt.setString(3, time);
+			pstmt.setString(4, date);
+			pstmt.setString(5, price);
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 

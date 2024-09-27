@@ -74,7 +74,7 @@
 	
 	
 	<!-- (상우) 사번 찾기 (이름과 주민등록번호로) (1/4) 기업건강검진 예약 추가 -->
-	<entry key="selectEmployee">
+	<entry key="findEmpNo">
 
 	SELECT 
 				  EMP_NO
@@ -82,7 +82,8 @@
 	  			EMPLOYEE
 	 WHERE
 	 				EMP_NAME = ?
-	 	 AND  SSN = ?			 
+	 	 AND  SSN = ?		
+	 	 AND  COMP_NO = (SELECT COMP_NO FROM COMPANY WHERE COMP_NAME = ?)	 
 
 	</entry>
 	
