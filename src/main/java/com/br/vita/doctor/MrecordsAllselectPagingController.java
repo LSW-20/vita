@@ -1,6 +1,7 @@
-package com.br.vita.doctor.controller;
+package com.br.vita.doctor;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,16 +15,16 @@ import com.br.vita.doctor.model.service.DoctorService;
 import com.br.vita.member.model.vo.Member;
 
 /**
- * Servlet implementation class DocumentPagingController
+ * Servlet implementation class MrecordsAllselectPagingController
  */
-@WebServlet("/dia_list.do")
-public class DocumentPagingController extends HttpServlet {
+@WebServlet("/selectMrecords.se")
+public class MrecordsAllselectPagingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DocumentPagingController() {
+    public MrecordsAllselectPagingController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,13 +34,12 @@ public class DocumentPagingController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		 
+		String userName = request.getParameter("userName");
+		String deptName = request.getParameter("deptName");
+		String date1 = request.getParameter("date1");
+		String date2 = request.getParameter("date2");
 		
-		String docNo = ((Member)request.getSession().getAttribute("loginUser")).getDoctorNo();
-		String type = request.getParameter("type");
-		
-		
-		int listCount = new DoctorService().selectDocumentListCount(docNo,type);	
+		int listCount = new DoctorService().selectAllmrecords(userName,deptName,date1,date2);	
 		
 		int currentPage = 1;											//사용자가 요청한 페이지 번호
 		
@@ -62,19 +62,10 @@ public class DocumentPagingController extends HttpServlet {
 		
 		
 		
-		List<Member> doculist = new DoctorService().documentSelect(docNo,type,pi);
+		 new DoctorService().documentSelect(/*여기에 */,pi);
 		
 		
 		
-		
-		request.setAttribute("pi", pi);
-		request.setAttribute("doculist", doculist);
-		
-		if(type.equals("진단서")) {
-			request.getRequestDispatcher("/views/doctor/diagnosis.jsp").forward(request, response); // 페이지로 포워딩
-		}else if(type.equals("진료확인서")) {
-			request.getRequestDispatcher("/views/doctor/mt_confirmation.jsp").forward(request, response);
-		}
 		
 	}
 

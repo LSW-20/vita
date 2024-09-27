@@ -47,9 +47,12 @@ public class CertificateApplicationController extends HttpServlet {
 		int result =  new IssueService().certificateApplicationInsert(userNo,type,purpose,careNo);
 		
 		
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().print(result);
+		
+		
 		//if(result > 0) {
-			response.setContentType("text/html; charset=UTF-8");
-			response.getWriter().print(result);
+			
 		//}
 		
 		

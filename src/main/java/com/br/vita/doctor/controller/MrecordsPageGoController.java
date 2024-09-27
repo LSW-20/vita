@@ -1,27 +1,23 @@
 package com.br.vita.doctor.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.br.vita.doctor.model.service.DoctorService;
-import com.google.gson.Gson;
-
 /**
- * Servlet implementation class YesNoUpdateByDiagnosisController
+ * Servlet implementation class MrecordsPageGoController
  */
-@WebServlet("/dia_mt.up")
-public class YesNoUpdateByDiagnosisController extends HttpServlet {
+@WebServlet("/m_record.go")
+public class MrecordsPageGoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public YesNoUpdateByDiagnosisController() {
+    public MrecordsPageGoController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,16 +27,7 @@ public class YesNoUpdateByDiagnosisController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String yes = request.getParameter("yes");
-		String careNo = request.getParameter("careNo");
-		String type = request.getParameter("type");
-		
-		int result = new DoctorService().yesNoUpdateByDiagnosis(yes,careNo,type);
-		
-
-		
-		response.setContentType("text/html; charset=UTF-8");
-		new Gson().toJson(result, response.getWriter());
+			request.getRequestDispatcher("/views/doctor/m_records.jsp").forward(request, response);
 		
 		
 		

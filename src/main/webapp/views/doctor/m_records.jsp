@@ -99,14 +99,14 @@
             <h2><b>진료기록</b></h2>
 
               <div class="boxline">
-                <form action="">
+                <form action="<%= contextPath %>/selectMrecords.se">
                   <div class="care_select_container mt-5">
 
                       <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text">환자명</span>
                         </div>
-                        <input type="text" class="" placeholder="Name">
+                        <input type="text" class="" placeholder="Name" id="user_name_val" name="userName">
                       </div>
 
                       <div class="input-group mb-3">
@@ -114,7 +114,7 @@
                           <span class="input-group-text">진료과</span>
                         </div>
 
-                        <select name="select">
+                        <select name="deptName" id="dept_name_val">
                           <option value="none" selected>선택</option>
                           <option value="option 1">내과</option>
                           <option value="option 2">외과</option>
@@ -128,8 +128,8 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text">진료날짜</span>
                         </div>
-                        <input  type='date' placeholder='날짜를 선택해주세요.'> <div id="minus">-</div> 
-                        <input id="dateInput" type='date' placeholder='날짜를 선택해주세요.'> <button class="btn btn-secondary" id="sel_btn">검색</button>
+                        <input type='date' placeholder='날짜를 선택해주세요.' id="dateInput1" name="date1"> <div id="minus">-</div> 
+                        <input id="dateInput2" type='date' placeholder='날짜를 선택해주세요.' name="date2"> <button type="submit" class="btn btn-secondary" id="sel_btn">검색</button>
                       </div>
                     </div>
                 </form>
@@ -141,72 +141,32 @@
                 <div id="tavle_list_box">
                   <table class="table table-striped" style="text-align: center;">
                     <thead class="thead-dark">
+                    
                       <tr>
                         <th>병원등록번호</th>
                         <th>이름</th>
                         <th>주민번호</th>
-                        <th>성별</th>
                         <th>진료과</th>
                         <th>진료날짜</th>
                         <th>기록</th>
-                      </tr>
+                      </tr>   
                     </thead>
                     <tbody>
+                    
+                    
                       <!-- for문 -->
                       <tr>
                        <td>11234</td>
                        <td>홍길동</td>
                        <td>940404-1******</td>
-                       <td>남</td>
                        <td>내과</td>
                        <td>24-09-09</td>
                        <td><button class="btn btn-secondary">진료기록</button></td>
                       </tr>
-                      <tr>
-                       <td>11234</td>
-                       <td>홍길동</td>
-                       <td>940404-1******</td>
-                       <td>남</td>
-                       <td>내과</td>
-                       <td>24-09-09</td>
-                       <td><button class="btn btn-secondary">진료기록</button></td>
-                      </tr>
-                      <tr>
-                       <td>11234</td>
-                       <td>홍길동</td>
-                       <td>940404-1******</td>
-                       <td>남</td>
-                       <td>내과</td>
-                       <td>24-09-09</td>
-                       <td><button class="btn btn-secondary">진료기록</button></td>
-                      </tr>
-                      <tr>
-                       <td>11234</td>
-                       <td>홍길동</td>
-                       <td>940404-1******</td>
-                       <td>남</td>
-                       <td>내과</td>
-                       <td>24-09-09</td>
-                       <td><button class="btn btn-secondary">진료기록</button></td>
-                      </tr>
-                      <tr>
-                       <td>11234</td>
-                       <td>홍길동</td>
-                       <td>940404-1******</td>
-                       <td>남</td>
-                       <td>내과</td>
-                       <td>24-09-09</td>
-                       <td><button class="btn btn-secondary">진료기록</button></td>
-                      </tr>
-                      <tr>
-                       <td>11234</td>
-                       <td>홍길동</td>
-                       <td>940404-1******</td>
-                       <td>남</td>
-                       <td>내과</td>
-                       <td>24-09-09</td>
-                       <td><button class="btn btn-secondary">진료기록</button></td>
-                      </tr>
+                     
+
+                     
+                    
                     </tbody>
                   </table>
 
