@@ -664,6 +664,16 @@ public class ReservationDao {
 		
 	}
 
+	/**
+	 * 일반건강검진 예약 추가 (2/3)
+	 * author : 임상우
+	 * @param conn
+	 * @param userNo
+	 * @param time
+	 * @param date
+	 * @param price
+	 * @return 삽입된 행 수
+	 */
 	public int insertCheckupAppN(Connection conn, String userNo, String time, String date, String price) {
 
 		int result = 0;
@@ -692,6 +702,20 @@ public class ReservationDao {
 		
 	}
 
+	/**
+	 * 일반건강검진 예약 추가 (3/3)
+	 * author : 임상우
+	 * @param conn
+	 * @param userNo
+	 * @param mediList
+	 * @param surgeryYN
+	 * @param surgeryName
+	 * @param flightYN
+	 * @param time
+	 * @param date
+	 * @param price
+	 * @return 삽입된 행 수
+	 */
 	public int insertChecklist(Connection conn, String userNo, String mediList, String surgeryYN, String surgeryName,
 			String flightYN, String time, String date, String price) {
 

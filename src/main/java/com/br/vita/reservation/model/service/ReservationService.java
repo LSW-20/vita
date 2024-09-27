@@ -288,7 +288,15 @@ public class ReservationService {
 		
 	}
 
-	
+	/**
+	 * 건강검진 예약 추가 (2/3)
+	 * author : 임상우
+	 * @param userNo
+	 * @param time
+	 * @param date
+	 * @param price
+	 * @return 삽입된 행 수 
+	 */
 	public int insertCheckupAppN(String userNo, String time, String date, String price) {
 		
 		Connection conn = getConnection();
@@ -306,6 +314,19 @@ public class ReservationService {
 		
 	}
 
+	/**
+	 * 건강검진 예약 추가 (3/3)
+	 * author : 임상우
+	 * @param userNo
+	 * @param mediList
+	 * @param surgeryYN
+	 * @param surgeryName
+	 * @param flightYN
+	 * @param time
+	 * @param date
+	 * @param price
+	 * @return 삽입된 행 수
+	 */
 	public int insertChecklist(String userNo, String mediList, String surgeryYN, String surgeryName, String flightYN,
 			String time, String date, String price) {
 		

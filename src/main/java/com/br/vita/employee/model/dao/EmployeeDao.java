@@ -221,6 +221,49 @@ public class EmployeeDao {
 		
 		return result;
 	}
+
+
+	/**
+	 * 사번 찾기 (이름과 주민등록번호로) (1/4) 기업건강검진 예약 추가
+	 * author : 임상우
+	 * @param conn
+	 * @param name
+	 * @param ssn
+	 * @return empNo
+	 */
+	public String findEmpNo(Connection conn, String name, String ssn) {
+		
+		String empNo = "";
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("findEmpNo");
+		
+
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, name);
+			pstmt.setString(2, ssn);
+
+			rset = pstmt.executeQuery();
+			
+			
+			
+			if(rset.next()) {
+				empNo = rset.getString("EMP_NO");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return empNo;
+	}
 	
 	
 	

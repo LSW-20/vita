@@ -329,7 +329,7 @@
 	</entry>
 	
 	
-	<!-- (상우) 건강검진 예약 추가(2/3) -->
+	<!-- (상우) 일반건강검진 예약 추가(2/3) -->
 	<entry key="insertCheckupAppN">
 	
 		INSERT 
@@ -358,7 +358,7 @@
 		  )
 	</entry>
 	
-	<!-- (상우) 건강검진 예약 추가(3/3) -->
+	<!-- (상우) 일반건강검진 예약 추가(3/3) -->
 	<entry key="insertChecklist">
 	
 		INSERT 

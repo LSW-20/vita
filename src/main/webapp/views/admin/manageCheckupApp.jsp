@@ -607,24 +607,24 @@ footer {
         
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form action="#" method="">
+                    <form action="<%= contextPath %>/addCHC.admin" method="post">
                         <div style="display: flex; justify-content: center;">
                             <table class="add_modal_table">
                                 <tr>
                                     <th><span class="star">*</span> 예약일</th>
-                                    <td><input type="date" class="form-control reservation_date" placeholder="" name="" required></td>
+                                    <td><input type="date" class="form-control reservation_date" name="date" required></td>
                                 </tr>
                                 <tr>
                                     <th><span class="star">*</span> 예약시간</th>
                                     <td>
-                                            <input type="radio" name="reservation_time" value="AM" class="no_select" checked>&nbsp; 오전&nbsp;&nbsp;
-                                            <input type="radio" name="reservation_time" value="PM" class="no_select">&nbsp; 오후
+                                            <input type="radio" name="time" value="오전" class="no_select" checked>&nbsp; 오전&nbsp;&nbsp;
+                                            <input type="radio" name="time" value="오후" class="no_select">&nbsp; 오후
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th><span class="star">*</span> 검진비용</th>
-                                    <td><input type="number" class="form-control" placeholder="숫자만 입력" name="" value="" required></td>
+                                    <td><input type="number" class="form-control" placeholder="숫자만 입력" name="price" required></td>
                                 </tr>
 
                                 
@@ -647,7 +647,7 @@ footer {
                                 </tr>
                                 <tr>
                                     <th><span class="star">*</span> 이름</th>
-                                    <td><input type="text" class="form-control" placeholder="" name="" value="" required></td>
+                                    <td><input type="text" class="form-control" placeholder="이미 존재하는 회원이어야 합니다." name="name" required></td>
                                 </tr>
                                 <tr>
                                     <th><span class="star">*</span> 주민등록번호</th>
@@ -663,7 +663,7 @@ footer {
 
                                 <tr>
                                     <th> 복용중인 약</th>
-                                    <td><input type="text" class="form-control" placeholder="" name="" value=""></td>
+                                    <td><input type="text" class="form-control" name="medilist"></td>
                                 </tr>
                                 <tr>
                                     <th><span class="star">*</span> 최근 수술 여부</th>
@@ -674,7 +674,7 @@ footer {
                                 </tr>
                                 <tr>
                                     <th> 수술명</th>
-                                    <td><input type="text" class="form-control" placeholder="" name="" value=""></td>
+                                    <td><input type="text" class="form-control" name="surgery_name"></td>
                                 </tr>
                                 <tr>
                                     <th><span class="star">*</span> 비행 예정</th>

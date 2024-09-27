@@ -71,5 +71,20 @@
 	 				SSN IN (   			   		
 	 		
 	</entry>
+	
+	
+	<!-- (상우) 사번 찾기 (이름과 주민등록번호로) (1/4) 기업건강검진 예약 추가 -->
+	<entry key="selectEmployee">
+
+	SELECT 
+				  EMP_NO
+	  FROM
+	  			EMPLOYEE
+	 WHERE
+	 				EMP_NAME = ?
+	 	 AND  SSN = ?			 
+
+	</entry>
+	
 
 </properties>
