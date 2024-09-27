@@ -24,4 +24,30 @@
 		      )		
 	</entry>
 	
+	<entry key="insertPayCheckUp">
+		INSERT
+			  INTO 
+			       PAYMENT 
+			       (
+			       PAY_NO
+			     , USER_NO
+			     , APPOINTMENT_NO
+			     , PAY_DATE
+			     , PAY_ID
+			     , PRICE
+			     , PG
+			     )
+			 VALUES
+			      (
+			      ?
+			    , ?
+			    , 'ch' || SEQ_CHN.NEXTVAL
+			    , SYSDATE
+			    , ?
+			    , '50000'
+			    , ?
+			      )		
+		
+	
+	</entry>
 </properties>

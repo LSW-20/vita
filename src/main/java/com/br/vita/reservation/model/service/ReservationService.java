@@ -273,12 +273,12 @@ public class ReservationService {
 		
 	}
 	
-	public int insertHealtchCareList(HealthCheck hc) {
+	public int insertHealtchCareList(String userNo, String time, String date) {
 		
 		Connection conn = getConnection();
-		int result1 = rdao.insertHealtchCareList(conn, hc);
+		int result = rdao.insertHealtchCareList(conn, userNo, time, date);
 		
-		if(result1 > 0) {
+		if(result > 0) {
 			commit(conn);
 		} else {
 			rollback(conn);
@@ -286,7 +286,7 @@ public class ReservationService {
 		
 		
 		close(conn);
-		return result1;
+		return result;
 		
 	}
 
@@ -373,7 +373,7 @@ public class ReservationService {
 		
 	}
 
-
+	
 
 	
 	

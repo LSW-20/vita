@@ -28,6 +28,22 @@ public class PaymentService {
 		close(conn);
 		return payResult;
 	}//payDocument
+
+
+	public int insertPayDocument(String payNo, String userNo, String payId, String pg) {
+		
+		Connection conn = getConnection();
+		int payResult = pDao.insertPayDocument(conn, payNo, userNo, payId, pg);
+		
+		if(payResult > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return payResult;
+	
+	}
 	
 	
 

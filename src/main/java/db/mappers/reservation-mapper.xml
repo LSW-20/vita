@@ -317,14 +317,14 @@
 
 		VALUES
 		(
-		  ?
+		  'ch' || SEQ_CHN.NEXTVAL
 		, ?
 		, NULL
 		, SYSDATE
 		, 'A'
 		, ?
     , ?
-    , 50000
+    , '50000'
 		)
 	</entry>
 	

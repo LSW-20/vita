@@ -654,19 +654,18 @@ public class ReservationDao {
 		return result;
 	}
 	
-	public int insertHealtchCareList(Connection conn, HealthCheck hc) {
+	public int insertHealtchCareList(Connection conn, String userNo, String time, String date) {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("insertCheckList");
+		String sql = prop.getProperty("insertNormalCheckUp");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, hc.getAppointmentNo());
-			pstmt.setString(2, hc.getUserNo());
-			pstmt.setString(3, hc.getAppointmentTime());
-			pstmt.setDate(4, hc.getAppointmentDate());
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, time);
+			pstmt.setString(3, date);
 		
 			
 			result = pstmt.executeUpdate();

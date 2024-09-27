@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.br.vita.member.model.vo.Member;
+import com.br.vita.payment.model.service.PaymentService;
 import com.br.vita.reservation.model.service.ReservationService;
 import com.br.vita.reservation.model.vo.CheckList;
 import com.br.vita.reservation.model.vo.HealthCheck;
@@ -37,36 +38,29 @@ public class HealthCheckFormController extends HttpServlet {
         String year = request.getParameter("year");
         String month = request.getParameter("month");
         String day = request.getParameter("day");
-        String selectedDateString = String.format("%s/%02d/%02d", year, Integer.parseInt(month), Integer.parseInt(day));
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        Date selectedDate = null;
-        try {
-            selectedDate = (Date) dateFormat.parse(selectedDateString); // 캐스팅 제거
-        } catch (ParseException e) {
-            e.printStackTrace();
-            session.setAttribute("alertMsg", "날짜 형식이 잘못되었습니다.");
-            response.sendRedirect(request.getContextPath() + "/errorPage.jsp"); // 에러 페이지로 리디렉션
-            return; // 오류 발생 시 후속 코드 실행 방지
-        }
-
-        // selectedDate를 java.sql.Date로 변환
-        java.sql.Date sqlDate = new java.sql.Date(selectedDate.getTime());
         
+        String date = String.format("%s/%02d/%02d", year, Integer.parseInt(month), Integer.parseInt(day));
+        String time = request.getParameter("selectedTime");
+
+        String payId = request.getParameter("imp_uid"); //payId
+	    String payNo = request.getParameter("merchant_uid");//payNo
+	    String pg = request.getParameter("PG");
         
-        HealthCheck hc = new HealthCheck();
-        hc.setAppointmentNo(request.getParameter("merchant_uid"));
-        hc.setUserNo(userNo);
-        hc.setAppointmentTime(request.getParameter("selectedTime"));
-    
-
-        int result = new ReservationService().insertHealtchCareList(hc);
-
-        if (result > 0) {
+	    System.out.println(date);
+	    System.out.println(time);
+	    System.out.println(payId);
+	    System.out.println(payNo);
+	    System.out.println(pg);
+	    
+        int payResult = new PaymentService().insertPayDocument(payNo,userNo,payId, pg);
+        int result = new ReservationService().insertHealtchCareList(userNo, time, date);
+        
+        if (result == 1 && payResult == 1) {
             session.setAttribute("alertMsg", "진료예약이 완료되었습니다.");
             response.sendRedirect(request.getContextPath() + "/HealthCheckAL.rv");
         } else {
             session.setAttribute("alertMsg", "추가에 실패하였습니다.");
+            request.setAttribute("msg", "건강검진 예약에 실패하였습니다.");
         }
     }
 
