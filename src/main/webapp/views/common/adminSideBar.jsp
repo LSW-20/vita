@@ -179,7 +179,7 @@ $(document).ready(function() {
             </div>
             <div id="side7"><span id="side7_event">• &nbsp고객의 소리</span></div>
             <div id="side8">
-                <div class="no_style8"><a href="/vita/views/admin/adminCsList.jsp">- &nbsp Q&A 답변 및 관리</a></div>
+                <div class="no_style8"><a href="<%= contextPath %>/list.cs">- &nbsp Q&A 답변 및 관리</a></div>
             </div>
         </div>
     </div>

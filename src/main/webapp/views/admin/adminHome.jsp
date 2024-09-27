@@ -156,7 +156,7 @@
                         </tr>
 
                         <tr>
-                            <td style="height: 90px; padding-left: 40px; font-size: 20px;"><a href="/vita/views/admin/adminCsList.jsp">▷ Q&A 답변 및 관리</a></td>
+                            <td style="height: 90px; padding-left: 40px; font-size: 20px;"><a href="<%= contextPath %>/list.cs">▷ Q&A 답변 및 관리</a></td>
                         </tr>
                     </table>
                 </div>

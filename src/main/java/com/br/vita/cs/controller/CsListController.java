@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.br.vita.common.model.vo.PageInfo;
 import com.br.vita.cs.model.service.CsService;
 import com.br.vita.cs.model.vo.Cs;
+import com.br.vita.member.model.vo.Member;
 
 /**
  * Servlet implementation class CsListController
@@ -74,7 +75,22 @@ public class CsListController extends HttpServlet {
 		request.setAttribute("csList", csList);
 		request.setAttribute("category",category);
 
-		request.getRequestDispatcher("/views/cs/csList.jsp").forward(request, response);
+		//request.getRequestDispatcher("/views/cs/csList.jsp").forward(request, response); <- 기존에 작성되어 있던 구문 (주석 작성자 : 상우)
+		
+		
+		
+		Member loginUser = (Member) request.getSession().getAttribute("loginUser"); // 세션으로부터 현재 로그인한 Member 객체를 가져온다.
+		
+		if (loginUser != null && "A".equals(loginUser.getUserType())) {
+		    // 로그인한 유저가 관리자(A)일 경우
+		    request.getRequestDispatcher("/views/cs/csListAdminSideBar.jsp").forward(request, response);
+		} else {
+		    // 그 외의 경우
+		    request.getRequestDispatcher("/views/cs/csList.jsp").forward(request, response);
+		}
+		
+
+
 	}//doGet
 
 	/**

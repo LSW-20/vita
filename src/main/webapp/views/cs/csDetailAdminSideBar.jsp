@@ -90,6 +90,12 @@ footer{
 }
 
 
+
+/* csDetail에 관리자 사이드바를 붙이면서 사이드메뉴 길이를 변경했습니다 - 상우 */
+#side_menu {
+    height: 1980px !important;
+}
+
     
 </style>
 
@@ -101,7 +107,7 @@ footer{
 <body>
 
 	<%@ include file="/views/common/header.jsp" %>
-	<%@ include file="/views/common/myPageSideBar.jsp" %>
+    <%@ include file="/views/common/adminSideBar.jsp" %>
 
 
     <script>
@@ -265,11 +271,9 @@ footer{
             </tr>
         </table>    
 
-        <% if(loginUser.getUserType().equals("A")) { %>
-            <div style="display: flex; flex-direction: column; align-items: end;" >
-                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#reply_delete_modal">답변 삭제</button>
-            </div>
-        <% } %>
+        <div style="display: flex; flex-direction: column; align-items: end;" >
+            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#reply_delete_modal">답변 삭제</button>
+        </div>
     <%} %>
 
 
@@ -303,7 +307,7 @@ footer{
   </div>
 
 <!-- nav, section 별도로 닫아주기-->
-</nav>
+<!-- </nav> adminSideBar에는 nav 태그가 없음.-->
 
 
 
