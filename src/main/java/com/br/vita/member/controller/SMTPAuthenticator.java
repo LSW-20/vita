@@ -5,7 +5,7 @@ import javax.mail.PasswordAuthentication;
 
 public class SMTPAuthenticator extends Authenticator {
     private String mail_id = "wodns1236@naver.com";
-    private String mail_pw = "VU58YG1PZV4R";
+    private String mail_pw = "7WFNDQBCFV2N";
 
     @Override
     protected PasswordAuthentication getPasswordAuthentication() {
