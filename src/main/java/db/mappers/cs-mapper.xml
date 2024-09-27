@@ -123,5 +123,27 @@
 		 WHERE 
 		       BOARD_NO = ?				
 	</entry>
+	
+	
+	<!-- (상우) qna 답변 삭제 -->
+	<entry key="replyDelete">
+		UPDATE
+						TAB_CS
+			 SET 
+			 			ANSWER_CONTENT = null
+		 WHERE
+		  			BOARD_NO = ?	 					
+	</entry>
+	
+	<!-- (상우) qna 답변 작성  -->
+	<entry key="replyInsert">
+	  UPDATE
+	  				TAB_CS
+	  	 SET
+	  	 			ANSWER_CONTENT = ?
+	   WHERE
+	          BOARD_NO = ? 						
+	</entry>
+	
 
 </properties>

@@ -260,6 +260,62 @@ public class CsDao {
 		return result;
 	}//updateCs
 	
+	
+	/**
+	 * qna 답변 삭제하기
+	 * author : 임상우
+	 * @param conn
+	 * @param boardNo
+	 * @return 삭제된 행 수
+	 */
+	public int replyDelete(Connection conn, String boardNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("replyDelete");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, boardNo);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/**
+	 * qna 답변 작성하기
+	 * author : 임상우
+	 * @param conn
+	 * @param boardNo
+	 * @param replyContent
+	 * @return insert한 행 수
+	 */
+	public int replyInsert(Connection conn, String boardNo, String replyContent) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("replyInsert");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, replyContent);
+			pstmt.setString(2, boardNo);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
 
 
 }

@@ -135,6 +135,50 @@ public class CsService {
 		return result;
 	}//updateCs
 
+	
+	
+	
+	/**
+	 * qna 답변 삭제하기
+	 * author : 임상우
+	 * @param boardNo
+	 * @return 삭제된 행 수
+	 */
+	public int replyDelete(String boardNo) {
+		Connection conn = getConnection();
+		int result = cDao.replyDelete(conn, boardNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
+
+	/**
+	 * qna 답변 작성하기
+	 * author : 임상우
+	 * @param boardNo
+	 * @param replyContent
+	 * @return insert한 행 수
+	 */
+	public int replyInsert(String boardNo, String replyContent) {
+		Connection conn = getConnection();
+		int result = cDao.replyInsert(conn, boardNo, replyContent);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
+
 
 
 

@@ -11,16 +11,16 @@ import javax.servlet.http.HttpSession;
 import com.br.vita.cs.model.service.CsService;
 
 /**
- * Servlet implementation class AdminQnaReplyDelete
+ * Servlet implementation class AdminQnaReplyInsert
  */
-@WebServlet("/deleteAdmQNA.admin")
-public class AdminQnaReplyDelete extends HttpServlet {
+@WebServlet("/addAdmQNA.admin")
+public class AdminQnaReplyInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminQnaReplyDelete() {
+    public AdminQnaReplyInsert() {
         super();
     }
 
@@ -36,29 +36,30 @@ public class AdminQnaReplyDelete extends HttpServlet {
     	HttpSession session = request.getSession(); // alert 띄우기용 session 선언.
 
 		String boardNo = request.getParameter("board_no");
+		String replyContent = request.getParameter("reply_content");
 		
-		int result = new CsService().replyDelete(boardNo);
+		int result = new CsService().replyInsert(boardNo, replyContent);
 		
 		
 		
-		// 2. 응답
+		
+		// 2.응답
         if(result > 0) { 
-        	// delete 성공
-    		// 응답페이지 : 답변을 삭제한 해당 고객의소리 상세페이지 ((/vita/views/cs/csDetail_상우.jsp)
-    		// 응답데이터 : "답변이 삭제되었습니다." alert 메세지
-            session.setAttribute("alertMsg", "답변이 삭제되었습니다.");
+        	// insert 성공
+    		// 응답페이지 : 답변을 작성한 해당 고객의소리 상세페이지 ((/vita/views/cs/csDetail_상우.jsp)
+    		// 응답데이터 : "답변이 작성되었습니다." alert 메세지
+            session.setAttribute("alertMsg", "답변이 작성되었습니다.");
             response.sendRedirect(request.getContextPath() + "/detail.cs?no=" + boardNo + "&category=Q");
             												
         }else { 
-        	// delete 실패
+        	// insert 실패
     		// 응답페이지 : 에러페이지 ((/vita/views/common/errorPage.jsp)
-    		// 응답데이터 : "답변 삭제에 실패하였습니다." alert 메세지
-            session.setAttribute("alertMsg", "답변 삭제에 실패하였습니다.");
-			request.setAttribute("msg", "Q&A 답변 삭제에 실패하였습니다.");
+    		// 응답데이터 : "답변 작성에 실패하였습니다." alert 메세지
+            session.setAttribute("alertMsg", "답변 작성에 실패하였습니다.");
+			request.setAttribute("msg", "Q&A 답변 작성에 실패하였습니다.");
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
         }
 		
-	
 	}
 
 	/**
