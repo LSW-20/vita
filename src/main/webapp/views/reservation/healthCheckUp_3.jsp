@@ -87,7 +87,6 @@
    </style>
   <section>
 
-   <form action="<%= contextPath %>/CheckForm.rv" method="post">
     <h2 id="pad"><b>검진예약</b></h2>
     <br>
 
@@ -97,12 +96,13 @@
     <h3 style="margin-left:93px"><sup style="color:rgb(255, 165, 0)">*</sup><b> 희망검진일</b></h3>
    <br>
   
+   <form action="<%= contextPath %>/CheckForm.rv" method="post">
 
    <table class="container11 table-bordered" id="table_custom" style="margin-left:93px; ">
              
     <tr class="d-flex" >
 
-	      <td id="color" style="width:346px; height: 230px; border-right-style: dashed; ">
+	      <td id="color" style="width:346px; height: 230px; border-rig	ht-style: dashed; ">
 	        <h4 style="margin-top: 60px"><b style="color:black">희망검진일</b></h4><br>
 	        <h4 id="wantday" style="margin:auto"><b></b></h4>
 	      </td>
@@ -234,6 +234,7 @@
 
       </div>
     </div>
+    </form>
 				<script>
 				    let isButtonn = false;
 					
@@ -493,7 +494,7 @@
                 </div>
                 
                 <div class="modal-footer" style="background-color: #1F2B6C;">
-                    <button type="submit"  name="payment" class="btn" id="btn-color" style=" width:1197px;" onclick="requestPayment()">
+                    <button type="button"  name="payment" class="btn" id="btn-color" style=" width:1197px;" onclick="requestPayment()">
                          <h5>50,000 원 결제하기</h5>
                			 </button>    
                 </div>
@@ -504,7 +505,6 @@
 
 
 		
-
 
 
 
@@ -527,13 +527,14 @@
      <br><br><br>
 
      
-    
+    	
 
         <input type="hidden" name="merchant_uid" id="merchant_uid">
         <input type="hidden" name="selectedTime" id="selectedTime">
-        <input type="hidden" name="selectedDate" id="selectedDate">
-        
-        
+        <input type="hidden" name="year" id="year">
+        <input type="hidden" name="month" id="month">
+        <input type="hidden" name="day" id="day">
+       
         <div align="center">
         
           <a href="/vita/views/reservation/healthCheckUp_Success.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;" onclick="return validateAndProceed(event)">예약 신청하기</a>
@@ -582,7 +583,6 @@
 
 
 
-    </form>
         
   </section>
 		
