@@ -382,7 +382,7 @@ AND DOC_TYPE = ?
 </entry>
 
 
-<!-- 진료실 예약리스트 조회 -->
+<!-- 진료실 해당 과 예약리스트 조회 -->
 <entry key="selectRes">
 SELECT 
      M.USER_NAME AS USER_NAME
@@ -392,18 +392,22 @@ SELECT
     ,(SELECT COUNT(*)
         FROM CARE_APP
         WHERE CARE_STATUS = 'N') AS COUNT
+    ,RPAD(SUBSTR(M.USER_SSN,0,8),14,'*') AS USER_SSN
+    ,M.PHONE AS PHONE
+    ,SUBSTR(M.ADDRESS, 1, INSTR(M.ADDRESS, ' ')) AS ADDRESS
 
 
 FROM MEMBER M
 LEFT JOIN CARE_APP C ON M.USER_NO = C.USER_NO
+LEFT JOIN DOCTOR D ON C.DOCTOR_NO = D.DOCTOR_NO
 WHERE C.CARE_STATUS = 'N'
-
+AND D.DOCTOR_NO = ?
 
 
 </entry>
 
 
-<!-- 각 해당 진료실페이지인지 검사용 -->
+<!-- 각 해당 진료실페이지인지 분류용 -->
 <entry key="teatmentRoomGo">
 
 
@@ -417,6 +421,70 @@ WHERE USER_NO= ?
 
 
 </entry>
+
+<!-- 진료기록 insert -->
+<entry key="treatRoomInsert">
+
+
+INSERT INTO 
+MRECORDS 
+(
+CARE_NO
+
+,APPOINTMENT_NO
+,USER_NO
+,DOCTOR_NO
+,USER_NAME
+,USER_SSN
+,TREATMENT_DATE
+,SYMPTOMS
+,OPINION
+,TREATMENT_CONTENT
+,DIAGNOSIS_NAME
+,DEPT_NAME
+) 
+
+VALUES
+(
+'ca'||SEQ_MNO.NEXTVAL
+
+,? 
+,? 
+,? 
+,? 
+,(
+	SELECT 
+		USER_SSN
+  FROM 
+  		 MEMBER
+  WHERE 
+  		 USER_NO = ?
+ )
+,TO_DATE(SYSDATE,'RR/MM/DD')
+,? 
+,? 
+,? 
+,? 
+,? 
+
+)
+
+
+</entry>
+
+<!-- 진료 후 예약리스트 업데이트 -->
+<entry key="resUpdate">
+
+UPDATE CARE_APP
+SET CARE_STATUS = 'Y'
+WHERE APPOINTMENT_NO = ? 
+
+</entry>
+
+
+
+
+
 	
 	
 	

@@ -721,9 +721,9 @@ public class DoctorDao {
 				Member docuMem = new Member();
 				docuMem.setUserNo(rset.getString("USER_NO"));
 				docuMem.setUserName(rset.getString("USER_NAME"));
-				docuMem.setPhone(rset.getString("USER_SSN"));
+				docuMem.setPhone(rset.getString("PHONE"));
 				docuMem.setDeptName(rset.getString("DEPT_NAME"));
-				docuMem.setUserSSN(rset.getString("PHONE"));
+				docuMem.setUserSSN(rset.getString("USER_SSN"));
 				docuMem.setCareNo(rset.getString("CARE_NO"));
 				
 				
@@ -922,7 +922,7 @@ public class DoctorDao {
 	}
 	
 //  진료실 예약조회 리스트 조회
-	public List<Map<String,Object>> selectRes(Connection conn) {
+	public List<Map<String,Object>> selectRes(Connection conn, String docNo) {
 		
 		List<Map<String,Object>> relist = new ArrayList<>();
 		
@@ -934,6 +934,8 @@ public class DoctorDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			
+			pstmt.setString(1, docNo);
+			
 			rset=pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -944,6 +946,11 @@ public class DoctorDao {
 				reMap.put("userNo", rset.getString("USER_NO"));
 				reMap.put("appointment", rset.getString("APP_NO"));
 				reMap.put("count", rset.getString("COUNT"));
+				reMap.put("userSSN", rset.getString("USER_SSN"));
+				
+				reMap.put("phone", rset.getString("PHONE"));
+				reMap.put("address", rset.getString("ADDRESS"));
+				
 				
 				
 				relist.add(reMap);
@@ -966,7 +973,7 @@ public class DoctorDao {
 		
 	}
 	
-	
+//	의료진 해당 진료실 이동 관련 조회문
 	public Member teatmentRoomGo(Connection conn, String userNo){
 		
 		Member mem = null;
@@ -999,6 +1006,72 @@ public class DoctorDao {
 		
 		return mem;
 		
+		
+		
+	}
+	
+//	진료기록 insert
+	public int treatRoomInsert(Connection conn, Map<String,Object> mrMap) {
+		
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("treatRoomInsert");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			
+			pstmt.setString(1,(String)mrMap.get("resNo"));
+			pstmt.setString(2,(String)mrMap.get("userNo"));
+			pstmt.setString(3,(String)mrMap.get("docNo"));
+			pstmt.setString(4,(String)mrMap.get("userName"));
+			
+			pstmt.setString(5,(String)mrMap.get("userNo"));
+			
+			pstmt.setString(6,(String)mrMap.get("symptoms"));
+			pstmt.setString(7,(String)mrMap.get("opinion"));
+			pstmt.setString(8,(String)mrMap.get("treatment"));
+			pstmt.setString(9,(String)mrMap.get("diagnosis"));
+			pstmt.setString(10,(String)mrMap.get("deptName"));
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+		
+		
+	}
+	
+//	진료 후 해당 환자예약 업데이트
+	public int resUpdate(Connection conn, Map<String,Object> mrMap) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("resUpdate");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1,(String)mrMap.get("resNo"));
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
 		
 		
 	}
