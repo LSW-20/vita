@@ -42,18 +42,16 @@ public class DocumentConfirmController extends HttpServlet {
 	    String docPurpose = request.getParameter("docPurpose");
 	    
 		
-	    //payment에 추가 될 docNum
-		String docNum = request.getParameter("docNum");
-		System.out.println(docNum);
-	    int payResult = new PaymentService().insertPayDocument(payNo,userNo,docNum,payId);
-	    int result = new IssueService().insertDocument(careNo, userNo, docType, docPurpose);
-	    if(payResult > 0) {
-		    if(result > 0) {
+	    
+		
+		int result = new IssueService().insertDocument(careNo, userNo, docType, docPurpose);
+	    int payResult = new PaymentService().insertPayDocument(payNo,userNo,payId);
+	    if(result > 0) {
+		    if(payResult > 0) {
 		    	//결제 완료 후 문서 발급 완료 페이지로 이동
 		    	Document document = new IssueService().getDocumentByCareNo(careNo);
 		    	request.setAttribute("documents", document);
 		    	request.setAttribute("docType", docType);
-		    	request.setAttribute("docNum", docNum);
 		    	
 		    	response.sendRedirect(request.getContextPath()+"/listSel.cr");
 		    } else {
