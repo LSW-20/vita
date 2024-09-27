@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.br.vita.issue.model.service.IssueService;
 import com.br.vita.issue.model.vo.Document;
@@ -35,6 +36,7 @@ public class DocumentConfirmController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String docType = request.getParameter("docType");
 	    String careNo = request.getParameter("careNo");  // 사용자가 선택한 careNo 받아오기
+		String userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
 	    String impUid = request.getParameter("imp_uid"); //
 	    String merchantUid = request.getParameter("merchant_uid");
 	    String docPurpose = request.getParameter("docPurpose");
@@ -44,7 +46,7 @@ public class DocumentConfirmController extends HttpServlet {
 	    System.out.println(impUid);
 	    System.out.println(merchantUid);
 	    System.out.println(docPurpose);
-	    int result = new IssueService().insertDocument(careNo, docType, docPurpose);
+	    int result = new IssueService().insertDocument(careNo, userNo, docType, docPurpose);
 	    
 	    if(result > 0) {
 	    	//결제 완료 후 문서 발급 완료 페이지로 이동
@@ -52,13 +54,6 @@ public class DocumentConfirmController extends HttpServlet {
 	    	request.setAttribute("documents", document);
 	    	request.setAttribute("docType", docType);
 	    	
-//	    	if(docType.equals("진료비납입확인서")) {
-//	    		request.getRequestDispatcher("/views/issue/confirmPayment.jsp").forward(request, response);						
-//	    	}else if(docType.equals("입퇴원사실확인서")) {
-//	    		request.getRequestDispatcher("/views/issue/confirmAdmission.jsp").forward(request, response);			
-//	    	}else {
-//	    		request.getRequestDispatcher("/views/issue/confirmPrescription.jsp").forward(request, response);						
-//	    	}
 	    	response.sendRedirect(request.getContextPath()+"/listSel.cr");
 	    } else {
 	    	request.getRequestDispatcher("/views/common/errorPage.jsp");	    

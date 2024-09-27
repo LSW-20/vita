@@ -271,20 +271,23 @@ public class IssueDao {
 	 * @author 최보겸
 	 * @param conn
 	 * @param careNo
+	 * @param userNo
 	 * @param docType
 	 * @param docPurpose
 	 * @return result 처리행수
 	 */
-	public int insertDocument(Connection conn, String careNo, String docType, String docPurpose) {
+	public int insertDocument(Connection conn, String careNo, String userNo, String docType, String docPurpose) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertDocument");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, careNo);
-			pstmt.setString(2, docType);
-			pstmt.setString(3, docPurpose);
+			
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, careNo);
+			pstmt.setString(3, docType);
+			pstmt.setString(4, docPurpose);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

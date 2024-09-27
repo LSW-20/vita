@@ -133,7 +133,7 @@ INSERT
 VALUES 
    (
       SEQ_DNO.NEXTVAL
-    , '200321008'
+    , ?
     , ? 
     , ? 
     , null
