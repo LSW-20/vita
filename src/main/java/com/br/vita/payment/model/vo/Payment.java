@@ -1,5 +1,5 @@
 package com.br.vita.payment.model.vo;
 
-public class A {
+public class Payment {
 
 }
