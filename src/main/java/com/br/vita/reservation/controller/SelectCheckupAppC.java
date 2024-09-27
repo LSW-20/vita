@@ -41,7 +41,7 @@ public class SelectCheckupAppC extends HttpServlet {
 		String endDate = request.getParameter("end_date");
 		
 		List<Map<String, Object>> listC = new ReservationService().selectCheckupAppC(com, startDate, endDate);
-		System.out.println(listC);
+		//System.out.println(listC);
 		
 		
 		

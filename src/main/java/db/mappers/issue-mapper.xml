@@ -46,11 +46,14 @@ SELECT COUNT(*) AS COUNT -- count 0 일때 insert
 <!--진료기록 select-->
 <entry key="selectMrecords">
 	SELECT 
-	       CARE_NO
+	       M.CARE_NO AS CARE_NO
 	     , TREATMENT_DATE
 	     , DIAGNOSIS_NAME 
-	  FROM MRECORDS
-	 WHERE USER_NO = ?
+       , DOC_NUM
+	  FROM MRECORDS M
+    JOIN DOCUMENT D
+      ON M.CARE_NO = D.CARE_NO
+	 WHERE M.USER_NO = ?
 	   AND TREATMENT_DATE BETWEEN ? AND ?
 </entry>
 
@@ -133,7 +136,7 @@ INSERT
 VALUES 
    (
       SEQ_DNO.NEXTVAL
-    , '200321008'
+    , ?
     , ? 
     , ? 
     , null

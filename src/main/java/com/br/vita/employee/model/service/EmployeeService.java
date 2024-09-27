@@ -82,6 +82,7 @@ public class EmployeeService {
 
 	/**
 	 * 기업의 사원 삭제
+	 * author : 임상우
 	 * @param ssnList
 	 * @return 삭제된 행 수
 	 */
@@ -98,6 +99,23 @@ public class EmployeeService {
 		
 		close(conn);
 		return result;
+	}
+
+
+
+	/**
+	 * 사번 찾기 (이름과 주민등록번호로) (1/4) 기업건강검진 예약 추가
+	 * author : 임상우
+	 * @param name
+	 * @param ssn
+	 * @param com 
+	 * @return empNo
+	 */
+	public String findEmpNo(String name, String ssn, String com) {
+		Connection conn = getConnection();
+		String empNo = eDao.findEmpNo(conn, name, ssn, com);
+		close(conn);
+		return empNo;
 	}
 	
 	

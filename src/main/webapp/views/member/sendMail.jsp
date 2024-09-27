@@ -13,7 +13,7 @@
 request.setCharacterEncoding("utf-8");
 
 String from = request.getParameter("from");
-String email = request.getParameter("email");
+String to = request.getParameter("to");
 String subject = request.getParameter("subject");
 String content = request.getParameter("content");
 
@@ -38,7 +38,7 @@ try {
     Address fromAddr = new InternetAddress(from);
     msg.setFrom(fromAddr);
 
-    Address toAddr = new InternetAddress(email);
+    Address toAddr = new InternetAddress(to);
     msg.addRecipient(Message.RecipientType.TO, toAddr);
 
     msg.setContent(content, "text/html;charset=UTF-8");

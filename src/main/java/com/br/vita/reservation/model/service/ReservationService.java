@@ -290,6 +290,89 @@ public class ReservationService {
 		
 	}
 
+	/**
+	 * 일반건강검진 예약 추가 (2/3)
+	 * author : 임상우
+	 * @param userNo
+	 * @param time
+	 * @param date
+	 * @param price
+	 * @return 삽입된 행 수 
+	 */
+	public int insertCheckupAppN(String userNo, String time, String date, String price) {
+		
+		Connection conn = getConnection();
+		int result = rdao.insertCheckupAppN(conn, userNo, time, date, price);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		
+		close(conn);
+		return result;
+		
+	}
+
+	/**
+	 * 일반건강검진 예약 추가 (3/3), 기업건강검진 예약 추가 (4/4)
+	 * author : 임상우
+	 * @param userNo
+	 * @param mediList
+	 * @param surgeryYN
+	 * @param surgeryName
+	 * @param flightYN
+	 * @param time
+	 * @param date
+	 * @param price
+	 * @return 삽입된 행 수
+	 */
+	public int insertChecklist(String userNo, String mediList, String surgeryYN, String surgeryName, String flightYN,
+			String time, String date, String price) {
+		
+		Connection conn = getConnection();
+		int result = rdao.insertChecklist(conn, userNo, mediList, surgeryYN, surgeryName, flightYN, time, date, price);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		
+		close(conn);
+		return result;
+	}
+
+	
+	/**
+	 * 기업건강검진 예약 추가 (3/4)
+	 * author : 임상우
+	 * @param userNo
+	 * @param com
+	 * @param time
+	 * @param date
+	 * @param price
+	 * @return
+	 */
+	public int insertCheckupAppC(String userNo, String com, String time, String date, String price) {
+
+		Connection conn = getConnection();
+		int result = rdao.insertCheckupAppC(conn, userNo, com, time, date, price);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+		
+	}
+
 
 
 	

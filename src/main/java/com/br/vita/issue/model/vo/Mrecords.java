@@ -17,7 +17,9 @@ public class Mrecords {
 	private String diagnosisName;
 	private String deptName;
 	
-	
+	//document와 join시 필요한 docNum추가
+	private String docNum;
+
 	public Mrecords() {}
 
 
@@ -182,6 +184,16 @@ public class Mrecords {
 	public void setDeptName(String deptName) {
 		this.deptName = deptName;
 	}
+	
+	public String getDocNum() {
+		return docNum;
+	}
+
+
+	public void setDocNum(String docNum) {
+		this.docNum = docNum;
+	}
+
 
 
 	@Override

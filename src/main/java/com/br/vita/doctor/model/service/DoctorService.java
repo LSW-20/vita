@@ -366,9 +366,9 @@ public class DoctorService {
 	}
 	
 //	진료실페이지 예약리스트 조회
-	public List<Map<String,Object>> selectRes() {
+	public List<Map<String,Object>> selectRes(String docNo) {
 		Connection conn = getConnection();
-		List<Map<String,Object>> relist = dDao.selectRes(conn);
+		List<Map<String,Object>> relist = dDao.selectRes(conn,docNo);
 		 
 		 close(conn);
 		 
@@ -376,7 +376,7 @@ public class DoctorService {
 		 
 		
 	}
-	
+//	해당 과 진료실 분류용 조회 
 	public Member teatmentRoomGo(String userNo){
 		
 		
@@ -387,6 +387,36 @@ public class DoctorService {
 		close(conn);
 		
 		return mem;
+		
+	}
+	
+	
+//	진료기록 insert 후 예약리스트 업데이트
+	public int treatRoomInsertAndreUpdate(Map<String,Object> mrMap){
+		
+		Connection conn = getConnection();
+		
+		int mrresult = dDao.treatRoomInsert(conn,mrMap);
+		
+		if(mrresult > 0) {
+			int result = dDao.resUpdate(conn, mrMap);
+			
+			if(result > 0) {
+				commit(conn);
+			}
+			
+		}else {
+			rollback(conn);
+		}
+		
+		
+		
+		
+		close(conn);
+		
+		return mrresult;
+		
+		
 		
 	}
 	

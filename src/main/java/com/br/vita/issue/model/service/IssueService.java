@@ -102,13 +102,14 @@ public class IssueService {
 	 * 발급 신청 Document 테이블에 insert
 	 * @author chlqhrua
 	 * @param careNo
+	 * @param userNo
 	 * @param docType
 	 * @param docPurpose
 	 * @return result 처리 행수
 	 */
-	public int insertDocument(String careNo, String docType, String docPurpose) {
+	public int insertDocument(String careNo,String userNo, String docType, String docPurpose) {
 		Connection conn = getConnection();
-		int result = iDao.insertDocument(conn, careNo, docType, docPurpose);
+		int result = iDao.insertDocument(conn, careNo, userNo, docType, docPurpose);
 		
 		if(result > 0) {
 			commit(conn);
