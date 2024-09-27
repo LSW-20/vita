@@ -12,7 +12,7 @@ import com.br.vita.member.model.service.MemberService;
 /**
  * Servlet implementation class MemberIdCheckAjaxController
  */
-@WebServlet("/userSSNcheck.me")
+@WebServlet("/hpcheck.me")
 public class MemberHpCheckAjaxController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,9 +29,9 @@ public class MemberHpCheckAjaxController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String checkUserSSN = request.getParameter("checkUserSSN");
+		String checkHp = request.getParameter("checkHp");
 		
-		int count = new MemberService().userSSNCheck(checkUserSSN);
+		int count = new MemberService().hpCheck(checkHp);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		if(count > 0) { // 이미 존재 == 사용불가(NNNNN)

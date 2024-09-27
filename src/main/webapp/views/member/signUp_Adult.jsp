@@ -51,51 +51,6 @@ section {
 	border: none;
 }
 
-.modal-header {
-	justify-content: center !important;
-	margin-top: 15px;
-	position: relative;
-}
-
-.modal-title {
-	font-weight: 600;
-	font-size: 25px;
-}
-
-.close1 {
-	border: none;
-	background-color: white;
-	font-size: 30px;
-	position: absolute;
-	top: -15px;
-	right: 7px;
-	cursor: pointer;
-}
-
-.modal-body {
-	text-align: center;
-	color: #1F2B6C;
-	font-size: 14px;
-}
-
-.modal-header {
-	justify-content: center;
-	margin-top: 15px;
-	position: relative;
-	padding-right: 0;
-	border-bottom: none;
-}
-
-.modal-footer {
-	border-top: none;
-}
-
-.modal-content1 {
-	text-align: left;
-	font-size: 18px;
-	color: black;
-}
-
 .e-mail_address {
 	margin-bottom: -5px;
 	margin-top: 40px;
@@ -154,7 +109,7 @@ section {
 	font-size: 13px;
 }
 
-.modal-footer1 {
+.Hpopup-footer1 {
 	display: flex;
 	justify-content: space-between; /* 버튼들 사이에 공간을 균등하게 배분 */
 	padding: 10px;
@@ -188,7 +143,7 @@ section {
 	font-weight: 500;
 }
 
-.name, #e-mail, #email-domain, #phone_number, #userSSN, .id_1, .pwd_1,
+.name, #e-mail, #email-domain, #phone_number, #userSsn, .id_1, .pwd_1,
 	.pwd_2, #phone12 {
 	border: 1px solid rgb(207, 207, 207);
 	border-radius: 5px;
@@ -303,7 +258,7 @@ footer {
 										class="id_1" name="userId">
 										<button type="button" class="btn btn-secondary btn-sm"
 											onclick="fnIdCheck();">중복확인</button> <span id="text1">6~15자리
-											영문 소문자, 숫자만 가능합니다. (한글, 특수문자 입력 불가)</span></td>
+											영문 소문자 포함, 숫자만 가능합니다. (한글, 특수문자 입력 불가)</span></td>
 								</tr>
 								<tr>
 									<th>비밀번호&nbsp;<span style="color: red;">*</span></th>
@@ -326,23 +281,15 @@ footer {
 									<th>휴대폰 번호&nbsp;<span style="color: red;">*</span></th>
 									<td colspan="2"><input type="text" id="phone" class="name"
 										name="phone">
-										<button type="button" class="btn btn-secondary btn-sm"
-											onclick="fnHpCheck();">중복확인</button> <span id="text4">-
-											를 포함한 본인 휴대폰번호를 정확하게 입력하세요. &nbsp;&nbsp;ex)010-1111-2222</span></td>
+										<!-- Button to Open the Modal -->
+									  <button type="button" class="btn btn-secondary btn-sm" onclick="fnHpCheck()">인증</button>
+										<span id="text4">-를 포함한 본인 휴대폰번호를 정확하게 입력하세요. &nbsp;&nbsp;ex)010-1111-2222</span></td>
 								</tr>
 								<tr>
 									<th>주소&nbsp;<span style="color: red;">*</span></th>
 									<td colspan="2"><input type="text" id="address"
 										class="name" name="address"> <span id="text5">상세주소를
 											입력해주세요. &nbsp;&nbsp;ex)전라북도 전주시 덕진구 백제대로 78</span></td>
-								</tr>
-								<tr>
-									<th>주민등록번호&nbsp;<span style="color: red;">*</span></th>
-									<td colspan="2"><input type="text" id="userSSN"
-										class="name" name="userSSN">
-										<button type="button" class="btn btn-secondary btn-sm"
-											onclick="fnUserSSNCheck();">중복확인</button> <span id="text6">
-											- 를 포함해서 적어주세요. &nbsp;&nbsp;ex) 900101-2222222</span></td>
 								</tr>
 								<tr>
 									<th>성별&nbsp;<span style="color: red;">*</span></th>
@@ -357,15 +304,14 @@ footer {
 								<tr>
 									<th>이메일&nbsp;<span style="color: red;">*</span></th>
 									<td colspan="2">
-										<br><br><br><br>
+										<input class="name" type="text" name="email" id="email" placeholder="휴대폰을 인증해주세요." readOnly/>
 									</td>
 								</tr>
 							</tbody>
-						</table>
-						<input type="hidden" name="email" id="email"/>
+						</table>				
 					</div>
 				</div>
-
+					
 				<!-- 이메일 수신 여부 -->
 				<div class="form-group">
 					<p class="title1" style="margin-top: 50px;">
@@ -398,29 +344,79 @@ footer {
 					<a href=""><button type="button" class="btn btn-primary mx-2"
 							id="cc">취소</button></a>
 				</div>
+				<input type="hidden" id="userSSN" class="name" name="userSSN">
 			</form>
 			
-			<div class="container123 form-group" style="display: flex; padding-left: 375px; margin-top: -475px;">
-				<form action="<%=contextPath%>/views/member/sendMail.jsp"
-				    method="post" id="emailForm">
-				    <input type="text" class="name" name="to" id="to"/>
-				    <!--받는사람-->
-				    <input type="button" class="btn btn-secondary btn-sm" value="인증번호 받기" onclick="sendVerificationCode()"><br>
-				    <br>
-				    <!--인증받기버튼-->
-				    <input type="text" class="name" name="verify" id="verifyInput"/>
-				    <!--인증번호입력-->
-				    <input type="button" class="btn btn-secondary btn-sm" value="인증하기" onclick="verifyCode()">
-				    <!--인증확인버튼-->
-				    <input type="hidden" name="from" value="<%=mailId%>" />
-				    <!--보내는사람-->
-				    <input type="hidden" name="subject" value="비타병원 인증코드입니다." />
-				    <!--보낼메일제목-->
-				    <input type="hidden" name="content" id="content" />
-				    <!--보낼메일내용-->
-				</form>
+			<div class="container">
+			 	
+			  <!-- The Modal -->
+			  <div class="modal fade" id="myModal">
+			    <div class="modal-dialog modal-lg">
+			      <div class="modal-content">
+			      
+			        <!-- Modal Header -->
+			        <div class="modal-header">
+			          <h4 class="modal-title">인증</h4>
+			          <button type="button" class="close" data-dismiss="modal" onclick="resetModal()">&times;</button>
+			        </div>
+			        
+			        <!-- Modal body -->
+			        <div class="modal-body">
+							<table class="table borderless">
+								<tbody>
+				          <tr>
+										<th>주민등록번호&nbsp;<span style="color: red;">*</span></th>
+										<td colspan="2"><input type="text" id="userSsn" class="name" name="userSsn">
+										<span id="text6">- 를 포함해서 적어주세요. &nbsp;&nbsp;ex) 900101-2222222</span>
+										</td>													
+									</tr>
+									<tr>
+									<th>이메일&nbsp;<span style="color: red;">*</span></th>
+										<td colspan="2">
+											<div class="container123 form-group" style="display: flex; padding-left: 0px;">
+												<form action="<%=contextPath%>/views/member/sendMail.jsp"
+												    method="post" id="emailForm">
+												    <input type="text" class="name" name="to" id="to"/>
+												    <!--받는사람-->
+												    <input type="button" class="btn btn-secondary btn-sm" value="인증번호 받기" onclick="sendVerificationCode()"><br>
+												    <br>
+												    <!--인증받기버튼-->
+												    <input type="text" class="name" name="verify" id="verifyInput"/>
+												    <!--인증번호입력-->
+												    <input type="button" class="btn btn-secondary btn-sm" value="인증하기" onclick="verifyCode()">
+												    <!--인증확인버튼-->
+												    <input type="hidden" name="from" value="<%=mailId%>" />
+												    <!--보내는사람-->
+												    <input type="hidden" name="subject" value="비타병원 인증코드입니다." />
+												    <!--보낼메일제목-->
+												    <input type="hidden" name="content" id="content" />
+												    <!--보낼메일내용-->
+												</form>
+											</div>
+										</td>		
+									</tr>
+								</tbody>
+							</table>
+			        </div>
+			        
+			        <!-- Modal footer -->
+			        <div class="modal-footer">
+			       	  <button type="button" class="btn btn-secondary" onclick="fnUserSsnCheck()">완료</button>
+			          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="resetModal()">닫기</button>
+			        </div>
+			        
+			      </div>
+			    </div>
+			  </div>
+			  
 			</div>
-			
+      <style>
+			.borderless{
+				width: 700px;
+				margin-left: 10px;
+				background-color: #00000009;
+			}
+      </style>
 			<script>
 			let verificationCode;
 
@@ -475,9 +471,9 @@ footer {
  			  const userName = document.getElementById("userName").value;
  			  const phone = document.getElementById("phone").value;
  			  const address = document.getElementById("address").value;
- 			  const userSSN = document.getElementById("userSSN").value;
+ 			  const userSsn = document.getElementById("userSsn").value;
  			  const gender = document.querySelector('input[name="gender"]:checked')?.value;
- 			
+ 		
  			  if (!userId) {
  			    alert("사용자 ID를 입력해 주세요.");
  			    return false;
@@ -511,43 +507,29 @@ footer {
  			    alert("전화번호를 입력해 주세요.");
  			    return false;
  			  }
- 				if (!document.getElementById("phone").readOnly) {
- 			    alert("전화번호 중복 확인을 해주세요.");
- 			    return false;
- 			  }
+ 			 if (!userSsn) {
+  			    alert("휴대폰을 인증해주세요.");
+  			    return false;
+  			  }
  			  if (!address) {
  			    alert("주소를 입력해 주세요.");
  			    return false;
- 			  }
- 			  if (!userSSN) {
- 			    alert("주민등록번호를 입력해 주세요.");
- 			    return false;
- 			  }
- 				// 주민등록번호의 생년월일 확인
- 			  const birthDate = userSSN.substring(0, 6);
- 			  const year = parseInt(birthDate.substring(0, 2), 10);
- 			  const month = parseInt(birthDate.substring(2, 4), 10) - 1; // 월은 0부터 시작
- 			  const day = parseInt(birthDate.substring(4, 6), 10);
- 			  const currentYear = new Date().getFullYear();
- 			  const fullYear = year < 50 ? 2000 + year : 1900 + year; // 2000년 이후 출생자는 2000년대, 그 이전은 1900년대
- 			  const age = currentYear - fullYear;
-
- 			  if (age < 14 || (age === 14 && new Date().setFullYear(fullYear, month, day) > new Date())) {
- 			    alert("만 14세 이하입니다.");
- 			    return false;
- 			  }
- 				if (!document.getElementById("userSSN").readOnly) {
- 			    alert("주민등록번호 중복 확인을 해주세요.");
- 			    return false;
- 			  }
+ 			  }	  
  			  if (!gender) {
  			    alert("성별을 선택해 주세요.");
  			    return false;
  			  }
- 			  if (!email) {
- 			    alert("이메일을 인증해 주세요.");
- 			    return false;
- 			  }
+ 			 	console.log("Email:", email);
+ 		    console.log("User ID:", userId);
+ 		    console.log("Password:", userPwd);
+ 		    console.log("Confirm Password:", userPwdConfirm);
+ 		    console.log("Name:", userName);
+ 		    console.log("Phone:", phone);
+ 		    console.log("Address:", address);
+ 		    console.log("SSN:", userSsn);
+ 		   console.log("보내질SSN:", document.getElementById('email').value);
+ 		    console.log("Gender:", gender);
+ 		    
  			  return true;
  			}
         	  
@@ -557,10 +539,10 @@ footer {
 	        const $idInput = $("#signup-form input[name=userId]");
 	        const userId = $idInput.val();
 	        
-	        // 아이디 유효성 검사
-	        const idPattern = /^[a-z0-9]{6,15}$/;
-	        if (!idPattern.test(userId)) {
-	            alert('아이디는 6~15자리의 영문 소문자와 숫자만 가능합니다.');
+	    	 // 아이디 유효성 검사
+	        const idPattern = /^(?=.*[a-z])[a-z0-9]{6,15}$/;
+	        if (!idPattern.test(userId) || /^[0-9]+$/.test(userId)) {
+	            alert('아이디는 6~15자리의 영문 소문자 포함, 숫자만 가능합니다.');
 	            $idInput.select(); // 다시 입력 유도
 	            return;
 	        }
@@ -591,91 +573,105 @@ footer {
 	    
 	 		// 휴대폰 중복체크용 함수
 	    function fnHpCheck() {
-	        const $hpInput = $("#signup-form input[name=phone]");
-	        const phone = $hpInput.val();
-	        
-	        // 휴대폰 유효성 검사
-	        const phPattern = /^01[016789]-\d{3,4}-\d{4}$/;
-	        if (!phPattern.test(phone)) {
-	            alert('올바른 형식의 휴대폰 번호를 입력하세요. 예: 010-1234-5678');
-	            $hpInput.select(); // 다시 입력 유도
-	            return;
-	        }
-	
-	        // 사용자가 입력한 휴대폰값 전달하면서 ajax요청
-	        $.ajax({
-	            url: '<%=contextPath%>/hpcheck.me',
-	            data: {checkHp: phone},
-	            success: function(res){
-	                console.log(res);
-	                if(res == 'NNNNN'){ // 사용불가능
-	                    alert('이미 존재는 번호입니다.');
-	                    $hpInput.select(); // 다시 입력 유도
-	                }else{ // 사용가능
-	                    if(confirm('사용가능한 휴대폰 번호입니다. 사용하시겠습니까?')){
-	                        $('#signup-form :submit').removeAttr('disabled'); // 회원가입 버튼 활성화
-	                        $hpInput.prop('readonly', true); // 더이상 아이디 수정 불가하도록
-	                    }else{
-	                        $hpInput.select(); // 다시 입력 유도
-	                    }
-	                }
-	            },
-	            error: function() {
-	                console.log('휴대폰 중복체크용 ajax 통신 실패');
-	            }
-	        });
+        const $hpInput = $("#signup-form input[name=phone]");
+        const phone = $hpInput.val();
+        
+     		// 이메일 인증 여부 확인
+        const emailInput = document.getElementById('email');
+        if (emailInput.value) {
+            alert('이미 인증되었습니다.');
+            return;
+        }
+        
+        
+        // 휴대폰 유효성 검사
+        const phPattern = /^01[016789]-\d{3,4}-\d{4}$/;
+        if (!phPattern.test(phone)) {
+            alert('올바른 형식의 휴대폰 번호를 입력하세요. 예: 010-1234-5678');
+            $hpInput.select(); // 다시 입력 유도
+            return;
+        }
+
+        // 사용자가 입력한 휴대폰값 전달하면서 ajax요청
+        $.ajax({
+            url: '<%=contextPath%>/hpcheck.me',
+            data: {checkHp: phone},
+            success: function(res){
+                console.log(res);
+                if(res == 'NNNNN'){ // 사용불가능
+                    alert('이미 존재는 번호입니다.');
+                    $hpInput.select(); // 다시 입력 유도
+                }else{ // 사용가능
+										$hpInput.prop('readonly', true); // 더이상 번호 수정 불가하도록
+										// 모달 켜기
+						        $('#myModal').modal('show');
+                }
+            },
+            error: function() {
+                console.log('휴대폰 중복체크용 ajax 통신 실패');
+            }
+        });
 	    }		
+	 		
+	    function resetModal() {
+        document.getElementById('userSsn').value = '';
+        document.getElementById('to').value = '';
+        document.getElementById('verifyInput').value = '';
+        document.querySelector("#signup-form input[name=phone]").prop('readonly', false);
+      }
 	    
-			// 주민등록번호 중복체크용 함수
-	    function fnUserSSNCheck() {
-		  const $userSSNInput = $("#signup-form input[name=userSSN]");
-		  const userSSN = $userSSNInput.val();
-		  
-		  // 주민등록번호 유효성 검사
-		  const userSSNPattern = /^\d{6}-\d{7}$/;
-		  if (!userSSNPattern.test(userSSN)) {
-		    alert('올바른 형식의 주민등록번호를 입력하세요. 예: 900101-2222222');
-		    $userSSNInput.select(); // 다시 입력 유도
-		    return;
-		  }
-		
-		  // 생년월일 확인
-		  const birthDate = userSSN.substring(0, 6);
-		  const year = parseInt(birthDate.substring(0, 2), 10);
-		  const month = parseInt(birthDate.substring(2, 4), 10) - 1; // 월은 0부터 시작
-		  const day = parseInt(birthDate.substring(4, 6), 10);
-		  const currentYear = new Date().getFullYear();
-		  const fullYear = year < 50 ? 2000 + year : 1900 + year; // 2000년 이후 출생자는 2000년대, 그 이전은 1900년대
-		  const age = currentYear - fullYear;
-		
-		  if (age < 14 || (age === 14 && new Date().setFullYear(fullYear, month, day) > new Date())) {
-		    alert("만 14세 이하입니다.");
-		    return;
-		  }
-		
-		  // 사용자가 입력한 주민등록번호값 전달하면서 ajax요청
-		  $.ajax({
-		    url: '<%=contextPath%>/userSSNcheck.me',
-		    data: {checkUserSSN: userSSN},
-		    success: function(res){
-		      console.log(res);
-		      if(res == 'NNNNN'){ // 사용불가능
-		        alert('이미 존재는 주민등록번호입니다.');
-		        $userSSNInput.select(); // 다시 입력 유도
-		      }else{ // 사용가능
-		        if(confirm('사용가능한 주민등록번호입니다. 사용하시겠습니까?')){
-		          $('#signup-form :submit').removeAttr('disabled'); // 회원가입 버튼 활성화
-		          $userSSNInput.prop('readonly', true); // 더이상 아이디 수정 불가하도록
-		        }else{
-		          $userSSNInput.select(); // 다시 입력 유도
-		        }
-		      }
-		    },
-		    error: function() {
-		      console.log('주민등록번호 중복체크용 ajax 통신 실패');
-		    }
-		  });
-			}	
+	 		// 주민등록번호 중복체크용 함수
+	    function fnUserSsnCheck() {
+	      const $userSsnInput = $("#myModal input[name=userSsn]");
+	      const userSsn = $userSsnInput.val();
+	      
+	      // 주민등록번호 유효성 검사
+	      const userSsnPattern = /^\d{6}-\d{7}$/;
+	      if (!userSsnPattern.test(userSsn)) {
+	        alert('올바른 형식의 주민등록번호를 입력하세요. 예: 900101-2222222');
+	        $userSsnInput.select(); // 다시 입력 유도
+	        return;
+	      }
+
+	      // 생년월일 확인
+	      const birthDate = userSsn.substring(0, 6);
+	      const year = parseInt(birthDate.substring(0, 2), 10);
+	      const month = parseInt(birthDate.substring(2, 4), 10) - 1; // 월은 0부터 시작
+	      const day = parseInt(birthDate.substring(4, 6), 10);
+	      const currentYear = new Date().getFullYear();
+	      const fullYear = year < 50 ? 2000 + year : 1900 + year; // 2000년 이후 출생자는 2000년대, 그 이전은 1900년대
+	      const age = currentYear - fullYear;
+
+	      if (age < 14 || (age === 14 && new Date().setFullYear(fullYear, month, day) > new Date())) {
+	        alert("만 14세 이하입니다.");
+	        return;
+	      }
+
+	      // 사용자가 입력한 주민등록번호값 전달하면서 ajax요청
+	      $.ajax({
+	        url: '<%=contextPath%>/userSsnCheck.me',
+	        data: {checkUserSsn: userSsn},
+	        success: function(res){
+	          console.log(res);
+	          if(res == 'NNNNN'){ // 사용불가능
+	            alert('이미 존재하는 주민등록번호입니다.');
+	            $userSsnInput.select(); // 다시 입력 유도
+	          } else { // 사용가능           
+	            if(document.querySelector('input[value="인증하기"]').disabled === true){
+	            	alert('인증성공!');
+	              document.getElementById('userSSN').value = userSsn;
+	              // 모달 닫기
+	              $('#myModal').modal('hide');  
+	            } else {
+	              alert('이메일을 인증해주세요.');
+	            }
+	          }
+	        },
+	        error: function() {
+	          console.log('주민등록번호 중복체크용 ajax 통신 실패');
+	        }
+	      });
+	    }	
 		    
 	    // 비밀번호 유효성 검사
 	    function validatePassword() {
