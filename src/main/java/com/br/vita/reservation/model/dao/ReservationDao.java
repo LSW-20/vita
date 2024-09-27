@@ -664,6 +664,66 @@ public class ReservationDao {
 		
 	}
 
+	public int insertCheckupAppN(Connection conn, String userNo, String time, String date, String price) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertCheckupAppN");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, time);
+			pstmt.setString(3, date);
+			pstmt.setString(4, price);
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+		
+		
+	}
+
+	public int insertChecklist(Connection conn, String userNo, String mediList, String surgeryYN, String surgeryName,
+			String flightYN, String time, String date, String price) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertChecklist");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, mediList);
+			pstmt.setString(3, surgeryName);
+			pstmt.setString(4, surgeryYN);
+			pstmt.setString(5, flightYN);
+			pstmt.setString(6, userNo);
+			pstmt.setString(7, date);
+			pstmt.setString(8, time);
+			pstmt.setString(9, price);
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
 
 		
 		

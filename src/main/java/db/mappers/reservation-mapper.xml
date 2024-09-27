@@ -327,4 +327,62 @@
     , 50000
 		)
 	</entry>
+	
+	
+	<!-- (상우) 건강검진 예약 추가(2/3) -->
+	<entry key="insertCheckupAppN">
+	
+		INSERT 
+		  INTO
+		  			CHECKUP_APP
+		  (
+		  	APPOINTMENT_NO
+		  , USER_NO
+		  , COMPANY_NO
+		  , APPOINTMENT_DATE
+		  , APPOINTMENT_TYPE
+		  , APPOINTMENT_TIME
+		  , CHECKUP_DATE
+		  , TOTAL_PRICE
+		  )		
+		  VALUES
+		  (
+		  	'ch' || SEQ_CHN.NEXTVAL
+		  , ?
+		  , NULL
+		  , SYSDATE
+		  , 'A'
+		  , ?
+		  ,	?
+		  , ?
+		  )
+	</entry>
+	
+	<!-- (상우) 건강검진 예약 추가(3/3) -->
+	<entry key="insertChecklist">
+	
+		INSERT 
+		  INTO
+		  			CHECK_LIST
+		  (
+		  	USER_NO
+		  , MEDI_LIST
+		  , SURGERY_NAME
+		  , SURGERY_YN
+		  , FLY_YN
+		  , CHECKUP_NO
+		  , CARE_NO
+		  )		
+		  VALUES
+		  (
+		  	?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , (SELECT APPOINTMENT_NO FROM CHECKUP_APP WHERE USER_NO = ? AND CHECKUP_DATE = ? AND APPOINTMENT_TIME = ? AND TOTAL_PRICE = ?)
+		  ,	NULL
+		  )
+	</entry>
+	
 </properties>

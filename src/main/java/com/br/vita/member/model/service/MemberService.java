@@ -211,7 +211,23 @@ public class MemberService {
 		close(conn);
 		return count;
 	}
-	
+
+	/**
+	 * 회원번호, 이름으로 userNo 찾기 (1/3) 건강검진 예약 추가
+	 * author : 임상우
+	 * @param userId
+	 * @param userName
+	 * @return 회원번호
+	 */
+	public String findUserNo2(String userId, String userName) {
+
+		Connection conn = getConnection();
+		String userNo = mdao.findUserNo2(conn, userId, userName);
+		
+		close(conn);
+		return userNo;
+		
+	}
 	
 }
 

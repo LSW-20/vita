@@ -513,6 +513,46 @@ public class MemberDao {
 	
 		return count;
 	}
+
+	/**
+	 * 회원번호, 이름으로 userNo 찾기 (1/3) 건강검진 예약 추가
+	 * author : 임상우
+	 * @param conn
+	 * @param userId
+	 * @param userName
+	 * @return 회원번호
+	 */
+	public String findUserNo2(Connection conn, String userId, String userName) {
+		
+		String userNo = "";
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("findUserNo2");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userName);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				userNo = rset.getString("USER_NO");
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		
+		return userNo;
+	}
 	
 	
 	

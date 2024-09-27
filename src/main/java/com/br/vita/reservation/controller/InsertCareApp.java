@@ -63,12 +63,13 @@ public class InsertCareApp extends HttpServlet {
 		} else {
 		    System.out.println("userNo의 값: " + userNo);
 		}
+		*/
 		
 		if(userNo.isEmpty()) {
 			session.setAttribute("alertMsg", "회원 정보를 잘못입력하셨습니다. \\n이름, 핸드폰번호, 주민등록번호를 확인해 주세요."); // 자바에서 문자열 내에서 \는 특수 문자(escape character)로 동작하므로, 이를 문자 그대로 사용하려면 \\
             response.sendRedirect(request.getContextPath() + "/manageCA.admin");
 		} 
-		*/
+		
 		
 		
 		// (2) CARE_APP 테이블에 INSERT

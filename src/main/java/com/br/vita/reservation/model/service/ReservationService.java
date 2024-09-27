@@ -288,6 +288,41 @@ public class ReservationService {
 		
 	}
 
+	
+	public int insertCheckupAppN(String userNo, String time, String date, String price) {
+		
+		Connection conn = getConnection();
+		int result = rdao.insertCheckupAppN(conn, userNo, time, date, price);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		
+		close(conn);
+		return result;
+		
+	}
+
+	public int insertChecklist(String userNo, String mediList, String surgeryYN, String surgeryName, String flightYN,
+			String time, String date, String price) {
+		
+		Connection conn = getConnection();
+		int result = rdao.insertChecklist(conn, userNo, mediList, surgeryYN, surgeryName, flightYN, time, date, price);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		
+		close(conn);
+		return result;
+	}
+
 
 
 	

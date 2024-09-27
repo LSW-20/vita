@@ -219,4 +219,17 @@ WHERE
 		 			 USER_SSN = ?
 	</entry>
 	
+	
+	<!-- (상우) 회원번호, 이름으로 userNo 찾기 (1/3) 건강검진 예약 추가 -->
+	<entry key="findUserNo2">
+	
+		SELECT 
+						USER_NO
+		  FROM 
+		  			MEMBER
+		 WHERE
+		 				USER_ID = ?
+		 	 AND  USER_NAME = ?	 			
+	
+	</entry>
 </properties>
