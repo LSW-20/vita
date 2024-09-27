@@ -173,7 +173,7 @@
                   <h5 class="modal-title" id="myModalLabel">예약체크사항</h5>
                 </div>
                 <div class="modal-body">
-								    <form id="checkListForm" action="<%= contextPath %>/CheckForm.rv" method="post">
+								    <form id="checkListForm" action="#" method="post">
 								        <div class="first-group">
 								            <h5>1. 현재 복용중인 약이 있으십니까?</h5>
 								            <input type="radio" name="mediList" value="N" style="cursor: pointer;" onclick="toggleMedicationInput(false); checkFormValidity()">
@@ -204,10 +204,10 @@
 								        <br>
 								        <div class="third-group">
 								            <h5>3. 건강검진이후 14일 이내 비행기 탑승이 예정되어 있으십니까?</h5>
-								            <input type="radio" name="flyYN" value="Y" style="cursor: pointer;" onclick="checkFormValidity()">
+								            <input type="radio" name="flyYN" value="N" style="cursor: pointer;" onclick="checkFormValidity()">
 								            <label for="none">없음</label>
 								            <br>
-								            <input type="radio" name="flyYN" value="N" style="cursor: pointer;" onclick="checkFormValidity()">
+								            <input type="radio" name="flyYN" value="Y" style="cursor: pointer;" onclick="checkFormValidity()">
 								            <label for="yes">있음(2주이내)</label>
 								            <br><br>
 								            <h7 style="color:rgb(31, 43, 108);">※ 내시경 검사중 조직검사에 제한이 있을 수 있습니다.</h7>
@@ -259,37 +259,37 @@
 								        }
 								    }
 								
-                    function handleSubmit() {
-							    		const mediListChecked = document.querySelector('input[name="mediList"]:checked') !== null;
-							        const surgeryChecked = document.querySelector('input[name="surgeryYN"]:checked') !== null;
-							        const flyChecked = document.querySelector('input[name="flyYN"]:checked') !== null;
+								    let isSubmitting = false; // 중복 제출 방지 변수
 
-							        if (mediListChecked && surgeryChecked && flyChecked) {
-							            const formData = new FormData(document.getElementById("checkListForm"));
+								    function handleSubmit(event) {
+								        event.preventDefault(); // 기본 제출 동작 방지
+								        if (isSubmitting) return; // 이미 제출 중이면 함수 종료
+								        isSubmitting = true; // 제출 시작
+								        const formData = new FormData(document.getElementById("checkListForm"));
+								        fetch("<%= contextPath %>/CheckForm.rv", {
+								            method: "POST",
+								            body: formData,
+								        })
+								        .then(response => {
+								            if (!response.ok) {
+								                throw new Error('Network response was not ok');
+								            }
+								            return response.text();
+								        })
+								        .then(data => {
+								            alert("저장되었습니다.");
+								            $('#myModal').on('hidden.bs.modal', function () {
+								                document.getElementById("checkListForm").reset();
+								                document.getElementById("submitBtn").disabled = true;
+								                isSubmitting = false; // 제출 가능 상태로 복원
+								            });
+								        })
+								        .catch(error => {
+								            alert("전송 실패: " + error.message);
+								            isSubmitting = false; // 오류 발생 시에도 복원
+								        });
+								    }
 
-							            fetch("<%= contextPath %>/CheckForm.rv", {
-							                method: "POST",
-							                body: formData,
-							            })
-							            .then(response => {
-							                if (!response.ok) {
-							                    throw new Error('Network response was not ok');
-							                }
-							                checklistSubmitted = true; // 제출 후 상태 업데이트
-							                return response.text(); // JSON 대신 텍스트로 응답 처리
-							            })
-							            .then(data => {
-							                alert("저장되었습니다."); // 여기서 data를 사용할 수 있습니다.
-							                clickkk = true;
-							            })
-							            .catch(error => {
-							                alert("전송 실패: " + error.message);
-							            });
-							        } else {
-							            alert("모든 항목을 올바르게 체크해주세요.");
-							        }
-							    }
-                    
                     function validateAndProceed(event) {
 									  
 									    if (!healthCheckClicked) {
@@ -348,14 +348,15 @@
     </div>
 
     <br><br><br>
-   
-     
-    
-
+       
+				
         
         <div align="center">
      
-           <a href="/vita/views/reservation/healthCheckUp_3.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;" onclick="return validateAndProceed(event)">다음</a>
+          <form action="/vita/views/reservation/healthCheckUp_3.jsp" method="POST" onsubmit="return validateAndProceed(event)">
+				    <button type="submit" class="btn border-1 border-dark" id="btn-color" style="width: 150px;">다음</button>
+				</form>
+
            <a href="/vita/views/reservation/healthCheckUp_1.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:30px;">이전</a>
           
         </div>

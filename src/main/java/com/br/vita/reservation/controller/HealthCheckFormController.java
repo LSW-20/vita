@@ -1,6 +1,9 @@
 package com.br.vita.reservation.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,52 +22,56 @@ import com.br.vita.reservation.model.vo.HealthCheck;
  */
 @WebServlet("/CheckForm.rv")
 public class HealthCheckFormController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    private static final long serialVersionUID = 1L;
+
     public HealthCheckFormController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
-		request.setCharacterEncoding("UTF-8"); // post 요청이다
-		
-		HttpSession session = request.getSession();
-		String userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
-		 
-		CheckList ck = new CheckList();
-		ck.setUserNo(userNo);
-    	ck.setMediList(request.getParameter("mediList"));
-    	ck.setSurgeryName(request.getParameter("surgeryName"));
-    	ck.setSurgeryYN(request.getParameter("surgeryYN"));
-    	ck.setFlyYN(request.getParameter("flyYN"));
-    	ck.setCareNo(request.getParameter("merchant_uid"));
-    	
-    	int result = new ReservationService().insertHealthCheckList(ck);
-    	
-    	HealthCheck hc = new HealthCheck();
-    	hc.setAppointmentNo(request.getParameter("merchant_uid"));
-    	hc.setUserNo(userNo);
-    	hc.setAppointmentTime(request.getParameter("selectedTime"));
-  
-    	
-    	new ReservationService().insertHealtchCareList(hc);
-    	
-	}
+        HttpSession session = request.getSession();
+        String userNo = ((Member) session.getAttribute("loginUser")).getUserNo();
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+        String year = request.getParameter("year");
+        String month = request.getParameter("month");
+        String day = request.getParameter("day");
+        String selectedDateString = String.format("%s/%02d/%02d", year, Integer.parseInt(month), Integer.parseInt(day));
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date selectedDate = null;
+        try {
+            selectedDate = (Date) dateFormat.parse(selectedDateString); // 캐스팅 제거
+        } catch (ParseException e) {
+            e.printStackTrace();
+            session.setAttribute("alertMsg", "날짜 형식이 잘못되었습니다.");
+            response.sendRedirect(request.getContextPath() + "/errorPage.jsp"); // 에러 페이지로 리디렉션
+            return; // 오류 발생 시 후속 코드 실행 방지
+        }
+
+        // selectedDate를 java.sql.Date로 변환
+        java.sql.Date sqlDate = new java.sql.Date(selectedDate.getTime());
+        
+        
+        HealthCheck hc = new HealthCheck();
+        hc.setAppointmentNo(request.getParameter("merchant_uid"));
+        hc.setUserNo(userNo);
+        hc.setAppointmentTime(request.getParameter("selectedTime"));
+    
+
+        int result = new ReservationService().insertHealtchCareList(hc);
+
+        if (result > 0) {
+            session.setAttribute("alertMsg", "진료예약이 완료되었습니다.");
+            response.sendRedirect(request.getContextPath() + "/HealthCheckAL.rv");
+        } else {
+            session.setAttribute("alertMsg", "추가에 실패하였습니다.");
+        }
+    }
+
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 }
