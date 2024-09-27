@@ -99,13 +99,15 @@ function requestPayment() {
         buyer_addr: '<%= ((Member)session.getAttribute("loginUser")).getAddress() %>'
     }, function (rsp) {
         if (rsp.success) {
-            alert('결제가 완료되었습니다. 결제 금액: ' + rsp.paid_amount);
+            alert('결제가 완료되었습니다. 결제 금액: ' + rsp.paid_amount+'원');
             // 결제 성공 시 처리 로직
             location.href = 
             	'<%= request.getContextPath() %>/confirm.cr?careNo=' + careNo + '&docType=<%= docType %>&imp_uid=' + rsp.imp_uid + '&merchant_uid=' + rsp.merchant_uid + '&docPurpose='+docPurpose;
         } else {
-            alert('결제에 실패하였습니다. 에러 내용: ' + rsp.error_msg);
+            alert('결제에 실패하였습니다. : ' + rsp.error_msg);
             // 결제 실패 시 처리 로직
+            location.href = 
+            	'<%= request.getContextPath() %>/detail.cr';
         }
     });
 }
@@ -159,6 +161,7 @@ function requestPayment() {
                         for (Mrecords record : records) {
                             %>
                             <input type="radio" name="careNo" value="<%= record.getCareNo() %>">
+                            <input type="hidden" name="docNum" value="<%= record.getDocNum() %>">
                             <label><%= record.getTreatmentDate() %> - <%= record.getDiagnosisName() %></label><br>
                             <%
                         }

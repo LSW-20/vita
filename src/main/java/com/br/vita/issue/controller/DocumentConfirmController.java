@@ -7,11 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.br.vita.issue.model.service.IssueService;
 import com.br.vita.issue.model.vo.Document;
 import com.br.vita.member.model.vo.Member;
+import com.br.vita.payment.model.service.PaymentService;
 
 /**
  * Servlet implementation class ConfirmAdmissionController
@@ -37,27 +37,32 @@ public class DocumentConfirmController extends HttpServlet {
 		String docType = request.getParameter("docType");
 	    String careNo = request.getParameter("careNo");  // 사용자가 선택한 careNo 받아오기
 		String userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
-	    String impUid = request.getParameter("imp_uid"); //
-	    String merchantUid = request.getParameter("merchant_uid");
+	    String payId = request.getParameter("imp_uid"); //payId
+	    String payNo = request.getParameter("merchant_uid");//payNo
 	    String docPurpose = request.getParameter("docPurpose");
-  
-	    System.out.println(docType);
-	    System.out.println(careNo);
-	    System.out.println(impUid);
-	    System.out.println(merchantUid);
-	    System.out.println(docPurpose);
-	    int result = new IssueService().insertDocument(careNo, userNo, docType, docPurpose);
 	    
-	    if(result > 0) {
-	    	//결제 완료 후 문서 발급 완료 페이지로 이동
-	    	Document document = new IssueService().getDocumentByCareNo(careNo);
-	    	request.setAttribute("documents", document);
-	    	request.setAttribute("docType", docType);
-	    	
-	    	response.sendRedirect(request.getContextPath()+"/listSel.cr");
+		
+	    //payment에 추가 될 docNum
+		String docNum = request.getParameter("docNum");
+		System.out.println(docNum);
+	    int payResult = new PaymentService().insertPayDocument(payNo,userNo,docNum,payId);
+	    int result = new IssueService().insertDocument(careNo, userNo, docType, docPurpose);
+	    if(payResult > 0) {
+		    if(result > 0) {
+		    	//결제 완료 후 문서 발급 완료 페이지로 이동
+		    	Document document = new IssueService().getDocumentByCareNo(careNo);
+		    	request.setAttribute("documents", document);
+		    	request.setAttribute("docType", docType);
+		    	request.setAttribute("docNum", docNum);
+		    	
+		    	response.sendRedirect(request.getContextPath()+"/listSel.cr");
+		    } else {
+		    	request.getRequestDispatcher("/views/common/errorPage.jsp");	    
+		    }	    	
 	    } else {
 	    	request.getRequestDispatcher("/views/common/errorPage.jsp");	    
 	    }
+
 	    
         
 	}
