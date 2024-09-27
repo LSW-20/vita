@@ -102,11 +102,11 @@
                         </tr>
 
                         <tr>
-                            <td style="height: 90px; padding-left: 40px; font-size: 20px;"><a href="/vita/views/admin/manageNotice.jsp">▷ 공지사항 관리</a></td>
+                            <td style="height: 90px; padding-left: 40px; font-size: 20px;"><a href="<%= contextPath %>/list.no">▷ 공지사항 관리</a></td>
                         </tr>
 
                         <tr>
-                            <td style="height: 90px; padding-left: 40px; font-size: 20px;"><a href="/vita/views/admin/manageNews.jsp">▷ 뉴스 게시판 관리</a></td>
+                            <td style="height: 90px; padding-left: 40px; font-size: 20px;"><a href="<%= contextPath %>/list.ns">▷ 뉴스 게시판 관리</a></td>
                         </tr>
                         
                     </table>
