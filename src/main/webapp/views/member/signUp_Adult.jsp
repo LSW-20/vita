@@ -631,10 +631,10 @@ footer {
 	      const fullYear = year < 50 ? 2000 + year : 1900 + year; // 2000년 이후 출생자는 2000년대, 그 이전은 1900년대
 	      const age = currentYear - fullYear;
 
-	      if (age < 14 || (age === 14 && new Date().setFullYear(fullYear, month, day) > new Date())) {
-	        alert("만 14세 이하입니다.");
-	        return;
-	      }
+	      if (age < 14) {
+	    	    alert("만 14세 미만입니다.");
+	    	    return;
+	    	}
 
 	      // 사용자가 입력한 주민등록번호값 전달하면서 ajax요청
 	      $.ajax({

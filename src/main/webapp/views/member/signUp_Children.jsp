@@ -230,7 +230,7 @@ footer {
 	position: absolute;
 	width: 100%;
 	height: 300px;
-	margin-top: 1600px;
+	margin-top: 1500px;
 }
 </style>
 
@@ -259,29 +259,23 @@ footer {
 						<tr>
 							<th>이름&nbsp;<span style="color: red;">*</span></th>
 							<td colspan="2">
-							<input type="text" id="rep" class="name" name="rep"><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정확한 이름을 입력해주세요.</span></td>
+							<input type="text" id="repre" class="name" name="repre"><span id="text1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정확한 이름을 입력해주세요.</span></td>
 						</tr>
 						</thead>
 						<tbody id="hpCheck">
 							<tr>
 								<th>휴대폰 번호&nbsp;<span style="color: red;">*</span></th>
-								<td colspan="2"><input type="text" id="phone" class="name" name="phone">
+								<td colspan="2"><input type="text" id="phoneInput" class="name" name="phoneInput">
 									<!-- Button to Open the Modal -->
 								  <button type="button" class="btn btn-secondary btn-sm" onclick="fnHpCheck()">인증</button>
 									<span id="text4">-를 포함한 본인 휴대폰번호를 정확하게 입력하세요. &nbsp;&nbsp;ex)010-1111-2222</span></td>
-							</tr>
-							<tr>
-								<th>이메일&nbsp;<span style="color: red;">*</span></th>
-								<td colspan="2">
-									<input class="name" type="text" name="email" id="email" placeholder="휴대폰을 인증해주세요." readOnly/>
-								</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
 		
-			<form name="signUpForm" id="signup-form" action="<%=contextPath%>/signUp_adult.me" method="POST" onsubmit="return validateForm()">
+			<form name="signUpForm" id="signup-form" action="<%=contextPath%>/signUp_children.me" method="POST" onsubmit="return validateForm()">
 				<!-- 회원 정보 입력 칸 -->
 				<div style="margin-top: 50px;">
 					<p class="title1">
@@ -375,6 +369,9 @@ footer {
 					<a href=""><button type="button" class="btn btn-primary mx-2"
 							id="cc">취소</button></a>
 				</div>
+				<input type="hidden" id="rep" class="name" name="rep">
+				<input type="hidden" id="phone" class="name" name="phone">
+				<input class="name" type="hidden" name="email" id="email" readOnly/>
 				<input type="hidden" id="userSSN" class="name" name="userSSN">
 			</form>
 			
@@ -464,10 +461,13 @@ footer {
 			        alert('인증되었습니다.');
 			        document.getElementById('to').readOnly = true;
 			        document.getElementById('verifyInput').readOnly = true;
+			        document.getElementById('repre').readOnly = true;
 			        document.getElementById('to').style.backgroundColor = '#e9e9e9';
 			        document.querySelector('input[value="인증번호 받기"]').disabled = true;
 			        document.querySelector('input[value="인증하기"]').disabled = true;
+			        document.getElementById('rep').value = document.getElementById('repre').value;
 			        document.getElementById('email').value = document.getElementById('to').value;
+			        document.getElementById('phone').value = document.getElementById('phoneInput').value;
 			    } else {
 			        alert('인증번호가 일치하지 않습니다.');
 			    }
@@ -479,83 +479,133 @@ footer {
 			}
 			
 			
-   		function onSubmit() {
-   	    if (validateForm()) {
-   	      document.getElementById("signup-form").submit();
-   	    }
-   	  }
+			function onSubmit() {
+	            if (validateForm()) {
+	                document.getElementById("signup-form").submit();
+	            }
+	        }
 
-   		
-   		function validateForm() {
- 			  event.preventDefault(); // 기본 폼 제출 동작 방지
+	        function validateForm() {
+	            event.preventDefault(); // 기본 폼 제출 동작 방지
 
- 			  const email = document.getElementById("email").value;
- 			  const userId = document.getElementById("userId").value;
- 			  const userPwd = document.getElementById("userPwd").value;
- 			  const userPwdConfirm = document.getElementById("userPwdConfirm").value;
- 			  const userName = document.getElementById("userName").value;
- 			  const phone = document.getElementById("phone").value;
- 			  const address = document.getElementById("address").value;
- 			  const userSsn = document.getElementById("userSsn").value;
- 			  const gender = document.querySelector('input[name="gender"]:checked')?.value;
- 		
- 			 	const rep = document.getElementById("rep").value;
- 			 	
- 			 	if (!rep) {
- 			    alert("법정대리인 이름을 입력해 주세요.");
- 			    return false;
- 			  }
- 			 	if (!phone) {
- 			    alert("전화번호를 입력해 주세요.");
- 			    return false;
- 			  }
- 			 	if (!email) {
- 			    alert("휴대폰을 인증해주세요.");
- 			    return false;
- 			  }
- 			  if (!userId) {
- 			    alert("사용자 ID를 입력해 주세요.");
- 			    return false;
- 			  }
- 				if (!document.getElementById("userId").readOnly) {
- 			    alert("아이디 중복 확인을 해주세요.");
- 			    return false;
- 			  }
- 			  if (!userPwd) {
- 			    alert("비밀번호를 입력해 주세요.");
- 			    return false;
- 			  }
-  			const passwordPattern = /^[a-zA-Z0-9!@#$%^&*]{6,15}$/;
-  			if (!passwordPattern.test(userPwd)) {
-  			    alert("비밀번호는 6~15자의 영문 대소문자, 숫자, 특수문자(!@#$%^&*)만 사용할 수 있습니다.");
-  			    return false;
-  			}
- 			  if (!userPwdConfirm) {
- 			    alert("비밀번호 확인을 입력해 주세요.");
- 			    return false;
- 			  }
- 			  if (userPwd !== userPwdConfirm) {
- 			    alert("비밀번호가 일치하지 않습니다.");
- 			    return false;
- 			  }
- 			  if (!userName) {
- 			    alert("환아이름을 입력해 주세요.");
- 			    return false;
- 			  }		  
- 				if (!userSsn) {
- 			    alert("주민등록번호를 입력해 주세요.");
- 			    return false;
- 			  }
- 			  if (!address) {
- 			    alert("주소를 입력해 주세요.");
- 			    return false;
- 			  }	  
- 			  if (!gender) {
- 			    alert("성별을 선택해 주세요.");
- 			    return false;
- 			  }
- 			  return true;
- 			}
+	            const email = document.getElementById("email").value;
+	            const userId = document.getElementById("userId").value;
+	            const userPwd = document.getElementById("userPwd").value;
+	            const userPwdConfirm = document.getElementById("userPwdConfirm").value;
+	            const userName = document.getElementById("userName").value;
+	            const phone = document.getElementById("phoneInput").value;
+	            const address = document.getElementById("address").value;
+	            const gender = document.querySelector('input[name="gender"]:checked')?.value;
+	            const rep = document.getElementById("rep").value;
+
+	            if (!rep) {
+	                alert("법정대리인 이름을 입력해 주세요.");
+	                return false;
+	            }
+	            if (!phone) {
+	                alert("전화번호를 입력해 주세요.");
+	                return false;
+	            }
+	            if (!email) {
+	                alert("휴대폰을 인증해주세요.");
+	                return false;
+	            }
+	            if (!userId) {
+	                alert("사용자 ID를 입력해 주세요.");
+	                return false;
+	            }
+	            if (!document.getElementById("userId").readOnly) {
+	                alert("아이디 중복 확인을 해주세요.");
+	                return false;
+	            }
+	            if (!userPwd) {
+	                alert("비밀번호를 입력해 주세요.");
+	                return false;
+	            }
+	            const passwordPattern = /^[a-zA-Z0-9!@#$%^&*]{6,15}$/;
+	            if (!passwordPattern.test(userPwd)) {
+	                alert("비밀번호는 6~15자의 영문 대소문자, 숫자, 특수문자(!@#$%^&*)만 사용할 수 있습니다.");
+	                return false;
+	            }
+	            if (!userPwdConfirm) {
+	                alert("비밀번호 확인을 입력해 주세요.");
+	                return false;
+	            }
+	            if (userPwd !== userPwdConfirm) {
+	                alert("비밀번호가 일치하지 않습니다.");
+	                return false;
+	            }
+	            if (!userName) {
+	                alert("환아이름을 입력해 주세요.");
+	                return false;
+	            }
+	            if (!address) {
+	                alert("주소를 입력해 주세요.");
+	                return false;
+	            }
+	            if (!gender) {
+	                alert("성별을 선택해 주세요.");
+	                return false;
+	            }
+	            return true;
+	        }
+
+	        function checkUserSsn() {
+	            const $userSsnInput = $("#signup-form input[name=userSsn]");
+	            const userSsn = $userSsnInput.val().trim(); // 공백 제거
+
+	            if (userSsn === '') {
+	                return; // 값이 없을 경우 아무 작업도 하지 않음
+	            }
+	            
+	            // 주민등록번호 유효성 검사
+	            const userSsnPattern = /^\d{6}-\d{7}$/;
+	            if (!userSsnPattern.test(userSsn)) {
+	                alert('올바른 형식의 주민등록번호를 입력하세요. 예: 900101-2222222');
+	                $userSsnInput.val('');
+	                $userSsnInput.select(); // 다시 입력 유도
+	                return;
+	            }
+
+	            // 생년월일 확인
+	            const birthDate = userSsn.substring(0, 6);
+	            const year = parseInt(birthDate.substring(0, 2), 10);
+	            const month = parseInt(birthDate.substring(2, 4), 10) - 1; // 월은 0부터 시작
+	            const day = parseInt(birthDate.substring(4, 6), 10);
+	            const currentYear = new Date().getFullYear();
+	            const fullYear = year < 50 ? 2000 + year : 1900 + year; // 2000년 이후 출생자는 2000년대, 그 이전은 1900년대
+	            const age = currentYear - fullYear;
+
+	            if (age >= 14) {
+	                alert("만 14세 이상입니다.");
+	                $userSsnInput.val(''); // 입력값 초기화
+	                $userSsnInput.select(); // 다시 입력 유도
+	                return;
+	            }
+
+	            // 사용자가 입력한 주민등록번호값 전달하면서 ajax요청
+	            $.ajax({
+	                url: '<%=contextPath%>/userSsnCheck.me',
+	                data: {checkUserSsn: userSsn},
+	                success: function(res) {
+	                    console.log(res);
+	                    if (res == 'NNNNN') { // 사용불가능
+	                        alert('이미 존재하는 주민등록번호입니다.');
+	                        $userSsnInput.val('');
+	                        $userSsnInput.select(); // 다시 입력 유도
+	                    } else { // 사용가능 
+	                        document.getElementById('userSSN').value = userSsn;
+	                    }
+	                },
+	                error: function() {
+	                    console.log('주민등록번호 중복체크용 ajax 통신 실패');
+	                }
+	            });
+	        }
+
+	        $(document).ready(function() {
+	            $("#userSsn").on("blur", checkUserSsn);
+	        });
         	  
         		
 	    // 아이디 중복체크용 함수
@@ -597,7 +647,7 @@ footer {
 	    
 	 		// 휴대폰 중복체크용 함수
 	    function fnHpCheck() {
-        const $hpInput = $("#hpCheck input[name=phone]");
+        const $hpInput = $("#hpCheck input[name=phoneInput]");
         const phone = $hpInput.val();
         
      		// 이메일 인증 여부 확인
@@ -653,53 +703,7 @@ footer {
           alert('이메일을 인증해주세요.');
         }	
 	    }
-	    
-	    
-	 		// 주민등록번호 중복체크용 함수
-	    function fnUserSsnCheck() {
-	      const $userSsnInput = $("#signup-form input[name=userSsn]");
-	      const userSsn = $userSsnInput.val();
-	      
-	      // 주민등록번호 유효성 검사
-	      const userSsnPattern = /^\d{6}-\d{7}$/;
-	      if (!userSsnPattern.test(userSsn)) {
-	        alert('올바른 형식의 주민등록번호를 입력하세요. 예: 900101-2222222');
-	        $userSsnInput.select(); // 다시 입력 유도
-	        return;
-	      }
-
-	      // 생년월일 확인
-	      const birthDate = userSsn.substring(0, 6);
-	      const year = parseInt(birthDate.substring(0, 2), 10);
-	      const month = parseInt(birthDate.substring(2, 4), 10) - 1; // 월은 0부터 시작
-	      const day = parseInt(birthDate.substring(4, 6), 10);
-	      const currentYear = new Date().getFullYear();
-	      const fullYear = year < 50 ? 2000 + year : 1900 + year; // 2000년 이후 출생자는 2000년대, 그 이전은 1900년대
-	      const age = currentYear - fullYear;
-
-	      if (age < 14 || (age === 14 && new Date().setFullYear(fullYear, month, day) > new Date())) {
-	        alert("만 14세 이하입니다.");
-	        return;
-	      }
-
-	      // 사용자가 입력한 주민등록번호값 전달하면서 ajax요청
-	      $.ajax({
-	        url: '<%=contextPath%>/userSsnCheck.me',
-	        data: {checkUserSsn: userSsn},
-	        success: function(res){
-	          console.log(res);
-	          if(res == 'NNNNN'){ // 사용불가능
-	            alert('이미 존재하는 주민등록번호입니다.');
-	            $userSsnInput.select(); // 다시 입력 유도
-	          } else { // 사용가능           
-	            document.getElementById('userSSN').value = userSsn;
-	          }
-	        },
-	        error: function() {
-	          console.log('주민등록번호 중복체크용 ajax 통신 실패');
-	        }
-	      });
-	    }	
+	    		
 		    
 	    // 비밀번호 유효성 검사
 	    function validatePassword() {
