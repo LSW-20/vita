@@ -175,25 +175,6 @@ public class ReservationService {
 	}	
 		
 		
-	public int insertHealthCheckList(CheckList ck) {
-
-		Connection conn = getConnection();
-		int result = rdao.insertHealthCheckList(conn, ck);
-		
-		if(result > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-		
-		
-		close(conn);
-		
-		return result;
-		
-		
-	}
- 
 	/**
 	 * 진료예약 추가(2/2)
 	 * author : 임상우
@@ -272,10 +253,11 @@ public class ReservationService {
 		
 	}
 
-	public void insertHealtchCareList(HealthCheck hc) {
+	
+	public int insertHealthCheckList(CheckList ck) {
 		
 		Connection conn = getConnection();
-		int result = rdao.insertHealtchCareList(conn, hc);
+		int result = rdao.insertHealthCheckList(conn, ck);
 		
 		if(result > 0) {
 			commit(conn);
@@ -285,6 +267,26 @@ public class ReservationService {
 		
 		
 		close(conn);
+		
+		return result;
+		
+		
+	}
+	
+	public int insertHealtchCareList(HealthCheck hc) {
+		
+		Connection conn = getConnection();
+		int result1 = rdao.insertHealtchCareList(conn, hc);
+		
+		if(result1 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		
+		close(conn);
+		return result1;
 		
 	}
 
@@ -296,3 +298,4 @@ public class ReservationService {
 	
 	
 }
+
