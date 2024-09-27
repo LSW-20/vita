@@ -30,9 +30,7 @@ public class MemberUserSSNCheckAjaxController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String checkUserSsn = request.getParameter("checkUserSsn");
-		System.out.println(checkUserSsn);
 		int count = new MemberService().userSSNCheck(checkUserSsn);
-		System.out.println(count);
 		response.setContentType("text/html; charset=UTF-8");
 		if(count > 0) { // 이미 존재 == 사용불가(NNNNN)
 			response.getWriter().print("NNNNN");;

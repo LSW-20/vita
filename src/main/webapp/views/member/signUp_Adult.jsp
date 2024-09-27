@@ -401,7 +401,7 @@ footer {
 			        
 			        <!-- Modal footer -->
 			        <div class="modal-footer">
-			       	  <button type="button" class="btn btn-secondary" onclick="fnUserSsnCheck()">완료</button>
+			       	  <button type="button" class="btn btn-primary" onclick="fnUserSsnCheck()">완료</button>
 			          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="resetModal()">닫기</button>
 			        </div>
 			        
@@ -519,17 +519,6 @@ footer {
  			    alert("성별을 선택해 주세요.");
  			    return false;
  			  }
- 			 	console.log("Email:", email);
- 		    console.log("User ID:", userId);
- 		    console.log("Password:", userPwd);
- 		    console.log("Confirm Password:", userPwdConfirm);
- 		    console.log("Name:", userName);
- 		    console.log("Phone:", phone);
- 		    console.log("Address:", address);
- 		    console.log("SSN:", userSsn);
- 		   console.log("보내질SSN:", document.getElementById('email').value);
- 		    console.log("Gender:", gender);
- 		    
  			  return true;
  			}
         	  
