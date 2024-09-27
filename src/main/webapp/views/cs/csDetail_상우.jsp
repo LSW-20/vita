@@ -53,7 +53,7 @@ footer{
     align-items: end;
 }
 
-/* 각 테이블에 m-4 빼고 수동으로 margin 주기 */
+/* 각 테이블에 m-4 빼고 수동으로 margin 주기 - 상우 */
 #csUserInfo, #other_table, #compliment_table {
     margin-left: 24px;
     width: calc(100% - 25px); /* 테이블이 화면을 벗어나지 않도록 너비를 조정.  
@@ -75,7 +75,7 @@ footer{
     background-color:#c7e0dd;
 }
 
-/* '답변하기(#reply_write_btn)' 버튼 클릭시 보였다 안보였다 하는 답변 요소 */
+/* '답변하기(#reply_write_btn)' 버튼 클릭시 보였다 안보였다 하는 답변 요소 - 상우*/
 #reply_div {
     display: none;
 }
@@ -197,55 +197,69 @@ footer{
     <!-- 로그인한 회원에 따라 달라지는 버튼 요소들 - 상우 -->
 	<div id="if_btn">
 
-	    <!-- case1. 그냥 조회의 경우 보여지는 요소 -->
-	    <% if(!loginUser.getUserId().equals(board.getBoardWriter()) || loginUser == null) {%>
-        <br>
-        <div>
-            <a href="<%= contextPath %>/list.cs?category=<%= board.getCategory() %>" class="btn btn-warning btn-sm">목록가기</a>
-        </div>
-			<%} else if(board.getUserType().equals("A") && board.getAnswerContent()==null){ %>
-        <!-- case3. 현재 로그인되어있는 회원이 관리자이고, 답변이 달려있지 않을 때 보여지는 요소 -->
-        <br>
-        <div>
-            <button type="button" class="btn btn-secondary btn-sm"  id="reply_write_btn">답변하기</button> &nbsp;
-            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_modal">삭제하기</button> &nbsp;
-            <a href="<%= contextPath %>/list.cs?category=<%= board.getCategory() %>" class="btn btn-warning btn-sm">목록가기</a>
-        </div>
-      <%} else if(board.getUserType().equals("A") && board.getAnswerContent()!=null){ %>
-        <!-- case4. 현재 로그인되어있는 회원이 관리자이고, 답변이 달려있을 때 보여지는 요소 -->
-        <br>
-        <div>
-            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_modal">삭제하기</button> &nbsp;
-            <a href="<%= contextPath %>/list.cs?category=<%= board.getCategory() %>" class="btn btn-warning btn-sm">목록가기</a>
-        </div>
-       <%}else if(loginUser != null && loginUser.getUserId().equals(board.getBoardWriter())) {%>
-	    <!-- case2. 현재 로그인되어있는 회원이 해당 게시글의 작성자 본인일 경우 보여지는 요소 -->
-        <br>
-        <div>
-            <a href="<%= contextPath %>/modify.cs?category=<%= board.getCategory() %>&no=<%= board.getBoardNo() %>" class="btn btn-secondary btn-sm">수정하기</a> &nbsp;
-            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_modal">삭제하기</button> &nbsp;
-            <a href="<%= contextPath %>/list.cs?category=<%= board.getCategory() %>" class="btn btn-warning btn-sm">목록가기</a>
-        </div> 
+	   
+	    <% if(loginUser == null) {%>
+            <!-- case0. 비회원일 경우 -->
+            <br>
+            <div>
+                <a href="<%= contextPath %>/list.cs?category=<%= board.getCategory() %>" class="btn btn-warning btn-sm">목록가기</a>
+            </div>
+
+        <%} else if(!loginUser.getUserId().equals(board.getBoardWriter()) && !loginUser.getUserType().equals("A") ){ %>    
+            <!-- case1. 회원이지만 글 작성자가 아닌 경우 + 관리자도 아닌 경우 -->
+            <br>
+            <div>
+                <a href="<%= contextPath %>/list.cs?category=<%= board.getCategory() %>" class="btn btn-warning btn-sm">목록가기</a>
+            </div>
+
+        <%}else if(loginUser.getUserId().equals(board.getBoardWriter())) {%>
+            <!-- case2. 회원이면서 글 작성자인 경우 -->
+            <br>
+            <div>
+                <a href="<%= contextPath %>/modify.cs?category=<%= board.getCategory() %>&no=<%= board.getBoardNo() %>" class="btn btn-secondary btn-sm">수정하기</a> &nbsp;
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_modal">삭제하기</button> &nbsp;
+                <a href="<%= contextPath %>/list.cs?category=<%= board.getCategory() %>" class="btn btn-warning btn-sm">목록가기</a>
+            </div> 
+
+        <%} else if(loginUser.getUserType().equals("A") && board.getAnswerContent()==null){ %>
+            <!-- case3. 현재 로그인되어있는 회원이 관리자이고, 답변이 달려있지 않을 때 보여지는 요소 -->
+            <br>
+            <div>
+                <button type="button" class="btn btn-secondary btn-sm"  id="reply_write_btn">답변하기</button> &nbsp;
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_modal">삭제하기</button> &nbsp;
+                <a href="<%= contextPath %>/list.cs?category=<%= board.getCategory() %>" class="btn btn-warning btn-sm">목록가기</a>
+            </div>
+
+        <%} else if(loginUser.getUserType().equals("A") && board.getAnswerContent()!=null){ %>
+            <!-- case4. 현재 로그인되어있는 회원이 관리자이고, 답변이 달려있을 때 보여지는 요소 -->
+            <br> 
+            <div>
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_modal">삭제하기</button> &nbsp;
+                <a href="<%= contextPath %>/list.cs?category=<%= board.getCategory() %>" class="btn btn-warning btn-sm">목록가기</a>
+            </div>
+
         <%}%>
 	</div>
     
 
     <!-- 이 게시글에 답변이 있는 경우 보여줄 '답변 조회 테이블' -->
     <% if(board.getAnswerContent() != null) {%>
-    <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이 게시글에 답변이 있는 경우 보여줄 '답변 조회 테이블'
-    <table class="table reply_table">
-        <tr>
-            <th width="130px">제목</th>
-            <td>RE: <%= board.getBoardTitle() %></td>
-        </tr>
+        <br><br>
+        <table class="table reply_table">
+            <tr>
+                <th width="130px">제목</th>
+                <td>RE: <%= board.getBoardTitle() %></td>
+            </tr>
 
-        <tr>
-            <th>내용</th>
-            <td><p style="min-height:300px;"><%= board.getAnswerContent() %></p></td>
-            <!-- textarea도 name 속성을 주면 form에서 input처럼 값을 넘길 수 있다. -->
-        </tr>
-    </table>    
+            <tr>
+                <th>내용</th>
+                <td><p style="min-height:300px;"><%= board.getAnswerContent() %></p></td>
+            </tr>
+        </table>    
+
+        <div style="display: flex; flex-direction: column; align-items: end;" >
+            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#reply_delete_modal">답변 삭제</button>
+        </div>
     <%} %>
 
 
@@ -254,7 +268,8 @@ footer{
     <!-- '답변 작성 테이블' - 상우 -->
     <!-- '답변하기(#reply_write_btn)' 버튼 클릭시 toggle로 보였다 안보였다 하는 테이블이다.  -->
     <div id="reply_div">
-        <form action="#">
+        <form action="#" method="post">
+            <br><br>
             <table class="table reply_table">
                 <tr>
                     <th width="130px">제목</th>
@@ -288,7 +303,7 @@ footer{
 
 
 
-    <!-- 삭제용 modal start -->
+    <!-- 게시글 삭제용 modal start - 보겸 -->
   
         <!-- The Modal -->
         <div class="modal" id="delete_modal">
@@ -315,7 +330,37 @@ footer{
             </div>
         </div>
 
-    <!-- 삭제용 modal end -->
+    <!-- 게시글 삭제용 modal end -->
+
+    
+    <!-- 답변 삭제용 modal start - 상우 -->
+  
+        <!-- The Modal -->
+        <div class="modal" id="reply_delete_modal">
+            <div class="modal-dialog">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">답변 삭제</h4>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form action="<%=contextPath %>/deleteAdmQNA.admin?board_no=<%= board.getBoardNo() %>" method="post">
+                        <h6>정말 답변을 삭제하시겠습니까? </h6> <br>
+                        <div style="text-align: right;">
+                            <button type="submit" class="btn btn-sm btn-danger">삭제</button>
+                            <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">취소</button>
+                        </div>
+                    </form>
+                </div>
+        
+            </div>
+            </div>
+        </div>
+
+    <!-- 답변 삭제용 modal end -->
 
 
 
