@@ -20,6 +20,7 @@ public class SelectResController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
         List<Map<String, Object>> relist = new DoctorService().selectRes();
 
         // 변환된 결과 리스트

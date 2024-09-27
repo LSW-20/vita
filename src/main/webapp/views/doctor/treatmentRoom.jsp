@@ -274,6 +274,8 @@
                 <div class="select_Div">
 
                     <div id="u_list_div">
+                    
+                    
                          <!-- for문 돌려서 동적으로 생성 -->
 										
 										
@@ -369,7 +371,9 @@
     	
     	$.ajax({
     		url: '<%= contextPath %>/listRes.se',
-    		data:{dname}
+    		data:{
+    			
+    		},
     		success:function(res){
     			console.log(res);
     			let listdiv = '';

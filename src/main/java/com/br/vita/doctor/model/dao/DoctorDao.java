@@ -966,7 +966,7 @@ public class DoctorDao {
 		
 	}
 	
-	
+	// 각 해당 진료실페이지인지 검사용
 	public Member teatmentRoomGo(Connection conn, String userNo){
 		
 		Member mem = null;
@@ -1000,8 +1000,9 @@ public class DoctorDao {
 		return mem;
 		
 		
-		
 	}
+	
+	
 	
 	
 	
