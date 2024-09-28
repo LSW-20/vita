@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>find_Pw_Choice</title>
+<title>비타병원</title>
 </head>
 
 	<style>

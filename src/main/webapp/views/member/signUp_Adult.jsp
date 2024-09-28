@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>signUp_Adult</title>
+<title>비타병원</title>
 </head>
 <style>
 section {
@@ -263,7 +263,7 @@ footer {
 								<tr>
 									<th>비밀번호&nbsp;<span style="color: red;">*</span></th>
 									<td colspan="2"><input id="userPwd" type="password"
-										class="pwd_1" name="userPwd"> <span id="text2">6~15자리의
+										class="pwd_1" name="userPwd" autocomplete="new-password"> <span id="text2">6~15자리의
 											영문 대소문자, 숫자, 특수문자는 ‘!,@,#,$,%,^,&,*’만 가능합니다.</span></td>
 								</tr>
 								<tr>
@@ -274,7 +274,7 @@ footer {
 								<tr>
 									<th>이름&nbsp;<span style="color: red;">*</span></th>
 									<td colspan="2"><input type="text" id="userName"
-										class="name" name="userName"> <span id="text3">정확한
+										class="name" name="userName" autocomplete="off"> <span id="text3">정확한
 											이름을 입력해주세요.</span></td>
 								</tr>
 								<tr>
@@ -418,6 +418,16 @@ footer {
 			}
       </style>
 			<script>
+			//자동완성방지
+			window.onload = function() {
+          // 모든 name과 password 필드를 선택
+          var inputs = document.querySelectorAll('input[name="userName"], input[type="password"]');
+          // 각 필드에 autocomplete 속성 추가
+          inputs.forEach(function(input) {
+              input.setAttribute('autocomplete', 'new-password');
+          });
+      };
+			
 			let verificationCode;
 
 			function sendVerificationCode() {
