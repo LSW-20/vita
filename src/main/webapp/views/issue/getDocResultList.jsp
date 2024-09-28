@@ -69,7 +69,9 @@
 	            <form action="<%=request.getContextPath() %>/getDoc.cr" method="get">
 	              <input type="hidden" name="careNo" value="<%= d.getCareNo() %>">
 	              <input type="hidden" name="docType" value="<%= d.getDocType() %>">
+	              
 	              <button type="submit">발급</button>	   
+	              
 	            </form>       
 						</td>
 	        </tr>
