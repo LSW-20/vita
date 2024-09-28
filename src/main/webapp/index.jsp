@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>비타병원</title>
 </head>
 <body>
 
@@ -476,7 +476,7 @@
         <div class="container" style="width: 1000px; height: 200px;">
             <div class="autoplay" style="height: 200px;">
                 <div style="height: 140px;"><a href="<%= contextPath %>/healthTV1.do"><img src="/vita/assets/image/건강아이콘.jpg" alt="Image 1" id="slideImg2"></a></div>
-                <div style="height: 140px;"><a href="/vita/views/cs/csDetailNoSideBar.jsp"><img src="/vita/assets/image/고객의소리아이콘.jpg" alt="Image 2" id="slideImg2"></a></div>
+                <div style="height: 140px;"><a href="<%= contextPath %>/list.cs"><img src="/vita/assets/image/고객의소리아이콘.jpg" alt="Image 2" id="slideImg2"></a></div>
                 <div style="height: 140px;"><a href="<%= contextPath %>/hospitalInfo.do"><img src="/vita/assets/image/병원안내아이콘.jpg" alt="Image 3" id="slideImg2"></a></div>
                 <div style="height: 140px;"><a href="<%= contextPath %>/service.do"><img src="/vita/assets/image/봉사아이콘.jpg" alt="Image 4" id="slideImg2"></a></div>
                 <div style="height: 140px;"><a href="<%= contextPath %>/directions.do"><img src="/vita/assets/image/오시는길아이콘.jpg" alt="Image 5" id="slideImg2"></a></div>

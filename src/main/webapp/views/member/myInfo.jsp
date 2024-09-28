@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>my page</title>
+<title>비타병원</title>
 <style>
   /* #topimgDiv2,#topimgDiv2,#topimgDiv2{} */
   #mainMenu{

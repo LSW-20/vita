@@ -106,7 +106,7 @@ window.onload = function() {
              isPaymentCompleted = true; // 결제 완료 상태로 설정	
              $('#paymentModal').modal('hide'); // 모달 닫기
              location.href = 
-             	'<%= request.getContextPath() %>/confirm.cr?careNo=' + careNo + '&docType=<%= docType %>&imp_uid=' + rsp.imp_uid + '&merchant_uid=' + rsp.merchant_uid + '&docPurpose='+docPurpose;
+             	'<%= request.getContextPath() %>/confirm.cr?careNo=' + careNo + '&docType=<%= docType %>&imp_uid=' + rsp.imp_uid + '&merchant_uid=' + rsp.merchant_uid + '&docPurpose='+docPurpose+'&pg='+selectedPG;
          } else {
              // 결제 실패 시 처리
              console.log('결제 실패:', rsp);
