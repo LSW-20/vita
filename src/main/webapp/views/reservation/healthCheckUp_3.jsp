@@ -218,13 +218,20 @@
 		                const daySelect = document.getElementById('day').value; // 일
 		                const selectedTime = document.querySelector('.btn-outline-primary.active h3')?.innerText; // 내원 시간
 		                const selectedDate = year + '년 ' + month + '월 ' + daySelect + '일';
-		              
+		                const checkedAgree = document.getElementById('checkAgree').checked; 
+		                
 		                // 모든 값이 선택되지 않았는지 확인
 		                if (!year || !month || !daySelect || !selectedTime || !isButtonn) {
 		                    alert('희망검진일 또는 내원시간을 선택해주세요');
 		                    event.stopPropagation(); // 링크 이동 방지
 		                    return ; 
 		                }
+		                
+		                if (!checkedAgree) {
+							        alert("검진 관련 주의사항 체크를 해주세요");
+							        event.stopPropagation(); // 링크 이동 방지
+							        return ; 
+							    }
 		         
 		           			
 		                document.getElementById('wantday1').innerHTML = selectedDate;
@@ -576,7 +583,7 @@
        
         <div align="center">
         
-          <a href="/vita/views/reservation/healthCheckUp_Success.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;" onclick="return validateAndProceed(event)">예약 신청하기</a>
+          <a href="<%= contextPath %>" class="btn border-1 border-dark" id="btn-color" style="width: 150px;">메인화면으로</a>
           <a href="/vita/views/reservation/healthCheckUp_2.jsp" class="btn btn-light border-2 border-dark"  style="width: 150px; margin-left:30px;">이전</a>
         </div>
 

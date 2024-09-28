@@ -1,3 +1,4 @@
+@ -1,383 +1,383 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -136,6 +137,7 @@
     
         
      </table>
+		
 		</div>
 		<script>
 		
@@ -155,86 +157,6 @@
         }
     
     });
-								let checklistSubmitted = false;
-								let clickkk = false;
-								    function toggleMedicationInput(isOther) {
-								        document.getElementById("inputText").disabled = !isOther;
-								        
-								        if (!isOther) {
-								            document.getElementById("inputText").value = ""; // 비활성화되면 입력값을 초기화
-								        }
-								        checkFormValidity(); // 상태를 체크하여 버튼 활성화
-								    }
-								
-								    function toggleSurgeryInput(isSurgery) {
-								        document.getElementById("SurgerySelf").disabled = !isSurgery;
-								
-								        if (!isSurgery) {
-								            document.getElementById("SurgerySelf").value = ""; // 비활성화되면 입력값을 초기화
-								        }
-								        checkFormValidity(); // 상태를 체크하여 버튼 활성화
-								    }
-								
-								    function checkFormValidity() {
-								        var mediListChecked = document.querySelector('input[name="mediList"]:checked');
-								        var mediListValid = mediListChecked && (mediListChecked.value === "N" || (mediListChecked.value === "Y" && document.getElementById("inputText").value.trim() !== ""));
-								
-								        var surgeryChecked = document.querySelector('input[name="surgeryYN"]:checked');
-								        var surgeryValid = surgeryChecked && (surgeryChecked.value === "N" || (surgeryChecked.value === "Y" && document.getElementById("SurgerySelf").value.trim() !== ""));
-								
-								        var flyChecked = document.querySelector('input[name="flyYN"]:checked') !== null;
-								
-								        var submitBtn = document.getElementById("submitBtn");
-								        if (mediListValid && surgeryValid && flyChecked) {
-								            submitBtn.disabled = false; // 모든 항목이 체크되고 유효하면 버튼 활성화
-								        } else {
-								            submitBtn.disabled = true; // 하나라도 체크되지 않거나 유효하지 않으면 버튼 비활성화
-								        }
-								    }
-								
-								    let isSubmitting = false; // 중복 제출 방지 변수
-
-								    function handleSubmit(event) {
-								        event.preventDefault(); // 기본 제출 동작 방지
-								        if (isSubmitting) return; // 이미 제출 중이면 함수 종료
-								        isSubmitting = true; // 제출 시작
-								        const formData = new FormData(document.getElementById("checkListForm"));
-								        $(document).ready(function() {
-						                    $('#healthpay').on('submit', function(e) {
-						                        e.preventDefault(); // 기본 폼 제출 방지
-						                        $.ajax({
-						                            type: 'POST',
-						                            url: $(this).attr('action'), // 폼의 action URL
-						                            data: $(this).serialize(), // 폼 데이터 직렬화
-						                            success: function(response) {
-						                                // 성공 시 처리할 내용
-						                                console.log(response);
-						                            },
-						                            error: function() {
-						                                // 오류 처리
-						                                alert('오류가 발생했습니다.');
-						                            }
-						                        });
-						                    });
-						                });
-
-                    function validateAndProceed(event) {
-									  
-									    if (!healthCheckClicked) {
-									        alert('필수란의 버튼을 선택해주세요.');
-									        event.preventDefault(); // 링크 이동 방지
-									        return false; 
-									    }
-					
-									    if (!clickkk) {
-									        alert("예약체크사항을 작성해주세요");
-									        event.preventDefault(); // 링크 이동 방지
-									        return false; 
-									    }
-									  
-									    // 모든 조건이 충족되면 true를 반환하여 링크 이동
-									    return true; 
-									}
     
 </script>
      
@@ -242,8 +164,7 @@
     <h3 style="margin-left:93px"><b>예약 체크사항</b><b style="color:rgb(31, 43, 108)">(필수)</b></h3>
     <hr style= "border-color:rgb(31, 43, 108); margin-left: 90px; margin-right: 90px;">
     <br>
-	
-	<form id="checkListForm" action="<%= contextPath %>/CheckForm.rv" method="post">
+
      <div class="d-flex" style="margin-left:93px">
         <h3>"예약체크사항 작성하기"를 클릭하여 체크사항을 작성해 주십시오.</h3>
         <button type="button" class="btn border-1 border-dark" id="btn-color" data-toggle="modal" data-target="#myModal" style="width: 200px; margin-left:600px; margin-top:-10px">작성하기</button>
@@ -254,6 +175,7 @@
                   <h5 class="modal-title" id="myModalLabel">예약체크사항</h5>
                 </div>
                 <div class="modal-body">
+								    <form id="checkListForm" action="<%= contextPath %>/HealthCheckPoint.rv" method="post">
 								        <div class="first-group">
 								            <h5>1. 현재 복용중인 약이 있으십니까?</h5>
 								            <input type="radio" name="mediList" value="N" style="cursor: pointer;" onclick="toggleMedicationInput(false); checkFormValidity()">
@@ -297,13 +219,107 @@
 								            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 								            <button type="button" class="btn btn-primary" id="submitBtn" disabled onclick="handleSubmit()">저장</button>
 								        </div>
+								        
+								        <input type="hidden" id="mediList" name="mediList">
+												<input type="hidden" id="surgeryName" name="surgeryName" >
+												<input type="hidden" id="surgeryYN" name="surgeryYN" >
+												<input type="hidden" id="flyYN" name="flyYN">
+								    </form>
 								</div>
-						
+								
+								<script>
+										
+								let checklistSubmitted = false;
+								let clickkk = false;
+								    function toggleMedicationInput(isOther) {
+								        document.getElementById("inputText").disabled = !isOther;
+								        
+								        if (!isOther) {
+								            document.getElementById("inputText").value = ""; // 비활성화되면 입력값을 초기화
+								        }
+								        checkFormValidity(); // 상태를 체크하여 버튼 활성화
+								    }
+								
+								    function toggleSurgeryInput(isSurgery) {
+								        document.getElementById("SurgerySelf").disabled = !isSurgery;
+								
+								        if (!isSurgery) {
+								            document.getElementById("SurgerySelf").value = ""; // 비활성화되면 입력값을 초기화
+								        }
+								        checkFormValidity(); // 상태를 체크하여 버튼 활성화
+								    }
+								
+								    function checkFormValidity() {
+								        var mediListChecked = document.querySelector('input[name="mediList"]:checked');
+								        var mediListValid = mediListChecked && (mediListChecked.value === "N" || (mediListChecked.value === "Y" && document.getElementById("inputText").value.trim() !== ""));
+								
+								        var surgeryChecked = document.querySelector('input[name="surgeryYN"]:checked');
+								        var surgeryValid = surgeryChecked && (surgeryChecked.value === "N" || (surgeryChecked.value === "Y" && document.getElementById("SurgerySelf").value.trim() !== ""));
+								
+								        var flyChecked = document.querySelector('input[name="flyYN"]:checked') !== null;
+								
+								        var submitBtn = document.getElementById("submitBtn");
+								        if (mediListValid && surgeryValid && flyChecked) {
+								            submitBtn.disabled = false; // 모든 항목이 체크되고 유효하면 버튼 활성화
+								        } else {
+								            submitBtn.disabled = true; // 하나라도 체크되지 않거나 유효하지 않으면 버튼 비활성화
+								        }
+								    }
+								
+                    function handleSubmit() {
+							    		const mediListChecked = document.querySelector('input[name="mediList"]:checked') !== null;
+							        const surgeryChecked = document.querySelector('input[name="surgeryYN"]:checked') !== null;
+							        const flyChecked = document.querySelector('input[name="flyYN"]:checked') !== null;
+
+							        if (mediListChecked && surgeryChecked && flyChecked) {
+							            const formData = new FormData(document.getElementById("checkListForm"));
+
+							            document.getElementById("mediList").value = mediListChecked.value; // 선택된 약 정보
+							            document.getElementById("surgeryName").value = surgeryChecked.value === 'Y' ? document.getElementById("SurgerySelf").value : '없음'; // 수술명이 입력된 경우
+							            document.getElementById("surgeryYN").value = surgeryChecked.value; // 수술 여부
+							            document.getElementById("flyYN").value = flyChecked.value; // 비행기 탑승 여부
+							            
+							            document.getElementById("submitBtn").disabled = true;
+							            
+							            alert("문진표 작성이 완료되었습니다.");
+
+							            // 폼 제출
+							            document.getElementById('checkListForm').submit();
+							        } else {
+							            alert("모든 항목을 올바르게 체크해주세요.");
+							        }
+							    }
+                    
+                    function validateAndProceed(event) {
+									  
+									    if (!healthCheckClicked) {
+									        alert('필수란의 버튼을 선택해주세요.');
+									        event.preventDefault(); // 링크 이동 방지
+									        return false; 
+									    }
+					
+									    if (!clickkk) {
+									        alert("예약체크사항을 작성해주세요");
+									        event.preventDefault(); // 링크 이동 방지
+									        return false; 
+									    }
+									  
+									    // 모든 조건이 충족되면 true를 반환하여 링크 이동
+									    return true; 
+									}
+                    
+                    document.addEventListener("DOMContentLoaded", function() {
+                        const healthCheckButtons = document.getElementsByName("priceController");
+                        if (healthCheckButtons.length > 0) {
+                            healthCheckButtons[0].addEventListener("click", updateCost);
+                        }
+                    });
+					
+								</script>
               </div>
             </div>
           </div>
      </div>
-	 </form>
 
      <br>
      <hr style= "border: 1px dashed; margin-left: 90px; margin-right: 90px;">
@@ -339,15 +355,14 @@
     </div>
 
     <br><br><br>
-       
-				
+   
+     
+    
+
         
         <div align="center">
      
-          <form action="/vita/views/reservation/healthCheckUp_3.jsp" method="POST" onsubmit="return validateAndProceed(event)">
-				    <button type="submit" class="btn border-1 border-dark" id="btn-color" style="width: 150px;">다음</button>
-				</form>
-
+           <a href="/vita/views/reservation/healthCheckUp_3.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;" onclick="return validateAndProceed(event)">다음</a>
            <a href="/vita/views/reservation/healthCheckUp_1.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:30px;">이전</a>
           
         </div>

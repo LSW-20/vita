@@ -45,7 +45,7 @@ public class HealthCheckFormController extends HttpServlet {
 	    String payNo = request.getParameter("merchant_uid");//payNo
 	    String pg = request.getParameter("selectedPG");
 	   
-	    System.out.println(pg);
+	  
 	    int result = new ReservationService().insertHealtchCareList(userNo, time, date);
         
         if (result == 1 ) {

@@ -253,25 +253,7 @@ public class ReservationService {
 		
 	}
 
-	
-	public int insertHealthCheckList(CheckList ck) {
-		
-		Connection conn = getConnection();
-		int result = rdao.insertHealthCheckList(conn, ck);
-		
-		if(result > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-		
-		
-		close(conn);
-		
-		return result;
-		
-		
-	}
+
 	
 	public int insertHealtchCareList(String userNo, String time, String date) {
 		
@@ -371,6 +353,22 @@ public class ReservationService {
 		close(conn);
 		return result;
 		
+	}
+
+	public int insertCheckListt(String userNo, String mediList, String surgeryName, String surgeryYN, String flyYN) {
+		
+		Connection conn = getConnection();
+		int result = rdao.insertCheckListt(conn, userNo, mediList, surgeryName, surgeryYN, flyYN);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		
+		close(conn);
+		return result;
 	}
 
 	
