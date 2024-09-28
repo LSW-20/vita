@@ -747,6 +747,8 @@ public class DoctorDao {
 		
 	}
 
+	
+	// 증명서신청 리스트 총 갯수 조회
 	public int selectDocumentListCount(Connection conn, String docNo, String type) {
 		
 		PreparedStatement pstmt = null;
@@ -1075,6 +1077,100 @@ public class DoctorDao {
 		
 	}
 	
+	
+	// 진료기록페이지 진료기록 전체 조회
+	public List<Map<String, Object>> selectAllmrecords(Connection conn, String userName, String deptName, String date1, String date2, PageInfo pi) {
+	    
+		
+		List<Map<String, Object>> mrcList = new ArrayList<>();
+	    PreparedStatement pstmt = null;
+	    ResultSet rset = null;
+
+	    
+	    String sql = prop.getProperty("selectAllmrecords");
+
+	    try {
+	        pstmt = conn.prepareStatement(sql);
+
+	        
+	        pstmt.setString(1, userName);
+	        pstmt.setString(2, deptName);
+	        pstmt.setString(3, date1);
+	        pstmt.setString(4, date2);
+
+	        int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1; // 시작 행
+	        int endRow = startRow + pi.getBoardLimit() - 1; // 종료 행
+
+	        pstmt.setInt(5, startRow);
+	        pstmt.setInt(6, endRow);
+
+	        rset = pstmt.executeQuery();
+
+	        while (rset.next()) {
+	            Map<String, Object> mrMap = new HashMap<>();
+	            mrMap.put("userNo", rset.getString("USER_NO"));
+	            mrMap.put("userName", rset.getString("USER_NAME"));
+	            mrMap.put("userSSN", rset.getString("USER_SSN"));
+	            mrMap.put("deptName", rset.getString("DEPT_NAME"));
+	            mrMap.put("treatment", rset.getString("TREATMENT"));
+	            mrcList.add(mrMap);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(rset);
+	        close(pstmt);
+	    }
+
+	    return mrcList;
+	}
+	
+	
+	
+	
+	
+	
+	
+	// 진료기록 검색 총 갯수
+	public int selectAllmrecordsCount(Connection conn, String userName,String deptName,String date1,String date2) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int listCount = 0;
+		
+		
+		String sql = prop.getProperty("selectAllmrecordsCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userName);
+			pstmt.setString(2, deptName);			
+			pstmt.setString(3, date1);			
+			pstmt.setString(4, date2);	
+			
+			
+			rset=pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("COUNT");
+			}
+			
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return listCount;
+		
+	}
 	
 	
 	

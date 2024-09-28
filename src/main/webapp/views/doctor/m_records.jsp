@@ -1,10 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+       
+<%@ page import="java.util.*" %>
+
+<%@ page import="com.br.vita.common.model.vo.PageInfo" %>
+
+<%@ page import="com.br.vita.member.model.vo.*" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
+
+
+<% 
+
+PageInfo pi = (PageInfo)request.getAttribute("pi");
+List<Map<String,Object>> mrcList = (List<Map<String,Object>>)request.getAttribute("mrcList");	
+
+%>
+
+
 </head>
 <body>
 
@@ -99,7 +118,7 @@
             <h2><b>진료기록</b></h2>
 
               <div class="boxline">
-                <form action="<%= contextPath %>/selectMrecords.se">
+                <form action="<%= contextPath %>/selectMrecords.se" >
                   <div class="care_select_container mt-5">
 
                       <div class="input-group mb-3">
@@ -116,10 +135,10 @@
 
                         <select name="deptName" id="dept_name_val">
                           <option value="none" selected>선택</option>
-                          <option value="option 1">내과</option>
-                          <option value="option 2">외과</option>
-                          <option value="option 3">성형외과</option>
-                          <option value="option 3">치과</option>
+                          <option value="내과">내과</option>
+                          <option value="외과">외과</option>
+                          <option value="안과">안과</option>
+                          <option value="치과">치과</option>
                         </select>
                       </div>
 
@@ -152,50 +171,62 @@
                       </tr>   
                     </thead>
                     <tbody>
-                    
-                    
-                      <!-- for문 -->
-                      <tr>
-                       <td>11234</td>
-                       <td>홍길동</td>
-                       <td>940404-1******</td>
-                       <td>내과</td>
-                       <td>24-09-09</td>
-                       <td><button class="btn btn-secondary">진료기록</button></td>
-                      </tr>
-                     
 
-                     
-                    
+			 <% if (mrcList != null && !mrcList.isEmpty()) { 
+                            for (Map<String, Object> mrcMap : mrcList) { %>
+                                <tr>
+                                    <td><%= mrcMap.get("userNo") %></td>
+                                    <td><%= mrcMap.get("userName") %></td>
+                                    <td><%= mrcMap.get("userSSN") %></td>
+                                    <td><%= mrcMap.get("deptName") %></td>
+                                    <td><%= mrcMap.get("treatment") %></td>
+                                    <td><button class="btn btn-secondary">진료기록</button></td>
+                                </tr>
+                        <% } 
+                          } else { %>
+                            <tr>
+                                <td colspan="6">검색된 결과가 없습니다.</td>
+                            </tr>
+                        <% } %>
                     </tbody>
-                  </table>
+                </table>
+<nav aria-label="Page navigation example" id="pageBar">
+    <ul class="pagination">
+        <% if (pi != null) { %>
+            <li class='page-item <%= (pi.getCurrentPage() == 1) ? "disabled" : "" %>'>
+                <a class="page-link" 
+                   href="<%= contextPath %>/selectMrecords.se?page=<%=  pi.getCurrentPage() - 1  %>&userName=<%= request.getParameter("userName") %>&deptName=<%= request.getParameter("deptName") %>&date1=<%= request.getParameter("date1") %>&date2=<%= request.getParameter("date2") %>" 
+                   aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
 
-                  <nav aria-label="Page navigation example" id="pageBar">
-                    <ul class="pagination">
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                        </a>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
+            <% for (int p = pi.getStartPage(); p <= pi.getEndPage(); p++) { %>
+                <li class='page-item <%= (p == pi.getCurrentPage()) ? "active" : "" %>'>
+                    <a class="page-link" 
+                       href="<%= contextPath %>/selectMrecords.se?page=<%= p %>&userName=<%= request.getParameter("userName") %>&deptName=<%= request.getParameter("deptName") %>&date1=<%= request.getParameter("date1") %>&date2=<%= request.getParameter("date2") %>">
+                       <%= p %></a>
+                </li>
+            <% } %>
 
-
-              </div>
-
-            
-            
-
-          </div>
+            <li class='page-item <%= (pi.getCurrentPage() == pi.getMaxPage()) ? "disabled" : "" %>'>
+                <a class="page-link" 
+                   href="<%= contextPath %>/selectMrecords.se?page=<%=  pi.getCurrentPage() + 1  %>&userName=<%= request.getParameter("userName") %>&deptName=<%= request.getParameter("deptName") %>&date1=<%= request.getParameter("date1") %>&date2=<%= request.getParameter("date2") %>"
+                   aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        <% } else { %>
+            <li class='page-item disabled' style="display: none;">
+                <a class="page-link" href="#"></a>
+            </li>
+        <% } %>
+    </ul>
+</nav>
+                
+            </div>
+        </div>
+    </div>
           
         
       </nav>

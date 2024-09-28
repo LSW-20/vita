@@ -300,6 +300,7 @@ public class DoctorService {
 		
 	}
 	
+	// 증명서 신청 총 갯수 조회
 	public int selectDocumentListCount(String docNo, String type) {
 		
 		Connection conn = getConnection();
@@ -418,6 +419,34 @@ public class DoctorService {
 		
 		
 		
+	}
+	
+	
+	// 진료기록페이지 검색 전체조회
+	public List<Map<String,Object>> selectAllmrecords(String userName,String deptName,String date1,String date2,PageInfo pi){
+		
+		
+		Connection conn = getConnection();
+		
+		List<Map<String,Object>> mrcList = dDao.selectAllmrecords(conn,userName,deptName,date1,date2,pi);
+		
+		close(conn);
+		
+		return mrcList;
+		
+		
+		
+	}
+	
+	// 진료기록 검색 총 갯수 조회
+	public int selectAllmrecordsCount(String userName,String deptName,String date1,String date2) {
+		
+		Connection conn = getConnection();
+		int result = dDao.selectAllmrecordsCount(conn,userName,deptName,date1,date2);
+		
+		close(conn);
+		
+		return result;
 	}
 	
 	

@@ -2,6 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
+<!-- 의료진소개페이지 일정 조회 -->
 <entry key="selectSchedule">
 
 SELECT 
@@ -16,6 +17,7 @@ WHERE
 
 
 </entry>
+
 
 <entry key="selectDoctor">
 
@@ -34,6 +36,8 @@ WHERE
 
 </entry>
 
+
+<!-- 의료진 일정 업데이트 -->
 <entry key="doctorScheduleUpdate">
 
 UPDATE SCHEDULE
@@ -289,8 +293,8 @@ WHERE
 	
 SELECT *
 FROM(
-			SELECT ROW_NUMBER() OVER(ORDER BY M.USER_NO DESC) AS RNUM
-					 , M.USER_NO AS USER_NO
+	  SELECT ROW_NUMBER() OVER(ORDER BY M.USER_NO DESC) AS RNUM
+				 , M.USER_NO AS USER_NO
 			     , M.USER_NAME AS USER_NAME
 			     , RPAD(SUBSTR(M.USER_SSN,0,8),14,'*') AS USER_SSN
 			     , MR.DEPT_NAME AS DEPT_NAME
@@ -484,9 +488,44 @@ WHERE APPOINTMENT_NO = ?
 
 
 
+<!-- 진료기록페이지 검색 전체조회 -->
+<entry key="selectAllmrecords">
+SELECT 
+      TEMP.USER_NO AS USER_NO,
+      TEMP.USER_NAME AS USER_NAME,
+      RPAD(SUBSTR(TEMP.USER_SSN, 1, 8), 14, '*') AS USER_SSN,
+      TEMP.DEPT_NAME AS DEPT_NAME,
+      TEMP.TREATMENT_DATE AS TREATMENT
+FROM 
+    (
+	    SELECT 
+	          ROW_NUMBER() OVER (ORDER BY M.USER_NO DESC) AS RNUM,
+	          M.USER_NO,
+	          M.USER_NAME,
+	          M.USER_SSN,
+	          MR.DEPT_NAME,
+	          MR.TREATMENT_DATE
+	     FROM MRECORDS MR
+	     JOIN MEMBER M ON M.USER_NO = MR.USER_NO
+	     WHERE M.USER_NAME = ?
+	     AND MR.DEPT_NAME = ?
+	     AND MR.TREATMENT_DATE BETWEEN ? AND ?
+     ) TEMP
+WHERE RNUM BETWEEN ? AND ?
+</entry>
 
-	
-	
+<!-- 진료기록 검색 총 갯수조회 -->
+<entry key="selectAllmrecordsCount">
+SELECT COUNT(*) AS COUNT
+FROM 
+    MRECORDS MR
+JOIN 
+     MEMBER M ON M.USER_NO = MR.USER_NO
+WHERE 
+    M.USER_NAME = ?
+AND MR.DEPT_NAME = ?
+AND MR.TREATMENT_DATE BETWEEN ? AND ? 
+</entry>
 	
 	
 	
