@@ -1,5 +1,14 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.br.vita.cs.model.vo.Cs" %>
+<%@ page import="com.br.vita.common.model.vo.PageInfo" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+		PageInfo pi = (PageInfo)request.getAttribute("pi");
+		List<Cs> csList = (List<Cs>)request.getAttribute("csList");
+		String category = request.getParameter("category") == null ? "C" : request.getParameter("category");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,24 +75,34 @@ section{
 	 <%@ include file="/views/common/header.jsp" %>
 	 <%-- <%@ include file="/views/common/myPageSideBar.jsp" %> --%>
 	<section>
+	 <script>
+	 	/* 버튼카테고리조회탭 */
+	 	$(document).ready(function(){
+	 		$(".cs_check").on("change", function(){
+	 			const category = $(this).val();
+	 			location.href = "<%=contextPath%>/list.cs?category=" + category;
+	 		});
+	 	});
+	 </script>
+	 	
 	 <div class="side" id="navContent">
 		
 	   <br><h2 style="margin-left: 320px;"><b>&nbsp; 고객의 소리</h2>  
 	
 	   <!-- 카테고리 변경 탭 버튼 -->
-     <div class="d-flex btn-group" role="group" aria-label="Segmented button" style="padding: 20px;width: 80%; max-width: 1250px; margin: 0 auto;">
+     <div class="d-flex btn-group" role="group" aria-label="Segmented button" style="padding: 20px;width: 80%; max-width: 1500px; margin: 0 auto;">
        <!-- 칭찬합니다 (기본 선택) -->
-       <input type="radio" class="cs_check" name="options" id="option1" autocomplete="off" checked>
+       <input type="radio" class="cs_check" name="options" id="option1" value="C" <%= category.equals("C") ? "checked" : "" %> autocomplete="off">
        <label class="btn btn-outline-primary" for="option1">칭찬합니다</label>
      
        <!-- 문의합니다 -->
-       <input type="radio" class="cs_check" name="options" id="option2" autocomplete="off">
+       <input type="radio" class="cs_check" name="options" id="option2" value="S" <%= category.equals("S") ? "checked" : "" %> autocomplete="off">
        <label class="btn btn-outline-primary" for="option2">문의합니다</label>
      
        <!-- QnA -->
-       <input type="radio" class="cs_check" name="options" id="option3" autocomplete="off">
+       <input type="radio" class="cs_check" name="options" id="option3" value="Q" <%= category.equals("Q") ? "checked" : "" %> autocomplete="off">
        <label class="btn btn-outline-primary" for="option3">QnA</label>
-     </div> 
+     </div>  
 		
 	   <div style="width: 1200px; margin: auto;">
 			   <!-- 고객의소리 설명 텍스트 + 이미지 -->
@@ -97,7 +116,7 @@ section{
 			   </div>
 			 	 <br><br>  
 			 		
-			 <table class="table">
+			 <table class="table" id="board-list">
 			   <thead id="csthead">
 			     <tr>
 			       <th width="50px">번호</th>
@@ -109,69 +128,55 @@ section{
 			   </thead>
 			   <tbody>
 			     <!-- case1. 조회된 게시글이 없을 경우 -->
-			     <!--
+			     <% if(csList.isEmpty()) {%>
 			     <tr>
 			       <td colspan="5" style="text-align: center;">존재하는 게시글이 없습니다.</td>
 			     </tr>
-			     -->
-			
-			     <!-- case2. 조회된 게시글이 있을 경우 -->
-			     <tr>
-			       <td>3</td>
-			       <td>글제목입니다</td>
-			       <td>user01</td>
-			       <td>200</td>
-			       <td>2024-01-12</td>
-			     </tr>
-			     <tr>
-			         <td>3</td>
-			         <td>글제목입니다</td>
-			         <td>user02</td>
-			         <td>200</td>
-			         <td>2024-01-12</td>
-			     </tr>
-			     <tr>
-			         <td>3</td>
-			         <td>글제목입니다</td>
-			         <td>user02</td>
-			         <td>200</td>
-			         <td>2024-01-12</td>
-			     </tr>
-			     <tr>
-			         <td>3</td>
-			         
-			         <td>글제목입니다</td>
-			         <td>user01</td>
-			         <td>200</td>
-			         <td>2024-01-12</td>
-			     </tr>
-			     <tr>
-			         <td>3</td>
-			         
-			         <td>글제목입니다</td>
-			         <td>user03</td>
-			         <td>200</td>
-			         <td>2024-01-12</td>
-			     </tr>
+			     <%} else{ %>
+				
+				     <!-- case2. 조회된 게시글이 있을 경우 -->
+				     <% for(Cs c : csList){ %>
+				     <tr>
+				       <td><%= c.getBoardNo() %></td>
+				       <td><%= c.getBoardTitle() %></td>
+				       <td><%= c.getBoardWriter() %></td>
+				       <td><%= c.getBoardCount() %></td>
+				       <td><%= c.getRegistDt() %></td>
+				     </tr>
+				     <%} %>
+			     <%} %>
 			   </tbody>
 			 </table>		   
 	     <hr>
-			 <!-- 현재 로그인되어있는 회원일 경우 보여지는 요소 -->
-			 <div class="d-flex justify-content-end">
-			   <a href="" class="btn btn-primary btn-sm">등록하기</a><!-- 로그인페이지로 -->
-			 </div>   			 
+			 <script>
+				$(function(){
+			 		$('#board-list tbody>tr').on('click', function(){
+			 			let no = $(this).children().eq(0).text();
+			 			let writer = $(this).children().eq(2).text();
+			 				location.href = "<%=contextPath%>/increase.cs?no="+no+"&category=<%=category%>";
+			 		})
+			 	}) 
+			 </script> 			 
 	   </div>
  
 	  
 	 	 <!-- 페이징바 -->
-		 <ul class="pagination d-flex justify-content-center text-dark">
-		   <li class="page-item disabled"><a class="page-link" href="">이전</a></li>
-		   <li class="page-item active"><a class="page-link" href="">1</a></li>
-		   <li class="page-item"><a class="page-link" href="">2</a></li>
-		   <li class="page-item"><a class="page-link" href="">3</a></li>
-		   <li class="page-item"><a class="page-link" href="">4</a></li>
-		   <li class="page-item"><a class="page-link" href="">5</a></li>
-		   <li class="page-item"><a class="page-link" href="">다음</a></li>
+		 <ul class="pagination d-flex justify-content-center text-dark" id="paging_bar">
+		 
+		   <li class='page-item <%=pi.getCurrentPage() == 1 ? "disabled" : ""%>'>
+		   	<a class="page-link" href="<%= contextPath %>/list.cs?page=<%=pi.getCurrentPage()-1%>">이전</a>
+		   </li>
+		   
+		   <% for(int p = pi.getStartPage(); p<= pi.getEndPage(); p++) {%>
+		   	<li class='page-item <%=p == pi.getCurrentPage() ? "active" : ""%>'>
+		   		<a class="page-link" href="<%= contextPath %>/list.cs?page=<%=p%>&category=<%=category%>"><%= p %></a></li>
+		   	<%} %>
+		   	
+		   	
+        <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
+         <a class="page-link" href='<%= contextPath %>/list.cs?page=<%=pi.getCurrentPage()+1 %>&category=<%=category%>'>다음</a></li>	
+         
+         	   	
 		 </ul>
 
 	 </div>

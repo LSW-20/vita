@@ -81,9 +81,12 @@ public class CsListController extends HttpServlet {
 		
 		Member loginUser = (Member) request.getSession().getAttribute("loginUser"); // 세션으로부터 현재 로그인한 Member 객체를 가져온다.
 		
-		if (loginUser != null && "A".equals(loginUser.getUserType())) {
-		    // 로그인한 유저가 관리자(A)일 경우
-		    request.getRequestDispatcher("/views/cs/csListAdminSideBar.jsp").forward(request, response);
+		if (loginUser == null) {
+			// 로그인 하지 않았을 경우
+			request.getRequestDispatcher("/views/cs/csListNoSideBar.jsp").forward(request, response);
+		} else if(loginUser != null && "A".equals(loginUser.getUserType())) {
+			// 로그인한 유저가 관리자(A)일 경우
+			request.getRequestDispatcher("/views/cs/csListAdminSideBar.jsp").forward(request, response);
 		} else {
 		    // 그 외의 경우
 		    request.getRequestDispatcher("/views/cs/csList.jsp").forward(request, response);
