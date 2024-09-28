@@ -47,10 +47,16 @@
 // 오늘 날짜를 YY/MM/DD 형식으로 반환하는 함수
 function getTodayDate() {
     var today = new Date();
-    var year = String(today.getFullYear()).slice(-2); // 마지막 두 자리만 취함 (YY 형식)
+    var year = today.getFullYear(); // 4자리 연도
     var month = String(today.getMonth() + 1).padStart(2, '0'); // 월을 2자리로
     var day = String(today.getDate()).padStart(2, '0'); // 일을 2자리로
-    return year + '/' + month + '/' + day;
+    return year + '-' + month + '-' + day; // YYYY-MM-DD 형식으로 반환
+}
+
+//날짜를 YY/MM/DD 형식으로 변환하는 함수
+function formatDateToYYMMDD(dateString) {
+    var parts = dateString.split("-");
+    return parts[0].slice(2) + '/' + parts[1] + '/' + parts[2]; // YY/MM/DD 형식으로 변환
 }
 
 function submitDocument(){
@@ -69,11 +75,11 @@ function submitDocument(){
 	}
 }
 
-// 페이지 로드 시 시작일과 종료일의 기본값을 오늘 날짜로 설정
+//페이지 로드 시 시작일과 종료일의 기본값을 오늘 날짜로 설정
 window.onload = function() {
     var today = getTodayDate();
-    document.getElementById("startDate").value = today;
-    document.getElementById("endDate").value = today;
+    document.getElementById("startDate").value = today;  // YYYY-MM-DD 형식으로 설정
+    document.getElementById("endDate").value = today;    // YYYY-MM-DD 형식으로 설정
 };
 
 //아임포트
@@ -208,7 +214,7 @@ window.onload = function() {
                 
                 <div class="modal-footer" style="background-color: #1F2B6C;">
                     <button type="button"  name="payment" class="btn" id="btn-color" style=" width:1197px;" onclick="requestPayment()">
-                         <h5>50,000 원 결제하기</h5>
+                         <h5>2,000 원 결제하기</h5>
                          </button>    
                 </div>
                 
