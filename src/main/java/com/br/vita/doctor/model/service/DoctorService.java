@@ -450,6 +450,23 @@ public class DoctorService {
 	}
 	
 	
+	// 진료기록 검색 후 기록보기 진단서/진료확인서 내용 전체 조회
+	public Map<String,Object> selectMrecordsAllListSelect(String userNo,String careNo){
+		
+		Connection conn = getConnection();
+		
+		Map<String,Object> mrallMap = dDao.selectMrecordsAllListSelect(conn,userNo,careNo);
+		
+		close(conn);
+		
+		return mrallMap;
+		
+		
+		
+		
+	}
+	
+	
 	
 	
 	

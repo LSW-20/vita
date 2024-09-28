@@ -288,7 +288,7 @@ WHERE
 	</entry>
 	
 	
-	
+	<!-- 증명서리스트 페이징 -->
 <entry key="documentSelect">
 	
 SELECT *
@@ -345,7 +345,7 @@ SELECT COUNT(*) AS COUNT
 	<entry key="diagnosisSelectFile">
 	
 	SELECT 
-			 M.USER_NAME AS USER_NAME
+	   M.USER_NAME AS USER_NAME
       ,RPAD(SUBSTR(M.USER_SSN,0,8),14,'*') AS USER_SSN
       ,M.ADDRESS AS ADDRESS
       ,MR.SYMPTOMS AS SYMPTOMS
@@ -495,7 +495,8 @@ SELECT
       TEMP.USER_NAME AS USER_NAME,
       RPAD(SUBSTR(TEMP.USER_SSN, 1, 8), 14, '*') AS USER_SSN,
       TEMP.DEPT_NAME AS DEPT_NAME,
-      TEMP.TREATMENT_DATE AS TREATMENT
+      TEMP.TREATMENT_DATE AS TREATMENT,
+      TEMP.CARE_NO AS CARE_NO
 FROM 
     (
 	    SELECT 
@@ -504,7 +505,8 @@ FROM
 	          M.USER_NAME,
 	          M.USER_SSN,
 	          MR.DEPT_NAME,
-	          MR.TREATMENT_DATE
+	          MR.TREATMENT_DATE,
+	          MR.CARE_NO
 	     FROM MRECORDS MR
 	     JOIN MEMBER M ON M.USER_NO = MR.USER_NO
 	     WHERE M.USER_NAME = ?
@@ -526,8 +528,38 @@ WHERE
 AND MR.DEPT_NAME = ?
 AND MR.TREATMENT_DATE BETWEEN ? AND ? 
 </entry>
-	
-	
+
+
+
+
+
+
+<!-- 진료기록 진단서 진료확인서 조회 -->
+<entry key="selectMrecordsAllListSelect">
+
+
+
+SELECT 
+                 MR.USER_NAME as USER_NAME
+                ,RPAD(SUBSTR(MR.USER_SSN,0,8),14,'*') AS USER_SSN
+                ,MR.TREATMENT_DATE AS TREATMENT_DATE
+                ,MR.SYMPTOMS AS SYMPTOMS
+                ,MR.OPINION AS OPINION
+                ,MR.TREATMENT_CONTENT AS TREATMENT_CON
+                ,MR.DIAGNOSIS_NAME AS DIAGNOSIS_NAME
+                ,M.ADDRESS AS ADDRESS
+                ,D.LICENCE_NO AS LICENCE_NO
+                ,D.DOCTOR_NAME AS DOCTOR_NAME
+                
+FROM MRECORDS MR
+JOIN DOCTOR D ON(MR.DOCTOR_NO = D.DOCTOR_NO)
+JOIN MEMBER M ON(D.USER_NO = M.USER_NO)
+WHERE MR.USER_NO = ?
+AND MR.CARE_NO = ?
+
+
+
+</entry>
 	
 	
 	

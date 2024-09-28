@@ -19,7 +19,10 @@
 <% 
 
 PageInfo pi = (PageInfo)request.getAttribute("pi");
-List<Map<String,Object>> mrcList = (List<Map<String,Object>>)request.getAttribute("mrcList");	
+
+List<Map<String,Object>> mrcList = (List<Map<String,Object>>)request.getAttribute("mrcList");
+
+List<Member> doculist = (List<Member>)request.getAttribute("doculist");
 
 %>
 
@@ -148,7 +151,7 @@ List<Map<String,Object>> mrcList = (List<Map<String,Object>>)request.getAttribut
                           <span class="input-group-text">진료날짜</span>
                         </div>
                         <input type='date' placeholder='날짜를 선택해주세요.' id="dateInput1" name="date1"> <div id="minus">-</div> 
-                        <input id="dateInput2" type='date' placeholder='날짜를 선택해주세요.' name="date2"> <button type="submit" class="btn btn-secondary" id="sel_btn">검색</button>
+                        <input type='date' placeholder='날짜를 선택해주세요.' id="dateInput2" name="date2"> <button type="submit" class="btn btn-secondary" id="sel_btn">검색</button>
                       </div>
                     </div>
                 </form>
@@ -174,13 +177,244 @@ List<Map<String,Object>> mrcList = (List<Map<String,Object>>)request.getAttribut
 
 			 <% if (mrcList != null && !mrcList.isEmpty()) { 
                             for (Map<String, Object> mrcMap : mrcList) { %>
-                                <tr>
+                                <tr class="click_mr">
                                     <td><%= mrcMap.get("userNo") %></td>
                                     <td><%= mrcMap.get("userName") %></td>
                                     <td><%= mrcMap.get("userSSN") %></td>
                                     <td><%= mrcMap.get("deptName") %></td>
                                     <td><%= mrcMap.get("treatment") %></td>
-                                    <td><button class="btn btn-secondary">진료기록</button></td>
+                                    
+                                    <td>
+                                    
+                                    <div class="container">
+                                    	<button class="btn btn-secondary"
+                                    			data-toggle="modal" data-target="#myModal"
+                                                 data-user-no="<%= mrcMap.get("userNo") %>"
+                                                 data-care-no="<%= mrcMap.get("careNo") %>" onclick="fnClickAll(this)">진료기록
+                                        </button>
+                                        
+   
+  
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog" style="margin-right: 700px;">
+      <div class="modal-content" style="width: 189%;">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          
+          
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .t_container{
+    border: 1px solid black;
+    width: 900px;
+    height: 1050px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .t_header{
+    border: 1px solid black;
+    width: 100%;
+    height: 70px;
+    text-align: center;
+    font-size: 30px;
+    padding-top: 10px;
+    background-color: lightgray;
+  }
+  .table_div{
+    margin-left: 70px;
+    margin-top: 20px;
+  }
+  #table_container{
+    width: 760px;
+    height: 700px;
+    text-align: center;
+  }
+  .u_name{
+    height: 50px;
+    width: 140px;
+  }
+  .u_ssn{
+    width: 145px;
+  }
+  .u_addr{
+    height: 65px;
+  }
+  .symptoms{
+    height: 150px;
+  }
+
+  .doc_detail{
+    display: flex;
+    flex-direction: column;
+   
+    width: 760px;
+  }
+  .c_date{
+    text-align: right;
+  }
+  .side_detail{
+    display: flex;
+  }
+  .doc_num{
+    margin-left: 140px;
+  }
+  .doc_name{
+    text-align-last: right;
+  }
+  .opinion_date{
+    height: 80px;
+  }
+
+ 
+</style>
+
+<div class="t_container">
+  <div class="t_header">진&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;단&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서</div>
+  <div class="table_div">
+    <table border="1" id="table_container">
+      <tr>
+        <td class="u_name"><b>환자의 성명</b></td>
+        <td><div id="name_result1">qweqwe</div></td>
+        <td class="u_ssn"><b>주민등록번호</b></td>
+        <td><div id="ssn_result1">wqeqwe</div></td>
+      </tr>
+      <tr>
+        <td class="u_addr"><b>환자의 주소</b></td>
+        <td colspan="3"><div id="address_result1">asdasdasdsa</div></td>
+      </tr>
+      <tr>
+        <td class="symptoms"><b>증상</b></td>
+        <td colspan="3"><div id="symptoms_result">asdasdasdasd</div></td>
+      </tr>
+      <tr>
+        <td class="opinion"><b>진단 및 소견</b></td>
+        <td colspan="3"><div id="opinion_result">asdasdasdas</div></td>
+      </tr>
+    </table>
+
+  	<div class="doc_detail" style="text-align: left;">
+  	
+		<br> [의료법] 제 17 조 및 같은 법 시행규칙 제9조1항에 따라 위와 같이 진단합니다.
+
+		<div style="margin-top: 20px;">
+			의료기관 명칭 : <b>VitaPrimus</b> <b class="c_date"
+				id="t_Date_result1" style="margin-left: 434px;"></b>
+		</div>
+		<br>
+		<div class="side_detail">
+			<div>주소 : 서울특별시 금천구 가산디지털2로 95 KM타워 3층 305호</div>
+			<div class="doc_num">
+				[ ■ ] 의사 면허 <b id="li_result1"></b> 호
+			</div>
+		</div>
+		<br>
+		<div class="doc_name">
+			담당의 : <b id="d_name_result1"></b>
+		</div>
+
+
+
+	</div>
+  </div>
+
+
+
+</div>
+
+<br><br>
+
+<div class="t_container">
+  <div class="t_header">
+    진&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;료&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;확
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서
+  </div>
+  <div class="table_div">
+    <table border="1" id="table_container">
+      <tr>
+        <td class="u_name"><b>환자의 성명</b></td>
+        <td><div id="name_result2"></div></td>
+        
+        <td class="u_ssn"><b>주민등록번호</b></td>
+        <td><div id="ssn_result2"></div></td>
+      </tr>
+      <tr>
+        <td class="u_addr"><b>환자의 주소</b></td>
+        <td colspan="3"><div id="address_result2"></div></td>
+      </tr>
+      <tr>
+        <td class="symptoms"><b>진단명</b></td>
+        <td colspan="3"><div id="dianosis_result"></div></td>
+      </tr>
+      <tr>
+        <td class="opinion"><b>치료내용</b></td>
+        <td colspan="3"><div id="t_content_result"></div></td>
+      </tr>
+     
+    </table>
+
+  	<div class="doc_detail" style="text-align: left;">
+  	
+		<br> [의료법] 제 17 조 및 같은 법 시행규칙 제9조1항에 따라 위와 같이 진단합니다.
+
+		<div style="margin-top: 20px;">
+			의료기관 명칭 : <b>VitaPrimus</b> <b class="c_date"
+				id="t_Date_result2" style="margin-left: 434px;"></b>
+		</div>
+		<br>
+		<div class="side_detail">
+			<div>주소 : 서울특별시 금천구 가산디지털2로 95 KM타워 3층 305호</div>
+			<div class="doc_num">
+				[ ■ ] 의사 면허 <b id="li_result2"></b> 호
+			</div>
+		</div>
+		<br>
+		<div class="doc_name">
+			담당의 : <b id="d_name_result2"></b>
+		</div>
+
+
+
+	</div>
+  </div>
+
+
+
+</div>
+          
+          
+          
+          
+          
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                   </td>
                                 </tr>
                         <% } 
                           } else { %>
@@ -216,6 +450,8 @@ List<Map<String,Object>> mrcList = (List<Map<String,Object>>)request.getAttribut
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
+            
+            
         <% } else { %>
             <li class='page-item disabled' style="display: none;">
                 <a class="page-link" href="#"></a>
@@ -233,6 +469,67 @@ List<Map<String,Object>> mrcList = (List<Map<String,Object>>)request.getAttribut
   </section>
 
   <!-- section end -->
+  
+  <script>
+  
+  
+  function fnClickAll(button){
+	  
+	 	const careNo = $(button).data('care-no');
+	    const userNo = $(button).data('user-no');
+	  
+	  $.ajax({
+		  url:'<%= contextPath%>/allmrlist.se',
+		  data:{
+			  careNo: careNo,
+			  userNo: userNo
+			  
+		  },
+		  success:function(res){
+			  
+			  console.log(res);
+			  
+			  $('#name_result1').text(res.userName);
+			  $('#name_result2').text(res.userName);
+			  
+			  $('#ssn_result1').text(res.userSSN);
+			  $('#ssn_result2').text(res.userSSN);
+			  
+			  $('#address_result1').text(res.address);
+			  $('#address_result2').text(res.address);
+			  
+			  $('#t_Date_result1').text(res.treatDate);
+			  $('#t_Date_result2').text(res.treatDate);
+			  
+			  $('#li_result1').text(res.licence);
+			  $('#li_result2').text(res.licence);
+			  
+			  $('#d_name_result1').text(res.docName)
+			  $('#d_name_result2').text(res.docName)
+			  
+			  $('#symptoms_result').text(res.symptoms);
+			  $('#opinion_result').text(res.opinion);
+			  $('#dianosis_result').text(res.diagnosis);
+			  $('#t_content_result').text(res.treatment);
+			  
+			  
+			  
+			  
+			  
+			  
+		  }
+	  })
+	  
+	  
+	  
+	  
+	  
+  }
+  
+  
+  
+  
+  </script>
          
 
 
