@@ -18,7 +18,7 @@ public class PaymentService {
 	 */
 	public int insertPayDocument2(String payNo, String userNo, String payId, String pg) {
 		Connection conn = getConnection();
-		int payResult = pDao.insertPayDocument(conn, payNo, userNo, payId, pg);
+		int payResult = pDao.insertPayDocument2(conn, payNo, userNo, payId, pg);
 		
 		if(payResult > 0) {
 			commit(conn);
