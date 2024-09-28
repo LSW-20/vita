@@ -35,15 +35,20 @@ public class ReservationListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 
-		//예약 내역 조회
-		List<Consultation> consultations = new ReservationService().selectCareAppList(userNo);
-		
-		//결과 응답
-		request.setAttribute("consultations", consultations);
-		request.getRequestDispatcher("/views/reservation/reservationList.jsp").forward(request, response);
+		Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+		if(loginUser == null) {
+			request.getRequestDispatcher("/views/member/login.jsp").forward(request, response);
+		} else {			
+			HttpSession session = request.getSession();
+			String userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+
+			//예약 내역 조회
+			List<Consultation> consultations = new ReservationService().selectCareAppList(userNo);			
+			//결과 응답
+			request.setAttribute("consultations", consultations);
+			request.getRequestDispatcher("/views/reservation/reservationList.jsp").forward(request, response);
+		}
 	}//doGet
 
 	/**
