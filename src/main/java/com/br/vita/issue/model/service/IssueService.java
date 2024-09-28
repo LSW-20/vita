@@ -126,9 +126,10 @@ public class IssueService {
 			if(insertDocument > 0) {
 				String payNo = dpMap.get("payNo");
 				String payId = dpMap.get("payId");
+				String pg = dpMap.get("pg");
 				
 				//payment처리시 currval 사용가능
-				int insertPayment = pDao.insertPayDocument(conn, payNo, userNo, payId);
+				int insertPayment = pDao.insertPayDocument(conn, payNo, userNo, payId, pg);
 				
 				if(insertPayment > 0) {
 					commit(conn);

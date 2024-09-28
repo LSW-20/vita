@@ -13,6 +13,7 @@
 		     , DOC_NUM
 		     , PAY_ID
 		     , PRICE
+		     , PG
 		     )
 		 VALUES
 		      (
@@ -21,6 +22,7 @@
 		    , SEQ_DNO.CURRVAL
 		    , ?
 		    , '2000'
+		    , ?
 		      )		
 	</entry>
 	

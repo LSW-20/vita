@@ -284,25 +284,25 @@ th {
 												<table border="1" id="table_container_tb">
 													<tr>
 														<td class="u_name"><b>환자의 성명</b></td>
-														<td id="userName_result">qweqwe</td>
+														<td id="userName_result"></td>
 
 														<td class="u_ssn"><b>주민등록번호</b></td>
-														<td id="userSSN_result">wqeqwe</td>
+														<td id="userSSN_result"></td>
 													</tr>
 
 													<tr>
 														<td class="u_addr"><b>환자의 주소</b></td>
-														<td colspan="3" id="userAddress_result">asdasdasdsa</td>
+														<td colspan="3" id="userAddress_result"></td>
 													</tr>
 													<tr>
 
 														<td class="symptoms"><b>증상</b></td>
-														<td colspan="3" id="syptoms_result">asdasdasdasd</td>
+														<td colspan="3" id="syptoms_result"></td>
 													</tr>
 
 													<tr>
 														<td class="opinion"><b>진단 및 소견</b></td>
-														<td colspan="3" id="opinion_result">asdasdasdas</td>
+														<td colspan="3" id="opinion_result"></td>
 													</tr>
 
 												</table>

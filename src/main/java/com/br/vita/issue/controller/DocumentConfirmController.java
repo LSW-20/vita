@@ -41,6 +41,7 @@ public class DocumentConfirmController extends HttpServlet {
 	    String payId = request.getParameter("imp_uid"); //payId
 	    String payNo = request.getParameter("merchant_uid");//payNo
 	    String docPurpose = request.getParameter("docPurpose");
+	    String pg = request.getParameter("PG");
 	    	
 		/*
 		 * int result = new IssueService().insertDocument(careNo, userNo, docType,
@@ -55,6 +56,7 @@ public class DocumentConfirmController extends HttpServlet {
 	    dpMap.put("payId", payId);
 	    dpMap.put("payNo", payNo);
 	    dpMap.put("docPurpose", docPurpose);
+	    dpMap.put("pg", pg);
 	    int result = new IssueService().insertDocumentWithPayment(dpMap);
 	    System.out.println(careNo);
 	    if(result > 0) {

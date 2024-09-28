@@ -1113,6 +1113,8 @@ public class DoctorDao {
 	            mrMap.put("userSSN", rset.getString("USER_SSN"));
 	            mrMap.put("deptName", rset.getString("DEPT_NAME"));
 	            mrMap.put("treatment", rset.getString("TREATMENT"));
+	            mrMap.put("careNo", rset.getString("CARE_NO"));
+	            
 	            mrcList.add(mrMap);
 	        }
 	    } catch (SQLException e) {
@@ -1172,6 +1174,59 @@ public class DoctorDao {
 		
 	}
 	
+	
+	// 진료기록 검색 후 기록보기 진단서/진료확인서 내용 전체 조회 
+	public Map<String,Object> selectMrecordsAllListSelect(Connection conn, String userNo, String careNo){
+		
+		
+		Map<String,Object> mrAllMap = new HashMap<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMrecordsAllListSelect");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, careNo);
+			
+			rset=pstmt.executeQuery();
+			
+			
+			while(rset.next()) {
+				
+				mrAllMap.put("userName", rset.getString("USER_NAME"));
+				mrAllMap.put("userSSN", rset.getString("USER_SSN"));
+				mrAllMap.put("treatDate", rset.getDate("TREATMENT_DATE"));
+				mrAllMap.put("symptoms", rset.getString("SYMPTOMS"));
+				mrAllMap.put("opinion", rset.getString("OPINION"));
+				mrAllMap.put("treatment", rset.getString("TREATMENT_CON"));
+				mrAllMap.put("diagnosis", rset.getString("DIAGNOSIS_NAME"));
+				mrAllMap.put("address", rset.getString("ADDRESS"));
+				mrAllMap.put("licence", rset.getString("LICENCE_NO"));
+				mrAllMap.put("docName", rset.getString("DOCTOR_NAME"));
+				
+				
+				
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return mrAllMap;
+		
+		
+		
+	}
 	
 	
 	

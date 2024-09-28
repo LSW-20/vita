@@ -45,16 +45,21 @@ SELECT COUNT(*) AS COUNT -- count 0 일때 insert
 
 <!--진료기록 select-->
 <entry key="selectMrecords">
-	SELECT 
-	       M.CARE_NO AS CARE_NO
-	     , TREATMENT_DATE
-	     , DIAGNOSIS_NAME 
-       , DOC_NUM
-	  FROM MRECORDS M
-    JOIN DOCUMENT D
-      ON M.CARE_NO = D.CARE_NO
-	 WHERE M.USER_NO = ?
-	   AND TREATMENT_DATE BETWEEN ? AND ?
+SELECT 
+	     M.CARE_NO AS CARE_NO,
+	     MAX(M.TREATMENT_DATE) AS TREATMENT_DATE,
+	     MAX(M.DIAGNOSIS_NAME) AS DIAGNOSIS_NAME
+  FROM 
+    	 MRECORDS M
+  JOIN 
+    	 DOCUMENT D
+    ON 
+       M.CARE_NO = D.CARE_NO
+ WHERE
+       M.USER_NO = ?
+	 AND TREATMENT_DATE BETWEEN ? AND ?
+ GROUP 
+    BY M.CARE_NO
 </entry>
 
 
