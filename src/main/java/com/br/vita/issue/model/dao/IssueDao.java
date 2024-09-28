@@ -135,7 +135,7 @@ public class IssueDao {
 				r.setCareNo(rset.getString("CARE_NO"));
 				r.setTreatmentDate(rset.getDate("TREATMENT_DATE"));
 				r.setDiagnosisName(rset.getString("DIAGNOSIS_NAME"));
-				r.setDocNum(rset.getString("DOC_NUM"));
+				
 				records.add(r);
 			}
 			

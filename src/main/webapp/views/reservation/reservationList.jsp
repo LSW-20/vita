@@ -143,7 +143,7 @@
     
     // 추가 진료예약 버튼 클릭 시 예약 페이지로 이동
     document.getElementById("add_reservation_button").addEventListener('click', function() {
-        window.location.href = '/vita/views/reservation/personal.jsp';//추후 예약페이지로 이동되게
+        window.location.href = '<%= request.getContextPath() %>/personal.rv';//추후 예약페이지로 이동되게
     });
   </script>
    
