@@ -118,7 +118,7 @@
             <br><br>
         </div>
         <div class="container border" style="height: 200px; border-radius: 15px; display:flex; background: #f7f7f8;">
-            <div class="container" id="mainService"><a href="/vita/views/reservation/reservationList.jsp"><img src="/vita/assets/image/아이콘1.jpg" style="width: 80px; height: 80px;"><br><br><b>예약내역조회</b></a></div>
+            <div class="container" id="mainService"><a href="<%= contextPath %>/list.rv"><img src="/vita/assets/image/아이콘1.jpg" style="width: 80px; height: 80px;"><br><br><b>예약내역조회</b></a></div>
             <div class="container" id="mainService"><a href="<%= contextPath %>/department.do"><img src="/vita/assets/image/아이콘2.jpg" style="width: 80px; height: 80px;"><br><br><b>진료과</b></a></div>
              <% if(loginUser != null) { %>
             <div class="container" id="mainService"><a href="<%= contextPath %>/consultationAL.rv"><img src="/vita/assets/image/아이콘3.jpg" style="width: 80px; height: 80px;"><br><br><b>진료예약</b></a></div>
