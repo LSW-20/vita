@@ -1,19 +1,24 @@
 package com.br.vita.issue.model.service;
 
+import static com.br.vita.common.template.JDBCTemplate.close;
+import static com.br.vita.common.template.JDBCTemplate.commit;
+import static com.br.vita.common.template.JDBCTemplate.getConnection;
+import static com.br.vita.common.template.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 import com.br.vita.issue.model.dao.IssueDao;
 import com.br.vita.issue.model.vo.Document;
 import com.br.vita.issue.model.vo.Mrecords;
-
-import static com.br.vita.common.template.JDBCTemplate.*;
+import com.br.vita.payment.model.dao.PaymentDao;
 
 public class IssueService {
 
 	
 	private IssueDao iDao = new IssueDao();
-	
+	private PaymentDao pDao = new PaymentDao();
 	
 	public int certificateApplicationInsert(String userNo, String type,String purpose,String careNo) {
 		
@@ -97,29 +102,56 @@ public class IssueService {
 		return docList;
 	}
 
-
 	/**
-	 * 발급 신청 Document 테이블에 insert
-	 * @author chlqhrua
-	 * @param careNo
-	 * @param userNo
-	 * @param docType
-	 * @param docPurpose
-	 * @return result 처리 행수
+	 * 발급+결제 한 번에 처리
+	 * @param dpMap
+	 * @author 최보겸
+	 * @param dpMap 필요한 거 다 모아둔 map
+	 * @return result 둘 다 처리 됐을 때만 result 1
 	 */
-	public int insertDocument(String careNo,String userNo, String docType, String docPurpose) {
+	public int insertDocumentWithPayment(Map<String, String> dpMap) {
 		Connection conn = getConnection();
-		int result = iDao.insertDocument(conn, careNo, userNo, docType, docPurpose);
+		int result = 0;
 		
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
+		try {
+			// 1. 발급 신청 document테이블에 추가 먼저 처리
+			String careNo = dpMap.get("careNo");
+			String userNo = dpMap.get("userNo");
+			String docType = dpMap.get("docType");
+			String docPurpose = dpMap.get("docPurpose");
+			
+			int insertDocument = iDao.insertDocument(conn, careNo, userNo, docType, docPurpose);
+			
+			//2. 발급신청 완료 되면 결제 처리
+			if(insertDocument > 0) {
+				String payNo = dpMap.get("payNo");
+				String payId = dpMap.get("payId");
+				
+				//payment처리시 currval 사용가능
+				int insertPayment = pDao.insertPayDocument(conn, payNo, userNo, payId);
+				
+				if(insertPayment > 0) {
+					commit(conn);
+					result = 1;
+				} else {
+					rollback(conn);
+					result = 0;
+				}
+			} else {
+				rollback(conn);
+				result = 0;
+			}
+			
+		} catch (Exception e) {
+            rollback(conn);
+            e.printStackTrace();
+            result = 0;
+        } finally {
+            close(conn);
+        }
 		
 		return result;
-	}
+	}//insertDwithP
 	
 	
 	

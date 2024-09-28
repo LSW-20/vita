@@ -18,7 +18,7 @@
 		      (
 		      ?
 		    , ?
-		    , SEQ_DNO.NEXTVAL
+		    , SEQ_DNO.CURRVAL
 		    , ?
 		    , '2000'
 		      )		

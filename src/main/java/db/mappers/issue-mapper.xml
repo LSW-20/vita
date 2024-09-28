@@ -135,7 +135,7 @@ INSERT
      ) 
 VALUES 
    (
-      SEQ_DNO.CURRVAL
+      SEQ_DNO.NEXTVAL
     , ?
     , ? 
     , ? 
