@@ -42,7 +42,9 @@ public class MrecordsAllselectPagingController extends HttpServlet {
 
         System.out.println(deptName);
         System.out.println(userName);
-        System.out.println("안녕하세요");
+        System.out.println(date1);
+        System.out.println(date2);
+        
 
         int listCount = new DoctorService().selectAllmrecordsCount(userName, deptName, date1, date2);    
 
