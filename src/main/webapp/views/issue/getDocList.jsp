@@ -63,24 +63,15 @@ section{
         <tr>
           <td>입퇴원 사실 확인서</td>
           <td>2000원</td>
-          <td>사용</td>
+          <td>미사용</td>
           <td>
             <a href="<%= contextPath %>/detail.cr?docType=입퇴원사실확인서" class="get_doc_btn btn-sm">발급받기</a>
           </td>
         </tr>
-<%--         <tr>
-          <td>진료비 계산서 영수증</td>
-          <td>2000원</td>
-          <td>사용</td>
-          <td>
-            <!-- <button type="button" class="get_doc_btn btn-sm">발급받기</button> -->
-            <a href="<%= contextPath %>/detail.cr?docType=진료비계산서영수증" class="get_doc_btn btn-sm">발급받기</a>
-          </td>
-        </tr> --%>
         <tr>
           <td>처방전 사본 발급</td>
           <td>2000원</td>
-          <td>사용</td>
+          <td>미사용</td>
           <td>
             <a href="<%= contextPath %>/detail.cr?docType=처방전사본" class="get_doc_btn btn-sm">발급받기</a>
           </td>
@@ -88,7 +79,7 @@ section{
         <tr>
           <td>진단서 및 진료확인서 발급</td>
           <td>&nbsp;&nbsp;&nbsp;&nbsp; -</td>
-          <td>사용</td>
+          <td>미사용</td>
           <td>
           <% if(loginUser != null) {%>
             <a href="<%= contextPath %>/listDM.go" class="get_doc_btn btn-sm">바로가기</a>

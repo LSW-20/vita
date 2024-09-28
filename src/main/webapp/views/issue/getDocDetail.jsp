@@ -283,7 +283,7 @@ window.onload = function() {
         </tr>         
         <tr>
             <th>본인인증</th>
-            <td>클릭넘어오는값==진료비납입확인서?"본인인증이 필요 없습니다.":버튼활성화</td>
+            <td style="color:gray">본인인증이 필요 없습니다.</td>
         </tr>             
     </table>
   </form>  
