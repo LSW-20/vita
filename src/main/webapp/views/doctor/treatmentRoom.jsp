@@ -394,7 +394,7 @@
     				
     			}
     			
-    			$('#u_list_div').append(listdiv);
+    			$('#u_list_div').html(listdiv);
     			
     			
     		},
