@@ -39,7 +39,7 @@ public class PaymentDao {
 	 * @param payId - imp_id
 	 * @return payResult
 	 */
-	public int insertPayDocument2(Connection conn, String payNo, String userNo, String payId, String pg) {
+	public int insertPayDocument(Connection conn, String payNo, String userNo, String payId, String pg) {
 		int payResult = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertPayDocument");
