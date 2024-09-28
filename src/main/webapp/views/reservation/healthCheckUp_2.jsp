@@ -155,73 +155,6 @@
         }
     
     });
-    
-</script>
-     
-    <br><br><br>
-    <h3 style="margin-left:93px"><b>예약 체크사항</b><b style="color:rgb(31, 43, 108)">(필수)</b></h3>
-    <hr style= "border-color:rgb(31, 43, 108); margin-left: 90px; margin-right: 90px;">
-    <br>
-
-     <div class="d-flex" style="margin-left:93px">
-        <h3>"예약체크사항 작성하기"를 클릭하여 체크사항을 작성해 주십시오.</h3>
-        <button type="button" class="btn border-1 border-dark" id="btn-color" data-toggle="modal" data-target="#myModal" style="width: 200px; margin-left:600px; margin-top:-10px">작성하기</button>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="myModalLabel">예약체크사항</h5>
-                </div>
-                <div class="modal-body">
-								    <form id="checkListForm" action="#" method="post">
-								        <div class="first-group">
-								            <h5>1. 현재 복용중인 약이 있으십니까?</h5>
-								            <input type="radio" name="mediList" value="N" style="cursor: pointer;" onclick="toggleMedicationInput(false); checkFormValidity()">
-								            <label for="none">없음</label>
-								            <br>
-								            <div>
-								                <input type="radio" name="mediList" value="Y" style="cursor: pointer;" onclick="toggleMedicationInput(true); checkFormValidity()">
-								                <label for="other" id="other">있음</label>
-								                
-								                <input type="text" class="form-control" id="inputText" name="mediListDetails" placeholder="여러항목일경우 띄어쓰기없이 ( , )로 연이어서 입력해주세요" value="" disabled oninput="checkFormValidity()">
-								                <br>
-								                <h7 style="color:rgb(31, 43, 108);">※ 항헌혈제는 고혈압, 당뇨 및 고지혈증약과 병용 투여되는 </h7>
-								                <h7 style="color:rgb(31, 43, 108);">경우가 흔하므로 상기 질환으로 치료중인 경우에는 항혈전제 투약 여부를</h7>
-								                <h7 style="color:rgb(31, 43, 108);">주치의에게 사전에 확인 받으시기 바랍니다.</h7>
-								            </div>
-								        </div>
-								        <br>
-								        
-								        <div class="second-group">
-								            <h5>2. 1년 이내에 수술 받으신 적이 있으십니까?</h5>
-								            <input type="radio" name="surgeryYN" value="N" style="cursor: pointer;" onclick="toggleSurgeryInput(false); checkFormValidity()">
-								            <label for="none">없음</label>
-								            <br>
-								            <input type="radio" name="surgeryYN" value="Y" style="cursor: pointer;" onclick="toggleSurgeryInput(true); checkFormValidity()">
-								            <label for="yes">있음</label>
-								            <input type="text" class="form-control" id="SurgerySelf" name="surgeryName" value="" placeholder="수술명 직접입력" disabled oninput="checkFormValidity()">
-								        </div>
-								        <br>
-								        <div class="third-group">
-								            <h5>3. 건강검진이후 14일 이내 비행기 탑승이 예정되어 있으십니까?</h5>
-								            <input type="radio" name="flyYN" value="N" style="cursor: pointer;" onclick="checkFormValidity()">
-								            <label for="none">없음</label>
-								            <br>
-								            <input type="radio" name="flyYN" value="Y" style="cursor: pointer;" onclick="checkFormValidity()">
-								            <label for="yes">있음(2주이내)</label>
-								            <br><br>
-								            <h7 style="color:rgb(31, 43, 108);">※ 내시경 검사중 조직검사에 제한이 있을 수 있습니다.</h7>
-								        </div>
-								
-								        <div class="modal-footer">
-								            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-								            <button type="button" class="btn btn-primary" id="submitBtn" disabled onclick="handleSubmit()">저장</button>
-								        </div>
-								    </form>
-								</div>
-								
-								<script>
-										
 								let checklistSubmitted = false;
 								let clickkk = false;
 								    function toggleMedicationInput(isOther) {
@@ -266,29 +199,24 @@
 								        if (isSubmitting) return; // 이미 제출 중이면 함수 종료
 								        isSubmitting = true; // 제출 시작
 								        const formData = new FormData(document.getElementById("checkListForm"));
-								        fetch("<%= contextPath %>/CheckForm.rv", {
-								            method: "POST",
-								            body: formData,
-								        })
-								        .then(response => {
-								            if (!response.ok) {
-								                throw new Error('Network response was not ok');
-								            }
-								            return response.text();
-								        })
-								        .then(data => {
-								            alert("저장되었습니다.");
-								            $('#myModal').on('hidden.bs.modal', function () {
-								                document.getElementById("checkListForm").reset();
-								                document.getElementById("submitBtn").disabled = true;
-								                isSubmitting = false; // 제출 가능 상태로 복원
-								            });
-								        })
-								        .catch(error => {
-								            alert("전송 실패: " + error.message);
-								            isSubmitting = false; // 오류 발생 시에도 복원
-								        });
-								    }
+								        $(document).ready(function() {
+						                    $('#healthpay').on('submit', function(e) {
+						                        e.preventDefault(); // 기본 폼 제출 방지
+						                        $.ajax({
+						                            type: 'POST',
+						                            url: $(this).attr('action'), // 폼의 action URL
+						                            data: $(this).serialize(), // 폼 데이터 직렬화
+						                            success: function(response) {
+						                                // 성공 시 처리할 내용
+						                                console.log(response);
+						                            },
+						                            error: function() {
+						                                // 오류 처리
+						                                alert('오류가 발생했습니다.');
+						                            }
+						                        });
+						                    });
+						                });
 
                     function validateAndProceed(event) {
 									  
@@ -307,12 +235,75 @@
 									    // 모든 조건이 충족되면 true를 반환하여 링크 이동
 									    return true; 
 									}
-					
-								</script>
+    
+</script>
+     
+    <br><br><br>
+    <h3 style="margin-left:93px"><b>예약 체크사항</b><b style="color:rgb(31, 43, 108)">(필수)</b></h3>
+    <hr style= "border-color:rgb(31, 43, 108); margin-left: 90px; margin-right: 90px;">
+    <br>
+	
+	<form id="checkListForm" action="<%= contextPath %>/CheckForm.rv" method="post">
+     <div class="d-flex" style="margin-left:93px">
+        <h3>"예약체크사항 작성하기"를 클릭하여 체크사항을 작성해 주십시오.</h3>
+        <button type="button" class="btn border-1 border-dark" id="btn-color" data-toggle="modal" data-target="#myModal" style="width: 200px; margin-left:600px; margin-top:-10px">작성하기</button>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="myModalLabel">예약체크사항</h5>
+                </div>
+                <div class="modal-body">
+								        <div class="first-group">
+								            <h5>1. 현재 복용중인 약이 있으십니까?</h5>
+								            <input type="radio" name="mediList" value="N" style="cursor: pointer;" onclick="toggleMedicationInput(false); checkFormValidity()">
+								            <label for="none">없음</label>
+								            <br>
+								            <div>
+								                <input type="radio" name="mediList" value="Y" style="cursor: pointer;" onclick="toggleMedicationInput(true); checkFormValidity()">
+								                <label for="other" id="other">있음</label>
+								                
+								                <input type="text" class="form-control" id="inputText" name="mediListDetails" placeholder="여러항목일경우 띄어쓰기없이 ( , )로 연이어서 입력해주세요" value="" disabled oninput="checkFormValidity()">
+								                <br>
+								                <h7 style="color:rgb(31, 43, 108);">※ 항헌혈제는 고혈압, 당뇨 및 고지혈증약과 병용 투여되는 </h7>
+								                <h7 style="color:rgb(31, 43, 108);">경우가 흔하므로 상기 질환으로 치료중인 경우에는 항혈전제 투약 여부를</h7>
+								                <h7 style="color:rgb(31, 43, 108);">주치의에게 사전에 확인 받으시기 바랍니다.</h7>
+								            </div>
+								        </div>
+								        <br>
+								        
+								        <div class="second-group">
+								            <h5>2. 1년 이내에 수술 받으신 적이 있으십니까?</h5>
+								            <input type="radio" name="surgeryYN" value="N" style="cursor: pointer;" onclick="toggleSurgeryInput(false); checkFormValidity()">
+								            <label for="none">없음</label>
+								            <br>
+								            <input type="radio" name="surgeryYN" value="Y" style="cursor: pointer;" onclick="toggleSurgeryInput(true); checkFormValidity()">
+								            <label for="yes">있음</label>
+								            <input type="text" class="form-control" id="SurgerySelf" name="surgeryName" value="" placeholder="수술명 직접입력" disabled oninput="checkFormValidity()">
+								        </div>
+								        <br>
+								        <div class="third-group">
+								            <h5>3. 건강검진이후 14일 이내 비행기 탑승이 예정되어 있으십니까?</h5>
+								            <input type="radio" name="flyYN" value="N" style="cursor: pointer;" onclick="checkFormValidity()">
+								            <label for="none">없음</label>
+								            <br>
+								            <input type="radio" name="flyYN" value="Y" style="cursor: pointer;" onclick="checkFormValidity()">
+								            <label for="yes">있음(2주이내)</label>
+								            <br><br>
+								            <h7 style="color:rgb(31, 43, 108);">※ 내시경 검사중 조직검사에 제한이 있을 수 있습니다.</h7>
+								        </div>
+								
+								        <div class="modal-footer">
+								            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+								            <button type="button" class="btn btn-primary" id="submitBtn" disabled onclick="handleSubmit()">저장</button>
+								        </div>
+								</div>
+						
               </div>
             </div>
           </div>
      </div>
+	 </form>
 
      <br>
      <hr style= "border: 1px dashed; margin-left: 90px; margin-right: 90px;">

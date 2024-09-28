@@ -45,18 +45,14 @@ public class HealthCheckFormController extends HttpServlet {
 	    String payNo = request.getParameter("merchant_uid");//payNo
 	    String pg = request.getParameter("selectedPG");
 	   
-	    System.out.println(date);
-	    System.out.println(time);
-	    System.out.println(payNo);
 	    System.out.println(pg);
-	    
 	    int result = new ReservationService().insertHealtchCareList(userNo, time, date);
         
         if (result == 1 ) {
         	int payResult = new PaymentService().insertPayHealthCheck(payNo,userNo, pg);
         	if(payResult == 1) {
             session.setAttribute("alertMsg", "진료예약이 완료되었습니다.");
-            response.sendRedirect(request.getContextPath() + "/Healthnormal.rv");
+        	request.getRequestDispatcher("/views/reservation/healthCheckUp_2.jsp").forward(request, response);
         	}
         } else {
             session.setAttribute("alertMsg", "추가에 실패하였습니다.");

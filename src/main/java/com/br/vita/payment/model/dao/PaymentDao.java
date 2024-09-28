@@ -74,7 +74,8 @@ public class PaymentDao {
 			
 			pstmt.setString(1, payNo);
 			pstmt.setString(2, userNo);
-			pstmt.setString(3, pg);
+			pstmt.setString(3, userNo);
+			pstmt.setString(4, pg);
 			
 			payResult = pstmt.executeUpdate();
 		} catch (SQLException e) {

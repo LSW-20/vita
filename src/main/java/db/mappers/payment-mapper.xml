@@ -43,7 +43,10 @@
 			      (
 			      ?
 			    , ?
-			    , 'ch' || SEQ_CHN.NEXTVAL
+			    ,  (SELECT APPOINTMENT_NO 
+							FROM CHECKUP_APP 
+							WHERE USER_NO = ?
+							AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE))
 			    , SYSDATE
 			    , 'imp03551748'
 			    , '50000'

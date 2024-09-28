@@ -195,7 +195,7 @@
                 alert('결제가 완료되었습니다.');
                 isPaymentCompleted = true; // 결제 완료 상태로 설정
                 $('#paymentModal').modal('hide'); // 모달 닫기
-            
+            		
                 document.getElementById('healthpay').submit();
             } else {
                 // 결제 실패 시 처리
