@@ -43,7 +43,7 @@
 			    , ?
 			    , 'ch' || SEQ_CHN.NEXTVAL
 			    , SYSDATE
-			    , ?
+			    , 'imp03551748'
 			    , '50000'
 			    , ?
 			      )		

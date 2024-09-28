@@ -62,19 +62,18 @@ public class PaymentDao {
 		return payResult;
 	}//payDocument
 
-	public int insertPayDocument(Connection conn, String payNo, String userNo, String payId, String pg) {
+	public int insertPayHealthCheck(Connection conn, String payNo, String userNo,  String pg) {
 		
 		int payResult = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertPayDocument");
+		String sql = prop.getProperty("insertPayCheckUp");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, payNo);
 			pstmt.setString(2, userNo);
-			pstmt.setString(3, payId);
-			pstmt.setString(4, pg);
+			pstmt.setString(3, pg);
 			
 			payResult = pstmt.executeUpdate();
 		} catch (SQLException e) {

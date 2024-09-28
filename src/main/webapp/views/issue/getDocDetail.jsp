@@ -103,7 +103,7 @@ window.onload = function() {
              // 결제 성공 시 처리
              console.log('결제 성공:', rsp);
              alert('결제가 완료되었습니다.');
-             isPaymentCompleted = true; // 결제 완료 상태로 설정
+             isPaymentCompleted = true; // 결제 완료 상태로 설정	
              $('#paymentModal').modal('hide'); // 모달 닫기
              location.href = 
              	'<%= request.getContextPath() %>/confirm.cr?careNo=' + careNo + '&docType=<%= docType %>&imp_uid=' + rsp.imp_uid + '&merchant_uid=' + rsp.merchant_uid + '&docPurpose='+docPurpose;

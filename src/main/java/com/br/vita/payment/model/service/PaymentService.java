@@ -30,10 +30,10 @@ public class PaymentService {
 	}//payDocument
 
 
-	public int insertPayDocument(String payNo, String userNo, String payId, String pg) {
+	public int insertPayHealthCheck(String payNo, String userNo, String pg) {
 		
 		Connection conn = getConnection();
-		int payResult = pDao.insertPayDocument(conn, payNo, userNo, payId, pg);
+		int payResult = pDao.insertPayHealthCheck(conn, payNo, userNo,  pg);
 		
 		if(payResult > 0) {
 			commit(conn);

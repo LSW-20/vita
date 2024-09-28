@@ -109,11 +109,13 @@
 				        }
 				    }
 				    function setTime(time) {
+				    	
 				    document.querySelectorAll('.btn-outline-primary').forEach(btn => btn.classList.remove('active'));
-
 				    // 선택한 버튼에 active 클래스 추가
 				    const selectedButton = Array.from(document.querySelectorAll('.btn-outline-primary')).find(btn => btn.value === time);
 				    selectedButton.classList.add('active');
+				    
+				    document.getElementById('selectedTime1').value = time; 
 				    }
 				    
 				    function confirmSelection() {
@@ -160,7 +162,7 @@
 			
     const requestPayment = async () => {
     	
-    	
+    	 const selectedTime1 = document.querySelector('.btn-outline-primary.active h3')?.innerText;
 				const isChecked1 = document.getElementById('customCheck1').checked; // 첫 번째 동의 라디오 버튼
         const isChecked2 = document.getElementById('customCheck2').checked; // 두 번째 동의 라디오 버튼
 
@@ -170,16 +172,18 @@
 	        return false; // 폼 제출 방지
 	    }
 	
-	    	const merchant_uid1 = 'PN_' + new Date().getTime();
         const selectedPG = document.getElementById('cardBank').value;
+	   		const merchant_uid = 'PN_' + new Date().getTime();
 		    const IMP = window.IMP; 
+		    document.getElementById('selectedPG').value = selectedPG;
+		    document.getElementById('merchant_uid').value = merchant_uid;
 		    IMP.init("imp03551748");
         IMP.request_pay({
             pg: selectedPG, // 결제할 PG사
             pay_method: 'card', // 결제 방법 (신용카드)
             name: '일반 건강검진(비타병원)', // 상품 이름
             amount: 1, // 결제 금액
-            merchant_uid: merchant_uid1, // 주문번호(unique)
+            merchant_uid: merchant_uid, // 주문번호(unique)
             buyer_name: '<%= ((Member)session.getAttribute("loginUser")).getUserName() %>', 
             buyer_tel:  '<%= ((Member)session.getAttribute("loginUser")).getPhone() %>',
             buyer_email: '<%= ((Member)session.getAttribute("loginUser")).getEmail() %>',
@@ -191,7 +195,7 @@
                 alert('결제가 완료되었습니다.');
                 isPaymentCompleted = true; // 결제 완료 상태로 설정
                 $('#paymentModal').modal('hide'); // 모달 닫기
-                
+            
                 document.getElementById('healthpay').submit();
             } else {
                 // 결제 실패 시 처리
@@ -490,18 +494,17 @@
                     <button type="button" class="btn btn-primary" style="width:200px; height:70px; margin-top:65px; border-color:rgb(190, 189, 189); background-color: #1F2B6C;" onclick="confirmSelection()"><h3 style="color:white">선택</h3></button>
                   </td>
                   
-                  
+              
                  
                 </tr>
                
                 </table>
+					
+						<input type="hidden" name="selectedTime1" id="selectedTime1" />
+						<input type="hidden" name="selectedPG" id="selectedPG" />
+						<input type="hidden" name="merchant_uid" id="merchant_uid" />
+						<input type="hidden" name="imp" id="imp" />
         </div>
-						<input type="hidden" name="merchant_uid" id="merchant_uid">
-		        <input type="hidden" name="selectedTime" id="selectedTime">
-		        <input type="hidden" name="year" id="year">
-		        <input type="hidden" name="month" id="month">
-		        <input type="hidden" name="day" id="day">
-
       </div>
     </div>
     </form>
