@@ -387,4 +387,70 @@
 		  )
 	</entry>
 	
+	<entry key ="insertCheckList1">
+	
+	INSERT
+		INTO CHECK_LIST
+		(
+		  USER_NO
+		, MEDI_LIST
+		, SURGERY_NAME
+		, SURGERY_YN
+		, FLY_YN
+    , CHECKUP_NO
+
+
+		)
+
+		VALUES
+		(
+		  ?
+		, ?
+		, ?
+		, ?
+		, ?
+		, (SELECT APPOINTMENT_NO 
+							FROM CHECKUP_APP 
+							WHERE USER_NO = ?
+							AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE))
+		)
+	
+	</entry>	
+	
+	<entry key = "selectNormalSuccess">
+	
+		SELECT
+		APPOINTMENT_NO,
+    USER_NO,
+		APPOINTMENT_DATE,
+		APPOINTMENT_TYPE,
+		CHECKUP_DATE,
+    TOTAL_PRICE
+        
+		FROM CHECKUP_APP
+        
+		WHERE USER_NO = ?
+		AND APPOINTMENT_NO = ?
+		AND TRUNC(CHECKUP_DATE) = ?
+		AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE))
+	</entry>
+	
+	<entry key="selectCompany11">
+	
+	SELECT
+			COMP_NAME
+	  ,  EMP_NAME
+	  , EMP_NO
+	FROM
+	    EMPLOYEE
+	JOIN COMPANY USING (COMP_NO)
+	WHERE
+	       COMP_NAME = ?
+	  AND  EMP_NAME = ?
+	  AND  EMP_NO = ?
+    
+	
+	
+	</entry>
+
 </properties>

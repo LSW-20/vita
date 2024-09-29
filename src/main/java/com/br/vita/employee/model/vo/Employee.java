@@ -8,6 +8,8 @@ public class Employee {
 	private String compNo;
 	private String empNo;
 	
+	private String compName;
+	
 	public Employee() {
 		super();
 	}
@@ -17,6 +19,15 @@ public class Employee {
 		this.ssn = ssn;
 		this.empName = empName;
 		this.compNo = compNo;
+		this.empNo = empNo;
+	}
+	
+	
+
+	public Employee(String compName, String empName, String empNo) {
+		super();
+		this.compName = compName;
+		this.empName = empName;
 		this.empNo = empNo;
 	}
 
@@ -30,6 +41,14 @@ public class Employee {
 
 	public String getEmpName() {
 		return empName;
+	}
+
+	public String getCompName() {
+		return compName;
+	}
+
+	public void setCompName(String compName) {
+		this.compName = compName;
 	}
 
 	public void setEmpName(String empName) {

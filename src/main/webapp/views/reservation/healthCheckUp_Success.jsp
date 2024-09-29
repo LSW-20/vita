@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
     <!-- Header, Nav end -->
 
 		  <style>
-    
+  
         #pad {
           padding-top: 260px;
           padding-left: 120px;
@@ -85,7 +86,7 @@
         
                   <table class="table table-bordered" style="width:1004px">
                     
-                 
+          
                   		 <tr>
                         <td id="color" style="width:200px">검진 받을 병원</td>
                         <td style="width:302px">비타병원</td>
@@ -112,10 +113,10 @@
                       
                       <tr>
                         <td id="color" >유형</td>
-                        <td style="border-right: white">일반 건강검진 (수정요망)</td>
+                        <td style="border-right: white">일반 건강검진</td>
                       
                       </tr>
-                  
+                
                   </table>
             
                 <br><br><br><br>

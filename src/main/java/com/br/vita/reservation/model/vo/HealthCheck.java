@@ -38,6 +38,19 @@ public class HealthCheck {
 		this.checkUpDate = checkUpDate;
 	}
 
+	
+
+	public HealthCheck(String appointmentNo, String userNo, Date appointmentDate, String appointmentType,
+			Date checkUpDate, String totalPrice) {
+		super();
+		this.appointmentNo = appointmentNo;
+		this.userNo = userNo;
+		this.appointmentDate = appointmentDate;
+		this.appointmentType = appointmentType;
+		this.checkUpDate = checkUpDate;
+		this.totalPrice = totalPrice;
+	}
+
 	public String getAppointmentNo() {
 		return appointmentNo;
 	}

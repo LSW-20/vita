@@ -807,14 +807,10 @@ public class ReservationDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("insertCheckList");
+		String sql = prop.getProperty("insertCheckList1");
 		
 		try {
-			System.out.println("userNo: " + userNo);
-			System.out.println("mediList: " + mediList);
-			System.out.println("surgeryName: " + surgeryName);
-			System.out.println("surgeryYN: " + surgeryYN);
-			System.out.println("flyYN: " + flyYN);
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userNo);
 			pstmt.setString(2, mediList);
@@ -835,6 +831,80 @@ public class ReservationDao {
 		
 		return result;
 		
+		
+		
+	}
+
+	public List<HealthCheck> selectSuccessNormal(Connection conn, String userNo, String appointmentNo,
+			String checkupDate, String appointmentDate) {
+
+
+		List<HealthCheck> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectNormalSuccess");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, appointmentNo);
+			pstmt.setString(3, checkupDate);
+			pstmt.setString(4, appointmentDate);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new HealthCheck(rset.getString("APPOINTMENT_NO")
+										, rset.getString("USER_NO")
+										, rset.getDate("APPOINTMENT_DATE")
+										, rset.getString("APPOINTMENT_TYPE")
+										, rset.getDate("CHECKUP_DATE")	
+										, rset.getString("TOTAL_PRICE")
+						));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+		
+	}
+
+	public List<Employee> selectCompany(Connection conn, String companyName, String name, String name1) {
+		
+		
+		List<Employee> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCompany11");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, companyName);
+			pstmt.setString(2, name);
+			pstmt.setString(3, name1);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Employee(rset.getString("COMP_NAME")
+										, rset.getString("EMP_NAME")
+										, rset.getString("EMP_NO")
+								
+						));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 		
 		
 	}

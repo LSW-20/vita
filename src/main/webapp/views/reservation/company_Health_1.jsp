@@ -83,6 +83,26 @@
     
 
    </style>
+    
+  <script>
+        function checkCompany() {
+            var companyName = document.getElementById("companyName").value; // 입력된 소속기업 이름
+            var validCompanies = ["구디물산", "보람상조", "비타500"]; // 유효한 기업 리스트
+
+            if (validCompanies.includes(companyName)) {
+                alert("확인되었습니다.");
+                document.getElementById("name").disabled = false; // 이름 입력 필드 활성화
+                document.getElementById("name1").disabled = false; // 사번 입력 필드 활성화
+                
+                
+            } else {
+                alert("해당 소속기업이 확인되지 않았습니다.");
+            }
+        }
+        
+  </script>
+ 
+        
   <section>
 
     <h2 id="pad"><b>검진예약</b></h2>
@@ -94,16 +114,17 @@
 
     <div class="container11" >
      
+    <form id="checkListForm" action="<%= contextPath %>/SelectCompanyController.rv" method="post">
         <table class="container11 table-bordered" id="table_custom" style="margin-left:93px; border-color:white;">
                 
             <tr>
               <td style="border-color:white; margin-left:50px;"><h2 style="margin-left:150px;">소속기업</h2></td>
               <td class="d-flex" style="border:0px solid; margin-left:50px;"> 
                 <div style="border:0px solid;">
-                    <input type="text" class="form-control" id="name" style="width:750px; height:70px; ">
+                    <input type="text" class="form-control" id="companyName" name= "companyName" style="width:750px; height:70px; ">
                 </div>
                 <div>
-                    <button type="button" class="btn border-1 border-dark" id="btn-color" style="height:68px;width: 150px; margin-left:50px;">조회</button>
+                    <button type="button" class="btn border-1 border-dark" id="btn-color" style="height:68px;width: 150px; margin-left:50px;" onclick="checkCompany()">조회</button>
                 </div>
               </td>
              
@@ -127,22 +148,24 @@
               <h3 style="margin-top:80px;">이름</h3>
             </td>
             <td style="width:346px; height: 230px; border-right-style: dashed; border:white;">
-                <input type="text" class="form-control" id="name" style="width:340px; height:70px; margin-top:65px;">
+                <input type="text" class="form-control" id="name" name="name" style="width:340px; height:70px; margin-top:65px;" disabled>
             </td>
             <td  style="width:200px; height: 230px; border-right-style: dashed; border:white; ">
                 <h3 style="margin-top:80px; margin-left:120px;">사번</h3>
               </td>
               <td style="width:346px; height: 230px; border-right-style: dashed; border:white;">
-                  <input type="text" class="form-control" id="name" style="width:340px; height:70px; margin-top:65px; margin-left:50px;">
+                  <input type="text" class="form-control" id="name1" name="name1" style="width:340px; height:70px; margin-top:65px; margin-left:50px;" disabled>
             </td>
-            
-            
+            <td style="width:200px; height: 230px; border-right-style: dashed; border:white; ">
+                    <button type="submit" class="btn" id="btn-color" style="height:68px;width: 150px; margin-left:150px; margin-top: 65px; border-color: white" >조회</button>
+            </td>
            
           </tr>
+   
         
      </table>
-
-    
+		</form>
+    </div>
      <br><br> <br><br> <br><br> <br><br> 
 
         

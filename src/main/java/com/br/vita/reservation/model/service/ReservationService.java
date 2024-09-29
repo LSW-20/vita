@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 
+import com.br.vita.employee.model.vo.Employee;
 import com.br.vita.member.model.vo.Member;
 import com.br.vita.reservation.model.dao.ReservationDao;
 import com.br.vita.reservation.model.vo.CheckList;
@@ -370,6 +371,25 @@ public class ReservationService {
 		close(conn);
 		return result;
 	}
+
+	public List<HealthCheck> selectSuccessNormal(String userNo, String appointmentNo, String checkupDate , String  appointmentDate) {
+		
+		Connection conn = getConnection();
+		List<HealthCheck> Success = rdao.selectSuccessNormal(conn, userNo, appointmentNo, checkupDate,  appointmentDate);
+		close(conn);
+		return Success;
+		
+	}
+
+	public List<Employee> selectCompany(String companyName, String name, String name1) {
+
+		Connection conn = getConnection();
+		List<Employee> Company = rdao.selectCompany(conn, companyName, name, name1);
+		close(conn);
+		return Company;
+	}
+
+	
 
 	
 
