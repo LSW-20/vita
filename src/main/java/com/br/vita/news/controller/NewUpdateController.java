@@ -13,7 +13,7 @@ import com.br.vita.news.model.vo.News;
 /**
  * Servlet implementation class NewUpdateController
  */
-@WebServlet("/update.ns")
+@WebServlet("/newsUpdate.admin")
 public class NewUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

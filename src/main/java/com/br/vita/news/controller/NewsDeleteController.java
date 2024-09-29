@@ -12,7 +12,7 @@ import com.br.vita.news.model.service.NewsService;
 /**
  * Servlet implementation class NewsDeleteController
  */
-@WebServlet("/delete.ns")
+@WebServlet("/newsDelete.admin")
 public class NewsDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

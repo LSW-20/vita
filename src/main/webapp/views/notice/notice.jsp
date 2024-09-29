@@ -169,7 +169,7 @@
 					      </li>
 					    </ul>
 					    <div>
-					      <a href="<%= contextPath %>/write.no" class="btn btn-success">글쓰기</a>
+					      <a href="<%= contextPath %>/noticeWrite.admin" class="btn btn-success">글쓰기</a>
 					    </div>
 					  </div>
 					<% }else { %>
@@ -207,11 +207,11 @@
 						    if(writer == loginUserId) {
 						      console.log("내가 쓴 글입니다.");
 						      // 현재 내가 쓴 글일 경우 => 조회수증가없이 상세페이지로 바로 이동
-						      location.href = "<%=contextPath%>/detail.no?no=" + no;
+						      location.href = "<%=contextPath%>/noticeDetail.admin?no=" + no;
 						    } else {
 						      console.log("내가 쓴 글이 아닙니다.");
 						      // 내가 쓴 글이 아닐 경우 => 조회수증가하면서 상세페이지로 이동
-						      location.href = "<%=contextPath%>/increase.no?no=" + no;
+						      location.href = "<%=contextPath%>/noticeIncrease.admin?no=" + no;
 						    }	
 						  });
 						});
@@ -235,7 +235,7 @@
 
 						    // 선택된 행을 삭제하는 AJAX 요청 보내기
 						    $.ajax({
-						      url: 'notice.dt',
+						      url: 'noticeAjaxDelete.admin',
 						      type: 'POST',
 						      contentType: 'application/json;charset=UTF-8',
 						      data: JSON.stringify({ ids: idsToDelete }),

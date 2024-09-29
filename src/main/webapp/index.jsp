@@ -313,7 +313,7 @@
 	
 	            function MainNoticeList() {
 	                $.ajax({
-	                    url: '<%=contextPath%>/main.no',
+	                    url: '<%=contextPath%>/noticeMain.main',
 	                    success: function(list) {                   
 	                        let trEl = "";
 	                        if (list.length == 0) { // 공지사항이 없는 경우
@@ -371,7 +371,7 @@
 	
 	            function MainNewsList() {
 	                $.ajax({
-	                    url: '<%=contextPath%>/main.ns',
+	                    url: '<%=contextPath%>/newsMain.main',
 	                    success: function(list) {                        
 	                        let trEl = "";
 	                        if (list.length == 0) { // 공지사항이 없는 경우

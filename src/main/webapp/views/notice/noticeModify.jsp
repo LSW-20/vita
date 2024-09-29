@@ -72,7 +72,7 @@ footer {
   <div class="container border p-5 m-4 rounded" style="height: 600px;">
      <h2 class="m-4">공지사항 수정</h2>
      
-     <form action="<%= contextPath %>/update.no" method="post" class="m-4">
+     <form action="<%= contextPath %>/noticeUpdate.admin" method="post" class="m-4">
    	   <input type="hidden" name="no" value="<%= n.getNoticeNo() %>">
        <table class="table">
          <tr>
