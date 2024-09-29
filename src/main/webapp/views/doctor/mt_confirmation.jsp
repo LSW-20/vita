@@ -149,7 +149,7 @@
 
   .t_container{
     border: 1px solid black;
-    width: 900px;
+    width: 901px;
     height: 1050px;
     display: flex;
     flex-direction: column;
@@ -211,7 +211,7 @@
   .modal-content{
     
     width: 902px;
-    height: 1036px;
+    height: 1051px;
     margin-top: 60px;
     margin-left: -185px;
   }
@@ -236,7 +236,7 @@
       
         .t_container{
           border: 1px solid black;
-          width: 900px;
+          width: 901px;
           height: 1050px;
           display: flex;
           flex-direction: column;

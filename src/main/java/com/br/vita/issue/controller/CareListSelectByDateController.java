@@ -40,18 +40,15 @@ public class CareListSelectByDateController extends HttpServlet {
 		String date1 = request.getParameter("careDate1");
 		String date2 = request.getParameter("careDate2");
 		
-		String caredate1 = date1.substring(2).replace("-","");
-		String caredate2 = date2.substring(2).replace("-","");
+		String caredate1 = date1.substring(2).replace("-",""); // 필요한 부분에 맞게 수정
+		String caredate2 = date2.substring(2).replace("-",""); // 필요한 부분에 맞게 수정
 		
-		List<Mrecords> mr = new IssueService().careListSelectByDate(userNo,caredate1,caredate2);
+		List<Mrecords> mr = new IssueService().careListSelectByDate(userNo, caredate1, caredate2);
 		
 		response.setContentType("application/json; charset=UTF-8");
-		// Gson객체.toJson(응답할데이터(자바객체), 스트림객체);
 		
-		
-		new GsonBuilder().setDateFormat("YYYY년MM월DD일").create().toJson(mr, response.getWriter());
-		// GsonBuilder 객체를 이용해서 date 타입(형식)으로 
-		//받아온 데이터값을 원하는대로 형식을 새로 갖춰 담을 수 있음 
+		// 날짜 형식 수정
+		new GsonBuilder().setDateFormat("yyyy년MM월dd일").create().toJson(mr, response.getWriter());
 		
 		
 		

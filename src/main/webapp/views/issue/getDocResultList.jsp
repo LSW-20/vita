@@ -178,7 +178,9 @@
   
 <div class="container">
   <!-- Button to Open the Modal -->
-  <button type="button" 
+  <button 
+  			style="font-size:15px;" 
+  			type="button" 
   		  class="btn btn-primary" 
   		  data-toggle="modal" 
   		  data-target="#myModal1" 
@@ -228,7 +230,7 @@
 
 													<div style="margin-top: 20px;">
 														의료기관 명칭 : <b>VitaPrimus</b> <b class="c_date"
-															id="treatmentDate_result" style="margin-left: 430px;"></b>
+															id="treatmentDate_result" style="margin-left: 428px;"></b>
 													</div>
 													<br>
 													<div class="side_detail">
@@ -238,6 +240,7 @@
 														</div>
 													</div>
 													<br>
+													<div style="color: red">※ 원내방문하셔서 1층 원무과(재발급창구)에서 발급받으시면 됩니다. <고객확인용> ※ </div>
 													<div class="doc_name">
 														담당의 : <b id="docName_result"></b>
 													</div>
@@ -351,7 +354,7 @@
       </style>  
   	
 <div class="container">
- 	<button style="color:white;" 
+ 	<button style="font-size:15px;" 
  						class="btn btn-primary"
 	         			type="button"
 	         			onclick="fnfilesearch2(this);"
@@ -379,23 +382,23 @@
     <table border="1" id="table_container">
       <tr>
         <td class="u_name"><b>환자의 성명</b></td>
-        <td id="userName_result2">qweqwe</td>
+        <td id="userName_result2"></td>
    
         <td class="u_ssn"><b>주민등록번호</b></td>
-        <td id="userSSN_result2">wqeqwe</td>
+        <td id="userSSN_result2"></td>
       </tr>
       
       <tr>
         <td class="u_addr"><b>환자의 주소</b></td>
-        <td colspan="3" id="userAddress_result2">asdasdasdsa</td>
+        <td colspan="3" id="userAddress_result2"></td>
       </tr>
       <tr>
         <td class="symptoms"><b>진단명</b></td>
-        <td colspan="3" id="diagnosisName_result2">asdasd</td>
+        <td colspan="3" id="diagnosisName_result2"></td>
       </tr>
       <tr>
         <td class="opinion"><b>치료내용</b></td>
-        <td colspan="3" id="treatmentContent_result2">asdasdasd</td>
+        <td colspan="3" id="treatmentContent_result2"></td>
       </tr>
       
     </table>
@@ -404,13 +407,14 @@
       <br>
       [의료법] 제 17 조 및 같은 법 시행규칙 제9조1항에 따라 위와 같이 진단합니다.
       
-      <div style="margin-top: 20px;">의료기관 명칭 : <b>VitaPrimus</b> <b class="c_date" id="treatmentDate_result2" style="margin-left: 430px;"></b></div>
+      <div style="margin-top: 20px;">의료기관 명칭 : <b>VitaPrimus</b> <b class="c_date" id="treatmentDate_result2" style="margin-left: 428px;"></b></div>
       <br>
       <div class="side_detail">
         <div>주소 : 서울특별시 금천구 가산디지털2로 95 KM타워 3층 305호</div>
         <div class="doc_num" style="margin-left: 130px;">[ ■ ] 의사  면허 <b id="doc_licence2"></b> 호</div>
       </div>
       <br>
+      <div style="color: red">※ 원내방문하셔서 1층 원무과(재발급창구)에서 발급 받으시면 됩니다. <고객확인용> ※ </div>
       <div class="doc_name">담당의 : <b id="docName_result2"></b></div>
 
       

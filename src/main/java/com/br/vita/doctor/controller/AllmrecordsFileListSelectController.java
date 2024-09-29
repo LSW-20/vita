@@ -1,6 +1,8 @@
 package com.br.vita.doctor.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -38,9 +40,22 @@ public class AllmrecordsFileListSelectController extends HttpServlet {
 		Map<String,Object> mrallMap = new DoctorService().selectMrecordsAllListSelect(userNo,careNo);
 		
 		
-			response.setContentType("application/json; charset=UTF-8");
 		
-		//new Gson().toJson(careMap, response.getWriter());
+		response.setContentType("application/json; charset=UTF-8");
+		
+		Date updateDate = (Date) mrallMap.get("treatDate");
+
+		// 날짜를 문자열로 변환
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년MM월dd일");
+		String dateString = sdf.format(updateDate);
+
+		
+		
+
+		// 다시 mrallMap에 넣기
+		mrallMap.put("treatDate", dateString);
+		
+		
 		
 		
 		new GsonBuilder().setDateFormat("YYYY년MM월DD일").create().toJson(mrallMap, response.getWriter());

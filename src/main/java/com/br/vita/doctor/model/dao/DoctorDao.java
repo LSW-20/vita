@@ -687,7 +687,11 @@ public class DoctorDao {
 				mrc.setOpinion(rset.getString("OPINION"));
 				mrc.setDiagnosisName(rset.getString("DIAGNOSIS_NAME"));
 				mrc.setTreatmentContent(rset.getString("TREATMENT_CONTENT"));
+				
+				
 				mrc.setTreatmentDate(rset.getDate("TREATMENT_DATE"));
+				
+				
 				
 				doc.setLicenceNo(rset.getString("LICENCE_NO"));
 				doc.setDoctorName(rset.getString("DOCTOR_NAME"));
@@ -1036,7 +1040,7 @@ public class DoctorDao {
 				mrAllMap.put("docName", rset.getString("DOCTOR_NAME"));
 				
 				
-				
+				System.out.println("날짜:" + mrAllMap.get("treatDate"));
 			}
 			
 			

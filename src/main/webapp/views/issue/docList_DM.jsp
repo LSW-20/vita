@@ -226,6 +226,37 @@
     background-color: #f1f1f1; /* 호버 시 배경색 변경 */
 }
 
+#careNo_go2 {
+    width: 100%; /* 전체 너비 사용 */
+    padding: 15px; /* 내부 패딩 */
+    border: 2px solid #007bff; /* 강조된 테두리 */
+    border-radius: 10px; /* 둥근 모서리 */
+    font-size: 1em; /* 폰트 크기 */
+    background-color: #ffffff; /* 흰색 배경 */
+    transition: border-color 0.3s, box-shadow 0.3s; /* 전환 효과 */
+    appearance: none; /* 기본 셀렉트 스타일 제거 */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 16 16"><path fill="%23007bff" d="M4 6l4 4 4-4H4z"/></svg>'); /* 화살표 아이콘 추가 */
+    background-repeat: no-repeat; /* 반복하지 않음 */
+    background-position: right 10px center; /* 화살표 위치 조정 */
+    background-size: 12px; /* 화살표 크기 조정 */
+}
+
+#careNo_go2:focus {
+    border-color: #0056b3; /* 포커스 시 테두리 색상 변경 */
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); /* 포커스 시 그림자 효과 */
+    outline: none; /* 기본 포커스 아웃라인 제거 */
+}
+
+#careNo_go2 option {
+    padding: 10px; /* 옵션 내부 패딩 */
+    background-color: #ffffff; /* 배경 색상 */
+    color: #333; /* 글자 색상 */
+}
+
+#careNo_go2 option:hover {
+    background-color: #f1f1f1; /* 호버 시 배경색 변경 */
+}
+
 
  
  </style>
@@ -332,7 +363,7 @@
   
 	function fnbtn1(){
  		
- 		if(confirm('"진단서"(을)를 신청하시겠습니까? ')){
+ 		if(confirm('의사의 승인이 필요한 증명서입니다. 2~3일 소요기간이 발생할 수 있습니다. "진단서"(을)를 신청하시겠습니까? ')){
  			
  			$.ajax({
  				url: '<%= contextPath%>/appication.ce',
@@ -346,7 +377,12 @@
  				success: function(res){
  					console.log(res)
  					if(res > 0){
- 						alert("성공적으로 신청하였습니다. 발급신청내역에서 확인하실 수 있습니다.");
+ 						
+ 						if(confirm('내역이 확인되었습니다. 취소가 불가능한 목록입니다. 신청하시겠습니까?')){
+ 							alert("성공적으로 신청하였습니다. 발급신청내역에서 확인하실 수 있습니다.");
+ 						}
+ 						
+ 						
  						
  					}else{
  						alert("해당날짜의 진료기록이 없거나 발급내역이 있습니다.");
@@ -357,6 +393,9 @@
  			
  		}	
  	}
+ 	
+ 	
+ 	
 	
 	
  	
@@ -453,7 +492,7 @@
  
 	function fnbtn2(){
  		
- 		if(confirm('"진료확인서"(을)를 신청하시겠습니까? ')){
+ 		if(confirm('의사의 승인이 필요한 증명서입니다. 2~3일 소요기간이 발생할 수 있습니다. "진료확인서"(을)를 신청하시겠습니까? ')){
  			
  			$.ajax({
  				url: '<%= contextPath%>/appication.ce',
@@ -467,7 +506,11 @@
  				success: function(res){
  					
  					if(res > 0){
- 						alert("성공적으로 신청하였습니다. 발급신청내역에서 확인하실 수 있습니다.");
+ 						
+ 						if(confirm('내역이 확인되었습니다. 취소가 불가능한 목록입니다. 신청하시겠습니까?')){
+ 							alert("성공적으로 신청하였습니다. 발급신청내역에서 확인하실 수 있습니다.");
+ 						}
+ 						
  						
  					}else{
  						alert("해당날짜의 진료기록이 없거나 발급내역이 있습니다.");
