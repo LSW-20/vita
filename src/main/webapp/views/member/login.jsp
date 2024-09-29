@@ -271,7 +271,7 @@
 	                               · &nbsp; 처음 방문하시는 경우, 첫 예약을 신청하시면 환자등록번호가 생성됩니다.
 	                           </p>
 	                           <div class="signup_btn">
-	                               <a href="<%= contextPath %>/signup.do" class="button2">회원가입&nbsp;></a>
+	                               <a href="<%= contextPath %>/signup.me" class="button2">회원가입&nbsp;></a>
 	                           </div>
 	                   </div>
 	           </div>

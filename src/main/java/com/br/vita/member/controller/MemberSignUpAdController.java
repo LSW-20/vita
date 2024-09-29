@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MemberSignUpController
  */
-@WebServlet("/signup.ad")
+@WebServlet("/signup_ad.me")
 public class MemberSignUpAdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

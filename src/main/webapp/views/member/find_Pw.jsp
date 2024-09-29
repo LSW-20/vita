@@ -77,7 +77,7 @@
                비타 의료원 사이트에 등록된 회원정보를 입력해주세요.</p>
            <p class="title2"> * 필수입력항목</p>
            <div class="container">
-               <form action="<%= contextPath %>/pwfind.me" method="post" id="findPw">
+               <form action="<%= contextPath %>/pwfind.sd" method="post" id="findPw">
                    <table class="table table-bordered">
                    	 <thead>
                        <colgroup>

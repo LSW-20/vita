@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MemberIdFdController
  */
-@WebServlet("/pwfind.me")
+@WebServlet("/pwfind.do")
 public class MemberPwFindController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
