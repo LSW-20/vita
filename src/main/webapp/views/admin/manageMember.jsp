@@ -1,12 +1,16 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.br.vita.member.model.vo.Member" %>
+<%@ page import="com.br.vita.common.model.vo.PageInfo" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%
-List<Member> list = (List<Member>)request.getAttribute("list");
+<% 
+List<Member> list = (List<Member>)request.getAttribute("list"); 
+PageInfo pi = (PageInfo)request.getAttribute("pi");
 %>    
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -139,27 +143,27 @@ List<Member> list = (List<Member>)request.getAttribute("list");
                 <div id="search_member">회원 검색</div>
                 <br>
 
-                <table id="search_member_table">
-                    <tr>
-                        <td class="left_cell">이름</td>
-                        <td class="right_cell_1">
-                            <form action="<%= contextPath %>/searchMemByName.admin" method="get">
-                                <input type="text" name="user_name" size="20">
-                                <button type="submit" class="btn btn-secondary" style="margin-left: 20px;">검색</button>
-                            </form>
-                        </td>
-                    </tr>
+                <form action="<%= contextPath %>/searchMem.admin" method="get">
+                    <table id="search_member_table">
+                        <tr>
+                            <td class="left_cell">이름</td>
+                            <td class="right_cell_1">
+                                    <input type="text" name="user_name" size="20">
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td class="left_cell">아이디</td>
-                        <td class="right_cell_1">
-                            <form action="<%= contextPath %>/searchMemById.admin" method="get">
-                                <input type="text" name="user_id" size="20">
-                                <button type="submit" class="btn btn-secondary" style="margin-left: 20px;">검색</button>
-                            </form>
-                        </td>
-                    </tr>
-                </table>
+                        <tr>
+                            <td class="left_cell">아이디</td>
+                            <td class="right_cell_1">
+                                    <input type="text" name="user_id" size="20">
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+                        <button type="submit" class="btn btn-secondary">검색</button> &nbsp;&nbsp;
+                    </div>
+                </form>
 
                 <br>
 
@@ -208,15 +212,24 @@ List<Member> list = (List<Member>)request.getAttribute("list");
 
 
             <br>
+            <% if(pi != null) { %>
             <ul class="pagination d-flex justify-content-center text-dark">
-                <li class="page-item disabled"><a class="page-link" href="">Previous</a></li>
-                <li class="page-item active"><a class="page-link" href="">1</a></li>
-                <li class="page-item"><a class="page-link" href="">2</a></li>
-                <li class="page-item"><a class="page-link" href="">3</a></li>
-                <li class="page-item"><a class="page-link" href="">4</a></li>
-                <li class="page-item"><a class="page-link" href="">5</a></li>
-                <li class="page-item"><a class="page-link" href="">Next</a></li>
+       
+                <li class='page-item <%=pi.getCurrentPage() == 1 ? "disabled" : "" %>'>
+                    <a class="page-link" href='<%= contextPath %>/searchMem.admin?page=<%=pi.getCurrentPage()-1%>&user_name=<%= request.getParameter("user_name") %>&user_id=<%= request.getParameter("user_id") %>'> Previous</a>
+                  </li>
+
+                <% for(int p = pi.getStartPage(); p<=pi.getEndPage(); p++) { %>
+                    <li class='page-item <%= p == pi.getCurrentPage() ? "active" : ""%>'>
+                      <a class="page-link" href='<%= contextPath %>/searchMem.admin?page=<%= p %>&user_name=<%= request.getParameter("user_name") %>&user_id=<%= request.getParameter("user_id") %>'> <%= p %></a>
+                    </li>
+                <% } %>
+
+                <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
+                    <a class="page-link" href='<%= contextPath %>/searchMem.admin?page=<%= pi.getCurrentPage()+1 %>&user_name=<%= request.getParameter("user_name") %>&user_id=<%= request.getParameter("user_id") %>'>Next</a>
+                  </li>
             </ul>
+            <% } %>
 
 
 

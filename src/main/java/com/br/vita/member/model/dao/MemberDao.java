@@ -15,6 +15,7 @@ import static com.br.vita.common.template.JDBCTemplate.*;
 
 import java.util.Map;
 
+import com.br.vita.common.model.vo.PageInfo;
 import com.br.vita.member.model.vo.Member;
 
 public class MemberDao {
@@ -303,98 +304,7 @@ public class MemberDao {
 	}
 	
 	
-	/**
-	 * 회원 이름으로 회원 검색
-	 * author : 임상우
-	 * @param conn
-	 * @param userName
-	 * @return List<Member> 검색된 회원 데이터들
-	 */
-	public List<Member> selectByName(Connection conn, String userName) {
-		
-		//select문 => 여러행 => List<Member>
-		List<Member> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("selectByName");
-		
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, userName);
-			rset=pstmt.executeQuery();
-			
-			while(rset.next()) {
-				list.add(new Member(rset.getString("USER_ID"),
-									rset.getString("USER_NAME"),
-									rset.getString("USER_SSN"),
-									rset.getString("ADDRESS"),
-									rset.getString("EMAIL"),
-									rset.getString("CALLBACK_YN"),
-									rset.getString("PHONE"),
-									rset.getDate("ENROLL_DATE")
-						));
-			}
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		
-		return list;
-		
-	}
-	
-	
-	/**
-	 * 회원 아이디로 회원 검색
-	 * author : 임상우
-	 * @param conn
-	 * @param userId
-	 * @return 검색된 회원 데이터(하나지만 List에 담아서 보냈음)
-	 */
-	public List<Member> selectById(Connection conn, String userId) {
-		
-		//select문 => 한 행 => 한 행이지만 화면구현을 list에서 뽑아오기 때문에 Member가 아닌 List<Member>
-		List<Member> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("selectById");
-		
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, userId);
-			rset=pstmt.executeQuery();
-			
-			while(rset.next()) {
-				list.add(new Member(rset.getString("USER_ID"),
-									rset.getString("USER_NAME"),
-									rset.getString("USER_SSN"),
-									rset.getString("ADDRESS"),
-									rset.getString("EMAIL"),
-									rset.getString("CALLBACK_YN"),
-									rset.getString("PHONE"),
-									rset.getDate("ENROLL_DATE")
-						));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return list;
-		
-	}
+
 
 	public int idCheck(Connection conn, String checkId) {
 		int count = 0;
@@ -623,6 +533,156 @@ public class MemberDao {
 	    }
 	    System.out.println("다오도착 : " + result);
 	    return result;
+	}
+
+	/**
+	 * 회원 아이디와 이름으로 회원 정보 검색
+	 * author : 임상우
+	 * @param conn
+	 * @param userId
+	 * @param userName
+	 * @param pi 
+	 * @return 조회된 데이터들 
+	 */
+	public List<Member> selectMember(Connection conn, String userId, String userName, PageInfo pi) {
+		
+		//select문 => 여러 행 => List<Member>
+		List<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMember");
+		
+		
+		if( !userId.equals("") && !userName.equals("") ) { // 둘 다 값을 입력한 경우
+			sql += "AND USER_ID LIKE ? AND USER_NAME LIKE ?";
+		}
+		else if( !userId.equals("") ) { // 아이디만 입력한 경우
+			sql += "AND USER_ID LIKE ?";
+		}
+		else if( !userName.equals("") ) { // 이름만 입력한 경우
+			sql += "AND USER_NAME LIKE ?";
+		}
+		// 둘 다 값을 입력하지 않으면 전체 회원검색이 실행된다.
+		
+		sql += ") WHERE RNUM BETWEEN ? AND ?";		
+		
+		
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			int paramIndex = 1; // 파라미터 인덱스를 동적으로 설정
+			 
+			
+			
+			if( !userId.equals("") && !userName.equals("") ) { // 둘 다 값을 입력한 경우
+				pstmt.setString(paramIndex++, "%" + userId + "%");
+				pstmt.setString(paramIndex++, "%" + userName + "%");
+			}
+			else if( !userId.equals("") ) { // 아이디만 입력한 경우
+				pstmt.setString(paramIndex++, "%" + userId + "%");
+			}
+			else if( !userName.equals("") ) { // 이름만 입력한 경우
+				pstmt.setString(paramIndex++, "%" + userName + "%");
+			}
+			
+			
+			// 페이징 처리를 위한 시작값, 끝값 계산. 
+            int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+            int endRow = startRow + pi.getBoardLimit() - 1;
+           
+            pstmt.setInt(paramIndex++, startRow);
+            pstmt.setInt(paramIndex++, endRow);
+				
+			rset=pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Member(rset.getString("USER_ID"),
+									rset.getString("USER_NAME"),
+									rset.getString("USER_SSN"),
+									rset.getString("ADDRESS"),
+									rset.getString("EMAIL"),
+									rset.getString("CALLBACK_YN"),
+									rset.getString("PHONE"),
+									rset.getDate("ENROLL_DATE")
+						));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+
+	/**
+	 * 전체 회원 수 조회 (일반회원만)
+	 * author : 임상우
+	 * @param conn
+	 * @param userName 
+	 * @param userId 
+	 * @return 전체회원 수
+	 */
+	public int selectMemberListCount(Connection conn, String userId, String userName) {
+		 
+        // select => ResultSet(게시글갯수, 숫자한개) => int
+        int listCount = 0;
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        
+        String sql = prop.getProperty("selectMemberListCount");
+        
+        
+		if( !userId.equals("") && !userName.equals("") ) { // 둘 다 값을 입력한 경우
+			sql += "AND USER_ID LIKE ? AND USER_NAME LIKE ?";
+		}
+		else if( !userId.equals("") ) { // 아이디만 입력한 경우
+			sql += "AND USER_ID LIKE ?";
+		}
+		else if( !userName.equals("") ) { // 이름만 입력한 경우
+			sql += "AND USER_NAME LIKE ?";
+		}
+		// 둘 다 값을 입력하지 않으면 전체 회원검색이 실행된다.
+		
+		
+		
+        try {
+            pstmt = conn.prepareStatement(sql);
+            
+            
+            int paramIndex = 1; // 파라미터 인덱스를 동적으로 설정
+            
+			if( !userId.equals("") && !userName.equals("") ) { // 둘 다 값을 입력한 경우
+				pstmt.setString(paramIndex++, "%" + userId + "%");
+				pstmt.setString(paramIndex++, "%" + userName + "%");
+			}
+			else if( !userId.equals("") ) { // 아이디만 입력한 경우
+				pstmt.setString(paramIndex++, "%" + userId + "%");
+			}
+			else if( !userName.equals("") ) { // 이름만 입력한 경우
+				pstmt.setString(paramIndex++, "%" + userName + "%");
+			}
+            
+			
+            rset = pstmt.executeQuery();
+           
+            if(rset.next()) {
+                listCount = rset.getInt("count");
+            }
+           
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(rset);
+            close(pstmt);
+        }
+       
+        return listCount;
 	}
 	
 	

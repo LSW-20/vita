@@ -141,40 +141,7 @@ WHERE
 	</entry>
 
 
-  <!-- (상우) 회원 이름으로 회원 검색 -->
-	<entry key="selectByName">
-		SELECT 
-						USER_ID
-					, USER_NAME
-					, USER_SSN
-					, ADDRESS
-					, EMAIL
-					, CALLBACK_YN
-					, PHONE
-					, ENROLL_DATE
-		FROM 
-					MEMBER
-		WHERE 
-					USER_NAME = ?
-	</entry>
-	
-	
-	<!-- (상우) 회원 아이디로 회원 검색 -->
-	<entry key="selectById">
-		SELECT 
-						USER_ID
-					, USER_NAME
-					, USER_SSN
-					, ADDRESS
-					, EMAIL
-					, CALLBACK_YN
-					, PHONE
-					, ENROLL_DATE
-		FROM 
-					MEMBER
-		WHERE 
-					USER_ID = ?
-	</entry>
+ 
 	
 	
 	<!-- (상우) 이름, 핸드폰번호, 주민등록번호로 userNo 찾기 (1/2) 진료예약 추가 -->
@@ -280,6 +247,37 @@ WHERE
 			 , ?
 			 , ?
 			 )
+	</entry>
+	
+	
+	<!-- (상우) 회원 이름, 회원id로 회원 검색 - 일반회원만 -->
+	<entry key="selectMember">
+		SELECT *
+		  FROM 
+						 (SELECT 
+											USER_ID
+										, USER_NAME
+										, USER_SSN
+										, ADDRESS
+										, EMAIL
+										, CALLBACK_YN
+										, PHONE
+										, ENROLL_DATE
+										, ROW_NUMBER() OVER(ORDER BY USER_ID) as RNUM
+							FROM 
+										MEMBER
+							WHERE
+										USER_TYPE = 'U'				
+	</entry>
+	
+	<!-- (상우) 전체 회원 수 조회 -->
+	<entry key="selectMemberListCount">
+		SELECT 
+						COUNT(*) AS COUNT
+		FROM 
+						MEMBER
+		WHERE
+						USER_TYPE = 'U'				
 	</entry>
 	
 </properties>
