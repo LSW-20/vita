@@ -36,6 +36,13 @@
     footer{
      margin-top: 1053px;
  }
+ 
+ 
+ 
+ 	              	
+       
+ 
+  
 </style>
 </head>
 <body>
@@ -65,21 +72,312 @@
 	        <tr>
 	          <td><%=d.getDocType() %></td>
 	          <td><%=d.getApplyDate() %>&nbsp;(진료과: <%=d.getDeptName() %> | 담당의: <%=d.getDoctorName() %>)</td>
-	          <td>
-	            <form action="<%=request.getContextPath() %>/getDoc.cr" method="get">
+	          <td style="padding: 5px;">
+	            <form action="<%=request.getContextPath() %>/getDoc.cr" >
 	              <input type="hidden" name="careNo" value="<%= d.getCareNo() %>">
 	              <input type="hidden" name="docType" value="<%= d.getDocType() %>">
 	              
-	              <button type="submit">발급</button>	   
+	              <% if(d.getDocType().equals("진단서")){ %>
 	              
+	              	<% if(d.getDocCheck().equals("R")){ %>
+	              		<div style="color:green;">확인중</div>
+	              	<%}else if(d.getDocCheck().equals("N")){%>
+	              		<div style="color:red;">반려</div>
+	              	<%}else if(d.getDocCheck().equals("Y")){ %>	 
+
+  <style>
+  
+  	
+.t_container {
+	border: 1px solid black;
+	width: 900px;
+	height: 1060px;
+	display: flex;
+	flex-direction: column;
+}
+
+.t_header {
+	border: 1px solid black;
+	width: 100%;
+	height: 70px;
+	text-align: center;
+	font-size: 30px;
+	padding-top: 10px;
+	background-color: lightgray;
+}
+
+.table_div {
+	margin-left: 70px;
+	margin-top: 20px;
+}
+
+#table_container_tb {
+	width: 760px;
+	height: 700px;
+	text-align: center;
+}
+
+.u_name {
+	height: 50px;
+	width: 140px;
+}
+
+.u_ssn {
+	width: 145px;
+}
+
+.u_addr {
+	height: 65px;
+}
+
+.symptoms {
+	height: 150px;
+}
+
+.doc_detail {
+	display: flex;
+	flex-direction: column;
+	width: 760px;
+}
+
+.c_date {
+	text-align: right;
+	margin-left:417px;
+}
+
+.side_detail {
+	display: flex;
+}
+
+.doc_num {
+	margin-left: 140px;
+}
+
+.doc_name {
+	text-align-last: right;
+}
+
+.opinion_date {
+	height: 80px;
+}
+
+.modal-content {
+	width: 902px;
+	height: 1060px;
+	margin-top: 60px;
+	margin-left: -185px;
+}
+
+.modal-footer {
+	margin-top: -16px;
+	border: none;
+	margin-right: 300px;
+}
+  
+  </style>
+  
+<div class="container">
+  <!-- Button to Open the Modal -->
+  <button type="button" 
+  		  class="btn btn-primary" 
+  		  data-toggle="modal" 
+  		  data-target="#myModal1" 
+  		  onclick="fnfilesearch1(this);"
+  		data-care-no="<%= d.getCareNo() %>"
+		data-user-no="<%= d.getUserNo() %>"
+		data-doc-type="<%= d.getDocType() %>">보기
+  </button>
+
+  	<!-- The Modal -->
+							<div class="modal fade" id="myModal1">
+								<div class="modal-dialog">
+									<div class="modal-content" style="margin-top: 170px;">
+
+
+										<div class="t_container">
+											<div class="t_header">진&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;단&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서</div>
+											<div class="table_div">
+												<table border="1" id="table_container_tb">
+													<tr>
+														<td class="u_name"><b>환자의 성명</b></td>
+														<td id="userName_result"></td>
+
+														<td class="u_ssn"><b>주민등록번호</b></td>
+														<td id="userSSN_result"></td>
+													</tr>
+
+													<tr>
+														<td class="u_addr"><b>환자의 주소</b></td>
+														<td colspan="3" id="userAddress_result"></td>
+													</tr>
+													<tr>
+
+														<td class="symptoms"><b>증상</b></td>
+														<td colspan="3" id="syptoms_result"></td>
+													</tr>
+
+													<tr>
+														<td class="opinion"><b>진단 및 소견</b></td>
+														<td colspan="3" id="opinion_result"></td>
+													</tr>
+
+												</table>
+
+												<div class="doc_detail" style="text-align: left;">
+													<br> [의료법] 제 17 조 및 같은 법 시행규칙 제9조1항에 따라 위와 같이 진단합니다.
+
+													<div style="margin-top: 20px;">
+														의료기관 명칭 : <b>VitaPrimus</b> <b class="c_date"
+															id="treatmentDate_result" style="margin-left: 434px;"></b>
+													</div>
+													<br>
+													<div class="side_detail">
+														<div>주소 : 서울특별시 금천구 가산디지털2로 95 KM타워 3층 305호</div>
+														<div class="doc_num">
+															[ ■ ] 의사 면허 <b id="doc_licence"></b> 호
+														</div>
+													</div>
+													<br>
+													<div class="doc_name">
+														담당의 : <b id="docName_result"></b>
+													</div>
+
+
+
+												</div>
+
+												<!-- Modal footer -->
+												<div class="modal-footer">
+												
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+  
+</div>
+	              	 
+	              	
+	              	
+	              		
+					<%} %>
+	              	
+	              	 
+	         <%}else if(d.getDocType().equals("진료확인서")){ %>
+	         
+	         	<% if(d.getDocCheck().equals("R")){ %>
+	              		<div style="color:green;">확인중</div>
+	              		
+	              	<%}else if(d.getDocCheck().equals("N")){%>
+	              		<div style="color:red;">반려</div>
+	              		
+	              	<%}else if(d.getDocCheck().equals("Y")){ %>	 
+	         			<button style="color:red;" 
+	         			onclick="fnfilesearch2();"
+	         				data-care-no="<%= d.getCareNo() %>"
+	         				data-user-no="<%= d.getUserNo() %>"
+	         				data-doc-type="<%= d.getDocType() %>"
+	         			>ajax잘되나</button>
+	
+  
+ 			
+	         			
+	         			
+	         		<%}%>
+	              
+	         <%}else{ %>
+	         	<button type="submit">발급</button>
+	         <%} %>
 	            </form>       
-						</td>
+			</td>
 	        </tr>
 	      <%} %>
 	    <%} %>
       </tbody>
     </table>
   </div>   
+  
+  
+  <script>
+  
+	
+	function fnfilesearch1(button) {
+	    const careNo = $(button).data('care-no');
+	    const userNo = $(button).data('user-no');
+	    const type = $(button).data('doc-type');
+
+	    $.ajax({
+	        url: '<%= contextPath %>/diagnosis.se',
+	        data: {
+	            careNo: careNo,
+	            userNo: userNo,
+	            type: type
+	        },
+	        success: function(res) {
+	            console.log(res);  // {Doctor:{}, Member:{}, ..}
+
+	            let doc = res.Doctor;
+	            let mem = res.Member; // {phone:이름, ..}
+	            let mrc = res.Mrecords;
+
+	            $('#userName_result').text(mem.userName);
+	            $('#userSSN_result').text(mem.userSSN);
+	            $('#userAddress_result').text(mem.address);
+	            $('#syptoms_result').text(mrc.symptoms);
+	            $('#opinion_result').text(mrc.opinion);
+	            $('#treatmentDate_result').text(mrc.treatmentDate);
+	            $('#doc_licence').text(doc.licenceNo);
+	            $('#docName_result').text(doc.doctorName);
+	            
+	            
+	            
+	            
+	        }
+	    });
+	}
+	
+	
+	
+	
+	
+	function fnfilesearch2(button) {
+		
+	    const careNo2 = $(button).data('care-no');
+	    const userNo2 = $(button).data('user-no');
+	    const type2 = $(button).data('doc-type');
+	    
+	    $.ajax({
+	        url: '<%= contextPath %>/diagnosis.se',
+	        data: {
+	            careNo: careNo2,
+	            userNo: userNo2,
+	            type: type2
+	        },
+	        success: function(res) {
+	            console.log(res);  
+
+	            let doc = res.Doctor;
+	            let mem = res.Member; 
+	            let mrc = res.Mrecords;
+
+	            $('#userName_result2').text(mem.userName);
+	            $('#userSSN_result2').text(mem.userSSN);
+	            $('#userAddress_result2').text(mem.address);
+	            $('#diagnosisName_result2').text(mrc.diagnosisName);
+	            $('#treatmentContent_result2').text(mrc.treatmentContent);
+	            $('#treatmentDate_result2').text(mrc.treatmentDate);
+	            $('#doc_licence2').text(doc.licenceNo);
+	            $('#docName_result2').text(doc.doctorName);
+	           
+	        }
+	    });
+	}
+  
+  </script>
    
   <!-- nav, section 별도로 닫아주기-->
   </nav>

@@ -229,24 +229,7 @@
 
   </style>
   
-  	
-<div class="container">
-    <div class="btns_div">
-      <button id="btn1_1" class="btn btn-secondary" 
-        data-toggle="modal" 
-        data-target="#myModal2" 
-        data-care-no2="<%= m.getCareNo() %>" 
-        data-user-no2="<%= m.getUserNo() %>" 
-        onclick="fnfilesearch2(this);">보기</button>
-    </div>
-    
-
- <!-- The Modal -->
- <div class="modal fade" id="myModal2">
-   <div class="modal-dialog">
-     <div class="modal-content" style="margin-top: 170px;">
-     
-    <style>
+      <style>
         * {
           box-sizing: border-box;
         }
@@ -315,6 +298,24 @@
       
        
       </style>  
+  	
+<div class="container">
+    <div class="btns_div">
+      <button id="btn1_1" class="btn btn-secondary" 
+        data-toggle="modal" 
+        data-target="#myModal2" 
+        data-care-no2="<%= m.getCareNo() %>" 
+        data-user-no2="<%= m.getUserNo() %>" 
+        onclick="fnfilesearch2(this);">보기</button>
+    </div>
+    
+
+ <!-- The Modal -->
+ <div class="modal fade" id="myModal2">
+   <div class="modal-dialog">
+     <div class="modal-content" style="margin-top: 170px;">
+     
+
 <div class="t_container">
   <div class="t_header">
     진&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;료&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;확

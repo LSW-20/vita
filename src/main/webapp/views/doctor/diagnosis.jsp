@@ -268,7 +268,8 @@ th {
 									data-toggle="modal" data-target="#myModal1"
 									data-care-no="<%= m.getCareNo() %>"
 									data-user-no="<%= m.getUserNo() %>"
-									onclick="fnfilesearch1(this);">보기</button>
+									onclick="fnfilesearch1(this);">보기
+								</button>
 							</div>
 
 

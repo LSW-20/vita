@@ -58,6 +58,7 @@ public class DocumentApplyiTextController extends HttpServlet {
         String careNo = request.getParameter("careNo");
         String docType = request.getParameter("docType");
 
+        System.out.println(docType);
         // 서비스 객체를 통해 문서 데이터를 가져온다.
         IssueService issueService = new IssueService();
         Document document = issueService.getDocumentByCareNo(careNo);
@@ -75,9 +76,11 @@ public class DocumentApplyiTextController extends HttpServlet {
         } else if ("처방전사본".equals(docType)) {
             jspPage = "/views/issue/confirmPrescription.jsp";
         } else {
-            throw new ServletException("알 수 없는 문서 타입입니다.");
+        	
+        	throw new ServletException("알 수 없는 문서 타입입니다." + docType);
         }
-
+           
+      
         // JSP를 String으로 렌더링 (HTML 출력)
         StringWriter stringWriter = new StringWriter();
         RequestDispatcher rd = request.getRequestDispatcher(jspPage);
