@@ -34,11 +34,11 @@ public class DiagnosisFileSelectController extends HttpServlet {
 		
 		
 		String userNo = request.getParameter("userNo");
-		System.out.println(userNo);
+		
 		String careNo = request.getParameter("careNo");
-		System.out.println(careNo);
+		
 		String type = request.getParameter("type");
-		System.out.println(type);
+		
 		Map<String,Object> careMap = new DoctorService().diagnosisSelectFile(userNo,careNo,type);
 		
 		
@@ -49,7 +49,6 @@ public class DiagnosisFileSelectController extends HttpServlet {
 		
 		
 		new GsonBuilder().setDateFormat("YYYY년MM월DD일").create().toJson(careMap, response.getWriter());
-		System.out.println(careMap);
 		
 		
 	}
