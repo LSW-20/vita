@@ -16,7 +16,7 @@ import com.br.vita.notice.model.vo.Notice;
 /**
  * Servlet implementation class NewModifyController
  */
-@WebServlet("/modify.no")
+@WebServlet("/noticeModify.admin")
 public class NoticeModifyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -12,7 +12,7 @@ import com.br.vita.notice.model.service.NoticeService;
 /**
  * Servlet implementation class NoticeIncreaseCountController
  */
-@WebServlet("/increase.no")
+@WebServlet("/noticeIncrease.admin")
 public class NoticeIncreaseCountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -16,7 +16,7 @@ import com.google.gson.Gson;
 /**
  * Servlet implementation class NewsMainController
  */
-@WebServlet("/main.ns")
+@WebServlet("/newsMain.main")
 public class NewsMainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

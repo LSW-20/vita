@@ -17,7 +17,7 @@ import com.google.gson.Gson;
 /**
  * Servlet implementation class NoticeListController
  */
-@WebServlet("/main.no")
+@WebServlet("/noticeMain.main")
 public class NoticeMainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

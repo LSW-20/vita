@@ -16,7 +16,7 @@ import com.br.vita.news.model.vo.News;
 /**
  * Servlet implementation class NewModifyController
  */
-@WebServlet("/modify.ns")
+@WebServlet("/newsModify.admin")
 public class NewModifyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

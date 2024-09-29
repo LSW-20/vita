@@ -12,7 +12,7 @@ import com.br.vita.news.model.service.NewsService;
 /**
  * Servlet implementation class NewsIncreaseCountController
  */
-@WebServlet("/increase.ns")
+@WebServlet("/newsIncrease.admin")
 public class NewsIncreaseCountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

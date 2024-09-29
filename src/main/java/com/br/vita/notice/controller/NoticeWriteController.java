@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class NewWriteController
  */
-@WebServlet("/write.no")
+@WebServlet("/noticeWrite.admin")
 public class NoticeWriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

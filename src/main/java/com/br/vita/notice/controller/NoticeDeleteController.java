@@ -12,7 +12,7 @@ import com.br.vita.notice.model.service.NoticeService;
 /**
  * Servlet implementation class NoticeDeleteController
  */
-@WebServlet("/delete.no")
+@WebServlet("/noticeDelete.admin")
 public class NoticeDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
