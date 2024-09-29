@@ -53,7 +53,7 @@ public class NoticeInsertController extends HttpServlet {
 			// 응답페이지 : 다시 목록페이지 
 			// 응답데이터 : "성공적으로 추가" alert 메세지
 			session.setAttribute("alertMsg", "성공적으로 뉴스가 등록되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/list.no");
+			response.sendRedirect(request.getContextPath() + "/noticeList.admin");
 			
 		}else { // 실패
 			// 응답페이지 : 에러페이지
