@@ -16,7 +16,7 @@ import com.br.vita.notice.model.vo.Notice;
 /**
  * Servlet implementation class NoticeListController
  */
-@WebServlet("/list.no")
+@WebServlet("/noticeList.admin")
 public class NoticeListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -12,7 +12,7 @@ import com.br.vita.news.model.service.NewsService;
 /**
  * Servlet implementation class NewsDeleteController
  */
-@WebServlet("/delete.ns")
+@WebServlet("/newsDelete.admin")
 public class NewsDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,7 +36,7 @@ public class NewsDeleteController extends HttpServlet {
 		// 2. 응답
 		if(result > 0) { // 성공
 			request.getSession().setAttribute("alertMsg", "성공적으로 공지사항이 삭제되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/list.ns");
+			response.sendRedirect(request.getContextPath() + "/newsList.admin");
 			
 		}else { // 실패
 			request.setAttribute("msg", "공지사항 삭제 실패");

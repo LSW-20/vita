@@ -343,7 +343,6 @@
 		  , SURGERY_YN
 		  , FLY_YN
 		  , CHECKUP_NO
-		  , CARE_NO
 		  )		
 		  VALUES
 		  (
@@ -353,7 +352,6 @@
 		  , ?
 		  , ?
 		  , (SELECT APPOINTMENT_NO FROM CHECKUP_APP WHERE USER_NO = ? AND CHECKUP_DATE = ? AND APPOINTMENT_TIME = ? AND TOTAL_PRICE = ?)
-		  ,	NULL
 		  )
 	</entry>
 	

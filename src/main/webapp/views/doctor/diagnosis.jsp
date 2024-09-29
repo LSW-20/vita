@@ -113,8 +113,8 @@ th {
 
 .t_container {
 	border: 1px solid black;
-	width: 900px;
-	height: 1050px;
+	width: 901px;
+    height: 1051px;
 	display: flex;
 	flex-direction: column;
 }
@@ -184,8 +184,8 @@ th {
 }
 
 .modal-content {
-	width: 902px;
-	height: 1036px;
+	width: 901px;
+	height: 1051px;
 	margin-top: 60px;
 	margin-left: -185px;
 }
@@ -268,7 +268,8 @@ th {
 									data-toggle="modal" data-target="#myModal1"
 									data-care-no="<%= m.getCareNo() %>"
 									data-user-no="<%= m.getUserNo() %>"
-									onclick="fnfilesearch1(this);">보기</button>
+									onclick="fnfilesearch1(this);">보기
+								</button>
 							</div>
 
 

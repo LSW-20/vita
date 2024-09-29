@@ -313,7 +313,7 @@
 	
 	            function MainNoticeList() {
 	                $.ajax({
-	                    url: '<%=contextPath%>/main.no',
+	                    url: '<%=contextPath%>/noticeMain.main',
 	                    success: function(list) {                   
 	                        let trEl = "";
 	                        if (list.length == 0) { // 공지사항이 없는 경우
@@ -349,11 +349,11 @@
 	                    if(writer == loginUserId) {
 	                        console.log("내가 쓴 글입니다.");
 	                        // 현재 내가 쓴 글일 경우 => 조회수증가없이 상세페이지로 바로 이동
-	                        location.href = "<%=contextPath%>/detail.no?no=" + no;
+	                        location.href = "<%=contextPath%>/noticeDetail.admin?no=" + no;
 	                    } else {
 	                        console.log("내가 쓴 글이 아닙니다.");
 	                        // 내가 쓴 글이 아닐 경우 => 조회수증가하면서 상세페이지로 이동
-	                        location.href = "<%=contextPath%>/increase.no?no=" + no;
+	                        location.href = "<%=contextPath%>/noticeIncrease.admin?no=" + no;
 	                    }    
 	                });
 	            });
@@ -371,7 +371,7 @@
 	
 	            function MainNewsList() {
 	                $.ajax({
-	                    url: '<%=contextPath%>/main.ns',
+	                    url: '<%=contextPath%>/newsMain.main',
 	                    success: function(list) {                        
 	                        let trEl = "";
 	                        if (list.length == 0) { // 공지사항이 없는 경우
@@ -407,11 +407,11 @@
 	                    if(writer == loginUserId) {
 	                        console.log("내가 쓴 글입니다.");
 	                        // 현재 내가 쓴 글일 경우 => 조회수증가없이 상세페이지로 바로 이동
-	                        location.href = "<%=contextPath%>/detail.ns?no=" + no;
+	                        location.href = "<%=contextPath%>/newsDetail.admin?no=" + no;
 	                    } else {
 	                        console.log("내가 쓴 글이 아닙니다.");
 	                        // 내가 쓴 글이 아닐 경우 => 조회수증가하면서 상세페이지로 이동
-	                        location.href = "<%=contextPath%>/increase.ns?no=" + no;
+	                        location.href = "<%=contextPath%>/newsIncrease.admin?no=" + no;
 	                    }    
 	                });
 	            });

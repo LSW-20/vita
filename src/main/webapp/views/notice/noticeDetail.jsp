@@ -63,11 +63,11 @@
     <div class="d-flex justify-content-end">
       <!-- 현재 로그인되어있는 회원이 해당 게시글의 작성자 본인일 경우 보여지는 요소 -->
       <% if (loginUser != null && loginUser.getUserId().equals("admin01")) { %>
-      <a href="<%= contextPath %>/modify.no?no=<%= n.getNoticeNo() %>" class="btn btn-primary btn-sm">수정하기 페이지로</a> &nbsp;
+      <a href="<%= contextPath %>/noticeModify.admin?no=<%= n.getNoticeNo() %>" class="btn btn-primary btn-sm">수정하기 페이지로</a> &nbsp;
       <a href="javascript:confirmDelete(<%= n.getNoticeNo() %>);" class="btn btn-danger btn-sm">삭제하기</a>  &nbsp;
       <% } %>
       <!-- ------------------------------------------------------------------------- -->
-      <a href="<%= contextPath %>/list.no" class="btn btn-warning btn-sm">목록가기</a>
+      <a href="<%= contextPath %>/noticeList.admin" class="btn btn-warning btn-sm">목록가기</a>
     </div>
 
     <table class="table m-4">
@@ -94,7 +94,7 @@
 		<script>
 		function confirmDelete(noticeNo) {
 		    if (confirm('정말로 삭제하시겠습니까?')) {
-		        window.location.href = '<%= contextPath %>/delete.no?no=' + noticeNo;
+		        window.location.href = '<%= contextPath %>/noticeDelete.admin?no=' + noticeNo;
 		    }
 		}
 		</script>

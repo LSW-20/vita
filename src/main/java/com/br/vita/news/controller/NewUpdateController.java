@@ -13,7 +13,7 @@ import com.br.vita.news.model.vo.News;
 /**
  * Servlet implementation class NewUpdateController
  */
-@WebServlet("/update.ns")
+@WebServlet("/newsUpdate.admin")
 public class NewUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -45,7 +45,7 @@ public class NewUpdateController extends HttpServlet {
 			// 응답페이지 : 다시 목록페이지
 			//     데이터 : "성공적으로 공지사항이 수정되었습니다" alert메세지
 			request.getSession().setAttribute("alertMsg", "성공적으로 공지사항이 수정되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/list.ns");
+			response.sendRedirect(request.getContextPath() + "/newsList.admin");
 			
 		}else { // 실패
 			// 응답페이지 : 에러페이지

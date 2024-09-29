@@ -12,7 +12,7 @@ import com.br.vita.news.model.service.NewsService;
 /**
  * Servlet implementation class NewsIncreaseCountController
  */
-@WebServlet("/increase.ns")
+@WebServlet("/newsIncrease.admin")
 public class NewsIncreaseCountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,7 +33,7 @@ public class NewsIncreaseCountController extends HttpServlet {
 		
 		int result = new NewsService().increaseCount(newsNo);
 	
-		response.sendRedirect(request.getContextPath() + "/detail.ns?no=" + newsNo);
+		response.sendRedirect(request.getContextPath() + "/newsDetail.admin?no=" + newsNo);
 	}
 
 	/**

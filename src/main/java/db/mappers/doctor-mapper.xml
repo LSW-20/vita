@@ -52,68 +52,6 @@ AND SCHEDULE_TIME = ?
 </entry>
 
 
-
-	<!-- (상우) 의사 이름으로 검색 -->
-	<entry key="selectByName">
-	
-	
-	SELECT 
-					DOCTOR_NO
-				, DOCTOR_NAME
-				, LICENCE_NO
-				, DEPT_NAME
-				, HIRE_DATE
-				, USER_SSN
-				, PHONE
-				, ADDRESS
-	FROM 
-				DOCTOR
-	JOIN  MEMBER USING (USER_NO)
-	WHERE 
-				DOCTOR_NAME=?
-	
-	</entry>
-
-
-	<!-- (상우) 의사 사번으로 검색 -->
-	<entry key="selectByDNO">
-	
-	
-	SELECT 
-					DOCTOR_NO
-				, DOCTOR_NAME
-				, LICENCE_NO
-				, DEPT_NAME
-				, HIRE_DATE
-				, USER_SSN
-				, PHONE
-				, ADDRESS
-	FROM 
-				DOCTOR
-	JOIN  MEMBER USING (USER_NO)
-	WHERE 
-				DOCTOR_NO=?
-	
-	</entry>
-	
-
-	<!-- (상우) 의사 진료과로 검색 -->
-	<entry key="selectByDept">
-	
-	SELECT 
-					DOCTOR_NO
-				, DOCTOR_NAME
-				, LICENCE_NO
-				, DEPT_NAME
-				, HIRE_DATE
-				, USER_SSN
-				, PHONE
-				, ADDRESS
-	FROM 
-				DOCTOR
-	JOIN  MEMBER USING (USER_NO)
-	
-	</entry>
 	
 
 	<!-- (상우) 의사 계정 추가 (1/3) 회원 테이블 -->
@@ -560,6 +498,25 @@ AND MR.CARE_NO = ?
 
 
 </entry>
+	
+	
+	<!-- (상우) 의사 계정 검색(이름, 사번, 진료과) -->
+	<entry key="selectDoctor2">
+	
+	SELECT 
+					DOCTOR_NO
+				, DOCTOR_NAME
+				, LICENCE_NO
+				, DEPT_NAME
+				, HIRE_DATE
+				, USER_SSN
+				, PHONE
+				, ADDRESS
+	FROM 
+				DOCTOR
+	JOIN  MEMBER USING (USER_NO)
+	
+	</entry>
 	
 	
 	

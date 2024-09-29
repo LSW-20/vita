@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 
+import com.br.vita.common.model.vo.PageInfo;
 import com.br.vita.member.model.dao.MemberDao;
 import com.br.vita.member.model.vo.Member;
 
@@ -132,31 +133,7 @@ public class MemberService {
 	}
 
 	
-	/**
-	 * 회원 이름으로 회원 검색
-	 * author : 임상우
-	 * @param userName
-	 * @return List<Member> 검색된 회원 데이터들
-	 */
-	public List<Member> selectByName(String userName) {
-		Connection conn = getConnection();
-		List<Member> list = mdao.selectByName(conn, userName);
-		close(conn);
-		return list;
-	}
-	
-	/**
-	 * 회원 아이디로 회원 검색
-	 * author : 임상우
-	 * @param userId
-	 * @return 검색된 회원 데이터(하나지만 List에 담아서 보냈음)
-	 */
-	public List<Member> selectById(String userId) {
-		Connection conn = getConnection();
-		List<Member> list = mdao.selectById(conn, userId);
-		close(conn);
-		return list;
-	}
+
 	
 	public int idCheck(String checkId) {
 		Connection conn = getConnection();
@@ -257,6 +234,36 @@ public class MemberService {
 	
 		close(conn);
 		System.out.println("서비스도착 : " + result);
+		return result;
+	}
+	
+	
+	/**
+	 * 회원 아이디와 이름으로 회원 정보 검색
+	 * author : 임상우
+	 * @param userName
+	 * @param userId
+	 * @param pi 
+	 * @return 조회된 데이터들
+	 */
+	public List<Member> selectMember(String userName, String userId, PageInfo pi) {
+		Connection conn = getConnection();
+		List<Member> list = mdao.selectMember(conn, userId, userName, pi);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 전체 회원 수 조회 (일반회원만)
+	 * author : 임상우
+	 * @param userName 
+	 * @param userId 
+	 * @return 전체 회원 수
+	 */
+	public int selectMemberListCount(String userId, String userName) {
+		Connection conn = getConnection();
+		int result = mdao.selectMemberListCount(conn, userId, userName);
+		close(conn);
 		return result;
 	}
 	

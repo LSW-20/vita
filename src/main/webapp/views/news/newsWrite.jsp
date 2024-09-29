@@ -66,7 +66,7 @@ footer {
   <div class="container border p-5 m-4 rounded" style="height: 600px;">
     <h2 class="m-4">뉴스 등록</h2>
     
-    <form action="<%= contextPath %>/insert.ns" method="post" class="m-4">
+    <form action="<%= contextPath %>/newsInsert.admin" method="post" class="m-4">
       <table class="table">
         <tr>
           <th>제목</th>

@@ -16,7 +16,7 @@ import com.br.vita.news.model.vo.News;
 /**
  * Servlet implementation class NewsListController
  */
-@WebServlet("/list.ns")
+@WebServlet("/newsList.admin")
 public class NewsListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

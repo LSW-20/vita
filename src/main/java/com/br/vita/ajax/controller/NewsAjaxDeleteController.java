@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
-@WebServlet("/news.dt")
+@WebServlet("/newsAjaxDelete.admin")
 public class NewsAjaxDeleteController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

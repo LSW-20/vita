@@ -286,21 +286,21 @@ List<Member> doculist = (List<Member>)request.getAttribute("doculist");
     <table border="1" id="table_container">
       <tr>
         <td class="u_name"><b>환자의 성명</b></td>
-        <td><div id="name_result1">qweqwe</div></td>
+        <td><div id="name_result1"></div></td>
         <td class="u_ssn"><b>주민등록번호</b></td>
-        <td><div id="ssn_result1">wqeqwe</div></td>
+        <td><div id="ssn_result1"></div></td>
       </tr>
       <tr>
         <td class="u_addr"><b>환자의 주소</b></td>
-        <td colspan="3"><div id="address_result1">asdasdasdsa</div></td>
+        <td colspan="3"><div id="address_result1"></div></td>
       </tr>
       <tr>
         <td class="symptoms"><b>증상</b></td>
-        <td colspan="3"><div id="symptoms_result">asdasdasdasd</div></td>
+        <td colspan="3"><div id="symptoms_result"></div></td>
       </tr>
       <tr>
         <td class="opinion"><b>진단 및 소견</b></td>
-        <td colspan="3"><div id="opinion_result">asdasdasdas</div></td>
+        <td colspan="3"><div id="opinion_result"></div></td>
       </tr>
     </table>
 

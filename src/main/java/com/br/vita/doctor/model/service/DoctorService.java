@@ -51,55 +51,6 @@ public class DoctorService {
 	}
 	
 	
-	/**
-	 * 의사 이름으로 의료진 계정 검색
-	 * author : 임상우
-	 * @param doctorName
-	 * @return 검색된 의료진 계정 정보(DOCTOR, MEMBER 객체)
-	 */
-	public List<Map<String, Object>> selectByName(String doctorName) {
-		
-		Connection conn = getConnection();
-		List<Map<String, Object>> list = dDao.selectByName(conn, doctorName);
-		close(conn);
-		return list;
-
-	}
-	
-	
-	
-	/**
-	 * 의사 사번으로 의료진 계정 검색
-	 * author : 임상우
-	 * @param doctorNo
-	 * @return 검색된 의료진 계정 정보(DOCTOR, MEMBER 객체)
-	 */
-	public List<Map<String, Object>> selectByDNO(String doctorNo) {
-		
-		Connection conn = getConnection();
-		List<Map<String, Object>> list = dDao.selectByDNO(conn, doctorNo);
-		close(conn);
-		return list;
-
-	}
-	
-	
-	
-	/**
-	 * 의사 진료과로 의료진 계정 검색
-	 * author : 임상우
-	 * @param dept
-	 * @return 검색된 의료진 계정 정보(DOCTOR, MEMBER 객체)
-	 */
-	public List<Map<String, Object>> selectByDept(String dept) {
-		
-		Connection conn = getConnection();
-		List<Map<String, Object>> list = dDao.selectByDept(conn, dept);
-		close(conn);
-		return list;
-		
-	}
-	
 
 	
 	/**
@@ -464,6 +415,22 @@ public class DoctorService {
 		
 		
 		
+	}
+
+
+	/**
+	 * 의사 계정 검색(이름, 사번, 진료과)
+	 * author : 임상우
+	 * @param doctorName
+	 * @param doctorNo
+	 * @param dept
+	 * @return 조회된 데이터들
+	 */
+	public List<Map<String, Object>> selectDoctor(String doctorName, String doctorNo, String dept) {
+		Connection conn = getConnection();
+		List<Map<String, Object>> list = dDao.selectDoctor2(conn, doctorName, doctorNo, dept);
+		close(conn);
+		return list;
 	}
 	
 	

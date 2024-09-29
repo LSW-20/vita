@@ -16,7 +16,46 @@ public class Mrecords {
 	private String treatmentContent;
 	private String diagnosisName;
 	private String deptName;
+	private String treatmentDateString;
 	
+	
+	
+	
+
+
+
+	public String getTreatmentDateString() {
+		return treatmentDateString;
+	}
+
+
+	public void setTreatmentDateString(String treatmentDateString) {
+		this.treatmentDateString = treatmentDateString;
+	}
+
+
+	public Mrecords(String careNo, String appolntmentNo, String userNo, String doctorNo, String userName,
+			String userSsn, Date treatmentDate, String symptoms, String opinion, String treatmentContent,
+			String diagnosisName, String deptName, String treatmentDateString, String docNum) {
+		super();
+		this.careNo = careNo;
+		this.appolntmentNo = appolntmentNo;
+		this.userNo = userNo;
+		this.doctorNo = doctorNo;
+		this.userName = userName;
+		this.userSsn = userSsn;
+		this.treatmentDate = treatmentDate;
+		this.symptoms = symptoms;
+		this.opinion = opinion;
+		this.treatmentContent = treatmentContent;
+		this.diagnosisName = diagnosisName;
+		this.deptName = deptName;
+		this.treatmentDateString = treatmentDateString;
+		this.docNum = docNum;
+	}
+
+
+
 	//document와 join시 필요한 docNum추가
 	private String docNum;
 
@@ -195,15 +234,30 @@ public class Mrecords {
 	}
 
 
+	
+
+
+	
 
 	@Override
 	public String toString() {
 		return "Mrecords [careNo=" + careNo + ", appolntmentNo=" + appolntmentNo + ", userNo=" + userNo + ", doctorNo="
 				+ doctorNo + ", userName=" + userName + ", userSsn=" + userSsn + ", treatmentDate=" + treatmentDate
 				+ ", symptoms=" + symptoms + ", opinion=" + opinion + ", treatmentContent=" + treatmentContent
-				+ ", diagnosisName=" + diagnosisName + ", deptName=" + deptName + "]";
+				+ ", diagnosisName=" + diagnosisName + ", deptName=" + deptName + ", treatmentDateString="
+				+ treatmentDateString +  ", docNum=" + docNum + "]";
 	}
+
+
 	
+
+
+	
+
+
+
+
+
 	
 	
 

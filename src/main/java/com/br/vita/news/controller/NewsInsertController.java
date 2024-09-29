@@ -16,7 +16,7 @@ import com.br.vita.news.model.vo.News;
 /**
  * Servlet implementation class NewsWriteController
  */
-@WebServlet("/insert.ns")
+@WebServlet("/newsInsert.admin")
 public class NewsInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -53,7 +53,7 @@ public class NewsInsertController extends HttpServlet {
 			// 응답페이지 : 다시 목록페이지 
 			// 응답데이터 : "성공적으로 추가" alert 메세지
 			session.setAttribute("alertMsg", "성공적으로 뉴스가 등록되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/list.ns");
+			response.sendRedirect(request.getContextPath() + "/newsList.admin");
 			
 		}else { // 실패
 			// 응답페이지 : 에러페이지

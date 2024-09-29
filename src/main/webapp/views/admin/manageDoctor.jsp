@@ -161,41 +161,38 @@ footer {
             <div id="search_doctor">의료진 검색</div>
             <br>
 
-            <table id="search_doctor_table">
-                <tr>
-                    <form action="<%= contextPath %>/searchDocByName.admin" method="get">
+            <form action="<%= contextPath %>/searchDoc.admin" method="get">
+                <table id="search_doctor_table">
+                    <tr>
                         <td class="left_cell">이름</td>
                         <td class="right_cell_1">
                             <input type="text" name="doctor_name" size="15">  &nbsp;
-                            <button type="submit" class="btn btn-sm btn-secondary">검색</button>
                         </td>    
-                    </form>
-                </tr>
+                    </tr>
 
-                <tr>
-                    <form action="<%= contextPath %>/searchDocByDNO.admin" method="get">
+                    <tr>
                         <td class="left_cell">사번</td>
                         <td class="right_cell_1">
                             <input type="text" name="doctor_no" size="15">  &nbsp;
-                            <button type="submit" class="btn btn-sm btn-secondary">검색</button>
                         </td>
-                    </form>
-                </tr>
+                    </tr>
 
-                <tr>
-                    <form action="<%= contextPath %>/searchDocByDept.admin" method="get">
+                    <tr>
                         <td class="left_cell">진료과</td>
                         <td class="right_cell_2">
-                            <input type="radio" name="dept" value="전체" id="label_all"><label for="label_all">&nbsp전체&nbsp&nbsp</label>
+                            <input type="radio" name="dept" value="전체" id="label_all" checked><label for="label_all">&nbsp전체&nbsp&nbsp</label>
                             <input type="radio" name="dept" value="외과" id="label_surgery"><label for="label_surgery">&nbsp외과&nbsp&nbsp</label>
                             <input type="radio" name="dept" value="내과" id="label_medicine"><label for="label_medicine">&nbsp내과&nbsp&nbsp</label>
                             <input type="radio" name="dept" value="치과" id="label_dentisty"><label for="label_dentisty">&nbsp치과&nbsp&nbsp</label>
                             <input type="radio" name="dept" value="안과" id="label_eye"><label for="label_eye">&nbsp안과&nbsp&nbsp</label>
-                            <button type="submit" class="btn btn-sm btn-secondary">검색</button>
                         </td>
-                    </form>
-                </tr>
-            </table>
+                    </tr>
+                </table>
+
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+                    <button type="submit" class="btn btn-secondary">검색</button> &nbsp;&nbsp;
+                </div>
+            </form>    
 
             <br>
 

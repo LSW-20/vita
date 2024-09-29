@@ -11,19 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.br.vita.doctor.model.service.DoctorService;
-import com.br.vita.doctor.model.vo.Doctor;
 
 /**
- * Servlet implementation class DoctorSelectByName
+ * Servlet implementation class DoctorSelect
  */
-@WebServlet("/searchDocByName.admin")
-public class DoctorSelectByName extends HttpServlet {
+@WebServlet("/searchDoc.admin")
+public class DoctorSelect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DoctorSelectByName() {
+    public DoctorSelect() {
         super();
     }
 
@@ -33,12 +32,13 @@ public class DoctorSelectByName extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// 1. 요청
-		// 의사 이름을 요청으로 받아온다. db에 의사 이름으로 select 후 결과를 가져온다.
+		// 의사 이름, 의사 사번, 의사 진료과 요청으로 받아온다. db에 select 후 결과를 가져온다.
 		
 		String doctorName = request.getParameter("doctor_name");
-		System.out.println(doctorName);
+		String doctorNo = request.getParameter("doctor_no");
+		String dept = request.getParameter("dept");
 		
-		List<Map<String, Object>> list = new DoctorService().selectByName(doctorName);
+		List<Map<String, Object>> list = new DoctorService().selectDoctor(doctorName, doctorNo, dept);
 		
 		
 		// 2. 응답
@@ -47,7 +47,6 @@ public class DoctorSelectByName extends HttpServlet {
 		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/admin/manageDoctor.jsp").forward(request, response);
-
 		
 	}
 

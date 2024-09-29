@@ -118,179 +118,7 @@ public class DoctorDao {
 	
 	
 	
-	/**
-	 * 의사 이름으로 의료진 계정 검색
-	 * author : 임상우
-	 * @param conn
-	 * @param doctorName
-	 * @return 검색된 의료진 계정 정보(DOCTOR, MEMBER 객체)
-	 */
-	public List<Map<String, Object>> selectByName(Connection conn, String doctorName) {
-		
-		//select문 => 여러 행 => 조인했으므로 vo 객체 두 개를 담는다. Map<String, Object>
-		//그런데 그냥 Map만 쓰면 key값이 같아서 덮어쓰여진다. List<Map<String, Object>>을 써야 한다.
-		
-		List<Map<String, Object>> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("selectByName");
-		
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, doctorName);
-			rset=pstmt.executeQuery();
-			
-			while(rset.next()) {
-				
-				Map<String, Object> docMap = new HashMap<>();
-				
-				docMap.put("doctor", new Doctor(rset.getString("DOCTOR_NO")
-												, rset.getDate("HIRE_DATE")
-												, rset.getString("DOCTOR_NAME")
-												, rset.getString("LICENCE_NO")
-												, rset.getString("DEPT_NAME")
-												));
-				docMap.put("member", new Member(rset.getString("PHONE")
-												, rset.getString("ADDRESS")
-												, rset.getString("USER_SSN")
-												));
-				
-				list.add(docMap);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return list;
-		
-	}
 	
-	
-	/**
-	 * 의사 사번으로 의료진 계정 검색
-	 * author : 임상우
-	 * @param conn
-	 * @param doctorNo
-	 * @return 검색된 의료진 계정 정보(DOCTOR, MEMBER 객체)
-	 */
-	public List<Map<String, Object>> selectByDNO(Connection conn, String doctorNo) {
-		
-		//select문 => 한 행 => 조인했으므로 vo 객체 두 개를 담는다. Map<String, Object>
-		//그런데 그냥 Map만 쓰면 key값이 같아서 덮어쓰여진다. List<Map<String, Object>>을 써야 한다.
-		List<Map<String, Object>> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("selectByDNO");
-		
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, doctorNo);
-			rset=pstmt.executeQuery();
-			
-			while(rset.next()) {
-				
-				Map<String, Object> docMap = new HashMap<>();
-				
-				docMap.put("doctor", new Doctor(rset.getString("DOCTOR_NO")
-												, rset.getDate("HIRE_DATE")
-												, rset.getString("DOCTOR_NAME")
-												, rset.getString("LICENCE_NO")
-												, rset.getString("DEPT_NAME")
-												));
-				docMap.put("member", new Member(rset.getString("PHONE")
-												, rset.getString("ADDRESS")
-												, rset.getString("USER_SSN")
-												));
-				
-				list.add(docMap);
-			}	
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return list;
-		
-	}
-	
-	
-	
-	/**
-	 * 의사 진료과로 의료진 계정 검색
-	 * author : 임상우
-	 * @param conn
-	 * @param dept
-	 * @return 검색된 의료진 계정 정보(DOCTOR, MEMBER 객체)
-	 */
-	public List<Map<String, Object>> selectByDept(Connection conn, String dept) {
-		
-		//select문 => 여러 행 => 조인했으므로 vo 객체 두 개를 담는다. Map<String, Object>
-		//그런데 그냥 Map만 쓰면 key값이 같아서 덮어쓰여진다. List<Map<String, Object>>을 써야 한다.
-		List<Map<String, Object>> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = "";
-		
-		if(dept != null) { // 텍스트 상자와 달리 radio 버튼과 checkbox는 선택하지 않으면 빈문자열이 아닌 null이 넘어와서 null pointer exception 발생한다.
-						   // null 체크를 하니 sql문이 비어있을 수 있다고 SQLException 에러는 발생했지만 화면엔 500에러 안 뜨고 다시 의료진 계정 관리 페이지로 돌아왔다. 
-			if(dept.equals("전체")) {
-				sql = prop.getProperty("selectByDept");
-			} else {
-				sql = prop.getProperty("selectByDept");
-				sql += "where dept_name = ?";
-			}
-		}	
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			
-			if(!dept.equals("전체")) {
-				pstmt.setString(1, dept);
-			}
-			
-			rset=pstmt.executeQuery();
-			
-			while(rset.next()) {
-				
-				Map<String, Object> docMap = new HashMap<>();
-				
-				docMap.put("doctor", new Doctor(rset.getString("DOCTOR_NO")
-												, rset.getDate("HIRE_DATE")
-												, rset.getString("DOCTOR_NAME")
-												, rset.getString("LICENCE_NO")
-												, rset.getString("DEPT_NAME")
-												));
-				docMap.put("member", new Member(rset.getString("PHONE")
-												, rset.getString("ADDRESS")
-												, rset.getString("USER_SSN")
-												));
-				
-				list.add(docMap);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return list;
-		
-	}
 	
 	public int doctorScheduleUpdate(Connection conn, List<DoctorSchedule> list) {
 		
@@ -859,7 +687,11 @@ public class DoctorDao {
 				mrc.setOpinion(rset.getString("OPINION"));
 				mrc.setDiagnosisName(rset.getString("DIAGNOSIS_NAME"));
 				mrc.setTreatmentContent(rset.getString("TREATMENT_CONTENT"));
+				
+				
 				mrc.setTreatmentDate(rset.getDate("TREATMENT_DATE"));
+				
+				
 				
 				doc.setLicenceNo(rset.getString("LICENCE_NO"));
 				doc.setDoctorName(rset.getString("DOCTOR_NAME"));
@@ -1208,7 +1040,7 @@ public class DoctorDao {
 				mrAllMap.put("docName", rset.getString("DOCTOR_NAME"));
 				
 				
-				
+				System.out.println("날짜:" + mrAllMap.get("treatDate"));
 			}
 			
 			
@@ -1225,6 +1057,107 @@ public class DoctorDao {
 		return mrAllMap;
 		
 		
+		
+	}
+	
+	
+
+	/**
+	 * 의사 계정 검색(이름, 사번, 진료과)
+	 * author : 임상우
+	 * @param conn
+	 * @param doctorName
+	 * @param doctorNo
+	 * @param dept
+	 * @return
+	 */
+	public List<Map<String, Object>> selectDoctor2(Connection conn, String doctorName, String doctorNo, String dept) {
+		
+		//select문 => 여러 행 => 조인했으므로 vo 객체 두 개를 담는다. Map<String, Object>
+		//그런데 그냥 Map<String, Object>에 담으면 key값이 같아서 덮어쓰여진다. List<Map<String, Object>>을 써야 한다.
+		List<Map<String, Object>> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = "";
+		
+
+		// 텍스트 상자와 달리 radio 버튼과 checkbox는 선택하지 않으면 빈문자열이 아닌 null이 넘어와서 null pointer exception 발생한다. => (수정) checked 줘서 NULL인 경우는 없다.
+		if(dept.equals("전체")) {
+			sql = prop.getProperty("selectDoctor2");
+		} else {
+			sql = prop.getProperty("selectDoctor2");
+			sql += "where dept_name LIKE ?";
+		}
+			
+		
+		if( !doctorName.equals("") ) { // 의사명을 입력했다면
+			if(dept.equals("전체")) {
+				sql += "WHERE DOCTOR_NAME LIKE ?";
+			} else {
+				sql += "AND DOCTOR_NAME LIKE ?";
+			}
+		}
+		
+		if( !doctorNo.equals("") ) { // 의사 사번을 입력했다면
+			if(dept.equals("전체")) {
+				sql += "WHERE DOCTOR_NO LIKE ?";
+			} else {
+				sql += "AND DOCTOR_NO LIKE ?";
+			}
+		}		
+		
+		
+		
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			int num=1; // 동적으로 물음표가 늘어나는 경우, 물음표들의 번호는 밖에 int형 변수를 선언해 놓고 후위증감연산자를 사용.
+			
+			
+			if(!dept.equals("전체")) { // 특정 진료과를 선택한 경우
+				pstmt.setString(num++, dept);
+			}
+			
+			
+			if( !doctorName.equals("") ) { // 의사명을 입력했다면
+				pstmt.setString(num++, "%" + doctorName + "%");
+			}
+			
+			if( !doctorNo.equals("") ) { // 의사 사번을 입력했다면
+				pstmt.setString(num++, "%" + doctorNo + "%");
+			}		
+			
+			
+			rset=pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Map<String, Object> docMap = new HashMap<>();
+				
+				docMap.put("doctor", new Doctor(rset.getString("DOCTOR_NO")
+												, rset.getDate("HIRE_DATE")
+												, rset.getString("DOCTOR_NAME")
+												, rset.getString("LICENCE_NO")
+												, rset.getString("DEPT_NAME")
+												));
+				docMap.put("member", new Member(rset.getString("PHONE")
+												, rset.getString("ADDRESS")
+												, rset.getString("USER_SSN")
+												));
+				
+				list.add(docMap);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 		
 	}
 	

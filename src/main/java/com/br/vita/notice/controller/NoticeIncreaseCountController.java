@@ -12,7 +12,7 @@ import com.br.vita.notice.model.service.NoticeService;
 /**
  * Servlet implementation class NoticeIncreaseCountController
  */
-@WebServlet("/increase.no")
+@WebServlet("/noticeIncrease.admin")
 public class NoticeIncreaseCountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,7 +33,7 @@ public class NoticeIncreaseCountController extends HttpServlet {
 		
 		int result = new NoticeService().increaseCount(noticeNo);
 	
-		response.sendRedirect(request.getContextPath() + "/detail.no?no=" + noticeNo);
+		response.sendRedirect(request.getContextPath() + "/noticeDetail.admin?no=" + noticeNo);
 	}
 
 	/**
