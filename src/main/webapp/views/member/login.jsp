@@ -197,9 +197,9 @@
 	                           <!-- </div> -->
 	                           <div>
 	                               <p class="find">
-	                                   <a href="<%= contextPath %>/idfind.do" class="find_id">아이디찾기</a>
+	                                   <a href="<%= contextPath %>/idfindchoice.me" class="find_id">아이디찾기</a>
 	                                   <span>|</span>
-	                                   <a href="<%= contextPath %>/pwfind.do" class="find_pwd">비밀번호 찾기</a>
+	                                   <a href="<%= contextPath %>/pwfindchoice.me" class="find_pwd">비밀번호 찾기</a>
 	                               </p>
 	                           </div>
 	                       </div>

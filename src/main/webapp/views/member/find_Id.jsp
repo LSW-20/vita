@@ -89,7 +89,7 @@
 	             비타 의료원 사이트에 등록된 회원정보를 입력해주세요.</p>
 	         <p class="title2"> * 필수입력항목</p>
 	         		<div class="container23">
-	             	<form action="<%= contextPath %>/idfind.sd" method="post" id="findId">
+	             	<form action="<%= contextPath %>/idfindsend.me" method="post" id="findId">
 	                 <table class="table-bordered">
 	                 	<thead>
 	                     <colgroup>
