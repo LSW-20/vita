@@ -157,15 +157,15 @@
 					    </div>
 					    <ul class="pagination mb-0">
 					      <li class='page-item <%=pi.getCurrentPage() == 1 ? "disabled" : ""%>'>
-					        <a class="page-link" href="<%=contextPath%>/list.ns?page=<%=pi.getCurrentPage()-1%>">Previous</a>
+					        <a class="page-link" href="<%=contextPath%>/newsList.admin?page=<%=pi.getCurrentPage()-1%>">Previous</a>
 					      </li>
 					      <% for(int p=pi.getStartPage(); p<=pi.getEndPage(); p++) { %>
 					        <li class='page-item <%=p == pi.getCurrentPage() ? "active" : ""%>'>
-					          <a class="page-link" href="<%= contextPath %>/list.ns?page=<%=p%>"><%= p %></a>
+					          <a class="page-link" href="<%= contextPath %>/newsList.admin?page=<%=p%>"><%= p %></a>
 					        </li>
 					      <% } %>
 					      <li class='page-item <%=pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : ""%>'>
-					        <a class="page-link" href="<%=contextPath%>/list.ns?page=<%=pi.getCurrentPage()+1%>">Next</a>
+					        <a class="page-link" href="<%=contextPath%>/newsList.admin?page=<%=pi.getCurrentPage()+1%>">Next</a>
 					      </li>
 					    </ul>
 					    <div>
@@ -177,17 +177,17 @@
 					  <ul class="pagination d-flex justify-content-center text-dark">
        
 		          <li class='page-item <%=pi.getCurrentPage() == 1 ? "disabled" : ""%>'>
-		          	<a class="page-link" href="<%=contextPath%>/list.ns?page=<%=pi.getCurrentPage()-1%>">Previous</a>
+		          	<a class="page-link" href="<%=contextPath%>/newsList.admin?page=<%=pi.getCurrentPage()-1%>">Previous</a>
 		          </li>
 		          
 		          <% for(int p=pi.getStartPage(); p<=pi.getEndPage(); p++) { %>
 		          	<li class='page-item <%=p == pi.getCurrentPage() ? "active" : ""%>'>
-		          		<a class="page-link" href="<%= contextPath %>/list.ns?page=<%=p%>"><%= p %></a>
+		          		<a class="page-link" href="<%= contextPath %>/newsList.admin?page=<%=p%>"><%= p %></a>
 		          	</li>
 		          <% } %>
 		          
 		          <li class='page-item <%=pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : ""%>'>
-		          	<a class="page-link" href="<%=contextPath%>/list.ns?page=<%=pi.getCurrentPage()+1%>">Next</a>
+		          	<a class="page-link" href="<%=contextPath%>/newsList.admin?page=<%=pi.getCurrentPage()+1%>">Next</a>
 		          </li>
 		          
 		        </ul>

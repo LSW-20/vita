@@ -33,7 +33,7 @@ public class NewsIncreaseCountController extends HttpServlet {
 		
 		int result = new NewsService().increaseCount(newsNo);
 	
-		response.sendRedirect(request.getContextPath() + "/detail.ns?no=" + newsNo);
+		response.sendRedirect(request.getContextPath() + "/newsDetail.admin?no=" + newsNo);
 	}
 
 	/**
