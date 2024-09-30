@@ -255,7 +255,7 @@ footer {
 								<tr>
 									<th>아이디&nbsp;<span style="color: red;">*</span></th>
 									<td colspan="2"><input id="userId" type="text"
-										class="id_1" name="userId">
+										class="id_1" name="userId" maxlength="15">
 										<button type="button" class="btn btn-secondary btn-sm"
 											onclick="fnIdCheck();">중복확인</button> <span id="text1">6~15자리
 											영문 소문자 포함, 숫자만 가능합니다. (한글, 특수문자 입력 불가)</span></td>
@@ -263,13 +263,13 @@ footer {
 								<tr>
 									<th>비밀번호&nbsp;<span style="color: red;">*</span></th>
 									<td colspan="2"><input id="userPwd" type="password"
-										class="pwd_1" name="userPwd" autocomplete="new-password"> <span id="text2">6~15자리의
+										class="pwd_1" name="userPwd" autocomplete="new-password" maxlength="15"> <span id="text2">6~15자리의
 											영문 대소문자, 숫자, 특수문자는 ‘!,@,#,$,%,^,&,*’만 가능합니다.</span></td>
 								</tr>
 								<tr>
 									<th>비밀번호 확인&nbsp;<span style="color: red;">*</span></th>
 									<td colspan="2"><input id="userPwdConfirm" type="password"
-										class="pwd_2" name="userPwdConfirm"></td>
+										class="pwd_2" name="userPwdConfirm" maxlength="15"></td>
 								</tr>
 								<tr>
 									<th>이름&nbsp;<span style="color: red;">*</span></th>
@@ -280,7 +280,7 @@ footer {
 								<tr>
 									<th>휴대폰 번호&nbsp;<span style="color: red;">*</span></th>
 									<td colspan="2"><input type="text" id="phone" class="name"
-										name="phone">
+										name="phone" maxlength="13">
 										<!-- Button to Open the Modal -->
 									  <button type="button" class="btn btn-secondary btn-sm" onclick="fnHpCheck()">인증</button>
 										<span id="text4">-를 포함한 본인 휴대폰번호를 정확하게 입력하세요. &nbsp;&nbsp;ex)010-1111-2222</span></td>
@@ -366,7 +366,7 @@ footer {
 								<tbody>
 				          <tr>
 										<th>주민등록번호&nbsp;<span style="color: red;">*</span></th>
-										<td colspan="2"><input type="text" id="userSsn" class="name" name="userSsn">
+										<td colspan="2"><input type="text" id="userSsn" class="name" name="userSsn" maxlength="14">
 										<span id="text6">- 를 포함해서 적어주세요. &nbsp;&nbsp;ex) 900101-2222222</span>
 										</td>													
 									</tr>
