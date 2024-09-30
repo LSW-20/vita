@@ -49,6 +49,10 @@
         font-weight: bold;
         margin-bottom: 10px;
     }
+    .checkupDate{
+        font-weight: bold;
+        margin-bottom: 10px;    
+    }
     .container_reservations {
         display: flex;
         flex-wrap: wrap;
@@ -91,7 +95,12 @@
         position: relative;
         float: right;
     }
- 
+  /* 두 예약 목록을 나란히 배치 */
+ .reservation_wrapper {
+     display: flex;
+     gap: 1px; /* 두 리스트 간 간격 */
+     
+ }
  /* footer길이 별도 부여 */
     footer{
      margin-top: 1053px;
@@ -114,6 +123,7 @@
             진료과나 접수창구에서 예약하신 진료의 변경은 콜센터에서 가능합니다. 문의: 1588-XXXX <br>
             <strong>*인터넷으로 예약한 진료만 취소 가능합니다.</strong>
         </div>
+        <div class="reservation_wrapper">
         <!-- 예약 내역 없을 때 -->
         <div id="no_reservation" class="no_reservation" <%= (consultations.isEmpty() && healthChecks.isEmpty()) ? "" : "style='display:none;'" %>>
             예약 내역이 없습니다.
@@ -148,18 +158,21 @@
                         <input type="hidden" name="appointmentNo" value="<%= h.getAppointmentNo() %>">
                         <button type="submit" class="cancel_button">취소</button>
                     </form>
-                    <div class="reservation_date"><%= h.getAppointmentDate() %></div><hr>
+                    <div class="checkupDate"><%= h.getCheckUpDate() %></div>
+                    <div class="appType"><b>건강검진</b></div><hr>
                     <div class="patient_name">환자명 : <%= h.getUserName() %></div>
-                    <div class="appointment_time">예약시간 : <%= h.getAppointmentTime() %></div>
-                    <div class="company_name">회사명 : <%= h.getCompName() %></div>
+                    <div class="appointment_time">예약시간 : <%= h.getAppointmentTime() %> 검진</div>
                 </div>
             <% } %>
         </div>
 
         <!-- 추가 진료 예약 버튼 -->
-        <button id="add_reservation_button" class="add_reservation_button">추가진료예약</button>
     </div>
+        <button id="add_reservation_button" class="add_reservation_button">추가진료예약</button>
    </div>
+        
+        
+        </div>
 
   <script>
 

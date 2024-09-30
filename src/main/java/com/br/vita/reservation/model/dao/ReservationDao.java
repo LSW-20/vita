@@ -204,10 +204,11 @@ public class ReservationDao {
 					//CHECKUP_APP에서 온 데이터는 HealthCheck리스트에 추가
 					hList.add(new HealthCheck(rset.getString("APPOINTMENT_NO")
 											, rset.getString("COMPANY_NO")
-											, rset.getDate("APPOINTMENT_DATE")
+											, rset.getDate("CHECKUP_DATE")
 										    , rset.getString("APPOINTMENT_TIME")
 										    , rset.getString("COMP_NAME")
 										    , rset.getString("USER_NAME")
+										    , rset.getDate("CHECKUP_DATE")
 							
 							));
 				}

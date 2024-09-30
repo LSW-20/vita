@@ -91,6 +91,7 @@
             DEPT_NAME,
             NULL AS COMPANY_NO,  -- CARE_APP에는 COMPANY_NO가 없으므로 NULL
             NULL AS COMP_NAME,  -- CARE_APP에는 COMP_NAME도 없으므로 NULL
+            NULL AS CHECKUP_DATE,
             'CARE' AS SOURCE_TYPE
         FROM CARE_APP C
         JOIN DOCTOR D ON C.DOCTOR_NO = D.DOCTOR_NO
@@ -102,17 +103,18 @@
     (
         SELECT
             APPOINTMENT_NO,
-            APPOINTMENT_DATE,
+            APPOINTMENT_DATE,           
             APPOINTMENT_TIME,
             USER_NAME,
             NULL AS DOCTOR_NAME,  -- CHECKUP_APP에는 DOCTOR_NAME이 없으므로 NULL
             NULL AS DEPT_NAME,  -- CHECKUP_APP에는 DEPT_NAME이 없으므로 NULL
             COMPANY_NO,  -- CHECKUP_APP에서만 사용
             COMP_NAME,  -- CHECKUP_APP에서만 사용
+            CHECKUP_DATE,
             'CHECKUP' AS SOURCE_TYPE
         FROM CHECKUP_APP A
         JOIN MEMBER M ON A.USER_NO = M.USER_NO
-        JOIN COMPANY C ON A.COMPANY_NO = C.COMP_NO
+        FULL OUTER JOIN COMPANY C ON A.COMPANY_NO = C.COMP_NO
         WHERE A.USER_NO = ?
     )
 	</entry>
