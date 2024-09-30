@@ -88,7 +88,7 @@
             <br><br>
             <div align="left">
               <a href="<%= contextPath %>/Healthnormal.rv" class="btn" id="btn-color" style="width:170px;">검진 예약하기</a>
-               <a href="/vita/views/reservation/reservationList.jsp" class="btn ml-4" id="btn-color">검진 예약 조회하기</a>
+               <a href="<%= contextPath %>/list.rv"  class="btn ml-4" id="btn-color">검진 예약 조회하기</a>
             </div>
           </div>
           <div class="ml"id="vertical-line"></div>
@@ -102,8 +102,8 @@
             <h6>하실 수 있습니다.</h6>
             <br><br>
             <div align="left">
-               <a href="/vita/views/reservation/company_Health_1.jsp" class="btn" id="btn-color" style="width:170px;">검진 예약하기</a>
-             	 <a href="/vita/views/reservation/reservationList.jsp" class="btn ml-4" id="btn-color">검진 예약 조회하기</a>
+               <a href="<%= contextPath %>/SelectCompany.rv" class="btn" id="btn-color" style="width:170px;">검진 예약하기</a>
+             	 <a href="<%= contextPath %>/list.rv"  class="btn ml-4" id="btn-color">검진 예약 조회하기</a>
             </div>
           </div>
          

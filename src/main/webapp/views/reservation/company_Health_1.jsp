@@ -114,7 +114,7 @@
 
     <div class="container11" >
      
-    <form id="checkListForm" action="<%= contextPath %>/SelectCompanyController.rv" method="post">
+    <form id="checkListForm" action="<%= contextPath %>/SelectCompany.rv" method="post">
         <table class="container11 table-bordered" id="table_custom" style="margin-left:93px; border-color:white;">
                 
             <tr>

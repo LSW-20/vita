@@ -992,6 +992,42 @@ public class ReservationDao {
 		
 	}
 
+	public List<HealthCheck> selectSuccessMember(Connection conn, String userNo) {
+		
+
+		List<HealthCheck> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCompanySuccess");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new HealthCheck(rset.getString("APPOINTMENT_NO")
+										, rset.getString("USER_NO")
+										, rset.getDate("APPOINTMENT_DATE")
+										, rset.getString("APPOINTMENT_TYPE")
+										, rset.getDate("CHECKUP_DATE")	
+										, rset.getString("TOTAL_PRICE")
+						));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+		
+		
+	}
+
 
 		
 		

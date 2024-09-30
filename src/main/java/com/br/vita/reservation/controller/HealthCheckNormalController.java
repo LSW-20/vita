@@ -54,8 +54,8 @@ public class HealthCheckNormalController extends HttpServlet {
 		Member normal = new ReservationService().NormalMember(userId, userName, userSSN, phone, email);
 		
 		if (normal == null) {
-			session.setAttribute("alertMsg", "등록된 회원정보와 일치하지 않습니다.");
 			request.getRequestDispatcher("/views/reservation/healthCheckUp_1.jsp").forward(request, response);
+			session.setAttribute("alertMsg", "등록된 회원정보와 일치하지 않습니다.");
 		} else {
 			session.setAttribute("alertMsg", "회원정보와 일치합니다.");
 			request.getRequestDispatcher("/views/reservation/healthCheckUp_3.jsp").forward(request, response);

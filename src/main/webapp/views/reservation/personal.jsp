@@ -144,7 +144,7 @@
                       <div class="d-flex "> 
                            <div style="margin-left: 50px; margin-top: 10px;"><h4><%=  ((Member)session.getAttribute("loginUser")).getUserDate() %></h4></div>
                            <div style="margin-left: 25px; margin-top: 10px;"><h4>-</h4></div>
-                          <div> <input type="text" class="form-control" maxlength="7" name="SSN-back" id="num" style="width:535px; height:50px; margin-left: 25px" required></div>
+                          <div> <input type="password" class="form-control" maxlength="7" name="SSN-back" id="num" style="width:535px; height:50px; margin-left: 25px" required></div>
                       </div>
                      </td>  
                       

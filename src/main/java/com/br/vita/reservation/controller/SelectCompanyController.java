@@ -17,7 +17,7 @@ import com.br.vita.reservation.model.service.ReservationService;
 /**
  * Servlet implementation class SelectCompanyController
  */
-@WebServlet("/SelectCompanyController.rv")
+@WebServlet("/SelectCompany.rv")
 public class SelectCompanyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -46,8 +46,8 @@ public class SelectCompanyController extends HttpServlet {
 		
 		
 		 if (Company == null  || Company.isEmpty()) {
-			 session.setAttribute("alertMsg", "사원 정보가 일치하지 않습니다.");
 			 request.getRequestDispatcher("/views/reservation/company_Health_1.jsp").forward(request, response);
+			 session.setAttribute("alertMsg", "사원 정보가 일치하지 않습니다.");
 
 	        } else {
 	        	session.setAttribute("alertMsg", "사원 정보가 일치합니다.");

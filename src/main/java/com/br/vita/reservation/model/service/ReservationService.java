@@ -416,6 +416,14 @@ public class ReservationService {
 		return Success1;
 	}
 
+	public List<HealthCheck> selectSuccessMember(String userNo) {
+		Connection conn = getConnection();
+		List<HealthCheck> Success1 = rdao.selectSuccessMember(conn, userNo);
+		close(conn);
+		return Success1;
+	}
+
+
 	
 
 	

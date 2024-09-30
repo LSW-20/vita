@@ -199,7 +199,7 @@
 	                  <td class="d-flex"> 
 					            <input type="text" name="userSSN1" class="form-control" maxlength="6" id="num1" style="width:500px; height:50px; margin-left:30px" required>
 					            <h3 style="margin-left:27px; margin-top: 7px;">-</h3>
-					            <input type="text" name="userSSN2" class="form-control" maxlength="7" id="num2" style="width:500px; height:50px; margin-left:30px" required>
+					            <input type="password" name="userSSN2" class="form-control" maxlength="7" id="num2" style="width:500px; height:50px; margin-left:30px" required>
 					          </td>
 	                  
 	                </tr>
