@@ -270,6 +270,8 @@ public class MemberDao {
 	}//deleteMember
 	
 	
+	
+	
 	public int signUpAdultMember(Connection conn, Member m) {
 	    int result = 0;
 	    PreparedStatement pstmt = null;
@@ -683,6 +685,36 @@ public class MemberDao {
         }
        
         return listCount;
+	}
+
+	/**
+	 * 회원탈퇴시 함께 실행
+	 * 예약 완료처리해서 노카운트 처리
+	 * @author 최보겸
+	 * @param conn
+	 * @param userId
+	 * @param userPwd
+	 * @return result
+	 */
+	// CARE_APP 테이블에서 예약 상태 업데이트
+	public int deleteCareApp(Connection conn, String userId, String userPwd) {
+	    int result = 0;
+	    PreparedStatement pstmt = null;
+	    String sql = prop.getProperty("deleteMemberCareApp"); // deleteMemberCareApp 쿼리 가져오기
+
+	    try {
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, userId);
+	        pstmt.setString(2, userPwd);
+
+	        result = pstmt.executeUpdate(); // 쿼리 실행
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(pstmt);
+	    }
+
+	    return result; // 처리된 행의 수 반환
 	}
 	
 	

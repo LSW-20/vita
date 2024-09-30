@@ -100,6 +100,16 @@ WHERE
 		   AND USER_PWD = ?		
 	</entry>
 	
+	<!--탈퇴한 회원의 예약 내역 함께 삭제-->
+	<entry key="deleteMemberCareApp">
+		UPDATE CARE_APP
+		   SET CARE_STATUS = 'Y'
+		 WHERE USER_NO = (SELECT USER_NO
+		                    FROM MEMBER
+		                   WHERE USER_ID = ?
+		                     AND USER_PWD = ?)		
+	</entry>
+	
 	<entry key="signUpAdultMember">
 		 INSERT
 		 	 INTO MEMBER
