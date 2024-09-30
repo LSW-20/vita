@@ -11,8 +11,12 @@ public class HealthCheck {
 	private String appointmentTime;
 	private Date checkUpDate;
 	private String totalPrice;
-
 	
+	private String compName;
+	private String userName;
+
+
+
 	public HealthCheck() {}
 
 	public HealthCheck(String appointmentNo, String userNo, String companyNo, Date appointmentDate,
@@ -49,6 +53,19 @@ public class HealthCheck {
 		this.appointmentType = appointmentType;
 		this.checkUpDate = checkUpDate;
 		this.totalPrice = totalPrice;
+	}
+
+	
+	//예약조회용 생성자_보겸
+	public HealthCheck(String appointmentNo, String companyNo, Date appointmentDate,
+			String appointmentTime, String compName, String userName) {
+		super();
+		this.appointmentNo = appointmentNo;
+		this.companyNo = companyNo;
+		this.appointmentDate = appointmentDate;
+		this.appointmentTime = appointmentTime;
+		this.compName = compName;
+		this.userName = userName;
 	}
 
 	public String getAppointmentNo() {
@@ -114,7 +131,22 @@ public class HealthCheck {
 	public void setTotalPrice(String totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+	
+	public String getCompName() {
+		return compName;
+	}
 
+	public void setCompName(String compName) {
+		this.compName = compName;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 	@Override
 	public String toString() {
