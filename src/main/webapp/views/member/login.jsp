@@ -70,7 +70,7 @@
 		  .login_Pwd {
 		      padding: 0 0 0 40px;
 		      width: 300px;
-		      height: 45px;
+		      height: 46px;
 		      border: 1px solid #d6d6d6;
 		      background: url(/vita/assets/image/pwd아이콘.png) 15px 11px / auto 20px no-repeat;
 		      border-radius: 4px;

@@ -174,25 +174,42 @@ public class ReservationDao {
 	 * @param userNo
 	 * @return consultations
 	 */
-	public List<Consultation> selectCareAppList(Connection conn, String userNo) {
-		List<Consultation> list = new ArrayList<>();
+	public Map<String, List<?>> selectCareAppList(Connection conn, String userNo) {
+		List<Consultation> cList = new ArrayList<>();
+		List<HealthCheck> hList = new ArrayList<>();
+		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectCareAppList");
+		String sql = prop.getProperty("selectCareAndCheckupAppList");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userNo);
+			pstmt.setString(2, userNo);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Consultation(rset.getString("APPOINTMENT_NO")
-										, rset.getDate("APPOINTMENT_DATE")
-										, rset.getString("APPOINTMENT_TIME")
-										, rset.getString("USER_NAME")
-										, rset.getString("DOCTOR_NAME")
-										, rset.getString("DEPT_NAME")			
-						));
+				String sourceType = rset.getString("SOURCE_TYPE");
 				
+				if("CARE".equals(sourceType)) {
+					//CARE_APP에서 온 데이터는 Consultation리스트에 추가
+					cList.add(new Consultation(rset.getString("APPOINTMENT_NO")
+											 , rset.getDate("APPOINTMENT_DATE")
+											 , rset.getString("APPOINTMENT_TIME")
+											 , rset.getString("USER_NAME")
+											 , rset.getString("DOCTOR_NAME")
+											 , rset.getString("DEPT_NAME")			
+							));
+				}else if("CHECKUP".equals(sourceType)) {
+					//CHECKUP_APP에서 온 데이터는 HealthCheck리스트에 추가
+					hList.add(new HealthCheck(rset.getString("APPOINTMENT_NO")
+											, rset.getString("COMPANY_NO")
+											, rset.getDate("APPOINTMENT_DATE")
+										    , rset.getString("APPOINTMENT_TIME")
+										    , rset.getString("COMP_NAME")
+										    , rset.getString("USER_NAME")
+							
+							));
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -200,8 +217,11 @@ public class ReservationDao {
 			close(rset);
 			close(pstmt);
 		}
-		
-		return list;
+		//두 리스트를 Map에 담아 리턴
+		Map<String, List<?>> resultMap = new HashMap<>();
+		resultMap.put("cList", cList);
+		resultMap.put("hList", hList);
+		return resultMap;
 	}
    
 	/**

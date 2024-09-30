@@ -432,6 +432,22 @@ public class DoctorService {
 		close(conn);
 		return list;
 	}
+
+
+
+	/**
+	 * 진료과로 의사 리스트 검색 ajax
+	 * author : 임상우
+ 	 * @param dept
+	 * @return 조회된 데이터들
+	 */
+	public List<String> selectDoctorBYDept(String dept) {
+		Connection conn = getConnection();
+		List<String> docList = dDao.selectDoctorBYDept(conn, dept);
+		
+		close(conn);
+		return docList;
+	}
 	
 	
 	

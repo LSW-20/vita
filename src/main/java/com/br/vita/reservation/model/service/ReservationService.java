@@ -83,11 +83,11 @@ public class ReservationService {
 	 * @param userNo 회원 식별할 회원번호
 	 * @return consultations 예약정보 가져올 객체
 	 */
-	public List<Consultation> selectCareAppList(String userNo) {
+	public Map<String, List<?>> selectCareAppList(String userNo) {
 		Connection conn = getConnection();
-		List<Consultation> consultations = rdao.selectCareAppList(conn, userNo);
+		Map<String, List<?>> reservationsMap = rdao.selectCareAppList(conn, userNo);
 		close(conn);
-		return consultations;
+		return reservationsMap;
 	}
 
 	/**
