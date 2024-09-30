@@ -18,6 +18,9 @@
     List<Object> allReservations = new ArrayList<>();
     allReservations.addAll(consultations);
     allReservations.addAll(healthChecks);
+
+    // 예약 개수에 따른 justify-content 스타일 결정
+    String justifyContentStyle = allReservations.size() <= 2  ? "flex-start" : "center";
 %>
 
 <!DOCTYPE html>
@@ -64,11 +67,11 @@
     margin-bottom: 10px;
  }
 
- /* 컨테이너 중앙 정렬 */
+ /* 컨테이너 중앙 또는 왼쪽 정렬 */
  .container_reservations {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start; /* 줄 바꿈 시 왼쪽부터 추가되게 함 */
+    justify-content: <%= justifyContentStyle %>; /* 예약 개수에 따른 정렬 방식 */
     gap: 25px;
     margin: 0 auto;
  }
@@ -111,15 +114,6 @@
     float: right;
  }
 
- /* 예약 박스들을 중앙에 배치 */
- .reservation_wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    width: 100%;
- }
-
  footer{
     margin-top: 1053px;
  }
@@ -136,7 +130,7 @@
         <h5>&nbsp;&nbsp;예약 현황</h5>
         
         <!-- 안내 텍스트박스 -->
-        <div class="info_box ">
+        <div class="info_box">
             <%= ((Member)session.getAttribute("loginUser")).getUserName() %>님(환자 번호 : <%= ((Member)session.getAttribute("loginUser")).getUserNo() %> )의 진료 예약 현황입니다. <br>
             진료과나 접수창구에서 예약하신 진료의 변경은 콜센터에서 가능합니다. 문의: 1588-XXXX <br>
             <strong>*인터넷으로 예약한 진료만 취소 가능합니다.</strong>
@@ -194,7 +188,7 @@
   <script>
     // 추가 진료예약 버튼 클릭 시 예약 페이지로 이동
     document.getElementById("add_reservation_button").addEventListener('click', function() {
-        window.location.href = '<%= request.getContextPath() %>/consultationAL.rv';
+        window.location.href = '<%= request.getContextPath() %>/personal.rv';
     });
   </script>
 
