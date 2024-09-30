@@ -52,7 +52,7 @@
 		        
 			if (result == 1 ) {
 	            session.setAttribute("alertMsg", "진료예약이 완료되었습니다.");
-	        	request.getRequestDispatcher("/views/reservation/healthCheckUp_2.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath());
 	        	
 	        } else {
 	            session.setAttribute("alertMsg", "추가에 실패하였습니다.");

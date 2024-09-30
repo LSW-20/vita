@@ -1,4 +1,4 @@
-@ -1,383 +1,383 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -76,7 +76,7 @@
       }
     footer{
    
-      margin-top: 2550px;
+      margin-top: 2000px;
     }   
     
     .disabled {
@@ -113,31 +113,7 @@
             
         </table>
    
-    <br><br>
-
-    <h3 style="margin-left:93px"><b>총 예상비용 : </b><b style="color:rgb(31, 43, 108);" id="price">0 원</b></h3>
-
-    <hr style= "border-color:rgb(31, 43, 108); margin-left: 90px; margin-right: 90px;">
-    <br>
-     <table class="container11 table-bordered" id="table_custom" style="margin-left:93px; ">
-             
-         <tr>
-           <td id="color" style="width:500px; height: 350px;"><h4 style="margin:auto"><sup style="color:rgb(255, 165, 0)">*</sup><b> 필수</b></h4></td>
-           <td style="text-align: left;"> <h3 style="margin-left:30px">· 건강검진</h3><br>
-            <h4 style="margin-left:30px; color: rgb(153, 156, 158);">내시경 검사는 전화 예약만 가능합니다.</h4>
-             <h4 style="margin-left:30px; color: rgb(153, 156, 158);">위암검진은 대상자의 경우 추가 연락 없을 시 위장조영촬영으로 진행됩니다.</h4>
-             <h4 style="margin-left:30px; color: rgb(153, 156, 158);">내시경 희망 하실 경우 (02)123-4567으로 연락부탁드립니다.</h4>
-             <br>
-             <button type="button" class="btn border-1 border-dark" id="btn-color" name="priceController" style="width: 200px; margin-left:30px;">건강검진</button>
-         </td>
-          
-         </tr>
-    
-    
-    
-        
-     </table>
-		
+  
 		</div>
 		<script>
 		
@@ -357,20 +333,6 @@
     <br><br><br>
    
      
-    
-
-        
-        <div align="center">
-     
-           <a href="/vita/views/reservation/healthCheckUp_3.jsp" class="btn border-1 border-dark" id="btn-color" style="width: 150px;" onclick="return validateAndProceed(event)">다음</a>
-           <a href="/vita/views/reservation/healthCheckUp_1.jsp" class="btn btn-light border-2 border-dark" style="width: 150px; margin-left:30px;">이전</a>
-          
-        </div>
-
-        <br><br> <br><br> <br><br> <br><br> 
-
-
-
 
 
         
