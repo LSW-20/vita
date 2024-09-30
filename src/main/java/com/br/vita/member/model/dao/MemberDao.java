@@ -536,7 +536,7 @@ public class MemberDao {
 	}
 
 	/**
-	 * 회원 아이디와 이름으로 회원 정보 검색
+	 * 회원 아이디와 이름으로 회원 정보 검색 (페이징 처리)
 	 * author : 임상우
 	 * @param conn
 	 * @param userId
@@ -621,12 +621,12 @@ public class MemberDao {
 	}
 
 	/**
-	 * 전체 회원 수 조회 (일반회원만)
+	 * userid와 username으로 회원 수 조회 (일반회원만)
 	 * author : 임상우
 	 * @param conn
 	 * @param userName 
 	 * @param userId 
-	 * @return 전체회원 수
+	 * @return userid와 username으로 조회된 회원 수
 	 */
 	public int selectMemberListCount(Connection conn, String userId, String userName) {
 		 

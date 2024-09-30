@@ -84,7 +84,7 @@ public class MemberSelect extends HttpServlet {
         
         request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
-		request.setAttribute("user_name", userName); // 검색 조건 유지
+		request.setAttribute("user_name", userName); // 검색 조건 유지 <- 페이징바에서 다른 페이지를 눌렀을 때도 JSP에서 이 값을 넘기면서 이 서블릿을 다시 호출해야 제대로 나온다.
 		request.setAttribute("user_id", userId);    // 검색 조건 유지
 		request.getRequestDispatcher("/views/admin/manageMember.jsp").forward(request, response);
 		
