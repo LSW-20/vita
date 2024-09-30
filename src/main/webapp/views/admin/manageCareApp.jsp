@@ -138,7 +138,8 @@ footer {
                 <tr>
                     <td class="left_cell">진료과</td>
                     <td class="right_cell">
-                        <select name="dept_name" required>
+                        <select name="dept_name" required onchange="selectDept();" id="deptSelect">
+                            <option disabled selected>선택(필수)</option>
                             <option>외과</option>
                             <option>내과</option>
                             <option>치과</option>
@@ -147,6 +148,40 @@ footer {
                     </td>
                 </tr>
 
+
+
+        <script>
+
+        function selectDept() {
+        
+            $.ajax({
+                url: '<%= request.getContextPath() %>/searchDocByDept.admin',
+                data: {
+                    dept: $('#deptSelect').val()
+                },
+
+                success: function(res) { // res에 JSONArray가 온다.
+
+                    console.log(res); // ['박시우'] <- 진료과당 의사 1명임    
+
+                    let doctorList = '';
+                    for(let data of res){
+                        doctorList += '<option>' + data + '</option>';
+                    }
+                    $('#target_doctor').html(doctorList); // html 태그까지 반영시키려면 text대신 html 메소드
+
+                },
+                error: function() {
+                    console.log('진료과로 의사 목록 가져오기 통신 실패');
+                }
+            })
+
+        }
+        </script>
+                
+
+
+                <%--  ajax 사용 전
                 <tr>
                     <td class="left_cell">의료진</td>
                     <td>
@@ -161,6 +196,22 @@ footer {
                         </select>
                     </td>
                 </tr>
+                --%>
+
+
+                <%-- ajax 사용 후 --%>
+                <tr>
+                    <td class="left_cell">의료진</td>
+                    <td>
+                        <select name="doc_name" id="target_doctor" required >
+       
+                        </select>
+                    </td>
+                </tr>
+                
+
+
+
 
                 <tr>
                     <td class="left_cell">날짜</td>

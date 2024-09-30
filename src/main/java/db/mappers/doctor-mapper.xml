@@ -519,6 +519,15 @@ AND MR.CARE_NO = ?
 	</entry>
 	
 	
+	<!-- (상우) 진료과로 의사 목록 조회 ajax -->
+	<entry key="selectDoctorBYDept">
+	
+	SELECT DOCTOR_NAME
+	  FROM DOCTOR
+	 WHERE DEPT_NAME = ? 
+	        			
+	</entry>
+	
 	
 </properties>
 

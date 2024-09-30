@@ -1164,4 +1164,39 @@ public class DoctorDao {
 	
 	
 	
+	public List<String> selectDoctorBYDept(Connection conn, String dept) {
+
+		List<String> docList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectDoctorBYDept");
+		
+
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dept);
+
+			rset=pstmt.executeQuery();
+			
+			
+			while(rset.next()) {
+				
+				docList.add(rset.getString("DOCTOR_NAME"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return docList;
+	}
+	
+	
+	
+	
 }

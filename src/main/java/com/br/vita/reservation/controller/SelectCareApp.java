@@ -38,7 +38,7 @@ public class SelectCareApp extends HttpServlet {
 		// care_app, member, doctor 테이블에서 화면에 뿌릴 데이터들을 조회한다. 
 		
 		String deptName = request.getParameter("dept_name");
-		String docName = request.getParameter("doc_name").substring(0, request.getParameter("doc_name").indexOf("("));
+		String docName = request.getParameter("doc_name");
 		String appDate1 = request.getParameter("app_date1");
 		String appDate2 = request.getParameter("app_date2");
 		
