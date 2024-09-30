@@ -508,7 +508,7 @@ footer {
 	            const gender = document.querySelector('input[name="gender"]:checked')?.value;
 	            const rep = document.getElementById("rep").value;
 
-	            if (!rep) {
+	            if (!repre) {
 	                alert("법정대리인 이름을 입력해 주세요.");
 	                return false;
 	            }
