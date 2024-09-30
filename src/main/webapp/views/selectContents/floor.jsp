@@ -46,6 +46,8 @@
     </style>
     <section>
         <br><br>
+        <div class="container" style="text-align: center; font-size: 30px; height: 50px;"><b>층별안내</b></div>
+        <br>
         <div class="container" style="text-align: center; width: 900px; height: 600px; background-color: rgb(243, 226, 207);">
           <br><br>
           <table>
