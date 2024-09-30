@@ -80,21 +80,43 @@
 	</entry>
 
 	<!--예약조회_보겸 -->
-	<entry key="selectCareAppList">
-		SELECT
-		APPOINTMENT_NO
-		, APPOINTMENT_DATE
-		, APPOINTMENT_TIME
-		, USER_NAME
-		, DOCTOR_NAME
-		, DEPT_NAME
-		FROM CARE_APP C
-		JOIN DOCTOR D
-		ON C.DOCTOR_NO = D.DOCTOR_NO
-		JOIN MEMBER M
-		ON C.USER_NO = M.USER_NO
-		WHERE C.USER_NO = ?
-		AND CARE_STATUS = 'N'
+	<entry key="selectCareAndCheckupAppList">
+    (
+        SELECT
+            APPOINTMENT_NO,
+            APPOINTMENT_DATE,
+            APPOINTMENT_TIME,
+            USER_NAME,
+            DOCTOR_NAME,
+            DEPT_NAME,
+            NULL AS COMPANY_NO,  -- CARE_APP에는 COMPANY_NO가 없으므로 NULL
+            NULL AS COMP_NAME,  -- CARE_APP에는 COMP_NAME도 없으므로 NULL
+            NULL AS CHECKUP_DATE,
+            'CARE' AS SOURCE_TYPE
+        FROM CARE_APP C
+        JOIN DOCTOR D ON C.DOCTOR_NO = D.DOCTOR_NO
+        JOIN MEMBER M ON C.USER_NO = M.USER_NO
+        WHERE C.USER_NO = ?
+        AND CARE_STATUS = 'N'
+    )
+    UNION
+    (
+        SELECT
+            APPOINTMENT_NO,
+            APPOINTMENT_DATE,           
+            APPOINTMENT_TIME,
+            USER_NAME,
+            NULL AS DOCTOR_NAME,  -- CHECKUP_APP에는 DOCTOR_NAME이 없으므로 NULL
+            NULL AS DEPT_NAME,  -- CHECKUP_APP에는 DEPT_NAME이 없으므로 NULL
+            COMPANY_NO,  -- CHECKUP_APP에서만 사용
+            COMP_NAME,  -- CHECKUP_APP에서만 사용
+            CHECKUP_DATE,
+            'CHECKUP' AS SOURCE_TYPE
+        FROM CHECKUP_APP A
+        JOIN MEMBER M ON A.USER_NO = M.USER_NO
+        FULL OUTER JOIN COMPANY C ON A.COMPANY_NO = C.COMP_NO
+        WHERE A.USER_NO = ?
+    )
 	</entry>
 
 	<!--예약 취소_보겸 -->
@@ -159,28 +181,6 @@
 	</entry>
 	
 
-	<!-- (상우) 진료예약 조회 -->
-	<entry key="selectCareApp">
-	
-		SELECT 
-						APPOINTMENT_NO
-					, DEPT_NAME
-					, DOCTOR_NAME
-					, TO_CHAR(APPOINTMENT_DATE, 'YYYY-MM-DD') AS APPOINTMENT_DATE
-					, APPOINTMENT_TIME
-					, C.USER_NO AS USER_NO
-					, USER_NAME
-					, PHONE
-					, CARE_STATUS
-		  FROM
-		 				CARE_APP C 
-		 	JOIN  MEMBER M ON C.USER_NO = M.USER_NO
-      JOIN  DOCTOR D ON C.DOCTOR_NO = D.DOCTOR_NO
-     WHERE  DEPT_NAME = ?
-       AND  DOCTOR_NAME = ?
-		  	AND TRUNC(APPOINTMENT_DATE) BETWEEN ? AND ?							
-		
-	</entry>
 
 
 	<!-- (상우) 진료예약 추가(2/2) -->
@@ -428,9 +428,12 @@
 		FROM CHECKUP_APP
         
 		WHERE USER_NO = ?
-		AND APPOINTMENT_NO = ?
+		AND APPOINTMENT_NO = (SELECT APPOINTMENT_NO 
+							FROM CHECKUP_APP 
+							WHERE USER_NO = ?
+							AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE))
 		AND TRUNC(CHECKUP_DATE) = ?
-		AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE))
+		AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE)
 	</entry>
 	
 	<entry key="selectCompany11">
@@ -475,5 +478,127 @@ WHERE
 	
 	
 	
+	
+	
+	<!-- (상우) 기업 건강검진 예약 조회 -->
+	<entry key="selectCheckupAppC">
+	
+	SELECT	
+					APPOINTMENT_NO
+				, CHECKUP_DATE
+				, APPOINTMENT_TIME
+				, TOTAL_PRICE	
+        , EMP_NO
+        , EMP_NAME
+        , MEDI_LIST
+        , SURGERY_YN
+        , SURGERY_NAME
+        , FLY_YN
+	  FROM  
+	  			CHECKUP_APP
+    JOIN  COMPANY ON COMPANY_NO = COMP_NO
+    JOIN  MEMBER USING (USER_NO)
+    JOIN  EMPLOYEE ON USER_SSN = SSN
+    JOIN  CHECK_LIST CL ON APPOINTMENT_NO = CHECKUP_NO
+
+	 WHERE  APPOINTMENT_TYPE = 'B'
+     AND  TRUNC(CHECKUP_DATE) BETWEEN ? AND ?	  
+		 AND  COMP_NAME = ?
+	</entry>
+	
+	
+	
+	<!-- (상우) 진료과, 의사명, 시작일, 종료일로 진료 예약 수 조회 (페이징 처리) -->
+	<entry key="selectCareAppListCount">
+		SELECT 
+						COUNT(*) AS COUNT
+	   	FROM 
+						CARE_APP
+	   WHERE
+						DOCTOR_NO = (SELECT DOCTOR_NO FROM DOCTOR WHERE DEPT_NAME =? AND DOCTOR_NAME = ?) 		
+			 AND  TRUNC(APPOINTMENT_DATE) BETWEEN ? AND ?							
+	</entry>
+	
+	
+	<!-- (상우) 진료예약 조회 (페이징 처리) -->
+	<entry key="selectCareApp">
+	
+	SELECT *
+	  FROM
+					( SELECT 
+										APPOINTMENT_NO
+									, DEPT_NAME
+									, DOCTOR_NAME
+									, TO_CHAR(APPOINTMENT_DATE, 'YYYY-MM-DD') AS APPOINTMENT_DATE
+									, APPOINTMENT_TIME
+									, C.USER_NO AS USER_NO
+									, USER_NAME
+									, PHONE
+									, CARE_STATUS
+									, ROW_NUMBER() OVER(ORDER BY TO_NUMBER((SUBSTR(APPOINTMENT_NO, 3)))) AS RNUM
+						  FROM
+						 				CARE_APP C 
+						 	JOIN  MEMBER M ON C.USER_NO = M.USER_NO
+				      JOIN  DOCTOR D ON C.DOCTOR_NO = D.DOCTOR_NO
+				     WHERE  DEPT_NAME = ?
+				       AND  DOCTOR_NAME = ?
+						   AND TRUNC(APPOINTMENT_DATE) BETWEEN ? AND ? )
+	  WHERE 	
+	  			 RNUM BETWEEN ? AND ?				   							
+		
+	</entry>
+	
+	
+	
+	<entry key="insertCompanyAPP">
+		INSERT
+			INTO CHECKUP_APP
+			(
+			  APPOINTMENT_NO
+			, USER_NO
+			, COMPANY_NO
+			, APPOINTMENT_DATE
+			, APPOINTMENT_TYPE
+	    , APPOINTMENT_TIME
+	    , CHECKUP_DATE
+	    , TOTAL_PRICE
+			)
+	
+			VALUES
+			(
+			  'ch' || SEQ_CHN.NEXTVAL
+			, ?
+			, (SELECT COMP_NO
+				FROM COMPANY
+				JOIN EMPLOYEE USING (COMP_NO)
+				WHERE EMP_NAME = ?)
+			, SYSDATE
+			, 'B'
+			, ?
+	    , ?
+	    , '50000'
+			)
+	</entry>
+
+		<entry key = "selectCompanySuccess">
+	
+		SELECT
+		APPOINTMENT_NO,
+    USER_NO,
+		APPOINTMENT_DATE,
+		APPOINTMENT_TYPE,
+		CHECKUP_DATE,
+    TOTAL_PRICE
+        
+		FROM CHECKUP_APP
+        
+		WHERE USER_NO = ?
+		AND APPOINTMENT_NO = (SELECT APPOINTMENT_NO 
+							FROM CHECKUP_APP 
+							WHERE USER_NO = ?
+							AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE))
+		AND TRUNC(CHECKUP_DATE) = ?
+		AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE)
+	</entry>
 
 </properties>

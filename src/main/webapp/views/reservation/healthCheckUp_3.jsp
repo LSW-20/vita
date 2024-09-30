@@ -309,7 +309,7 @@
                                         <td><b style="color:#1F2B6C">일반 건강검진</b></td>
                                     </tr>
                                     <tr>
-                                        <td style="border-right: 1px dashed; border-right-color: rgb(204, 204, 204);"><b>희망 진료일</b></td>
+                                        <td style="border-right: 1px dashed; border-right-color: rgb(204, 204, 204);"><b>희망 검진일</b></td>
                                         <td><b style="color:#1F2B6C"id="wantday1" ></b></td>
                                     </tr>
                                     <tr>
@@ -582,8 +582,7 @@
         
        
         <div align="center">
-        
-          <a href="<%= contextPath %>" class="btn border-1 border-dark" id="btn-color" style="width: 150px;">메인화면으로</a>
+       
           <a href="/vita/views/reservation/healthCheckUp_2.jsp" class="btn btn-light border-2 border-dark"  style="width: 150px; margin-left:30px;">이전</a>
         </div>
 

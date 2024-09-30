@@ -34,7 +34,7 @@
         left: 50px;
         background-color: white;
         width: 200px;
-        height: 320px;
+        height: 280px;
         padding: 10px;
         border-radius: 15px;
         
@@ -70,7 +70,6 @@
                 <ul class="">
                     <span>마이페이지</span>
                     <li class=""><a href="<%=contextPath %>/myinfo.me" style="text-decoration: none;">정보수정</a></li>
-                    <li class=""><a href="" style="text-decoration: none;">검진 내역 조회</a></li>
                     <li class=""><a href="<%= contextPath %>/list.rv" style="text-decoration: none;">예약 내역 조회</a></li>
                     <li class=""><a href="<%= contextPath %>/list.cr" style="text-decoration: none;">증명서 발급</a></li>
                     <li class=""><a href="<%= contextPath %>/listSel.cr" style="text-decoration: none;">발급 신청 조회</a></li>

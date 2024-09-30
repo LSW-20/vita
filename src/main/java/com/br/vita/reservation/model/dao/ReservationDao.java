@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import com.br.vita.common.model.vo.PageInfo;
 import com.br.vita.doctor.model.vo.Doctor;
 import com.br.vita.doctor.model.vo.DoctorSchedule;
 import com.br.vita.employee.model.vo.Employee;
@@ -175,25 +176,43 @@ public class ReservationDao {
 	 * @param userNo
 	 * @return consultations
 	 */
-	public List<Consultation> selectCareAppList(Connection conn, String userNo) {
-		List<Consultation> list = new ArrayList<>();
+	public Map<String, List<?>> selectCareAppList(Connection conn, String userNo) {
+		List<Consultation> cList = new ArrayList<>();
+		List<HealthCheck> hList = new ArrayList<>();
+		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectCareAppList");
+		String sql = prop.getProperty("selectCareAndCheckupAppList");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userNo);
+			pstmt.setString(2, userNo);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Consultation(rset.getString("APPOINTMENT_NO")
-										, rset.getDate("APPOINTMENT_DATE")
-										, rset.getString("APPOINTMENT_TIME")
-										, rset.getString("USER_NAME")
-										, rset.getString("DOCTOR_NAME")
-										, rset.getString("DEPT_NAME")			
-						));
+				String sourceType = rset.getString("SOURCE_TYPE");
 				
+				if("CARE".equals(sourceType)) {
+					//CARE_APP에서 온 데이터는 Consultation리스트에 추가
+					cList.add(new Consultation(rset.getString("APPOINTMENT_NO")
+											 , rset.getDate("APPOINTMENT_DATE")
+											 , rset.getString("APPOINTMENT_TIME")
+											 , rset.getString("USER_NAME")
+											 , rset.getString("DOCTOR_NAME")
+											 , rset.getString("DEPT_NAME")			
+							));
+				}else if("CHECKUP".equals(sourceType)) {
+					//CHECKUP_APP에서 온 데이터는 HealthCheck리스트에 추가
+					hList.add(new HealthCheck(rset.getString("APPOINTMENT_NO")
+											, rset.getString("COMPANY_NO")
+											, rset.getDate("CHECKUP_DATE")
+										    , rset.getString("APPOINTMENT_TIME")
+										    , rset.getString("COMP_NAME")
+										    , rset.getString("USER_NAME")
+										    , rset.getDate("CHECKUP_DATE")
+							
+							));
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -201,8 +220,11 @@ public class ReservationDao {
 			close(rset);
 			close(pstmt);
 		}
-		
-		return list;
+		//두 리스트를 Map에 담아 리턴
+		Map<String, List<?>> resultMap = new HashMap<>();
+		resultMap.put("cList", cList);
+		resultMap.put("hList", hList);
+		return resultMap;
 	}
    
 	/**
@@ -366,76 +388,6 @@ public class ReservationDao {
 	           
 	        return m;
 	        
-	}
-
-	
-	/**
-	 * 관리자 진료 예약 관리 조회
-	 * author : 임상우
-	 * @param conn
-	 * @param deptName
-	 * @param docName
-	 * @param appDate1
-	 * @param appDate2
-	 * @return 조회된 list
-	 */
-	public List<Map<String, Object>> selectCareApp(Connection conn, String deptName, String docName, String appDate1, String appDate2) {
-		
-		List<Map<String, Object>> resultList = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("selectCareApp");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, deptName);
-			pstmt.setString(2, docName);
-			pstmt.setString(3, appDate1); 
-			pstmt.setString(4, appDate2);
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				
-				Map<String, Object> map = new HashMap<>();
-				
-				Consultation c = new Consultation();
-				c.setAppointmentNo(rset.getString("APPOINTMENT_NO"));
-				c.setAppointmentDate(rset.getDate("APPOINTMENT_DATE"));
-				c.setAppointmentTime(rset.getString("APPOINTMENT_TIME"));
-				
-				
-				c.setCareStatus(rset.getString("CARE_STATUS").equals("Y") ? "진료 완료" : "진료 전");
-				
-				
-				Member m = new Member();
-				m.setUserNo(rset.getString("USER_NO"));
-				m.setUserName(rset.getString("USER_NAME"));
-				m.setPhone(rset.getString("PHONE"));
-				
-				Doctor d = new Doctor();
-				d.setDeptName(rset.getString("DEPT_NAME"));
-				d.setDoctorName(rset.getString("DOCTOR_NAME"));
-				
-				map.put("c", c);
-				map.put("m", m);
-				map.put("d", d);
-				
-				resultList.add(map);
-				
-			}
-			
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		
-		return resultList;
 	}
 
 
@@ -836,8 +788,7 @@ public class ReservationDao {
 		
 	}
 
-	public List<HealthCheck> selectSuccessNormal(Connection conn, String userNo, String appointmentNo,
-			String checkupDate, String appointmentDate) {
+	public List<HealthCheck> selectSuccessNormal(Connection conn, String userNo, String date) {
 
 
 		List<HealthCheck> list = new ArrayList<>();
@@ -847,9 +798,8 @@ public class ReservationDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userNo);
-			pstmt.setString(2, appointmentNo);
-			pstmt.setString(3, checkupDate);
-			pstmt.setString(4, appointmentDate);
+			pstmt.setString(2, userNo);
+			pstmt.setString(3, date);
 			
 			rset = pstmt.executeQuery();
 			
@@ -957,9 +907,206 @@ public class ReservationDao {
 		
 	
 
+	public int insertHealthCheckCompanyList(Connection conn, String userNo, String userName, String time, String date) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertCompanyAPP");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, userName);
+			pstmt.setString(3, time);
+			pstmt.setString(4, date);
+		
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+		
+	}
+
+	public List<HealthCheck> selectSuccessCompany(Connection conn, String userNo, String date) {
+
+
+		List<HealthCheck> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCompanySuccess");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, userNo);
+			pstmt.setString(3, date);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new HealthCheck(rset.getString("APPOINTMENT_NO")
+										, rset.getString("USER_NO")
+										, rset.getDate("APPOINTMENT_DATE")
+										, rset.getString("APPOINTMENT_TYPE")
+										, rset.getDate("CHECKUP_DATE")	
+										, rset.getString("TOTAL_PRICE")
+						));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+
 
 		
+	/**
+	 * 진료과, 의사명, 시작일, 종료일로 진료 예약 수 조회
+	 * @param conn
+	 * @param deptName
+	 * @param docName
+	 * @param appDate1
+	 * @param appDate2
+	 * @return 진료과, 의사명, 시작일, 종료일로 조회한 진료 예약 수
+	 */
+	public int selectCareAppListCount(Connection conn, String deptName, String docName, String appDate1,
+			String appDate2) {
+	
+		// select => ResultSet(게시글갯수, 숫자한개) => int
+        int listCount = 0;
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        
+        String sql = prop.getProperty("selectCareAppListCount");
+        
+        	
 		
+        try {
+            pstmt = conn.prepareStatement(sql);
+            
+           
+			pstmt.setString(1, deptName);
+			pstmt.setString(2, docName);
+			pstmt.setString(3, appDate1);
+			pstmt.setString(4, appDate2);
+			
+            rset = pstmt.executeQuery();
+           
+            if(rset.next()) {
+                listCount = rset.getInt("count");
+            }
+           
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(rset);
+            close(pstmt);
+        }
+       
+        return listCount;
+		
+		
+		
+	}
+
+
+		
+	
+	/**
+	 * 관리자 진료 예약 관리 조회 (페이징 처리)
+	 * author : 임상우
+	 * @param conn
+	 * @param deptName
+	 * @param docName
+	 * @param appDate1
+	 * @param appDate2
+	 * @param pi 
+	 * @return 조회된 list
+	 */
+	public List<Map<String, Object>> selectCareApp(Connection conn, String deptName, String docName, String appDate1, String appDate2, PageInfo pi) {
+		
+		List<Map<String, Object>> resultList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectCareApp");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, deptName);
+			pstmt.setString(2, docName);
+			pstmt.setString(3, appDate1); 
+			pstmt.setString(4, appDate2);
+			
+			// 페이징 처리를 위한 시작값, 끝값 계산. 
+            int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+            int endRow = startRow + pi.getBoardLimit() - 1;
+           
+            pstmt.setInt(5, startRow);
+            pstmt.setInt(6, endRow);
+			
+			
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Map<String, Object> map = new HashMap<>();
+				
+				Consultation c = new Consultation();
+				c.setAppointmentNo(rset.getString("APPOINTMENT_NO"));
+				c.setAppointmentDate(rset.getDate("APPOINTMENT_DATE"));
+				c.setAppointmentTime(rset.getString("APPOINTMENT_TIME"));
+				
+				
+				c.setCareStatus(rset.getString("CARE_STATUS").equals("Y") ? "진료 완료" : "진료 전");
+				
+				
+				Member m = new Member();
+				m.setUserNo(rset.getString("USER_NO"));
+				m.setUserName(rset.getString("USER_NAME"));
+				m.setPhone(rset.getString("PHONE"));
+				
+				Doctor d = new Doctor();
+				d.setDeptName(rset.getString("DEPT_NAME"));
+				d.setDoctorName(rset.getString("DOCTOR_NAME"));
+				
+				map.put("c", c);
+				map.put("m", m);
+				map.put("d", d);
+				
+				resultList.add(map);
+				
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return resultList;
+	}
+
+
 		
 		
 	

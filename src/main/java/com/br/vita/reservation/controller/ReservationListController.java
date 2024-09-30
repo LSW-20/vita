@@ -2,6 +2,7 @@ package com.br.vita.reservation.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import com.br.vita.member.model.vo.Member;
 import com.br.vita.reservation.model.service.ReservationService;
-import com.br.vita.reservation.model.vo.Consultation;
 
 /**
  * Servlet implementation class ReservationListController
@@ -44,9 +44,11 @@ public class ReservationListController extends HttpServlet {
 			String userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 
 			//예약 내역 조회
-			List<Consultation> consultations = new ReservationService().selectCareAppList(userNo);			
+			Map<String, List<?>> reservationsMap = new ReservationService().selectCareAppList(userNo);			
 			//결과 응답
-			request.setAttribute("consultations", consultations);
+			request.setAttribute("consultations", reservationsMap.get("cList"));
+			request.setAttribute("healthChecks", reservationsMap.get("hList"));
+			
 			request.getRequestDispatcher("/views/reservation/reservationList.jsp").forward(request, response);
 		}
 	}//doGet

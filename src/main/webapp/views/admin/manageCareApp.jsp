@@ -3,10 +3,15 @@
 <%@ page import="com.br.vita.reservation.model.vo.Consultation" %>
 <%@ page import="com.br.vita.member.model.vo.Member" %>
 
+<%@ page import="com.br.vita.common.model.vo.PageInfo" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<% List<Doctor> list = (List<Doctor>) request.getAttribute("list"); %>    
+<% 
+List<Doctor> list = (List<Doctor>) request.getAttribute("list"); 
+PageInfo pi = (PageInfo)request.getAttribute("pi");
+%>    
 
 <% List<Map<String, Object>> resultList = (List<Map<String, Object>>) request.getAttribute("resultList"); %>
 
@@ -149,39 +154,7 @@ footer {
                 </tr>
 
 
-
-        <script>
-
-        function selectDept() {
-        
-            $.ajax({
-                url: '<%= request.getContextPath() %>/searchDocByDept.admin',
-                data: {
-                    dept: $('#deptSelect').val()
-                },
-
-                success: function(res) { // res에 JSONArray가 온다.
-
-                    console.log(res); // ['박시우'] <- 진료과당 의사 1명임    
-
-                    let doctorList = '';
-                    for(let data of res){
-                        doctorList += '<option>' + data + '</option>';
-                    }
-                    $('#target_doctor').html(doctorList); // html 태그까지 반영시키려면 text대신 html 메소드
-
-                },
-                error: function() {
-                    console.log('진료과로 의사 목록 가져오기 통신 실패');
-                }
-            })
-
-        }
-        </script>
-                
-
-
-                <%--  ajax 사용 전
+                <!--  ajax 사용 전
                 <tr>
                     <td class="left_cell">의료진</td>
                     <td>
@@ -196,7 +169,7 @@ footer {
                         </select>
                     </td>
                 </tr>
-                --%>
+                -->
 
 
                 <%-- ajax 사용 후 --%>
@@ -210,15 +183,12 @@ footer {
                 </tr>
                 
 
-
-
-
                 <tr>
                     <td class="left_cell">날짜</td>
                     <td class="right_cell">
                         
                             <input type="date" name="app_date1" required> 부터 &nbsp; &nbsp; 
-                            <input type="date" name="app_date2" required> 까지 &nbsp; &nbsp;  
+                            <input type="date" name="app_date2" required id="end_date"> 까지 &nbsp; &nbsp;  
                             <button type="submit">검색</button>
                         
                     </td>
@@ -226,6 +196,58 @@ footer {
             </table>
         </form>
         <br><br><br>
+
+
+        <script>
+
+            function selectDept() {
+            
+                // ajax로 진료과를 보내서 db에서 진료과에 해당하는 의사들 리스트를 가져온다.
+                $.ajax({
+                    url: '<%= request.getContextPath() %>/searchDocByDept.admin',
+                    data: {
+                        dept: $('#deptSelect').val()
+                    },
+    
+                    success: function(res) { // res에 JSONArray가 온다.
+    
+                        console.log(res); // ['박시우'] <- 진료과당 의사 1명임    
+    
+                        let doctorList = '';
+                        for(let data of res){
+                            doctorList += '<option>' + data + '</option>';
+                        }
+                        $('#target_doctor').html(doctorList); // html 태그까지 반영시키려면 text대신 html 메소드
+    
+                    },
+                    error: function() {
+                        console.log('진료과로 의사 목록 가져오기 통신 실패');
+                    }
+                })
+    
+            }
+            </script>
+
+
+
+
+    <!-- 진료 예약 조회할 때, 종료일을 오늘날짜로 선택된 채로 보여주기.  -->
+    <script>
+        window.onload = function() {
+
+            var today = new Date().toISOString().split('T')[0]; 
+            // 오늘 날짜를 가져와서, yyyy-mm-ddTHH:MM:SS.sssZ 형식으로 가져오고, 'T'를 기준으로 날짜, 시간을 나눠서 날짜만 가져온다.
+
+            document.getElementById("end_date").value = today;
+        };
+    </script>
+    
+
+
+
+
+
+
 
 
 
@@ -336,6 +358,27 @@ footer {
                     <% }  
                 } %>
             </table>
+
+            <br>
+            <% if(pi != null) { %>
+            <ul class="pagination d-flex justify-content-center text-dark">
+       
+                <li class='page-item <%=pi.getCurrentPage() == 1 ? "disabled" : "" %>'>
+                    <a class="page-link" href='<%= contextPath %>/searchCA.admin?page=<%=pi.getCurrentPage()-1%>&dept_name=<%= request.getParameter("dept_name") %>&doc_name=<%= request.getParameter("doc_name") %>&app_date1=<%= request.getParameter("app_date1") %>&app_date2=<%= request.getParameter("app_date2") %>'> Previous</a>
+                  </li>
+
+                <% for(int p = pi.getStartPage(); p<=pi.getEndPage(); p++) { %>
+                    <li class='page-item <%= p == pi.getCurrentPage() ? "active" : ""%>'>
+                      <a class="page-link" href='<%= contextPath %>/searchCA.admin?page=<%= p %>&dept_name=<%= request.getParameter("dept_name") %>&doc_name=<%= request.getParameter("doc_name") %>&app_date1=<%= request.getParameter("app_date1") %>&app_date2=<%= request.getParameter("app_date2") %>'> <%= p %></a>
+                    </li>
+                <% } %>
+
+                <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
+                    <a class="page-link" href='<%= contextPath %>/searchCA.admin?page=<%= pi.getCurrentPage()+1 %>&dept_name=<%= request.getParameter("dept_name") %>&doc_name=<%= request.getParameter("doc_name") %>&app_date1=<%= request.getParameter("app_date1") %>&app_date2=<%= request.getParameter("app_date2") %>'>Next</a>
+                  </li>
+            </ul>
+            <% } %>
+
 
             <div class="add_btn">
                 <button type="button" class="btn btn-sm btn-dark" id="add_button" data-toggle="modal" data-target="#add_modal">추가</button>

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.br.vita.doctor.model.vo.DoctorSchedule;
+import com.br.vita.common.model.vo.PageInfo;
 import com.br.vita.employee.model.vo.Employee;
 import com.br.vita.member.model.vo.Member;
 import com.br.vita.reservation.model.dao.ReservationDao;
@@ -83,11 +84,11 @@ public class ReservationService {
 	 * @param userNo 회원 식별할 회원번호
 	 * @return consultations 예약정보 가져올 객체
 	 */
-	public List<Consultation> selectCareAppList(String userNo) {
+	public Map<String, List<?>> selectCareAppList(String userNo) {
 		Connection conn = getConnection();
-		List<Consultation> consultations = rdao.selectCareAppList(conn, userNo);
+		Map<String, List<?>> reservationsMap = rdao.selectCareAppList(conn, userNo);
 		close(conn);
-		return consultations;
+		return reservationsMap;
 	}
 
 	/**
@@ -164,12 +165,13 @@ public class ReservationService {
 	 * @param docName
 	 * @param appDate1
 	 * @param appDate2
+	 * @param pi 
 	 * @return 조회된 list
 	 */
-	public List<Map<String, Object>> selectCareApp(String deptName, String docName, String appDate1, String appDate2) {
+	public List<Map<String, Object>> selectCareApp(String deptName, String docName, String appDate1, String appDate2, PageInfo pi) {
 		
 		Connection conn = getConnection();
-		List<Map<String, Object>> resultList = rdao.selectCareApp(conn, deptName, docName, appDate1, appDate2);
+		List<Map<String, Object>> resultList = rdao.selectCareApp(conn, deptName, docName, appDate1, appDate2, pi);
 		close(conn);
 		
 		return resultList;
@@ -372,10 +374,10 @@ public class ReservationService {
 		return result;
 	}
 
-	public List<HealthCheck> selectSuccessNormal(String userNo, String appointmentNo, String checkupDate , String  appointmentDate) {
+	public List<HealthCheck> selectSuccessNormal(String userNo, String date) {
 		
 		Connection conn = getConnection();
-		List<HealthCheck> Success = rdao.selectSuccessNormal(conn, userNo, appointmentNo, checkupDate,  appointmentDate);
+		List<HealthCheck> Success = rdao.selectSuccessNormal(conn, userNo, date);
 		close(conn);
 		return Success;
 		
@@ -387,6 +389,50 @@ public class ReservationService {
 		List<Employee> Company = rdao.selectCompany(conn, companyName, name, name1);
 		close(conn);
 		return Company;
+	}
+
+	public int insertHealthCheckCompanyList(String userNo, String userName, String time, String date) {
+
+
+		Connection conn = getConnection();
+		int result = rdao.insertHealthCheckCompanyList(conn, userNo, userName, time, date);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		
+		close(conn);
+		return result;
+		
+		
+	}
+
+	public List<HealthCheck> selectSuccessCompany(String userNo, String date) {
+
+		Connection conn = getConnection();
+		List<HealthCheck> Success1 = rdao.selectSuccessCompany(conn, userNo, date);
+		close(conn);
+		return Success1;
+	}
+
+	
+	/**
+	 * 진료과, 의사명, 시작일, 종료일로 진료 예약 수 조회
+	 * author : 임상우
+	 * @param deptName
+	 * @param docName
+	 * @param appDate1
+	 * @param appDate2
+	 * @return 진료과, 의사명, 시작일, 종료일로 조회한 진료 예약 수
+	 */
+	public int selectCareAppListCount(String deptName, String docName, String appDate1, String appDate2) {
+		Connection conn = getConnection();
+		int result = rdao.selectCareAppListCount(conn, deptName, docName, appDate1, appDate2);
+		close(conn);
+		return result;
 	}
 
 	
