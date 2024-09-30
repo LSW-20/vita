@@ -214,7 +214,7 @@ window.onload = function() {
                 
                 <div class="modal-footer" style="background-color: #1F2B6C;">
                     <button type="button"  name="payment" class="btn" id="btn-color" style=" width:1197px;" onclick="requestPayment()">
-                         <h5>2,000 원 결제하기</h5>
+                         <h5 style="color:white;">2,000 원 결제하기</h5>
                          </button>    
                 </div>
                 

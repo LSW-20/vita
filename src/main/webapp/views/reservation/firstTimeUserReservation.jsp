@@ -1,16 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.br.vita.member.model.vo.Member" %>
-<%-- <%
-    String alertMessage = (String) request.getAttribute("alertMessage");
-    if (alertMessage != null) {
-%>
-    <script>
-        alert("<%= alertMessage %>");
-    </script>
-<%
-    }
-%>  --%>
+
 <!DOCTYPE html>
 <html>
 <head>

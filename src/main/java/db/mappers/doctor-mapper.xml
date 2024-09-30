@@ -159,11 +159,10 @@ FROM
 		SCHEDULE
 WHERE 
      DOCTOR_NO = ?
-	
-	
+
 	</entry>
 	
-	
+
 	
 	
 	<!-- (상우) 의사 계정 수정 (1/2) doctor 테이블 -->

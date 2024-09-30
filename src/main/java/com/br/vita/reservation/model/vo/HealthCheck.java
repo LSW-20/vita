@@ -58,7 +58,7 @@ public class HealthCheck {
 	
 	//예약조회용 생성자_보겸
 	public HealthCheck(String appointmentNo, String companyNo, Date appointmentDate,
-			String appointmentTime, String compName, String userName) {
+			String appointmentTime, String compName, String userName, Date checkUpDate) {
 		super();
 		this.appointmentNo = appointmentNo;
 		this.companyNo = companyNo;
@@ -66,6 +66,7 @@ public class HealthCheck {
 		this.appointmentTime = appointmentTime;
 		this.compName = compName;
 		this.userName = userName;
+		this.checkUpDate = checkUpDate;
 	}
 
 	public String getAppointmentNo() {

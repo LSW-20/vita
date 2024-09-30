@@ -250,7 +250,7 @@ WHERE
 	</entry>
 	
 	
-	<!-- (상우) 회원 이름, 회원id로 회원 검색 - 일반회원만 -->
+	<!-- (상우) 회원 이름, 회원id로 회원 검색 - 일반회원만 (페이징처리)-->
 	<entry key="selectMember">
 		SELECT *
 		  FROM 
@@ -270,7 +270,8 @@ WHERE
 										USER_TYPE = 'U'				
 	</entry>
 	
-	<!-- (상우) 전체 회원 수 조회 -->
+	
+	<!-- (상우) 전체 회원 수 조회 (페이징처리) -->
 	<entry key="selectMemberListCount">
 		SELECT 
 						COUNT(*) AS COUNT

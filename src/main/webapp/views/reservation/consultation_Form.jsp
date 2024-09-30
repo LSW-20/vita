@@ -81,6 +81,37 @@
       margin-top: 2130px;
     }   
     
+    
+  
+              #table_div{
+                margin-top: 50px; 
+                text-align: center;
+            }
+              h2{font-size: 3rem;}
+              
+              
+              #table_div2{
+                margin-top: -15px;
+                text-align: center;
+                
+            }
+
+              .checkY{
+                background-color: green;
+                width: 15px;
+                height: 15px;
+                border-radius: 50px;
+                margin: auto;
+                margin-top: 4px;
+              }
+              
+              #scheduleDiv{
+              	margin-left: 621px;
+   						 width: 650px;
+    						margin-bottom: 21px;
+              
+              }
+    
 
    </style>
 
@@ -142,8 +173,8 @@
             </select>
         </div>
         <div>
-            <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" id="doctor" name="doctor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:400px; height: 50px; margin-left:515px;">
-                <option id="doctor-placeholder" selected value="">의사를 선택하세요</option>
+            <select  class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" id="doctor" name="doctor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:400px; height: 50px; margin-left:515px;">
+                <option id="doctor-placeholder" selected value="" >의사를 선택하세요</option>
             </select>
         </div>
     </div>
@@ -151,6 +182,8 @@
 
 <script>
     function updateDoctors() {
+    	
+    		console.log('과 변경');
         const departmentSelect = document.getElementById('medical-department');
         const doctorSelect = document.getElementById('doctor');
         const departmentPlaceholder = document.getElementById('department-placeholder');
@@ -162,22 +195,22 @@
         // 선택된 의료 과에 따라 의사 목록 설정
         switch(departmentSelect.value) {
             case '내과':
-                doctorSelect.innerHTML += '<option value="박시우">박시우</option>';
+                doctorSelect.innerHTML += '<option value="박시우" >박시우</option>';
                 break;
             case '외과':
-                doctorSelect.innerHTML += '<option value="임상우">임상우</option>';
+                doctorSelect.innerHTML += '<option value="임상우" >임상우</option>';
                 break;
             case '치과':
-                doctorSelect.innerHTML += '<option value="황재운">황재운</option>';
+                doctorSelect.innerHTML += '<option value="황재운" >황재운</option>';
                 break;
             case '안과':
-                doctorSelect.innerHTML += '<option value="정준수">정준수</option>';
+                doctorSelect.innerHTML += '<option value="정준수" >정준수</option>';
                 break;
             default:
                 doctorSelect.innerHTML += '<option id="doctor-placeholder" selected value="">의사를 선택하세요</option>';
         }
 
-        // 진료과 선택 시 placeholder 숨기기
+        /* // 진료과 선택 시 placeholder 숨기기
         if (departmentSelect.value) {
             departmentPlaceholder.style.display = 'none';
         } else {
@@ -189,14 +222,19 @@
             doctorPlaceholder.style.display = 'none';
         } else {
             doctorPlaceholder.style.display = 'block';
-        }
+        } */
+        
+        fnScheduleSelect();
     }
 </script>
 
     <br><br>
     <hr style= "border: 1px dashed; border-color:#bdbcbc;margin-left: 90px; margin-right: 90px;">
     <br><br>
+     <div class="d-flex">
     <h3 style="margin-left:150px"><sup style="color:rgb(255, 165, 0)">*</sup><b> 내원시간 선택</b></h3>
+    <h3 style="margin-left:720px"><sup style="color:rgb(255, 165, 0)">*</sup><b> 의료진 일정</b></h3>
+    </div>
     <br><br>
 		<div class="container11" style="margin-left:93px">
 			   <div class="d-flex">
@@ -204,8 +242,17 @@
 				        <table style="margin-left:-55px;">
 				            <tr class="d-flex">
 				                <td style="width:150px; height: 230px; margin-top:11px; border-right-style: dashed; border-right:white;">
-				                    <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" id="time-select" name="appointmentTimeSelect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:400px; height: 50px;">
-				                        <option id="time-select-placeholder" selected value="">내원시간을 선택하세요</option>
+				                    <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" 
+				                    					id="time-select" 
+				                    					name="appointmentTimeSelect" 
+				                    					data-toggle="dropdown" 
+				                    					aria-haspopup="true" 
+				                    					aria-expanded="false" 
+				                    					style="width:400px; height: 50px;"
+				                    					
+				                    					>
+				                        <option id="time-select-placeholder" selected value="" >내원시간을 선택하세요</option>
+				                        
 				                        <option value="오전">오전</option>
 				                        <option value="오후">오후</option>
 				                        
@@ -220,10 +267,66 @@
 				        </table>
 				    </div>
 				    
-				    <div style="margin-left:600px;">
-				        <h3>※ 우리 병원은 <b style="color:red">당일 예약</b>만 가능합니다.</h3>
+				    
+				    <div style="margin-left:600px;" id="scheduleDiv">
+				       <!--  <h3>※ 우리 병원은 <b style="color:red">당일 예약</b>만 가능합니다.</h3>
 				        <h3>&nbsp;&nbsp;&nbsp;&nbsp;해당 사항 참고하시고 예약해주시길</h3> 
-				        <h3>&nbsp;&nbsp;&nbsp;&nbsp;바랍니다.</h3>
+				        <h3>&nbsp;&nbsp;&nbsp;&nbsp;바랍니다.</h3> -->
+				      
+				      
+                    <table class="table table-bordered" id="table_div2">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>월</th>
+                                <th>화</th>
+                                <th>수</th>
+                                <th>목</th>
+                                <th>금</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>오전</th>
+                                <td>
+                                    <div class="checkY" id="mY_1" style="display: none;"></div>
+                                </td>
+                                <td>
+                                    <div class="checkY" id="mY_2" style="display: none;"></div>
+                                </td>
+                                <td>
+                                    <div class="checkY" id="mY_3" style="display: none;"></div>
+                                </td>
+                                <td>
+                                    <div class="checkY" id="mY_4" style="display: none;"></div>
+                                </td>
+                                <td>
+                                    <div class="checkY" id="mY_5" style="display: none;"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>오후</th>
+                                <td>
+                                    <div class="checkY" id="aY_1" style="display: none;"></div>
+                                </td>
+                                <td>
+                                    <div class="checkY" id="aY_2" style="display: none;"></div>
+                                </td>
+                                <td>
+                                    <div class="checkY" id="aY_3" style="display: none;"></div> 
+                                </td>
+                                <td>
+                                    <div class="checkY" id="aY_4" style="display: none;"></div> 
+                                </td>
+                                <td>
+                                    <div class="checkY" id="aY_5" style="display: none;"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+				        
+	
+		
 				    </div>
 				</div>
     </div>
@@ -299,6 +402,15 @@
         document.getElementById('time1').querySelector('b').innerHTML = time;
         return true; // 성공적으로 선택되었음을 알림
     }
+    
+ 
+  
+                
+          
+
+    
+    
+    
 </script>
 
 
@@ -340,7 +452,69 @@
         <br><br> 
 
 	
+<script>
 
+
+function fnScheduleSelect(){
+	
+	$.ajax({
+			url: '<%= contextPath %>/resSchedule.re',
+			data: {
+				name: $('#doctor').val()
+				},
+   	type: 'post',
+   	success:function(res){
+   		
+						console.log(res);  // [{}, {}. {}]
+						
+						$('.checkY').hide();
+						
+						for(let i=0; i<res.length; i++){
+							
+							/* 오전일정조회 */
+							if(res[i].working == 'Y' && res[i].scheduleTime == 'A' && res[i].scheduleWeek=='월'){
+								$('#mY_1').css('display','block');
+							}else if(res[i].working == 'Y' && res[i].scheduleTime == 'A' && res[i].scheduleWeek=='화'){
+								$('#mY_2').css('display','block');
+							}else if(res[i].working == 'Y' && res[i].scheduleTime == 'A' && res[i].scheduleWeek=='수'){
+								$('#mY_3').css('display','block');
+							}else if(res[i].working == 'Y' && res[i].scheduleTime == 'A' && res[i].scheduleWeek=='목'){
+								$('#mY_4').css('display','block');
+							}else if(res[i].working == 'Y' && res[i].scheduleTime == 'A' && res[i].scheduleWeek=='금'){
+								$('#mY_5').css('display','block');
+								
+								/* 오후일정조회 */
+							}else if(res[i].working == 'Y' && res[i].scheduleTime == 'P' && res[i].scheduleWeek=='월'){
+								$('#aY_1').css('display','block');
+							}else if(res[i].working == 'Y' && res[i].scheduleTime == 'P' && res[i].scheduleWeek=='화'){
+								$('#aY_2').css('display','block');
+							}else if(res[i].working == 'Y' && res[i].scheduleTime == 'P' && res[i].scheduleWeek=='수'){
+								$('#aY_3').css('display','block');
+							}else if(res[i].working == 'Y' && res[i].scheduleTime == 'P' && res[i].scheduleWeek=='목'){
+								$('#aY_4').css('display','block');
+							}else if(res[i].working == 'Y' && res[i].scheduleTime == 'P' && res[i].scheduleWeek=='금'){
+								$('#aY_5').css('display','block');
+							}
+							
+							
+							
+							
+						}
+						
+						
+		
+   		
+   	},
+	})
+	
+} 
+
+
+
+
+
+
+</script>
 
 
         

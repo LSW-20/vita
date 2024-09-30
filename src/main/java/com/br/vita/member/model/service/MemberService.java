@@ -254,11 +254,11 @@ public class MemberService {
 	}
 	
 	/**
-	 * 전체 회원 수 조회 (일반회원만)
+	 * userid와 username으로 회원 수 조회 (일반회원만)
 	 * author : 임상우
 	 * @param userName 
 	 * @param userId 
-	 * @return 전체 회원 수
+	 * @return userid와 username으로 조회된 회원 수
 	 */
 	public int selectMemberListCount(String userId, String userName) {
 		Connection conn = getConnection();

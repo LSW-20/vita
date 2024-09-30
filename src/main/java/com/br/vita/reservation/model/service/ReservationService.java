@@ -9,10 +9,11 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 
+import com.br.vita.doctor.model.vo.DoctorSchedule;
+import com.br.vita.common.model.vo.PageInfo;
 import com.br.vita.employee.model.vo.Employee;
 import com.br.vita.member.model.vo.Member;
 import com.br.vita.reservation.model.dao.ReservationDao;
-import com.br.vita.reservation.model.vo.CheckList;
 import com.br.vita.reservation.model.vo.Consultation;
 import com.br.vita.reservation.model.vo.HealthCheck;
 
@@ -164,12 +165,13 @@ public class ReservationService {
 	 * @param docName
 	 * @param appDate1
 	 * @param appDate2
+	 * @param pi 
 	 * @return 조회된 list
 	 */
-	public List<Map<String, Object>> selectCareApp(String deptName, String docName, String appDate1, String appDate2) {
+	public List<Map<String, Object>> selectCareApp(String deptName, String docName, String appDate1, String appDate2, PageInfo pi) {
 		
 		Connection conn = getConnection();
-		List<Map<String, Object>> resultList = rdao.selectCareApp(conn, deptName, docName, appDate1, appDate2);
+		List<Map<String, Object>> resultList = rdao.selectCareApp(conn, deptName, docName, appDate1, appDate2, pi);
 		close(conn);
 		
 		return resultList;
@@ -425,7 +427,45 @@ public class ReservationService {
 
 
 	
+	/**
+	 * 진료과, 의사명, 시작일, 종료일로 진료 예약 수 조회
+	 * author : 임상우
+	 * @param deptName
+	 * @param docName
+	 * @param appDate1
+	 * @param appDate2
+	 * @return 진료과, 의사명, 시작일, 종료일로 조회한 진료 예약 수
+	 */
+	public int selectCareAppListCount(String deptName, String docName, String appDate1, String appDate2) {
+		Connection conn = getConnection();
+		int result = rdao.selectCareAppListCount(conn, deptName, docName, appDate1, appDate2);
+		close(conn);
+		return result;
+	}
 
+	
+
+		
+	
+	
+	public List<DoctorSchedule> doctorScheduleSel(String dname) {
+		
+		
+		
+		Connection conn = getConnection();
+		
+		List<DoctorSchedule> dclist = rdao.doctorScheduleSel(conn,dname);
+		
+		
+		close(conn);
+		
+		return dclist;
+		
+		
+		
+		
+		
+	}
 	
 
 	
