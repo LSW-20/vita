@@ -36,21 +36,28 @@ public class DocDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String docType = request.getParameter("docType");
-		String careNo = request.getParameter("careNo");
-		String userNo = ((Member) request.getSession().getAttribute("loginUser")).getUserNo();
-		String startDate = request.getParameter("startDate");
-		String endDate = request.getParameter("endDate");
+		Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+		if(loginUser == null) {
+			request.getRequestDispatcher("/views/member/login.jsp").forward(request, response);
+		} else {
+			String docType = request.getParameter("docType");
+			String careNo = request.getParameter("careNo");
+			String userNo = ((Member) request.getSession().getAttribute("loginUser")).getUserNo();
+			String startDate = request.getParameter("startDate");
+			String endDate = request.getParameter("endDate");
 
-		//진료기록 정보 가져오는 서비스
-		List<Mrecords> records = new IssueService().selectMrecords(userNo, startDate, endDate);
-		if (records == null || records.isEmpty()) {
-            records = new ArrayList<>(); // 빈 리스트로 초기화하여 null 방지
-        }
-		//응답
-		request.setAttribute("records", records);
-		request.setAttribute("docType", docType);
-		request.getRequestDispatcher("/views/issue/getDocDetail.jsp").forward(request, response);
+			//진료기록 정보 가져오는 서비스
+			List<Mrecords> records = new IssueService().selectMrecords(userNo, startDate, endDate);
+			if (records == null || records.isEmpty()) {
+	            records = new ArrayList<>(); // 빈 리스트로 초기화하여 null 방지
+	        }
+			//응답
+			request.setAttribute("records", records);
+			request.setAttribute("docType", docType);
+			request.getRequestDispatcher("/views/issue/getDocDetail.jsp").forward(request, response);			
+		}
+		
+
 	}
 
 	/**
