@@ -159,28 +159,6 @@
 	</entry>
 	
 
-	<!-- (상우) 진료예약 조회 -->
-	<entry key="selectCareApp">
-	
-		SELECT 
-						APPOINTMENT_NO
-					, DEPT_NAME
-					, DOCTOR_NAME
-					, TO_CHAR(APPOINTMENT_DATE, 'YYYY-MM-DD') AS APPOINTMENT_DATE
-					, APPOINTMENT_TIME
-					, C.USER_NO AS USER_NO
-					, USER_NAME
-					, PHONE
-					, CARE_STATUS
-		  FROM
-		 				CARE_APP C 
-		 	JOIN  MEMBER M ON C.USER_NO = M.USER_NO
-      JOIN  DOCTOR D ON C.DOCTOR_NO = D.DOCTOR_NO
-     WHERE  DEPT_NAME = ?
-       AND  DOCTOR_NAME = ?
-		  	AND TRUNC(APPOINTMENT_DATE) BETWEEN ? AND ?							
-		
-	</entry>
 
 
 	<!-- (상우) 진료예약 추가(2/2) -->
@@ -450,5 +428,79 @@
 	
 	
 	</entry>
+	
+	
+	
+	
+	<!-- (상우) 기업 건강검진 예약 조회 -->
+	<entry key="selectCheckupAppC">
+	
+	SELECT	
+					APPOINTMENT_NO
+				, CHECKUP_DATE
+				, APPOINTMENT_TIME
+				, TOTAL_PRICE	
+        , EMP_NO
+        , EMP_NAME
+        , MEDI_LIST
+        , SURGERY_YN
+        , SURGERY_NAME
+        , FLY_YN
+	  FROM  
+	  			CHECKUP_APP
+    JOIN  COMPANY ON COMPANY_NO = COMP_NO
+    JOIN  MEMBER USING (USER_NO)
+    JOIN  EMPLOYEE ON USER_SSN = SSN
+    JOIN  CHECK_LIST CL ON APPOINTMENT_NO = CHECKUP_NO
+
+	 WHERE  APPOINTMENT_TYPE = 'B'
+     AND  TRUNC(CHECKUP_DATE) BETWEEN ? AND ?	  
+		 AND  COMP_NAME = ?
+	</entry>
+	
+	
+	
+	<!-- (상우) 진료과, 의사명, 시작일, 종료일로 진료 예약 수 조회 (페이징 처리) -->
+	<entry key="selectCareAppListCount">
+		SELECT 
+						COUNT(*) AS COUNT
+	   	FROM 
+						CARE_APP
+	   WHERE
+						DOCTOR_NO = (SELECT DOCTOR_NO FROM DOCTOR WHERE DEPT_NAME =? AND DOCTOR_NAME = ?) 		
+			 AND  TRUNC(APPOINTMENT_DATE) BETWEEN ? AND ?							
+	</entry>
+	
+	
+	<!-- (상우) 진료예약 조회 (페이징 처리) -->
+	<entry key="selectCareApp">
+	
+	SELECT *
+	  FROM
+					( SELECT 
+										APPOINTMENT_NO
+									, DEPT_NAME
+									, DOCTOR_NAME
+									, TO_CHAR(APPOINTMENT_DATE, 'YYYY-MM-DD') AS APPOINTMENT_DATE
+									, APPOINTMENT_TIME
+									, C.USER_NO AS USER_NO
+									, USER_NAME
+									, PHONE
+									, CARE_STATUS
+									, ROW_NUMBER() OVER(ORDER BY TO_NUMBER((SUBSTR(APPOINTMENT_NO, 3)))) AS RNUM
+						  FROM
+						 				CARE_APP C 
+						 	JOIN  MEMBER M ON C.USER_NO = M.USER_NO
+				      JOIN  DOCTOR D ON C.DOCTOR_NO = D.DOCTOR_NO
+				     WHERE  DEPT_NAME = ?
+				       AND  DOCTOR_NAME = ?
+						   AND TRUNC(APPOINTMENT_DATE) BETWEEN ? AND ? )
+	  WHERE 	
+	  			 RNUM BETWEEN ? AND ?				   							
+		
+	</entry>
+	
+	
+	
 
 </properties>
