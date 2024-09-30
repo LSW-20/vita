@@ -242,29 +242,34 @@
 								        }
 								    }
 								
-                    function handleSubmit() {
-							    		const mediListChecked = document.querySelector('input[name="mediList"]:checked') !== null;
-							        const surgeryChecked = document.querySelector('input[name="surgeryYN"]:checked') !== null;
-							        const flyChecked = document.querySelector('input[name="flyYN"]:checked') !== null;
+								    function handleSubmit() {
+								        // 현재 복용중인 약 체크 상태 확인
+								        const mediListChecked = document.querySelector('input[name="mediList"]:checked');
+								        const mediListValue = mediListChecked ? mediListChecked.value : null;
+								        
+								        const surgeryChecked = document.querySelector('input[name="surgeryYN"]:checked');
+								        const flyChecked = document.querySelector('input[name="flyYN"]:checked');
 
-							        if (mediListChecked && surgeryChecked && flyChecked) {
-							            const formData = new FormData(document.getElementById("checkListForm"));
+								        if (mediListValue && surgeryChecked && flyChecked) {
+								            // 약 정보 관련 처리
+								            document.getElementById("mediList").value = mediListValue === '없음' ? '없음' : document.getElementById("inputText").value;
+								            
+								            // 수술 여부 관련 처리
+								            document.getElementById("surgeryName").value = surgeryChecked.value === 'Y' ? document.getElementById("SurgerySelf").value : '없음';
+								            document.getElementById("surgeryYN").value = surgeryChecked.value;
+								            
+								            // 비행기 탑승 여부 처리
+								            document.getElementById("flyYN").value = flyChecked.value;
 
-							            document.getElementById("mediList").value = mediListChecked.value; // 선택된 약 정보
-							            document.getElementById("surgeryName").value = surgeryChecked.value === 'Y' ? document.getElementById("SurgerySelf").value : '없음'; // 수술명이 입력된 경우
-							            document.getElementById("surgeryYN").value = surgeryChecked.value; // 수술 여부
-							            document.getElementById("flyYN").value = flyChecked.value; // 비행기 탑승 여부
-							            
-							            document.getElementById("submitBtn").disabled = true;
-							            
-							            alert("문진표 작성이 완료되었습니다.");
+								            // 폼 제출
+								            document.getElementById('checkListForm').submit();
+								            
+								            alert("문진표 작성이 완료되었습니다.");
+								        } else {
+								            alert("모든 항목을 올바르게 체크해주세요.");
+								        }
+								    }
 
-							            // 폼 제출
-							            document.getElementById('checkListForm').submit();
-							        } else {
-							            alert("모든 항목을 올바르게 체크해주세요.");
-							        }
-							    }
                     
                     function validateAndProceed(event) {
 									  

@@ -154,7 +154,7 @@
 								    <form id="checkListForm" action="<%= contextPath %>/CompanyHealthCheckPoint.rv" method="post">
 								        <div class="first-group">
 								            <h5>1. 현재 복용중인 약이 있으십니까?</h5>
-								            <input type="radio" name="mediList" value="N" style="cursor: pointer;" onclick="toggleMedicationInput(false); checkFormValidity()">
+								            <input type="radio" name="mediList" value="없음" style="cursor: pointer;" onclick="toggleMedicationInput(false); checkFormValidity()">
 								            <label for="none">없음</label>
 								            <br>
 								            <div>
@@ -226,8 +226,10 @@
 								    }
 								
 								    function checkFormValidity() {
+								    	
+								    	
 								        var mediListChecked = document.querySelector('input[name="mediList"]:checked');
-								        var mediListValid = mediListChecked && (mediListChecked.value === "N" || (mediListChecked.value === "Y" && document.getElementById("inputText").value.trim() !== ""));
+								        var mediListValid = mediListChecked && (mediListChecked.value === "없음" || (mediListChecked.value === "Y" && document.getElementById("inputText").value.trim() !== ""));
 								
 								        var surgeryChecked = document.querySelector('input[name="surgeryYN"]:checked');
 								        var surgeryValid = surgeryChecked && (surgeryChecked.value === "N" || (surgeryChecked.value === "Y" && document.getElementById("SurgerySelf").value.trim() !== ""));
@@ -250,7 +252,8 @@
 							        if (mediListChecked && surgeryChecked && flyChecked) {
 							            const formData = new FormData(document.getElementById("checkListForm"));
 
-							            document.getElementById("mediList").value = mediListChecked.value; // 선택된 약 정보
+							       
+							            document.getElementById("mediList").value = mediListChecked.value === '없음' ? document.getElementById("mediList").value : '없음'; // 선택된 약 정보
 							            document.getElementById("surgeryName").value = surgeryChecked.value === 'Y' ? document.getElementById("SurgerySelf").value : '없음'; // 수술명이 입력된 경우
 							            document.getElementById("surgeryYN").value = surgeryChecked.value; // 수술 여부
 							            document.getElementById("flyYN").value = flyChecked.value; // 비행기 탑승 여부

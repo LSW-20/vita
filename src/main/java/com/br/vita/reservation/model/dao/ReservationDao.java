@@ -978,7 +978,7 @@ public class ReservationDao {
 		List<HealthCheck> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectCompanySuccess");
+		String sql = prop.getProperty("selectMemberReservation");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userNo);

@@ -143,7 +143,7 @@
            <td class="d-flex"  style="height: 70px; border-color: rgb(255, 255, 255);"> 
             <input type="text" class="form-control" id="userSSN1" name="userSSN1" maxlength="6" style="width:500px; height:50px; margin-left:30px" required>
             <h3 style="margin-left:27px; margin-top: 7px;">-</h3>
-            <input type="text" class="form-control" id="userSSN2" name="userSSN2" maxlength="7" style="width:500px; height:50px; margin-left:30px" required>
+            <input type="password" class="form-control" id="userSSN2" name="userSSN2" maxlength="7" style="width:500px; height:50px; margin-left:30px" required>
           </td>
            
          </tr>
@@ -164,13 +164,13 @@
                     <div><h3 style="margin-left:15px; margin-top:6px">-</h3></div>
       
                     <div class="form-group" style="margin-left:15px; margin-top:6px; margin-bottom: 6px; width:329px">
-                      <input type="text" class="form-control" id="phone_no2" name="phone2" style="height: 43px;" required>
+                      <input type="text" class="form-control" id="phone_no2" name="phone2"maxlength="4" style="height: 43px;" required>
                     </div>
       
                     <div><h3 style="margin-left:15px; margin-top:6px">-</h3></div>
       
                     <div class="form-group" style="margin-left:15px; margin-top:6px; width:329px; border-color: aliceblue;">
-                      <input type="text" class="form-control" id="phone_no3" name="phone3"style="height: 43px;" required>
+                      <input type="text" class="form-control" id="phone_no3" name="phone3" maxlength="4"style="height: 43px;" required>
                     </div>
                     
 

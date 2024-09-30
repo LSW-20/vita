@@ -600,5 +600,12 @@ WHERE
 		AND TRUNC(CHECKUP_DATE) = ?
 		AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE)
 	</entry>
+	
+	<entry key = "selectMemberReservation">
+	
+	SELECT *
+    FROM CHECKUP_APP
+		WHERE USER_NO = ?
+	</entry>
 
 </properties>

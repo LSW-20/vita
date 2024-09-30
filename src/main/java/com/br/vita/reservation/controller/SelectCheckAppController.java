@@ -17,7 +17,7 @@ import com.br.vita.reservation.model.vo.HealthCheck;
 /**
  * Servlet implementation class SelectCheckAppController
  */
-@WebServlet("/SelectCheckAppController")
+@WebServlet("/SelectCheckApp.rv")
 public class SelectCheckAppController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,7 +37,16 @@ public class SelectCheckAppController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		
-		List<HealthCheck> Success11 = new ReservationService().selectSuccessCompany(userNo);
+		List<HealthCheck> Success11 = new ReservationService().selectSuccessMember(userNo);
+		
+		System.out.println(Success11);
+		 if (Success11 == null  || Success11.isEmpty()) {
+			 request.getRequestDispatcher("/views/reservation/healthCheckUp_1.jsp").forward(request, response);
+
+	        } else {
+	        	session.setAttribute("alertMsg", "검진 예약내역이 존재합니다.");
+	        	request.getRequestDispatcher("/views/reservation/healthCheckUp_AfterLogin.jsp").forward(request, response);
+	        }
 		
 		
 	}
