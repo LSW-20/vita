@@ -128,59 +128,90 @@
 	</div>
 	
     <script>
-        document.getElementById("category").addEventListener("change", function() {
-            var selectedValue = this.value;
-            var complimentTable = document.getElementById("compliment_table");
-            var otherTable = document.getElementById("other_table");
+    document.getElementById("category").addEventListener("change", function() {
+        var selectedValue = this.value;
+        var complimentTable = document.getElementById("compliment_table");
+        var otherTable = document.getElementById("other_table");
 
-            if (selectedValue === "C") {
-                complimentTable.style.display = "table";
-                /* style disabled제외하는 구문 */
-                var complimentInput = complimentTable.querySelectorAll("input, textarea");
-                complimentInput.forEach(function(input, textarea){
-                	input.disabled = false;
-                	textarea.disabled = false;
-                });
-                
-                otherTable.style.display = "none";
-                /* input요소에 disabled추가 되는구문 */
-                var otherInput = otherTable.querySelectorAll("input, textarea");
-                otherInput.forEach(function(input, textarea){
-                	input.disabled = true;
-                	textarea.disabled = true;
-                });
-            } else {
-                complimentTable.style.display = "none";
-                /* input요소에 disabled추가 되는구문 */
-                var complimentInput = complimentTable.querySelectorAll("input, textarea");
-                complimentInput.forEach(function(input, textarea){
-                	input.disabled = true;
-                	textarea.disabled = true;
-                });                
-                otherTable.style.display = "table";
-                /* disabled제외하는 구문 */
-                var otherInput = otherTable.querySelectorAll("input, textarea");
-                otherInput.forEach(function(input, textarea){
-                	input.disabled = false;
-                	textarea.diabled = false;
-                });
-            }
-        });
+        if (selectedValue === "C") {
+            complimentTable.style.display = "table";
+            otherTable.style.display = "none";
 
-        // 초기 카테고리 값에 따라 테이블 표시 설정
-        window.onload = function() {
-            var selectedValue = document.getElementById("category").value;
-            var complimentTable = document.getElementById("compliment_table");
-            var otherTable = document.getElementById("other_table");
+            // 칭찬 테이블 활성화
+            var complimentInput = complimentTable.querySelectorAll("input, textarea");
+            complimentInput.forEach(function(input) {
+                input.disabled = false;
+                input.required = true;  // required 추가
+            });
 
-            if (selectedValue === "C") {
-                complimentTable.style.display = "table";
-                otherTable.style.display = "none";
-            } else {
-                complimentTable.style.display = "none";
-                otherTable.style.display = "table";
-            }
-        };
+            // 나머지 테이블 비활성화
+            var otherInput = otherTable.querySelectorAll("input, textarea");
+            otherInput.forEach(function(input) {
+                input.disabled = true;
+                input.required = false;  // required 제거
+            });
+        } else {
+            complimentTable.style.display = "none";
+            otherTable.style.display = "table";
+
+            // 칭찬 테이블 비활성화
+            var complimentInput = complimentTable.querySelectorAll("input, textarea");
+            complimentInput.forEach(function(input) {
+                input.disabled = true;
+                input.required = false;  // required 제거
+            });
+
+            // 나머지 테이블 활성화
+            var otherInput = otherTable.querySelectorAll("input, textarea");
+            otherInput.forEach(function(input) {
+                input.disabled = false;
+                input.required = true;  // required 추가
+            });
+        }
+    });
+
+    // 초기 카테고리 값에 따라 테이블 표시 설정
+    window.onload = function() {
+        var selectedValue = document.getElementById("category").value;
+        var complimentTable = document.getElementById("compliment_table");
+        var otherTable = document.getElementById("other_table");
+
+        if (selectedValue === "C") {
+            complimentTable.style.display = "table";
+            otherTable.style.display = "none";
+
+            // 칭찬 테이블 활성화
+            var complimentInput = complimentTable.querySelectorAll("input, textarea");
+            complimentInput.forEach(function(input) {
+                input.disabled = false;
+                input.required = true;  // required 추가
+            });
+
+            // 나머지 테이블 비활성화
+            var otherInput = otherTable.querySelectorAll("input, textarea");
+            otherInput.forEach(function(input) {
+                input.disabled = true;
+                input.required = false;  // required 제거
+            });
+        } else {
+            complimentTable.style.display = "none";
+            otherTable.style.display = "table";
+
+            // 칭찬 테이블 비활성화
+            var complimentInput = complimentTable.querySelectorAll("input, textarea");
+            complimentInput.forEach(function(input) {
+                input.disabled = true;
+                input.required = false;  // required 제거
+            });
+
+            // 나머지 테이블 활성화
+            var otherInput = otherTable.querySelectorAll("input, textarea");
+            otherInput.forEach(function(input) {
+                input.disabled = false;
+                input.required = true;  // required 추가
+            });
+        }
+    };
     </script>
 	
 	 	<!-- nav, section 별도로 닫아주기-->
