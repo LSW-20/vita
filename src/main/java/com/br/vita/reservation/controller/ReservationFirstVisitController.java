@@ -49,8 +49,8 @@ public class ReservationFirstVisitController extends HttpServlet {
 		Member firstVisit = new ReservationService().ComparisonMember(userId, phone, userName, userSSN);
 			
 		if (firstVisit == null) {
-			session.setAttribute("alertMsg", "등록된 회원정보와 일치하지 않습니다.");
 			request.getRequestDispatcher("/views/reservation/firstTimeUserReservation.jsp").forward(request, response);
+			session.setAttribute("alertMsg", "등록된 회원정보와 일치하지 않습니다.");
 		} else {
 			session.setAttribute("alertMsg", "첫방문 예약 안내가 신청되었습니다.");
 			request.getRequestDispatcher("/views/reservation/first_Success.jsp").forward(request, response);

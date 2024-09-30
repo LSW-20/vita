@@ -6,9 +6,39 @@ public class DoctorSchedule {
 	private String working;
 	private String scheduleTime;
 	private String scheduleWeek;
+	private String doctorName;
 	
 	
 	public DoctorSchedule() {}
+	
+	
+
+
+	public String getDoctorName() {
+		return doctorName;
+	}
+
+
+
+
+	public void setDoctorName(String doctorName) {
+		this.doctorName = doctorName;
+	}
+
+
+
+
+	public DoctorSchedule(String doctorNo, String working, String scheduleTime, String scheduleWeek,
+			String doctorName) {
+		super();
+		this.doctorNo = doctorNo;
+		this.working = working;
+		this.scheduleTime = scheduleTime;
+		this.scheduleWeek = scheduleWeek;
+		this.doctorName = doctorName;
+	}
+
+
 
 
 	public DoctorSchedule(String doctorNo, String working, String scheduleTime, String scheduleWeek) {

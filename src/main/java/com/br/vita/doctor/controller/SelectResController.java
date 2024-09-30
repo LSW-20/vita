@@ -44,6 +44,7 @@ public class SelectResController extends HttpServlet {
         doGet(request, response);
     }
 
+    
     // 801010 형식을 80/10/10으로 변환하는 메서드
     private String formatDate(String date) {
         return date.substring(0, 2) + "/" + date.substring(2, 4) + "/" + date.substring(4, 6);
