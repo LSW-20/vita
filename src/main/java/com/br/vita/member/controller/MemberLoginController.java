@@ -31,29 +31,23 @@ public class MemberLoginController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String userName = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
-		
-		Member loginUser = new MemberService().memberLogin(userName,userPwd);
-		
-		
-			
-			response.setContentType("application/json; charset=UTF-8");
-			new Gson().toJson(loginUser, response.getWriter());
-			HttpSession session = request.getSession(); 
-			session.setAttribute("loginUser",loginUser);
-			session.setAttribute("alertMsg", loginUser.getUserName() + "님 반갑습니다");
-	
-			
-		
-		
-		
-		
-		
-		
-		
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	  String userName = request.getParameter("userId");
+	  String userPwd = request.getParameter("userPwd");
+
+	  Member loginUser = new MemberService().memberLogin(userName, userPwd);
+
+	  response.setContentType("application/json; charset=UTF-8");
+	  HttpSession session = request.getSession();
+
+	  if (loginUser != null) {
+	    new Gson().toJson(loginUser, response.getWriter());
+	    session.setAttribute("loginUser", loginUser);
+	    session.setAttribute("alertMsg", loginUser.getUserName() + "님 반갑습니다");
+	  } else {
+	    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+	    response.getWriter().write("{\"message\":\"로그인 실패\"}");
+	  }
 	}
 
 	/**
