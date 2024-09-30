@@ -95,7 +95,7 @@ public class MemberService {
    }//updatePwd
    
    /**
-    * 회원탈퇴
+    * 회원탈퇴 + 진료기록 함께 업데이트
     * @author 최보겸
     * @param userId
     * @param userPwd
@@ -103,16 +103,22 @@ public class MemberService {
     */
    public int deleteMember(String userId, String userPwd) {
       Connection conn = getConnection();
-      int result = mdao.deleteMember(conn, userId, userPwd);
+      //MEMBER 테이블에서 회원 상태 업데이트
+      int resultMember  = mdao.deleteMember(conn, userId, userPwd);
+      int resultCareApp = 0; 
+      //CARE_APP 테이블에서 예약 상태 업데이트
+      if(resultMember>0) {
+    	  resultCareApp = mdao.deleteCareApp(conn, userId, userPwd);    	  
+      }
       
-      if(result > 0) {
+      if(resultMember > 0 && resultCareApp > 0) {
          commit(conn);
       } else {
          rollback(conn);
       }
       close(conn);
       
-      return result;
+      return resultMember > 0 && resultCareApp > 0 ? 1 : 0;
    }//deleteMember
 
 

@@ -58,7 +58,7 @@ public class AllmrecordsFileListSelectController extends HttpServlet {
 		
 		
 		
-		new GsonBuilder().setDateFormat("YYYY년MM월DD일").create().toJson(mrallMap, response.getWriter());
+		new GsonBuilder().setDateFormat("yyyy년MM월dd일").create().toJson(mrallMap, response.getWriter());
 		
 		
 		
