@@ -1,7 +1,6 @@
 package com.br.vita.reservation.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,21 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.br.vita.member.model.vo.Member;
 import com.br.vita.reservation.model.service.ReservationService;
-import com.br.vita.reservation.model.vo.HealthCheck;
 
 /**
- * Servlet implementation class HealthCheckNormalSuccessController
+ * Servlet implementation class ReservationDeleteCheckupAppController
  */
-@WebServlet("/NormalSuccess.rv")
-public class HealthCheckNormalSuccessController extends HttpServlet {
+@WebServlet("/deletech.rv")
+public class ReservationDeleteCheckupAppController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HealthCheckNormalSuccessController() {
+    public ReservationDeleteCheckupAppController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,24 +30,20 @@ public class HealthCheckNormalSuccessController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 1. 요청
+		request.setCharacterEncoding("UTF-8"); // post 요청이다
+		HttpSession session = request.getSession(); // alert 띄우기용 session 선언.
+		String appointmentNo = request.getParameter("appointmentNo");
 		
+		int result = new ReservationService().deleteCheckupApp(appointmentNo);
 		
-		request.setCharacterEncoding("UTF-8");
-		HttpSession session = request.getSession();
-		String userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
-		String date = request.getParameter("date"); 
-		
-		//예약 내역 조회
-		List<HealthCheck> Success = new ReservationService().selectSuccessNormal(userNo, date);
-		
-		System.out.println(userNo);
-		System.out.println(date);
-		
-		System.out.println(Success);
-		//결과 응답
-		request.setAttribute("Success", Success);
-		request.getRequestDispatcher("/views/reservation/consultation_Success.jsp").forward(request, response);
-	
+		if(result == 1) {
+			session.setAttribute("alertMsg", "검진 예약을 취소 하였습니다.");
+			response.sendRedirect(request.getContextPath()+"/list.rv");
+		}else {
+			session.setAttribute("alertMsg", "예약 취소를 실패 했습니다.");
+			response.sendRedirect(request.getContextPath()+"/list.rv");			
+		}
 	}
 
 	/**

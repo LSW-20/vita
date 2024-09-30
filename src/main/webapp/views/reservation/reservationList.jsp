@@ -1,10 +1,15 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.br.vita.reservation.model.vo.Consultation"%>
+<%@ page import="com.br.vita.reservation.model.vo.HealthCheck" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%
 	List<Consultation> consultations = (List<Consultation>)request.getAttribute("consultations");
+	List<HealthCheck> healthChecks = (List<HealthCheck>)request.getAttribute("healthChecks");
+    // NullPointerException 방지를 위해 리스트가 null일 경우 빈 리스트로 처리
+    if (consultations == null) consultations = new ArrayList<>();
+    if (healthChecks == null) healthChecks = new ArrayList<>();
 %>
 <!DOCTYPE html>
 <html>
@@ -110,27 +115,45 @@
             <strong>*인터넷으로 예약한 진료만 취소 가능합니다.</strong>
         </div>
         <!-- 예약 내역 없을 때 -->
-        <div id="no_reservation" class="no_reservation" <%= consultations.isEmpty() ? "" : "style='display:none;'" %>>
+        <div id="no_reservation" class="no_reservation" <%= (consultations.isEmpty() && healthChecks.isEmpty()) ? "" : "style='display:none;'" %>>
             예약 내역이 없습니다.
         </div>
 
 			
+        <!-- 예약 내역 있을 때 - consultations -->
+        <div id="reservation_list_consultations" class="container_reservations" <%= consultations.isEmpty() ? "style='display:none;'" : "" %>>
+            <%
+                for (Consultation c : consultations) {
+            %>
+                <div class="reservation_box">
+                    <form action="<%=request.getContextPath()%>/delete.rv" method="POST">
+                        <input type="hidden" name="appointmentNo" value="<%= c.getAppointmentNo() %>">
+                        <button type="submit" class="cancel_button">취소</button>
+                    </form>
+                    <div class="reservation_date"><%= c.getAppointmentDate() %></div><hr>
+                    <div class="patient_name">환자명 : <%= c.getUserName() %></div>
+                    <div class="doc_name">의사명 : <%= c.getDoctorName() %></div>
+                    <div class="department">진료과 : <%= c.getDeptName() %></div>
+                </div>
+            <% } %>
+        </div>
 
-
-        <!-- 예약 내역 있을 때 -->
-        <div id="reservation_list" class="container_reservations" <%= consultations.isEmpty() ? "style='display:none;'" : "" %>>
-        	<% for(Consultation c : consultations) {%>
-	           <div class="reservation_box">
-	               <form action="<%=request.getContextPath()%>/delete.rv" method="POST">
-	                <input type="hidden" name="appointmentNo" value="<%= c.getAppointmentNo() %>">
-	                <button type="submit" class="cancel_button">취소</button>
-	               </form>
-	               <div class="reservation_date"><%= c.getAppointmentDate() %></div><hr>
-	               <div class="patient_name">환자명 : <%= c.getUserName() %></div>
-	               <div class="doc_name">의사명 : <%= c.getDoctorName() %></div>
-	               <div class="department">진료과 : <%= c.getDeptName() %></div>
-	           </div>   	
-		       <%} %>	
+        <!-- 예약 내역 있을 때 - healthChecks -->
+        <div id="reservation_list_healthChecks" class="container_reservations" <%= healthChecks.isEmpty() ? "style='display:none;'" : "" %>>
+            <%
+                for (HealthCheck h : healthChecks) {
+            %>
+                <div class="reservation_box">
+                    <form action="<%=request.getContextPath()%>/deletech.rv" method="POST">
+                        <input type="hidden" name="appointmentNo" value="<%= h.getAppointmentNo() %>">
+                        <button type="submit" class="cancel_button">취소</button>
+                    </form>
+                    <div class="reservation_date"><%= h.getAppointmentDate() %></div><hr>
+                    <div class="patient_name">환자명 : <%= h.getUserName() %></div>
+                    <div class="appointment_time">예약시간 : <%= h.getAppointmentTime() %></div>
+                    <div class="company_name">회사명 : <%= h.getCompName() %></div>
+                </div>
+            <% } %>
         </div>
 
         <!-- 추가 진료 예약 버튼 -->

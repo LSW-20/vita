@@ -366,7 +366,7 @@ footer {
 				<div style="width: 1080px; text-align: center; margin-left: 200px;">
 					<button type="submit" class="btn btn-primary mx-2" id="signup"
 						onclick="onSubmit()">회원가입</button>
-					<a href=""><button type="button" class="btn btn-primary mx-2"
+					<a href="<%= contextPath %>/loginPage.me"><button type="button" class="btn btn-primary mx-2"
 							id="cc">취소</button></a>
 				</div>
 				<input type="hidden" id="rep" class="name" name="rep">

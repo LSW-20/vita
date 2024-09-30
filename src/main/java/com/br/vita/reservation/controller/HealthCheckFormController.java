@@ -1,9 +1,12 @@
 package com.br.vita.reservation.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +20,7 @@ import com.br.vita.payment.model.service.PaymentService;
 import com.br.vita.reservation.model.service.ReservationService;
 import com.br.vita.reservation.model.vo.CheckList;
 import com.br.vita.reservation.model.vo.HealthCheck;
+import com.itextpdf.text.log.SysoCounter;
 
 /**
  * Servlet implementation class HealthCheckListController
@@ -45,14 +49,19 @@ public class HealthCheckFormController extends HttpServlet {
 	    String payNo = request.getParameter("merchant_uid");//payNo
 	    String pg = request.getParameter("selectedPG");
 	   
-	  
 	    int result = new ReservationService().insertHealtchCareList(userNo, time, date);
         
         if (result == 1 ) {
         	int payResult = new PaymentService().insertPayHealthCheck(payNo,userNo, pg);
         	if(payResult == 1) {
-            session.setAttribute("alertMsg", "진료예약이 완료되었습니다.");
-        	request.getRequestDispatcher("/views/reservation/healthCheckUp_Success.jsp").forward(request, response);
+        		List<HealthCheck> Success = new ReservationService().selectSuccessNormal(userNo, date);
+        		if(Success != null) {
+		            session.setAttribute("alertMsg", "진료예약이 완료되었습니다.");
+		            request.setAttribute("Success", Success);
+		            request.setAttribute("date", date);
+		            request.setAttribute("time", time);
+		            request.getRequestDispatcher("/views/reservation/healthCheckUp_Success.jsp").forward(request, response);
+        		}
         	}
         } else {
             session.setAttribute("alertMsg", "추가에 실패하였습니다.");

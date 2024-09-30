@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
     
 <%
-   List<HealthCheck> Success = (List<HealthCheck>)request.getAttribute("Success");
+   List<HealthCheck> Success1 = (List<HealthCheck>)request.getAttribute("Success1");
 %>
 <!DOCTYPE html>
 <html>
@@ -74,7 +74,7 @@
                         <div class="col"><img src="/vita/assets/image/완료체크.jpg"  class="img-check" id="check"></div>
                         <div class="col">
                            <h1 class="text">검진 예약신청 완료</h1>
-                           <h6 class="text">원활한 검진진행을 위해 내원하셔서 문진표 작성을 미리 완료해주세요.</h6>
+                           <h6 class="text">원활한 검진진행을 위해 문진표 작성을 미리 완료해주세요.</h6>
                         </div>
 
                     </div>
@@ -92,7 +92,7 @@
         
                   <table class="table table-bordered" style="width:1004px">
                     
-                         <% for(HealthCheck hc : Success) {%>
+                         <% for(HealthCheck hc : Success1) {%>
                          <tr>
                         <td id="color" style="width:200px">검진 받을 병원</td>
                         <td style="width:302px">비타병원</td>
@@ -109,7 +109,7 @@
                         <td style="width:302px"><%= request.getAttribute("time") %></td>
                         
                       </tr>
-                       <% for(HealthCheck hc : Success) {%>
+                       <% for(HealthCheck hc : Success1) {%>
                       <tr>
                         <td id="color" style="width:200px">검진 프로그램</td>
                         <td style="width:302px">건강검진</td>
@@ -120,7 +120,7 @@
                         <%} %>  
                       <tr>
                         <td id="color" >유형</td>
-                        <td style="border-right: white">일반 건강검진</td>
+                        <td style="border-right: white">기업 건강검진</td>
                       
                       </tr>
                   </table>
@@ -129,7 +129,7 @@
                
             		<h4>원활한 검진을 위해 문진표를 작성해주세요</h4>
             		<br>
-            		 <a href="/vita/views/reservation/healthCheckUp_2.jsp" class="btn" id="btn-color">문진표작성하기</a>
+            		 <a href="/vita/views/reservation/company_Health_2.jsp" class="btn" id="btn-color">문진표작성하기</a>
       
               <br><br><br>   
       			
