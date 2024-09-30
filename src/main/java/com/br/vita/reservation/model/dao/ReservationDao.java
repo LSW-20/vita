@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.br.vita.doctor.model.vo.Doctor;
+import com.br.vita.doctor.model.vo.DoctorSchedule;
 import com.br.vita.employee.model.vo.Employee;
 import com.br.vita.member.model.vo.Member;
 import com.br.vita.reservation.model.vo.CheckList;
@@ -908,6 +909,53 @@ public class ReservationDao {
 		
 		
 	}
+	
+	
+	
+	
+	public  List<DoctorSchedule> doctorScheduleSel(Connection conn, String dname) {
+		
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<DoctorSchedule> list = new ArrayList<>();
+
+		String sql = prop.getProperty("doctorScheduleSel");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, dname);
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+
+				DoctorSchedule dShedule = new DoctorSchedule(rset.getString("WORKING")
+															, rset.getString("SCHEDULE_TIME")
+															,rset.getString("SCHEDULE_WEEK"));
+
+				list.add(dShedule);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+		
+	
 
 
 		

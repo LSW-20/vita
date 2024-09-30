@@ -447,8 +447,33 @@
 	  AND  EMP_NAME = ?
 	  AND  EMP_NO = ?
     
-	
-	
 	</entry>
+	
+	
+<entry key="doctorScheduleSel">
+		SELECT 
+		 WORKING
+		,SCHEDULE_TIME
+		,SCHEDULE_WEEK
+FROM 
+		SCHEDULE
+JOIN DOCTOR USING(DOCTOR_NO)
+WHERE 
+     DOCTOR_NAME = ?
+	
+	
+	
+
+
+
+</entry>
+
+
+
+	
+	
+	
+	
+	
 
 </properties>

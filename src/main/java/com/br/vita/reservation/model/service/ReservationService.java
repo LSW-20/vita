@@ -9,10 +9,10 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 
+import com.br.vita.doctor.model.vo.DoctorSchedule;
 import com.br.vita.employee.model.vo.Employee;
 import com.br.vita.member.model.vo.Member;
 import com.br.vita.reservation.model.dao.ReservationDao;
-import com.br.vita.reservation.model.vo.CheckList;
 import com.br.vita.reservation.model.vo.Consultation;
 import com.br.vita.reservation.model.vo.HealthCheck;
 
@@ -391,6 +391,27 @@ public class ReservationService {
 
 	
 
+		
+	
+	
+	public List<DoctorSchedule> doctorScheduleSel(String dname) {
+		
+		
+		
+		Connection conn = getConnection();
+		
+		List<DoctorSchedule> dclist = rdao.doctorScheduleSel(conn,dname);
+		
+		
+		close(conn);
+		
+		return dclist;
+		
+		
+		
+		
+		
+	}
 	
 
 	
