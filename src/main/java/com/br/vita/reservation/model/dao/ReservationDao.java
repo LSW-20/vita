@@ -835,8 +835,7 @@ public class ReservationDao {
 		
 	}
 
-	public List<HealthCheck> selectSuccessNormal(Connection conn, String userNo, String appointmentNo,
-			String checkupDate, String appointmentDate) {
+	public List<HealthCheck> selectSuccessNormal(Connection conn, String userNo, String date) {
 
 
 		List<HealthCheck> list = new ArrayList<>();
@@ -846,9 +845,8 @@ public class ReservationDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userNo);
-			pstmt.setString(2, appointmentNo);
-			pstmt.setString(3, checkupDate);
-			pstmt.setString(4, appointmentDate);
+			pstmt.setString(2, userNo);
+			pstmt.setString(3, date);
 			
 			rset = pstmt.executeQuery();
 			
@@ -906,6 +904,71 @@ public class ReservationDao {
 		
 		return list;
 		
+		
+	}
+
+	public int insertHealthCheckCompanyList(Connection conn, String userNo, String userName, String time, String date) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertCompanyAPP");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, userName);
+			pstmt.setString(3, time);
+			pstmt.setString(4, date);
+		
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+		
+	}
+
+	public List<HealthCheck> selectSuccessCompany(Connection conn, String userNo, String date) {
+
+
+		List<HealthCheck> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCompanySuccess");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNo);
+			pstmt.setString(2, userNo);
+			pstmt.setString(3, date);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new HealthCheck(rset.getString("APPOINTMENT_NO")
+										, rset.getString("USER_NO")
+										, rset.getDate("APPOINTMENT_DATE")
+										, rset.getString("APPOINTMENT_TYPE")
+										, rset.getDate("CHECKUP_DATE")	
+										, rset.getString("TOTAL_PRICE")
+						));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 		
 	}
 

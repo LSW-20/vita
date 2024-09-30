@@ -372,10 +372,10 @@ public class ReservationService {
 		return result;
 	}
 
-	public List<HealthCheck> selectSuccessNormal(String userNo, String appointmentNo, String checkupDate , String  appointmentDate) {
+	public List<HealthCheck> selectSuccessNormal(String userNo, String date) {
 		
 		Connection conn = getConnection();
-		List<HealthCheck> Success = rdao.selectSuccessNormal(conn, userNo, appointmentNo, checkupDate,  appointmentDate);
+		List<HealthCheck> Success = rdao.selectSuccessNormal(conn, userNo, date);
 		close(conn);
 		return Success;
 		
@@ -387,6 +387,33 @@ public class ReservationService {
 		List<Employee> Company = rdao.selectCompany(conn, companyName, name, name1);
 		close(conn);
 		return Company;
+	}
+
+	public int insertHealthCheckCompanyList(String userNo, String userName, String time, String date) {
+
+
+		Connection conn = getConnection();
+		int result = rdao.insertHealthCheckCompanyList(conn, userNo, userName, time, date);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		
+		close(conn);
+		return result;
+		
+		
+	}
+
+	public List<HealthCheck> selectSuccessCompany(String userNo, String date) {
+
+		Connection conn = getConnection();
+		List<HealthCheck> Success1 = rdao.selectSuccessCompany(conn, userNo, date);
+		close(conn);
+		return Success1;
 	}
 
 	

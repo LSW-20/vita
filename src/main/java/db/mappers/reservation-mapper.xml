@@ -428,9 +428,12 @@
 		FROM CHECKUP_APP
         
 		WHERE USER_NO = ?
-		AND APPOINTMENT_NO = ?
+		AND APPOINTMENT_NO = (SELECT APPOINTMENT_NO 
+							FROM CHECKUP_APP 
+							WHERE USER_NO = ?
+							AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE))
 		AND TRUNC(CHECKUP_DATE) = ?
-		AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE))
+		AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE)
 	</entry>
 	
 	<entry key="selectCompany11">
@@ -449,6 +452,57 @@
     
 	
 	
+	</entry>
+	
+	<entry key="insertCompanyAPP">
+		INSERT
+			INTO CHECKUP_APP
+			(
+			  APPOINTMENT_NO
+			, USER_NO
+			, COMPANY_NO
+			, APPOINTMENT_DATE
+			, APPOINTMENT_TYPE
+	    , APPOINTMENT_TIME
+	    , CHECKUP_DATE
+	    , TOTAL_PRICE
+			)
+	
+			VALUES
+			(
+			  'ch' || SEQ_CHN.NEXTVAL
+			, ?
+			, (SELECT COMP_NO
+				FROM COMPANY
+				JOIN EMPLOYEE USING (COMP_NO)
+				WHERE EMP_NAME = ?)
+			, SYSDATE
+			, 'B'
+			, ?
+	    , ?
+	    , '50000'
+			)
+	</entry>
+
+		<entry key = "selectCompanySuccess">
+	
+		SELECT
+		APPOINTMENT_NO,
+    USER_NO,
+		APPOINTMENT_DATE,
+		APPOINTMENT_TYPE,
+		CHECKUP_DATE,
+    TOTAL_PRICE
+        
+		FROM CHECKUP_APP
+        
+		WHERE USER_NO = ?
+		AND APPOINTMENT_NO = (SELECT APPOINTMENT_NO 
+							FROM CHECKUP_APP 
+							WHERE USER_NO = ?
+							AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE))
+		AND TRUNC(CHECKUP_DATE) = ?
+		AND TRUNC(APPOINTMENT_DATE) = TRUNC(SYSDATE)
 	</entry>
 
 </properties>

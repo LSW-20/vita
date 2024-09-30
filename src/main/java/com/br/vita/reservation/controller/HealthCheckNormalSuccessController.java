@@ -38,11 +38,15 @@ public class HealthCheckNormalSuccessController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		String userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
-		String appointmentNo = request.getParameter("appointmentNo"); 
-		String checkupDate = request.getParameter("checkupDate");
-		String appointmentDate = request.getParameter("appointmentDate");
+		String date = request.getParameter("date"); 
+		
 		//예약 내역 조회
-		List<HealthCheck> Success = new ReservationService().selectSuccessNormal(userNo, appointmentNo, checkupDate,  appointmentDate);
+		List<HealthCheck> Success = new ReservationService().selectSuccessNormal(userNo, date);
+		
+		System.out.println(userNo);
+		System.out.println(date);
+		
+		System.out.println(Success);
 		//결과 응답
 		request.setAttribute("Success", Success);
 		request.getRequestDispatcher("/views/reservation/consultation_Success.jsp").forward(request, response);
