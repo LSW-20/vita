@@ -121,7 +121,7 @@ List<Member> doculist = (List<Member>)request.getAttribute("doculist");
             <h2><b>진료기록</b></h2>
 
               <div class="boxline">
-                <form action="<%= contextPath %>" >
+                <form action="<%= contextPath %>/selectMrecords.se" >
                   <div class="care_select_container mt-5">
 
                       <div class="input-group mb-3">
@@ -429,7 +429,7 @@ List<Member> doculist = (List<Member>)request.getAttribute("doculist");
         <% if (pi != null) { %>
             <li class='page-item <%= (pi.getCurrentPage() == 1) ? "disabled" : "" %>'>
                 <a class="page-link" 
-                   href="<%= contextPath %>?page=<%=  pi.getCurrentPage() - 1  %>&userName=<%= request.getParameter("userName") %>&deptName=<%= request.getParameter("deptName") %>&date1=<%= request.getParameter("date1") %>&date2=<%= request.getParameter("date2") %>" 
+                   href="<%= contextPath %>/selectMrecords.se?page=<%=  pi.getCurrentPage() - 1  %>&userName=<%= request.getParameter("userName") %>&deptName=<%= request.getParameter("deptName") %>&date1=<%= request.getParameter("date1") %>&date2=<%= request.getParameter("date2") %>" 
                    aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
@@ -438,14 +438,14 @@ List<Member> doculist = (List<Member>)request.getAttribute("doculist");
             <% for (int p = pi.getStartPage(); p <= pi.getEndPage(); p++) { %>
                 <li class='page-item <%= (p == pi.getCurrentPage()) ? "active" : "" %>'>
                     <a class="page-link" 
-                       href="<%= contextPath %>?page=<%= p %>&userName=<%= request.getParameter("userName") %>&deptName=<%= request.getParameter("deptName") %>&date1=<%= request.getParameter("date1") %>&date2=<%= request.getParameter("date2") %>">
+                       href="<%= contextPath %>/selectMrecords.se?page=<%= p %>&userName=<%= request.getParameter("userName") %>&deptName=<%= request.getParameter("deptName") %>&date1=<%= request.getParameter("date1") %>&date2=<%= request.getParameter("date2") %>">
                        <%= p %></a>
                 </li>
             <% } %>
 
             <li class='page-item <%= (pi.getCurrentPage() == pi.getMaxPage()) ? "disabled" : "" %>'>
                 <a class="page-link" 
-                   href="<%= contextPath %>?page=<%=  pi.getCurrentPage() + 1  %>&userName=<%= request.getParameter("userName") %>&deptName=<%= request.getParameter("deptName") %>&date1=<%= request.getParameter("date1") %>&date2=<%= request.getParameter("date2") %>"
+                   href="<%= contextPath %>/selectMrecords.se?page=<%=  pi.getCurrentPage() + 1  %>&userName=<%= request.getParameter("userName") %>&deptName=<%= request.getParameter("deptName") %>&date1=<%= request.getParameter("date1") %>&date2=<%= request.getParameter("date2") %>"
                    aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>

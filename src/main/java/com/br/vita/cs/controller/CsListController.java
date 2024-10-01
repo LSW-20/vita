@@ -43,7 +43,7 @@ public class CsListController extends HttpServlet {
 		
 		//메뉴바 클릭시 /list.cs ->1번페이지 요청
 		//목록 페이징바 클릭시 /list.cs?page=페이지번호 ->클릭한 페이지 요청
-		int listCount = new CsService().selectBoardListCount(category);			//"카테고리에 따른" 현재 게시글 총 개수
+		int listCount = new CsService().selectBoardListCount(category);	//"카테고리에 따른" 현재 게시글 총 개수
 		
 		int currentPage = 1;											//사용자가 요청한 페이지 번호
 		if(request.getParameter("page") != null) {
@@ -55,7 +55,7 @@ public class CsListController extends HttpServlet {
 		
 		int maxPage = (int)Math.ceil((double)listCount / boardLimit);	//총 페이지 수
 		int startPage = (currentPage -1) / pageLimit * pageLimit+1;		//사용자요청 페이지 하단에 보여질 페이징바의 시작수
-		int endPage = Math.min(startPage + pageLimit - 1, maxPage);//사용자요청 페이지 하단에 보여질 페이징바의 끝수
+		int endPage = Math.min(startPage + pageLimit - 1, maxPage);		//사용자요청 페이지 하단에 보여질 페이징바의 끝수
 		
 		//endPage>maxPage 경우 처리
 		if(endPage > maxPage) {
@@ -75,10 +75,6 @@ public class CsListController extends HttpServlet {
 		request.setAttribute("csList", csList);
 		request.setAttribute("category",category);
 
-		//request.getRequestDispatcher("/views/cs/csList.jsp").forward(request, response); <- 기존에 작성되어 있던 구문 (주석 작성자 : 상우)
-		
-		
-		
 		Member loginUser = (Member) request.getSession().getAttribute("loginUser"); // 세션으로부터 현재 로그인한 Member 객체를 가져온다.
 		
 		if (loginUser == null) {

@@ -207,47 +207,37 @@
 	                       <script>
 	                       
 	                       
-	                   	let userPwd = document.getElementById('userPwd');
-                       	
-                       	userPwd.addEventListener('keydown', function(event) {
-                       	  if (event.key === 'Enter') {
-                       			
-                       					fnLogin();
-                       	  }
-                       	});
-	                       
-	                       	
-	                       	function fnLogin(){
-	                       		
-		                       	$.ajax({
-		                       		url:'<%= contextPath %>/login.me',
-		                       		data: {
-		                       				userId:$('#userId').val(),
-		                       				userPwd:$('#userPwd').val()
-		                       		},
-		                       		success:function(res){
-		                       			if(res != null){
-		                       				location.href = '<%=contextPath %>';
-		                       				
-		                       				
-		                       				/* console.log(res); */
-		                       			}else{
-		                       				alert('아이디와 비밀번호를 다시 확인해주세요');
-		                       				location.href = '<%=contextPath %>/views/member/login.jsp';
-		                       				/* console.log(res); */
-		                       			}
-		                       		},
-		                       		type:"post"
-		                       		
-		                       		
-		                       	});
-	                       		
-	                      }
-	                       	
-	                       
-	                       	
-	                       	
-	                       	
+	                       let userPwd = document.getElementById('userPwd');
+
+	                       userPwd.addEventListener('keydown', function(event) {
+	                         if (event.key === 'Enter') {
+	                           fnLogin();
+	                         }
+	                       });
+
+	                       function fnLogin() {
+	                         $.ajax({
+	                           url: '<%= contextPath %>/login.me',
+	                           data: {
+	                             userId: $('#userId').val(),
+	                             userPwd: $('#userPwd').val()
+	                           },
+	                           type: "post",
+	                           success: function(res) {
+	                             if (res != null) {
+	                               location.href = '<%= contextPath %>';
+	                             } else {
+	                               alert('아이디와 비밀번호를 다시 확인해주세요');
+	                               location.href = '<%= contextPath %>/views/member/login.jsp';
+	                             }
+	                           },
+	                           error: function(xhr, status, error) {
+	                             alert('아이디와 비밀번호를 다시 확인해주세요');
+	                             console.error('Error:', error);
+	                           }
+	                         });
+	                       }
+	                       	     	
 	                       	
 	                       </script>
 	                   </div>

@@ -61,7 +61,7 @@ public class CsDao {
 	/**
 	 * 페이지에 맞는 게시글 리스트 가져오기
 	 * select해오는 거니까 rset
-	 * author: 최보겸
+	 * @author 최보겸
 	 * @param conn
 	 * @param pi 페이지정보 갖고 있는 객체
 	 * @param category 불러올 게시글 카테고리
