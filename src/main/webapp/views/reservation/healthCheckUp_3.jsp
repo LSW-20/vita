@@ -182,7 +182,7 @@
             pg: selectedPG, // 결제할 PG사
             pay_method: 'card', // 결제 방법 (신용카드)
             name: '일반 건강검진(비타병원)', // 상품 이름
-            amount: 1, // 결제 금액
+            amount: 50000, // 결제 금액
             merchant_uid: merchant_uid, // 주문번호(unique)
             buyer_name: '<%= ((Member)session.getAttribute("loginUser")).getUserName() %>', 
             buyer_tel:  '<%= ((Member)session.getAttribute("loginUser")).getPhone() %>',
