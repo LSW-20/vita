@@ -424,8 +424,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
                                 style="width:140px; height: 50px; margin-left:15px;" 
                                 onchange="updateDate()" aria-label="월 선택">
-                            <option id="month-placeholder" selected value="10">10</option> 
-                            <option value="1">1</option>
+                            <option id="month-placeholder" selected value="1">1</option> 
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>

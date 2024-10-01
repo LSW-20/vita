@@ -42,6 +42,8 @@ public class SelectCheckAppController extends HttpServlet {
 		System.out.println(Success11);
 		 if (Success11 == null  || Success11.isEmpty()) {
 			 request.getRequestDispatcher("/views/reservation/healthCheckUp_1.jsp").forward(request, response);
+			 session.setAttribute("alertMsg", "등록된 회원정보와 일치하지 않습니다.");
+			 
 
 	        } else {
 	        	session.setAttribute("alertMsg", "검진 예약내역이 존재합니다.");

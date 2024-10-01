@@ -42,6 +42,7 @@ public class SelectCheckAPPCompanyController extends HttpServlet {
 		System.out.println(Success111);
 		 if (Success111 == null  || Success111.isEmpty()) {
 			 request.getRequestDispatcher("/views/reservation/company_Health_1.jsp").forward(request, response);
+			 session.setAttribute("alertMsg", "사원 정보가 일치하지 않습니다.");
 
 	        } else {
 	        	session.setAttribute("alertMsg", "검진 예약내역이 존재합니다.");

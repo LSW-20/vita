@@ -154,11 +154,11 @@
 								    <form id="checkListForm" action="<%= contextPath %>/HealthCheckPoint.rv" method="post">
 								        <div class="first-group">
 								            <h5>1. 현재 복용중인 약이 있으십니까?</h5>
-								            <input type="radio" name="mediList" value="N" style="cursor: pointer;" onclick="toggleMedicationInput(false); checkFormValidity()">
+								            <input type="radio" name="mediList" value="없음" style="cursor: pointer;" onclick="toggleMedicationInput(false); checkFormValidity()">
 								            <label for="none">없음</label>
 								            <br>
 								            <div>
-								                <input type="radio" name="mediList" value="Y" style="cursor: pointer;" onclick="toggleMedicationInput(true); checkFormValidity()">
+								                <input type="radio"  id="mediList" name="mediList" value="Y" style="cursor: pointer;" onclick="toggleMedicationInput(true); checkFormValidity()">
 								                <label for="other" id="other">있음</label>
 								                
 								                <input type="text" class="form-control" id="inputText" name="mediListDetails" placeholder="여러항목일경우 띄어쓰기없이 ( , )로 연이어서 입력해주세요" value="" disabled oninput="checkFormValidity()">
@@ -227,7 +227,7 @@
 								
 								    function checkFormValidity() {
 								        var mediListChecked = document.querySelector('input[name="mediList"]:checked');
-								        var mediListValid = mediListChecked && (mediListChecked.value === "N" || (mediListChecked.value === "Y" && document.getElementById("inputText").value.trim() !== ""));
+								        var mediListValid = mediListChecked && (mediListChecked.value === "없음" || (mediListChecked.value === "Y" && document.getElementById("inputText").value.trim() !== ""));
 								
 								        var surgeryChecked = document.querySelector('input[name="surgeryYN"]:checked');
 								        var surgeryValid = surgeryChecked && (surgeryChecked.value === "N" || (surgeryChecked.value === "Y" && document.getElementById("SurgerySelf").value.trim() !== ""));
@@ -243,28 +243,25 @@
 								    }
 								
 								    function handleSubmit() {
-								        // 현재 복용중인 약 체크 상태 확인
-								        const mediListChecked = document.querySelector('input[name="mediList"]:checked');
-								        const mediListValue = mediListChecked ? mediListChecked.value : null;
-								        
-								        const surgeryChecked = document.querySelector('input[name="surgeryYN"]:checked');
-								        const flyChecked = document.querySelector('input[name="flyYN"]:checked');
+								    	const mediListChecked = document.querySelector('input[name="mediList"]:checked') !== null;
+								        const surgeryChecked = document.querySelector('input[name="surgeryYN"]:checked') !== null;
+								        const flyChecked = document.querySelector('input[name="flyYN"]:checked') !== null;
 
-								        if (mediListValue && surgeryChecked && flyChecked) {
-								            // 약 정보 관련 처리
-								            document.getElementById("mediList").value = mediListValue === '없음' ? '없음' : document.getElementById("inputText").value;
+								        if (mediListChecked && surgeryChecked && flyChecked) {
+								            const formData = new FormData(document.getElementById("checkListForm"));
+
+								       
+								            document.getElementById("mediList").value = mediListChecked.value === 'Y' ? '없음' : document.getElementById("inputText").value; // 선택된 약 정보
+								            document.getElementById("surgeryName").value = surgeryChecked.value === 'Y' ? document.getElementById("SurgerySelf").value : '없음'; // 수술명이 입력된 경우
+								            document.getElementById("surgeryYN").value = surgeryChecked.value; // 수술 여부
+								            document.getElementById("flyYN").value = flyChecked.value; // 비행기 탑승 여부
 								            
-								            // 수술 여부 관련 처리
-								            document.getElementById("surgeryName").value = surgeryChecked.value === 'Y' ? document.getElementById("SurgerySelf").value : '없음';
-								            document.getElementById("surgeryYN").value = surgeryChecked.value;
+								            document.getElementById("submitBtn").disabled = true;
 								            
-								            // 비행기 탑승 여부 처리
-								            document.getElementById("flyYN").value = flyChecked.value;
+								            alert("문진표 작성이 완료되었습니다.");
 
 								            // 폼 제출
 								            document.getElementById('checkListForm').submit();
-								            
-								            alert("문진표 작성이 완료되었습니다.");
 								        } else {
 								            alert("모든 항목을 올바르게 체크해주세요.");
 								        }

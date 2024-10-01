@@ -158,8 +158,8 @@
 								            <label for="none">없음</label>
 								            <br>
 								            <div>
-								                <input type="radio" name="mediList" value="Y" style="cursor: pointer;" onclick="toggleMedicationInput(true); checkFormValidity()">
-								                <label for="other" id="other">있음</label>
+								                <input type="radio" id="mediList" name="mediList" value="Y" style="cursor: pointer;" onclick="toggleMedicationInput(true); checkFormValidity()">
+								                <label for="other" >있음</label>
 								                
 								                <input type="text" class="form-control" id="inputText" name="mediListDetails" placeholder="여러항목일경우 띄어쓰기없이 ( , )로 연이어서 입력해주세요" value="" disabled oninput="checkFormValidity()">
 								                <br>
@@ -253,7 +253,7 @@
 							            const formData = new FormData(document.getElementById("checkListForm"));
 
 							       
-							            document.getElementById("mediList").value = mediListChecked.value === '없음' ? document.getElementById("mediList").value : '없음'; // 선택된 약 정보
+							            document.getElementById("mediList").value = mediListChecked.value === 'Y' ? '없음' : document.getElementById("inputText").value; // 선택된 약 정보
 							            document.getElementById("surgeryName").value = surgeryChecked.value === 'Y' ? document.getElementById("SurgerySelf").value : '없음'; // 수술명이 입력된 경우
 							            document.getElementById("surgeryYN").value = surgeryChecked.value; // 수술 여부
 							            document.getElementById("flyYN").value = flyChecked.value; // 비행기 탑승 여부
