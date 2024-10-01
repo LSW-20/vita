@@ -588,7 +588,7 @@
         }
 
         // 년도 생성
-        createOptions(yearSelect, 1900, currentYear, currentYear, currentYear);
+        createOptions(yearSelect, 2000, currentYear, currentYear, currentYear);
 
         // 월과 일 업데이트
         function updateMonthDay() {

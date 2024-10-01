@@ -204,7 +204,7 @@
     <h3 style="margin-left:93px"><sup style="color:rgb(255, 165, 0)">*</sup><b> 희망검진일</b></h3>
    <br>
   
-   <form action="<%= contextPath %>/CompanyForm.rv" method="post" id="healthpay">
+      <form action="<%= contextPath %>/CompanyForm.rv" method="post" id="healthpay">
 
    <table class="container11 table-bordered" id="table_custom" style="margin-left:93px; ">
              
@@ -234,25 +234,25 @@
     <br><br>
         	
         	
-    <div class="container11" style="margin-left:93px">
-    <div class="d-flex">
-        <div>
+     
+        	
+        	
+        	
+      <div class="container11" style="margin-left:93px">
+        <div class="d-flex">
             <div>
-                <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" 
-                        id="year" name="year" 
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
-                        style="width:325px; height: 50px; margin-left:15px;" 
-                        onchange="updateDate()" aria-label="년도 선택">
-                    <option id="year-placeholder" selected value="2024">2024</option>
-                    
-                </select> 년
-            </div>
-           
-            <div class="d-flex" style="margin-top: 60px;">
+                <div>
+                    <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" 
+                            id="year" name="year" 
+                            style="width:325px; height: 50px; margin-left:15px;" 
+                            onchange="updateDate()" aria-label="년도 선택">
+                        <option id="year-placeholder" selected value="2024">2024</option>
+                    </select> 년
+                </div>
+                <div class="d-flex" style="margin-top: 60px;">
                     <div>
                         <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" 
                                 id="month" name="month" 
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
                                 style="width:140px; height: 50px; margin-left:15px;" 
                                 onchange="updateDate()" aria-label="월 선택">
                             <option id="month-placeholder" selected value="1">1</option> 
@@ -272,47 +272,16 @@
                     <div>
                         <select class="btn btn-outline-light border-2 border-dark text-dark dropdown-toggle dropdown-toggle-split" 
                                 id="day" name="day" 
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
                                 style="width:140px; height: 50px; margin-left:25px;" 
                                 aria-label="일 선택">
                             <option id="day-placeholder" selected value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                            <option value="24">24</option>
-                            <option value="25">25</option>
-                            <option value="26">26</option>
-                            <option value="27">27</option>
-                            <option value="28">28</option>
-                            <option value="29">29</option>
-                            <option value="30">30</option>
-                            <option value="31">31</option>
-            
+                            <!-- 일 옵션은 자바스크립트로 동적으로 생성합니다. -->
                         </select> 일
                     </div>
-               
+                </div>
             </div>
-        </div>
- 
+        
+    
 
 
         <div style="border:1px dashed;border-left:#212529; margin-left:175px"> </div>
@@ -343,8 +312,10 @@
 						<input type="hidden" name="merchant_uid" id="merchant_uid" />
 						<input type="hidden" name="imp" id="imp" />
         </div>
+        
       </div>
-    </div>
+      </div>
+    
     </form>
 				
     <br>
@@ -424,7 +395,47 @@
         
   </section>
 		
+        	 <script>
+        const today = new Date(),
+              currentYear = today.getFullYear(),
+              currentMonth = today.getMonth() + 1,
+              currentDay = today.getDate();
 
+        const yearSelect = document.getElementById('year'),
+              monthSelect = document.getElementById('month'),
+              daySelect = document.getElementById('day');
+
+        // 옵션 생성 함수
+        function createOptions(selectElement, start, end, current, disableBefore) {
+            selectElement.innerHTML = ''; // 기존 옵션 초기화
+            for (let i = start; i <= end; i++) {
+                const option = new Option(i, i);
+                if (i === current) option.selected = true;
+                if (i < disableBefore) option.disabled = true; // 비활성화 설정
+                selectElement.appendChild(option);
+            }
+        }
+
+        // 년도 생성
+        createOptions(yearSelect, 2000, currentYear, currentYear, currentYear);
+
+        // 월과 일 업데이트
+        function updateMonthDay() {
+            const selectedYear = parseInt(yearSelect.value);
+            const selectedMonth = parseInt(monthSelect.value);
+            createOptions(monthSelect, 1, 12, currentMonth, selectedYear === currentYear ? currentMonth : 0);
+
+            const daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
+            createOptions(daySelect, 1, daysInMonth, currentDay, selectedYear === currentYear && selectedMonth === currentMonth ? currentDay : 0);
+        }
+
+        // 이벤트 리스너
+        yearSelect.addEventListener('change', updateMonthDay);
+        monthSelect.addEventListener('change', updateMonthDay);
+
+        // 초기화
+        updateMonthDay();
+    </script>
 
 
 
