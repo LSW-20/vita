@@ -607,5 +607,12 @@ WHERE
     FROM CHECKUP_APP
 		WHERE USER_NO = ?
 	</entry>
+	
+	<entry key = "selectCompanyMemberReservation">
+	SELECT *
+    FROM CHECKUP_APP
+		WHERE USER_NO = ?
+	
+	</entry>
 
 </properties>

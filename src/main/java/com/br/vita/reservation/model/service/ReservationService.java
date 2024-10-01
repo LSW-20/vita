@@ -420,9 +420,9 @@ public class ReservationService {
 
 	public List<HealthCheck> selectSuccessMember(String userNo) {
 		Connection conn = getConnection();
-		List<HealthCheck> Success1 = rdao.selectSuccessMember(conn, userNo);
+		List<HealthCheck> Success11 = rdao.selectSuccessMember(conn, userNo);
 		close(conn);
-		return Success1;
+		return Success11;
 	}
 
 
@@ -465,6 +465,13 @@ public class ReservationService {
 		
 		
 		
+	}
+
+	public List<HealthCheck> selectSuccessCompanyMember(String userNo) {
+		Connection conn = getConnection();
+		List<HealthCheck> Success111 = rdao. selectSuccessCompanyMember(conn, userNo);
+		close(conn);
+		return Success111;
 	}
 
 

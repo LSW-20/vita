@@ -102,7 +102,7 @@
             <h6>하실 수 있습니다.</h6>
             <br><br>
             <div align="left">
-               <a href="<%= contextPath %>/SelectCompany.rv" class="btn" id="btn-color" style="width:170px;">검진 예약하기</a>
+               <a href="<%= contextPath %>/SelectCheckAPPCompany.rv" class="btn" id="btn-color" style="width:170px;">검진 예약하기</a>
              	 <a href="<%= contextPath %>/list.rv"  class="btn ml-4" id="btn-color">검진 예약 조회하기</a>
             </div>
           </div>
