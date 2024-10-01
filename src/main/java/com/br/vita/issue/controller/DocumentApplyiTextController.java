@@ -101,7 +101,6 @@ public class DocumentApplyiTextController extends HttpServlet {
 
 		// PDF로 변환할 HTML 내용
 		String htmlContent = jsoupDoc.html().replace("<br>", "<br />");
-		//System.out.println(htmlContent);  // HTML 내용이 정상 출력되는지 확인
 
 		// PDF 변환을 위한 응답 헤더 설정
 		response.setContentType("application/pdf");
