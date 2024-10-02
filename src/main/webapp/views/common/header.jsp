@@ -307,8 +307,12 @@
             <%} else { %>
             <a href="<%= contextPath %>/consultationBL.rv" style="text-decoration: none;">&nbsp;진료예약</a><br>
             <%} %>
-            <a href="<%= contextPath %>" style="text-decoration: none;">&nbsp;진료검진예약</a><br>
-            <a href="<%= contextPath %>" style="text-decoration: none;">&nbsp;전화/방문예약</a><br>
+             <% if(loginUser != null) { %>
+            <a href="<%= contextPath %>/HealthCheckAL.rv" style="text-decoration: none;">&nbsp;건강검진예약</a><br>
+            <%} else { %>
+            <a href="<%= contextPath %>/HealthCheckBL.rv" style="text-decoration: none;">&nbsp;건강검진예약</a><br>
+            <%} %>
+            <a href="<%= contextPath %>/PhoneVisitGuide.rv">&nbsp;전화/방문예약</a><br>
             <a href="<%= contextPath %>/list.rv" style="text-decoration: none;">&nbsp;예약내역 조회</a>
         </div>
         <div class="sub"></div>
