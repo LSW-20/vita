@@ -11,7 +11,7 @@
             이용할 수 있습니다.<br><br>
             <div class="btn-group-vertical" style="width: 150px;">
                 <a href="<%= contextPath %>/loginPage.me" class="btn btn-success">로그인</a><p></p>
-                <a href="/vita/views/reservation/consultation_beforelogin.jsp" class="btn btn-primary">진료예약</a>
+                 <a href="<%= contextPath %>/consultationBL.rv" class="btn btn-primary">진료예약</a><br>
             </div>
         </div>
        
@@ -27,9 +27,12 @@
             <div class="btn-group-vertical" style="width: 150px;">
                 <a href="#" class="btn btn-success" id="logout_btn" onclick="fnLogout();">로그아웃</a><p></p>
                 <a href="<%= contextPath %>/ad_doc.me?userId=<%= loginUser.getUserId() %>" class="btn btn-warning" >마이페이지</a><p></p>
-                <a href="/vita/views/reservation/consultation_AfterLogin.jsp"class="btn btn-primary">진료예약</a>
+								<% if(loginUser != null) { %>
+		            <a href="<%= contextPath %>/consultationAL.rv" class="btn btn-primary">진료예약</a><br>
+		            <%} %>
             </div>
         </div>
+          
          <%} %>
          
          <script>

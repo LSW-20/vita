@@ -51,7 +51,7 @@
 			int result = new ReservationService().insertCheckListt(userNo, mediList, surgeryName, surgeryYN, flyYN);
 		        
 			if (result == 1 ) {
-	            session.setAttribute("alertMsg", "진료예약이 완료되었습니다.");
+	            session.setAttribute("alertMsg", "검진예약이 완료되었습니다.");
                 response.sendRedirect(request.getContextPath());
 	        	
 	        } else {

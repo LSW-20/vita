@@ -34,7 +34,7 @@
 	</entry>
 
 	<!-- 진료 예약 내역에 추가 -->
-	<entry key="InsertCareApp">
+	<entry key="InsertCareApp1">
 
 		INSERT
 		INTO CARE_APP

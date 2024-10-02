@@ -56,7 +56,7 @@ public class HealthCheckFormController extends HttpServlet {
         	if(payResult == 1) {
         		List<HealthCheck> Success = new ReservationService().selectSuccessNormal(userNo, date);
         		if(Success != null) {
-		            session.setAttribute("alertMsg", "진료예약이 완료되었습니다.");
+		            session.setAttribute("alertMsg", "검진예약이 완료되었습니다.");
 		            request.setAttribute("Success", Success);
 		            request.setAttribute("date", date);
 		            request.setAttribute("time", time);

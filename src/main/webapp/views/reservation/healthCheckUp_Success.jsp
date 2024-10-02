@@ -74,7 +74,7 @@
                         <div class="col"><img src="/vita/assets/image/완료체크.jpg"  class="img-check" id="check"></div>
                         <div class="col">
                            <h1 class="text">검진 예약신청 완료</h1>
-                           <h6 class="text">원활한 검진진행을 위해 내원하셔서 문진표 작성을 미리 완료해주세요.</h6>
+                           <h6 class="text">원활한 검진진행을 위해 문진표를 미리 작성해주세요.</h6>
                         </div>
 
                     </div>
