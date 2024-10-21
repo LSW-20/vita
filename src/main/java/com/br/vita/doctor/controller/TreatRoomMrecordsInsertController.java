@@ -45,13 +45,7 @@ public class TreatRoomMrecordsInsertController extends HttpServlet {
 		String treatment = request.getParameter("treatment");
 		String diagnosis = request.getParameter("diagnosis");
 		
-		/*
-		 * System.out.println(docNo); System.out.println(deptName);
-		 * System.out.println(userNo); System.out.println(resNo);
-		 * System.out.println(userName); System.out.println(symptoms);
-		 * System.out.println(opinion); System.out.println(treatment);
-		 * System.out.println(diagnosis);
-		 */
+	
 		
 		Map<String,Object> mrMap = new HashMap<>();
 		
